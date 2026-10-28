@@ -1,5 +1,11 @@
 # Creo 13.4 批量重命名插件交付包
 
+> **图标状态更新：r4仍未在用户实机显示成功，“16色BMP即满足SetIcon要求”的结论缺乏真实SDK依据。请先诊断，不再仅替换BMP。**
+>
+> [下载 r5 图标诊断与 PNG 候选修订（ZIP）](https://github.com/suntaltech/Creo13.4/raw/refs/heads/main/downloads/Creo13_Icon_Diagnostics_r5.zip) · [单独下载只读检查脚本](https://github.com/suntaltech/Creo13.4/raw/refs/heads/main/downloads/CheckIcon.ps1)
+>
+> r5不是已确认修复：新增PNG16/32px、调整设置图标的顺序及build日志，帮助区分错误输入、加载旧class、资源路径不一致和Ribbon显示问题；PNG候选需要重新编译，不能只换图片。先运行包内只读检查并回传当前SetIcon日志/实际路径。真实SDK及显示尚未验证。原r4完整包保留用于比对。
+
 [下载插件与图标完整包 r4（16色BMP修正版）（ZIP）](https://github.com/suntaltech/Creo13.4/raw/refs/heads/main/downloads/Creo13_Plugin_Icons_Complete.zip)
 
 如果浏览器打开文件页面，请点击 **Download raw file / 下载原始文件**。
