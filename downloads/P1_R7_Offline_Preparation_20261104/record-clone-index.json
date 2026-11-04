@@ -1,0 +1,205 @@
+{
+  "recordType": "OFFLINE_CLONE_INDEX_NOT_RUNTIME_RECORD",
+  "schemaOrCodeChanged": false,
+  "originalBlankLedgerModified": false,
+  "runtimeDirectoriesCreated": false,
+  "runtimeRecordsCreated": false,
+  "runtimeEvidenceAuthenticated": false,
+  "sourceLedgerRelativeName": "blank-observation-ledger.json",
+  "sourceLedgerSha256": "ff1fc06f9c500ab8f31b81075de45e608d2ea152723974984eec2b67051ea633",
+  "futureGroupingRule": "sessionScope first, then the directoryRole; no concrete directory or filename is generated now",
+  "sessionScope": "UNVERIFIED",
+  "attemptOrdinal": "UNVERIFIED",
+  "filenameComponents": [
+    "planId_or_caseId",
+    "condition",
+    "operatorRecordedDate",
+    "operatorIdentifier",
+    "recordKind"
+  ],
+  "conditionMustDistinguish": [
+    "layout_or_policy_or_input_condition",
+    "sessionScope",
+    "attemptOrdinal"
+  ],
+  "directoryRoles": [
+    {
+      "directoryRole": "01-session-plans",
+      "sourcePointers": [
+        "/sessionPlans"
+      ],
+      "sourceSlotCount": 4,
+      "cloneUnit": "one plan slot per actual session; keep unexecuted slots blank",
+      "independence": [
+        "planId",
+        "sessionScope",
+        "attemptOrdinal"
+      ],
+      "doNotInherit": [
+        "C1/C2/C3 conclusions do not satisfy C4"
+      ]
+    },
+    {
+      "directoryRole": "02-route-a-policy",
+      "sourcePointers": [
+        "/independentRouteAPolicyRecords"
+      ],
+      "sourceSlotCount": 3,
+      "cloneUnit": "one wrapper per planned policy; fill a cloned record only, not the source wrapper",
+      "independence": [
+        "policyId",
+        "sessionScope",
+        "attemptOrdinal"
+      ],
+      "doNotInherit": [
+        "one policy result never fills another policy or C4"
+      ]
+    },
+    {
+      "directoryRole": "03-l3-candidate-list",
+      "sourcePointers": [
+        "/manualUiObservation"
+      ],
+      "sourceSlotCount": 1,
+      "cloneUnit": "new standalone observation per command per session for L3",
+      "independence": [
+        "commandId",
+        "sessionScope",
+        "attemptOrdinal",
+        "recordKind"
+      ],
+      "doNotInherit": [
+        "Designate or old menu return does not fill L3"
+      ]
+    },
+    {
+      "directoryRole": "04-l4-fixed-button",
+      "sourcePointers": [
+        "/manualUiObservation"
+      ],
+      "sourceSlotCount": 1,
+      "cloneUnit": "a separate clone from the original blank object, not a renamed L3 result",
+      "independence": [
+        "commandId",
+        "sessionScope",
+        "attemptOrdinal",
+        "fixedPositionIdentity",
+        "recordKind"
+      ],
+      "doNotInherit": [
+        "L3 visibility does not prove Add, fixed position or feedback"
+      ]
+    },
+    {
+      "directoryRole": "05-negative-cases",
+      "sourcePointers": [
+        "/negativeCaseRows"
+      ],
+      "sourceSlotCount": 12,
+      "cloneUnit": "preserve expected metadata separately; clone runtimeRecord for one plannedCaseId per attempt",
+      "independence": [
+        "plannedCaseId",
+        "sessionScope",
+        "attemptOrdinal"
+      ],
+      "doNotInherit": [
+        "expectedClassification is not actual errorCode/failedPhase/completionClass"
+      ]
+    },
+    {
+      "directoryRole": "06-route-b-prerequisites",
+      "sourcePointers": [
+        "/routeBOperatorRecord/prerequisites",
+        "/routeBPrerequisiteRequirements/prerequisites"
+      ],
+      "sourceSlotCount": 7,
+      "cloneUnit": "match requirement metadata and operator row by id; store evidence per prerequisite",
+      "independence": [
+        "prerequisite id",
+        "sessionScope",
+        "attemptOrdinal"
+      ],
+      "doNotInherit": [
+        "RESOURCE_LOOKUP does not remove six blocking prerequisites",
+        "C1/C2/C3 do not supply C4 prerequisites"
+      ]
+    },
+    {
+      "directoryRole": "07-custody-crosscheck",
+      "sourcePointers": [
+        "/evidenceCustodyRecord"
+      ],
+      "sourceSlotCount": 1,
+      "cloneUnit": "one custody record per case/session scope, link related evidence",
+      "independence": [
+        "caseId",
+        "sessionId",
+        "attemptOrdinal"
+      ],
+      "doNotInherit": [
+        "schema validity does not fill operator integrity PASS"
+      ]
+    },
+    {
+      "directoryRole": "08-production-restore",
+      "sourcePointers": [
+        "/productionReadonlyPreflight"
+      ],
+      "sourceSlotCount": 7,
+      "cloneUnit": "copy the seven-row readonly preflight as one independent future review set",
+      "independence": [
+        "restoreReviewScope",
+        "attemptOrdinal"
+      ],
+      "doNotInherit": [
+        "readonly preparation does not authorize recovery action"
+      ]
+    },
+    {
+      "directoryRole": "99-audit-meta",
+      "sourcePointers": [
+        ""
+      ],
+      "sourceSlotCount": 1,
+      "cloneUnit": "retain original ledger and matching preparation manifest/SHA as reference; never replace originals with results",
+      "independence": [
+        "preparationRevision",
+        "futureEvidenceScope"
+      ],
+      "doNotInherit": [
+        "input material identity is not loaded runtime identity"
+      ]
+    }
+  ],
+  "displayAliasMappings": [
+    {
+      "displayName": "screenshotRef",
+      "canonicalField": "evidenceRefs",
+      "referenceKind": "SCREENSHOT"
+    },
+    {
+      "displayName": "logRef",
+      "canonicalField": "evidenceRefs",
+      "referenceKind": "LOG"
+    },
+    {
+      "displayName": "manualOperationRef",
+      "canonicalField": "evidenceRefs",
+      "referenceKind": "MANUAL_OPERATION_RECORD"
+    },
+    {
+      "displayName": "prerequisiteId",
+      "canonicalField": "id",
+      "referenceKind": "NOT_APPLICABLE_FIELD_ALIAS"
+    },
+    {
+      "displayName": "mustNotTouchTouched",
+      "canonicalField": "sdkCallTouches",
+      "referenceKind": "NOT_APPLICABLE_FIELD_ALIAS"
+    }
+  ],
+  "rawNotFoundRule": "An external search observation may describe NOT_FOUND; schema status remains UNVERIFIED/PASS/FAILED/BLOCKED and is assigned only with the required evidence. Do not add NOT_FOUND to the status enum.",
+  "requestIdRule": "Record a real requestId only when the relevant callback exists; do not invent one for object-only L1 observations.",
+  "sourceRuleFile": "P1_R7_受控证据目录命名与克隆规则_20261104.md",
+  "sourceRuleSha256": "046360f479446699bdf730868f92cd0a6de46b2006231d60fc6f21d073394e63"
+}

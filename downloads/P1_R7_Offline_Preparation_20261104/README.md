@@ -54,3 +54,7 @@ JSON仅为计划和可复制的空记录。按未来实际会话/命令克隆记
 | SISWSheetMetal | Sheet Metal Page |
 | SISWAbout | About SISW |
 | SISWSheetMetalConvert | Convert Solid to Sheet Metal 6A |
+
+## 命名与克隆补充
+
+[克隆来源索引](record-clone-index.json)与[规则衔接说明](naming-and-clone-guide.md)只列未来组织方式。没有创建九类现场目录、没有克隆运行记录，原空白台账和R7均未改。

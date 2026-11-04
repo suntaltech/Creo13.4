@@ -22,13 +22,18 @@
       "name": "P1_R7_官方资料定位与未决问题索引_20261104.md",
       "sha256": "0495c47d2377cdb4f7fa2ea346c0f4bbc3a830a39a56783eb9f92331218a751b",
       "role": "USER_PROVIDED_REFERENCE_NOT_RUNTIME_EVIDENCE"
+    },
+    {
+      "name": "P1_R7_受控证据目录命名与克隆规则_20261104.md",
+      "sha256": "046360f479446699bdf730868f92cd0a6de46b2006231d60fc6f21d073394e63",
+      "role": "USER_PROVIDED_REFERENCE_NOT_RUNTIME_EVIDENCE"
     }
   ],
   "files": [
     {
       "name": "README.md",
-      "bytes": 4490,
-      "sha256": "c3e8f7727ed3e896da3cc219ea15e15ed7b54959748cdd3ead0f85552fd7b649"
+      "bytes": 4732,
+      "sha256": "cd9ae4130f29779493de6c7340def8f26d6eaf09b9a6d1e03b116acb4ab10b94"
     },
     {
       "name": "a1-stable-line-regression.md",
@@ -46,6 +51,11 @@
       "sha256": "f6536cec6b54e78cee78ff62264dc90b527e577b17994d4c61d096899e879f22"
     },
     {
+      "name": "naming-and-clone-guide.md",
+      "bytes": 4208,
+      "sha256": "e17aa3799902cea85efd857c5195a993ca0e2daf01aa576bff2ed8d29d8b5f4a"
+    },
+    {
       "name": "official-reference-index.md",
       "bytes": 3748,
       "sha256": "30fb525fd1dccd732b08246038da52b1def23bea5efeade52c64053279ae786e"
@@ -61,10 +71,16 @@
       "sha256": "f5218c73f753f2c87a82406b5ea7a17361aa57bf28c63c7b5ce2f9c1fa754024"
     },
     {
+      "name": "record-clone-index.json",
+      "bytes": 6354,
+      "sha256": "f9f3aaec7f98f6e11a38519c5dec24f8128478c29e588e8cbd8a833a8afd8707"
+    },
+    {
       "name": "validation.json",
-      "bytes": 851,
-      "sha256": "198e24e231ad1add4efc420fbead897830769a149124854484b9aa36fc1e88dd"
+      "bytes": 1295,
+      "sha256": "f60b78cc69274427b4b5831b665e305d070adefef174054c17afb2aeec8f3af8"
     }
   ],
-  "manifestCoverage": "SHA256SUMS additionally covers this manifest; checksums list excludes itself"
+  "manifestCoverage": "SHA256SUMS additionally covers this manifest; checksums list excludes itself",
+  "supplementScope": "naming/clone index and schema-compatible field mapping only; original blank ledger unchanged"
 }

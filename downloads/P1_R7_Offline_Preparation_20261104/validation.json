@@ -1,5 +1,5 @@
 {
-  "scope": "preparation-document consistency and retained R7 identity only; no SDK/GUI/runtime validation",
+  "scope": "preparation-document consistency, clone-index mapping and retained R7 identity only; no SDK/GUI/runtime validation",
   "checks": {
     "workstreams_7": true,
     "gates_8": true,
@@ -16,10 +16,19 @@
     "no_machine_paths_or_runtime_uuids": true,
     "no_runtime_timestamp": true,
     "r7_archive_byte_identity": true,
-    "r7_frozen_items_14_match": true
+    "r7_frozen_items_14_match": true,
+    "original_blank_ledger_byte_unchanged": true,
+    "clone_source_pointers_resolve_and_counts_match": true,
+    "directory_roles_9": true,
+    "no_runtime_directories_or_records_created": true,
+    "filename_components_preserved": true,
+    "reference_alias_kinds_exist_in_schema": true,
+    "not_found_not_inserted_into_schema": true,
+    "route_b_metadata_operator_ids_match": true
   },
   "allPassed": true,
   "runtimeEvidenceAuthenticated": false,
   "softwareCandidateGenerated": false,
-  "archiveGenerated": false
+  "archiveGenerated": false,
+  "runtimeRecordsGenerated": false
 }
