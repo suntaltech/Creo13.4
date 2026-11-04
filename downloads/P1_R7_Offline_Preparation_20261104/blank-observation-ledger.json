@@ -1,0 +1,945 @@
+{
+  "recordType": "UNFILLED_R7_PREPARATION_LEDGER",
+  "runtimeEvidenceAuthenticated": false,
+  "evidenceAuthenticity": "UNVERIFIED",
+  "sessionPlans": [
+    {
+      "planId": "C1",
+      "plannedClass": "BatchRename",
+      "plannedStartup": "java",
+      "plannedLayout": "root-layout",
+      "plannedSingleVariable": "baseline_resource_layout",
+      "actualStartup": "UNVERIFIED",
+      "selectedLayout": "UNVERIFIED",
+      "actualRestartObserved": "UNVERIFIED",
+      "sourceSha256": "UNVERIFIED",
+      "controlledDatSha256": "UNVERIFIED",
+      "modelMode": "UNVERIFIED",
+      "commandId": "UNVERIFIED",
+      "sessionId": "UNVERIFIED",
+      "requestIds": [],
+      "status": "UNVERIFIED",
+      "evidenceRefs": []
+    },
+    {
+      "planId": "C2",
+      "plannedClass": "BatchRename",
+      "plannedStartup": "java",
+      "plannedLayout": "usascii-layout",
+      "plannedSingleVariable": "resource_layout_only",
+      "actualStartup": "UNVERIFIED",
+      "selectedLayout": "UNVERIFIED",
+      "actualRestartObserved": "UNVERIFIED",
+      "sourceSha256": "UNVERIFIED",
+      "controlledDatSha256": "UNVERIFIED",
+      "modelMode": "UNVERIFIED",
+      "commandId": "UNVERIFIED",
+      "sessionId": "UNVERIFIED",
+      "requestIds": [],
+      "status": "UNVERIFIED",
+      "evidenceRefs": []
+    },
+    {
+      "planId": "C3",
+      "plannedClass": "JLinkUiProbe",
+      "plannedStartup": "java",
+      "plannedLayout": "UNVERIFIED",
+      "plannedSingleVariable": "one_route_a_policy_id",
+      "actualStartup": "UNVERIFIED",
+      "selectedLayout": "UNVERIFIED",
+      "actualRestartObserved": "UNVERIFIED",
+      "sourceSha256": "UNVERIFIED",
+      "controlledDatSha256": "UNVERIFIED",
+      "modelMode": "UNVERIFIED",
+      "commandId": "UNVERIFIED",
+      "sessionId": "UNVERIFIED",
+      "requestIds": [],
+      "status": "UNVERIFIED",
+      "evidenceRefs": []
+    },
+    {
+      "planId": "C4",
+      "plannedClass": "OtkUiProbe",
+      "plannedStartup": "otk_java",
+      "plannedLayout": "UNVERIFIED",
+      "plannedSingleVariable": "route_b_prerequisite_state",
+      "actualStartup": "UNVERIFIED",
+      "selectedLayout": "UNVERIFIED",
+      "actualRestartObserved": "UNVERIFIED",
+      "sourceSha256": "UNVERIFIED",
+      "controlledDatSha256": "UNVERIFIED",
+      "modelMode": "UNVERIFIED",
+      "commandId": "UNVERIFIED",
+      "sessionId": "UNVERIFIED",
+      "requestIds": [],
+      "status": "UNVERIFIED",
+      "evidenceRefs": []
+    }
+  ],
+  "manualUiObservation": {
+    "recordType": "UNFILLED_MANUAL_UI_OBSERVATION",
+    "commandId": "UNVERIFIED",
+    "source": "NOT_EXECUTED",
+    "sourceSha256": "UNVERIFIED",
+    "controlledDatSha256": "UNVERIFIED",
+    "searchExactQuery": "UNVERIFIED",
+    "searchCategory": "UNVERIFIED",
+    "l3CandidateListVisible": "UNVERIFIED",
+    "l4ManuallyAdded": "UNVERIFIED",
+    "l4FixedLocationRecorded": "UNVERIFIED",
+    "clickOutcome": "UNVERIFIED",
+    "designateReturned": "UNVERIFIED",
+    "oldMenuReturned": "UNVERIFIED",
+    "insufficientEvidenceReasons": [],
+    "evidenceRefs": [],
+    "runtimeEvidenceAuthenticated": false,
+    "evidenceAuthenticity": "UNVERIFIED"
+  },
+  "evidenceCustodyRecord": {
+    "recordType": "UNFILLED_EVIDENCE_CUSTODY_RECORD",
+    "caseId": "UNVERIFIED",
+    "sessionId": "UNVERIFIED",
+    "requestIds": [],
+    "commandId": "UNVERIFIED",
+    "sourceFileRelativeName": "UNVERIFIED",
+    "sourceFileSha256": "UNVERIFIED",
+    "sourceHashMatch": "UNVERIFIED",
+    "sessionMatch": "UNVERIFIED",
+    "commandIdMatch": "UNVERIFIED",
+    "referenceIntegrityCheckedByOperator": "UNVERIFIED",
+    "schemaValidatedEvidence": "UNVERIFIED",
+    "evidenceRefs": [],
+    "runtimeEvidenceAuthenticated": false,
+    "evidenceAuthenticity": "UNVERIFIED"
+  },
+  "independentRouteAPolicyRecords": [
+    {
+      "plannedPolicyId": "FILE_EXPLICIT_NULL_NEIGHBOR",
+      "record": {
+        "recordType": "UNFILLED_ROUTE_A_POLICY_RECORD",
+        "planId": "C3",
+        "policyId": "UNVERIFIED",
+        "plannedClass": "JLinkUiProbe",
+        "plannedStartup": "java",
+        "source": "NOT_EXECUTED",
+        "commandId": "UNVERIFIED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "callOutcome": "UNVERIFIED",
+        "exceptionClass": "UNVERIFIED",
+        "returnedValueObserved": "UNVERIFIED",
+        "oldMenuEvidenceOnly": true,
+        "notModernToolkitListEvidence": true,
+        "legacyEvidenceBoundary": "NOT_MODERN_TOOLKIT_LIST_EVIDENCE",
+        "searchExactQuery": "UNVERIFIED",
+        "searchCategory": "UNVERIFIED",
+        "l3CandidateListVisible": "UNVERIFIED",
+        "l4FixedLocationRecorded": "UNVERIFIED",
+        "evidenceRefs": [],
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      },
+      "futureSessionMustBeIndependent": true
+    },
+    {
+      "plannedPolicyId": "APPLICATIONS_EXPLICIT_NEIGHBOR",
+      "record": {
+        "recordType": "UNFILLED_ROUTE_A_POLICY_RECORD",
+        "planId": "C3",
+        "policyId": "UNVERIFIED",
+        "plannedClass": "JLinkUiProbe",
+        "plannedStartup": "java",
+        "source": "NOT_EXECUTED",
+        "commandId": "UNVERIFIED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "callOutcome": "UNVERIFIED",
+        "exceptionClass": "UNVERIFIED",
+        "returnedValueObserved": "UNVERIFIED",
+        "oldMenuEvidenceOnly": true,
+        "notModernToolkitListEvidence": true,
+        "legacyEvidenceBoundary": "NOT_MODERN_TOOLKIT_LIST_EVIDENCE",
+        "searchExactQuery": "UNVERIFIED",
+        "searchCategory": "UNVERIFIED",
+        "l3CandidateListVisible": "UNVERIFIED",
+        "l4FixedLocationRecorded": "UNVERIFIED",
+        "evidenceRefs": [],
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      },
+      "futureSessionMustBeIndependent": true
+    },
+    {
+      "plannedPolicyId": "CUSTOM_TOP_LEVEL_INFO_MENU",
+      "record": {
+        "recordType": "UNFILLED_ROUTE_A_POLICY_RECORD",
+        "planId": "C3",
+        "policyId": "UNVERIFIED",
+        "plannedClass": "JLinkUiProbe",
+        "plannedStartup": "java",
+        "source": "NOT_EXECUTED",
+        "commandId": "UNVERIFIED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "callOutcome": "UNVERIFIED",
+        "exceptionClass": "UNVERIFIED",
+        "returnedValueObserved": "UNVERIFIED",
+        "oldMenuEvidenceOnly": true,
+        "notModernToolkitListEvidence": true,
+        "legacyEvidenceBoundary": "NOT_MODERN_TOOLKIT_LIST_EVIDENCE",
+        "searchExactQuery": "UNVERIFIED",
+        "searchCategory": "UNVERIFIED",
+        "l3CandidateListVisible": "UNVERIFIED",
+        "l4FixedLocationRecorded": "UNVERIFIED",
+        "evidenceRefs": [],
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      },
+      "futureSessionMustBeIndependent": true
+    }
+  ],
+  "negativeCaseRows": [
+    {
+      "plannedCaseId": "NO_MODEL",
+      "stopOrder": 1,
+      "expectedGuardStage": "current model read",
+      "expectedClassification": "READ_MODEL_FAILED",
+      "mustNotTouch": [
+        "WCreateFeature",
+        "WRegenerate",
+        "Save"
+      ],
+      "thicknessInputOutcome": "NOT_APPLICABLE_PLAN_FIELD",
+      "runtimeRecord": {
+        "recordType": "UNFILLED_CONTROLLED_CASE_RECORD",
+        "caseId": "UNVERIFIED",
+        "sessionPlanId": "UNVERIFIED",
+        "layer": "UNVERIFIED",
+        "status": "UNVERIFIED",
+        "commandId": "UNVERIFIED",
+        "source": "NOT_EXECUTED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "modelMode": "UNVERIFIED",
+        "selectionState": "UNVERIFIED",
+        "actualErrorCode": "UNVERIFIED",
+        "actualFailedPhase": "UNVERIFIED",
+        "actualCompletionClass": "UNVERIFIED",
+        "guardOutcome": "UNVERIFIED",
+        "creationAttempt": "NO_ATTEMPT",
+        "featureCreated": "UNVERIFIED",
+        "prohibitedSdkCallsObserved": "UNVERIFIED",
+        "sdkCallTouches": {
+          "WCreateFeature": "UNVERIFIED",
+          "WRegenerate": "UNVERIFIED",
+          "Save": "UNVERIFIED"
+        },
+        "actualModelMayHaveChanged": "UNVERIFIED",
+        "requestIds": [],
+        "evidenceRefs": [],
+        "operatorNotes": "UNVERIFIED",
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      }
+    },
+    {
+      "plannedCaseId": "NOT_PART",
+      "stopOrder": 2,
+      "expectedGuardStage": "model type guard",
+      "expectedClassification": "MODEL_TYPE_BLOCKED",
+      "mustNotTouch": [
+        "WCreateFeature",
+        "WRegenerate",
+        "Save"
+      ],
+      "thicknessInputOutcome": "NOT_APPLICABLE_PLAN_FIELD",
+      "runtimeRecord": {
+        "recordType": "UNFILLED_CONTROLLED_CASE_RECORD",
+        "caseId": "UNVERIFIED",
+        "sessionPlanId": "UNVERIFIED",
+        "layer": "UNVERIFIED",
+        "status": "UNVERIFIED",
+        "commandId": "UNVERIFIED",
+        "source": "NOT_EXECUTED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "modelMode": "UNVERIFIED",
+        "selectionState": "UNVERIFIED",
+        "actualErrorCode": "UNVERIFIED",
+        "actualFailedPhase": "UNVERIFIED",
+        "actualCompletionClass": "UNVERIFIED",
+        "guardOutcome": "UNVERIFIED",
+        "creationAttempt": "NO_ATTEMPT",
+        "featureCreated": "UNVERIFIED",
+        "prohibitedSdkCallsObserved": "UNVERIFIED",
+        "sdkCallTouches": {
+          "WCreateFeature": "UNVERIFIED",
+          "WRegenerate": "UNVERIFIED",
+          "Save": "UNVERIFIED"
+        },
+        "actualModelMayHaveChanged": "UNVERIFIED",
+        "requestIds": [],
+        "evidenceRefs": [],
+        "operatorNotes": "UNVERIFIED",
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      }
+    },
+    {
+      "plannedCaseId": "ALREADY_SHEETMETAL",
+      "stopOrder": 3,
+      "expectedGuardStage": "default body sheetmetal guard",
+      "expectedClassification": "ALREADY_SHEETMETAL",
+      "mustNotTouch": [
+        "WCreateFeature",
+        "WRegenerate",
+        "Save"
+      ],
+      "thicknessInputOutcome": "NOT_APPLICABLE_PLAN_FIELD",
+      "runtimeRecord": {
+        "recordType": "UNFILLED_CONTROLLED_CASE_RECORD",
+        "caseId": "UNVERIFIED",
+        "sessionPlanId": "UNVERIFIED",
+        "layer": "UNVERIFIED",
+        "status": "UNVERIFIED",
+        "commandId": "UNVERIFIED",
+        "source": "NOT_EXECUTED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "modelMode": "UNVERIFIED",
+        "selectionState": "UNVERIFIED",
+        "actualErrorCode": "UNVERIFIED",
+        "actualFailedPhase": "UNVERIFIED",
+        "actualCompletionClass": "UNVERIFIED",
+        "guardOutcome": "UNVERIFIED",
+        "creationAttempt": "NO_ATTEMPT",
+        "featureCreated": "UNVERIFIED",
+        "prohibitedSdkCallsObserved": "UNVERIFIED",
+        "sdkCallTouches": {
+          "WCreateFeature": "UNVERIFIED",
+          "WRegenerate": "UNVERIFIED",
+          "Save": "UNVERIFIED"
+        },
+        "actualModelMayHaveChanged": "UNVERIFIED",
+        "requestIds": [],
+        "evidenceRefs": [],
+        "operatorNotes": "UNVERIFIED",
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      }
+    },
+    {
+      "plannedCaseId": "NO_SELECTED_FACE",
+      "stopOrder": 4,
+      "expectedGuardStage": "selection-count guard",
+      "expectedClassification": "NO_SELECTED_FACE",
+      "mustNotTouch": [
+        "WCreateFeature",
+        "WRegenerate",
+        "Save"
+      ],
+      "thicknessInputOutcome": "NOT_APPLICABLE_PLAN_FIELD",
+      "runtimeRecord": {
+        "recordType": "UNFILLED_CONTROLLED_CASE_RECORD",
+        "caseId": "UNVERIFIED",
+        "sessionPlanId": "UNVERIFIED",
+        "layer": "UNVERIFIED",
+        "status": "UNVERIFIED",
+        "commandId": "UNVERIFIED",
+        "source": "NOT_EXECUTED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "modelMode": "UNVERIFIED",
+        "selectionState": "UNVERIFIED",
+        "actualErrorCode": "UNVERIFIED",
+        "actualFailedPhase": "UNVERIFIED",
+        "actualCompletionClass": "UNVERIFIED",
+        "guardOutcome": "UNVERIFIED",
+        "creationAttempt": "NO_ATTEMPT",
+        "featureCreated": "UNVERIFIED",
+        "prohibitedSdkCallsObserved": "UNVERIFIED",
+        "sdkCallTouches": {
+          "WCreateFeature": "UNVERIFIED",
+          "WRegenerate": "UNVERIFIED",
+          "Save": "UNVERIFIED"
+        },
+        "actualModelMayHaveChanged": "UNVERIFIED",
+        "requestIds": [],
+        "evidenceRefs": [],
+        "operatorNotes": "UNVERIFIED",
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      }
+    },
+    {
+      "plannedCaseId": "TOO_MANY_FACES",
+      "stopOrder": 5,
+      "expectedGuardStage": "selection-count guard",
+      "expectedClassification": "TOO_MANY_FACES",
+      "mustNotTouch": [
+        "WCreateFeature",
+        "WRegenerate",
+        "Save"
+      ],
+      "thicknessInputOutcome": "NOT_APPLICABLE_PLAN_FIELD",
+      "runtimeRecord": {
+        "recordType": "UNFILLED_CONTROLLED_CASE_RECORD",
+        "caseId": "UNVERIFIED",
+        "sessionPlanId": "UNVERIFIED",
+        "layer": "UNVERIFIED",
+        "status": "UNVERIFIED",
+        "commandId": "UNVERIFIED",
+        "source": "NOT_EXECUTED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "modelMode": "UNVERIFIED",
+        "selectionState": "UNVERIFIED",
+        "actualErrorCode": "UNVERIFIED",
+        "actualFailedPhase": "UNVERIFIED",
+        "actualCompletionClass": "UNVERIFIED",
+        "guardOutcome": "UNVERIFIED",
+        "creationAttempt": "NO_ATTEMPT",
+        "featureCreated": "UNVERIFIED",
+        "prohibitedSdkCallsObserved": "UNVERIFIED",
+        "sdkCallTouches": {
+          "WCreateFeature": "UNVERIFIED",
+          "WRegenerate": "UNVERIFIED",
+          "Save": "UNVERIFIED"
+        },
+        "actualModelMayHaveChanged": "UNVERIFIED",
+        "requestIds": [],
+        "evidenceRefs": [],
+        "operatorNotes": "UNVERIFIED",
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      }
+    },
+    {
+      "plannedCaseId": "SELECTED_FACE_INVALID",
+      "stopOrder": 6,
+      "expectedGuardStage": "selected item/visibility/area validation",
+      "expectedClassification": "SELECTED_FACE_INVALID",
+      "mustNotTouch": [
+        "WCreateFeature",
+        "WRegenerate",
+        "Save"
+      ],
+      "thicknessInputOutcome": "NOT_APPLICABLE_PLAN_FIELD",
+      "runtimeRecord": {
+        "recordType": "UNFILLED_CONTROLLED_CASE_RECORD",
+        "caseId": "UNVERIFIED",
+        "sessionPlanId": "UNVERIFIED",
+        "layer": "UNVERIFIED",
+        "status": "UNVERIFIED",
+        "commandId": "UNVERIFIED",
+        "source": "NOT_EXECUTED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "modelMode": "UNVERIFIED",
+        "selectionState": "UNVERIFIED",
+        "actualErrorCode": "UNVERIFIED",
+        "actualFailedPhase": "UNVERIFIED",
+        "actualCompletionClass": "UNVERIFIED",
+        "guardOutcome": "UNVERIFIED",
+        "creationAttempt": "NO_ATTEMPT",
+        "featureCreated": "UNVERIFIED",
+        "prohibitedSdkCallsObserved": "UNVERIFIED",
+        "sdkCallTouches": {
+          "WCreateFeature": "UNVERIFIED",
+          "WRegenerate": "UNVERIFIED",
+          "Save": "UNVERIFIED"
+        },
+        "actualModelMayHaveChanged": "UNVERIFIED",
+        "requestIds": [],
+        "evidenceRefs": [],
+        "operatorNotes": "UNVERIFIED",
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      }
+    },
+    {
+      "plannedCaseId": "SELECTED_NOT_PLANE",
+      "stopOrder": 7,
+      "expectedGuardStage": "surface-type guard",
+      "expectedClassification": "SELECTED_NOT_PLANE",
+      "mustNotTouch": [
+        "WCreateFeature",
+        "WRegenerate",
+        "Save"
+      ],
+      "thicknessInputOutcome": "NOT_APPLICABLE_PLAN_FIELD",
+      "runtimeRecord": {
+        "recordType": "UNFILLED_CONTROLLED_CASE_RECORD",
+        "caseId": "UNVERIFIED",
+        "sessionPlanId": "UNVERIFIED",
+        "layer": "UNVERIFIED",
+        "status": "UNVERIFIED",
+        "commandId": "UNVERIFIED",
+        "source": "NOT_EXECUTED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "modelMode": "UNVERIFIED",
+        "selectionState": "UNVERIFIED",
+        "actualErrorCode": "UNVERIFIED",
+        "actualFailedPhase": "UNVERIFIED",
+        "actualCompletionClass": "UNVERIFIED",
+        "guardOutcome": "UNVERIFIED",
+        "creationAttempt": "NO_ATTEMPT",
+        "featureCreated": "UNVERIFIED",
+        "prohibitedSdkCallsObserved": "UNVERIFIED",
+        "sdkCallTouches": {
+          "WCreateFeature": "UNVERIFIED",
+          "WRegenerate": "UNVERIFIED",
+          "Save": "UNVERIFIED"
+        },
+        "actualModelMayHaveChanged": "UNVERIFIED",
+        "requestIds": [],
+        "evidenceRefs": [],
+        "operatorNotes": "UNVERIFIED",
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      }
+    },
+    {
+      "plannedCaseId": "SELECTED_FACE_OTHER_BODY",
+      "stopOrder": 8,
+      "expectedGuardStage": "default-body membership check",
+      "expectedClassification": "SELECTED_FACE_OTHER_BODY",
+      "mustNotTouch": [
+        "WCreateFeature",
+        "WRegenerate",
+        "Save"
+      ],
+      "thicknessInputOutcome": "NOT_APPLICABLE_PLAN_FIELD",
+      "runtimeRecord": {
+        "recordType": "UNFILLED_CONTROLLED_CASE_RECORD",
+        "caseId": "UNVERIFIED",
+        "sessionPlanId": "UNVERIFIED",
+        "layer": "UNVERIFIED",
+        "status": "UNVERIFIED",
+        "commandId": "UNVERIFIED",
+        "source": "NOT_EXECUTED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "modelMode": "UNVERIFIED",
+        "selectionState": "UNVERIFIED",
+        "actualErrorCode": "UNVERIFIED",
+        "actualFailedPhase": "UNVERIFIED",
+        "actualCompletionClass": "UNVERIFIED",
+        "guardOutcome": "UNVERIFIED",
+        "creationAttempt": "NO_ATTEMPT",
+        "featureCreated": "UNVERIFIED",
+        "prohibitedSdkCallsObserved": "UNVERIFIED",
+        "sdkCallTouches": {
+          "WCreateFeature": "UNVERIFIED",
+          "WRegenerate": "UNVERIFIED",
+          "Save": "UNVERIFIED"
+        },
+        "actualModelMayHaveChanged": "UNVERIFIED",
+        "requestIds": [],
+        "evidenceRefs": [],
+        "operatorNotes": "UNVERIFIED",
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      }
+    },
+    {
+      "plannedCaseId": "UNIT_BLOCK",
+      "stopOrder": 9,
+      "expectedGuardStage": "explicit unit gate",
+      "expectedClassification": "UNIT_GATE_BLOCKED",
+      "mustNotTouch": [
+        "WCreateFeature",
+        "WRegenerate",
+        "Save"
+      ],
+      "thicknessInputOutcome": "NOT_APPLICABLE_PLAN_FIELD",
+      "runtimeRecord": {
+        "recordType": "UNFILLED_CONTROLLED_CASE_RECORD",
+        "caseId": "UNVERIFIED",
+        "sessionPlanId": "UNVERIFIED",
+        "layer": "UNVERIFIED",
+        "status": "UNVERIFIED",
+        "commandId": "UNVERIFIED",
+        "source": "NOT_EXECUTED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "modelMode": "UNVERIFIED",
+        "selectionState": "UNVERIFIED",
+        "actualErrorCode": "UNVERIFIED",
+        "actualFailedPhase": "UNVERIFIED",
+        "actualCompletionClass": "UNVERIFIED",
+        "guardOutcome": "UNVERIFIED",
+        "creationAttempt": "NO_ATTEMPT",
+        "featureCreated": "UNVERIFIED",
+        "prohibitedSdkCallsObserved": "UNVERIFIED",
+        "sdkCallTouches": {
+          "WCreateFeature": "UNVERIFIED",
+          "WRegenerate": "UNVERIFIED",
+          "Save": "UNVERIFIED"
+        },
+        "actualModelMayHaveChanged": "UNVERIFIED",
+        "requestIds": [],
+        "evidenceRefs": [],
+        "operatorNotes": "UNVERIFIED",
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      }
+    },
+    {
+      "plannedCaseId": "THICKNESS_CANCEL",
+      "stopOrder": 10,
+      "expectedGuardStage": "native thickness input return-or-throw observation",
+      "expectedClassification": "THICKNESS_CANCELLED",
+      "mustNotTouch": [
+        "WCreateFeature",
+        "WRegenerate",
+        "Save"
+      ],
+      "thicknessInputOutcome": "UNVERIFIED",
+      "runtimeRecord": {
+        "recordType": "UNFILLED_CONTROLLED_CASE_RECORD",
+        "caseId": "UNVERIFIED",
+        "sessionPlanId": "UNVERIFIED",
+        "layer": "UNVERIFIED",
+        "status": "UNVERIFIED",
+        "commandId": "UNVERIFIED",
+        "source": "NOT_EXECUTED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "modelMode": "UNVERIFIED",
+        "selectionState": "UNVERIFIED",
+        "actualErrorCode": "UNVERIFIED",
+        "actualFailedPhase": "UNVERIFIED",
+        "actualCompletionClass": "UNVERIFIED",
+        "guardOutcome": "UNVERIFIED",
+        "creationAttempt": "NO_ATTEMPT",
+        "featureCreated": "UNVERIFIED",
+        "prohibitedSdkCallsObserved": "UNVERIFIED",
+        "sdkCallTouches": {
+          "WCreateFeature": "UNVERIFIED",
+          "WRegenerate": "UNVERIFIED",
+          "Save": "UNVERIFIED"
+        },
+        "actualModelMayHaveChanged": "UNVERIFIED",
+        "requestIds": [],
+        "evidenceRefs": [],
+        "operatorNotes": "UNVERIFIED",
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      }
+    },
+    {
+      "plannedCaseId": "INVALID_THICKNESS",
+      "stopOrder": 11,
+      "expectedGuardStage": "native dialog or Java finite/range validation",
+      "expectedClassification": "INVALID_THICKNESS",
+      "mustNotTouch": [
+        "WCreateFeature",
+        "WRegenerate",
+        "Save"
+      ],
+      "thicknessInputOutcome": "UNVERIFIED",
+      "runtimeRecord": {
+        "recordType": "UNFILLED_CONTROLLED_CASE_RECORD",
+        "caseId": "UNVERIFIED",
+        "sessionPlanId": "UNVERIFIED",
+        "layer": "UNVERIFIED",
+        "status": "UNVERIFIED",
+        "commandId": "UNVERIFIED",
+        "source": "NOT_EXECUTED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "modelMode": "UNVERIFIED",
+        "selectionState": "UNVERIFIED",
+        "actualErrorCode": "UNVERIFIED",
+        "actualFailedPhase": "UNVERIFIED",
+        "actualCompletionClass": "UNVERIFIED",
+        "guardOutcome": "UNVERIFIED",
+        "creationAttempt": "NO_ATTEMPT",
+        "featureCreated": "UNVERIFIED",
+        "prohibitedSdkCallsObserved": "UNVERIFIED",
+        "sdkCallTouches": {
+          "WCreateFeature": "UNVERIFIED",
+          "WRegenerate": "UNVERIFIED",
+          "Save": "UNVERIFIED"
+        },
+        "actualModelMayHaveChanged": "UNVERIFIED",
+        "requestIds": [],
+        "evidenceRefs": [],
+        "operatorNotes": "UNVERIFIED",
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      }
+    },
+    {
+      "plannedCaseId": "CREOSON_UNAVAILABLE",
+      "stopOrder": 12,
+      "expectedGuardStage": "separate auxiliary-page service observation",
+      "expectedClassification": "AUXILIARY_SERVICE_UNAVAILABLE",
+      "mustNotTouch": [
+        "WCreateFeature",
+        "WRegenerate",
+        "Save"
+      ],
+      "thicknessInputOutcome": "NOT_APPLICABLE_PLAN_FIELD",
+      "runtimeRecord": {
+        "recordType": "UNFILLED_CONTROLLED_CASE_RECORD",
+        "caseId": "UNVERIFIED",
+        "sessionPlanId": "UNVERIFIED",
+        "layer": "UNVERIFIED",
+        "status": "UNVERIFIED",
+        "commandId": "UNVERIFIED",
+        "source": "NOT_EXECUTED",
+        "sourceSha256": "UNVERIFIED",
+        "controlledDatSha256": "UNVERIFIED",
+        "modelMode": "UNVERIFIED",
+        "selectionState": "UNVERIFIED",
+        "actualErrorCode": "UNVERIFIED",
+        "actualFailedPhase": "UNVERIFIED",
+        "actualCompletionClass": "UNVERIFIED",
+        "guardOutcome": "UNVERIFIED",
+        "creationAttempt": "NO_ATTEMPT",
+        "featureCreated": "UNVERIFIED",
+        "prohibitedSdkCallsObserved": "UNVERIFIED",
+        "sdkCallTouches": {
+          "WCreateFeature": "UNVERIFIED",
+          "WRegenerate": "UNVERIFIED",
+          "Save": "UNVERIFIED"
+        },
+        "actualModelMayHaveChanged": "UNVERIFIED",
+        "requestIds": [],
+        "evidenceRefs": [],
+        "operatorNotes": "UNVERIFIED",
+        "runtimeEvidenceAuthenticated": false,
+        "evidenceAuthenticity": "UNVERIFIED"
+      }
+    }
+  ],
+  "routeBPrerequisiteRequirements": {
+    "recordType": "UNFILLED_ROUTE_B_PREREQUISITES",
+    "state": "UNVERIFIED",
+    "gateWhenMissing": "BLOCKED_PREREQUISITES",
+    "noFallbackToRouteA": true,
+    "locatorOrigin": "OFFICIAL_DOCUMENT_LOCATOR_FROM_AUDIT_NOT_CHATGPT_RESEARCH",
+    "prerequisites": [
+      {
+        "id": "APPLICATION_JAR",
+        "status": "UNVERIFIED",
+        "blocking": true,
+        "officialDocLocator": "Compatibility_with_J_Link.html#application-jar",
+        "requiredEvidenceKinds": [
+          "JAR_PATH",
+          "JAR_SHA256",
+          "CLASS_LIST"
+        ],
+        "evidenceRefs": []
+      },
+      {
+        "id": "OFFICIAL_OTK_JAR_ON_CLASSPATH",
+        "status": "UNVERIFIED",
+        "blocking": true,
+        "officialDocLocator": "Compatibility_with_J_Link.html#otk-jar-classpath",
+        "requiredEvidenceKinds": [
+          "CLASSPATH_ENTRY",
+          "JAR_SHA256"
+        ],
+        "evidenceRefs": []
+      },
+      {
+        "id": "UNLOCK_STATUS",
+        "status": "UNVERIFIED",
+        "blocking": true,
+        "officialDocLocator": "Unlocking_Running_and_Signing_the_Creo_Object_TOOLKIT_Java_Application.html#unlock",
+        "requiredEvidenceKinds": [
+          "OPERATOR_RECORD"
+        ],
+        "evidenceRefs": []
+      },
+      {
+        "id": "SIGNATURE_STATUS",
+        "status": "UNVERIFIED",
+        "blocking": true,
+        "officialDocLocator": "Unlocking_Running_and_Signing_the_Creo_Object_TOOLKIT_Java_Application.html#signature",
+        "requiredEvidenceKinds": [
+          "OPERATOR_RECORD"
+        ],
+        "evidenceRefs": []
+      },
+      {
+        "id": "LICENSE_STATUS",
+        "status": "UNVERIFIED",
+        "blocking": true,
+        "officialDocLocator": "Unlocking_Running_and_Signing_the_Creo_Object_TOOLKIT_Java_Application.html#license",
+        "requiredEvidenceKinds": [
+          "OPERATOR_RECORD"
+        ],
+        "evidenceRefs": []
+      },
+      {
+        "id": "REGISTRY_FIELDS",
+        "status": "UNVERIFIED",
+        "blocking": true,
+        "officialDocLocator": "RegistryFile1.html#otk-java-registry",
+        "requiredEvidenceKinds": [
+          "DAT_PATH",
+          "DAT_SHA256",
+          "STARTUP_LINE"
+        ],
+        "evidenceRefs": []
+      },
+      {
+        "id": "RESOURCE_LOOKUP",
+        "status": "UNVERIFIED",
+        "blocking": false,
+        "officialDocLocator": "Registry_File.html#text-dir",
+        "requiredEvidenceKinds": [
+          "RESOURCE_SHA256",
+          "RESTART_RECORD"
+        ],
+        "evidenceRefs": []
+      }
+    ]
+  },
+  "routeBOperatorRecord": {
+    "recordType": "UNFILLED_ROUTE_B_OPERATOR_RECORD",
+    "state": "UNVERIFIED",
+    "gateWhenMissing": "BLOCKED_PREREQUISITES",
+    "noFallbackToRouteA": true,
+    "prerequisites": [
+      {
+        "id": "APPLICATION_JAR",
+        "status": "UNVERIFIED",
+        "operatorObservation": "UNVERIFIED",
+        "evidenceRefs": []
+      },
+      {
+        "id": "OFFICIAL_OTK_JAR_ON_CLASSPATH",
+        "status": "UNVERIFIED",
+        "operatorObservation": "UNVERIFIED",
+        "evidenceRefs": []
+      },
+      {
+        "id": "UNLOCK_STATUS",
+        "status": "UNVERIFIED",
+        "operatorObservation": "UNVERIFIED",
+        "evidenceRefs": []
+      },
+      {
+        "id": "SIGNATURE_STATUS",
+        "status": "UNVERIFIED",
+        "operatorObservation": "UNVERIFIED",
+        "evidenceRefs": []
+      },
+      {
+        "id": "LICENSE_STATUS",
+        "status": "UNVERIFIED",
+        "operatorObservation": "UNVERIFIED",
+        "evidenceRefs": []
+      },
+      {
+        "id": "REGISTRY_FIELDS",
+        "status": "UNVERIFIED",
+        "operatorObservation": "UNVERIFIED",
+        "evidenceRefs": []
+      },
+      {
+        "id": "RESOURCE_LOOKUP",
+        "status": "UNVERIFIED",
+        "operatorObservation": "UNVERIFIED",
+        "evidenceRefs": []
+      }
+    ],
+    "evidenceRefs": [],
+    "runtimeEvidenceAuthenticated": false,
+    "evidenceAuthenticity": "UNVERIFIED"
+  },
+  "productionReadonlyPreflight": [
+    {
+      "id": "R-1",
+      "purpose": "恢复范围授权",
+      "authorizationStatus": "SEPARATE_AUTHORIZATION_REQUIRED",
+      "expectedBaselineHash": "UNVERIFIED",
+      "currentHash": "UNVERIFIED",
+      "currentModificationTime": "UNVERIFIED",
+      "comparison": "UNVERIFIED",
+      "actionExecuted": false,
+      "evidenceRefs": []
+    },
+    {
+      "id": "R-2",
+      "purpose": "备份身份核对",
+      "authorizationStatus": "SEPARATE_AUTHORIZATION_REQUIRED",
+      "expectedBaselineHash": "UNVERIFIED",
+      "currentHash": "UNVERIFIED",
+      "currentModificationTime": "UNVERIFIED",
+      "comparison": "UNVERIFIED",
+      "actionExecuted": false,
+      "evidenceRefs": []
+    },
+    {
+      "id": "R-3",
+      "purpose": "稳定class基线",
+      "authorizationStatus": "SEPARATE_AUTHORIZATION_REQUIRED",
+      "expectedBaselineHash": "UNVERIFIED",
+      "currentHash": "UNVERIFIED",
+      "currentModificationTime": "UNVERIFIED",
+      "comparison": "UNVERIFIED",
+      "actionExecuted": false,
+      "evidenceRefs": []
+    },
+    {
+      "id": "R-4",
+      "purpose": "注册字段基线",
+      "authorizationStatus": "SEPARATE_AUTHORIZATION_REQUIRED",
+      "expectedBaselineHash": "UNVERIFIED",
+      "currentHash": "UNVERIFIED",
+      "currentModificationTime": "UNVERIFIED",
+      "comparison": "UNVERIFIED",
+      "actionExecuted": false,
+      "evidenceRefs": []
+    },
+    {
+      "id": "R-5",
+      "purpose": "资源与官方布局基线",
+      "authorizationStatus": "SEPARATE_AUTHORIZATION_REQUIRED",
+      "expectedBaselineHash": "UNVERIFIED",
+      "currentHash": "UNVERIFIED",
+      "currentModificationTime": "UNVERIFIED",
+      "comparison": "UNVERIFIED",
+      "actionExecuted": false,
+      "evidenceRefs": []
+    },
+    {
+      "id": "R-6",
+      "purpose": "恢复后稳定回归计划",
+      "authorizationStatus": "SEPARATE_AUTHORIZATION_REQUIRED",
+      "expectedBaselineHash": "UNVERIFIED",
+      "currentHash": "UNVERIFIED",
+      "currentModificationTime": "UNVERIFIED",
+      "comparison": "UNVERIFIED",
+      "actionExecuted": false,
+      "evidenceRefs": []
+    },
+    {
+      "id": "R-7",
+      "purpose": "停止与回退门禁",
+      "authorizationStatus": "SEPARATE_AUTHORIZATION_REQUIRED",
+      "expectedBaselineHash": "UNVERIFIED",
+      "currentHash": "UNVERIFIED",
+      "currentModificationTime": "UNVERIFIED",
+      "comparison": "UNVERIFIED",
+      "actionExecuted": false,
+      "evidenceRefs": []
+    }
+  ],
+  "evidenceNamingComponents": [
+    "planId_or_caseId",
+    "condition",
+    "operatorRecordedDate",
+    "operatorIdentifier",
+    "recordKind"
+  ],
+  "evidenceNamesFilled": false,
+  "scopeNote": "Plan metadata is not runtime identity. Clone each record per actual session/command; do not combine callback fields from different requests."
+}

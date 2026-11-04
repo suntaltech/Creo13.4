@@ -1,0 +1,25 @@
+{
+  "scope": "preparation-document consistency and retained R7 identity only; no SDK/GUI/runtime validation",
+  "checks": {
+    "workstreams_7": true,
+    "gates_8": true,
+    "session_plans_4": true,
+    "independent_route_a_records_3": true,
+    "negative_case_rows_12": true,
+    "route_b_requirements_7": true,
+    "no_filled_runtime_records": true,
+    "no_runtime_authentication": true,
+    "no_recorded_search_result": true,
+    "no_route_b_runtime_claim": true,
+    "production_actions_not_executed": true,
+    "prohibited_output_files_absent": true,
+    "no_machine_paths_or_runtime_uuids": true,
+    "no_runtime_timestamp": true,
+    "r7_archive_byte_identity": true,
+    "r7_frozen_items_14_match": true
+  },
+  "allPassed": true,
+  "runtimeEvidenceAuthenticated": false,
+  "softwareCandidateGenerated": false,
+  "archiveGenerated": false
+}

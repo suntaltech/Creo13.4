@@ -1,0 +1,187 @@
+{
+  "recordType": "OFFLINE_PREPARATION_PLAN_NOT_RUNTIME_EVIDENCE",
+  "preparedDate": "2026-11-04",
+  "scope": "documents and empty ledgers only; no new candidate, no ZIP, no GUI, no configuration change",
+  "runtimeEvidenceAuthenticated": false,
+  "workstreams": [
+    {
+      "id": "P-01",
+      "purpose": "测试总顺序",
+      "deliverable": "README.md",
+      "status": "PREPARED_OFFLINE_ONLY",
+      "runtimeResult": "UNVERIFIED"
+    },
+    {
+      "id": "P-02",
+      "purpose": "证据勾稽",
+      "deliverable": "evidence-rules.md",
+      "status": "PREPARED_OFFLINE_ONLY",
+      "runtimeResult": "UNVERIFIED"
+    },
+    {
+      "id": "P-03",
+      "purpose": "负向用例台账",
+      "deliverable": "blank-observation-ledger.json",
+      "status": "PREPARED_OFFLINE_ONLY",
+      "runtimeResult": "UNVERIFIED"
+    },
+    {
+      "id": "P-04",
+      "purpose": "路线B前提",
+      "deliverable": "blank-observation-ledger.json",
+      "status": "PREPARED_OFFLINE_ONLY",
+      "runtimeResult": "UNVERIFIED"
+    },
+    {
+      "id": "P-05",
+      "purpose": "生产恢复只读前置项",
+      "deliverable": "production-preflight.md",
+      "status": "PREPARED_OFFLINE_ONLY",
+      "runtimeResult": "UNVERIFIED"
+    },
+    {
+      "id": "P-06",
+      "purpose": "A1稳定线回归规划",
+      "deliverable": "a1-stable-line-regression.md",
+      "status": "PREPARED_OFFLINE_ONLY",
+      "runtimeResult": "UNVERIFIED"
+    },
+    {
+      "id": "P-07",
+      "purpose": "官方定位与术语",
+      "deliverable": "official-reference-index.md",
+      "status": "PREPARED_OFFLINE_ONLY",
+      "runtimeResult": "UNVERIFIED"
+    }
+  ],
+  "gateSequence": [
+    {
+      "id": "G0",
+      "purpose": "离线准备",
+      "authorizationScope": "OFFLINE_ONLY",
+      "prerequisites": [
+        "preparation_materials_complete"
+      ],
+      "whenMissing": "不进入GUI或模型操作",
+      "observedResult": "UNVERIFIED"
+    },
+    {
+      "id": "G1",
+      "purpose": "C1/C2资源观察",
+      "authorizationScope": "SEPARATE_GUI_AUTHORIZATION",
+      "prerequisites": [
+        "controlled_session_authorized",
+        "single_layout_variable",
+        "fresh_session",
+        "source_and_registry_identity"
+      ],
+      "whenMissing": "UNVERIFIED",
+      "observedResult": "UNVERIFIED"
+    },
+    {
+      "id": "G2",
+      "purpose": "C3三个策略独立观察",
+      "authorizationScope": "SEPARATE_GUI_AUTHORIZATION",
+      "prerequisites": [
+        "single_policy_per_session",
+        "route_a_record_ready"
+      ],
+      "whenMissing": "OLD_API_EVIDENCE_ONLY",
+      "observedResult": "UNVERIFIED"
+    },
+    {
+      "id": "G3",
+      "purpose": "L3候选列表观察",
+      "authorizationScope": "SEPARATE_GUI_AUTHORIZATION",
+      "prerequisites": [
+        "command_session_identity_match",
+        "manual_search_and_category",
+        "external_screenshot_and_log"
+      ],
+      "whenMissing": "UNVERIFIED",
+      "observedResult": "UNVERIFIED"
+    },
+    {
+      "id": "G4",
+      "purpose": "L4固定按钮观察",
+      "authorizationScope": "SEPARATE_MANUAL_ADD_AUTHORIZATION",
+      "prerequisites": [
+        "l3_evidence_ready",
+        "manual_add_record",
+        "position_and_feedback_match"
+      ],
+      "whenMissing": "UNVERIFIED",
+      "observedResult": "UNVERIFIED"
+    },
+    {
+      "id": "G5",
+      "purpose": "负向门禁采集",
+      "authorizationScope": "SEPARATE_BOUNDED_CASE_AUTHORIZATION",
+      "prerequisites": [
+        "controlled_inputs",
+        "expected_stop_boundary",
+        "prohibited_calls_recorded"
+      ],
+      "whenMissing": "STOP_IF_WRITE_CALL_OBSERVED",
+      "observedResult": "UNVERIFIED"
+    },
+    {
+      "id": "G6",
+      "purpose": "路线B前提核对",
+      "authorizationScope": "SEPARATE_PREREQUISITE_REVIEW",
+      "prerequisites": [
+        "six_blocking_prerequisites_supported",
+        "no_substitution_from_C1_C2_C3"
+      ],
+      "whenMissing": "BLOCKED_PREREQUISITES",
+      "observedResult": "UNVERIFIED"
+    },
+    {
+      "id": "G7",
+      "purpose": "L5受控副本转换尝试",
+      "authorizationScope": "OUT_OF_CURRENT_SCOPE",
+      "prerequisites": [
+        "ui_and_trigger_evidence",
+        "resource_baseline",
+        "negative_stop_capability",
+        "route_selected",
+        "controlled_copy",
+        "separate_write_authorization"
+      ],
+      "whenMissing": "NOT_AUTHORIZED_BY_PREPARATION",
+      "observedResult": "UNVERIFIED"
+    }
+  ],
+  "routeB": {
+    "gateWhenMissing": "BLOCKED_PREREQUISITES",
+    "noFallbackToRouteA": true
+  },
+  "productionRestoration": "SEPARATE_AUTHORIZATION_AND_OPERATOR_ACTION",
+  "a1SourceChanges": "NOT_PERFORMED_NO_STABLE_SOURCE_PROVIDED",
+  "plannedC1C2SearchQueries": [
+    {
+      "commandId": "SISWBatchRename",
+      "candidateLabel": "Batch Rename",
+      "source": "R7_CANDIDATE_MESSAGE_TEXT_ONLY",
+      "runtimeSearchResult": "UNVERIFIED"
+    },
+    {
+      "commandId": "SISWSheetMetal",
+      "candidateLabel": "Sheet Metal Page",
+      "source": "R7_CANDIDATE_MESSAGE_TEXT_ONLY",
+      "runtimeSearchResult": "UNVERIFIED"
+    },
+    {
+      "commandId": "SISWAbout",
+      "candidateLabel": "About SISW",
+      "source": "R7_CANDIDATE_MESSAGE_TEXT_ONLY",
+      "runtimeSearchResult": "UNVERIFIED"
+    },
+    {
+      "commandId": "SISWSheetMetalConvert",
+      "candidateLabel": "Convert Solid to Sheet Metal 6A",
+      "source": "R7_CANDIDATE_MESSAGE_TEXT_ONLY",
+      "runtimeSearchResult": "UNVERIFIED"
+    }
+  ]
+}
