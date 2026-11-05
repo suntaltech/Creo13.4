@@ -1,0 +1,20 @@
+{
+  "step2Commit": "4767d2bd72a3146c657406cebcbee98266fda5a9",
+  "step2Sources": [
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "51757374e192522ff50f1c5669d15ae9023493e28d95e73f2b62c1306ee5a72c"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "56a416a4658cf4e7f0562434c7ac8facd27030b3a58ddaf2f1a1245824a4c916"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySampler.java",
+      "sha256": "f8dda4b11495ba4d455bff08f5fc7986aa136a089378910660248fe95a2deccd"
+    }
+  ],
+  "step2JarSha256": "05664554f3cc301e7c844482abd519a3b8afb5142e540187392250ce5725978b",
+  "step2FilesVerifiedUnchanged": true,
+  "step3IsIndependentApplication": true
+}

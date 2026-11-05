@@ -1,0 +1,13 @@
+{
+  "type": "OFFLINE_REAL_STEP2_POINT_ARITHMETIC_NOT_NATIVE_EVALUATION",
+  "planeGroupsWithThreePoints": 122,
+  "numericallyNonCollinear": 74,
+  "numericallyCollinearOrBelowNumericalThreshold": 48,
+  "unknown": 0,
+  "directRawZeroCrossProductGroups": 38,
+  "additionalNumericalPolicyFlags": 10,
+  "threshold": 5.684341886080802e-14,
+  "wallThicknessAssessed": false,
+  "inputStep2JsonlSha256": "936d9c826d14d7b3635b6994fde33ec2e7836644b3650383c261399e880abbeb",
+  "rawPointCoordinatesRepublished": false
+}

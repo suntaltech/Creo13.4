@@ -1,0 +1,27 @@
+# 质量指标与JSONL兼容
+
+## 指标不等于原生有效性
+
+每个已尝试PLANE输出PLANE_SAMPLE_QUALITY。原生INSIDE和有限点/法向门禁不变；质量低不把已接受点改成域外或伪造新点。没有新增选点替换策略，Step2已接受的3点可以仍共线，本轮首先使这一限制可见。
+
+XYZ指标包括最小/最大两点距离、二者比值、三点三角形面积及归一化二倍面积q=|AB×AC|/最大边长²。采用缩放运算减小溢出；单位距离为本轮模型长度单位、面积为其平方。三点围成的三角形可能跨越孔/修剪外部，其面积不是面上材料覆盖面积。
+
+numericallyNonCollinear依据q>256×ulp(1.0)，约5.684e-14。该门槛是明确的IEEE浮点数值策略，不是从模型精度推导的物理几何容差、壁厚阈值或全局平面质量保证。少于3点、差分溢出等情况为UNKNOWN/不足，不默认为非共线。
+
+UV指标包括按实际参数范围归一化后的最小两点距离及样本UV包围矩形面积占参数矩形比例。这不是3D均匀分布、有效修剪域面积覆盖或等厚覆盖；未给任意“合格面积百分比”。少点、范围未知或数值异常保留UNKNOWN。
+
+summary分别统计达3点配额的平面组、数值非共线/共线或近退化/质量未知组，以及不足3点的组。点数配额和质量是两条统计，不以其中一项替代另一项，也不将质量指标通过作为转换可用。
+
+## 真实旧数据回放
+
+附带工具仅对Step2真实点做离线数学回放，不调用SDK。122组中38组直接原始差分叉积为0；缩放数值质量策略共标记48组，另10组低于数值门槛，74组通过数值非共线指标。两种口径不同，不是旧报告38组被改写，也不是48个面无效。没有Step2实际UV范围，所以旧数据回放不编造UV分布指标；Step3真机后才能核对UV指标。
+
+## 日志兼容
+
+新应用/命令/消息文件和geometry-sampling-step3-UUID.jsonl独立，CREATE_NEW不覆盖Step2。保留基础schema=P1_NATIVE_READONLY_GEOMETRY_V1、samplingSchema=P1_NATIVE_GEOMETRY_SAMPLING_V1及现有字段类型，collectorStep=STEP_3，并增加samplingQualitySchema=P1_NATIVE_GEOMETRY_SAMPLING_QUALITY_V1。新事件/字段为追加扩展，严格旧消费者须按标识分流，不能把新文件强塞成旧固定枚举运行。
+
+SURFACE、POINT_NORMAL_SAMPLE、SAMPLE_REJECTED、SURFACE_SAMPLING_SUMMARY、SAMPLING_SUMMARY和COLLECTION_SUMMARY原字段保持。SAMPLING_STARTED.maxCandidatesPerFace为全轮上限225，新增maxBaseCandidatesPerFace=25/maxRefinementCandidatesPerFace=200；单面实际数以候选计划为准。POINT_NORMAL_SAMPLE增加candidatePhase，逐面摘要增加baseAttempts/refinementAttempts及策略选择标记。数量/配额统计口径不变。
+
+新增SURFACE_UV_RANGE、SURFACE_CANDIDATE_PLAN、SURFACE_REFINEMENT_STARTED、TARGET_REFINEMENT_RESULTS和PLANE_SAMPLE_QUALITY，最终增加modelUvRangeCoverage及质量计数。UV范围不足也保留整体PARTIAL；原生revision未知和versionStamp独立的旧严格口径不变，不用新指标将旧PARTIAL悄悄变成功。
+
+不输出等厚、可展或相对面距离结论；原始法向仍按SDK返回方向，不统一实体外法向。所有点依旧等待最终身份核对，modelWriteAbsenceIndependentlyProven保持false。

@@ -1,0 +1,14 @@
+P1_SAMPLE3_LABEL
+Sample Read-Only Geometry Step 3
+
+P1_SAMPLE3_HELP
+Read UV ranges, refine the bounded case targets and report plane sample quality
+
+P1_SAMPLE3_DESC
+Read-only sampling evidence. Same native inside gates, no thickness or conversion.
+
+P1_SAMPLE3_STARTED
+Step 3 read-only sampling started. Review the new step3 JSONL.
+
+P1_SAMPLE3_FINISHED
+Step 3 sampling ended. Review UV ranges, targeted results, quality and final partial/identity status. Model not saved by sampler.

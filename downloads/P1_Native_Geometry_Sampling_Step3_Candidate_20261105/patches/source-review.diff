@@ -1,0 +1,425 @@
+--- step2/source/GeometryEvidenceSupport.java
++++ step3/source/GeometryEvidenceSupport.java
+@@ -1,4 +1,4 @@
+-package p1.readonly.geometry.step2;
++package p1.readonly.geometry.step3;
+ 
+ import java.util.*;
+ 
+--- step2/source/GeometrySamplingMath.java
++++ step3/source/GeometrySamplingMath.java
+@@ -1,4 +1,4 @@
+-package p1.readonly.geometry.step2;
++package p1.readonly.geometry.step3;
+ 
+ import java.util.*;
+ 
+@@ -6,6 +6,96 @@
+ public final class GeometrySamplingMath {
+     public static final int TARGET_PER_FACE = 3, CANDIDATES_PER_FACE = 25, MAX_TARGET_FACES = 300,
+             MAX_TOTAL_ATTEMPTS = 3000, MAX_ACCEPTED_SAMPLES = 900;
++    public static final String REFINEMENT_MODEL_FILE = "200002100.prt";
++    public static final Set<Integer> REFINEMENT_SURFACE_IDS = Collections.unmodifiableSet(new LinkedHashSet<>(Arrays.asList(2710,2738,2752,2843)));
++    public static final int REFINEMENT_CANDIDATES_PER_FACE = 200;
++    public static final double NUMERICAL_TRIANGLE_QUALITY_THRESHOLD = 256.0 * Math.ulp(1.0);
++    public static boolean refinementApplies(String modelFile, Integer surfaceId, boolean plane) {
++        return plane && REFINEMENT_MODEL_FILE.equalsIgnoreCase(modelFile) && REFINEMENT_SURFACE_IDS.contains(surfaceId);
++    }
++    public static List<double[]> refinementCandidates(double u0,double u1,double v0,double v1,List<double[]> base) {
++        if (!validBounds(u0,u1)||!validBounds(v0,v1)||base==null) throw new IllegalArgumentException("REFINEMENT_RANGE_INVALID");
++        List<double[]> fractions = new ArrayList<>();
++        for (double edge : new double[]{1.0/1024,1.0/256,1.0/64,1.0/32,1.0/16}) {
++            fractions.add(new double[]{edge,edge}); fractions.add(new double[]{1-edge,1-edge});
++            fractions.add(new double[]{edge,1-edge}); fractions.add(new double[]{1-edge,edge});
++            fractions.add(new double[]{edge,.5}); fractions.add(new double[]{1-edge,.5});
++            fractions.add(new double[]{.5,edge}); fractions.add(new double[]{.5,1-edge});
++        }
++        double[] values={1.0/1024,1.0/256,1.0/64,1.0/32,1.0/16,.125,.25,.5,.75,.875,15.0/16,31.0/32,63.0/64,255.0/256,1023.0/1024};
++        for (double u:values) for(double v:values) fractions.add(new double[]{u,v});
++        List<double[]> result = new ArrayList<>();
++        for(double[] fraction:fractions) {
++            double[] value={u0+(u1-u0)*fraction[0],v0+(v1-v0)*fraction[1]};
++            if (!Double.isFinite(value[0])||!Double.isFinite(value[1])) throw new IllegalArgumentException("REFINEMENT_NONFINITE");
++            boolean duplicate=false;
++            for(double[] prior:base) if(exactUv(prior,value)) { duplicate=true;break; }
++            if(!duplicate) for(double[] prior:result) if(exactUv(prior,value)) { duplicate=true;break; }
++            if(!duplicate) result.add(value);
++            if(result.size()==REFINEMENT_CANDIDATES_PER_FACE) break;
++        }
++        return result;
++    }
++    public static Object safeValues(double[] values) {
++        if(values==null) return "UNKNOWN";
++        List<Object> result=new ArrayList<>();
++        for(double value:values) result.add(Double.isFinite(value)?value:Double.toString(value));
++        return result;
++    }
++    public static boolean boundsValid(double[] bounds) {
++        return bounds!=null&&bounds.length==4&&validBounds(bounds[0],bounds[1])&&validBounds(bounds[2],bounds[3]);
++    }
++    public static Map<String,Object> xyzQuality(List<double[]> points) {
++        Map<String,Object> result=GeometryEvidenceSupport.map("xyzQualityStatus","INSUFFICIENT_ACCEPTED_POINTS",
++                "numericallyNonCollinear","UNKNOWN","xyzNormalizedTriangleDoubleArea","UNKNOWN",
++                "xyzMinPairDistance","UNKNOWN","xyzMaxPairDistance","UNKNOWN","xyzMinToMaxPairDistanceRatio","UNKNOWN",
++                "xyzTriangleArea","UNKNOWN","numericalQualityThreshold",NUMERICAL_TRIANGLE_QUALITY_THRESHOLD,
++                "thresholdMeaning","FLOATING_POINT_NUMERICAL_POLICY_NOT_MODEL_TOLERANCE");
++        if(points==null||points.size()!=3) return result;
++        for(double[] point:points) if(!finite3(point)) { result.put("xyzQualityStatus","UNKNOWN_NONFINITE_POINT"); return result; }
++        double[] ab=new double[3],ac=new double[3],bc=new double[3];
++        for(int i=0;i<3;i++) { ab[i]=points.get(1)[i]-points.get(0)[i]; ac[i]=points.get(2)[i]-points.get(0)[i]; bc[i]=points.get(2)[i]-points.get(1)[i]; }
++        if(!finite3(ab)||!finite3(ac)||!finite3(bc)) { result.put("xyzQualityStatus","UNKNOWN_NUMERICAL_RANGE"); return result; }
++        double dab=Math.hypot(Math.hypot(ab[0],ab[1]),ab[2]),dac=Math.hypot(Math.hypot(ac[0],ac[1]),ac[2]),dbc=Math.hypot(Math.hypot(bc[0],bc[1]),bc[2]);
++        double maximum=Math.max(dab,Math.max(dac,dbc)),minimum=Math.min(dab,Math.min(dac,dbc));
++        if(!Double.isFinite(maximum)) { result.put("xyzQualityStatus","UNKNOWN_NUMERICAL_RANGE"); return result; }
++        double quality=0;
++        if(maximum>0) {
++            for(int i=0;i<3;i++) { ab[i]/=maximum; ac[i]/=maximum; }
++            quality=Math.hypot(Math.hypot(ab[1]*ac[2]-ab[2]*ac[1],ab[2]*ac[0]-ab[0]*ac[2]),ab[0]*ac[1]-ab[1]*ac[0]);
++        }
++        double area=(quality/2)*maximum*maximum;
++        result.put("xyzQualityStatus","METRICS_RECORDED_NUMERICAL_ONLY");
++        result.put("numericallyNonCollinear",quality>NUMERICAL_TRIANGLE_QUALITY_THRESHOLD);
++        result.put("xyzNormalizedTriangleDoubleArea",quality);
++        result.put("xyzMinPairDistance",minimum); result.put("xyzMaxPairDistance",maximum);
++        result.put("xyzMinToMaxPairDistanceRatio",maximum==0?0:minimum/maximum);
++        result.put("xyzTriangleArea",Double.isFinite(area)?area:"UNKNOWN_NUMERICAL_RANGE");
++        return result;
++    }
++    public static Map<String,Object> uvQuality(List<double[]> points,double[] bounds) {
++        Map<String,Object> result=GeometryEvidenceSupport.map("uvQualityStatus","UNKNOWN_OR_INSUFFICIENT_POINTS",
++                "uvNormalizedBoxAreaFraction","UNKNOWN","uvNormalizedMinPairDistance","UNKNOWN",
++                "uvSpreadMeansPhysicalAreaCoverage",false);
++        if(points==null||points.size()!=3||!boundsValid(bounds)) return result;
++        List<double[]> normalized=new ArrayList<>();
++        for(double[] point:points) {
++            if(point==null||point.length!=2||!Double.isFinite(point[0])||!Double.isFinite(point[1])) return result;
++            double u=(point[0]-bounds[0])/(bounds[1]-bounds[0]),v=(point[1]-bounds[2])/(bounds[3]-bounds[2]);
++            if(!Double.isFinite(u)||!Double.isFinite(v)) return result;
++            normalized.add(new double[]{u,v});
++        }
++        double minU=Double.POSITIVE_INFINITY,maxU=Double.NEGATIVE_INFINITY,minV=Double.POSITIVE_INFINITY,maxV=Double.NEGATIVE_INFINITY,minDistance=Double.POSITIVE_INFINITY;
++        for(int i=0;i<3;i++) {
++            double[] point=normalized.get(i); minU=Math.min(minU,point[0]);maxU=Math.max(maxU,point[0]);minV=Math.min(minV,point[1]);maxV=Math.max(maxV,point[1]);
++            for(int j=0;j<i;j++) minDistance=Math.min(minDistance,Math.hypot(point[0]-normalized.get(j)[0],point[1]-normalized.get(j)[1]));
++        }
++        double area=(maxU-minU)*(maxV-minV);
++        if(!Double.isFinite(area)||!Double.isFinite(minDistance)) return result;
++        result.put("uvQualityStatus","METRICS_RECORDED_PARAMETER_SPACE_ONLY");
++        result.put("uvNormalizedBoxAreaFraction",area); result.put("uvNormalizedMinPairDistance",minDistance);
++        return result;
++    }
+     private GeometrySamplingMath() { }
+     public static boolean validBounds(double lo, double hi) {
+         return Double.isFinite(lo) && Double.isFinite(hi) && hi > lo && Double.isFinite(hi - lo);
+--- step2/source/P1ReadOnlyGeometrySampler.java
++++ step3/source/P1ReadOnlyGeometrySamplerStep3.java
+@@ -1,4 +1,4 @@
+-package p1.readonly.geometry.step2;
++package p1.readonly.geometry.step3;
+ 
+ import java.io.*;
+ import java.nio.charset.StandardCharsets;
+@@ -20,12 +20,12 @@
+ import com.ptc.pfc.pfcBase.Placement;
+ import com.ptc.pfc.pfcBase.Point3D;
+ import com.ptc.pfc.pfcBase.Vector3D;
+-import static p1.readonly.geometry.step2.GeometryEvidenceSupport.*;
++import static p1.readonly.geometry.step3.GeometryEvidenceSupport.*;
+ 
+ /** Independent synchronous read-only collector. Model APIs are only called on explicit OnCommand. */
+-public final class P1ReadOnlyGeometrySampler {
+-    public static final String COMMAND_ID = "SISWReadOnlyGeometrySample";
+-    private static final String MESSAGES = "p1_readonly_sampling.txt";
++public final class P1ReadOnlyGeometrySamplerStep3 {
++    public static final String COMMAND_ID = "SISWReadOnlyGeometrySample3";
++    private static final String MESSAGES = "p1_readonly_sampling_step3.txt";
+     private static final int MAX_BODIES = 128, MAX_SURFACES = 10000, MAX_BODY_SURFACE_REFS = 40000;
+     private static final long SOFT_BUDGET_NS = 30_000_000_000L;
+     private static Session session;
+@@ -33,7 +33,7 @@
+     private static Listener listener;
+     private static volatile boolean active;
+     private static final AtomicBoolean collecting = new AtomicBoolean();
+-    private P1ReadOnlyGeometrySampler() { }
++    private P1ReadOnlyGeometrySamplerStep3() { }
+ 
+     public static synchronized void start() throws Exception {
+         if (active) return;
+@@ -44,7 +44,7 @@
+         try {
+             command = session.UICreateCommand(COMMAND_ID, listener);
+             if (command == null) throw new IllegalStateException("UICreateCommand returned null");
+-            command.Designate(MESSAGES, "P1_SAMPLE_LABEL", "P1_SAMPLE_HELP", "P1_SAMPLE_DESC");
++            command.Designate(MESSAGES, "P1_SAMPLE3_LABEL", "P1_SAMPLE3_HELP", "P1_SAMPLE3_DESC");
+             active = true;
+             lifecycle("REGISTERED; command=" + COMMAND_ID + "; collection=NOT_EXECUTED", null);
+         } catch (Exception | LinkageError error) {
+@@ -85,12 +85,14 @@
+         final Set<Integer> bodyIds = new LinkedHashSet<>();
+         boolean modelListed;
+         SurfaceType surfaceType;
++        double[] uvBounds;
+         Face(Surface value, boolean listed) { surface = value; modelListed = listed; }
+     }
+     private static final class SamplingCounters {
+         boolean initialized, finished;
+         Integer targetTotal;
+         int observedTargets, facesVisited, facesWithAny, facesAtQuota, attempts, accepted, rejected;
++        int planeGroupsAtQuota, numericalNonCollinearPlaneGroups, numericalCollinearPlaneGroups, planeQualityUnknownGroups, planeGroupsBelowPointQuota;
+         String stopReason = "NO_GLOBAL_LIMIT";
+         boolean quotaComplete() { return initialized && targetTotal != null && facesAtQuota == targetTotal; }
+         Map<String,Object> report() {
+@@ -99,7 +101,10 @@
+                     "facesAtThreeSampleQuota",facesAtQuota,"attempts",attempts,"acceptedSamples",accepted,"rejectedAttempts",rejected,
+                     "faceAnySampleCoverage",coverage(targetTotal,facesWithAny),"faceQuotaCoverage",coverage(targetTotal,facesAtQuota),
+                     "pointQuotaCoverage",coverage(targetTotal==null?null:targetTotal*GeometrySamplingMath.TARGET_PER_FACE,accepted),
+-                    "globalStopReason",stopReason,"coverageMeansAreaOrThicknessCoverage",false);
++                    "globalStopReason",stopReason,"coverageMeansAreaOrThicknessCoverage",false,
++                    "planeGroupsAtQuota",planeGroupsAtQuota,"numericallyNonCollinearPlaneGroups",numericalNonCollinearPlaneGroups,
++                    "numericallyCollinearPlaneGroups",numericalCollinearPlaneGroups,"planeQualityUnknownGroups",planeQualityUnknownGroups,
++                    "planeGroupsBelowPointQuota",planeGroupsBelowPointQuota);
+         }
+         void finishIfMissing(Run run) throws IOException {
+             if (finished) return;
+@@ -107,6 +112,7 @@
+             Map<String,Object> report = report();
+             report.put("outcome",!initialized?"NOT_ENTERED_OR_ABORTED":targetTotal!=null&&targetTotal==0?"NO_TARGET_SURFACES":quotaComplete()?"POINT_QUOTAS_MET_ONLY":"PARTIAL_SAMPLING");
+             report.put("modelIdentityFinalCheck", "SEE_COLLECTION_SUMMARY");
++            run.emitTargetedRefinementResults();
+             run.emit("SAMPLING_SUMMARY",report);
+         }
+     }
+@@ -122,22 +128,25 @@
+         final Set<Integer> bodyIdsSeen = new HashSet<>();
+         Integer defaultBodyId;
+         String lengthUnitName;
+-        int modelTypesRead;
++        String modelFileName;
++        int modelTypesRead, validModelUvBounds;
+         final SamplingCounters sampling = new SamplingCounters();
++        final Map<Integer,Map<String,Object>> targetedResults = new LinkedHashMap<>();
+         Run(String id) throws IOException {
+             requestId = id;
+             String configured = System.getenv("P1_READONLY_GEOMETRY_LOG_DIR");
+             Path directory = configured == null || configured.isBlank()
+                     ? Paths.get(System.getProperty("user.home"), "CreoReadOnlyGeometry") : Paths.get(configured);
+             Files.createDirectories(directory);
+-            Path output = directory.resolve("geometry-sampling-" + requestId + ".jsonl");
++            Path output = directory.resolve("geometry-sampling-step3-" + requestId + ".jsonl");
+             writer = Files.newBufferedWriter(output, StandardCharsets.UTF_8, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE);
+             lifecycle("EVIDENCE_FILE=" + output + "; requestId=" + requestId, null);
+         }
+         void emit(String event, Map<String,Object> fields) throws IOException {
+             Map<String,Object> line = map("schema", "P1_NATIVE_READONLY_GEOMETRY_V1", "timestamp", Instant.now().toString(),
+                     "requestId", requestId, "commandId", COMMAND_ID, "event", event,
+-                    "collectorStep", "STEP_2", "samplingSchema", "P1_NATIVE_GEOMETRY_SAMPLING_V1");
++                    "collectorStep", "STEP_3", "samplingSchema", "P1_NATIVE_GEOMETRY_SAMPLING_V1",
++                    "samplingQualitySchema", "P1_NATIVE_GEOMETRY_SAMPLING_QUALITY_V1");
+             line.putAll(fields);
+             String json = json(line);
+             writer.write(json); writer.newLine(); writer.flush();
+@@ -176,7 +185,7 @@
+             emit("COLLECTION_STARTED", map("modelApiPolicy", "READ_ONLY", "geometrySampling", "ADDITIVE_STEP_2_EVENTS",
+                     "thinWallShapeAssessment", "INSUFFICIENT_EVIDENCE", "uniformThicknessAssessment", "INSUFFICIENT_EVIDENCE",
+                     "limits", map("bodies", MAX_BODIES, "uniqueSurfaces", MAX_SURFACES, "bodySurfaceRefs", MAX_BODY_SURFACE_REFS, "softBudgetSeconds", 30)));
+-            read("Session.UIDisplayMessage(STARTED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE_STARTED", null); return Boolean.TRUE; });
++            read("Session.UIDisplayMessage(STARTED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE3_STARTED", null); return Boolean.TRUE; });
+             Map<String,Object> before = null, after = null;
+             Model model = null;
+             boolean eligible = false, fatal = false, identityStable = false, identityChanged = false, stampContextMatches = false;
+@@ -186,7 +195,7 @@
+                 ModelType type = read("Model.GetType", model::GetType);
+                 if (type != ModelType.MDL_PART || !(model instanceof Solid)) { issue("PART_TYPE_OR_SOLID_INTERFACE_NOT_CONFIRMED", null); return; }
+                 eligible = true;
+-                before = identity(model, "before"); emit("MODEL_BEFORE", before);
++                before = identity(model, "before"); modelFileName = (String)before.get("fileName"); emit("MODEL_BEFORE", before);
+                 Solid solid = (Solid)model; // Public interface guard above; no WSolid cast or internal reflection.
+                 UnitSystem system = read("Solid.GetPrincipalUnits", solid::GetPrincipalUnits);
+                 Unit length = system == null ? null : read("UnitSystem.GetUnit(UNIT_LENGTH)", () -> system.GetUnit(UnitType.UNIT_LENGTH));
+@@ -223,6 +232,12 @@
+                     SurfaceType kind = read("Surface[" + id + "].GetSurfaceType", face.surface::GetSurfaceType);
+                     face.surfaceType = kind; if (face.modelListed && kind != null) modelTypesRead++;
+                     Double area = read("Surface[" + id + "].EvalArea", face.surface::EvalArea);
++                    face.uvBounds=readUvBounds(id,face.surface);
++                    if(face.modelListed&&GeometrySamplingMath.boundsValid(face.uvBounds)) validModelUvBounds++;
++                    emit("SURFACE_UV_RANGE",map("surfaceId",id,"modelListed",face.modelListed,"surfaceTypeName",typeName(kind),
++                            "rawUvExtentValues",GeometrySamplingMath.safeValues(face.uvBounds),"valueOrder",Arrays.asList("u0","u1","v0","v1"),
++                            "numericUvRangeValid",GeometrySamplingMath.boundsValid(face.uvBounds),"nonFiniteUvValuesEncodedAsStrings",true,
++                            "uvRangeSource","Surface.GetUVExtents/UVOutline.get/UVParams.get","rangeIsTrimDomainProof",false));
+                     if (positive(area) == null) { area = null; issue("INVALID_OR_UNKNOWN_SURFACE_AREA", id); }
+                     String ownerStatus = face.bodyIds.size() == 1 ? "BODY_LIST_MEMBERSHIP" : face.bodyIds.isEmpty() ? "OWNER_UNKNOWN" : "AMBIGUOUS_MEMBERSHIP";
+                     if (face.bodyIds.size() > 1) issue("AMBIGUOUS_BODY_MEMBERSHIP", id);
+@@ -274,11 +289,12 @@
+                 emit("STEP2_IDENTITY_CONTEXT", map("versionStampContextMatches", stampContextMatches,
+                         "versionStampIsRevision", false, "legacyRevisionStrictIdentityStable", identityStable,
+                         "nativeRevisionSubstituted", false, "modelWriteAbsenceIndependentlyProven", false));
+-                read("Session.UIDisplayMessage(FINISHED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE_FINISHED", null); return Boolean.TRUE; });
++                read("Session.UIDisplayMessage(FINISHED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE3_FINISHED", null); return Boolean.TRUE; });
+                 boolean requiredReadsComplete = !truncated && identityStable && errors == 0 && bodyEnumerationComplete
+                         && modelEnumerationComplete && bodyMembershipComplete && metadataComplete && defaultStateKnown
+                         && modelFaceTotal != null && completeModelFaceRecords == modelFaceTotal
+-                        && bodyTotal != null && bodiesWithState == bodyTotal && sampling.quotaComplete();
++                        && bodyTotal != null && bodiesWithState == bodyTotal && sampling.quotaComplete()
++                        && modelFaceTotal!=null && validModelUvBounds==modelFaceTotal;
+                 String outcome = completion(eligible, identityChanged, fatal, requiredReadsComplete);
+                 emit("COLLECTION_SUMMARY", map("outcome", outcome, "errors", errors, "unknownReadValues", unknownReads,
+                         "identityStableWithinObservedFields", identityStable, "identityOrDirtyChangeObserved", identityChanged,
+@@ -288,6 +304,7 @@
+                         "bodyStateCoverage", coverage(bodyTotal, bodiesWithState),
+                         "modelSurfaceRecordCoverage", coverage(modelFaceTotal, modelFaceRecords),
+                         "modelSurfaceRequiredFieldCoverage", coverage(modelFaceTotal, completeModelFaceRecords),
++                        "modelUvRangeCoverage",coverage(modelFaceTotal,validModelUvBounds),
+                         "uniqueFacesRetained", faces.size(), "surfaceRecordsEmitted", faceRecordsEmitted, "bodyOnlySurfaceRecords", bodyOnlyFaceRecords,
+                         "modelSurfaceRecordsNotProduced", modelFaceTotal == null ? "UNKNOWN" : modelFaceTotal - modelFaceRecords,
+                         "modelSurfaceRecordsWithIncompleteFields", modelFaceRecords - completeModelFaceRecords,
+@@ -303,6 +320,31 @@
+                         "modelWriteAbsenceIndependentlyProven", false));
+             }
+         }
++        double[] readUvBounds(Integer id, Surface surface) throws IOException {
++            return read("Surface[" + id + "].GetUVExtents/UVOutline.get/UVParams.get", () -> {
++                UVOutline range=surface.GetUVExtents(); if(range==null) return null;
++                UVParams lower=range.get(0),upper=range.get(1); if(lower==null||upper==null) return null;
++                return new double[]{lower.get(0),upper.get(0),lower.get(1),upper.get(1)};
++            });
++        }
++        void emitTargetedRefinementResults() throws IOException {
++            List<Map<String,Object>> values=new ArrayList<>();
++            for(Integer id:GeometrySamplingMath.REFINEMENT_SURFACE_IDS) {
++                Map<String,Object> recorded=targetedResults.get(id);
++                if(recorded!=null) { values.add(recorded);continue; }
++                Face face=faces.get(id);
++                String status=modelFileName==null?"UNKNOWN_MODEL_IDENTITY"
++                        :!GeometrySamplingMath.REFINEMENT_MODEL_FILE.equalsIgnoreCase(modelFileName)?"NOT_APPLICABLE_MODEL_NAME_MISMATCH"
++                        :face==null?(modelEnumerationComplete?"NOT_FOUND_IN_RETAINED_ENUMERATION":"UNKNOWN_ENUMERATION_INCOMPLETE")
++                        :!face.modelListed?"OUTSIDE_MODEL_LISTED_TARGET_SCOPE"
++                        :face.surfaceType==null?"UNKNOWN_SURFACE_TYPE"
++                        :face.surfaceType.getValue()!=SurfaceType._SURFACE_PLANE?"NOT_APPLICABLE_NON_PLANE"
++                        :"NOT_ATTEMPTED_LIMIT_OR_ABORT";
++                values.add(map("surfaceId",id,"status",status,"acceptedSamples","UNKNOWN"));
++            }
++            emit("TARGET_REFINEMENT_RESULTS",map("caseModel",GeometrySamplingMath.REFINEMENT_MODEL_FILE,
++                    "observedModel",known(modelFileName),"results",values,"nativeInsideGateUnchanged",true));
++        }
+         void sampleTargets() throws IOException {
+             List<Map.Entry<Integer,Face>> targets = new ArrayList<>();
+             for (Map.Entry<Integer,Face> entry : faces.entrySet()) {
+@@ -316,9 +358,14 @@
+                     && modelTypesRead == modelFaceTotal ? targets.size() : null;
+             emit("SAMPLING_STARTED", map("scope", "MODEL_LISTED_PLANE_OR_CYLINDER", "targetDenominator", known(sampling.targetTotal),
+                     "observedTargets", targets.size(), "samplesPerTarget", GeometrySamplingMath.TARGET_PER_FACE,
+-                    "maxCandidatesPerFace", GeometrySamplingMath.CANDIDATES_PER_FACE,
++                    "maxCandidatesPerFace", GeometrySamplingMath.CANDIDATES_PER_FACE+GeometrySamplingMath.REFINEMENT_CANDIDATES_PER_FACE,
++                    "maxBaseCandidatesPerFace",GeometrySamplingMath.CANDIDATES_PER_FACE,
+                     "maxTargetFaces", GeometrySamplingMath.MAX_TARGET_FACES, "maxTotalAttempts", GeometrySamplingMath.MAX_TOTAL_ATTEMPTS,
+                     "maxAcceptedSamples", GeometrySamplingMath.MAX_ACCEPTED_SAMPLES,
++                    "refinementModelFile",GeometrySamplingMath.REFINEMENT_MODEL_FILE,
++                    "refinementSurfaceIds",new ArrayList<>(GeometrySamplingMath.REFINEMENT_SURFACE_IDS),
++                    "maxRefinementCandidatesPerFace",GeometrySamplingMath.REFINEMENT_CANDIDATES_PER_FACE,
++                    "qualityGateChangesNativeAcceptance",false,
+                     "acceptance", "VERIFY_REQUESTED_INSIDE_AND_RETURNED_UV_EXACT_AND_VERIFY_RETURNED_INSIDE_FINITE_POINT_NORMAL_KNOWN_LENGTH_UNIT"));
+             for (Map.Entry<Integer,Face> entry : targets) {
+                 if (!withinBudget()) { sampling.stopReason = "SOFT_TIME_BUDGET"; break; }
+@@ -338,28 +385,39 @@
+         void sampleFace(Integer id, Face face) throws IOException {
+             int startAttempts = sampling.attempts, accepted = 0;
+             List<double[]> acceptedPoints = new ArrayList<>();
++            List<double[]> acceptedUvs = new ArrayList<>();
++            boolean refinementSelected = GeometrySamplingMath.refinementApplies(modelFileName,id,face.surfaceType.getValue()==SurfaceType._SURFACE_PLANE);
++            int baseCandidateCount = 0;
+             Map<String,Integer> rejectionCounts = new LinkedHashMap<>();
+             String stopReason = "CANDIDATE_LIMIT_OR_NO_VALID_INSIDE_POINT";
+             SurfaceOrientation orientation = read("Surface[" + id + "].GetOrientation", face.surface::GetOrientation);
+             Integer orientationCode = orientation == null ? null : orientation.getValue();
+-            double[] bounds = read("Surface[" + id + "].GetUVExtents/UVOutline.get/UVParams.get", () -> {
+-                UVOutline range = face.surface.GetUVExtents();
+-                if (range == null) return null;
+-                UVParams lower = range.get(0), upper = range.get(1);
+-                if (lower == null || upper == null) return null;
+-                return new double[]{lower.get(0),upper.get(0),lower.get(1),upper.get(1)};
+-            });
++            double[] bounds = face.uvBounds;
+             List<double[]> candidates = null;
+             if (lengthUnitName == null) stopReason = "LENGTH_UNIT_UNKNOWN_NO_VALIDATED_SAMPLES";
+             else if (bounds == null) stopReason = "UV_EXTENTS_UNAVAILABLE";
+             else {
+-                try { candidates = GeometrySamplingMath.candidates(bounds[0],bounds[1],bounds[2],bounds[3]); }
+-                catch (IllegalArgumentException error) { stopReason = "UV_EXTENTS_INVALID_OR_DEGENERATE"; }
+-            }
++                try {
++                    candidates = GeometrySamplingMath.candidates(bounds[0],bounds[1],bounds[2],bounds[3]);
++                    baseCandidateCount = candidates.size();
++                    if (refinementSelected) candidates.addAll(GeometrySamplingMath.refinementCandidates(bounds[0],bounds[1],bounds[2],bounds[3],candidates));
++                } catch (IllegalArgumentException error) { stopReason = "UV_EXTENTS_INVALID_OR_DEGENERATE"; candidates=null; }
++            }
++            emit("SURFACE_CANDIDATE_PLAN",map("surfaceId",id,"surfaceTypeName",typeName(face.surfaceType),
++                    "rawUvExtentValues",GeometrySamplingMath.safeValues(bounds),
++                    "valueOrder",Arrays.asList("u0","u1","v0","v1"),"rangeValidForCandidates",candidates!=null,
++                    "numericUvRangeValid",GeometrySamplingMath.boundsValid(bounds),"nonFiniteUvValuesEncodedAsStrings",true,
++                    "rangeIsTrimDomainProof",false,"modelFileMatchesRefinementCase",GeometrySamplingMath.REFINEMENT_MODEL_FILE.equalsIgnoreCase(modelFileName),
++                    "refinementSelected",refinementSelected,"baseCandidateCount",baseCandidateCount,
++                    "refinementCandidateCount",candidates==null?0:candidates.size()-baseCandidateCount,
++                    "maximumCandidateCountForThisFace",candidates==null?0:candidates.size()));
+             if (candidates != null) for (int i = 0; i < candidates.size(); i++) {
+                 if (!withinBudget()) { stopReason = "SOFT_TIME_BUDGET"; break; }
+                 if (sampling.attempts >= GeometrySamplingMath.MAX_TOTAL_ATTEMPTS) { stopReason = "MAX_TOTAL_ATTEMPTS"; limit("SAMPLING_MAX_TOTAL_ATTEMPTS"); break; }
+                 if (sampling.accepted >= GeometrySamplingMath.MAX_ACCEPTED_SAMPLES) { stopReason = "MAX_ACCEPTED_SAMPLES"; limit("SAMPLING_MAX_ACCEPTED_SAMPLES"); break; }
++                if (i == baseCandidateCount) emit("SURFACE_REFINEMENT_STARTED",map("surfaceId",id,"reason","BASE_QUOTA_NOT_MET",
++                        "acceptedAfterBase",accepted,"baseCandidateCount",baseCandidateCount,
++                        "refinementCandidatesAvailable",candidates.size()-baseCandidateCount,"nativeInsideGateUnchanged",true));
+                 sampling.attempts++;
+                 int attempt = i + 1;
+                 double[] requested = candidates.get(i);
+@@ -396,11 +454,12 @@
+                 boolean duplicatePoint = false;
+                 for (double[] prior : acceptedPoints) if (GeometrySamplingMath.samePoint(prior,point)) { duplicatePoint = true; break; }
+                 if (duplicatePoint) { reject(id,attempt,requested,"DUPLICATE_POINT_IN_FACE",null,rejectionCounts); continue; }
+-                acceptedPoints.add(point);
++                acceptedPoints.add(point); acceptedUvs.add(requested);
+                 accepted++; sampling.accepted++;
+                 emit("POINT_NORMAL_SAMPLE", map("surfaceId",id,"bodyId",face.bodyIds.size()==1?face.bodyIds.iterator().next():"UNKNOWN",
+                         "observedBodyIds",new ArrayList<>(face.bodyIds),"bodyAttributionComplete",face.bodyIds.size()==1&&bodyMembershipComplete,
+                         "surfaceTypeCode",face.surfaceType.getValue(),"surfaceTypeName",typeName(face.surfaceType),"attemptOrdinal",attempt,
++                        "candidatePhase",i<baseCandidateCount?"BASE":"TARGETED_REFINEMENT",
+                         "requestedUv",GeometrySamplingMath.list(requested),"returnedUv",GeometrySamplingMath.list(actual),
+                         "uvCoordinates", "NATIVE_SURFACE_PARAMETERS_NOT_LENGTH", "requestedVerifyPlacementCode",first.getValue(),
+                         "returnedVerifyPlacementCode",second.getValue(),"validityEvidence", "TWO_NATIVE_VERIFY_UV_PLACE_INSIDE_RESULTS_EXACT_RETURNED_UV",
+@@ -413,12 +472,38 @@
+                 if (!withinBudget()) { stopReason = "SOFT_TIME_BUDGET"; break; }
+                 if (accepted >= GeometrySamplingMath.TARGET_PER_FACE) { stopReason = "TARGET_QUOTA_MET"; break; }
+             }
++            if (stopReason.equals("CANDIDATE_LIMIT_OR_NO_VALID_INSIDE_POINT") && refinementSelected && accepted<GeometrySamplingMath.TARGET_PER_FACE && candidates!=null && sampling.attempts-startAttempts>=candidates.size()) stopReason="BASE_AND_REFINEMENT_EXHAUSTED_QUOTA_NOT_MET";
+             if (stopReason.equals("SOFT_TIME_BUDGET") || stopReason.equals("MAX_TOTAL_ATTEMPTS") || stopReason.equals("MAX_ACCEPTED_SAMPLES")) sampling.stopReason = stopReason;
++            if (face.surfaceType.getValue()==SurfaceType._SURFACE_PLANE) {
++                Map<String,Object> quality = GeometrySamplingMath.xyzQuality(acceptedPoints);
++                quality.putAll(GeometrySamplingMath.uvQuality(acceptedUvs,bounds));
++                quality.put("surfaceId",id); quality.put("pointLengthUnit",known(lengthUnitName));
++                quality.put("acceptedPointCount",accepted); quality.put("nativePointAcceptanceRevoked",false);
++                quality.put("qualityIsAreaOrThicknessCoverage",false);
++                emit("PLANE_SAMPLE_QUALITY",quality);
++                if (accepted>=GeometrySamplingMath.TARGET_PER_FACE) {
++                    sampling.planeGroupsAtQuota++;
++                    Object nonCollinear=quality.get("numericallyNonCollinear");
++                    if (Boolean.TRUE.equals(nonCollinear)) sampling.numericalNonCollinearPlaneGroups++;
++                    else if (Boolean.FALSE.equals(nonCollinear)) sampling.numericalCollinearPlaneGroups++;
++                    else sampling.planeQualityUnknownGroups++;
++                } else sampling.planeGroupsBelowPointQuota++;
++            }
+             if (accepted>0) sampling.facesWithAny++;
+             if (accepted>=GeometrySamplingMath.TARGET_PER_FACE) sampling.facesAtQuota++;
++            if(refinementSelected) {
++                int refined=Math.max(0,sampling.attempts-startAttempts-baseCandidateCount);
++                targetedResults.put(id,map("surfaceId",id,"status",accepted>=GeometrySamplingMath.TARGET_PER_FACE
++                        ?(refined>0?"POINT_QUOTA_MET_AFTER_REFINEMENT":"POINT_QUOTA_MET_IN_BASE")
++                        :accepted>0?"PARTIAL_POINTS":"NO_ACCEPTED_POINT",
++                        "acceptedSamples",accepted,"baseAttempts",Math.min(sampling.attempts-startAttempts,baseCandidateCount),
++                        "refinementAttempts",refined,"stopReason",stopReason));
++            }
+             emit("SURFACE_SAMPLING_SUMMARY",map("surfaceId",id,"targetSamples",GeometrySamplingMath.TARGET_PER_FACE,
+                     "attempts",sampling.attempts-startAttempts,"acceptedSamples",accepted,"stopReason",stopReason,
+                     "rejectionsByReason",rejectionCounts,"surfaceOrientationCode",known(orientationCode),
++                    "refinementSelected",refinementSelected,"baseAttempts",Math.min(sampling.attempts-startAttempts,baseCandidateCount),
++                    "refinementAttempts",Math.max(0,sampling.attempts-startAttempts-baseCandidateCount),
+                     "uvRangeInterpretation","GET_UV_EXTENTS_CANDIDATE_RANGE_NOT_PROOF_OF_TRIM_DOMAIN",
+                     "uniformThicknessAssessment","INSUFFICIENT_EVIDENCE"));
+         }

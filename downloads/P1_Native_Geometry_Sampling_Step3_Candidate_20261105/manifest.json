@@ -1,0 +1,169 @@
+{
+  "artifactType": "INDEPENDENT_NATIVE_SAMPLING_STEP3_UV_REFINEMENT_QUALITY_CANDIDATE_NOT_RELEASE",
+  "date": "2026-11-05",
+  "taskInput": {
+    "fileName": "P1_原生几何采样第三步_任务单_20261105.md",
+    "sha256": "e8416d7d12ddf1302bcc2a50a33e007ac726585b50340b4f8b63c5da3f5c2bad"
+  },
+  "applicationClass": "p1.readonly.geometry.step3.P1ReadOnlyGeometrySamplerStep3",
+  "commandId": "SISWReadOnlyGeometrySample3",
+  "displayName": "Sample Read-Only Geometry Step 3",
+  "sourceFiles": [
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "abe6709b750edb2fe28b31f17e8aa57eecf42e90db2d95eac312cbbda8ea9405"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "376d1d42bec202005f5aadfee84438c89201f3950ad1a7e9447088579a99fb0d"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySamplerStep3.java",
+      "sha256": "097d7ab788d303658161d65fa2e1b8936457c6d6a2baaaed78ce762f27c2dc1f"
+    }
+  ],
+  "sdk": {
+    "fileName": "otk.jar",
+    "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "realSdkUsed": true,
+    "runtimeJava25Required": true,
+    "pfcasyncUsed": false,
+    "redistributed": false
+  },
+  "classes": [
+    {
+      "relativeName": "classes/p1/readonly/geometry/step3/GeometryEvidenceSupport.class",
+      "sha256": "80df7f9c107076c9635b83bd8283aaa1e82915f9384e967a53c2620c65b043ae",
+      "bytes": 4908,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step3/GeometrySamplingMath.class",
+      "sha256": "a8b5bcd786d1ddb230dcf1259e899e40880102486aab041a4c15e70519726be0",
+      "bytes": 8926,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step3/P1ReadOnlyGeometrySamplerStep3$Face.class",
+      "sha256": "9223290fa9633f945d4248b53ae590f5558cf95a3c3e11c1ce78b4961dca6325",
+      "bytes": 780,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step3/P1ReadOnlyGeometrySamplerStep3$Listener.class",
+      "sha256": "7bbf99434417a6e19f0253dfe68991997228015e0783b4c6f8a4472145a1cc19",
+      "bytes": 2005,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step3/P1ReadOnlyGeometrySamplerStep3$Read.class",
+      "sha256": "6dcc1c972c49db719e3ddcde7d3bd22584a060d2537a8324470229c01625c32e",
+      "bytes": 531,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step3/P1ReadOnlyGeometrySamplerStep3$Run.class",
+      "sha256": "16470063637b1b001ce6e6841779bea0dfabae4e257f1d383ea2104f3beb5968",
+      "bytes": 50913,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step3/P1ReadOnlyGeometrySamplerStep3$SamplingCounters.class",
+      "sha256": "21665c89707e3bd33f3e1fd456b14edf9066cd845c3081d4b5fa8f58def3649e",
+      "bytes": 3534,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step3/P1ReadOnlyGeometrySamplerStep3.class",
+      "sha256": "d48c8b92091c936071891a2f59a3869bbda735ddcdcf6b8a90f899faf1cc37bc",
+      "bytes": 5257,
+      "major": 61
+    }
+  ],
+  "jar": {
+    "relativeName": "lib/p1-readonly-geometry-sampling-step3.jar",
+    "sha256": "2e34d66c12b8a7ba7ea76bb691b5cf204ab1b6b11037a57296e5ec766998aa4e",
+    "classBytesMatchLooseFiles": true,
+    "sdkBundled": false
+  },
+  "validation": {
+    "realSdkCompilation": true,
+    "repeatCleanCompileIdentical": true,
+    "classes": {
+      "p1/readonly/geometry/step3/GeometryEvidenceSupport.class": "80df7f9c107076c9635b83bd8283aaa1e82915f9384e967a53c2620c65b043ae",
+      "p1/readonly/geometry/step3/GeometrySamplingMath.class": "a8b5bcd786d1ddb230dcf1259e899e40880102486aab041a4c15e70519726be0",
+      "p1/readonly/geometry/step3/P1ReadOnlyGeometrySamplerStep3$Face.class": "9223290fa9633f945d4248b53ae590f5558cf95a3c3e11c1ce78b4961dca6325",
+      "p1/readonly/geometry/step3/P1ReadOnlyGeometrySamplerStep3$Listener.class": "7bbf99434417a6e19f0253dfe68991997228015e0783b4c6f8a4472145a1cc19",
+      "p1/readonly/geometry/step3/P1ReadOnlyGeometrySamplerStep3$Read.class": "6dcc1c972c49db719e3ddcde7d3bd22584a060d2537a8324470229c01625c32e",
+      "p1/readonly/geometry/step3/P1ReadOnlyGeometrySamplerStep3$Run.class": "16470063637b1b001ce6e6841779bea0dfabae4e257f1d383ea2104f3beb5968",
+      "p1/readonly/geometry/step3/P1ReadOnlyGeometrySamplerStep3$SamplingCounters.class": "21665c89707e3bd33f3e1fd456b14edf9066cd845c3081d4b5fa8f58def3649e",
+      "p1/readonly/geometry/step3/P1ReadOnlyGeometrySamplerStep3.class": "d48c8b92091c936071891a2f59a3869bbda735ddcdcf6b8a90f899faf1cc37bc"
+    },
+    "classMajor": 61,
+    "sdkRuntimeMajor": 69,
+    "jarClassesMatchLooseFiles": true,
+    "compiledSdkCallsAllowlisted": true,
+    "pureLogicChecksPassed": 19,
+    "samplingMathPolicyChecksPassed": 59,
+    "step3QualityChecksPassed": 428,
+    "codecOutputParsedByPython": true,
+    "mockSdkUsed": false,
+    "collectorExecuted": false,
+    "creoExecuted": false
+  },
+  "refinementPolicy": {
+    "modelFile": "200002100.prt",
+    "nativeType": "PLANE",
+    "surfaceIds": [
+      2710,
+      2738,
+      2752,
+      2843
+    ],
+    "baseCandidateLimit": 25,
+    "additionalCandidateLimit": 200,
+    "combinedCandidateLimit": 225,
+    "globalAttemptLimit": 3000,
+    "globalTargetFaceLimit": 300,
+    "globalAcceptedLimit": 900,
+    "softBudgetSeconds": 30,
+    "gateRelaxed": false
+  },
+  "targetResults": [
+    {
+      "surfaceId": 2710,
+      "step2AcceptedSamples": 0,
+      "step3Result": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2738,
+      "step2AcceptedSamples": 0,
+      "step3Result": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2752,
+      "step2AcceptedSamples": 0,
+      "step3Result": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2843,
+      "step2AcceptedSamples": 0,
+      "step3Result": "NOT_EXECUTED_UNKNOWN"
+    }
+  ],
+  "quality": {
+    "numericalOnly": true,
+    "triangleThreshold": 5.684341886080802e-14,
+    "modelToleranceInferred": false,
+    "changesPointAcceptance": false,
+    "thicknessAssessed": false
+  },
+  "step2ProductChanged": false,
+  "webBusinessOrRibbonChanged": false,
+  "runtime": {
+    "creoExecuted": false,
+    "newSamplingExecuted": false,
+    "deployed": false,
+    "fourFaceRefinementSuccessVerified": false
+  }
+}
