@@ -1,0 +1,32 @@
+{
+  "type": "OFFLINE_RUNTIME_PACKAGE_REVIEW",
+  "inputArchive": {
+    "fileName": "r8-realmachine-verify-20261105.zip",
+    "sha256": "71150cf5855da5a8e4adb651cf38f804b649b798900c00d1332a56411fe25bac"
+  },
+  "inputFiles": [
+    {
+      "fileName": "CONCLUSION.md",
+      "bytes": 745,
+      "sha256": "16bd20bbd3aee2cbfccc35ba1e17bc1fc186735405cf4f1d822f20a1f3049f27"
+    },
+    {
+      "fileName": "jlink.log",
+      "bytes": 106083,
+      "sha256": "3e23164c783a03da803360c109b393a172597714297d136684409ed52f435de8"
+    },
+    {
+      "fileName": "p1_r8.used.dat",
+      "bytes": 294,
+      "sha256": "8b1c3c9d7f8e0bf1c4add832b6556e418d4e9556ae3191daa73147d326f6a1e4"
+    }
+  ],
+  "referenceCandidate": {
+    "fileName": "P1_6A_R8_WorkingText_Resource_Candidate_20261105.zip",
+    "sha256": "5df7a5bafbf1adb9aaa075edeb814924e0467c444395335dc112926c65805fdf",
+    "runtimeResourceIdentityVerified": false
+  },
+  "offlineChecksPassed": 10,
+  "originalDatAndFullLogRepublished": false,
+  "newCandidateGenerated": false
+}
