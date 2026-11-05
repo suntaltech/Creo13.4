@@ -1,0 +1,127 @@
+{
+  "resources": [
+    {
+      "relativeName": "c2-text/chinese_cn/p1_6a_r2.txt",
+      "bytes": 773,
+      "sha256": "23291711bd3f03d44fd94caf93d8f326a5e6bce97e8b4dad1d164eb22801c40a",
+      "utf8Bom": false,
+      "crlfCount": 0,
+      "lfCount": 24,
+      "nonAsciiByteCount": 0
+    },
+    {
+      "relativeName": "c2-text/chinese_cn/p1_6a_ui_commands",
+      "bytes": 664,
+      "sha256": "79c478151d36e386cb84947a8a714bf4e4eeae782410366ab6b0f5b504177723",
+      "utf8Bom": false,
+      "crlfCount": 0,
+      "lfCount": 48,
+      "nonAsciiByteCount": 0
+    },
+    {
+      "relativeName": "c2-text/chinese_cn/p1_6a_ui_commands.txt",
+      "bytes": 664,
+      "sha256": "79c478151d36e386cb84947a8a714bf4e4eeae782410366ab6b0f5b504177723",
+      "utf8Bom": false,
+      "crlfCount": 0,
+      "lfCount": 48,
+      "nonAsciiByteCount": 0
+    },
+    {
+      "relativeName": "c2-text/chinese_cn/p1_6a_ui_probe.txt",
+      "bytes": 1457,
+      "sha256": "1947a9b9806883e9c1ff5950742378da5bc744547280c423c85270d3d43f497d",
+      "utf8Bom": false,
+      "crlfCount": 0,
+      "lfCount": 88,
+      "nonAsciiByteCount": 0
+    },
+    {
+      "relativeName": "c2-text/p1_6a_r2.txt",
+      "bytes": 773,
+      "sha256": "23291711bd3f03d44fd94caf93d8f326a5e6bce97e8b4dad1d164eb22801c40a",
+      "utf8Bom": false,
+      "crlfCount": 0,
+      "lfCount": 24,
+      "nonAsciiByteCount": 0
+    },
+    {
+      "relativeName": "c2-text/p1_6a_ui_commands",
+      "bytes": 664,
+      "sha256": "79c478151d36e386cb84947a8a714bf4e4eeae782410366ab6b0f5b504177723",
+      "utf8Bom": false,
+      "crlfCount": 0,
+      "lfCount": 48,
+      "nonAsciiByteCount": 0
+    },
+    {
+      "relativeName": "c2-text/p1_6a_ui_commands.txt",
+      "bytes": 664,
+      "sha256": "79c478151d36e386cb84947a8a714bf4e4eeae782410366ab6b0f5b504177723",
+      "utf8Bom": false,
+      "crlfCount": 0,
+      "lfCount": 48,
+      "nonAsciiByteCount": 0
+    },
+    {
+      "relativeName": "c2-text/p1_6a_ui_probe.txt",
+      "bytes": 1457,
+      "sha256": "1947a9b9806883e9c1ff5950742378da5bc744547280c423c85270d3d43f497d",
+      "utf8Bom": false,
+      "crlfCount": 0,
+      "lfCount": 88,
+      "nonAsciiByteCount": 0
+    },
+    {
+      "relativeName": "c2-text/usascii/p1_6a_r2.txt",
+      "bytes": 773,
+      "sha256": "23291711bd3f03d44fd94caf93d8f326a5e6bce97e8b4dad1d164eb22801c40a",
+      "utf8Bom": false,
+      "crlfCount": 0,
+      "lfCount": 24,
+      "nonAsciiByteCount": 0
+    },
+    {
+      "relativeName": "c2-text/usascii/p1_6a_ui_commands",
+      "bytes": 664,
+      "sha256": "79c478151d36e386cb84947a8a714bf4e4eeae782410366ab6b0f5b504177723",
+      "utf8Bom": false,
+      "crlfCount": 0,
+      "lfCount": 48,
+      "nonAsciiByteCount": 0
+    },
+    {
+      "relativeName": "c2-text/usascii/p1_6a_ui_commands.txt",
+      "bytes": 664,
+      "sha256": "79c478151d36e386cb84947a8a714bf4e4eeae782410366ab6b0f5b504177723",
+      "utf8Bom": false,
+      "crlfCount": 0,
+      "lfCount": 48,
+      "nonAsciiByteCount": 0
+    },
+    {
+      "relativeName": "c2-text/usascii/p1_6a_ui_probe.txt",
+      "bytes": 1457,
+      "sha256": "1947a9b9806883e9c1ff5950742378da5bc744547280c423c85270d3d43f497d",
+      "utf8Bom": false,
+      "crlfCount": 0,
+      "lfCount": 88,
+      "nonAsciiByteCount": 0
+    }
+  ],
+  "frozenR7Comparisons": [
+    {
+      "relativeName": "resources/usascii-layout/text/usascii/p1_6a_ui_commands.txt",
+      "sha256": "79c478151d36e386cb84947a8a714bf4e4eeae782410366ab6b0f5b504177723",
+      "uploadedResourceMatches": true
+    },
+    {
+      "relativeName": "resources/root-layout/text/p1_6a_ui_commands.txt",
+      "sha256": "79c478151d36e386cb84947a8a714bf4e4eeae782410366ab6b0f5b504177723",
+      "uploadedResourceMatches": true
+    }
+  ],
+  "requiredFirstCommandKeysPresentInFourLineGroups": true,
+  "resourceSyntaxAcceptedByCreo": "UNVERIFIED",
+  "loadedClassIdentity": "UNVERIFIED"
+}
