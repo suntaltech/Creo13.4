@@ -1,0 +1,119 @@
+{
+  "artifactType": "R8_RESOURCE_ONLY_OFFLINE_CANDIDATE_NOT_RELEASE",
+  "inputArchive": {
+    "fileName": "g1-realmachine-conclusion-20261105.zip",
+    "sha256": "d23e8cb3fa2c38b7c342d77dca322ce8a5d9c90835608d8d375029cc27a969af"
+  },
+  "sourceBusinessJavaSha256": "9dbd71f36e403c3ed1a027d810a70befb57d3973c67aedca821f7b31df802400",
+  "sourceBusinessJavaUnchanged": true,
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "sha256": "d84c77005c040e968613eaff9f83fbf2680c313528403a67fecdae268580a288"
+    },
+    {
+      "relativeName": "jlink.log",
+      "sha256": "fc9fa125ec515faaf2ce6897844e235e73a27424578c827e5c4363a2a1dd1fb0"
+    },
+    {
+      "relativeName": "working-text-layout/about.png",
+      "sha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086"
+    },
+    {
+      "relativeName": "working-text-layout/batchrename.png",
+      "sha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4"
+    },
+    {
+      "relativeName": "working-text-layout/batchrename.txt",
+      "sha256": "bd85e1352c3e0112fc36d07b11febabe1082859098ef7cfa8cd67c7f1760e31c"
+    },
+    {
+      "relativeName": "working-text-layout/p1_6a_r2.txt",
+      "sha256": "b8939739dc213bde0db2d85c4d0d2ef6d583a927cabf4bcde5eb00c57811af06"
+    },
+    {
+      "relativeName": "working-text-layout/p1_6a_ui_commands.txt",
+      "sha256": "43eb5af7b9bdc9529cd0632d1556dbe55b2bba26b13b4955043a189bcd42f78c"
+    },
+    {
+      "relativeName": "working-text-layout/resource/about.png",
+      "sha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086"
+    },
+    {
+      "relativeName": "working-text-layout/resource/batchrename.png",
+      "sha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4"
+    },
+    {
+      "relativeName": "working-text-layout/resource/sheetmetal.png",
+      "sha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce"
+    },
+    {
+      "relativeName": "working-text-layout/sheetmetal.png",
+      "sha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce"
+    }
+  ],
+  "outputResources": [
+    {
+      "relativeName": "working-text-layout/about.png",
+      "sha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086"
+    },
+    {
+      "relativeName": "working-text-layout/batchrename.png",
+      "sha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4"
+    },
+    {
+      "relativeName": "working-text-layout/batchrename.txt",
+      "sha256": "bd85e1352c3e0112fc36d07b11febabe1082859098ef7cfa8cd67c7f1760e31c"
+    },
+    {
+      "relativeName": "working-text-layout/p1_6a_r2.txt",
+      "sha256": "b8939739dc213bde0db2d85c4d0d2ef6d583a927cabf4bcde5eb00c57811af06"
+    },
+    {
+      "relativeName": "working-text-layout/p1_6a_ui_commands.txt",
+      "sha256": "43eb5af7b9bdc9529cd0632d1556dbe55b2bba26b13b4955043a189bcd42f78c"
+    },
+    {
+      "relativeName": "working-text-layout/resource/about.png",
+      "sha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086"
+    },
+    {
+      "relativeName": "working-text-layout/resource/batchrename.png",
+      "sha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4"
+    },
+    {
+      "relativeName": "working-text-layout/resource/sheetmetal.png",
+      "sha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce"
+    },
+    {
+      "relativeName": "working-text-layout/sheetmetal.png",
+      "sha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce"
+    },
+    {
+      "relativeName": "historical-reference/root-layout/text/p1_6a_r2.txt",
+      "sha256": "23291711bd3f03d44fd94caf93d8f326a5e6bce97e8b4dad1d164eb22801c40a"
+    },
+    {
+      "relativeName": "historical-reference/root-layout/text/p1_6a_ui_commands.txt",
+      "sha256": "79c478151d36e386cb84947a8a714bf4e4eeae782410366ab6b0f5b504177723"
+    },
+    {
+      "relativeName": "historical-reference/root-layout/text/p1_6a_ui_probe.txt",
+      "sha256": "1947a9b9806883e9c1ff5950742378da5bc744547280c423c85270d3d43f497d"
+    },
+    {
+      "relativeName": "historical-reference/usascii-layout/text/usascii/p1_6a_r2.txt",
+      "sha256": "23291711bd3f03d44fd94caf93d8f326a5e6bce97e8b4dad1d164eb22801c40a"
+    },
+    {
+      "relativeName": "historical-reference/usascii-layout/text/usascii/p1_6a_ui_commands.txt",
+      "sha256": "79c478151d36e386cb84947a8a714bf4e4eeae782410366ab6b0f5b504177723"
+    },
+    {
+      "relativeName": "historical-reference/usascii-layout/text/usascii/p1_6a_ui_probe.txt",
+      "sha256": "1947a9b9806883e9c1ff5950742378da5bc744547280c423c85270d3d43f497d"
+    }
+  ],
+  "scope": "Resources and controlled placeholder template only; no Java/classes/JAR; no new runtime evidence",
+  "runtimeVerified": false
+}

@@ -1,0 +1,61 @@
+{
+  "type": "PLANNED_LABELS_WITH_SEPARATE_OPERATOR_REPORT_METADATA",
+  "source": "working-text-layout/p1_6a_ui_commands.txt",
+  "commands": [
+    {
+      "commandId": "SISWBatchRename",
+      "labelKey": "SISW_BR_LABEL",
+      "expectedFullLabel": "Batch Rename",
+      "PART": {
+        "operatorReportedVisible": true,
+        "independentlyVerifiedFromScreenshot": false
+      },
+      "ALL_MODES": {
+        "operatorReportedVisible": true,
+        "independentlyVerifiedFromScreenshot": false
+      }
+    },
+    {
+      "commandId": "SISWSheetMetal",
+      "labelKey": "SISW_SMT_LABEL",
+      "expectedFullLabel": "Sheet Metal Page",
+      "PART": {
+        "operatorReportedVisible": true,
+        "independentlyVerifiedFromScreenshot": false
+      },
+      "ALL_MODES": {
+        "operatorReportedVisible": true,
+        "independentlyVerifiedFromScreenshot": false
+      }
+    },
+    {
+      "commandId": "SISWAbout",
+      "labelKey": "SISW_ABOUT_LABEL",
+      "expectedFullLabel": "About SISW",
+      "PART": {
+        "operatorReportedVisible": true,
+        "independentlyVerifiedFromScreenshot": false
+      },
+      "ALL_MODES": {
+        "operatorReportedVisible": true,
+        "independentlyVerifiedFromScreenshot": false
+      }
+    },
+    {
+      "commandId": "SISWSheetMetalConvert",
+      "labelKey": "SISW_SMT_CONVERT_LABEL",
+      "expectedFullLabel": "Convert Solid to Sheet Metal 6A",
+      "PART": {
+        "operatorReportedVisible": true,
+        "independentlyVerifiedFromScreenshot": false
+      },
+      "ALL_MODES": {
+        "operatorReportedVisible": true,
+        "independentlyVerifiedFromScreenshot": false
+      }
+    }
+  ],
+  "conversionCommandReportedTruncation": "Convert Solid to Sheet",
+  "l4Verified": false,
+  "conversionVerified": false
+}

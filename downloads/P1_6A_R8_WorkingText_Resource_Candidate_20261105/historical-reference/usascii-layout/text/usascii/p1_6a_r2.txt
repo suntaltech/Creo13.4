@@ -1,0 +1,24 @@
+P1_6A_UNIT
+Manually verify model LENGTH unit. Type MM only for millimetres; type NON_MM otherwise. Cancel or other text blocks creation.
+
+
+P1_6A_THICKNESS
+Enter finite thickness 0.1 to 20, inclusive, in confirmed millimetres. The model will not be saved.
+
+
+P1_6A_CANCELLED
+Thickness input returned null. No feature creation was dispatched. See jlink.log for requestId.
+
+
+P1_6A_SUCCESS
+Sheetmetal and feature metadata readback completed. Model NOT saved. See jlink.log for feature ID, name and status.
+
+
+P1_6A_INSPECT
+Creation was dispatched; model may have unsaved changes. Inspect the feature tree. No automatic retry, delete or save. See jlink.log.
+
+
+P1_6A_FAILED
+Command stopped before feature creation was dispatched. See jlink.log for requestId and failure details.
+
+

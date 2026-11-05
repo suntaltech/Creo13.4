@@ -1,0 +1,130 @@
+{
+  "type": "OFFLINE_STATIC_CHECKS_ONLY",
+  "checks": [
+    {
+      "name": "p1_6a_ui_commands.txt_uploaded_bytes_preserved",
+      "passed": true
+    },
+    {
+      "name": "p1_6a_ui_commands.txt_nonempty_lines_unchanged",
+      "passed": true
+    },
+    {
+      "name": "p1_6a_ui_commands.txt_single_blank_separated_key_value",
+      "passed": true
+    },
+    {
+      "name": "p1_6a_ui_commands.txt_unique_keys",
+      "passed": true
+    },
+    {
+      "name": "p1_6a_ui_commands.txt_ascii_no_bom",
+      "passed": true
+    },
+    {
+      "name": "p1_6a_r2.txt_uploaded_bytes_preserved",
+      "passed": true
+    },
+    {
+      "name": "p1_6a_r2.txt_nonempty_lines_unchanged",
+      "passed": true
+    },
+    {
+      "name": "p1_6a_r2.txt_single_blank_separated_key_value",
+      "passed": true
+    },
+    {
+      "name": "p1_6a_r2.txt_unique_keys",
+      "passed": true
+    },
+    {
+      "name": "p1_6a_r2.txt_ascii_no_bom",
+      "passed": true
+    },
+    {
+      "name": "working_batchrename_legacy_bytes_preserved",
+      "passed": true
+    },
+    {
+      "name": "working-text-layout/about.png_png_signature",
+      "passed": true
+    },
+    {
+      "name": "working-text-layout/about.png_png_crc_and_end",
+      "passed": true
+    },
+    {
+      "name": "working-text-layout/resource/about.png_png_signature",
+      "passed": true
+    },
+    {
+      "name": "working-text-layout/resource/about.png_png_crc_and_end",
+      "passed": true
+    },
+    {
+      "name": "about.png_root_and_resource_copies_identical",
+      "passed": true
+    },
+    {
+      "name": "working-text-layout/batchrename.png_png_signature",
+      "passed": true
+    },
+    {
+      "name": "working-text-layout/batchrename.png_png_crc_and_end",
+      "passed": true
+    },
+    {
+      "name": "working-text-layout/resource/batchrename.png_png_signature",
+      "passed": true
+    },
+    {
+      "name": "working-text-layout/resource/batchrename.png_png_crc_and_end",
+      "passed": true
+    },
+    {
+      "name": "batchrename.png_root_and_resource_copies_identical",
+      "passed": true
+    },
+    {
+      "name": "working-text-layout/sheetmetal.png_png_signature",
+      "passed": true
+    },
+    {
+      "name": "working-text-layout/sheetmetal.png_png_crc_and_end",
+      "passed": true
+    },
+    {
+      "name": "working-text-layout/resource/sheetmetal.png_png_signature",
+      "passed": true
+    },
+    {
+      "name": "working-text-layout/resource/sheetmetal.png_png_crc_and_end",
+      "passed": true
+    },
+    {
+      "name": "sheetmetal.png_root_and_resource_copies_identical",
+      "passed": true
+    },
+    {
+      "name": "historical_resources_unchanged",
+      "passed": true
+    },
+    {
+      "name": "frozen_business_source_identity",
+      "passed": true
+    },
+    {
+      "name": "eight_designate_return_events_in_uploaded_log",
+      "passed": true
+    },
+    {
+      "name": "successful_parameter_keeps_txt_suffix",
+      "passed": true
+    }
+  ],
+  "passed": 30,
+  "failed": 0,
+  "javaCompilationExecuted": false,
+  "creoExecuted": false,
+  "modelWritesExecuted": false
+}

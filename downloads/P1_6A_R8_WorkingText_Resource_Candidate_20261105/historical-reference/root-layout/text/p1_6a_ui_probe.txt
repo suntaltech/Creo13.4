@@ -1,0 +1,88 @@
+P1_UI_A_RENAME_LABEL
+UI Probe A - Rename
+
+
+P1_UI_A_RENAME_HELP
+Read-only UI route A probe; logs callback only
+
+
+P1_UI_A_SHEETMETAL_LABEL
+UI Probe A - Sheet Metal Page
+
+
+P1_UI_A_SHEETMETAL_HELP
+Read-only UI route A probe; logs callback only
+
+
+P1_UI_A_ABOUT_LABEL
+UI Probe A - About
+
+
+P1_UI_A_ABOUT_HELP
+Read-only UI route A probe; logs callback only
+
+
+P1_UI_A_CONVERT_LABEL
+UI Probe A - Conversion Entry
+
+
+P1_UI_A_CONVERT_HELP
+Read-only UI route A probe; logs callback only
+
+
+P1_UI_B_RENAME_LABEL
+UI Probe B - Rename
+
+
+P1_UI_B_RENAME_HELP
+Read-only UI route B probe; logs callback only
+
+
+P1_UI_B_RENAME_DESC
+No model read, navigation, feature creation or save is performed.
+
+
+P1_UI_B_SHEETMETAL_LABEL
+UI Probe B - Sheet Metal Page
+
+
+P1_UI_B_SHEETMETAL_HELP
+Read-only UI route B probe; logs callback only
+
+
+P1_UI_B_SHEETMETAL_DESC
+No model read, navigation, feature creation or save is performed.
+
+
+P1_UI_B_ABOUT_LABEL
+UI Probe B - About
+
+
+P1_UI_B_ABOUT_HELP
+Read-only UI route B probe; logs callback only
+
+
+P1_UI_B_ABOUT_DESC
+No model read, navigation, feature creation or save is performed.
+
+
+P1_UI_B_CONVERT_LABEL
+UI Probe B - Conversion Entry
+
+
+P1_UI_B_CONVERT_HELP
+Read-only UI route B probe; logs callback only
+
+
+P1_UI_B_CONVERT_DESC
+No model read, navigation, feature creation or save is performed.
+
+
+P1_UI_PROBE_CALLBACK
+Read-only UI probe callback reached. See stderr or the Creo Java log for requestId.
+
+
+P1_UI_CUSTOM_MENU
+Read-only UI Probe Menu
+
+

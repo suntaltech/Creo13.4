@@ -1,0 +1,48 @@
+SISW_BR_LABEL
+Batch Rename
+
+
+SISW_BR_HELP
+Open the batch rename page
+
+
+SISW_BR_DESC
+Open the existing assembly rename page or its model guard
+
+
+SISW_SMT_LABEL
+Sheet Metal Page
+
+
+SISW_SMT_HELP
+Open the sheet metal page
+
+
+SISW_SMT_DESC
+Open the existing sheet metal page or its model guard
+
+
+SISW_ABOUT_LABEL
+About SISW
+
+
+SISW_ABOUT_HELP
+Open the about page
+
+
+SISW_ABOUT_DESC
+Open the existing about page
+
+
+SISW_SMT_CONVERT_LABEL
+Convert Solid to Sheet Metal 6A
+
+
+SISW_SMT_CONVERT_HELP
+Run the controlled native driving-face conversion candidate
+
+
+SISW_SMT_CONVERT_DESC
+Controlled 6A candidate. Requires a single plane and explicit mm confirmation. Does not save.
+
+

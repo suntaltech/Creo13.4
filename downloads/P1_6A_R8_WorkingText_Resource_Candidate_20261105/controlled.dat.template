@@ -1,0 +1,10 @@
+name p1_r8_working_text_controlled
+startup java
+java_app_class BatchRename
+java_app_classpath @ABSOLUTE_ISOLATED_R7_BUSINESS_CLASSES_DIRECTORY@
+java_app_start start
+java_app_stop stop
+allow_stop true
+delay_start false
+text_dir @ABSOLUTE_UNPACKED_CANDIDATE_DIRECTORY@/working-text-layout
+end
