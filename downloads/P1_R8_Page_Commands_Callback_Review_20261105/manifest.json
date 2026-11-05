@@ -1,0 +1,46 @@
+{
+  "type": "OFFLINE_PAGE_COMMANDS_CALLBACK_REVIEW",
+  "inputArchive": {
+    "fileName": "r8-page-commands-callback-verify-20261105.zip",
+    "sha256": "175d0e064a6d7c950481a278e869a25bd65aca2398d39cc15e92f3bb7ddedd44"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "sha256": "7b106dffc5b52f205b3414e0946dd6f1119daf854990d883d5f1698ea0880695",
+      "bytes": 724
+    },
+    {
+      "relativeName": "about-page.png",
+      "sha256": "381807fabb049febe523da93f834a06594cc9a35a79effcb8054af89c7562f95",
+      "bytes": 168680
+    },
+    {
+      "relativeName": "jlink.log",
+      "sha256": "6ec22ae82328ba703ff07100ff3655d3c41c1fbb42951401f85d500e27c90514",
+      "bytes": 144178
+    },
+    {
+      "relativeName": "rename-page-part-mode.png",
+      "sha256": "1f35ca1e6e835d3345a4cd56cecbe3954f2b4dfe341a932da05a62e23f24c18d",
+      "bytes": 187469
+    },
+    {
+      "relativeName": "sheetmetal-page-part-mode.png",
+      "sha256": "a049a1b11ddb3f20d4665a3ab88ddfd73f257312c9015a62cc923eb7b1e27b7c",
+      "bytes": 180478
+    }
+  ],
+  "checks": {
+    "priorLogExactPrefix": true,
+    "twoNewCallbackRequests": true,
+    "navigationAndReturnPerNewRequest": true,
+    "aboutScreenshotExactReuseDetected": true,
+    "getUrlClaimComparedPerRequest": true,
+    "threeScreenshotsVisuallyReviewed": true,
+    "newStartupAndStopReturned": true
+  },
+  "newCandidateGenerated": false,
+  "codeModified": false,
+  "runtimeExecuted": false
+}

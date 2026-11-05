@@ -1,0 +1,107 @@
+{
+  "type": "OFFLINE_PAGE_CALLBACK_REVIEW_NOT_NEW_RUNTIME_EVIDENCE",
+  "inputLogSha256": "6ec22ae82328ba703ff07100ff3655d3c41c1fbb42951401f85d500e27c90514",
+  "priorLogIsExactPrefix": true,
+  "newSegment": {
+    "firstOriginalLine": 641,
+    "lastOriginalLine": 692,
+    "bytesAdded": 19615
+  },
+  "newCallbacks": [
+    {
+      "commandId": "SISWBatchRename",
+      "observedRequestId": "6e35020a-8e83-4dbb-8764-2f8416b3d14d",
+      "target": "http://localhost:9056/rename.html?guard=need_assembly&modelMode=solid_part",
+      "events": [
+        {
+          "originalLogLine": 672,
+          "text": "2026-11-05T03:14:41.892548500Z requestId=6e35020a-8e83-4dbb-8764-2f8416b3d14d; WFC solid view acquired; source=com.ptc.wfc.Implementation.pfcPart$Part; type=com.ptc.pfc.pfcModel.ModelType@64a294a6; adapter=com.ptc.wfc.Implementation.wfcPart$WPart"
+        },
+        {
+          "originalLogLine": 673,
+          "text": "2026-11-05T03:14:41.900526100Z requestId=6e35020a-8e83-4dbb-8764-2f8416b3d14d; OnCommand entered; command=SISWBatchRename; target=http://localhost:9056/rename.html?guard=need_assembly&modelMode=solid_part"
+        },
+        {
+          "originalLogLine": 674,
+          "text": "2026-11-05T03:14:41.914553500Z requestId=6e35020a-8e83-4dbb-8764-2f8416b3d14d; current window URL unavailable"
+        },
+        {
+          "originalLogLine": 685,
+          "text": "2026-11-05T03:14:42.048198100Z requestId=6e35020a-8e83-4dbb-8764-2f8416b3d14d; browser navigation issued; target=http://localhost:9056/rename.html?guard=need_assembly&modelMode=solid_part"
+        },
+        {
+          "originalLogLine": 686,
+          "text": "2026-11-05T03:14:42.068386900Z requestId=6e35020a-8e83-4dbb-8764-2f8416b3d14d; browser activated; currentUrl=null; OnCommand returned"
+        }
+      ],
+      "getUrlExceptionRecorded": true
+    },
+    {
+      "commandId": "SISWSheetMetal",
+      "observedRequestId": "4c613b9f-a5cd-4af9-ade6-4cc095ac97fe",
+      "target": "http://localhost:9056/sheetmetal.html?modelMode=solid_part",
+      "events": [
+        {
+          "originalLogLine": 687,
+          "text": "2026-11-05T03:17:53.298434800Z requestId=4c613b9f-a5cd-4af9-ade6-4cc095ac97fe; WFC solid view acquired; source=com.ptc.wfc.Implementation.pfcPart$Part; type=com.ptc.pfc.pfcModel.ModelType@64a294a6; adapter=com.ptc.wfc.Implementation.wfcPart$WPart"
+        },
+        {
+          "originalLogLine": 688,
+          "text": "2026-11-05T03:17:53.300433Z requestId=4c613b9f-a5cd-4af9-ade6-4cc095ac97fe; OnCommand entered; command=SISWSheetMetal; target=http://localhost:9056/sheetmetal.html?modelMode=solid_part"
+        },
+        {
+          "originalLogLine": 689,
+          "text": "2026-11-05T03:17:53.308408400Z requestId=4c613b9f-a5cd-4af9-ade6-4cc095ac97fe; browser navigation issued; target=http://localhost:9056/sheetmetal.html?modelMode=solid_part"
+        },
+        {
+          "originalLogLine": 690,
+          "text": "2026-11-05T03:17:53.313397400Z requestId=4c613b9f-a5cd-4af9-ade6-4cc095ac97fe; browser activated; currentUrl=http://localhost:9056/rename.html?guard=need_assembly&modelMode=solid_part; OnCommand returned"
+        }
+      ],
+      "getUrlExceptionRecorded": false
+    }
+  ],
+  "aboutEvidence": {
+    "newCallbackInAppendedSegment": false,
+    "imageIdenticalToPriorAboutEvidence": true,
+    "priorObservedRequestId": "9ecb72b3-85bd-4668-97d8-25432aeaa6bd",
+    "classification": "PRIOR_VERIFICATION_REUSED_NOT_NEW_TRIAL"
+  },
+  "screenshots": [
+    {
+      "relativeName": "about-page.png",
+      "sha256": "381807fabb049febe523da93f834a06594cc9a35a79effcb8054af89c7562f95",
+      "visuallyReviewed": true,
+      "role": "EXACT_REUSE_OF_PREVIOUS_ABOUT_IMAGE"
+    },
+    {
+      "relativeName": "rename-page-part-mode.png",
+      "sha256": "1f35ca1e6e835d3345a4cd56cecbe3954f2b4dfe341a932da05a62e23f24c18d",
+      "visuallyReviewed": true,
+      "role": "RENAME_PAGE_AND_NEED_ASSEMBLY_NOTICE_VISIBLE"
+    },
+    {
+      "relativeName": "sheetmetal-page-part-mode.png",
+      "sha256": "a049a1b11ddb3f20d4665a3ab88ddfd73f257312c9015a62cc923eb7b1e27b7c",
+      "visuallyReviewed": true,
+      "role": "SHEETMETAL_PAGE_AND_ANALYZE_FIRST_NOTICE_VISIBLE"
+    }
+  ],
+  "findings": {
+    "everyClickThrowsGetUrlClaimSupported": false,
+    "renameGuardNoticeVisible": true,
+    "renameButtonsDisabledFunctionallyVerified": false,
+    "sheetmetalAnalyzeFirstAndNotOpenTextVisible": true,
+    "htmlDisabledAttributeOrActivationTestProvided": false,
+    "nativeConversionVerified": false,
+    "modelWriteAbsenceIndependentlyProven": false,
+    "runtimeSourceClassAndWebAssetHashesProvided": false
+  },
+  "operatorReported": {
+    "nativeConversionNotClicked": true,
+    "configRestored": true
+  },
+  "runtimeEvidenceAuthenticated": false,
+  "newRuntimeExecutedByCloud": false,
+  "codeModified": false
+}
