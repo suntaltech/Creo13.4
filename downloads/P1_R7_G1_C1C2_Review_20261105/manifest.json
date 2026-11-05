@@ -1,0 +1,33 @@
+{
+  "type": "OFFLINE_DOCUMENT_REVIEW_NOT_RUNTIME_EVIDENCE",
+  "date": "2026-11-05",
+  "input": {
+    "fileName": "P1_R7_G1_C1C2资源观察_受控操作清单_20261105.md",
+    "sha256": "47039445caaa89921bf732e84b4bc898143f17f3d3850ae355c9b3b17f89ac26"
+  },
+  "referenceFiles": [
+    {
+      "fileName": "runtime-evidence-schema.json",
+      "sha256": "c7ee6895af4782889b4f3135618e3999e2b4be48ee1860f2b467bef8645dcc60"
+    },
+    {
+      "fileName": "blank-observation-ledger.json",
+      "sha256": "ff1fc06f9c500ab8f31b81075de45e608d2ea152723974984eec2b67051ea633"
+    }
+  ],
+  "validation": {
+    "parsedInputJsonBlocks": 2,
+    "planAndObservedLayoutPrefillConfirmed": true,
+    "combinedCommandsNotAcceptedByManualObservationDefinition": true,
+    "existingLayerStateEnumsConfirmed": true,
+    "originalLedgerActualLayoutUnverifiedConfirmed": true
+  },
+  "runtimeExecuted": false,
+  "runtimeEvidenceAuthenticated": false,
+  "unchanged": [
+    "R7 candidate",
+    "runtime schema",
+    "original ledger",
+    "user attachment"
+  ]
+}
