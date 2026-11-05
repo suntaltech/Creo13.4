@@ -1,0 +1,473 @@
+--- a/web/sheetmetal.html
++++ b/web/sheetmetal.html
+@@ -2,29 +2,31 @@
+ <html lang="zh-CN">
+ <head>
+ <meta charset="UTF-8">
+-<title>实体转钣金（当前零件）</title>
++<title>零件几何只读分析</title>
+ <link rel="stylesheet" href="assets/css/base.css">
+ </head>
+ <body>
+ <div class="section" id="sheetmetalSection">
+-  <div class="section-title">一键转钣金（当前激活零件）</div>
++  <div class="section-title">零件几何只读分析（转换未开放）</div>
+   <div class="row">
+-    <label><input type="radio" name="smtMode" value="driving" checked> 驱动曲面（等厚薄板）</label>
+-    <label><input type="radio" name="smtMode" value="shell"> 抽壳（块状实体）</label>
+-    <label>板厚 <input type="number" id="smtThickness" min="0.1" max="20" step="0.1" value="1.0" disabled> mm</label>
++    <label><input type="radio" name="smtMode" value="driving" disabled> 驱动方式（未评估）</label>
++    <label><input type="radio" name="smtMode" value="shell" disabled> 抽壳方式（未评估）</label>
++    <label>板厚 <input type="number" id="smtThickness" min="0.1" max="20" step="0.1" disabled placeholder="未测量"> （参数禁用，不是测量值）</label>
+     <label><input type="checkbox" id="smtSave" disabled> 转换后保存到磁盘</label>
+   </div>
+   <div class="row">
+     <button id="smtAnalyzeBtn" class="btn-primary">分析当前零件</button>
+     <button id="smtConvertBtn" class="btn-success" disabled title="安全原生转换通道验收前只读分析，不会修改模型">指定板厚转换（暂未开放）</button>
+   </div>
+-  <div id="smtStatus" class="status info" role="status" aria-live="polite">请先分析当前激活零件；当前版本读取模型几何并给出人工转换建议，不会修改模型。</div>
++    <button id="smtLogBtn" type="button" disabled>下载分析日志</button>
++  <div id="smtStatus" class="status info" role="status" aria-live="polite">读取当前零件信息；形态与等厚证据不足时不推荐转换方式。</div>
+   <div id="smtResult" class="result"></div>
+ </div>
+ 
+-<p class="note">本模块只处理当前激活零件，不处理装配体批量转换。当前版本为只读分析：候选平面、包围尺寸和人工建议来自 CREOSON HTTP 读取；自动转换需另接不阻塞 Creo 13.4 同步会话的原生通道，验收前按钮保持禁用。复杂圆角、加强筋、开口模型或非等厚实体请先在测试副本上人工确认。</p>
++<p class="note">本页面只发出指定的 CREOSON 读取请求，转换和保存入口保持禁用。导入件缺少钣金特征历史不等于块状实体；包围尺寸不是壁厚，当前不确认原生钣金状态、等厚或可展性。下载分析日志会保存本地证据文件，不保存 Creo 模型。</p>
+ 
+ <script src="assets/js/core.js"></script>
++<script src="assets/js/sheetmetal-assessment.js"></script>
+ <script src="assets/js/sheetmetal.js"></script>
+ </body>
+ </html>
+--- a/web/assets/js/sheetmetal.js
++++ b/web/assets/js/sheetmetal.js
+@@ -1,224 +1,168 @@
+ "use strict";
+-/* 零件工具：当前激活零件钣金适用性只读分析。
+-   说明：Creo 13.4 同步 J-Link 的 AddBrowserMessageListener 会长期占用 CIP 原生通道，
+-   因此本版本不通过原生桥接执行破坏性转换；分析数据走 CREOSON HTTP，转换按钮保持禁用待安全通道验收。 */
++/* Read-only evidence display. No inferred wall thickness or conversion-mode recommendation. */
+ (function () {
+   const core = window.SiswCore;
++  const assessment = window.SiswSheetmetalAssessment;
+   const el = core.el;
+-  const audit = core.audit;
+-
+-  let smtAnalysis = null;
+   let busy = false;
+   let blocked = false;
++  let sequence = 0;
+ 
+   function syncButtons() {
+     el("smtAnalyzeBtn").disabled = busy || blocked;
+     el("smtConvertBtn").disabled = true;
+-    document.querySelectorAll("input[name='smtMode']").forEach(radio => radio.disabled = busy || blocked);
++    el("smtLogBtn").disabled = busy || !core.events.some(item => item.event && item.event.startsWith("smt_"));
++    document.querySelectorAll("input[name='smtMode']").forEach(radio => { radio.disabled = true; });
+     el("smtThickness").disabled = true;
+     el("smtSave").disabled = true;
++    el("smtSave").checked = false;
+   }
+ 
+-  function setBusy(value) {
+-    busy = value;
+-    core.setBusy(value);
+-    syncButtons();
++  function status(message, kind = "info") {
++    el("smtStatus").textContent = message;
++    el("smtStatus").className = "status " + kind;
+   }
+ 
+-  function setSmtStatus(message, kind = "info") {
+-    el("smtStatus").textContent = message;
+-    el("smtStatus").className = kind;
++  function audit(event, details) {
++    core.audit(event, Object.assign({ saved: false }, details));
+   }
+ 
+-  function applyModeBlock() {
+-    const params = new URLSearchParams(location.search);
+-    if (params.get("guard") === "need_part") {
+-      blocked = true;
+-      setSmtStatus("当前不是零件 .prt；实体转钣金分析只在普通零件界面可用，装配和工程图请使用对应功能。", "err");
+-      el("smtResult").textContent = "模式不匹配：本页面不会执行转换。";
+-    } else if (params.get("state") === "sheetmetal") {
+-      blocked = true;
+-      smtAnalysis = { sheetmetal: true, largestPlane: null };
+-      setSmtStatus("当前零件已是钣金，无需重复转换；本页面仅作状态提示，转换按钮保持禁用。", "ok");
+-      el("smtResult").textContent = "状态：已是钣金零件。";
+-    }
+-    syncButtons();
++  function scalar(value, units, power) {
++    if (!Number.isFinite(value) || value < 0) return "未取得";
++    return value.toFixed(3) + (units ? " " + units + (power === 2 ? "²" : "") : "（模型单位未确认）");
+   }
+ 
+-  function selectedSmtMode() {
+-    const selected = document.querySelector("input[name='smtMode']:checked");
+-    return selected ? selected.value : "driving";
++  function revision(value) {
++    return typeof value === "string" || (typeof value === "number" && Number.isFinite(value)) ? value : null;
+   }
+ 
+-  function currentDesiredThickness() {
+-    const value = Number.parseFloat(el("smtThickness").value);
+-    return Number.isFinite(value) && value > 0 ? value : null;
++  function render(data, revisionCheck) {
++    const spans = data.spans;
++    const face = data.largestSurface;
++    el("smtResult").textContent = [
++      "模型：" + data.model,
++      "模型 revision：" + (data.revision == null ? "未提供；无法核对修订" : data.revision),
++      "长度单位：" + (data.units || "未确认；不假定为 mm"),
++      "原生钣金状态：未核验（不能用特征名称或导入历史判定）",
++      "薄壁几何形态：证据不足；等厚状态：证据不足",
++      "曲面数量：" + data.surfaceCount + "；真实平面数量：未核验",
++      "有效面积记录中最大曲面：" + (face ? "ID " + (face.id == null ? "未提供" : face.id) + "，面积 " + scalar(face.area, data.units, 2) + "（未确认面类型）" : "无有效面积数据"),
++      "包围尺寸：X " + scalar(spans.x, data.units) + "；Y " + scalar(spans.y, data.units) + "；Z " + scalar(spans.z, data.units),
++      "壁厚：未测量；整体包围尺寸及用户参数都不能替代壁厚测量",
++      "转换方式：不推荐抽壳或驱动方式，需进一步几何证据与人工确认",
++      "导入的折弯薄壁件可能没有原生钣金历史；这不等于块状实体。",
++      "模型前后核对：" + (revisionCheck === "FILE_AND_REVISION_MATCH" ? "文件与 revision 一致（不单独证明模型未修改）" : "文件一致，但 revision 未提供，核对范围有限"),
++      "本页面只发出指定读取请求；转换及保存入口禁用，未执行原生转换。"
++    ].join("\n");
++    status("读取完成；钣金形态与等厚尚未确认，不推荐转换方式。", "info");
+   }
+ 
+-  function formatLength(value) {
+-    return typeof value === "number" && Number.isFinite(value) && value > 0 ? `${value.toFixed(3)} mm` : "未取得";
+-  }
+-
+-  function formatArea(value) {
+-    return typeof value === "number" && Number.isFinite(value) && value > 0 ? `${value.toFixed(3)} mm²` : "未识别";
+-  }
+-
+-  function formatThickness(value) {
+-    return typeof value === "number" && Number.isFinite(value) && value > 0 ? `${value.toFixed(3)} mm` : "未估算";
+-  }
+-
+-  function surfaceSpan(surface, axis) {
+-    const min = surface?.min_extent?.[axis];
+-    const max = surface?.max_extent?.[axis];
+-    if (typeof min !== "number" || typeof max !== "number") return NaN;
+-    return Math.abs(max - min);
+-  }
+-
+-  function isPlanarSurface(surface) {
+-    const tolerance = 0.01;
+-    return ["x", "y", "z"].some(axis => {
+-      const span = surfaceSpan(surface, axis);
+-      return Number.isFinite(span) && span <= tolerance;
+-    });
+-  }
+-
+-  function renderSmtAnalysis(data) {
+-    smtAnalysis = data;
+-    const plane = data.largestPlane;
+-    const spans = data.spans || {};
+-    const lines = [
+-      `模型：${data.model || "未知"}`,
+-      `当前状态：${data.sheetmetal ? "已是钣金零件" : "普通实体零件（待人工确认转换方式）"}`,
+-      `曲面数量：${data.surfaceCount ?? "未知"}；候选平面数量：${data.planeCount ?? "未知"}`,
+-      `最大候选平面：${plane ? `曲面 ID ${plane.id}，面积 ${formatArea(plane.area)}` : "未找到稳定候选平面"}`,
+-      `包围尺寸：X ${formatLength(spans.x)}；Y ${formatLength(spans.y)}；Z ${formatLength(spans.z)}`,
+-      `薄向尺寸估算：${formatThickness(data.estimatedThickness)}`,
+-      `指定转换板厚：${formatThickness(currentDesiredThickness())}（待原生通道启用后作为正式壁厚参数）`,
+-      `建议人工方式：${data.suggestedMode === "shell" ? "抽壳（块状实体）" : "驱动曲面（等厚薄板）"}`
+-    ];
+-    if (!data.sheetmetal) {
+-      lines.push("注意：当前版本只做只读分析；自动转换按钮保持禁用，避免阻塞 Creo 13.4 同步会话。");
+-    }
+-    el("smtResult").textContent = lines.join("\n");
+-    if (data.sheetmetal) {
+-      setSmtStatus("当前零件已经是钣金，无需重复转换。", "ok");
+-    } else if (!plane) {
+-      setSmtStatus("分析完成，但未找到稳定候选平面；请人工判断是否适合自动转换。", "err");
+-    } else {
+-      setSmtStatus("只读分析完成；自动转换待安全原生通道验收，当前不会修改模型。", "ok");
+-    }
++  async function analyze() {
++    if (busy || blocked) return;
++    busy = true;
++    core.setBusy(true);
+     syncButtons();
+-  }
+-
+-  async function smtAnalyze() {
+-    if (busy || blocked) return;
+-    setBusy(true);
+-    smtAnalysis = null;
+     el("smtResult").textContent = "";
+-    setSmtStatus("正在通过 CREOSON 读取当前零件几何…", "info");
++    status("正在通过 CREOSON 读取当前零件信息…");
++    const requestId = "smt-analysis-" + Date.now() + "-" + (++sequence);
++    audit("smt_analysis_started", { requestId });
++    const read = async (command, fn, data = {}) => {
++      const allowed = ["file/get_fileinfo", "geometry/get_surfaces", "geometry/bound_box", "file/get_length_units"];
++      if (!allowed.includes(command + "/" + fn)) {
++        const error = new Error("Non-read operation rejected");
++        error.code = "READ_ONLY_VIOLATION";
++        throw error;
++      }
++      audit("smt_read_started", { requestId, command, function: fn });
++      try {
++        const result = await core.call(command, fn, data, 60000);
++        audit("smt_read_passed", { requestId, command, function: fn });
++        return result;
++      } catch (error) {
++        audit("smt_read_failed", { requestId, command, function: fn });
++        throw error;
++      }
++    };
+     try {
+       await core.ensureSession();
+-      const info = await core.call("file", "get_fileinfo", {}, 60000);
++      const info = await read("file", "get_fileinfo");
+       if (!info || typeof info.file !== "string" || !/\.prt$/i.test(info.file)) {
+-        throw new Error("当前激活模型不是 .prt 零件；请先打开普通零件");
++        const error = new Error("Not a part"); error.code = "NOT_PART"; throw error;
+       }
+-
+-      const [features, surfaces, box] = await Promise.all([
+-        core.call("feature", "list", { status: "ACTIVE", no_comp: true, paths: true }, 60000),
+-        core.call("geometry", "get_surfaces", {}, 60000),
+-        core.call("geometry", "bound_box", {}, 60000)
+-      ]);
+-
+-      const featureList = Array.isArray(features?.featlist) ? features.featlist : [];
+-      const sheetmetalType = /flat|wall|bend|relief|smt|钣金|壁|折弯/i;
+-      const sheetmetal = featureList.some(feature => sheetmetalType.test(String(feature.type || "")));
+-
+-      const surfaceList = Array.isArray(surfaces?.surflist) ? surfaces.surflist : [];
+-      const candidates = surfaceList.filter(isPlanarSurface)
+-        .sort((left, right) => (right.area || 0) - (left.area || 0));
+-      const largest = candidates[0] || null;
+-
+-      const spans = {
+-        x: Number(box?.xmax) - Number(box?.xmin),
+-        y: Number(box?.ymax) - Number(box?.ymin),
+-        z: Number(box?.zmax) - Number(box?.zmin)
+-      };
+-      const minSpan = Math.min(
+-        Math.max(0, Number.isFinite(spans.x) ? spans.x : 0),
+-        Math.max(0, Number.isFinite(spans.y) ? spans.y : 0),
+-        Math.max(0, Number.isFinite(spans.z) ? spans.z : 0)
+-      );
+-      const estimatedThickness = Number.isFinite(minSpan) && minSpan > 0 && minSpan <= 10 ? minSpan : null;
+-
+-      const data = {
+-        model: info.file,
+-        sheetmetal,
+-        surfaceCount: surfaceList.length,
+-        planeCount: candidates.length,
+-        estimatedThickness,
+-        suggestedMode: estimatedThickness ? "driving" : "shell",
+-        largestPlane: largest ? { id: largest.surface_id, area: largest.area } : null,
+-        spans
+-      };
++      const surfaces = await read("geometry", "get_surfaces", { file: info.file });
++      const box = await read("geometry", "bound_box", { file: info.file });
++      let units = null;
++      let unitReadOutcome = "UNCONFIRMED";
++      try {
++        const result = await read("file", "get_length_units", { file: info.file });
++        if (result && typeof result.units === "string" && result.units.trim()) {
++          units = result.units.trim(); unitReadOutcome = "RETURNED_UNIT_STRING";
++        } else audit("smt_units_unconfirmed", { requestId, errorCode: "UNITS_RESPONSE_UNCONFIRMED" });
++      } catch (error) {
++        audit("smt_units_unconfirmed", { requestId, errorCode: "UNITS_READ_FAILED" });
++      }
++      const after = await read("file", "get_fileinfo");
++      const beforeRevision = revision(info.revision);
++      const afterRevision = revision(after && after.revision);
++      if (!after || after.file !== info.file || beforeRevision !== afterRevision) {
++        const error = new Error("Model identity changed"); error.code = "MODEL_CHANGED"; throw error;
++      }
++      const revisionCheck = beforeRevision == null ? "FILE_ONLY_REVISION_UNAVAILABLE" : "FILE_AND_REVISION_MATCH";
++      const data = assessment.assess({ model: info.file, revision: beforeRevision, surfaces: surfaces && surfaces.surflist, box, units });
+       audit("smt_analyze_http", {
+-        model: data.model,
+-        sheetmetal: data.sheetmetal,
+-        surfaceCount: data.surfaceCount,
+-        planeCount: data.planeCount
++        requestId, model: data.model, revision: data.revision, units: data.units,
++        surfaceCount: data.surfaceCount, planeCount: null, nativeConvertReady: false,
++        nativeSheetmetalState: data.nativeSheetmetalState,
++        thinWallShapeAssessment: data.thinWallShapeAssessment,
++        uniformThicknessAssessment: data.uniformThicknessAssessment,
++        estimatedThickness: null, suggestedMode: null, reasonCodes: data.reasonCodes,
++        revisionCheck, unitReadOutcome
+       });
+-      renderSmtAnalysis(data);
++      render(data, revisionCheck);
+     } catch (error) {
+-      audit("smt_analyze_failed", { error: error.message });
+-      setSmtStatus(`分析失败：${error.message}`, "err");
++      const code = error && error.code || (error instanceof core.ApiError ? "CREOSON_READ_FAILED" : "ANALYSIS_FAILED");
++      const hints = { NOT_PART: "当前激活模型不是零件", MODEL_CHANGED: "模型或修订变化，请停止核对", INVALID_RESPONSE: "读取响应缺失或格式无效", READ_ONLY_VIOLATION: "拒绝非读取操作", CREOSON_READ_FAILED: "CREOSON读取失败，请保留请求证据", ANALYSIS_FAILED: "读取或显示失败" };
++      audit("smt_analyze_failed", { requestId, errorCode: code });
++      status("分析失败：" + code + "；" + (hints[code] || hints.ANALYSIS_FAILED), "err");
+     } finally {
+-      setBusy(false);
++      busy = false;
++      core.setBusy(false);
++      syncButtons();
+     }
+   }
+ 
+-  async function smtConvert() {
+-    if (busy || blocked) return;
+-    if (!smtAnalysis) return;
+-    setBusy(true);
+-    try {
+-      audit("smt_convert_blocked", {
+-        model: smtAnalysis.model,
+-        mode: selectedSmtMode(),
+-        desiredThickness: currentDesiredThickness(),
+-        reason: "safe native conversion channel pending validation; no model modification"
+-      });
+-      setSmtStatus("指定板厚转换暂未开放：安全原生通道验收前不会修改模型；当前只保留板厚参数位和只读分析。", "err");
+-    } finally {
+-      setBusy(false);
+-    }
++  function downloadAnalysisLog() {
++    if (busy) return;
++    const events = assessment.analysisEvents(core.events, core.sessionId);
++    if (!events.length) return;
++    const blob = new Blob([events.map(event => JSON.stringify(event)).join("\n") + "\n"], { type: "application/x-ndjson;charset=utf-8" });
++    const url = URL.createObjectURL(blob);
++    const link = document.createElement("a");
++    link.href = url;
++    link.download = "p1_readonly_analysis_" + new Date().toISOString().replace(/[:.]/g, "-") + ".jsonl";
++    document.body.appendChild(link);
++    link.click();
++    link.remove();
++    setTimeout(() => URL.revokeObjectURL(url), 10000);
+   }
+ 
+-  function initStoredOptions() {
+-    const savedMode = core.storage.get("smt_mode");
+-    if (savedMode === "driving" || savedMode === "shell") {
+-      document.querySelector(`input[name='smtMode'][value='${savedMode}']`).checked = true;
+-    }
+-    const savedThickness = Number.parseFloat(core.storage.get("smt_thickness") || "1.0");
+-    el("smtThickness").value = Number.isFinite(savedThickness) && savedThickness > 0 ? savedThickness : 1.0;
+-    el("smtSave").checked = core.storage.get("smt_save") === "1";
++  el("smtAnalyzeBtn").addEventListener("click", analyze);
++  el("smtLogBtn").addEventListener("click", downloadAnalysisLog);
++  el("smtConvertBtn").addEventListener("click", () => {
++    audit("smt_convert_blocked", { errorCode: "CHANNEL_BLOCKED", nativeConvertReady: false });
++    status("转换入口未开放；不会从本页面提交模型写操作。", "err");
++  });
++  const params = new URLSearchParams(location.search);
++  if (params.get("guard") === "need_part") {
++    blocked = true;
++    status("当前入口不是普通零件，分析已阻止。", "err");
++  } else if (params.get("state") === "sheetmetal" || params.get("modelMode") === "sheetmetal") {
++    blocked = true;
++    status("入口报告为钣金模型；本页面不重复分析，也未重新读取原生状态。", "info");
++  } else if (params.get("modelMode") !== "solid_part") {
++    blocked = true;
++    status("模型入口未确认，请从当前零件命令重新打开。", "err");
+   }
+-
+-  document.querySelectorAll("input[name='smtMode']").forEach(radio => {
+-    radio.addEventListener("change", () => {
+-      smtAnalysis = null;
+-      syncButtons();
+-      core.storage.set("smt_mode", radio.value);
+-    });
+-  });
+-  el("smtThickness").addEventListener("change", () => {
+-    core.storage.set("smt_thickness", String(currentDesiredThickness() || 1.0));
+-  });
+-  el("smtSave").addEventListener("change", () => {
+-    core.storage.set("smt_save", el("smtSave").checked ? "1" : "0");
+-  });
+-  el("smtAnalyzeBtn").addEventListener("click", smtAnalyze);
+-  el("smtConvertBtn").addEventListener("click", smtConvert);
+-
+-  initStoredOptions();
+-  applyModeBlock();
++  audit("smt_mode_guard", { blocked, nativeConvertReady: false });
+   syncButtons();
+ })();
+--- /dev/null
++++ b/web/assets/js/sheetmetal-assessment.js
+@@ -0,0 +1,76 @@
++"use strict";
++/* Pure evidence assessment. No Creo, HTTP, DOM, file, or model-write calls. */
++(function (root) {
++  function invalid(message) {
++    const error = new Error(message);
++    error.code = "INVALID_RESPONSE";
++    throw error;
++  }
++
++  function assess(input) {
++    if (!input || typeof input.model !== "string" || !/\.prt$/i.test(input.model)) invalid("Expected a part identity");
++    if (!Array.isArray(input.surfaces)) invalid("Surface list is unavailable");
++    const spans = {};
++    for (const axis of ["x", "y", "z"]) {
++      const lo = input.box && input.box[axis + "min"];
++      const hi = input.box && input.box[axis + "max"];
++      if (!Number.isFinite(lo) || !Number.isFinite(hi) || hi < lo || !Number.isFinite(hi - lo)) invalid("Invalid bounding range");
++      spans[axis] = hi - lo;
++    }
++    let largestSurface = null;
++    let surfacesWithoutUsableArea = 0;
++    for (const face of input.surfaces) {
++      if (!face || typeof face !== "object" || Array.isArray(face)) invalid("Invalid surface record");
++      if (!Number.isFinite(face.area) || face.area <= 0) {
++        surfacesWithoutUsableArea++;
++        continue;
++      }
++      if (!largestSurface || face.area > largestSurface.area) {
++        const id = face.surface_id;
++        largestSurface = { id: typeof id === "string" || Number.isFinite(id) ? id : null, area: face.area };
++      }
++    }
++    const units = typeof input.units === "string" && input.units.trim() ? input.units.trim() : null;
++    return {
++      model: input.model,
++      revision: input.revision == null ? null : input.revision,
++      units,
++      surfaceCount: input.surfaces.length,
++      largestSurface,
++      surfacesWithoutUsableArea,
++      spans,
++      nativeSheetmetalState: "UNKNOWN",
++      thinWallShapeAssessment: "INSUFFICIENT_EVIDENCE",
++      uniformThicknessAssessment: "INSUFFICIENT_EVIDENCE",
++      estimatedThickness: null,
++      suggestedMode: null,
++      // Compatibility fields must not imply that absence of feature names proves a solid block.
++      sheetmetal: null,
++      planeCount: null,
++      largestPlane: null,
++      nativeConvertReady: false,
++      saved: false,
++      reasonCodes: [
++        "NATIVE_SHEETMETAL_STATE_NOT_READ",
++        "OPPOSED_SURFACE_AND_THICKNESS_EVIDENCE_UNAVAILABLE",
++        "BOUNDING_BOX_IS_NOT_WALL_THICKNESS"
++      ].concat(units ? [] : ["LENGTH_UNITS_UNCONFIRMED"])
++    };
++  }
++
++  function analysisEvents(events, sessionSecret) {
++    const fields = ["timestamp", "event", "requestId", "command", "function", "saved", "errorCode", "model", "revision", "units", "surfaceCount", "planeCount", "nativeConvertReady", "nativeSheetmetalState", "thinWallShapeAssessment", "uniformThicknessAssessment", "estimatedThickness", "suggestedMode", "reasonCodes", "revisionCheck", "blocked", "unitReadOutcome"];
++    return events.filter(item => item && typeof item.event === "string" && item.event.startsWith("smt_")).map(item => {
++      const selected = {};
++      for (const key of fields) if (Object.prototype.hasOwnProperty.call(item, key)) selected[key] = item[key];
++      return JSON.parse(JSON.stringify(selected, (key, value) => {
++        if (/session.?id|token|authorization/i.test(key)) return "[REDACTED]";
++        return typeof value === "string" && sessionSecret ? value.split(sessionSecret).join("[REDACTED]") : value;
++      }));
++    });
++  }
++
++  const api = Object.freeze({ assess, analysisEvents });
++  if (typeof module !== "undefined" && module.exports) module.exports = api;
++  else root.SiswSheetmetalAssessment = api;
++})(typeof globalThis !== "undefined" ? globalThis : this);

@@ -1,0 +1,21 @@
+✔ a small envelope extent does not establish thickness or a driving recommendation (1.599317ms)
+✔ a large minimum envelope extent does not default to shell (0.283491ms)
+✔ permuting envelope axes cannot create a conversion recommendation (0.288989ms)
+✔ feature names cannot establish positive or negative native sheetmetal state (0.469097ms)
+✔ surface counts and largest area are retained without calling it a plane (2.296624ms)
+✔ missing units stay unconfirmed rather than silently becoming millimetres (0.239251ms)
+✔ known inch units remain inch and are not silently converted (0.325721ms)
+✔ missing surfaces fail instead of becoming a successful empty model (1.692598ms)
+✔ invalid or nonnumeric bounds fail rather than being coerced (0.597279ms)
+✔ invalid surface entries fail; unavailable areas are not invented (0.477156ms)
+✔ non-part identities fail; no claimed body or plane is inferred (0.33859ms)
+✔ export excludes shared connection events and unknown credential fields (0.816515ms)
+✔ export redacts a current session value even inside an otherwise allowed field (0.162473ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17.299183

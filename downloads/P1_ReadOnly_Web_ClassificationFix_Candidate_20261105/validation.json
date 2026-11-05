@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "pureFunctionTests": {
+      "passed": 13,
+      "failed": 0
+    },
+    "javascriptSyntaxFiles": 3,
+    "htmlScriptOrderAndDisabledControls": true,
+    "patchExactReplay": true,
+    "sharedCoreHashUnchanged": true,
+    "featureNameClassificationRemoved": true,
+    "bboxThicknessAndShellDefaultRemoved": true,
+    "newModuleNoNetworkOrModelCalls": true,
+    "analysisCallsOnlyAllowlistedReadWrapper": true
+  },
+  "browserExecuted": false,
+  "httpExecuted": false,
+  "creoExecuted": false,
+  "runtimeModelWriteAbsenceProven": false
+}

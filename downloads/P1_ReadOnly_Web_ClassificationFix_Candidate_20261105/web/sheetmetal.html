@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>零件几何只读分析</title>
+<link rel="stylesheet" href="assets/css/base.css">
+</head>
+<body>
+<div class="section" id="sheetmetalSection">
+  <div class="section-title">零件几何只读分析（转换未开放）</div>
+  <div class="row">
+    <label><input type="radio" name="smtMode" value="driving" disabled> 驱动方式（未评估）</label>
+    <label><input type="radio" name="smtMode" value="shell" disabled> 抽壳方式（未评估）</label>
+    <label>板厚 <input type="number" id="smtThickness" min="0.1" max="20" step="0.1" disabled placeholder="未测量"> （参数禁用，不是测量值）</label>
+    <label><input type="checkbox" id="smtSave" disabled> 转换后保存到磁盘</label>
+  </div>
+  <div class="row">
+    <button id="smtAnalyzeBtn" class="btn-primary">分析当前零件</button>
+    <button id="smtConvertBtn" class="btn-success" disabled title="安全原生转换通道验收前只读分析，不会修改模型">指定板厚转换（暂未开放）</button>
+  </div>
+    <button id="smtLogBtn" type="button" disabled>下载分析日志</button>
+  <div id="smtStatus" class="status info" role="status" aria-live="polite">读取当前零件信息；形态与等厚证据不足时不推荐转换方式。</div>
+  <div id="smtResult" class="result"></div>
+</div>
+
+<p class="note">本页面只发出指定的 CREOSON 读取请求，转换和保存入口保持禁用。导入件缺少钣金特征历史不等于块状实体；包围尺寸不是壁厚，当前不确认原生钣金状态、等厚或可展性。下载分析日志会保存本地证据文件，不保存 Creo 模型。</p>
+
+<script src="assets/js/core.js"></script>
+<script src="assets/js/sheetmetal-assessment.js"></script>
+<script src="assets/js/sheetmetal.js"></script>
+</body>
+</html>

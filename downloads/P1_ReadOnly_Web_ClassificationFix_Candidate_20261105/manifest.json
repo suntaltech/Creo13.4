@@ -1,0 +1,56 @@
+{
+  "artifactType": "WEB_ONLY_READONLY_CLASSIFICATION_CORRECTION_CANDIDATE",
+  "date": "2026-11-05",
+  "inputArchive": {
+    "fileName": "p1-readonly-web-input-20261105.zip",
+    "sha256": "52b6d81861a7e18b657d2a4a853406d84b9919695a4a83dc9e5c3145cf6ed831"
+  },
+  "inputs": [
+    {
+      "relativeName": "sheetmetal.html",
+      "sha256": "8b33d690c402a94becc280d39b5acdf86c24ce693315f2b0313246e576a64087",
+      "targetRelativeName": "web/sheetmetal.html"
+    },
+    {
+      "relativeName": "sheetmetal.js",
+      "sha256": "89a065695b3a35cfee2a95d0540853807985ca43a654a007e680046895c5b992",
+      "targetRelativeName": "web/assets/js/sheetmetal.js"
+    },
+    {
+      "relativeName": "core.js",
+      "sha256": "d5a63b5cdd1aa802b11ae6af5f00878b6e2245c7d029c215db11876e34ab694e",
+      "targetRelativeName": "web/assets/js/core.js"
+    }
+  ],
+  "webOutputs": [
+    {
+      "relativeName": "web/assets/js/core.js",
+      "sha256": "d5a63b5cdd1aa802b11ae6af5f00878b6e2245c7d029c215db11876e34ab694e",
+      "change": "UNCHANGED_REFERENCE_ONLY"
+    },
+    {
+      "relativeName": "web/assets/js/sheetmetal-assessment.js",
+      "sha256": "abefe2689885b41c7e2bf90103ec41776cd365644f9eef4bccd74f2604035a4b",
+      "change": "NEW_MODULE"
+    },
+    {
+      "relativeName": "web/assets/js/sheetmetal.js",
+      "sha256": "f4d0c01536a93dec849088c6a7ee819728c3d76a489748aa9e17db299065a59c",
+      "change": "CHANGED"
+    },
+    {
+      "relativeName": "web/sheetmetal.html",
+      "sha256": "da5d56316402e5b842edfd9f76075edba1f9f7cf47e0592c978bdf45ccbaa21f",
+      "change": "CHANGED"
+    }
+  ],
+  "runtimeHttpResponsesProvided": false,
+  "recognitionScope": "REMOVE_UNSUPPORTED_SHELL_DRIVING_INFERENCE_NOT_UNIFORM_THICKNESS_RECOGNITION",
+  "javaChanged": false,
+  "sharedCoreChanged": false,
+  "newGeometrySdkApiAdded": false,
+  "httpOrCreoExecuted": false,
+  "deployed": false,
+  "nodeVersion": "v24.19.0",
+  "testInputs": "SYNTHETIC_NOT_RUNTIME_EVIDENCE"
+}

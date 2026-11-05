@@ -1,0 +1,20 @@
+[
+  {
+    "relativeName": "web/assets/js/core.js",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "relativeName": "web/assets/js/sheetmetal.js",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "relativeName": "web/assets/js/sheetmetal-assessment.js",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]
