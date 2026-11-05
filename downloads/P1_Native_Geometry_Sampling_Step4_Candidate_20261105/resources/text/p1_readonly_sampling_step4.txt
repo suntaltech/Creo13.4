@@ -1,0 +1,14 @@
+P1_SAMPLE4_LABEL
+Sample Read-Only Geometry Step 4
+
+P1_SAMPLE4_HELP
+Improve degenerate plane triples using a bounded native-valid point pool
+
+P1_SAMPLE4_DESC
+Read-only same-face point selection. No thickness assessment or conversion.
+
+P1_SAMPLE4_STARTED
+Step 4 read-only sampling started. Review the new step4 JSONL.
+
+P1_SAMPLE4_FINISHED
+Step 4 sampling ended. Review final triples, pool selection, unchanged threshold and final identity status.

@@ -1,0 +1,453 @@
+{
+  "artifactType": "INDEPENDENT_STEP4_READONLY_NATIVE_POINT_POOL_CANDIDATE_NOT_RELEASE",
+  "date": "2026-11-05",
+  "taskInput": {
+    "fileName": "P1_原生几何采样第四步_任务单_20261105.md",
+    "sha256": "dcac82c7dcb90160987a21dbcca729358095be5765827a5ee35c2b5e4d55f5f9"
+  },
+  "applicationClass": "p1.readonly.geometry.step4.P1ReadOnlyGeometrySamplerStep4",
+  "commandId": "SISWReadOnlyGeometrySample4",
+  "displayName": "Sample Read-Only Geometry Step 4",
+  "sourceFiles": [
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "81e01a387fd9ceba0a8596ac6ea438df267d4f31dd5bdfc2c228ce0027ab12c8"
+    },
+    {
+      "relativeName": "source/GeometryPoolSelection.java",
+      "sha256": "9e4782c0e16a7239c8bd798295a3870647e1b7c919cee530cf1ae036481b7bda"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "5f9e0713937f32fbbbcf5c6fe4be1f64ad0cf180ca39cc8d70985b257412cfa8"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySamplerStep4.java",
+      "sha256": "6e6db5691be3c38e642becb784e8c02071031f1b6b4906e8dc17be3224a5c269"
+    }
+  ],
+  "sdk": {
+    "fileName": "otk.jar",
+    "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "realSdkUsed": true,
+    "runtimeJava25Required": true,
+    "pfcasyncUsed": false,
+    "redistributed": false
+  },
+  "classes": [
+    {
+      "relativeName": "classes/p1/readonly/geometry/step4/GeometryEvidenceSupport.class",
+      "sha256": "cc0f16c92246d5fb8ecdffe8994f76e6b1b7831389f83ba10370e3d996b9601e",
+      "bytes": 4908,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step4/GeometryPoolSelection.class",
+      "sha256": "ae776ce91663d0a1a26454ff13d6f92ec408df02c2f578c0f690a15ce142c890",
+      "bytes": 3926,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step4/GeometrySamplingMath.class",
+      "sha256": "e2c866a3d55529a2374561c8113e6b6f74fff006761ddc3335798750b3950dfa",
+      "bytes": 9552,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4$Candidate.class",
+      "sha256": "6f4626f4c4ffbe297440e5368944d9c074182d500d6a8810de6b3fac7692bc9f",
+      "bytes": 739,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4$Face.class",
+      "sha256": "6c21033f4a8e3f9c19cd59c23887f47b8c1569d81d9df7eaa768036654b97076",
+      "bytes": 780,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4$Listener.class",
+      "sha256": "4639d9219473e9caa926c55b6f8643304169c91676b099649541e63a2d9cc133",
+      "bytes": 2005,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4$Read.class",
+      "sha256": "7842668ce21039d3fb2fd3b4d4ee6aed6a8696e687e01c60cf0d30510973ff42",
+      "bytes": 531,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4$Run.class",
+      "sha256": "63fc2034d30206aa6cb09a0d99ceb1d0238a49dc5871886cbbcafa3a798882ce",
+      "bytes": 56653,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4$SamplingCounters.class",
+      "sha256": "d9423bf92117b6d940be47046732c6c0c3183f9ab85ebb7f8c22fdddcab26d8a",
+      "bytes": 4106,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4.class",
+      "sha256": "0b14f2dc1489920e4144c1687d01efe40fe4a43fb1eca626cc83d848a4074d73",
+      "bytes": 5352,
+      "major": 61
+    }
+  ],
+  "jar": {
+    "relativeName": "lib/p1-readonly-geometry-sampling-step4.jar",
+    "sha256": "80dec8bdb0eb98a84a650ede06356e842e50b3adb80885ca8d44b318245f62bc",
+    "classBytesMatchLooseFiles": true,
+    "sdkBundled": false
+  },
+  "validation": {
+    "realSdkCompilation": true,
+    "repeatCleanCompileIdentical": true,
+    "classes": {
+      "p1/readonly/geometry/step4/GeometryEvidenceSupport.class": "cc0f16c92246d5fb8ecdffe8994f76e6b1b7831389f83ba10370e3d996b9601e",
+      "p1/readonly/geometry/step4/GeometryPoolSelection.class": "ae776ce91663d0a1a26454ff13d6f92ec408df02c2f578c0f690a15ce142c890",
+      "p1/readonly/geometry/step4/GeometrySamplingMath.class": "e2c866a3d55529a2374561c8113e6b6f74fff006761ddc3335798750b3950dfa",
+      "p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4$Candidate.class": "6f4626f4c4ffbe297440e5368944d9c074182d500d6a8810de6b3fac7692bc9f",
+      "p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4$Face.class": "6c21033f4a8e3f9c19cd59c23887f47b8c1569d81d9df7eaa768036654b97076",
+      "p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4$Listener.class": "4639d9219473e9caa926c55b6f8643304169c91676b099649541e63a2d9cc133",
+      "p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4$Read.class": "7842668ce21039d3fb2fd3b4d4ee6aed6a8696e687e01c60cf0d30510973ff42",
+      "p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4$Run.class": "63fc2034d30206aa6cb09a0d99ceb1d0238a49dc5871886cbbcafa3a798882ce",
+      "p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4$SamplingCounters.class": "d9423bf92117b6d940be47046732c6c0c3183f9ab85ebb7f8c22fdddcab26d8a",
+      "p1/readonly/geometry/step4/P1ReadOnlyGeometrySamplerStep4.class": "0b14f2dc1489920e4144c1687d01efe40fe4a43fb1eca626cc83d848a4074d73"
+    },
+    "classMajor": 61,
+    "sdkRuntimeMajor": 69,
+    "jarClassesMatchLooseFiles": true,
+    "compiledSdkCallsAllowlisted": true,
+    "pureLogicChecksPassed": 19,
+    "samplingMathPolicyChecksPassed": 59,
+    "step3QualityChecksPassed": 428,
+    "step4PoolChecksPassed": 548,
+    "codecOutputParsedByPython": true,
+    "mockSdkUsed": false,
+    "collectorExecuted": false,
+    "creoExecuted": false
+  },
+  "policy": {
+    "poolSizeMax": 9,
+    "qualityProbesPerFaceMax": 32,
+    "finalPointsPerFaceMax": 3,
+    "globalAttemptLimit": 3000,
+    "globalTargetFaceLimit": 300,
+    "globalFinalPointsLimit": 900,
+    "softBudgetSeconds": 30,
+    "nativeInsideGateRelaxed": false,
+    "numericalThreshold": 5.684341886080802e-14,
+    "thresholdChanged": false,
+    "sameFaceOnly": true,
+    "baselineRetainedOnNoImprovement": true,
+    "triangleAreaRankingMustNotDegradeBaseline": true
+  },
+  "baseline": {
+    "planeGroups": 126,
+    "numericallyNonCollinear": 78,
+    "numericallyDegenerate": 48,
+    "sourceLogSha256": "e9d9b7e94d690d10fcfff72f9f60e92d86827968b5dc132d1fa926f2c9bb569d"
+  },
+  "targetResults": [
+    {
+      "surfaceId": 2687,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2688,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2689,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2693,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2695,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2696,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2697,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2706,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2707,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2712,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2713,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2714,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2720,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2721,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2722,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2726,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2727,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2728,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2734,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2735,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2736,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2740,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2741,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2742,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2748,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2749,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2754,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2756,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2761,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2762,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2763,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2764,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2773,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2774,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2775,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2781,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2813,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2815,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2825,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2826,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2827,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2828,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2845,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2847,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2854,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2855,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2856,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    },
+    {
+      "surfaceId": 2857,
+      "step3NumericallyNonCollinear": false,
+      "step4RuntimeResult": "NOT_EXECUTED",
+      "step4FinalNumericallyNonCollinear": "UNKNOWN"
+    }
+  ],
+  "step3ProductChanged": false,
+  "webBusinessOrRibbonChanged": false,
+  "thicknessAssessed": false,
+  "runtime": {
+    "creoExecuted": false,
+    "newSamplingExecuted": false,
+    "deployed": false,
+    "48FaceImprovementVerified": false
+  }
+}
