@@ -1,0 +1,125 @@
+{
+  "type": "OFFLINE_SUPPLEMENT_REVIEW_NOT_NEW_RUNTIME_RECORD",
+  "resourceInventory": [
+    {
+      "relativeName": "about.png",
+      "operatorReportedDeployedSha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086",
+      "r8CandidateSha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086",
+      "r8ManifestSha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086",
+      "comparison": "MATCH"
+    },
+    {
+      "relativeName": "batchrename.png",
+      "operatorReportedDeployedSha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4",
+      "r8CandidateSha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4",
+      "r8ManifestSha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4",
+      "comparison": "MATCH"
+    },
+    {
+      "relativeName": "batchrename.txt",
+      "operatorReportedDeployedSha256": "bd85e1352c3e0112fc36d07b11febabe1082859098ef7cfa8cd67c7f1760e31c",
+      "r8CandidateSha256": "bd85e1352c3e0112fc36d07b11febabe1082859098ef7cfa8cd67c7f1760e31c",
+      "r8ManifestSha256": "bd85e1352c3e0112fc36d07b11febabe1082859098ef7cfa8cd67c7f1760e31c",
+      "comparison": "MATCH"
+    },
+    {
+      "relativeName": "p1_6a_r2.txt",
+      "operatorReportedDeployedSha256": "b8939739dc213bde0db2d85c4d0d2ef6d583a927cabf4bcde5eb00c57811af06",
+      "r8CandidateSha256": "b8939739dc213bde0db2d85c4d0d2ef6d583a927cabf4bcde5eb00c57811af06",
+      "r8ManifestSha256": "b8939739dc213bde0db2d85c4d0d2ef6d583a927cabf4bcde5eb00c57811af06",
+      "comparison": "MATCH"
+    },
+    {
+      "relativeName": "p1_6a_ui_commands.txt",
+      "operatorReportedDeployedSha256": "43eb5af7b9bdc9529cd0632d1556dbe55b2bba26b13b4955043a189bcd42f78c",
+      "r8CandidateSha256": "43eb5af7b9bdc9529cd0632d1556dbe55b2bba26b13b4955043a189bcd42f78c",
+      "r8ManifestSha256": "43eb5af7b9bdc9529cd0632d1556dbe55b2bba26b13b4955043a189bcd42f78c",
+      "comparison": "MATCH"
+    },
+    {
+      "relativeName": "sheetmetal.png",
+      "operatorReportedDeployedSha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce",
+      "r8CandidateSha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce",
+      "r8ManifestSha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce",
+      "comparison": "MATCH"
+    },
+    {
+      "relativeName": "resource/about.png",
+      "operatorReportedDeployedSha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086",
+      "r8CandidateSha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086",
+      "r8ManifestSha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086",
+      "comparison": "MATCH"
+    },
+    {
+      "relativeName": "resource/batchrename.png",
+      "operatorReportedDeployedSha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4",
+      "r8CandidateSha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4",
+      "r8ManifestSha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4",
+      "comparison": "MATCH"
+    },
+    {
+      "relativeName": "resource/sheetmetal.png",
+      "operatorReportedDeployedSha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce",
+      "r8CandidateSha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce",
+      "r8ManifestSha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce",
+      "comparison": "MATCH"
+    }
+  ],
+  "resourceSetCompleteAgainstCandidate": true,
+  "resourceHashComparisonCount": 9,
+  "deployedFileBytesIndependentlyRead": false,
+  "mapping": {
+    "sourceRelativeName": "working-text-layout",
+    "destinationDirectoryBasename": "text",
+    "sourceOfMapping": "USER_SUPPLIED_EVIDENCE_MD"
+  },
+  "screenshots": [
+    {
+      "inputRelativeName": "current-mode-toolkit-commands.png",
+      "sha256": "040493ccdc9dcc91aaca0acbb28fcbc4609bd67ad73a0a737778f5ca6ffaef3b",
+      "visuallyReviewed": true,
+      "visibleScope": "CURRENT_MODE",
+      "visibleCategory": "TOOLKIT 命令",
+      "visibleFilterText": "EMPTY",
+      "visibleLabels": [
+        "About SISW",
+        "Batch Rename",
+        "Convert Solid to Sheet",
+        "Sheet Metal Page"
+      ],
+      "conversionLabelTruncated": true,
+      "screenshotContainsCommandIds": false,
+      "screenshotAuthenticityAuthenticated": false
+    },
+    {
+      "inputRelativeName": "all-modes-toolkit-commands.png",
+      "sha256": "21f16557b9429fbe10dd1873fe00c9d257143fd37910272810d6d056ef78810f",
+      "visuallyReviewed": true,
+      "visibleScope": "ALL_MODES",
+      "visibleCategory": "TOOLKIT 命令",
+      "visibleFilterText": "EMPTY",
+      "visibleLabels": [
+        "About SISW",
+        "Batch Rename",
+        "Convert Solid to Sheet",
+        "Sheet Metal Page"
+      ],
+      "conversionLabelTruncated": true,
+      "screenshotContainsCommandIds": false,
+      "screenshotAuthenticityAuthenticated": false
+    }
+  ],
+  "closure": {
+    "previousMissingResourceMapping": "SUPPLIED_BY_OPERATOR",
+    "previousMissingResourceInventory": "SUPPLIED_ALL_NINE_HASHES_MATCH_R8",
+    "previousMissingListScreenshots": "SUPPLIED_AND_VISUALLY_REVIEWED",
+    "registration": "SUPPORTED_BY_PRIOR_UPLOADED_LOG",
+    "listVisibility": "SUPPORTED_BY_SUPPLIED_SCREENSHOTS_AND_OPERATOR_CONTEXT",
+    "l4FixedButton": "NOT_TESTED",
+    "conversion": "NOT_TESTED",
+    "productionConfigRestore": "OPERATOR_REPORTED_ONLY"
+  },
+  "runtimeEvidenceAuthenticated": false,
+  "newRuntimeExecuted": false,
+  "schemaRuntimeRecordsModified": false
+}

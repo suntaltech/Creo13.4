@@ -1,0 +1,30 @@
+{
+  "type": "OFFLINE_EVIDENCE_SUPPLEMENT_REVIEW",
+  "inputArchive": {
+    "fileName": "r8-evidence-supplement-20261105.zip",
+    "sha256": "3c894aefa532eb11beb4b545774f1069afcd967fc98ad148e9918c91d62697dd"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "EVIDENCE.md",
+      "sha256": "cd655fed07b1ede4b485b3d11a1fed1d2f8d9ca297188f4ca356070d0d6fec10",
+      "bytes": 1378
+    },
+    {
+      "relativeName": "all-modes-toolkit-commands.png",
+      "sha256": "21f16557b9429fbe10dd1873fe00c9d257143fd37910272810d6d056ef78810f",
+      "bytes": 100724
+    },
+    {
+      "relativeName": "current-mode-toolkit-commands.png",
+      "sha256": "040493ccdc9dcc91aaca0acbb28fcbc4609bd67ad73a0a737778f5ca6ffaef3b",
+      "bytes": 89201
+    }
+  ],
+  "referenceR8ManifestSha256": "9d137559a8c8b78031ba3ab8ed4cd4d2905d797bacbd9a037a6235a968ef8b62",
+  "resourceComparisonsMatched": 9,
+  "screenshotsVisuallyReviewed": 2,
+  "newRuntimeExecuted": false,
+  "newCandidateGenerated": false,
+  "originalEvidenceRepublished": false
+}
