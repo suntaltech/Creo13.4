@@ -1,0 +1,14 @@
+P1_SAMPLE5_LABEL
+Sample Read-Only Geometry Step 5
+
+P1_SAMPLE5_HELP
+Interleave local inside-seed offsets, internal seeds and a single edge layer
+
+P1_SAMPLE5_DESC
+Read-only native point sampling. Same inside gates and quality threshold, no thickness or conversion.
+
+P1_SAMPLE5_STARTED
+Step 5 read-only sampling started. Review the new step5 JSONL.
+
+P1_SAMPLE5_FINISHED
+Step 5 sampling ended. Review planned and actual strategy counts, final point quality and final identity status.

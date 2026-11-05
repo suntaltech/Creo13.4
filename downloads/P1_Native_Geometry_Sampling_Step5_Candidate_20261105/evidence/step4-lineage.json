@@ -1,0 +1,26 @@
+{
+  "step4Commit": "f88bbc01e76b85747ff7934eea23853cd64359f6",
+  "step4ReviewCommit": "863cb12dd147672818aa7ce688215d28218ba602",
+  "step4Sources": [
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "81e01a387fd9ceba0a8596ac6ea438df267d4f31dd5bdfc2c228ce0027ab12c8"
+    },
+    {
+      "relativeName": "source/GeometryPoolSelection.java",
+      "sha256": "9e4782c0e16a7239c8bd798295a3870647e1b7c919cee530cf1ae036481b7bda"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "5f9e0713937f32fbbbcf5c6fe4be1f64ad0cf180ca39cc8d70985b257412cfa8"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySamplerStep4.java",
+      "sha256": "6e6db5691be3c38e642becb784e8c02071031f1b6b4906e8dc17be3224a5c269"
+    }
+  ],
+  "step4JarSha256": "80dec8bdb0eb98a84a650ede06356e842e50b3adb80885ca8d44b318245f62bc",
+  "step4FilesVerifiedUnchanged": true,
+  "supportMathSelectorIdenticalExceptPackage": true,
+  "step5IndependentApplication": true
+}

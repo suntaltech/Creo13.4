@@ -1,0 +1,31 @@
+{
+  "realSdkCompilation": true,
+  "repeatCleanCompileIdentical": true,
+  "classes": {
+    "p1/readonly/geometry/step5/GeometryCandidateQueue$Seed.class": "50639fe6ced9aec218f2be03849f9ca4178f4bc546be62e17234d46d7b66aa27",
+    "p1/readonly/geometry/step5/GeometryCandidateQueue.class": "3c2d4d8a8d689225e02a26446327005bc96a2615a8b939160180c90a64392c07",
+    "p1/readonly/geometry/step5/GeometryEvidenceSupport.class": "3d8fc8d4bd18a91f7e2d6de545f0c4f9a5610753ac365f1c079c8b7fef0a5329",
+    "p1/readonly/geometry/step5/GeometryPoolSelection.class": "e434df2a6921787703852643cf8532f9cb8a6597c9d81abdb3755a3591a7bf8d",
+    "p1/readonly/geometry/step5/GeometrySamplingMath.class": "ae993924ab93a8249c5c7707191a0112ccb98ddca066aac4674b22bae4416590",
+    "p1/readonly/geometry/step5/P1ReadOnlyGeometrySamplerStep5$Candidate.class": "c0b9b6897593f5413aae8008ae2003d36aa50425c515f1b3989d7065c9471b66",
+    "p1/readonly/geometry/step5/P1ReadOnlyGeometrySamplerStep5$Face.class": "30cb5909968cf45797616abb6c37c3378ce674c97942a61d8ad91ee67f060d98",
+    "p1/readonly/geometry/step5/P1ReadOnlyGeometrySamplerStep5$Listener.class": "67ad4cb33d0a4a17578209066ab23fdb992ec413a00d67b16cf02d44e4b7ee93",
+    "p1/readonly/geometry/step5/P1ReadOnlyGeometrySamplerStep5$Read.class": "ba64c84ba120c17c30be29d72d6a4f921c31c83528356e146df183e535b895b6",
+    "p1/readonly/geometry/step5/P1ReadOnlyGeometrySamplerStep5$Run.class": "6c12b3315b046379391b2e496a15a0cbee22a5c0615270e0cefa17f6c922ad2d",
+    "p1/readonly/geometry/step5/P1ReadOnlyGeometrySamplerStep5$SamplingCounters.class": "46f117d76ead11198d1b8c3fd8c9361b388b9a3cbc22e8c320348ab5fd8fb3bd",
+    "p1/readonly/geometry/step5/P1ReadOnlyGeometrySamplerStep5.class": "1e3c30b3bed046c99ca376a5328046f26380b56d62572072f86ee029c6682ed1"
+  },
+  "classMajor": 61,
+  "sdkRuntimeMajor": 69,
+  "jarClassesMatchLooseFiles": true,
+  "compiledSdkCallsAllowlisted": true,
+  "pureLogicChecksPassed": 19,
+  "samplingMathPolicyChecksPassed": 59,
+  "step3QualityChecksPassed": 428,
+  "step4PoolChecksPassed": 548,
+  "step5QueueChecksPassed": 5281,
+  "codecOutputParsedByPython": true,
+  "mockSdkUsed": false,
+  "collectorExecuted": false,
+  "creoExecuted": false
+}

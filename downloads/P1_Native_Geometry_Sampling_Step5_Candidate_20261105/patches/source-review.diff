@@ -1,0 +1,208 @@
+--- /dev/null
++++ step5/source/GeometryCandidateQueue.java
+@@ -0,0 +1,60 @@
++package p1.readonly.geometry.step5;
++import java.util.*;
++
++/** Bounded parameter proposals only. Every proposal still needs both native INSIDE gates. */
++public final class GeometryCandidateQueue {
++    public static final String LOCAL="LOCAL_INSIDE_OFFSET", INTERNAL="INTERNAL_HALTON", EDGE="EDGE_SINGLE_LAYER";
++    public static final int LOCAL_BUDGET=16, INTERNAL_BUDGET=8, EDGE_BUDGET=8;
++    public static final class Seed {
++        public final double[] uv;
++        public final String strategy;
++        public final int anchorOrdinal;
++        public final double offsetFraction;
++        Seed(double[] uv,String strategy,int anchorOrdinal,double offsetFraction) {
++            this.uv=uv.clone();this.strategy=strategy;this.anchorOrdinal=anchorOrdinal;this.offsetFraction=offsetFraction;
++        }
++    }
++    private GeometryCandidateQueue() { }
++    public static List<Seed> build(double[] bounds,List<double[]> knownInside,List<double[]> attempted) {
++        if(!GeometrySamplingMath.boundsValid(bounds)||knownInside==null||attempted==null)
++            throw new IllegalArgumentException("QUEUE_INPUT_UNAVAILABLE");
++        if(knownInside.size()!=3) throw new IllegalArgumentException("THREE_NATIVE_VALID_SEEDS_REQUIRED");
++        for(double[] uv:knownInside) if(!finiteInsideRectangle(uv,bounds)) throw new IllegalArgumentException("SEED_OUTSIDE_PARAMETER_RECTANGLE");
++        List<Seed> local=new ArrayList<>(),internal=new ArrayList<>(),edge=new ArrayList<>();
++        double[] scales={1.0/64,1.0/256,1.0/1024,1.0/16};
++        double[][] directions={{1,0},{0,1},{-1,0},{0,-1}};
++        // First sixteen cover all four scales and axis directions across the three known native seeds.
++        // Remaining layers provide replacements for duplicate/out-of-rectangle proposals, not extra probes.
++        for(int layer=0;layer<3;layer++) for(int si=0;si<scales.length;si++) for(int d=0;d<4;d++) {
++            int anchor=(layer+si+d)%knownInside.size();double[] uv=knownInside.get(anchor);double s=scales[si];
++            local.add(new Seed(new double[]{uv[0]+(bounds[1]-bounds[0])*s*directions[d][0],
++                    uv[1]+(bounds[3]-bounds[2])*s*directions[d][1]},LOCAL,anchor+1,s));
++        }
++        for(int i=1;i<=64;i++) internal.add(new Seed(interpolate(bounds,radicalInverse(i,2),radicalInverse(i,3)),INTERNAL,0,0));
++        // One existing layer only, prioritized using Step4's observed useful locations; no new edge layers.
++        double e=1.0/32;
++        double[][] fractions={{e,1-e},{1-e,e},{e,.5},{.5,e},{e,e},{1-e,1-e},{1-e,.5},{.5,1-e}};
++        for(double[] uv:fractions) edge.add(new Seed(interpolate(bounds,uv[0],uv[1]),EDGE,0,e));
++        List<Seed> result=new ArrayList<>();List<double[]> seen=new ArrayList<>(attempted);
++        int[] positions={0,0,0};
++        List<List<Seed>> buckets=Arrays.asList(local,internal,edge);
++        for(int cycle=0;cycle<8;cycle++) for(int bucket:new int[]{0,1,0,2}) {
++            List<Seed> values=buckets.get(bucket);
++            while(positions[bucket]<values.size()) {
++                Seed seed=values.get(positions[bucket]++);
++                if(!finiteInsideRectangle(seed.uv,bounds)||contains(seen,seed.uv)) continue;
++                result.add(seed);seen.add(seed.uv);break;
++            }
++        }
++        return result;
++    }
++    private static boolean finiteInsideRectangle(double[] uv,double[] b) {
++        return uv!=null&&uv.length==2&&Double.isFinite(uv[0])&&Double.isFinite(uv[1])
++                &&uv[0]>b[0]&&uv[0]<b[1]&&uv[1]>b[2]&&uv[1]<b[3];
++    }
++    private static boolean contains(List<double[]> values,double[] uv) {
++        for(double[] prior:values) if(GeometrySamplingMath.exactUv(prior,uv)) return true;return false;
++    }
++    private static double[] interpolate(double[] b,double u,double v) {return new double[]{b[0]+(b[1]-b[0])*u,b[2]+(b[3]-b[2])*v};}
++    private static double radicalInverse(int value,int base) {double result=0,factor=1.0/base;while(value>0){result+=(value%base)*factor;value/=base;factor/=base;}return result;}
++}
+--- step4/source/GeometryEvidenceSupport.java
++++ step5/source/GeometryEvidenceSupport.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step4;
++package p1.readonly.geometry.step5;
+--- step4/source/GeometryPoolSelection.java
++++ step5/source/GeometryPoolSelection.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step4;
++package p1.readonly.geometry.step5;
+--- step4/source/GeometrySamplingMath.java
++++ step5/source/GeometrySamplingMath.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step4;
++package p1.readonly.geometry.step5;
+--- step4/source/P1ReadOnlyGeometrySamplerStep4.java
++++ step5/source/P1ReadOnlyGeometrySamplerStep5.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step4;
++package p1.readonly.geometry.step5;
+@@ -23 +23 @@
+-import static p1.readonly.geometry.step4.GeometryEvidenceSupport.*;
++import static p1.readonly.geometry.step5.GeometryEvidenceSupport.*;
+@@ -26,3 +26,3 @@
+-public final class P1ReadOnlyGeometrySamplerStep4 {
+-    public static final String COMMAND_ID = "SISWReadOnlyGeometrySample4";
+-    private static final String MESSAGES = "p1_readonly_sampling_step4.txt";
++public final class P1ReadOnlyGeometrySamplerStep5 {
++    public static final String COMMAND_ID = "SISWReadOnlyGeometrySample5";
++    private static final String MESSAGES = "p1_readonly_sampling_step5.txt";
+@@ -36 +36 @@
+-    private P1ReadOnlyGeometrySamplerStep4() { }
++    private P1ReadOnlyGeometrySamplerStep5() { }
+@@ -47 +47 @@
+-            command.Designate(MESSAGES, "P1_SAMPLE4_LABEL", "P1_SAMPLE4_HELP", "P1_SAMPLE4_DESC");
++            command.Designate(MESSAGES, "P1_SAMPLE5_LABEL", "P1_SAMPLE5_HELP", "P1_SAMPLE5_DESC");
+@@ -151 +151 @@
+-            Path output = directory.resolve("geometry-sampling-step4-" + requestId + ".jsonl");
++            Path output = directory.resolve("geometry-sampling-step5-" + requestId + ".jsonl");
+@@ -158 +158 @@
+-                    "collectorStep", "STEP_4", "samplingSchema", "P1_NATIVE_GEOMETRY_SAMPLING_V1",
++                    "collectorStep", "STEP_5", "samplingSchema", "P1_NATIVE_GEOMETRY_SAMPLING_V1",
+@@ -160 +160 @@
+-                    "selectionSchema", "P1_NATIVE_PLANE_POINT_POOL_V1");
++                    "selectionSchema", "P1_NATIVE_PLANE_POINT_POOL_V1", "queueSchema", "P1_NATIVE_MIXED_UV_QUEUE_V1");
+@@ -199 +199 @@
+-            read("Session.UIDisplayMessage(STARTED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE4_STARTED", null); return Boolean.TRUE; });
++            read("Session.UIDisplayMessage(STARTED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE5_STARTED", null); return Boolean.TRUE; });
+@@ -303 +303 @@
+-                read("Session.UIDisplayMessage(FINISHED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE4_FINISHED", null); return Boolean.TRUE; });
++                read("Session.UIDisplayMessage(FINISHED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE5_FINISHED", null); return Boolean.TRUE; });
+@@ -401,0 +402,2 @@
++            Map<String,int[]> strategyStats=new LinkedHashMap<>();
++            for(String strategy:Arrays.asList(GeometryCandidateQueue.LOCAL,GeometryCandidateQueue.INTERNAL,GeometryCandidateQueue.EDGE)) strategyStats.put(strategy,new int[6]);
+@@ -438 +440 @@
+-                Candidate valid=validateCandidate(id,face,uv,phase,attempt,orientationCode,poolPoints,rejectionCounts);
++                Candidate valid=validateCandidate(id,face,uv,phase,attempt,orientationCode,poolPoints,rejectionCounts,null);
+@@ -450 +452,8 @@
+-                List<double[]> extra=GeometrySamplingMath.qualityCandidates(bounds[0],bounds[1],bounds[2],bounds[3],attemptedUvs);
++                List<double[]> knownInsideUvs=new ArrayList<>();for(Candidate candidate:pool) knownInsideUvs.add(candidate.requestedUv);
++                List<GeometryCandidateQueue.Seed> extra=GeometryCandidateQueue.build(bounds,knownInsideUvs,attemptedUvs);
++                List<String> plannedOrder=new ArrayList<>();
++                for(GeometryCandidateQueue.Seed seed:extra) { strategyStats.get(seed.strategy)[0]++;plannedOrder.add(seed.strategy); }
++                emit("QUALITY_CANDIDATE_QUEUE",map("surfaceId",id,"plannedCount",extra.size(),"strategyOrder",plannedOrder,
++                        "strategyStats",strategyReport(strategyStats),"orderPolicy","LOCAL_INTERNAL_LOCAL_EDGE_REPEAT_8",
++                        "knownInsideSeedAttemptOrdinals",candidateOrdinals(pool),"candidateBoundsAreNotTrimDomainProof",true,
++                        "maxQualityProbes",GeometrySamplingMath.MAX_QUALITY_PROBES_PER_FACE,"runtimeBudgetAndPoolMayStopEarly",true));
+@@ -452 +461,2 @@
+-                for(double[] uv:extra) {
++                for(GeometryCandidateQueue.Seed seed:extra) {
++                    double[] uv=seed.uv;
+@@ -456,0 +467 @@
++                    int[] stats=strategyStats.get(seed.strategy);stats[1]++;
+@@ -458,2 +469,2 @@
+-                    Candidate valid=validateCandidate(id,face,uv,"QUALITY_POOL",attempt,orientationCode,poolPoints,rejectionCounts);
+-                    if(valid!=null) { pool.add(valid);poolPoints.add(valid.point);emitPoolCandidate(valid); }
++                    Candidate valid=validateCandidate(id,face,uv,"QUALITY_POOL",attempt,orientationCode,poolPoints,rejectionCounts,seed);
++                    if(valid!=null) { stats[2]++;pool.add(valid);poolPoints.add(valid.point);emitPoolCandidate(valid); } else stats[3]++;
+@@ -472,0 +484 @@
++                int[] strategyCounts="QUALITY_POOL".equals(candidate.record.get("candidatePhase"))?strategyStats.get(candidate.record.get("candidateStrategy")):null;
+@@ -473,0 +486 @@
++                    if(strategyCounts!=null) strategyCounts[4]++;
+@@ -480,0 +494 @@
++                    if(strategyCounts!=null) strategyCounts[5]++;
+@@ -485,0 +500,2 @@
++                            "candidatePhase",candidate.record.get("candidatePhase"),"candidateStrategy",candidate.record.get("candidateStrategy"),
++                            "knownInsideSeedOrdinal",candidate.record.get("knownInsideSeedOrdinal"),"localOffsetRangeFraction",candidate.record.get("localOffsetRangeFraction"),
+@@ -495,0 +512 @@
++                selection.put("strategyStats",strategyReport(strategyStats));
+@@ -525,0 +543 @@
++                    "strategyStats",strategyReport(strategyStats),
+@@ -528,0 +547,8 @@
++        }
++        List<Map<String,Object>> strategyReport(Map<String,int[]> stats) {
++            List<Map<String,Object>> result=new ArrayList<>();
++            for(Map.Entry<String,int[]> entry:stats.entrySet()) {
++                int[] v=entry.getValue();result.add(map("strategy",entry.getKey(),"planned",v[0],"attempted",v[1],
++                        "nativeValidCandidates",v[2],"nativeGateOrUniquenessRejected",v[3],"finalSelected",v[4],"validButUnselected",v[5]));
++            }
++            return result;
+@@ -545 +571 @@
+-                                    List<double[]> poolPoints,Map<String,Integer> rejectionCounts) throws IOException {
++                                    List<double[]> poolPoints,Map<String,Integer> rejectionCounts,GeometryCandidateQueue.Seed qualitySeed) throws IOException {
+@@ -551 +577 @@
+-                if (uv == null) { reject(id,attempt,requested,"UV_ARGUMENT_UNAVAILABLE",null,rejectionCounts); return null; }
++                if (uv == null) { reject(id,attempt,requested,"UV_ARGUMENT_UNAVAILABLE",null,rejectionCounts,phase,qualitySeed); return null; }
+@@ -554,3 +580,3 @@
+-                    reject(id,attempt,requested,"REQUESTED_UV_NOT_NATIVE_INSIDE",first == null ? null : first.getValue(),rejectionCounts); return null;
+-                }
+-                if (!withinBudget()) { reject(id,attempt,requested,"BUDGET_BEFORE_EVALUATION",first.getValue(),rejectionCounts); sampling.stopReason = "SOFT_TIME_BUDGET"; return null; }
++                    reject(id,attempt,requested,"REQUESTED_UV_NOT_NATIVE_INSIDE",first == null ? null : first.getValue(),rejectionCounts,phase,qualitySeed); return null;
++                }
++                if (!withinBudget()) { reject(id,attempt,requested,"BUDGET_BEFORE_EVALUATION",first.getValue(),rejectionCounts,phase,qualitySeed); sampling.stopReason = "SOFT_TIME_BUDGET"; return null; }
+@@ -558 +584 @@
+-                if (data == null) { reject(id,attempt,requested,"EVAL3D_DATA_UNAVAILABLE",first.getValue(),rejectionCounts); return null; }
++                if (data == null) { reject(id,attempt,requested,"EVAL3D_DATA_UNAVAILABLE",first.getValue(),rejectionCounts,phase,qualitySeed); return null; }
+@@ -562 +588 @@
+-                    reject(id,attempt,requested,"RETURNED_UV_MISSING_NONFINITE_OR_DIFFERS_NO_CANONICALIZATION",null,rejectionCounts); return null;
++                    reject(id,attempt,requested,"RETURNED_UV_MISSING_NONFINITE_OR_DIFFERS_NO_CANONICALIZATION",null,rejectionCounts,phase,qualitySeed); return null;
+@@ -566 +592 @@
+-                    reject(id,attempt,requested,"RETURNED_UV_NOT_NATIVE_INSIDE",second == null ? null : second.getValue(),rejectionCounts); return null;
++                    reject(id,attempt,requested,"RETURNED_UV_NOT_NATIVE_INSIDE",second == null ? null : second.getValue(),rejectionCounts,phase,qualitySeed); return null;
+@@ -572 +598 @@
+-                if (!GeometrySamplingMath.finite3(point)) { reject(id,attempt,requested,"POINT_MISSING_OR_NONFINITE",null,rejectionCounts); return null; }
++                if (!GeometrySamplingMath.finite3(point)) { reject(id,attempt,requested,"POINT_MISSING_OR_NONFINITE",null,rejectionCounts,phase,qualitySeed); return null; }
+@@ -575 +601 @@
+-                catch (IllegalArgumentException error) { reject(id,attempt,requested,error.getMessage(),null,rejectionCounts); return null; }
++                catch (IllegalArgumentException error) { reject(id,attempt,requested,error.getMessage(),null,rejectionCounts,phase,qualitySeed); return null; }
+@@ -578 +604 @@
+-                if (duplicatePoint) { reject(id,attempt,requested,"DUPLICATE_POINT_IN_FACE",null,rejectionCounts); return null; }
++                if (duplicatePoint) { reject(id,attempt,requested,"DUPLICATE_POINT_IN_FACE",null,rejectionCounts,phase,qualitySeed); return null; }
+@@ -582 +608,3 @@
+-                        "candidatePhase",phase,
++                        "candidatePhase",phase,"candidateStrategy",qualitySeed==null?phase:qualitySeed.strategy,
++                        "knownInsideSeedOrdinal",qualitySeed==null||qualitySeed.anchorOrdinal==0?"NOT_APPLICABLE":qualitySeed.anchorOrdinal,
++                        "localOffsetRangeFraction",qualitySeed==null||qualitySeed.anchorOrdinal==0?"NOT_APPLICABLE":qualitySeed.offsetFraction,
+@@ -596 +624 @@
+-        void reject(Integer id,int attempt,double[] uv,String reason,Integer placement,Map<String,Integer> counts) throws IOException {
++        void reject(Integer id,int attempt,double[] uv,String reason,Integer placement,Map<String,Integer> counts,String phase,GeometryCandidateQueue.Seed qualitySeed) throws IOException {
+@@ -599 +627,4 @@
+-                    "reason",reason,"verifyPlacementCode",known(placement),"sampleAccepted",false));
++                    "reason",reason,"verifyPlacementCode",known(placement),"sampleAccepted",false,"candidatePhase",phase,
++                    "candidateStrategy",qualitySeed==null?phase:qualitySeed.strategy,
++                    "knownInsideSeedOrdinal",qualitySeed==null||qualitySeed.anchorOrdinal==0?"NOT_APPLICABLE":qualitySeed.anchorOrdinal,
++                    "localOffsetRangeFraction",qualitySeed==null||qualitySeed.anchorOrdinal==0?"NOT_APPLICABLE":qualitySeed.offsetFraction));
