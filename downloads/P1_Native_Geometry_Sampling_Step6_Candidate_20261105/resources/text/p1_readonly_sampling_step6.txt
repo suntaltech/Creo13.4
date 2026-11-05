@@ -1,0 +1,14 @@
+P1_SAMPLE6_LABEL
+Sample Read-Only Geometry Step 6
+
+P1_SAMPLE6_HELP
+Freeze Step5 selection, continue bounded spread sampling and collect coarse relative-face candidates
+
+P1_SAMPLE6_DESC
+Read-only evidence. Pair hints do not confirm opposite faces, trimmed overlap, thickness or conversion.
+
+P1_SAMPLE6_STARTED
+Step 6 read-only sampling started. Review the new step6 JSONL.
+
+P1_SAMPLE6_FINISHED
+Step 6 sampling ended. Review frozen baseline, historical spread comparisons, coarse pair hints and final identity status.

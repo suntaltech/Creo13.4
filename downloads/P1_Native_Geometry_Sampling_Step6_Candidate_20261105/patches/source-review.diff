@@ -1,0 +1,441 @@
+--- step5/source/GeometryCandidateQueue.java
++++ step6/source/GeometryCandidateQueue.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step5;
++package p1.readonly.geometry.step6;
+--- step5/source/GeometryEvidenceSupport.java
++++ step6/source/GeometryEvidenceSupport.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step5;
++package p1.readonly.geometry.step6;
+--- /dev/null
++++ step6/source/GeometryPairEvidence.java
+@@ -0,0 +1,51 @@
++package p1.readonly.geometry.step6;
++import java.util.*;
++
++/** Coarse same-body sampled evidence only. No face separation, cylinder radii or thickness calculation. */
++public final class GeometryPairEvidence {
++    public static final int MAX_COMPARISONS=16000, MAX_EMITTED_PER_TYPE=64;
++    public static final double NORMAL_COMPATIBILITY_COSINE=0.95;
++    private GeometryPairEvidence() { }
++    public static Map<String,Object> analyze(String type,List<double[]> a,List<double[]> an,List<double[]> b,List<double[]> bn) {
++        Map<String,Object> result=GeometryEvidenceSupport.map("pairType",type,"status","UNKNOWN_INVALID_SAMPLE_DATA","candidate",false,
++                "evidenceLevel","SAMPLED_POINT_NORMAL_AND_PROJECTION_HINT_ONLY","trueOppositeFacesConfirmed",false,
++                "trimmedOverlapProven",false,"thicknessAssessed",false,"normalsAreOutwardCertified",false,
++                "cylinderAxisCoaxialityAndRadii","UNKNOWN_NOT_ACQUIRED","normalCompatibilityCosine",NORMAL_COMPATIBILITY_COSINE);
++        if(!Arrays.asList("PLANE_PLANE","CYLINDER_CYLINDER").contains(type)||!valid(a)||!valid(b)||!valid(an)||!valid(bn))return result;
++        List<double[]> na=new ArrayList<>(),nb=new ArrayList<>();
++        try{for(double[] n:an)na.add(GeometrySamplingMath.normalUnit(n));for(double[] n:bn)nb.add(GeometrySamplingMath.normalUnit(n));}
++        catch(IllegalArgumentException error){return result;}
++        double minimum=1,maximum=-1,absolute=0;
++        for(double[] x:na)for(double[] y:nb){double dot=Math.max(-1,Math.min(1,x[0]*y[0]+x[1]*y[1]+x[2]*y[2]));minimum=Math.min(minimum,dot);maximum=Math.max(maximum,dot);absolute=Math.max(absolute,Math.abs(dot));}
++        result.put("sampleNormalDotMin",minimum);result.put("sampleNormalDotMax",maximum);result.put("sampleNormalAbsoluteDotMax",absolute);
++        result.put("normalRelation",minimum<=-NORMAL_COMPATIBILITY_COSINE?"APPROXIMATELY_OPPOSED_SAMPLES_PRESENT":maximum>=NORMAL_COMPATIBILITY_COSINE?"APPROXIMATELY_PARALLEL_SAMPLES_PRESENT":"NO_NORMAL_COMPATIBILITY_HINT");
++        result.put("normalPolicyMeaning","COARSE_CANDIDATE_FILTER_NOT_MODEL_TOLERANCE_OR_OUTWARD_ORIENTATION");
++        double[] n=na.get(0);int axis=Math.abs(n[0])<=Math.abs(n[1])&&Math.abs(n[0])<=Math.abs(n[2])?0:Math.abs(n[1])<=Math.abs(n[2])?1:2;
++        double[] reference=new double[3];reference[axis]=1;
++        double[] u=GeometrySamplingMath.normalUnit(cross(n,reference)),v=cross(n,u);
++        double[] aa=box(a,a.get(0),u,v),bb=box(b,a.get(0),u,v);
++        if(aa==null||bb==null){result.put("status","UNKNOWN_PROJECTION_NUMERICAL_RANGE");return result;}
++        List<Double> intersection=Arrays.asList(Math.max(aa[0],bb[0]),Math.min(aa[1],bb[1]),Math.max(aa[2],bb[2]),Math.min(aa[3],bb[3]));
++        boolean nondegenerate=aa[1]>aa[0]&&aa[3]>aa[2]&&bb[1]>bb[0]&&bb[3]>bb[2];
++        boolean overlap=intersection.get(1)>intersection.get(0)&&intersection.get(3)>intersection.get(2);
++        result.put("projectionU",GeometrySamplingMath.list(u));result.put("projectionV",GeometrySamplingMath.list(v));
++        result.put("projectionFrame","COMMON_TANGENT_TO_FIRST_SAMPLE_NORMAL_OF_FACE_A_MODEL_COORDINATES");
++        result.put("sampleProjectionBoxA",GeometrySamplingMath.safeValues(aa));result.put("sampleProjectionBoxB",GeometrySamplingMath.safeValues(bb));
++        result.put("boxOrder",Arrays.asList("uMin","uMax","vMin","vMax"));
++        result.put("projectedOverlapRectangleCandidate",nondegenerate&&overlap?intersection:"UNKNOWN_OR_NO_POSITIVE_SAMPLED_BOX_INTERSECTION");
++        result.put("sampledProjectionBoxesPositiveOverlap",nondegenerate?overlap:"UNKNOWN_DEGENERATE_SAMPLED_BOX");
++        result.put("projectionDoesNotProveTrimmedMaterialOverlap",true);
++        result.put("candidate",nondegenerate&&overlap&&absolute>=NORMAL_COMPATIBILITY_COSINE);
++        result.put("status",!nondegenerate?"UNKNOWN_DEGENERATE_SAMPLED_BOX":nondegenerate&&overlap&&absolute>=NORMAL_COMPATIBILITY_COSINE?"COARSE_PAIR_CANDIDATE":"NO_COARSE_HINT_NOT_PROOF_OF_NO_OPPOSITE_FACE");
++        return result;
++    }
++    private static boolean valid(List<double[]> p){if(p==null||p.size()!=3)return false;for(double[] x:p)if(!GeometrySamplingMath.finite3(x))return false;return true;}
++    private static double[] cross(double[] a,double[] b){return new double[]{a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]};}
++    private static double[] box(List<double[]> p,double[] origin,double[] u,double[] v){
++        double[] b={Double.POSITIVE_INFINITY,Double.NEGATIVE_INFINITY,Double.POSITIVE_INFINITY,Double.NEGATIVE_INFINITY};
++        for(double[] x:p){double[] d={x[0]-origin[0],x[1]-origin[1],x[2]-origin[2]};if(!GeometrySamplingMath.finite3(d))return null;
++            double pu=d[0]*u[0]+d[1]*u[1]+d[2]*u[2],pv=d[0]*v[0]+d[1]*v[1]+d[2]*v[2];if(!Double.isFinite(pu)||!Double.isFinite(pv))return null;
++            b[0]=Math.min(b[0],pu);b[1]=Math.max(b[1],pu);b[2]=Math.min(b[2],pv);b[3]=Math.max(b[3],pv);}
++        return b;
++    }
++}
+--- step5/source/GeometryPoolSelection.java
++++ step6/source/GeometryPoolSelection.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step5;
++package p1.readonly.geometry.step6;
+--- /dev/null
++++ step6/source/GeometryReferenceBaseline.java
+@@ -0,0 +1,149 @@
++package p1.readonly.geometry.step6;
++import java.util.*;
++/** Prior-run aggregate references only. Never used as current native points or a selection gate. */
++public final class GeometryReferenceBaseline {
++ private GeometryReferenceBaseline() { }
++ private static final Map<Integer,double[]> METRICS=new LinkedHashMap<>();
++ static {
++  METRICS.put(2677,new double[]{0.15000000000005542,0.29999999999985505,0.5830951894846919,1.0000000000004263,0.125,-1.0});
++  METRICS.put(2678,new double[]{421.87500000050005,0.11810377822721078,10.0,84.52301831463944,0.125,-1.0});
++  METRICS.put(2679,new double[]{1.405204611435628,0.03202380609470147,4.693612681080728,9.36803074290472,0.125,-1.0});
++  METRICS.put(2680,new double[]{22.312500000028795,0.0020168067226862436,74.37560503965602,148.75000000020043,0.125,-1.0});
++  METRICS.put(2681,new double[]{1.4052046114356227,0.032023806094701596,4.693612681080728,9.368030742904685,0.125,-1.0});
++  METRICS.put(2682,new double[]{421.87500000050005,0.11810377822721078,10.0,84.52301831463944,0.125,-1.0});
++  METRICS.put(2683,new double[]{0.7349999999999633,0.06122448979591446,2.4682990094395114,4.900000000000034,0.125,-1.0});
++  METRICS.put(2685,new double[]{0.7349999999999676,0.061224489795914105,2.4682990094395114,4.9000000000000625,0.125,-1.0});
++  METRICS.put(2686,new double[]{0.14999999999999147,0.29999999999998295,0.5830951894845212,1.0,0.125,-1.0});
++  METRICS.put(2687,new double[]{0.00105468750000169,0.010416384104181052,0.15005085400977966,0.4500061034742222,0.01171875,-1.0});
++  METRICS.put(2688,new double[]{0.0010546875000017452,0.010416384104180283,0.15005085400977966,0.45000610347425063,0.01171875,-1.0});
++  METRICS.put(2689,new double[]{0.20592773437501713,0.12573452467198817,0.4662118784683768,1.8098606861095812,0.50537109375,0.7119140625});
++  METRICS.put(2691,new double[]{1386.6328125018035,0.11731707317057903,78.96275724204021,153.75000000020003,0.125,-1.0});
++  METRICS.put(2693,new double[]{0.20592773437503337,0.12573452467199525,0.4662118784684043,1.8098606861096016,0.50537109375,0.711914062500048});
++  METRICS.put(2694,new double[]{5.411249999999687,0.008316008316007853,18.03999462998808,36.07499999999996,0.125,-1.0});
++  METRICS.put(2695,new double[]{0.20592773437500514,0.12573452467197807,0.46621187846838424,1.8098606861096012,0.5053710937500001,0.7119140625000241});
++  METRICS.put(2696,new double[]{0.0010546875000017452,0.010416384104180283,0.15005085400977966,0.45000610347425063,0.01171875,-1.0});
++  METRICS.put(2697,new double[]{0.00105468750000169,0.010416384104181052,0.15005085400977966,0.4500061034742222,0.01171875,-1.0});
++  METRICS.put(2698,new double[]{0.14999999999999147,0.29999999999998295,0.5830951894845212,1.0,0.125,-1.0});
++  METRICS.put(2699,new double[]{0.7349999999999548,0.061224489795915174,2.468299009439483,4.899999999999977,0.125,-1.0});
++  METRICS.put(2701,new double[]{0.7349999999999633,0.06122448979591446,2.4682990094395114,4.900000000000034,0.125,-1.0});
++  METRICS.put(2702,new double[]{0.14999999999999147,0.29999999999998295,0.5830951894845212,1.0,0.125,-1.0});
++  METRICS.put(2704,new double[]{1386.6328125018035,0.11731707317057903,78.96275724204021,153.75000000020003,0.125,-1.0});
++  METRICS.put(2706,new double[]{0.20592773437499312,0.125734524671968,0.46621187846839174,1.809860686109621,0.50537109375,0.711914062500048});
++  METRICS.put(2707,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2708,new double[]{8205.46875000551,0.4338046272500945,128.75054611537442,194.49999999990004,0.12500000000000003,-1.0});
++  METRICS.put(2710,new double[]{12900.384853069738,0.19317251428279725,72.00908203124996,365.46321036540536,0.9960975646972657,-1.0});
++  METRICS.put(2711,new double[]{5.411250000000199,0.00831600831600864,18.03999462998808,36.07499999999996,0.125,-1.0});
++  METRICS.put(2712,new double[]{0.2059277343749768,0.12573452467196083,0.46621187846836426,1.8098606861096007,0.50537109375,0.711914062500048});
++  METRICS.put(2713,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2714,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2715,new double[]{0.15000000000000568,0.30000000000001137,0.5830951894845359,1.0,0.125,-1.0});
++  METRICS.put(2716,new double[]{0.735000000000033,0.06122448979592026,2.468299009439515,4.900000000000034,0.125,-1.0});
++  METRICS.put(2718,new double[]{0.7350000000000244,0.061224489795920975,2.4682990094394865,4.899999999999977,0.125,-1.0});
++  METRICS.put(2719,new double[]{0.15000000000000568,0.30000000000001137,0.5830951894845359,1.0,0.125,-1.0});
++  METRICS.put(2720,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2721,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2722,new double[]{0.20592773437503337,0.12573452467199525,0.4662118784684043,1.8098606861096016,0.50537109375,0.711914062500048});
++  METRICS.put(2724,new double[]{1386.6328125018035,0.11731707317057903,78.96275724204021,153.75000000020003,0.125,-1.0});
++  METRICS.put(2725,new double[]{5.411249999999687,0.008316008316007853,18.03999462998808,36.07499999999996,0.125,-1.0});
++  METRICS.put(2726,new double[]{0.20592773437499312,0.125734524671968,0.46621187846839174,1.809860686109621,0.50537109375,0.711914062500048});
++  METRICS.put(2727,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2728,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2729,new double[]{0.15000000000000568,0.30000000000001137,0.5830951894845359,1.0,0.125,-1.0});
++  METRICS.put(2730,new double[]{0.7350000000000244,0.061224489795920975,2.4682990094394865,4.899999999999977,0.125,-1.0});
++  METRICS.put(2732,new double[]{0.735000000000033,0.06122448979592026,2.468299009439515,4.900000000000034,0.125,-1.0});
++  METRICS.put(2733,new double[]{0.15000000000000568,0.30000000000001137,0.5830951894845359,1.0,0.125,-1.0});
++  METRICS.put(2734,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2735,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2736,new double[]{0.20592773437503337,0.12573452467199525,0.4662118784684043,1.8098606861096016,0.50537109375,0.711914062500048});
++  METRICS.put(2738,new double[]{12900.384853069738,0.19317251428279725,72.00908203124996,365.46321036540536,0.9960975646972657,-1.0});
++  METRICS.put(2739,new double[]{5.411250000000199,0.00831600831600864,18.03999462998808,36.07499999999996,0.125,-1.0});
++  METRICS.put(2740,new double[]{0.2059277343749768,0.12573452467196083,0.46621187846836426,1.8098606861096007,0.50537109375,0.711914062500048});
++  METRICS.put(2741,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2742,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2743,new double[]{0.15000000000000568,0.30000000000001137,0.5830951894845359,1.0,0.125,-1.0});
++  METRICS.put(2744,new double[]{0.735000000000033,0.06122448979592026,2.468299009439515,4.900000000000034,0.125,-1.0});
++  METRICS.put(2746,new double[]{0.7350000000000244,0.061224489795920975,2.4682990094394865,4.899999999999977,0.125,-1.0});
++  METRICS.put(2747,new double[]{0.15000000000000568,0.30000000000001137,0.5830951894845359,1.0,0.125,-1.0});
++  METRICS.put(2748,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2749,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2750,new double[]{8205.46875000551,0.4338046272500945,128.75054611537442,194.49999999990004,0.12500000000000003,-1.0});
++  METRICS.put(2752,new double[]{12900.384853069738,0.19317251428279725,72.00908203124996,365.46321036540536,0.9960975646972657,-1.0});
++  METRICS.put(2753,new double[]{5.411250000000199,0.00831600831600864,18.03999462998808,36.07499999999996,0.125,-1.0});
++  METRICS.put(2754,new double[]{0.20592773437500084,0.12573452467198104,0.46621187846834944,1.809860686109561,0.50537109375,0.7119140625});
++  METRICS.put(2756,new double[]{0.20592773437501713,0.12573452467198817,0.4662118784683768,1.8098606861095812,0.50537109375,0.7119140625});
++  METRICS.put(2758,new double[]{408.8174999997743,0.025319977740693014,89.96513213457226,179.69999999990034,0.1250000000000004,-1.0});
++  METRICS.put(2759,new double[]{1.40520461143557,0.032023806094702796,4.693612681080548,9.368030742904333,0.125,-1.0});
++  METRICS.put(2760,new double[]{408.8174999997743,0.025319977740693014,89.96513213457226,179.69999999990034,0.1250000000000004,-1.0});
++  METRICS.put(2761,new double[]{0.00105468750000169,0.010416384104181052,0.15005085400977966,0.4500061034742222,0.01171875,-1.0});
++  METRICS.put(2762,new double[]{0.0010546875000017452,0.010416384104180283,0.15005085400977966,0.45000610347425063,0.01171875,-1.0});
++  METRICS.put(2763,new double[]{0.0010546875000017452,0.010416384104180283,0.15005085400977966,0.45000610347425063,0.01171875,-1.0});
++  METRICS.put(2764,new double[]{0.00105468750000169,0.010416384104181052,0.15005085400977966,0.4500061034742222,0.01171875,-1.0});
++  METRICS.put(2765,new double[]{1.40520461143557,0.032023806094702796,4.693612681080548,9.368030742904333,0.125,-1.0});
++  METRICS.put(2766,new double[]{26.174999999983527,0.0017191977077372763,87.25051575773796,174.4999999999001,0.12499999999999997,-1.0});
++  METRICS.put(2773,new double[]{0.20592773437503337,0.12573452467199525,0.4662118784684043,1.8098606861096016,0.50537109375,0.711914062500048});
++  METRICS.put(2774,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2775,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2776,new double[]{0.15000000000000568,0.30000000000001137,0.5830951894845359,1.0,0.125,-1.0});
++  METRICS.put(2777,new double[]{0.735000000000033,0.06122448979592026,2.468299009439515,4.900000000000034,0.125,-1.0});
++  METRICS.put(2779,new double[]{0.7350000000000372,0.061224489795919906,2.468299009439515,4.9000000000000625,0.125,-1.0});
++  METRICS.put(2780,new double[]{0.15000000000000568,0.30000000000001137,0.5830951894845359,1.0,0.125,-1.0});
++  METRICS.put(2781,new double[]{0.0010546875000018339,0.010416384104179843,0.15005085400980805,0.45000610347427905,0.01171875,-1.0});
++  METRICS.put(2782,new double[]{4.143749999370154,0.010859728508438821,13.815757532324707,27.624999995799982,0.125,-1.0});
++  METRICS.put(2783,new double[]{25.293750000413457,0.0017790956263609712,84.31303372837357,168.62500000275003,0.125,-1.0});
++  METRICS.put(2784,new double[]{4.143749999370154,0.010859728508438821,13.815757532324707,27.624999995799982,0.125,-1.0});
++  METRICS.put(2785,new double[]{25.293750000413457,0.0017790956263609712,84.31303372837357,168.62500000275003,0.125,-1.0});
++  METRICS.put(2811,new double[]{1386.6328125018035,0.11731707317057903,78.96275724204021,153.75000000020003,0.125,-1.0});
++  METRICS.put(2812,new double[]{5.411249999999687,0.008316008316007853,18.03999462998808,36.07499999999996,0.125,-1.0});
++  METRICS.put(2813,new double[]{0.20592773437500514,0.12573452467197807,0.46621187846838424,1.8098606861096012,0.5053710937500001,0.7119140625000241});
++  METRICS.put(2815,new double[]{0.20592773437501713,0.12573452467198817,0.4662118784683768,1.8098606861095812,0.50537109375,0.7119140625});
++  METRICS.put(2817,new double[]{421.87500000050005,0.11810377822721078,10.0,84.52301831463944,0.125,-1.0});
++  METRICS.put(2818,new double[]{1.4052046114356227,0.032023806094701596,4.693612681080728,9.368030742904685,0.125,-1.0});
++  METRICS.put(2819,new double[]{421.87500000050005,0.11810377822721078,10.0,84.52301831463944,0.125,-1.0});
++  METRICS.put(2820,new double[]{0.14999999999999147,0.29999999999998295,0.5830951894845212,1.0,0.125,-1.0});
++  METRICS.put(2821,new double[]{0.7349999999999633,0.06122448979591446,2.4682990094395114,4.900000000000034,0.125,-1.0});
++  METRICS.put(2823,new double[]{0.7349999999999548,0.061224489795915174,2.468299009439483,4.899999999999977,0.125,-1.0});
++  METRICS.put(2824,new double[]{0.14999999999999147,0.29999999999998295,0.5830951894845212,1.0,0.125,-1.0});
++  METRICS.put(2825,new double[]{0.00105468750000169,0.010416384104181052,0.15005085400977966,0.4500061034742222,0.01171875,-1.0});
++  METRICS.put(2826,new double[]{0.0010546875000017452,0.010416384104180283,0.15005085400977966,0.45000610347425063,0.01171875,-1.0});
++  METRICS.put(2827,new double[]{0.0010546875000017452,0.010416384104180283,0.15005085400977966,0.45000610347425063,0.01171875,-1.0});
++  METRICS.put(2828,new double[]{0.00105468750000169,0.010416384104181052,0.15005085400977966,0.4500061034742222,0.01171875,-1.0});
++  METRICS.put(2829,new double[]{0.14999999999999147,0.29999999999998295,0.5830951894845212,1.0,0.125,-1.0});
++  METRICS.put(2830,new double[]{0.7349999999999548,0.061224489795915174,2.468299009439483,4.899999999999977,0.125,-1.0});
++  METRICS.put(2832,new double[]{0.7349999999999633,0.06122448979591446,2.4682990094395114,4.900000000000034,0.125,-1.0});
++  METRICS.put(2833,new double[]{0.15000000000005542,0.29999999999985505,0.5830951894846919,1.0000000000004263,0.125,-1.0});
++  METRICS.put(2834,new double[]{1.4052046114356227,0.032023806094701596,4.693612681080728,9.368030742904685,0.125,-1.0});
++  METRICS.put(2835,new double[]{22.312500000028795,0.0020168067226862436,74.37560503965602,148.75000000020043,0.125,-1.0});
++  METRICS.put(2843,new double[]{12900.384853069738,0.19317251428279725,72.00908203124996,365.46321036540536,0.9960975646972657,-1.0});
++  METRICS.put(2844,new double[]{5.411250000000199,0.00831600831600864,18.03999462998808,36.07499999999996,0.125,-1.0});
++  METRICS.put(2845,new double[]{0.20592773437500084,0.12573452467198104,0.46621187846834944,1.809860686109561,0.50537109375,0.7119140625});
++  METRICS.put(2847,new double[]{0.20592773437501713,0.12573452467198817,0.4662118784683768,1.8098606861095812,0.50537109375,0.7119140625});
++  METRICS.put(2849,new double[]{408.8174999997743,0.025319977740693014,89.96513213457226,179.69999999990034,0.1250000000000004,-1.0});
++  METRICS.put(2850,new double[]{1.40520461143557,0.032023806094702796,4.693612681080548,9.368030742904333,0.125,-1.0});
++  METRICS.put(2851,new double[]{408.8174999997743,0.025319977740693014,89.96513213457226,179.69999999990034,0.1250000000000004,-1.0});
++  METRICS.put(2852,new double[]{26.174999999983527,0.0017191977077372763,87.25051575773796,174.4999999999001,0.12499999999999997,-1.0});
++  METRICS.put(2853,new double[]{1.40520461143557,0.032023806094702796,4.693612681080548,9.368030742904333,0.125,-1.0});
++  METRICS.put(2854,new double[]{0.00105468750000169,0.010416384104181052,0.15005085400977966,0.4500061034742222,0.01171875,-1.0});
++  METRICS.put(2855,new double[]{0.0010546875000017452,0.010416384104180283,0.15005085400977966,0.45000610347425063,0.01171875,-1.0});
++  METRICS.put(2856,new double[]{0.0010546875000017452,0.010416384104180283,0.15005085400977966,0.45000610347425063,0.01171875,-1.0});
++  METRICS.put(2857,new double[]{0.00105468750000169,0.010416384104181052,0.15005085400977966,0.4500061034742222,0.01171875,-1.0});
++  METRICS.put(2864,new double[]{4.143749999369369,0.010859728508436764,13.815757532324705,27.624999995799982,0.12499999999998224,-1.0});
++  METRICS.put(2865,new double[]{25.293750000408664,0.001779095626360634,84.31303372837357,168.62500000275003,0.12499999999998224,-1.0});
++  METRICS.put(2866,new double[]{4.143749999369369,0.010859728508436764,13.815757532324705,27.624999995799982,0.12499999999998224,-1.0});
++  METRICS.put(2867,new double[]{25.293750000408664,0.001779095626360634,84.31303372837357,168.62500000275003,0.12499999999998224,-1.0});
++  METRICS.put(2892,new double[]{5.411249999999687,0.008316008316007853,18.03999462998808,36.07499999999996,0.125,-1.0});
++ }
++ public static Map<String,Object> compare(String file,String stamp,String unit,Integer faceId,Map<String,Object> current) {
++  boolean match="200002100.prt".equalsIgnoreCase(file)&&"3071".equals(stamp)&&"mm".equals(unit)&&METRICS.containsKey(faceId);
++  Map<String,Object> r=GeometryEvidenceSupport.map("surfaceId",faceId,"historicalReferenceScope","UNAUTHENTICATED_PRIOR_RUN_AGGREGATE_OBSERVED_FILE_STAMP_UNIT_ONLY",
++   "referenceFieldsMatch",match,"step5SourceJsonlSha256","80fa5f111652daa20b2697a07841f43997e057ff5f0265fd5c6f436bdf340527",
++   "step4SourceJsonlSha256","29241fc2139e4ce1d07e63da0114b20b36ec7b8bb0419653782593a161974039",
++   "crossRunIdentityAuthenticated",false,"historicalMetricsUsedForSelection",false,"currentMetrics",current);
++  if(!match){r.put("status","HISTORICAL_REFERENCE_NOT_APPLICABLE_OR_UNKNOWN");return r;}
++  double[] v=METRICS.get(faceId);r.put("step5Reference",GeometryEvidenceSupport.map("triangleArea",v[0],"q",v[1],"minPairDistance",v[2],"maxPairDistance",v[3],"uvBoxFraction",v[4]));
++  Object area=current.get("xyzTriangleArea");
++  r.put("step6ToStep5TriangleAreaRatio",area instanceof Number&&v[0]>0?((Number)area).doubleValue()/v[0]:"UNKNOWN");
++  r.put("step4Prior16TriangleArea",v[5]>0?v[5]:"NOT_APPLICABLE");
++  r.put("step6ToStep4Prior16TriangleAreaRatio",area instanceof Number&&v[5]>0?((Number)area).doubleValue()/v[5]:"NOT_APPLICABLE_OR_UNKNOWN");
++  r.put("status","AGGREGATE_COMPARISON_ONLY_NOT_MATERIAL_COVERAGE");return r;
++ }
++}
+--- step5/source/GeometrySamplingMath.java
++++ step6/source/GeometrySamplingMath.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step5;
++package p1.readonly.geometry.step6;
+--- /dev/null
++++ step6/source/GeometrySpreadSelection.java
+@@ -0,0 +1,65 @@
++package p1.readonly.geometry.step6;
++import java.util.*;
++
++/** All inputs are validated same-face native points. No SDK and no synthetic XYZ. */
++public final class GeometrySpreadSelection {
++    public static final int MAX_SPREAD_POOL_SIZE=35;
++    private GeometrySpreadSelection() { }
++    public static Map<String,Object> select(List<double[]> points,List<Integer> frozenStep5Indices) {
++        if(points==null||points.size()>MAX_SPREAD_POOL_SIZE||points.size()<3||frozenStep5Indices==null||frozenStep5Indices.size()!=3)
++            throw new IllegalArgumentException("INVALID_BOUNDED_SPREAD_POOL");
++        List<Integer> baseline=new ArrayList<>(frozenStep5Indices);Set<Integer> distinct=new HashSet<>(baseline);
++        if(distinct.size()!=3)throw new IllegalArgumentException("BASELINE_INDICES_DUPLICATE");
++        for(int i:baseline)if(i<0||i>=points.size())throw new IllegalArgumentException("BASELINE_INDEX_OUT_OF_RANGE");
++        List<double[]> base=triple(points,baseline);
++        Map<String,Object> before=GeometrySamplingMath.xyzQuality(base);
++        List<Integer> best=baseline;
++        double scale=0;
++        for(int i=0;i<points.size();i++) {
++            if(!GeometrySamplingMath.finite3(points.get(i)))return retained(points,baseline,before,"BASELINE_RETAINED_NONFINITE_POOL");
++            for(int j=0;j<i;j++) {
++                double[] a=points.get(i),b=points.get(j);double d=Math.hypot(Math.hypot(a[0]-b[0],a[1]-b[1]),a[2]-b[2]);
++                if(!Double.isFinite(d))return retained(points,baseline,before,"BASELINE_RETAINED_NUMERICAL_RANGE_UNKNOWN");
++                scale=Math.max(scale,d);
++            }
++        }
++        if(!Boolean.TRUE.equals(before.get("numericallyNonCollinear"))||scale==0)
++            return retained(points,baseline,before,"BASELINE_RETAINED_FROZEN_QUALITY_UNKNOWN_OR_DEGENERATE");
++        double[] bestScore=score(base,scale);double baseScore=bestScore[0];
++        if(!(before.get("xyzTriangleArea") instanceof Number))return retained(points,baseline,before,"BASELINE_RETAINED_AREA_RANGE_UNKNOWN");
++        double minimumArea=((Number)before.get("xyzTriangleArea")).doubleValue();int combinations=0;
++        for(int i=0;i<points.size()-2;i++)for(int j=i+1;j<points.size()-1;j++)for(int k=j+1;k<points.size();k++) {
++            combinations++;List<Integer> indices=Arrays.asList(i,j,k);List<double[]> values=triple(points,indices);
++            Map<String,Object> q=GeometrySamplingMath.xyzQuality(values);
++            if(!Boolean.TRUE.equals(q.get("numericallyNonCollinear"))||!(q.get("xyzTriangleArea") instanceof Number)
++                    ||((Number)q.get("xyzTriangleArea")).doubleValue()<minimumArea)continue;
++            double[] sc=score(values,scale);
++            if(sc[0]>bestScore[0]||(sc[0]==bestScore[0]&&sc[1]>bestScore[1])) {best=indices;bestScore=sc;}
++        }
++        Map<String,Object> result=retained(points,best,before,"BOUNDED_FULL_QUEUE_SPREAD_SELECTION");
++        result.put("selectedIndices",best);result.put("replacementApplied",!best.equals(baseline));
++        result.put("frozenStep5Indices",baseline);result.put("poolScale",scale);
++        result.put("baselineAreaScore",baseScore);result.put("selectedAreaScore",bestScore[0]);
++        result.put("baselineMinPairScore",score(base,scale)[1]);result.put("selectedMinPairScore",bestScore[1]);
++        result.put("combinationsExamined",combinations);return result;
++    }
++    private static Map<String,Object> retained(List<double[]> p,List<Integer> indices,Map<String,Object> before,String status) {
++        Map<String,Object> after=GeometrySamplingMath.xyzQuality(triple(p,indices));
++        Object oldArea=before.get("xyzTriangleArea"),newArea=after.get("xyzTriangleArea");
++        boolean comparable=oldArea instanceof Number&&newArea instanceof Number;
++        return GeometryEvidenceSupport.map("selectedIndices",indices,"status",status,"replacementApplied",false,
++                "initialNumericallyNonCollinear",before.get("numericallyNonCollinear"),"finalNumericallyNonCollinear",after.get("numericallyNonCollinear"),
++                "frozenStep5Quality",before,"finalSpreadQuality",after,"threshold",GeometrySamplingMath.NUMERICAL_TRIANGLE_QUALITY_THRESHOLD,
++                "sameRunFrozenStep5TriangleAreaRatio",comparable&&((Number)oldArea).doubleValue()>0?((Number)newArea).doubleValue()/((Number)oldArea).doubleValue():"UNKNOWN",
++                "step5BaselineAreaNotDecreased",comparable?((Number)newArea).doubleValue()>=((Number)oldArea).doubleValue():"UNKNOWN",
++                "comparisonScope","SAME_RUN_FROZEN_STEP5_ALGORITHM_NOT_AUTHENTICATED_PRIOR_RUN");
++    }
++    private static List<double[]> triple(List<double[]> points,List<Integer> indices) {return Arrays.asList(points.get(indices.get(0)),points.get(indices.get(1)),points.get(indices.get(2)));}
++    private static double[] score(List<double[]> p,double scale) {
++        double[] a=p.get(0),b=p.get(1),c=p.get(2),ab=new double[3],ac=new double[3],bc=new double[3];
++        for(int i=0;i<3;i++){ab[i]=(b[i]-a[i])/scale;ac[i]=(c[i]-a[i])/scale;bc[i]=(c[i]-b[i])/scale;}
++        double area=Math.hypot(Math.hypot(ab[1]*ac[2]-ab[2]*ac[1],ab[2]*ac[0]-ab[0]*ac[2]),ab[0]*ac[1]-ab[1]*ac[0]);
++        double minimum=Math.min(Math.hypot(Math.hypot(ab[0],ab[1]),ab[2]),Math.min(Math.hypot(Math.hypot(ac[0],ac[1]),ac[2]),Math.hypot(Math.hypot(bc[0],bc[1]),bc[2])));
++        return new double[]{area,minimum};
++    }
++}
+--- step5/source/P1ReadOnlyGeometrySamplerStep5.java
++++ step6/source/P1ReadOnlyGeometrySamplerStep6.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step5;
++package p1.readonly.geometry.step6;
+@@ -23 +23 @@
+-import static p1.readonly.geometry.step5.GeometryEvidenceSupport.*;
++import static p1.readonly.geometry.step6.GeometryEvidenceSupport.*;
+@@ -26,3 +26,3 @@
+-public final class P1ReadOnlyGeometrySamplerStep5 {
+-    public static final String COMMAND_ID = "SISWReadOnlyGeometrySample5";
+-    private static final String MESSAGES = "p1_readonly_sampling_step5.txt";
++public final class P1ReadOnlyGeometrySamplerStep6 {
++    public static final String COMMAND_ID = "SISWReadOnlyGeometrySample6";
++    private static final String MESSAGES = "p1_readonly_sampling_step6.txt";
+@@ -36 +36 @@
+-    private P1ReadOnlyGeometrySamplerStep5() { }
++    private P1ReadOnlyGeometrySamplerStep6() { }
+@@ -47 +47 @@
+-            command.Designate(MESSAGES, "P1_SAMPLE5_LABEL", "P1_SAMPLE5_HELP", "P1_SAMPLE5_DESC");
++            command.Designate(MESSAGES, "P1_SAMPLE6_LABEL", "P1_SAMPLE6_HELP", "P1_SAMPLE6_DESC");
+@@ -141 +141,3 @@
+-        String modelFileName;
++        String modelFileName,modelVersionStamp;
++        final Map<Integer,List<Candidate>> finalFaceSamples=new LinkedHashMap<>();
++        boolean pairEvidenceTruncated,pairEvidenceStarted,pairEvidenceFinished;
+@@ -151 +153 @@
+-            Path output = directory.resolve("geometry-sampling-step5-" + requestId + ".jsonl");
++            Path output = directory.resolve("geometry-sampling-step6-" + requestId + ".jsonl");
+@@ -158 +160 @@
+-                    "collectorStep", "STEP_5", "samplingSchema", "P1_NATIVE_GEOMETRY_SAMPLING_V1",
++                    "collectorStep", "STEP_6", "samplingSchema", "P1_NATIVE_GEOMETRY_SAMPLING_V1",
+@@ -160 +162 @@
+-                    "selectionSchema", "P1_NATIVE_PLANE_POINT_POOL_V1", "queueSchema", "P1_NATIVE_MIXED_UV_QUEUE_V1");
++                    "selectionSchema", "P1_NATIVE_PLANE_POINT_POOL_V1", "queueSchema", "P1_NATIVE_MIXED_UV_QUEUE_V1", "spreadSchema","P1_NATIVE_SPREAD_FROZEN_BASELINE_V1","pairSchema","P1_NATIVE_RELATIVE_FACE_CANDIDATES_V1");
+@@ -199 +201 @@
+-            read("Session.UIDisplayMessage(STARTED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE5_STARTED", null); return Boolean.TRUE; });
++            read("Session.UIDisplayMessage(STARTED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE6_STARTED", null); return Boolean.TRUE; });
+@@ -209 +211 @@
+-                before = identity(model, "before"); modelFileName = (String)before.get("fileName"); emit("MODEL_BEFORE", before);
++                before = identity(model, "before"); modelFileName = (String)before.get("fileName");modelVersionStamp=(String)before.get("versionStamp"); emit("MODEL_BEFORE", before);
+@@ -265,0 +268 @@
++                collectPairEvidence();
+@@ -303 +306 @@
+-                read("Session.UIDisplayMessage(FINISHED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE5_FINISHED", null); return Boolean.TRUE; });
++                read("Session.UIDisplayMessage(FINISHED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE6_FINISHED", null); return Boolean.TRUE; });
+@@ -308 +311 @@
+-                        && modelFaceTotal!=null && validModelUvBounds==modelFaceTotal && sampling.qualityUnimprovedFaces==0;
++                        && modelFaceTotal!=null && validModelUvBounds==modelFaceTotal && sampling.qualityUnimprovedFaces==0 && pairEvidenceFinished && !pairEvidenceTruncated;
+@@ -325,0 +329,2 @@
++                        "relativeFaceEvidenceState",pairEvidenceFinished?"BOUNDED_SCAN_FINISHED_CANDIDATES_ONLY":pairEvidenceStarted?"ABORTED_UNKNOWN":"NOT_ENTERED_UNKNOWN",
++                        "relativeFaceEvidenceTruncated",pairEvidenceTruncated,"relativeFaceEvidenceIsConfirmedPairOrThickness",false,
+@@ -373 +378 @@
+-                    "maxQualityPoolSize",GeometrySamplingMath.MAX_QUALITY_POOL_SIZE,"maxQualityProbesPerFace",GeometrySamplingMath.MAX_QUALITY_PROBES_PER_FACE,
++                    "maxQualityPoolSize",GeometrySpreadSelection.MAX_SPREAD_POOL_SIZE,"frozenStep5PrefixPoolSize",GeometrySamplingMath.MAX_QUALITY_POOL_SIZE,"maxQualityProbesPerFace",GeometrySamplingMath.MAX_QUALITY_PROBES_PER_FACE,
+@@ -404,0 +410 @@
++            List<Integer> frozenStep5Indices=null;
+@@ -450 +456 @@
+-                        "maxPoolSize",GeometrySamplingMath.MAX_QUALITY_POOL_SIZE,"maxAdditionalProbes",GeometrySamplingMath.MAX_QUALITY_PROBES_PER_FACE));
++                        "maxPoolSize",GeometrySpreadSelection.MAX_SPREAD_POOL_SIZE,"step5FreezePoolSize",GeometrySamplingMath.MAX_QUALITY_POOL_SIZE,"maxAdditionalProbes",GeometrySamplingMath.MAX_QUALITY_PROBES_PER_FACE));
+@@ -463 +469 @@
+-                    if(pool.size()>=GeometrySamplingMath.MAX_QUALITY_POOL_SIZE) { qualityStopReason="QUALITY_POOL_FULL";break; }
++                    if(pool.size()>=GeometrySpreadSelection.MAX_SPREAD_POOL_SIZE) { qualityStopReason="QUALITY_POOL_FULL";break; }
+@@ -470,3 +476,15 @@
+-                    if(valid!=null) { stats[2]++;pool.add(valid);poolPoints.add(valid.point);emitPoolCandidate(valid); } else stats[3]++;
+-                }
+-                if(pool.size()>=GeometrySamplingMath.MAX_QUALITY_POOL_SIZE) qualityStopReason="QUALITY_POOL_FULL";
++                    if(valid!=null) {
++                        stats[2]++;pool.add(valid);poolPoints.add(valid.point);emitPoolCandidate(valid);
++                        if(pool.size()==GeometrySamplingMath.MAX_QUALITY_POOL_SIZE) {
++                            Map<String,Object> baseline=GeometryPoolSelection.select(poolPoints);
++                            frozenStep5Indices=new ArrayList<>();for(Object index:(Iterable<?>)baseline.get("selectedIndices"))frozenStep5Indices.add((Integer)index);
++                            List<double[]> frozenPoints=new ArrayList<>(),frozenUvs=new ArrayList<>();List<Integer> frozenAttempts=new ArrayList<>();
++                            for(int index:frozenStep5Indices){frozenPoints.add(pool.get(index).point);frozenUvs.add(pool.get(index).requestedUv);frozenAttempts.add(pool.get(index).attempt);}
++                            Map<String,Object> frozenQuality=GeometrySamplingMath.xyzQuality(frozenPoints);frozenQuality.putAll(GeometrySamplingMath.uvQuality(frozenUvs,bounds));
++                            emit("FROZEN_STEP5_SELECTION_BASELINE",map("surfaceId",id,"qualityAttemptsAtFreeze",qualityAttempts,
++                                    "poolSizeAtFreeze",pool.size(),"selectedIndices",frozenStep5Indices,"attemptOrdinals",frozenAttempts,
++                                    "quality",frozenQuality,"notAnAuthenticatedPriorRun",true));
++                        }
++                    } else stats[3]++;
++                }
++                if(pool.size()>=GeometrySpreadSelection.MAX_SPREAD_POOL_SIZE) qualityStopReason="QUALITY_POOL_FULL";
+@@ -475 +493 @@
+-            Map<String,Object> selection=qualityPoolActivated?GeometryPoolSelection.select(poolPoints):map("status","UNCHANGED_INITIAL_QUOTA",
++            Map<String,Object> selection=qualityPoolActivated?(frozenStep5Indices!=null?GeometrySpreadSelection.select(poolPoints,frozenStep5Indices):GeometryPoolSelection.select(poolPoints)):map("status","UNCHANGED_INITIAL_QUOTA",
+@@ -480,0 +499 @@
++            List<Candidate> finalCandidates=new ArrayList<>();
+@@ -487 +506 @@
+-                    sampling.accepted++;acceptedPoints.add(candidate.point);acceptedUvs.add(candidate.requestedUv);finalOrdinals.add(candidate.attempt);
++                    sampling.accepted++;finalCandidates.add(candidate);acceptedPoints.add(candidate.point);acceptedUvs.add(candidate.requestedUv);finalOrdinals.add(candidate.attempt);
+@@ -489 +508 @@
+-                    record.put("selectionPolicy",qualityPoolActivated?"FINAL_VALIDATED_PLANE_POOL":"UNCHANGED_FIRST_QUOTA");
++                    record.put("selectionPolicy",qualityPoolActivated?"FROZEN_STEP5_BASELINE_AND_BOUNDED_FULL_QUEUE":"UNCHANGED_FIRST_QUOTA");
+@@ -509,0 +529,3 @@
++                selection.put("frozenStep5SelectionChanged",selection.get("replacementApplied"));
++                selection.put("replacementApplied",!indices.equals(Arrays.asList(0,1,2)));
++                selection.put("initialNumericallyNonCollinear",initialQuality.get("numericallyNonCollinear"));
+@@ -524,0 +547 @@
++                emit("CROSS_RUN_SPREAD_COMPARISON",GeometryReferenceBaseline.compare(modelFileName,modelVersionStamp,lengthUnitName,id,finalQuality));
+@@ -532,0 +556 @@
++            if(accepted==3&&face.bodyIds.size()==1&&bodyMembershipComplete&&lengthUnitName!=null)finalFaceSamples.put(id,finalCandidates);
+@@ -546,0 +571,45 @@
++        }
++        void collectPairEvidence() throws IOException {
++            pairEvidenceStarted=true;
++            int comparisons=0,emitted=0,unavailable=sampling.facesVisited-finalFaceSamples.size();
++            Map<String,Integer> candidates=new LinkedHashMap<>(),published=new LinkedHashMap<>(),outcomes=new LinkedHashMap<>();
++            List<Integer> ids=new ArrayList<>(finalFaceSamples.keySet());String stop="BOUNDED_COMPARISONS_COMPLETED";
++            emit("RELATIVE_FACE_PAIRING_STARTED",map("eligibleFaces",ids.size(),"facesMissingEligibleSamples",unavailable,
++                    "scope","SAME_SINGLE_BODY_SAME_NATIVE_TYPE_PLANE_PLANE_OR_CYLINDER_CYLINDER",
++                    "maxComparisons",GeometryPairEvidence.MAX_COMPARISONS,"maxPublishedPerType",GeometryPairEvidence.MAX_EMITTED_PER_TYPE,
++                    "candidateOnly",true,"noNewNativeApiCalls",true));
++            outer:for(int a=0;a<ids.size();a++)for(int b=a+1;b<ids.size();b++) {
++                int ia=ids.get(a),ib=ids.get(b);Face fa=faces.get(ia),fb=faces.get(ib);
++                if(!fa.bodyIds.equals(fb.bodyIds)||fa.surfaceType.getValue()!=fb.surfaceType.getValue())continue;
++                if(!withinBudget()){stop="SOFT_TIME_BUDGET";pairEvidenceTruncated=true;break outer;}
++                if(comparisons>=GeometryPairEvidence.MAX_COMPARISONS){stop="PAIR_COMPARISON_LIMIT";pairEvidenceTruncated=true;break outer;}
++                String type=fa.surfaceType.getValue()==SurfaceType._SURFACE_PLANE?"PLANE_PLANE":"CYLINDER_CYLINDER";
++                comparisons++;
++                List<double[]> ap=new ArrayList<>(),an=new ArrayList<>(),bp=new ArrayList<>(),bn=new ArrayList<>();
++                List<Integer> aa=new ArrayList<>(),ba=new ArrayList<>();
++                for(Candidate c:finalFaceSamples.get(ia)){ap.add(c.point);an.add(vector(c.record.get("normalUnit")));aa.add(c.attempt);}
++                for(Candidate c:finalFaceSamples.get(ib)){bp.add(c.point);bn.add(vector(c.record.get("normalUnit")));ba.add(c.attempt);}
++                Map<String,Object> evidence=GeometryPairEvidence.analyze(type,ap,an,bp,bn);
++                String status=String.valueOf(evidence.get("status"));outcomes.put(status,outcomes.getOrDefault(status,0)+1);
++                if(!Boolean.TRUE.equals(evidence.get("candidate")))continue;
++                candidates.put(type,candidates.getOrDefault(type,0)+1);
++                if(published.getOrDefault(type,0)>=GeometryPairEvidence.MAX_EMITTED_PER_TYPE)continue;
++                published.put(type,published.getOrDefault(type,0)+1);emitted++;
++                evidence.put("faceA",ia);evidence.put("faceB",ib);evidence.put("bodyId",fa.bodyIds.iterator().next());
++                evidence.put("faceAAttemptOrdinals",aa);evidence.put("faceBAttemptOrdinals",ba);
++                evidence.put("projectionLengthUnit",lengthUnitName);evidence.put("identityDisposition","PENDING_FINAL_COLLECTION_SUMMARY");
++                emit("RELATIVE_FACE_PAIR_CANDIDATE",evidence);
++            }
++            if(!withinBudget()){stop="SOFT_TIME_BUDGET";pairEvidenceTruncated=true;}
++            int count=0;for(int v:candidates.values())count+=v;
++            emit("RELATIVE_FACE_PAIRING_SUMMARY",map("eligibleFaces",ids.size(),"facesMissingEligibleSamples",unavailable,
++                    "comparisons",comparisons,"outcomeCounts",outcomes,"candidateCountsByType",candidates,"publishedCountsByType",published,
++                    "pairEvidenceOutcome",ids.size()<2?"INSUFFICIENT_ELIGIBLE_SAMPLE_EVIDENCE":pairEvidenceTruncated?"PARTIAL_CANDIDATE_SCAN":"BOUNDED_CANDIDATE_SCAN_ONLY",
++                    "published",emitted,"candidateRecordsOmittedByOutputCap",count-emitted,"comparisonTruncated",pairEvidenceTruncated,
++                    "stopReason",stop,"ordering","FIRST_SEEN_NOT_BEST_OR_EXHAUSTIVE_OPPOSITE_FACE_RANKING",
++                    "unknownCylinderAxesRadiiAndTrimmedOverlap",true,"thicknessAssessed",false,"truePairsConfirmed",0));
++            pairEvidenceFinished=true;
++        }
++        double[] vector(Object value) {
++            if(!(value instanceof List<?>))return null;List<?> v=(List<?>)value;if(v.size()!=3)return null;
++            return new double[]{((Number)v.get(0)).doubleValue(),((Number)v.get(1)).doubleValue(),((Number)v.get(2)).doubleValue()};

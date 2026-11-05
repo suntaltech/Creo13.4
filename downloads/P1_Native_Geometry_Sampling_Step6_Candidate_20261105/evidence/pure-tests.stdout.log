@@ -1,0 +1,2 @@
+{"testKind":"SYNTHETIC_UNIT_TEST_NOT_RUNTIME_EVIDENCE","text":"quote\" slash\\ newline\n tab\t 控制\u0001 emoji\ud83d\ude00","falseValue":false,"unknown":{"denominator":"UNKNOWN","completed":0,"ratio":null,"status":"DENOMINATOR_UNKNOWN"},"items":[1,null,true]}
+PURE_LOGIC_CHECKS_PASSED=19

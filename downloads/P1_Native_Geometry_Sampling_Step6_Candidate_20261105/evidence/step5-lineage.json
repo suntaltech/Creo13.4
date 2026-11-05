@@ -1,0 +1,30 @@
+{
+  "step5Commit": "e5ce6ae898f9139c7d9f0c2e483e144515e37bb2",
+  "step5ReviewCommit": "d142a00b35d728e773c9a01a74fe530515cb337b",
+  "step5Sources": [
+    {
+      "relativeName": "source/GeometryCandidateQueue.java",
+      "sha256": "259f7108a53ea2c2cd777e4efb91e7abd85374e48b3ce7903d082755c8ee5e5e"
+    },
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "931bfa7106e37d634267382f2983e2abd4c14739856feec71526137ac9cfff08"
+    },
+    {
+      "relativeName": "source/GeometryPoolSelection.java",
+      "sha256": "59bbc1f48b7d9ed471c32c2f09e4bbecf6f92a7b4d23fc366e1fdfb1515a97bf"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "a2aa0204346d9b619e54f0d3b3f4703f55fa65fbe38bd78068718c573f1d12f4"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySamplerStep5.java",
+      "sha256": "38e4943c6a8aeeae61c7385ef8741e3d655cd9e65e8912d5c6c0ad4a48026241"
+    }
+  ],
+  "step5JarSha256": "a4cd933030dd45872857306bce2f12d769de824284f413830e9182084fb228ff",
+  "step5FilesVerifiedUnchanged": true,
+  "supportMathLegacySelectorAndQueueIdenticalExceptPackage": true,
+  "step6IndependentApplication": true
+}
