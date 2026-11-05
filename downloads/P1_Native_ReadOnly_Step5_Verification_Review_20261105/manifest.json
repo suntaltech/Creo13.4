@@ -1,0 +1,122 @@
+{
+  "type": "OFFLINE_NATIVE_STEP5_RUNTIME_EVIDENCE_REVIEW",
+  "date": "2026-11-05",
+  "inputArchive": {
+    "fileName": "native-readonly-step5-verify-20261105.zip",
+    "sha256": "5cbd8ef78b28820cf909c8a18f01955274fc9d52db2bfac29415520be9628989"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "bytes": 207,
+      "sha256": "0f52e423039a30b997daa126302b0358fe10401f9f1cc56ac47fec82b9c287b8"
+    },
+    {
+      "relativeName": "geometry-sampling-step5-c20836fe-881a-4b11-8842-00c739b01d6e.jsonl",
+      "bytes": 3883369,
+      "sha256": "80fa5f111652daa20b2697a07841f43997e057ff5f0265fd5c6f436bdf340527"
+    },
+    {
+      "relativeName": "step5-ran.png",
+      "bytes": 170966,
+      "sha256": "4be912521333e66fda83faa2fb40acae613baf8bbaa07304422f3d8663083c35"
+    }
+  ],
+  "referenceCandidateCommit": "e5ce6ae898f9139c7d9f0c2e483e144515e37bb2",
+  "referenceCandidateSourceFiles": [
+    {
+      "relativeName": "source/GeometryCandidateQueue.java",
+      "sha256": "259f7108a53ea2c2cd777e4efb91e7abd85374e48b3ce7903d082755c8ee5e5e"
+    },
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "931bfa7106e37d634267382f2983e2abd4c14739856feec71526137ac9cfff08"
+    },
+    {
+      "relativeName": "source/GeometryPoolSelection.java",
+      "sha256": "59bbc1f48b7d9ed471c32c2f09e4bbecf6f92a7b4d23fc366e1fdfb1515a97bf"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "a2aa0204346d9b619e54f0d3b3f4703f55fa65fbe38bd78068718c573f1d12f4"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySamplerStep5.java",
+      "sha256": "38e4943c6a8aeeae61c7385ef8741e3d655cd9e65e8912d5c6c0ad4a48026241"
+    }
+  ],
+  "referenceCandidateJarSha256": "a4cd933030dd45872857306bce2f12d769de824284f413830e9182084fb228ff",
+  "referenceLocalCandidateUnchanged": true,
+  "checks": {
+    "all666FinalAnd432PoolRecordsLogTwoNativeInsideExactUv": true,
+    "finitePointsAndNormalsKnownUnits": true,
+    "perFaceDistinctXyzAndRequestedUv": true,
+    "everyAttemptExactlyOneFinalDisposition": true,
+    "validUnselectedNotOutside": true,
+    "all126FinalAnd48InitialPoolQualitiesIndependentlyRecomputed": true,
+    "all48PoolRankingsCheckedByIndependentPythonEnumeration": true,
+    "all48SelectionsExactlyReplayedWithPublishedPureJava": true,
+    "all48PlannedQueuesAnd384ActualProbeUvsExactlyReplayedWithPublishedPureJava": true,
+    "allStrategyCountersRecomputedAndConserved": true,
+    "all48InitialTriplesMatchStep4InitialTriples": true,
+    "other174Faces522PointsMatchStep4Geometry": true,
+    "fourPriorRefinementResultsPreserved": true,
+    "numericalThresholdUnchanged": true,
+    "sameCrossRunTransactionAuthenticated": false
+  },
+  "results": {
+    "remaining32NumericallyImproved": 32,
+    "prior16NonCollinearFlagsPreserved": 16,
+    "prior16TriangleAreaReducedVersusStep4": 16,
+    "prior16TriangleAreaRatioApprox": 0.28925925925926,
+    "planeGroups": 126,
+    "numericallyNonCollinear": 126,
+    "numericallyDegenerate": 0,
+    "qualityUnknown": 0,
+    "acceptedPoints": 666,
+    "facesAtPointQuota": 222,
+    "attempts": 1550,
+    "additionalQualityAttempts": 384,
+    "validNativeUnselected": 288,
+    "nativeBoundaryRejected": 496,
+    "nativeOutsideRejected": 100,
+    "allPoolSizes": 9,
+    "allPoolStopReasons": "QUALITY_POOL_FULL",
+    "materialCoverageOrThicknessVerified": false
+  },
+  "strategyTotals": {
+    "LOCAL_INSIDE_OFFSET": {
+      "planned": 768,
+      "attempted": 208,
+      "nativeValidCandidates": 208,
+      "nativeGateOrUniquenessRejected": 0,
+      "finalSelected": 112,
+      "validButUnselected": 96
+    },
+    "INTERNAL_HALTON": {
+      "planned": 384,
+      "attempted": 96,
+      "nativeValidCandidates": 64,
+      "nativeGateOrUniquenessRejected": 32,
+      "finalSelected": 16,
+      "validButUnselected": 48
+    },
+    "EDGE_SINGLE_LAYER": {
+      "planned": 384,
+      "attempted": 80,
+      "nativeValidCandidates": 16,
+      "nativeGateOrUniquenessRejected": 64,
+      "finalSelected": 16,
+      "validButUnselected": 0
+    }
+  },
+  "screenshotVisuallyReviewed": true,
+  "codeChanged": false,
+  "newCandidateGenerated": false,
+  "creoExecutedByReviewer": false,
+  "pureJavaQueueAndSelectionReplayed": true,
+  "sdkStubOrModelMockUsed": false,
+  "rawGeometryAndScreenshotRepublished": false,
+  "thicknessAssessed": false,
+  "exactLoadedBinaryIdentityAuthenticated": false
+}
