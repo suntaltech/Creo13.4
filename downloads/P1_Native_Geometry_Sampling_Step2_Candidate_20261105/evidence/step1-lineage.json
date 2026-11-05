@@ -1,0 +1,17 @@
+{
+  "step1Commit": "1e077c125578fd36120f5c30c4b63bc697d5e849",
+  "step1SourceFiles": [
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "3fbe5e528e64c45be4090362c0bb7a7f70f3679e9f7fc3f6836c5846d44b1ab1"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometryCollector.java",
+      "sha256": "043c170613ea1275880a330d5b9b8dcf497064dd6cb0b2d13d131411ad83f8af"
+    }
+  ],
+  "step1JarSha256": "cd379a7b14a6acb4bd8d6a5f71effa102a7168212cd7cdde4938da81b5806d29",
+  "step1FilesVerifiedUnchanged": true,
+  "step2Package": "p1.readonly.geometry.step2",
+  "scope": "ADDITIVE_NEW_APPLICATION_NOT_STEP1_REPLACEMENT"
+}

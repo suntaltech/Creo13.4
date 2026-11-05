@@ -1,0 +1,14 @@
+P1_SAMPLE_LABEL
+Sample Read-Only Geometry
+
+P1_SAMPLE_HELP
+Collect bounded native UV point and normal evidence on planes and cylinders
+
+P1_SAMPLE_DESC
+Read-only step 2. Native inside-UV gates, no thickness inference or conversion.
+
+P1_SAMPLE_STARTED
+Read-only geometry sampling started. Review the separate sampling JSONL.
+
+P1_SAMPLE_FINISHED
+Sampling ended. Review geometry-sampling JSONL for partial, rejected points and identity context. Model not saved by sampler.

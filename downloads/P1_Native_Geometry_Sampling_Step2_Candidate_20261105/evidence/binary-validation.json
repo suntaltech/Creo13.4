@@ -1,0 +1,24 @@
+{
+  "realSdkCompilation": true,
+  "repeatCleanCompileIdentical": true,
+  "classes": {
+    "p1/readonly/geometry/step2/GeometryEvidenceSupport.class": "1267845b32c9efb7c8c154d9e2c0274322949f3f170e51e5e7b46bf3fed6711d",
+    "p1/readonly/geometry/step2/GeometrySamplingMath.class": "5fa0e7036974145fc4c659a4f849ebf89b7d2f677c3e210da517b909b52fb4f1",
+    "p1/readonly/geometry/step2/P1ReadOnlyGeometrySampler$Face.class": "c8e727b36cebe249ad51f3246922d5cb00bb480abde5cb1db598c0e019d1854d",
+    "p1/readonly/geometry/step2/P1ReadOnlyGeometrySampler$Listener.class": "13a8f4e556ba71e1c3a4c1eb9516ebe3fa97dbd4a11e07146b9b5d67e3b90e51",
+    "p1/readonly/geometry/step2/P1ReadOnlyGeometrySampler$Read.class": "8346521fc447dde2ec739f81e80a208cec3cfe430d98f3f53d9c302afa117c34",
+    "p1/readonly/geometry/step2/P1ReadOnlyGeometrySampler$Run.class": "1068be8d8973fdedd4a19770abc6996c26dddac83c1332bde825a9c89a69d2d4",
+    "p1/readonly/geometry/step2/P1ReadOnlyGeometrySampler$SamplingCounters.class": "09037782cd18bc0ea38121974898c17e35546ecf3064c7a96d93faf548140f53",
+    "p1/readonly/geometry/step2/P1ReadOnlyGeometrySampler.class": "f85fb9bb3c867f33f6b610cdd65b0283f405e25ee30493b502a87cbce2b64bf9"
+  },
+  "classMajor": 61,
+  "sdkRuntimeMajor": 69,
+  "jarClassesMatchLooseFiles": true,
+  "compiledSdkCallsAllowlisted": true,
+  "pureLogicChecksPassed": 19,
+  "samplingMathPolicyChecksPassed": 59,
+  "codecOutputParsedByPython": true,
+  "mockSdkUsed": false,
+  "collectorExecuted": false,
+  "creoExecuted": false
+}

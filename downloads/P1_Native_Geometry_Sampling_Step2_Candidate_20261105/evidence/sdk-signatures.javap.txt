@@ -1,0 +1,580 @@
+Compiled from "pfcSession.java"
+public class com.ptc.pfc.pfcSession.pfcSession {
+  public com.ptc.pfc.pfcSession.pfcSession();
+  public static com.ptc.pfc.pfcSession.WSExportOptions WSExportOptions_Create() throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSession.RetrieveModelOptions RetrieveModelOptions_Create() throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSession.MouseStatus MouseStatus_Create(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSession.AppInfo AppInfo_Create(com.ptc.pfc.pfcSession.CreoCompatibility) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSession.Session GetCurrentSession() throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSession.Session GetCurrentSessionWithCompatibility(com.ptc.pfc.pfcSession.CreoCompatibility) throws com.ptc.cipjava.jxthrowable;
+  public static void SetSessionUndo(boolean) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "CreoCompatibility.java"
+public final class com.ptc.pfc.pfcSession.CreoCompatibility implements com.ptc.cipjava.jxenum {
+  public static final int _CompatibilityUndefined;
+  public static final com.ptc.pfc.pfcSession.CreoCompatibility CompatibilityUndefined;
+  public static final int _C3Compatible;
+  public static final com.ptc.pfc.pfcSession.CreoCompatibility C3Compatible;
+  public static final int _C4Compatible;
+  public static final com.ptc.pfc.pfcSession.CreoCompatibility C4Compatible;
+  public static final int __Last;
+  public int getValue();
+  public static com.ptc.pfc.pfcSession.CreoCompatibility FromInt(int);
+  public static com.ptc.pfc.pfcSession.CreoCompatibility FromInt(java.lang.Integer);
+  public static int getValue(com.ptc.pfc.pfcSession.CreoCompatibility);
+  static {};
+}
+Compiled from "Session.java"
+public interface com.ptc.pfc.pfcSession.Session extends com.ptc.pfc.pfcSession.BaseSession {
+  public abstract com.ptc.pfc.pfcSelect.SelectionBuffer GetCurrentSelectionBuffer() throws com.ptc.cipjava.jxthrowable;
+  public abstract void UIAddMenu(java.lang.String, java.lang.String, java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcCommand.UICommand UICreateCommand(java.lang.String, com.ptc.pfc.pfcCommand.UICommandActionListener) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcCommand.UICommand UICreateMaxPriorityCommand(java.lang.String, com.ptc.pfc.pfcCommand.UICommandActionListener) throws com.ptc.cipjava.jxthrowable;
+  public abstract void UIAddButton(com.ptc.pfc.pfcCommand.UICommand, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void UIDisplayMessage(java.lang.String, java.lang.String, com.ptc.cipjava.stringseq) throws com.ptc.cipjava.jxthrowable;
+  public abstract void UIDisplayLocalizedMessage(java.lang.String, java.lang.String, com.ptc.cipjava.stringseq) throws com.ptc.cipjava.jxthrowable;
+  public abstract void UIClearMessage() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Integer UIReadIntMessage(int, int) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Double UIReadRealMessage(double, double) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String UIReadStringMessage(java.lang.Boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract void UIDisplayFeatureParams(com.ptc.pfc.pfcSelect.Selection, com.ptc.pfc.pfcSession.ParamType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Outline3D UIPickMouseBox(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSession.MouseStatus UIGetCurrentMouseStatus(boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSession.MouseStatus UIGetNextMousePick(com.ptc.pfc.pfcSession.MouseButton) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcUI.MessageButton UIShowMessageDialog(java.lang.String, com.ptc.pfc.pfcUI.MessageDialogOptions) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String UIOpenFile(com.ptc.pfc.pfcUI.FileOpenOptions) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String UISelectDirectory(com.ptc.pfc.pfcUI.DirectorySelectionOptions) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String UISaveFile(com.ptc.pfc.pfcUI.FileSaveOptions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcCommand.UICommand UIGetCommand(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void NavigatorPaneBrowserAdd(java.lang.String, java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void NavigatorPaneBrowserIconSet(java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void NavigatorPaneBrowserURLSet(java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void RibbonDefinitionfileLoad(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean ModelDescrContainsOrigin(com.ptc.pfc.pfcModel.ModelDescriptor) throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetAppInfo(com.ptc.pfc.pfcSession.AppInfo) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSession.AppInfo GetAppInfo() throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "BaseSession.java"
+public interface com.ptc.pfc.pfcSession.BaseSession extends com.ptc.pfc.pfcBase.ActionSource,com.ptc.pfc.pfcDisplay.Display,com.ptc.pfc.pfcObject.Parent {
+  public abstract com.ptc.pfc.pfcWindow.Window GetCurrentWindow() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetCurrentWindow(com.ptc.pfc.pfcWindow.Window) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model GetCurrentModel() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.DimDisplayMode GetDimensionDisplayMode() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetDimensionDisplayMode(com.ptc.pfc.pfcBase.DimDisplayMode) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetConnectionId() throws com.ptc.cipjava.jxthrowable;
+  public abstract void CopyFileFromWS(java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void CopyFileToWS(java.lang.String, java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcWindow.Window CreateModelWindow(com.ptc.pfc.pfcModel.Model) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcWindow.Window GetModelWindow(com.ptc.pfc.pfcModel.Model) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcWindow.Window OpenFile(com.ptc.pfc.pfcModel.ModelDescriptor) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcWindow.Windows ListWindows() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcWindow.Window GetWindow(int) throws com.ptc.cipjava.jxthrowable;
+  public abstract void FlushCurrentWindow() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Models ListModels() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Models ListModelsByType(com.ptc.pfc.pfcModel.ModelType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model GetActiveModel() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcPart.Part CreatePart(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcAssembly.Assembly CreateAssembly(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcDrawing.Drawing CreateDrawingFromTemplate(java.lang.String, java.lang.String, com.ptc.pfc.pfcModel.ModelDescriptor, com.ptc.pfc.pfcDrawing.DrawingCreateOptions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model Import2DModel(java.lang.String, com.ptc.pfc.pfcModel.ModelType, java.lang.String, com.ptc.pfc.pfcModel.Import2DInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model GetByRelationId(int) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model RetrieveModel(com.ptc.pfc.pfcModel.ModelDescriptor) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model RetrieveModelWithOpts(com.ptc.pfc.pfcModel.ModelDescriptor, com.ptc.pfc.pfcSession.RetrieveModelOptions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model GetModel(java.lang.String, com.ptc.pfc.pfcModel.ModelType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model GetModelFromDescr(com.ptc.pfc.pfcModel.ModelDescriptor) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model GetModelFromFileName(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void EraseUndisplayedModels() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSelect.Selections Select(com.ptc.pfc.pfcSelect.SelectionOptions, com.ptc.pfc.pfcSelect.Selections) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSelect.Selections QueryFeatureEdit() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetConfigOption(java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetConfigOption(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.cipjava.stringseq GetConfigOptionValues(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void RunMacro(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.StdColor SetTextColor(com.ptc.pfc.pfcBase.StdColor) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.ColorRGB GetRGBFromStdColor(com.ptc.pfc.pfcBase.StdColor) throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetStdColorFromRGB(com.ptc.pfc.pfcBase.StdColor, com.ptc.pfc.pfcBase.ColorRGB) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.StdLineStyle SetLineStyle(com.ptc.pfc.pfcBase.StdLineStyle) throws com.ptc.cipjava.jxthrowable;
+  public abstract void ExportDirectVRML(com.ptc.pfc.pfcModel.VRMLDirectExportInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract void LoadConfigFile(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetCurrentDirectory() throws com.ptc.cipjava.jxthrowable;
+  public abstract void ChangeDirectory(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.cipjava.stringseq ListFiles(java.lang.String, com.ptc.pfc.pfcSession.FileListOpt, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.cipjava.stringseq ListSubdirectories(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetEnvironmentVariable(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void CheckoutToWS(com.ptc.pfc.pfcModel.ModelDescriptors, java.lang.String, boolean, com.ptc.pfc.pfcSession.RelCriterion) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSession.WSImportExportMessages ExportFromCurrentWS(com.ptc.cipjava.stringseq, java.lang.String, com.ptc.pfc.pfcSession.RelCriterion) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSession.WSImportExportMessages ImportToCurrentWS(com.ptc.cipjava.stringseq, com.ptc.pfc.pfcSession.RelCriterion) throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetWSExportOptions(com.ptc.pfc.pfcSession.WSExportOptions) throws com.ptc.cipjava.jxthrowable;
+  public abstract void ExportCurrentRasterImage(java.lang.String, com.ptc.pfc.pfcWindow.RasterImageExportInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcAssembly.Assembly RetrieveAssemSimpRep(java.lang.String, com.ptc.pfc.pfcSimpRep.SimpRepInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcAssembly.Assembly RetrieveGraphicsSimpRep(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcAssembly.Assembly RetrieveSymbolicSimpRep(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcAssembly.Assembly RetrieveGeomSimpRep(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcPart.Part RetrievePartSimpRep(java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcPart.Part RetrieveGraphicsPartRep(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcPart.Part RetrieveGeometryPartRep(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcPart.Part RetrieveSymbolicPartRep(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetCurrentWS() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetCurrentWS(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.ModelType GetImportSourceType(java.lang.String, com.ptc.pfc.pfcImport.NewModelImportType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model ImportNewModel(java.lang.String, com.ptc.pfc.pfcImport.NewModelImportType, com.ptc.pfc.pfcModel.ModelType, java.lang.String, com.ptc.pfc.pfcImport.LayerImportFilter) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcProToolkit.Dll LoadProToolkitDll(java.lang.String, java.lang.String, java.lang.String, boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcProToolkit.Dll LoadProToolkitLegacyDll(java.lang.String, java.lang.String, java.lang.String, boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcProToolkit.Dll GetProToolkitDll(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void EndSession() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcJLink.JLinkApplication StartJLinkApplication(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract void RegisterTask(java.lang.String, com.ptc.pfc.pfcJLink.JLinkTaskListener) throws com.ptc.cipjava.jxthrowable;
+  public abstract void UnregisterTask(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsConfigurationSupported(com.ptc.pfc.pfcModel.ExportType, com.ptc.pfc.pfcExport.AssemblyConfiguration) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsGeometryRepSupported(com.ptc.pfc.pfcModel.ExportType, com.ptc.pfc.pfcExport.GeometryFlags) throws com.ptc.cipjava.jxthrowable;
+  public abstract void AuthenticateBrowser(java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcServer.Server RegisterServer(java.lang.String, java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcServer.Servers ListServers() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcServer.Server GetServerByAlias(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcServer.Server GetServerByUrl(java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcServer.ServerLocation GetServerLocation(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcServer.Server GetActiveServer() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetUrlFromAliasedUrl(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetAliasFromAliasedUrl(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetModelNameFromAliasedUrl(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModelCheck.ModelCheckResults ExecuteModelCheck(com.ptc.pfc.pfcModel.Model, com.ptc.pfc.pfcModelCheck.ModelCheckInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract void RegisterCustomModelCheck(com.ptc.pfc.pfcModelCheck.CustomCheckInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract void RegisterRelationFunction(java.lang.String, com.ptc.pfc.pfcRelations.RelationFunctionListener, com.ptc.pfc.pfcRelations.RelationFunctionOptions) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetMessageContents(java.lang.String, java.lang.String, com.ptc.cipjava.stringseq) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetLocalizedMessageContents(java.lang.String, java.lang.String, com.ptc.cipjava.stringseq) throws com.ptc.cipjava.jxthrowable;
+  public abstract void UIRegisterFileSave(com.ptc.pfc.pfcUI.FileSaveRegisterOptions, com.ptc.pfc.pfcUI.FileSaveRegisterListener) throws com.ptc.cipjava.jxthrowable;
+  public abstract void UIRegisterFileOpen(com.ptc.pfc.pfcUI.FileOpenRegisterOptions, com.ptc.pfc.pfcUI.FileOpenRegisterListener) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcExport.PrintPlacementOption GetPrintPlacementOptions() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcExport.PrintPrinterOption GetPrintPrinterOptions(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcExport.PrintMdlOption GetPrintMdlOptions(com.ptc.pfc.pfcModel.Model) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcExport.PrinterPCFOptions GetPrintPCFOptions(java.lang.String, com.ptc.pfc.pfcModel.Model) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String PLMSInitialize(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void AllowDuplicateModelItems(boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract void WLBInitialize(boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract void ExportProfileLoad(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "Model.java"
+public interface com.ptc.pfc.pfcModel.Model extends com.ptc.pfc.pfcModelItem.ModelItemOwner,com.ptc.pfc.pfcView.ViewOwner,com.ptc.pfc.pfcObject.Child,com.ptc.pfc.pfcBase.ActionSource,com.ptc.pfc.pfcModelItem.RelationOwner,com.ptc.pfc.pfcModelItem.ParameterOwner {
+  public abstract com.ptc.pfc.pfcModel.ModelDescriptor GetDescr() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Integer GetRelationId() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsModified() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetVersionStamp() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetRevision() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetVersion() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetBranch() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetReleaseLevel() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetCommonName() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetCommonName(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetFullName() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetInstanceName() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetGenericName() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.ModelType GetType() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetFileName() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetOrigin() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.cipjava.stringseq GetPostRegenerationRelations() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetPostRegenerationRelations(com.ptc.cipjava.stringseq) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsCommonNameModifiable() throws com.ptc.cipjava.jxthrowable;
+  public abstract void Backup(com.ptc.pfc.pfcModel.ModelDescriptor) throws com.ptc.cipjava.jxthrowable;
+  public abstract void Copy(java.lang.String, com.ptc.pfc.pfcModel.CopyInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model CopyAndRetrieve(java.lang.String, com.ptc.pfc.pfcModel.CopyInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract void Rename(java.lang.String, java.lang.Boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract void Save() throws com.ptc.cipjava.jxthrowable;
+  public abstract void Erase() throws com.ptc.cipjava.jxthrowable;
+  public abstract void EraseWithDependencies() throws com.ptc.cipjava.jxthrowable;
+  public abstract void Delete() throws com.ptc.cipjava.jxthrowable;
+  public abstract void Display() throws com.ptc.cipjava.jxthrowable;
+  public abstract void DisplayInNewWindow() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Dependencies ListDependencies() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.ModelDescriptors ListDeclaredModels() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcLayer.Layer CreateLayer(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void Export(java.lang.String, com.ptc.pfc.pfcModel.ExportInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract void Import(java.lang.String, com.ptc.pfc.pfcModel.ImportInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcExternal.ExternalDataAccess AccessExternalData() throws com.ptc.cipjava.jxthrowable;
+  public abstract void TerminateExternalData() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean CheckIsSaveAllowed(boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean CheckIsModifiable(boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract void RegeneratePostRegenerationRelations() throws com.ptc.cipjava.jxthrowable;
+  public abstract void DeletePostRegenerationRelations() throws com.ptc.cipjava.jxthrowable;
+  public abstract void CleanupDependencies() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsNativeModel() throws com.ptc.cipjava.jxthrowable;
+  public abstract void ExportIntf3D(java.lang.String, com.ptc.pfc.pfcModel.ExportType, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetIntf3DLayerSetupFile(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsIntf3DLayerSetupFileIgnored() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsIntf3DCsysIgnored() throws com.ptc.cipjava.jxthrowable;
+  public abstract void ClearIntf3DModelData() throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "ModelItemOwner.java"
+public interface com.ptc.pfc.pfcModelItem.ModelItemOwner extends com.ptc.pfc.pfcObject.Parent {
+  public abstract com.ptc.pfc.pfcModelItem.ModelItem GetItemByName(com.ptc.pfc.pfcModelItem.ModelItemType, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModelItem.ModelItem GetItemById(com.ptc.pfc.pfcModelItem.ModelItemType, int) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModelItem.ModelItems ListItems(com.ptc.pfc.pfcModelItem.ModelItemType) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "ModelItems.java"
+public abstract class com.ptc.pfc.pfcModelItem.ModelItems extends com.ptc.cipjava.jxobject_i {
+  public int getarraysize() throws com.ptc.cipjava.jxthrowable;
+  public com.ptc.pfc.pfcModelItem.ModelItem get(int) throws com.ptc.cipjava.jxthrowable;
+  public void set(int, com.ptc.pfc.pfcModelItem.ModelItem) throws com.ptc.cipjava.jxthrowable;
+  public void removerange(int, int) throws com.ptc.cipjava.jxthrowable;
+  public void insert(int, com.ptc.pfc.pfcModelItem.ModelItem) throws com.ptc.cipjava.jxthrowable;
+  public void append(com.ptc.pfc.pfcModelItem.ModelItem) throws com.ptc.cipjava.jxthrowable;
+  public void insertseq(int, com.ptc.pfc.pfcModelItem.ModelItems) throws com.ptc.cipjava.jxthrowable;
+  public void clear() throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcModelItem.ModelItems create() throws com.ptc.cipjava.jxthrowable;
+  protected com.ptc.pfc.pfcModelItem.ModelItems(long);
+}
+Compiled from "ModelItem.java"
+public interface com.ptc.pfc.pfcModelItem.ModelItem extends com.ptc.pfc.pfcObject.Child,com.ptc.pfc.pfcBase.ActionSource,com.ptc.pfc.pfcModelItem.RelationOwner,com.ptc.pfc.pfcModelItem.ParameterOwner {
+  public abstract int GetId() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModelItem.ModelItemType GetType() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetName() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetName(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "ModelItemType.java"
+public final class com.ptc.pfc.pfcModelItem.ModelItemType implements com.ptc.cipjava.jxenum {
+  public static final int _ITEM_FEATURE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_FEATURE;
+  public static final int _ITEM_SURFACE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_SURFACE;
+  public static final int _ITEM_EDGE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_EDGE;
+  public static final int _ITEM_COORD_SYS;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_COORD_SYS;
+  public static final int _ITEM_AXIS;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_AXIS;
+  public static final int _ITEM_POINT;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_POINT;
+  public static final int _ITEM_QUILT;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_QUILT;
+  public static final int _ITEM_CURVE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_CURVE;
+  public static final int _ITEM_LAYER;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_LAYER;
+  public static final int _ITEM_NOTE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_NOTE;
+  public static final int _ITEM_DIMENSION;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DIMENSION;
+  public static final int _ITEM_REF_DIMENSION;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_REF_DIMENSION;
+  public static final int _ITEM_SIMPREP;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_SIMPREP;
+  public static final int _ITEM_SOLID_GEOMETRY;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_SOLID_GEOMETRY;
+  public static final int _ITEM_TABLE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_TABLE;
+  public static final int _ITEM_DTL_ENTITY;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DTL_ENTITY;
+  public static final int _ITEM_DTL_NOTE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DTL_NOTE;
+  public static final int _ITEM_DTL_GROUP;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DTL_GROUP;
+  public static final int _ITEM_DTL_SYM_DEFINITION;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DTL_SYM_DEFINITION;
+  public static final int _ITEM_DTL_SYM_INSTANCE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DTL_SYM_INSTANCE;
+  public static final int _ITEM_DTL_OLE_OBJECT;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DTL_OLE_OBJECT;
+  public static final int _ITEM_EXPLODED_STATE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_EXPLODED_STATE;
+  public static final int _ITEM_EDGE_START;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_EDGE_START;
+  public static final int _ITEM_LOG_EDGE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_LOG_EDGE;
+  public static final int _ITEM_EDGE_END;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_EDGE_END;
+  public static final int _ITEM_XSEC;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_XSEC;
+  public static final int _ITEM_LAYER_STATE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_LAYER_STATE;
+  public static final int _ITEM_COMBINED_STATE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_COMBINED_STATE;
+  public static final int _ITEM_STYLE_STATE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_STYLE_STATE;
+  public static final int _ITEM_RP_MATERIAL;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_RP_MATERIAL;
+  public static final int _ITEM_VIEW;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_VIEW;
+  public static final int _ITEM_SURF_FIN;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_SURF_FIN;
+  public static final int _ITEM_ANNOT_PLANE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_ANNOT_PLANE;
+  public static final int _ITEM_ANNOTATION_ELEM;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_ANNOTATION_ELEM;
+  public static final int _ITEM_SET_DATUM_TAG;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_SET_DATUM_TAG;
+  public static final int _ITEM_GTOL;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_GTOL;
+  public static final int _ITEM_BODY;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_BODY;
+  public static final int _ITEM_CRV_START;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_CRV_START;
+  public static final int _ITEM_CRV_END;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_CRV_END;
+  public static final int __Last;
+  public int getValue();
+  public static com.ptc.pfc.pfcModelItem.ModelItemType FromInt(int);
+  public static com.ptc.pfc.pfcModelItem.ModelItemType FromInt(java.lang.Integer);
+  public static int getValue(com.ptc.pfc.pfcModelItem.ModelItemType);
+  static {};
+}
+Compiled from "Solid.java"
+public interface com.ptc.pfc.pfcSolid.Solid extends com.ptc.pfc.pfcFamily.FamilyMember,com.ptc.pfc.pfcModel.Model {
+  public abstract com.ptc.pfc.pfcBase.Outline3D GetGeomOutline() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Double GetRelativeAccuracy() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetRelativeAccuracy(java.lang.Double) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Double GetAbsoluteAccuracy() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetAbsoluteAccuracy(java.lang.Double) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsSkeleton() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSolid.SolidBody GetDefaultBody() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSolid.SolidBody GetSurfaceSolidBody(com.ptc.pfc.pfcGeometry.Surface) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSolid.SolidBody GetEdgeSolidBody(com.ptc.pfc.pfcGeometry.Edge) throws com.ptc.cipjava.jxthrowable;
+  public abstract void Regenerate(com.ptc.pfc.pfcSolid.RegenInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract void ExecuteFeatureOps(com.ptc.pfc.pfcFeature.FeatureOperations, com.ptc.pfc.pfcSolid.RegenInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Outline3D EvalOutline(com.ptc.pfc.pfcBase.Transform3D, com.ptc.pfc.pfcModelItem.ModelItemTypes) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.FeatureGroup CreateLocalGroup(com.ptc.pfc.pfcFeature.Features, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModelItem.ModelItem CreateNote(com.ptc.cipjava.stringseq, com.ptc.pfc.pfcModelItem.ModelItem) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Features ListFailedFeatures() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Features ListFeaturesByType(java.lang.Boolean, com.ptc.pfc.pfcFeature.FeatureType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcXSection.XSections ListCrossSections() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcXSection.XSection GetCrossSection(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean HasRetrievalErrors() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Feature GetFeatureByName(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Feature GetFeatureById(int) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Feature CreateImportFeat(com.ptc.pfc.pfcModel.IntfDataSource, com.ptc.pfc.pfcGeometry.CoordSystem, com.ptc.pfc.pfcModel.ImportFeatAttr) throws com.ptc.cipjava.jxthrowable;
+  public abstract void ActivateSimpRep(com.ptc.pfc.pfcSimpRep.SimpRep) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep GetActiveSimpRep() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep CreateSimpRep(com.ptc.pfc.pfcSimpRep.CreateNewSimpRepInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep SelectSimpRep() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep GetSimpRep(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep GetMasterRep() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep GetGraphicsRep() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep GetGeomRep() throws com.ptc.cipjava.jxthrowable;
+  public abstract void DeleteSimpRep(com.ptc.pfc.pfcSimpRep.SimpRep) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSolid.MassProperty GetMassProperty(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSolid.MassProperty GetMassPropertyWithDensity(java.lang.String, com.ptc.pfc.pfcSolid.MPDensityUse, java.lang.Double) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.FeatureGroups ListGroups() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Feature CreateFeature(com.ptc.pfc.pfcFeature.FeatureCreateInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.FeatureGroup CreateUDFGroup(com.ptc.pfc.pfcUDFGroup.UDFGroupCreateInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract void ExportShrinkwrap(com.ptc.pfc.pfcSolid.ShrinkwrapExportInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcUnits.UnitSystem GetPrincipalUnits() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetPrincipalUnits(com.ptc.pfc.pfcUnits.UnitSystem, com.ptc.pfc.pfcUnits.UnitConversionOptions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcUnits.Units ListUnits(com.ptc.pfc.pfcBase.UnitType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcUnits.UnitSystems ListUnitSystems() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcUnits.Unit GetUnit(java.lang.String, java.lang.Boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcUnits.Unit CreateCustomUnit(java.lang.String, com.ptc.pfc.pfcUnits.UnitConversionFactor, com.ptc.pfc.pfcUnits.Unit) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcUnits.UnitSystem CreateUnitSystem(java.lang.String, com.ptc.pfc.pfcUnits.UnitSystemType, com.ptc.pfc.pfcUnits.Units) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "SolidBody.java"
+public interface com.ptc.pfc.pfcSolid.SolidBody extends com.ptc.pfc.pfcModelItem.ModelItem {
+  public abstract com.ptc.pfc.pfcSolid.SolidBodyState GetBodyState() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsConstruction() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsSheetmetal() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.Surfaces ListSurfaces() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Outline3D GetOutline() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Double GetDensity() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSolid.MassProperty GetMassProperty(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Features GetFeatures() throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "Surface.java"
+public interface com.ptc.pfc.pfcGeometry.Surface extends com.ptc.pfc.pfcModelItem.ModelItem {
+  public abstract boolean GetIsVisible() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.Quilt GetOwnerQuilt() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Feature GetFeature() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D EvalClosestPointOnSurface(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D EvalClosestPoint(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.SurfXYZData Eval3DData(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.UVParams EvalParameters(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract double EvalArea() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.CurvatureData EvalPrincipalCurv(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Placement VerifyUV(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract double EvalDiameter(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D EvalMaximum(com.ptc.pfc.pfcBase.Vector3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D EvalMinimum(com.ptc.pfc.pfcBase.Vector3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.Contours ListContours() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.Surfaces ListSameSurfaces() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.SurfaceType GetSurfaceType() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Outline3D GetXYZExtents() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.UVOutline GetUVExtents() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.SurfaceOrientation GetOrientation() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.SurfaceDescriptor GetSurfaceDescriptor() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.NURBSSurfaceDescriptor GetNURBSRepresentation() throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "Surfaces.java"
+public abstract class com.ptc.pfc.pfcGeometry.Surfaces extends com.ptc.cipjava.jxobject_i {
+  public int getarraysize() throws com.ptc.cipjava.jxthrowable;
+  public com.ptc.pfc.pfcGeometry.Surface get(int) throws com.ptc.cipjava.jxthrowable;
+  public void set(int, com.ptc.pfc.pfcGeometry.Surface) throws com.ptc.cipjava.jxthrowable;
+  public void removerange(int, int) throws com.ptc.cipjava.jxthrowable;
+  public void insert(int, com.ptc.pfc.pfcGeometry.Surface) throws com.ptc.cipjava.jxthrowable;
+  public void append(com.ptc.pfc.pfcGeometry.Surface) throws com.ptc.cipjava.jxthrowable;
+  public void insertseq(int, com.ptc.pfc.pfcGeometry.Surfaces) throws com.ptc.cipjava.jxthrowable;
+  public void clear() throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcGeometry.Surfaces create() throws com.ptc.cipjava.jxthrowable;
+  protected com.ptc.pfc.pfcGeometry.Surfaces(long);
+}
+Compiled from "SurfaceType.java"
+public final class com.ptc.pfc.pfcGeometry.SurfaceType implements com.ptc.cipjava.jxenum {
+  public static final int _SURFACE_PLANE;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_PLANE;
+  public static final int _SURFACE_CYLINDER;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_CYLINDER;
+  public static final int _SURFACE_CONE;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_CONE;
+  public static final int _SURFACE_TORUS;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_TORUS;
+  public static final int _SURFACE_RULED;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_RULED;
+  public static final int _SURFACE_REVOLVED;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_REVOLVED;
+  public static final int _SURFACE_TABULATED_CYLINDER;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_TABULATED_CYLINDER;
+  public static final int _SURFACE_FILLET;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_FILLET;
+  public static final int _SURFACE_COONS_PATCH;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_COONS_PATCH;
+  public static final int _SURFACE_SPLINE;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_SPLINE;
+  public static final int _SURFACE_NURBS;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_NURBS;
+  public static final int _SURFACE_CYLINDRICAL_SPLINE;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_CYLINDRICAL_SPLINE;
+  public static final int _SURFACE_SPHERICAL_SPLINE;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_SPHERICAL_SPLINE;
+  public static final int _SURFACE_FOREIGN;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_FOREIGN;
+  public static final int _SURFACE_SPL2DER;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_SPL2DER;
+  public static final int __Last;
+  public int getValue();
+  public static com.ptc.pfc.pfcGeometry.SurfaceType FromInt(int);
+  public static com.ptc.pfc.pfcGeometry.SurfaceType FromInt(java.lang.Integer);
+  public static int getValue(com.ptc.pfc.pfcGeometry.SurfaceType);
+  static {};
+}
+Compiled from "SurfXYZData.java"
+public interface com.ptc.pfc.pfcGeometry.SurfXYZData extends com.ptc.cipjava.jxobject {
+  public abstract com.ptc.pfc.pfcBase.UVParams GetParams() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetParams(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D GetPoint() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetPoint(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Vector3D GetDerivative1() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetDerivative1(com.ptc.pfc.pfcBase.Vector3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Vector3D GetDerivative2() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetDerivative2(com.ptc.pfc.pfcBase.Vector3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.SurfaceDerivative1 GetFirstDerivative() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetFirstDerivative(com.ptc.pfc.pfcBase.SurfaceDerivative1) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.SurfaceDerivative2 GetSecondDerivative() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetSecondDerivative(com.ptc.pfc.pfcBase.SurfaceDerivative2) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Vector3D GetNormal() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetNormal(com.ptc.pfc.pfcBase.Vector3D) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "SurfaceOrientation.java"
+public final class com.ptc.pfc.pfcGeometry.SurfaceOrientation implements com.ptc.cipjava.jxenum {
+  public static final int _SURFACEORIENT_NONE;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceOrientation SURFACEORIENT_NONE;
+  public static final int _SURFACEORIENT_OUTWARD;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceOrientation SURFACEORIENT_OUTWARD;
+  public static final int _SURFACEORIENT_INWARD;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceOrientation SURFACEORIENT_INWARD;
+  public static final int __Last;
+  public int getValue();
+  public static com.ptc.pfc.pfcGeometry.SurfaceOrientation FromInt(int);
+  public static com.ptc.pfc.pfcGeometry.SurfaceOrientation FromInt(java.lang.Integer);
+  public static int getValue(com.ptc.pfc.pfcGeometry.SurfaceOrientation);
+  static {};
+}
+Compiled from "Placement.java"
+public final class com.ptc.pfc.pfcBase.Placement implements com.ptc.cipjava.jxenum {
+  public static final int _PLACE_INSIDE;
+  public static final com.ptc.pfc.pfcBase.Placement PLACE_INSIDE;
+  public static final int _PLACE_ON_BOUNDARY;
+  public static final com.ptc.pfc.pfcBase.Placement PLACE_ON_BOUNDARY;
+  public static final int _PLACE_OUTSIDE;
+  public static final com.ptc.pfc.pfcBase.Placement PLACE_OUTSIDE;
+  public static final int __Last;
+  public int getValue();
+  public static com.ptc.pfc.pfcBase.Placement FromInt(int);
+  public static com.ptc.pfc.pfcBase.Placement FromInt(java.lang.Integer);
+  public static int getValue(com.ptc.pfc.pfcBase.Placement);
+  static {};
+}
+Compiled from "UVParams.java"
+public abstract class com.ptc.pfc.pfcBase.UVParams extends com.ptc.cipjava.jxobject_i {
+  public double get(int) throws com.ptc.cipjava.jxthrowable;
+  public void set(int, double) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcBase.UVParams create() throws com.ptc.cipjava.jxthrowable;
+  protected com.ptc.pfc.pfcBase.UVParams(long);
+}
+Compiled from "UVOutline.java"
+public abstract class com.ptc.pfc.pfcBase.UVOutline extends com.ptc.cipjava.jxobject_i {
+  public com.ptc.pfc.pfcBase.UVParams get(int) throws com.ptc.cipjava.jxthrowable;
+  public void set(int, com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcBase.UVOutline create() throws com.ptc.cipjava.jxthrowable;
+  protected com.ptc.pfc.pfcBase.UVOutline(long);
+}
+Compiled from "Point3D.java"
+public abstract class com.ptc.pfc.pfcBase.Point3D extends com.ptc.cipjava.jxobject_i {
+  public double get(int) throws com.ptc.cipjava.jxthrowable;
+  public void set(int, double) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcBase.Point3D create() throws com.ptc.cipjava.jxthrowable;
+  protected com.ptc.pfc.pfcBase.Point3D(long);
+}
+Compiled from "Vector3D.java"
+public abstract class com.ptc.pfc.pfcBase.Vector3D extends com.ptc.cipjava.jxobject_i {
+  public double get(int) throws com.ptc.cipjava.jxthrowable;
+  public void set(int, double) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcBase.Vector3D create() throws com.ptc.cipjava.jxthrowable;
+  protected com.ptc.pfc.pfcBase.Vector3D(long);
+}
+Compiled from "UnitSystem.java"
+public interface com.ptc.pfc.pfcUnits.UnitSystem extends com.ptc.pfc.pfcObject.Child {
+  public abstract java.lang.String GetName() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetName(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcUnits.UnitSystemType GetType() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsStandard() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcUnits.Unit GetUnit(com.ptc.pfc.pfcBase.UnitType) throws com.ptc.cipjava.jxthrowable;
+  public abstract void Delete() throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "Unit.java"
+public interface com.ptc.pfc.pfcUnits.Unit extends com.ptc.pfc.pfcObject.Child {
+  public abstract java.lang.String GetName() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetName(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.UnitType GetType() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsStandard() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcUnits.UnitConversionFactor GetConversionFactor() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcUnits.Unit GetReferenceUnit() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetExpression() throws com.ptc.cipjava.jxthrowable;
+  public abstract void Modify(com.ptc.pfc.pfcUnits.UnitConversionFactor, com.ptc.pfc.pfcUnits.Unit) throws com.ptc.cipjava.jxthrowable;
+  public abstract void Delete() throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "UnitType.java"
+public final class com.ptc.pfc.pfcBase.UnitType implements com.ptc.cipjava.jxenum {
+  public static final int _UNIT_LENGTH;
+  public static final com.ptc.pfc.pfcBase.UnitType UNIT_LENGTH;
+  public static final int _UNIT_MASS;
+  public static final com.ptc.pfc.pfcBase.UnitType UNIT_MASS;
+  public static final int _UNIT_FORCE;
+  public static final com.ptc.pfc.pfcBase.UnitType UNIT_FORCE;
+  public static final int _UNIT_TIME;
+  public static final com.ptc.pfc.pfcBase.UnitType UNIT_TIME;
+  public static final int _UNIT_TEMPERATURE;
+  public static final com.ptc.pfc.pfcBase.UnitType UNIT_TEMPERATURE;
+  public static final int _UNIT_ANGLE;
+  public static final com.ptc.pfc.pfcBase.UnitType UNIT_ANGLE;
+  public static final int __Last;
+  public int getValue();
+  public static com.ptc.pfc.pfcBase.UnitType FromInt(int);
+  public static com.ptc.pfc.pfcBase.UnitType FromInt(java.lang.Integer);
+  public static int getValue(com.ptc.pfc.pfcBase.UnitType);
+  static {};
+}
+Compiled from "ActionSource.java"
+public interface com.ptc.pfc.pfcBase.ActionSource extends com.ptc.cipjava.jxobject {
+  public abstract void AddActionListener(com.ptc.pfc.pfcBase.ActionListener) throws com.ptc.cipjava.jxthrowable;
+  public abstract void RemoveActionListener(com.ptc.pfc.pfcBase.ActionListener) throws com.ptc.cipjava.jxthrowable;
+  public abstract void AddActionListenerWithType(com.ptc.pfc.pfcBase.ActionListener, com.ptc.pfc.pfcBase.ActionTypes) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "UICommand.java"
+public interface com.ptc.pfc.pfcCommand.UICommand extends com.ptc.pfc.pfcObject.Object,com.ptc.pfc.pfcBase.ActionSource {
+  public abstract void SetIcon(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void Designate(java.lang.String, java.lang.String, java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+}
