@@ -1,0 +1,36 @@
+{
+  "type": "OFFLINE_ABOUT_CALLBACK_REVIEW",
+  "inputArchive": {
+    "fileName": "r8-about-callback-verify-20261105.zip",
+    "sha256": "95c2400510f2dbe07ca1d9b0348c55d8751dbbb97e4f91155f012e4a902b755e"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "bytes": 600,
+      "sha256": "06be3f671ad258b74541b030cff9bb1dee0c760bf3f596d0d1e682b16b29ccec"
+    },
+    {
+      "relativeName": "about-page-opened.png",
+      "bytes": 168680,
+      "sha256": "381807fabb049febe523da93f834a06594cc9a35a79effcb8054af89c7562f95"
+    },
+    {
+      "relativeName": "jlink.log",
+      "bytes": 124563,
+      "sha256": "23e900f98a5400ea4372f5af75b2229160e84fb563225e63bb030b45195ef68d"
+    }
+  ],
+  "checks": {
+    "previousLogExactPrefix": true,
+    "singleNewCallbackRequest": true,
+    "fourSameRequestCallbackEvents": true,
+    "navigationAndCallbackReturnedAfterException": true,
+    "twentyNewRegistrationEvents": true,
+    "frozenSourceIdentityMatches": true,
+    "screenshotVisuallyReviewed": true
+  },
+  "runtimeExecuted": false,
+  "patchGenerated": false,
+  "newCandidateGenerated": false
+}
