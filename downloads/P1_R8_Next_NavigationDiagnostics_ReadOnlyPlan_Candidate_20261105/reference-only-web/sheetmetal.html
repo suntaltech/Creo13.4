@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>钣金适用性分析（转换未开放）</title>
+<link rel="stylesheet" href="assets/css/base.css">
+</head>
+<body>
+<div class="section" id="sheetmetalSection">
+  <div class="section-title">钣金适用性分析 / 指定板厚转换（未开放）</div>
+  <div class="row">
+    <label><input type="radio" name="smtMode" value="driving" checked disabled> 驱动曲面（等厚薄板）</label>
+    <label><input type="radio" name="smtMode" value="shell" disabled> 抽壳（块状实体）</label>
+    <label>指定板厚（参数暂不可用） <input type="number" id="smtThickness" min="0.1" max="20" step="0.1" disabled> <span id="smtThicknessUnit">单位待确认</span></label>
+    <label><input type="checkbox" id="smtSave" disabled> 转换后保存到磁盘</label>
+  </div>
+  <div class="row">
+    <button id="smtAnalyzeBtn" class="btn-primary">分析当前零件</button>
+    <button id="smtConvertBtn" class="btn-success" disabled title="安全原生转换通道验收前只读分析，不会修改模型">指定板厚转换（暂未开放）</button>
+  </div>
+  <div id="smtStatus" class="status info" role="status" aria-live="polite">请先分析当前激活零件；当前版本读取模型几何并给出人工转换建议，不会修改模型。</div>
+  <div id="smtResult" class="result"></div>
+</div>
+
+<p class="note">本模块只处理当前激活零件，不处理装配体批量转换。当前版本为只读分析：启发式包络候选、包围尺寸及真实长度单位来自 CREOSON HTTP 读取；候选不是官方平面类型，也不是已确认的选择对象；自动转换需另接不阻塞 Creo 13.4 同步会话的原生通道，验收前按钮保持禁用。复杂圆角、加强筋、开口模型或非等厚实体请先在测试副本上人工确认。</p>
+
+<script src="assets/js/core.js"></script>
+<script src="assets/js/sheetmetal.js"></script>
+</body>
+</html>

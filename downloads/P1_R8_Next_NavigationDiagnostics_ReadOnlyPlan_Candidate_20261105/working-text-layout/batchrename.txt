@@ -1,0 +1,26 @@
+SISW_BR_LABEL
+批量重命名
+
+SISW_BR_HELP
+打开装配体批量重命名页面
+
+SISW_BR_DESC
+在当前装配体中预览并执行组件批量改名
+
+SISW_SMT_LABEL
+实体转钣金
+
+SISW_SMT_HELP
+打开当前零件实体转钣金页面
+
+SISW_SMT_DESC
+将当前激活普通实体零件转换为钣金件
+
+SISW_ABOUT_LABEL
+版本 / 关于
+
+SISW_ABOUT_HELP
+打开版本、远程更新和模块说明页面
+
+SISW_ABOUT_DESC
+查看插件版本、检查远程更新和模块说明

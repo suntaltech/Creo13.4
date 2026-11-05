@@ -1,0 +1,77 @@
+{
+  "type": "OFFLINE_SOURCE_AND_READONLY_PREPARATION_CANDIDATE_NOT_INSTALLER",
+  "date": "2026-11-05",
+  "taskInput": {
+    "fileName": "P1_R8后下一步任务单_20261105.md",
+    "sha256": "f84c8685474c32164de0dbe833db06aa8dbf1e8baca8ab97e76ccc5358c7fff6"
+  },
+  "binaryPolicy": {
+    "classesIncluded": false,
+    "jarIncluded": false,
+    "default": "REUSE_EXISTING_R8_CLASSES_NEW_DIAGNOSTICS_NOT_ACTIVE",
+    "candidateRequiresLocalRealSdkCompilation": true
+  },
+  "baselineSourceSha256": "9dbd71f36e403c3ed1a027d810a70befb57d3973c67aedca821f7b31df802400",
+  "candidateSourceSha256": "441ea4bfb0e3c5619ebbb62078e50775055ffd7b5203311e7881a037b80aaae7",
+  "businessChangeScope": "Page navigation diagnostics only; GetURL and same-URL SetURL skip retained",
+  "referenceWebSource": {
+    "repositoryArchive": "downloads/P1_Round5_OfflineCompatibility_MergePatch_20261102.zip",
+    "sourceGitCommit": "a589759c23c9519d82f17e88936a4d10c2219c21",
+    "runtimeIdentityVerified": false,
+    "files": [
+      {
+        "relativeName": "reference-only-web/sheetmetal.html",
+        "sha256": "e9e4362b11e3c8e8f9048a7d12d48c41011e98758d2e9a42962ad1fd39faf8af"
+      },
+      {
+        "relativeName": "reference-only-web/sheetmetal.js",
+        "sha256": "7fb32d917a9a120ba0265b0b9b7d4eb6bc571e513bebdd9fd73fa98d07c5d4fe"
+      },
+      {
+        "relativeName": "reference-only-web/core.js",
+        "sha256": "29e27e4a1701c8701860f089389568d567a05205318f37790eed914735d506e9"
+      }
+    ]
+  },
+  "r8Resources": [
+    {
+      "relativeName": "working-text-layout/about.png",
+      "sha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086"
+    },
+    {
+      "relativeName": "working-text-layout/batchrename.png",
+      "sha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4"
+    },
+    {
+      "relativeName": "working-text-layout/batchrename.txt",
+      "sha256": "bd85e1352c3e0112fc36d07b11febabe1082859098ef7cfa8cd67c7f1760e31c"
+    },
+    {
+      "relativeName": "working-text-layout/p1_6a_r2.txt",
+      "sha256": "b8939739dc213bde0db2d85c4d0d2ef6d583a927cabf4bcde5eb00c57811af06"
+    },
+    {
+      "relativeName": "working-text-layout/p1_6a_ui_commands.txt",
+      "sha256": "43eb5af7b9bdc9529cd0632d1556dbe55b2bba26b13b4955043a189bcd42f78c"
+    },
+    {
+      "relativeName": "working-text-layout/resource/about.png",
+      "sha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086"
+    },
+    {
+      "relativeName": "working-text-layout/resource/batchrename.png",
+      "sha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4"
+    },
+    {
+      "relativeName": "working-text-layout/resource/sheetmetal.png",
+      "sha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce"
+    },
+    {
+      "relativeName": "working-text-layout/sheetmetal.png",
+      "sha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce"
+    }
+  ],
+  "runtimeExecuted": false,
+  "runtimeEvidenceGenerated": false,
+  "modelWritesExecuted": false
+}
