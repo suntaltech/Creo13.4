@@ -1,0 +1,95 @@
+{
+  "type": "OFFLINE_NATIVE_STEP4_RUNTIME_EVIDENCE_REVIEW",
+  "date": "2026-11-05",
+  "inputArchive": {
+    "fileName": "native-readonly-step4-verify-20261105.zip",
+    "sha256": "8744c8e4dd39ae6cfd4ca7f9c08001d7594d792ede950dd22ba6875175177637"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "bytes": 192,
+      "sha256": "115a14c4347499f5ba1cca5b83cf94f38b6f46b83f650527778534b0d72c9be3"
+    },
+    {
+      "relativeName": "geometry-sampling-step4-e483e889-1f33-4c7d-b1d5-50d1884d690b.jsonl",
+      "bytes": 3579050,
+      "sha256": "29241fc2139e4ce1d07e63da0114b20b36ec7b8bb0419653782593a161974039"
+    },
+    {
+      "relativeName": "step4-ran.png",
+      "bytes": 162130,
+      "sha256": "7e7e8a7bd6616a4585af60448096ebe81a7b4814f842ff412f9f9883a345f086"
+    }
+  ],
+  "referenceCandidateCommit": "f88bbc01e76b85747ff7934eea23853cd64359f6",
+  "referenceCandidateSourceFiles": [
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "81e01a387fd9ceba0a8596ac6ea438df267d4f31dd5bdfc2c228ce0027ab12c8"
+    },
+    {
+      "relativeName": "source/GeometryPoolSelection.java",
+      "sha256": "9e4782c0e16a7239c8bd798295a3870647e1b7c919cee530cf1ae036481b7bda"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "5f9e0713937f32fbbbcf5c6fe4be1f64ad0cf180ca39cc8d70985b257412cfa8"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySamplerStep4.java",
+      "sha256": "6e6db5691be3c38e642becb784e8c02071031f1b6b4906e8dc17be3224a5c269"
+    }
+  ],
+  "referenceCandidateJarSha256": "80dec8bdb0eb98a84a650ede06356e842e50b3adb80885ca8d44b318245f62bc",
+  "referenceLocalCandidateUnchanged": true,
+  "checks": {
+    "all666FinalAnd208PoolRecordsLoggedTwoNativeInsideExactUv": true,
+    "finitePointsAndNormalsAndKnownUnit": true,
+    "perFaceNoDuplicateXyzOrRequestedUv": true,
+    "everyAttemptHasExactlyOneFinalDisposition": true,
+    "nativeValidUnselectedNotMisclassifiedAsOutside": true,
+    "all126FinalPlaneMetricsIndependentlyRecomputed": true,
+    "all48InitialAndFinalPoolQualitiesIndependentlyRecomputed": true,
+    "all48RankingsCheckedByIndependentPythonEnumeration": true,
+    "all48SelectionsExactlyReplayedWithPublishedPureJava": true,
+    "numericalThresholdUnchanged": true,
+    "all1536QualityProbesMatchFirstFourEdgeLayers": true,
+    "haltonSeedsReachedInThisRun": false,
+    "174OtherFaces522PointRecordsMatchStep3Geometry": true,
+    "all48InitialTriplesMatchStep3Geometry": true,
+    "fourPriorRefinementFacesPreserved": true,
+    "sameCrossRunTransactionAuthenticated": false
+  },
+  "results": {
+    "previouslyDegenerateGroups": 48,
+    "improvedGroups": 16,
+    "unchangedDegenerateGroups": 32,
+    "improvementFraction": 0.3333333333333333,
+    "planeGroups": 126,
+    "beforeNumericallyNonCollinear": 78,
+    "afterNumericallyNonCollinear": 94,
+    "acceptedPoints": 666,
+    "facesAtPointQuota": 222,
+    "attempts": 2702,
+    "additionalQualityAttempts": 1536,
+    "newNativeValidPoolCandidates": 64,
+    "validNativeButUnselected": 64,
+    "nativeBoundaryRejections": 1616,
+    "nativeOutsideRejections": 356,
+    "qualityExtraBoundaryRejections": 1216,
+    "qualityExtraOutsideRejections": 256,
+    "unchangedGroupsAllHadZeroNewNativeValidCandidates": true,
+    "unchangedGroupsAllExhausted32Probes": true,
+    "allPoolStops": "QUALITY_PROBE_LIMIT"
+  },
+  "screenshotVisuallyReviewed": true,
+  "codeChanged": false,
+  "newCandidateGenerated": false,
+  "creoExecutedByReviewer": false,
+  "pureJavaSelectionReplayed": true,
+  "sdkStubOrModelMockUsed": false,
+  "rawGeometryAndScreenshotRepublished": false,
+  "thicknessAssessed": false,
+  "exactLoadedBinaryIdentityAuthenticated": false
+}
