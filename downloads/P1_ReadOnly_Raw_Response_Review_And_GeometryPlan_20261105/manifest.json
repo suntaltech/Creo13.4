@@ -1,0 +1,45 @@
+{
+  "type": "OFFLINE_REAL_RESPONSE_REVIEW_AND_FUTURE_GEOMETRY_SPEC",
+  "date": "2026-11-05",
+  "inputArchive": {
+    "fileName": "readonly-raw-responses-20261105.zip",
+    "sha256": "ecf2a4a1dc2c02972b650867b426a8f0f593d72f2cab008ac2085e11ecc6d228"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "README.md",
+      "bytes": 346,
+      "sha256": "3e1f1994e5dd9e465f2f59e719d5363eac80d2cdf1d5a1f08a81ab86e3f0ebba"
+    },
+    {
+      "relativeName": "readonly-raw-responses-20261105.json",
+      "bytes": 84750,
+      "sha256": "85c1153d4336c586e226865dc1ec0045d804fbb425892f80b13bf423bf0f3646"
+    }
+  ],
+  "referenceAssessmentModule": {
+    "relativeName": "reference/sheetmetal-assessment.js",
+    "sha256": "abefe2689885b41c7e2bf90103ec41776cd365644f9eef4bccd74f2604035a4b",
+    "unchanged": true,
+    "sourceCandidateCommit": "259a9eea6d0c561c38206199fa6f66ac54341c47"
+  },
+  "signatureSource": {
+    "fileName": "otk.jar",
+    "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "redistributed": false,
+    "methodVerification": "JAVAP_ONLY_NOT_MODEL_CALLS"
+  },
+  "validation": {
+    "fourSuccessResponses": true,
+    "222SurfaceRecordsValidAndUnique": true,
+    "largestSurfaceMatchesPriorResult": true,
+    "bboxMatchesPriorDisplayedPrecision": true,
+    "historical118HeuristicReproduced": true,
+    "realInputReplayKeepsUnknownAssessment": true,
+    "referenceModuleUnchanged": true
+  },
+  "rawOriginalDataRepublished": false,
+  "newCollectorImplemented": false,
+  "runtimeExecuted": false,
+  "productCodeChanged": false
+}

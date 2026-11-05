@@ -1,0 +1,52 @@
+Compiled from "Surface.java"
+public interface com.ptc.pfc.pfcGeometry.Surface extends com.ptc.pfc.pfcModelItem.ModelItem {
+  public abstract boolean GetIsVisible() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.Quilt GetOwnerQuilt() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Feature GetFeature() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D EvalClosestPointOnSurface(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D EvalClosestPoint(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.SurfXYZData Eval3DData(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.UVParams EvalParameters(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract double EvalArea() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.CurvatureData EvalPrincipalCurv(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Placement VerifyUV(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract double EvalDiameter(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D EvalMaximum(com.ptc.pfc.pfcBase.Vector3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D EvalMinimum(com.ptc.pfc.pfcBase.Vector3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.Contours ListContours() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.Surfaces ListSameSurfaces() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.SurfaceType GetSurfaceType() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Outline3D GetXYZExtents() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.UVOutline GetUVExtents() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.SurfaceOrientation GetOrientation() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.SurfaceDescriptor GetSurfaceDescriptor() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.NURBSSurfaceDescriptor GetNURBSRepresentation() throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "SurfXYZData.java"
+public interface com.ptc.pfc.pfcGeometry.SurfXYZData extends com.ptc.cipjava.jxobject {
+  public abstract com.ptc.pfc.pfcBase.UVParams GetParams() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetParams(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D GetPoint() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetPoint(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Vector3D GetDerivative1() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetDerivative1(com.ptc.pfc.pfcBase.Vector3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Vector3D GetDerivative2() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetDerivative2(com.ptc.pfc.pfcBase.Vector3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.SurfaceDerivative1 GetFirstDerivative() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetFirstDerivative(com.ptc.pfc.pfcBase.SurfaceDerivative1) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.SurfaceDerivative2 GetSecondDerivative() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetSecondDerivative(com.ptc.pfc.pfcBase.SurfaceDerivative2) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Vector3D GetNormal() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetNormal(com.ptc.pfc.pfcBase.Vector3D) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "SolidBody.java"
+public interface com.ptc.pfc.pfcSolid.SolidBody extends com.ptc.pfc.pfcModelItem.ModelItem {
+  public abstract com.ptc.pfc.pfcSolid.SolidBodyState GetBodyState() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsConstruction() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsSheetmetal() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.Surfaces ListSurfaces() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Outline3D GetOutline() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Double GetDensity() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSolid.MassProperty GetMassProperty(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Features GetFeatures() throws com.ptc.cipjava.jxthrowable;
+}

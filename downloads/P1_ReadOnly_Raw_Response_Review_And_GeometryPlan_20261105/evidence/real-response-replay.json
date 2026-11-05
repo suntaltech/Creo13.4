@@ -1,0 +1,51 @@
+{
+  "type": "OFFLINE_REAL_RESPONSE_REPLAY_NOT_RUNTIME_EXECUTION",
+  "inputSha256": "85c1153d4336c586e226865dc1ec0045d804fbb425892f80b13bf423bf0f3646",
+  "responseGroupsChecked": 4,
+  "surfaceRecordCount": 222,
+  "surfaceFieldProfiles": {
+    "area,max_extent,min_extent,surface_id": 222
+  },
+  "surfaceIdsUnique": true,
+  "areasAndExtentsFiniteAndValid": true,
+  "assessmentModuleSha256": "abefe2689885b41c7e2bf90103ec41776cd365644f9eef4bccd74f2604035a4b",
+  "assessedResult": {
+    "model": "200002100.prt",
+    "revision": 1,
+    "units": "mm",
+    "surfaceCount": 222,
+    "largestSurface": {
+      "id": 2708,
+      "area": 128863.43981642724
+    },
+    "surfacesWithoutUsableArea": 0,
+    "spans": {
+      "x": 337.500000000402,
+      "y": 75.75000000000009,
+      "z": 388.9999999998
+    },
+    "nativeSheetmetalState": "UNKNOWN",
+    "thinWallShapeAssessment": "INSUFFICIENT_EVIDENCE",
+    "uniformThicknessAssessment": "INSUFFICIENT_EVIDENCE",
+    "estimatedThickness": null,
+    "suggestedMode": null,
+    "sheetmetal": null,
+    "planeCount": null,
+    "largestPlane": null,
+    "nativeConvertReady": false,
+    "saved": false,
+    "reasonCodes": [
+      "NATIVE_SHEETMETAL_STATE_NOT_READ",
+      "OPPOSED_SURFACE_AND_THICKNESS_EVIDENCE_UNAVAILABLE",
+      "BOUNDING_BOX_IS_NOT_WALL_THICKNESS"
+    ]
+  },
+  "historicalHeuristicReproduction": {
+    "count": 118,
+    "rule": "any axis extent span <= 0.01 in response model units",
+    "actualPlanarityEstablished": false,
+    "usedForClassification": false
+  },
+  "dirnameAndRawSurfacesRepublished": false,
+  "noNewNetworkOrModelCalls": true
+}
