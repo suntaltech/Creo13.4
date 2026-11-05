@@ -1,0 +1,68 @@
+{
+  "type": "OFFLINE_TEXT_PATCH_AND_HASH_CHECKS_ONLY",
+  "checks": [
+    {
+      "name": "patch_replays_exactly_on_frozen_baseline",
+      "passed": true
+    },
+    {
+      "name": "get_url_retained_once",
+      "passed": true
+    },
+    {
+      "name": "set_url_retained_once",
+      "passed": true
+    },
+    {
+      "name": "same_url_skip_condition_preserved",
+      "passed": true
+    },
+    {
+      "name": "native_conversion_suffix_unchanged",
+      "passed": true
+    },
+    {
+      "name": "startup_registration_and_lifecycle_prefix_unchanged",
+      "passed": true
+    },
+    {
+      "name": "request_context_cleanup_preserved",
+      "passed": true
+    },
+    {
+      "name": "exception_stack_forwarded_to_existing_logger",
+      "passed": true
+    },
+    {
+      "name": "new_events_carry_real_callback_context",
+      "passed": true
+    },
+    {
+      "name": "no_false_page_load_confirmation",
+      "passed": true
+    },
+    {
+      "name": "failed_phase_recorded",
+      "passed": true
+    },
+    {
+      "name": "all_nine_r8_working_resources_unchanged",
+      "passed": true
+    },
+    {
+      "name": "reference_analysis_whitelist_documented",
+      "passed": true
+    },
+    {
+      "name": "reference_frontend_audit_location_available",
+      "passed": true
+    }
+  ],
+  "passed": 14,
+  "failed": 0,
+  "sdkCompilationExecuted": false,
+  "javascriptExecuted": false,
+  "mockExecuted": false,
+  "httpRuntimeExecuted": false,
+  "creoExecuted": false
+}

@@ -1,0 +1,17 @@
+{
+  "type": "REAL_COMPILATION_AND_STATIC_ARTIFACT_VALIDATION",
+  "checks": {
+    "exactReviewedSource": true,
+    "actualUploadedOtkHashVerified": true,
+    "onlyOtkClasspath": true,
+    "javacExitZero": true,
+    "fourClassesAllMajor61NoPreview": true,
+    "repeatCleanCompileIdentical": true,
+    "jarCrcAndExactClassSet": true,
+    "jarClassBytesMatchLooseClasses": true,
+    "jarContainsNoSdk": true,
+    "javapNavigationDiagnosticsPresent": true,
+    "nineR8ResourceHashesUnchanged": true
+  },
+  "runtimeTestsExecuted": false
+}

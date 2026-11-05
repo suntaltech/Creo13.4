@@ -1,0 +1,78 @@
+--- a/BatchRename.java
++++ b/BatchRename.java
+@@ -292,6 +292,8 @@
+                 opening = true;
+                 String targetUrl = guardedPageUrl(commandId, pageUrl);
+                 log("OnCommand entered; command=" + commandId + "; target=" + targetUrl, null);
++                String preNavigationUrl = null;
++                String navigationPhase = "WINDOW_RESOLUTION";
+                 try {
+                     Window window = null;
+                     try {
+@@ -314,24 +316,38 @@
+                         log("No available Creo window; cannot open " + pageUrl, null);
+                         return;
+                     }
+-                    String currentUrl = null;
++                    navigationPhase = "PRE_NAVIGATION_URL_PROBE";
++                    pageNavigationAudit(commandId, navigationPhase, "ATTEMPT", targetUrl, null, null);
+                     try {
+-                        currentUrl = window.GetURL();
++                        preNavigationUrl = window.GetURL();
++                        pageNavigationAudit(commandId, navigationPhase, "RETURNED", targetUrl, preNavigationUrl, null);
+                     } catch (Exception urlError) {
+-                        log("current window URL unavailable", urlError);
++                        // A failed probe retains the existing null-URL navigation policy.
++                        // Keep the real stack and requestId; this is not a SetURL failure.
++                        pageNavigationAudit(commandId, navigationPhase, "THROWN", targetUrl, null, urlError);
+                     }
+-                    if (currentUrl == null || !currentUrl.equals(targetUrl)) {
++                    if (preNavigationUrl == null || !preNavigationUrl.equals(targetUrl)) {
++                        navigationPhase = "SET_URL";
++                        pageNavigationAudit(commandId, navigationPhase, "ATTEMPT", targetUrl, preNavigationUrl, null);
+                         window.SetURL(targetUrl);
++                        pageNavigationAudit(commandId, navigationPhase, "RETURNED", targetUrl, preNavigationUrl, null);
+                         log("browser navigation issued; target=" + targetUrl, null);
+                     } else {
++                        pageNavigationAudit(commandId, "SET_URL", "SKIPPED_SAME_URL", targetUrl, preNavigationUrl, null);
+                         log("browser tab already open; reusing existing tab", null);
+                     }
++                    navigationPhase = "SET_BROWSER_SIZE";
+                     window.SetBrowserSize(80.0);
++                    navigationPhase = "ACTIVATE";
+                     window.Activate();
++                    navigationPhase = "REFRESH";
+                     window.Refresh();
+-                    log("browser activated; currentUrl=" + currentUrl + "; OnCommand returned", null);
++                    pageNavigationAudit(commandId, "CALLBACK_COMPLETION", "RETURNED", targetUrl, preNavigationUrl, null);
++                    log("browser activated; preNavigationUrl=" + preNavigationUrl + "; target=" + targetUrl +
++                            "; pageLoad=UNVERIFIED; OnCommand returned", null);
+                 } catch (Exception ex) {
+-                    log("open embedded browser failed", ex);
++                    pageNavigationAudit(commandId, navigationPhase, "THROWN", targetUrl, preNavigationUrl, ex);
++                    log("open embedded browser failed; failedPhase=" + navigationPhase, null);
+                 } finally {
+                     opening = false;
+                 }
+@@ -340,6 +356,21 @@
+                 else pageRequestId.set(previousRequest);
+             }
+         }
++    }
++
++    /** Diagnostic events only: API returns do not prove browser page load or model safety. */
++    private static void pageNavigationAudit(String commandId, String phase, String outcome,
++                                             String targetUrl, String preNavigationUrl, Throwable error) {
++        Map<String,Object> event = new LinkedHashMap<>();
++        event.put("requestId", pageRequestId.get());
++        event.put("commandId", commandId);
++        event.put("phase", phase);
++        event.put("outcome", outcome);
++        event.put("targetUrl", targetUrl);
++        event.put("preNavigationUrl", preNavigationUrl);
++        event.put("pageLoad", "UNVERIFIED");
++        if (error != null) event.put("exceptionClass", error.getClass().getName());
++        log("PAGE_NAVIGATION " + toJson(event), error);
+     }
+ 
+     private static String detectActiveModelMode() {

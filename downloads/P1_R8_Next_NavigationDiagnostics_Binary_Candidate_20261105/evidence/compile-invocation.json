@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "/workspace/r8-next-binary/toolchain/jdk-25.0.5.0.3/bin/javac",
+    "--release",
+    "17",
+    "-encoding",
+    "UTF-8",
+    "-proc:none",
+    "-Xlint:deprecation",
+    "-classpath",
+    "/workspace/r8-next-binary/sdk-input/creo134-jlink-sdk-jars-20261105/otk.jar",
+    "-d",
+    "classes",
+    "source/BatchRename.java"
+  ],
+  "workingDirectory": "/workspace/r8-next-binary/P1_R8_Next_NavigationDiagnostics_Binary_Candidate_20261105",
+  "exitCode": 0,
+  "annotationProcessing": "DISABLED",
+  "sdkClasspath": [
+    "otk.jar"
+  ],
+  "excludedSdk": [
+    "pfcasync.jar"
+  ],
+  "sourceSha256": "441ea4bfb0e3c5619ebbb62078e50775055ffd7b5203311e7881a037b80aaae7"
+}

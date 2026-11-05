@@ -1,0 +1,10 @@
+name p1_r8_next_navigation_diagnostics_controlled
+startup java
+java_app_class BatchRename
+java_app_classpath @ABSOLUTE_NEW_ISOLATED_CANDIDATE_CLASSES_DIRECTORY@
+java_app_start start
+java_app_stop stop
+allow_stop true
+delay_start false
+text_dir @ABSOLUTE_CANDIDATE_WORKING_TEXT_LAYOUT_DIRECTORY@
+end

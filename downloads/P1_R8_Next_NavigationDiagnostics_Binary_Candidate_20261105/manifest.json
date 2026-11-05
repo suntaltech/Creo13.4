@@ -1,0 +1,128 @@
+{
+  "artifactType": "REAL_SDK_COMPILED_BINARY_CANDIDATE_NOT_RELEASE",
+  "date": "2026-11-05",
+  "sourceCandidateCommit": "1c1f1f56db59a0e9f52fb7f1bc3085734d049ccf",
+  "sourceSha256": "441ea4bfb0e3c5619ebbb62078e50775055ffd7b5203311e7881a037b80aaae7",
+  "sdkInputArchive": {
+    "fileName": "creo134-jlink-sdk-jars-20261105.zip",
+    "sha256": "86f41b94d8aac2d196f7908dfa3abb524da04f39f34f9dd818356d5580bf36db"
+  },
+  "sdk": {
+    "fileName": "otk.jar",
+    "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "classpathUsed": true,
+    "majorVersions": {
+      "51": 116,
+      "69": 3429
+    },
+    "redistributed": false,
+    "versionAttribution": "USER_SUPPLIED_CREO134_NOT_INDEPENDENT_INSTALLATION_VERIFICATION"
+  },
+  "excludedDependency": {
+    "fileName": "pfcasync.jar",
+    "sha256": "b1765537e2754332fa923e418b81541e3caa2d2a197ebec4ae1decb9ab8bfdb3",
+    "classpathUsed": false,
+    "redistributed": false
+  },
+  "compiler": {
+    "version": "javac 25.0.5.0.3",
+    "releaseTarget": 17,
+    "processing": "none",
+    "officialDownloadUrl": "https://download.oracle.com/java/25/latest/jdk-25_linux-x64_bin.tar.gz",
+    "jdkArchiveSha256": "6deafad80454d1f968105b1f582d89b8c2e88a5dfc98116a8226e0ec2fd5df8e",
+    "officialChecksumVerified": true,
+    "redistributed": false
+  },
+  "compile": {
+    "exitCode": 0,
+    "stdoutBytes": 0,
+    "stderrBytes": 0,
+    "realSdk": true,
+    "mockOrStubUsed": false,
+    "repeatCompileClassHashesIdentical": true
+  },
+  "classes": [
+    {
+      "relativeName": "classes/BatchRename$ConversionFailure.class",
+      "bytes": 584,
+      "sha256": "5860ddda417e3c1b8962f6407f8a1c6d60efcc21b0b1df4132b3d1e0fa479d1d",
+      "major": 61,
+      "minor": 0
+    },
+    {
+      "relativeName": "classes/BatchRename$OpenPageListener.class",
+      "bytes": 4319,
+      "sha256": "c3c4ea159c663597438253dde00e55e57a23ca934f0eff7240c9f29161fea0ff",
+      "major": 61,
+      "minor": 0
+    },
+    {
+      "relativeName": "classes/BatchRename$SmtConvertListener.class",
+      "bytes": 4930,
+      "sha256": "fe4c9361611f001249e796a62e6814f3d81e16b69c5d0f0f439ef8ce0d417cbc",
+      "major": 61,
+      "minor": 0
+    },
+    {
+      "relativeName": "classes/BatchRename.class",
+      "bytes": 41712,
+      "sha256": "5f181ab2642728994842b52018452fbd718d08981e93452034bf876af989f050",
+      "major": 61,
+      "minor": 0
+    }
+  ],
+  "jar": {
+    "relativeName": "lib/BatchRename-navigation-diagnostics.jar",
+    "sha256": "92da6a889f81ad3add15a76178f9b453d62dcd5049502c7a929f42ca3692bf51",
+    "classCount": 4,
+    "classBytesMatchLooseClasses": true,
+    "thinJarContainsNoSdk": true
+  },
+  "resources": [
+    {
+      "relativeName": "working-text-layout/about.png",
+      "sha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086"
+    },
+    {
+      "relativeName": "working-text-layout/batchrename.png",
+      "sha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4"
+    },
+    {
+      "relativeName": "working-text-layout/batchrename.txt",
+      "sha256": "bd85e1352c3e0112fc36d07b11febabe1082859098ef7cfa8cd67c7f1760e31c"
+    },
+    {
+      "relativeName": "working-text-layout/p1_6a_r2.txt",
+      "sha256": "b8939739dc213bde0db2d85c4d0d2ef6d583a927cabf4bcde5eb00c57811af06"
+    },
+    {
+      "relativeName": "working-text-layout/p1_6a_ui_commands.txt",
+      "sha256": "43eb5af7b9bdc9529cd0632d1556dbe55b2bba26b13b4955043a189bcd42f78c"
+    },
+    {
+      "relativeName": "working-text-layout/resource/about.png",
+      "sha256": "24ebd0e1a9b812a3ccc9c62fb292d25f54419fc0c92c54928bd2cccb40c5c086"
+    },
+    {
+      "relativeName": "working-text-layout/resource/batchrename.png",
+      "sha256": "8ef2ac070b2048dd9a774971e74d66ec61fc8401af39e6d92934d2266c9e34a4"
+    },
+    {
+      "relativeName": "working-text-layout/resource/sheetmetal.png",
+      "sha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce"
+    },
+    {
+      "relativeName": "working-text-layout/sheetmetal.png",
+      "sha256": "27bdde90cb213e76496f7271b83f6a0ff07fcdd3b1f4cc3fee888b0cf5787cce"
+    }
+  ],
+  "runtime": {
+    "java25RequiredBySdk": true,
+    "creoExecuted": false,
+    "nativeLinkageValidated": false,
+    "navigationRuntimeValidated": false,
+    "analysisReadOnlyValidated": false,
+    "conversionValidated": false,
+    "deployed": false
+  }
+}
