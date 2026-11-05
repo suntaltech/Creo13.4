@@ -1,0 +1,38 @@
+{
+  "type": "OFFLINE_NAVIGATION_DIAGNOSTICS_VERIFICATION_REVIEW",
+  "inputArchive": {
+    "fileName": "r8next-navigation-diag-verify-20261105.zip",
+    "sha256": "c824011a2096fb9c47845ddc9794b225cc69b0696cebbd52ac33097c95fd3945"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "bytes": 504,
+      "sha256": "9aadc6b88c2d4110414a1c30f2fba9f1f9483142e4a806317b3e58a817c95e27"
+    },
+    {
+      "relativeName": "jlink.log",
+      "bytes": 164516,
+      "sha256": "c9dfd9b00bc9d947ef9b9986467915026e256ec28021863c2cdfe38065eadf51"
+    },
+    {
+      "relativeName": "sheetmetal-page.png",
+      "bytes": 180525,
+      "sha256": "6a8b22ac0039005a706e6a5342a9ff7a671d19d5d93bf7909f3736bc7a378e6f"
+    }
+  ],
+  "checks": {
+    "previousLogExactPrefix": true,
+    "fiveExpectedNewNavigationEvents": true,
+    "sameObservedRequestIdCommandAndTarget": true,
+    "probeStackPreserved": true,
+    "allPageLoadFieldsUnverified": true,
+    "preNavigationUrlNull": true,
+    "callbackAndStopReturned": true,
+    "screenshotVisuallyReviewed": true
+  },
+  "referenceBinaryManifestSha256": "7c2aecd7c5591b390f1e823e13075a45f07db55a2c9f29d7664b49f2487d40b6",
+  "codeModified": false,
+  "newCandidateGenerated": false,
+  "creoExecutedByCloud": false
+}
