@@ -1,0 +1,134 @@
+{
+  "type": "OFFLINE_REVIEW_OF_REAL_NATIVE_STEP1_COLLECTION",
+  "inputJsonlSha256": "df1da92dd4a4146a7ee97049010ed851437efe1aa33bcc17ca9d01760cf52618",
+  "eventCount": 234,
+  "observedRequestId": "58e89626-61ee-4c98-ab0c-8f74e1cdec10",
+  "eventCounts": {
+    "COLLECTION_STARTED": 1,
+    "READ_UNAVAILABLE": 4,
+    "MODEL_BEFORE": 1,
+    "UNITS_AND_ACCURACY": 1,
+    "DEFAULT_BODY": 1,
+    "BODY": 1,
+    "SURFACE": 222,
+    "MODEL_AFTER_ORIGINAL": 1,
+    "MODEL_AFTER_ACTIVE": 1,
+    "COLLECTION_SUMMARY": 1
+  },
+  "observed": {
+    "bodyCount": 1,
+    "bodyId": -5778,
+    "negativeBodyIdPreservedAsSdkIdentifier": true,
+    "defaultAndEnumeratedBodyNativeIsSheetmetal": false,
+    "surfaceCount": 222,
+    "surfaceTypeCounts": {
+      "PLANE": 126,
+      "CYLINDER": 96
+    },
+    "allSurfaceRecordsRequiredFieldsComplete": true,
+    "lengthUnitName": "mm",
+    "relativeAccuracy": 0.0012000000000000001,
+    "absoluteAccuracy": "UNKNOWN",
+    "nativeRevision": "UNKNOWN_NULL_RETURNED_THREE_TIMES",
+    "beforeAfterDirtyFlags": false,
+    "originalNativeHandleMatch": true,
+    "elapsedMs": 197
+  },
+  "coverageRecomputed": {
+    "bodyState": [
+      1,
+      1
+    ],
+    "modelSurfaceRecords": [
+      222,
+      222
+    ],
+    "modelSurfaceRequiredFields": [
+      222,
+      222
+    ]
+  },
+  "overallOutcomePreserved": "PARTIAL",
+  "unknownOperations": [
+    "before.GetRevision",
+    "Solid.GetAbsoluteAccuracy",
+    "afterOriginalModel.GetRevision",
+    "afterActiveModel.GetRevision"
+  ],
+  "rawHttpCrosscheck": {
+    "sourceSha256": "85c1153d4336c586e226865dc1ec0045d804fbb425892f80b13bf423bf0f3646",
+    "surfaceIdsExactlyMatch": true,
+    "allAreasExactlyMatch": true,
+    "sameCaptureTransactionAuthenticated": false,
+    "legacyAxisHeuristicCount": 118,
+    "actualNativePlaneCount": 126,
+    "legacyFalsePositiveCountInThisData": 0,
+    "legacyMissedNativePlanes": 8
+  },
+  "summary": {
+    "schema": "P1_NATIVE_READONLY_GEOMETRY_V1",
+    "timestamp": "2026-11-05T07:09:38.328489600Z",
+    "requestId": "58e89626-61ee-4c98-ab0c-8f74e1cdec10",
+    "commandId": "SISWReadOnlyGeometryCollect",
+    "event": "COLLECTION_SUMMARY",
+    "outcome": "PARTIAL",
+    "errors": 0,
+    "unknownReadValues": 4,
+    "identityStableWithinObservedFields": false,
+    "identityOrDirtyChangeObserved": false,
+    "metadataComplete": false,
+    "defaultBodyStateKnown": true,
+    "allBodyEnumerationComplete": true,
+    "bodyMembershipEnumerationComplete": true,
+    "modelSurfaceEnumerationComplete": true,
+    "bodyStateCoverage": {
+      "denominator": 1,
+      "completed": 1,
+      "ratio": 1.0,
+      "status": "ALL_ENUMERATED_ENTRIES"
+    },
+    "modelSurfaceRecordCoverage": {
+      "denominator": 222,
+      "completed": 222,
+      "ratio": 1.0,
+      "status": "ALL_ENUMERATED_ENTRIES"
+    },
+    "modelSurfaceRequiredFieldCoverage": {
+      "denominator": 222,
+      "completed": 222,
+      "ratio": 1.0,
+      "status": "ALL_ENUMERATED_ENTRIES"
+    },
+    "uniqueFacesRetained": 222,
+    "surfaceRecordsEmitted": 222,
+    "bodyOnlySurfaceRecords": 0,
+    "modelSurfaceRecordsNotProduced": 0,
+    "modelSurfaceRecordsWithIncompleteFields": 0,
+    "bodySurfaceReferencesVisited": 222,
+    "truncated": false,
+    "truncationReason": "NONE",
+    "elapsedMs": 197,
+    "nativeBodyStateDoesNotEstablishThinWallShape": true,
+    "thinWallShapeAssessment": "INSUFFICIENT_EVIDENCE",
+    "uniformThicknessAssessment": "INSUFFICIENT_EVIDENCE",
+    "samplingCoverage": "NOT_REQUESTED_STEP_1",
+    "modelWriteAbsenceIndependentlyProven": false
+  },
+  "screenshot": {
+    "relativeName": "collector-ran.png",
+    "sha256": "e2e278829eef4eb4a9bb4d7d3b3795c52f0dcc05305316cdad9a0a7293b3d2ff",
+    "visuallyReviewed": true,
+    "collectorCompletionMessageVisible": true,
+    "modelUnmodifiedProvenByScreenshot": false
+  },
+  "limits": {
+    "exactLoadedBinaryHashProvided": false,
+    "nativeRevisionStillUnknown": true,
+    "effectiveAccuracyModeVerified": false,
+    "thinWallOrUniformThicknessVerified": false,
+    "modelWriteAbsenceIndependentlyProven": false
+  },
+  "codeChanged": false,
+  "newCandidateGenerated": false,
+  "runtimeExecutedByCloud": false
+}

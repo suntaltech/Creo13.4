@@ -1,0 +1,39 @@
+{
+  "type": "OFFLINE_NATIVE_STEP1_VERIFICATION_REVIEW",
+  "inputArchive": {
+    "fileName": "native-readonly-step1-verify-20261105.zip",
+    "sha256": "6e3de580b8cdcf0221ecdc2556665ab99c2a98560788a3a17aef3aeaafcf76e4"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "bytes": 371,
+      "sha256": "7dd4c63471b8d28e5a30b8497ddc0964482c74fa44af025aafc6e660f70a8f9e"
+    },
+    {
+      "relativeName": "collector-ran.png",
+      "bytes": 168972,
+      "sha256": "e2e278829eef4eb4a9bb4d7d3b3795c52f0dcc05305316cdad9a0a7293b3d2ff"
+    },
+    {
+      "relativeName": "geometry-58e89626-61ee-4c98-ab0c-8f74e1cdec10.jsonl",
+      "bytes": 135873,
+      "sha256": "df1da92dd4a4146a7ee97049010ed851437efe1aa33bcc17ca9d01760cf52618"
+    }
+  ],
+  "referenceCandidateCommit": "1e077c125578fd36120f5c30c4b63bc697d5e849",
+  "checks": {
+    "all234EventsSameRequestAndSchema": true,
+    "222UniqueSurfaceRecordsWithRequiredFields": true,
+    "126Planes96Cylinders": true,
+    "coverageRecomputedFromRecords": true,
+    "fourNullReadOperationsAccountedFor": true,
+    "overallPartialRetained": true,
+    "allSurfaceIdsAndAreasMatchEarlierHttp": true,
+    "screenshotVisuallyReviewed": true
+  },
+  "originalRawEvidenceRepublished": false,
+  "codeModified": false,
+  "newCandidateGenerated": false,
+  "newRuntimeExecuted": false
+}
