@@ -1,0 +1,55 @@
+{
+  "type": "OFFLINE_UI_CLASSIFICATION_CORRECTION_REVIEW",
+  "inputArchive": {
+    "fileName": "sheetmetal-classification-fix-verify-20261105.zip",
+    "sha256": "b4bb29fb225fa2c93e6aa0f5d7474e40b81c37deae0d0f58c9e78bd7777f1e23"
+  },
+  "inputs": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "bytes": 525,
+      "sha256": "6a4a5f33c33f620d1054d18d1e549acb7cbf0b611139e921b989a44dbf7b832f"
+    },
+    {
+      "relativeName": "fixed-analysis.png",
+      "bytes": 96453,
+      "sha256": "fa700c68f957e57126a16a0450d8bc449eb5d32f88d30fdb97a9c63de08dbb79"
+    }
+  ],
+  "referenceCandidateCommit": "259a9eea6d0c561c38206199fa6f66ac54341c47",
+  "referenceCandidateManifestSha256": "9f962299a954e0b4bee691b17aaf763a844e41478ef379b94fb661b203dc4c8c",
+  "visualReview": {
+    "image": "fixed-analysis.png",
+    "reviewed": true,
+    "noShellOrDrivingRecommendation": true,
+    "nativeStateUnverified": true,
+    "thinWallAndUniformThicknessInsufficientEvidence": true,
+    "wallThicknessNotMeasured": true,
+    "revisionDisplayed": 1,
+    "unitDisplayed": "mm",
+    "surfaceCountDisplayed": 222,
+    "dimensionValuesDisplayed": [
+      337.5,
+      75.75,
+      389.0
+    ],
+    "disabledControlAppearance": true
+  },
+  "operatorReportedDeployment": {
+    "previousTargetRole": "STAGING_PACKAGE_WEB_NOT_LIVE_SERVER_ROOT",
+    "correctedTargetRole": "ACTIVE_CREOSON_SERVER_WEB",
+    "actualServerMappingIndependentlyVerified": false
+  },
+  "assessment": {
+    "uiCorrectionGoal": "SUPPORTED_BY_SCREENSHOT",
+    "geometricRecognition": "NOT_IMPLEMENTED_OR_VERIFIED",
+    "allInteractionsDisabled": "NOT_PROVEN_BY_SCREENSHOT_ALONE",
+    "modelWriteAbsence": "NOT_INDEPENDENTLY_VERIFIED",
+    "rawHttpResponsesProvided": false,
+    "analysisJsonlProvided": false,
+    "deployedFileHashesProvided": false
+  },
+  "codeChanged": false,
+  "newCandidateGenerated": false,
+  "runtimeExecutedByCloud": false
+}
