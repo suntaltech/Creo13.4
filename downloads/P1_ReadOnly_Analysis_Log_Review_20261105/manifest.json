@@ -1,0 +1,31 @@
+{
+  "type": "OFFLINE_ANALYSIS_JSONL_REVIEW",
+  "inputArchive": {
+    "fileName": "readonly-analysis-log-20261105.zip",
+    "sha256": "fb40055f9110f9822630dda162ed4b5f469a417b6710a6bdfcae37fc402a3626"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "README.md",
+      "sha256": "38fd151a83b56dac401ded31ddc2c3201d7c88be804f9475740c3d87dc1d403d",
+      "bytes": 240
+    },
+    {
+      "relativeName": "p1_readonly_analysis_2026-11-05T06-18-17-177Z.jsonl",
+      "sha256": "3c682c0287eca4776f64036cdf6e9c626d6226dcb8a2b278ac58cca3b557074d",
+      "bytes": 2592
+    }
+  ],
+  "checks": {
+    "thirteenEventsParsed": true,
+    "singleActualAnalysisRequestId": true,
+    "fiveReadPairsInExpectedOrder": true,
+    "timestampsMonotonic": true,
+    "summaryUnknownStatesRetained": true,
+    "summaryMatchesPreviousScreenshotValues": true,
+    "noCredentialLikeFields": true
+  },
+  "runtimeExecuted": false,
+  "codeModified": false,
+  "newCandidateGenerated": false
+}

@@ -1,0 +1,88 @@
+{
+  "type": "OFFLINE_REVIEW_OF_USER_SUPPLIED_ANALYSIS_JSONL",
+  "sourceRelativeName": "p1_readonly_analysis_2026-11-05T06-18-17-177Z.jsonl",
+  "sourceSha256": "3c682c0287eca4776f64036cdf6e9c626d6226dcb8a2b278ac58cca3b557074d",
+  "parsedEventCount": 13,
+  "observedRequestId": "smt-analysis-1793859047495-1",
+  "requestIdGeneratedByReview": false,
+  "analysisStartUtc": "2026-11-05T06:10:47.495Z",
+  "analysisCompletedUtc": "2026-11-05T06:10:49.530Z",
+  "elapsedMs": 2035,
+  "logicalReads": [
+    {
+      "command": "file",
+      "function": "get_fileinfo",
+      "startLine": 3,
+      "passedLine": 4,
+      "elapsedMs": 52
+    },
+    {
+      "command": "geometry",
+      "function": "get_surfaces",
+      "startLine": 5,
+      "passedLine": 6,
+      "elapsedMs": 1810
+    },
+    {
+      "command": "geometry",
+      "function": "bound_box",
+      "startLine": 7,
+      "passedLine": 8,
+      "elapsedMs": 24
+    },
+    {
+      "command": "file",
+      "function": "get_length_units",
+      "startLine": 9,
+      "passedLine": 10,
+      "elapsedMs": 55
+    },
+    {
+      "command": "file",
+      "function": "get_fileinfo",
+      "startLine": 11,
+      "passedLine": 12,
+      "elapsedMs": 83
+    }
+  ],
+  "logicalReadCount": 5,
+  "uniqueCommandFunctionCount": 4,
+  "actualHttpAttemptCount": "NOT_RECORDED",
+  "resultSummary": {
+    "timestamp": "2026-11-05T06:10:49.530Z",
+    "event": "smt_analyze_http",
+    "requestId": "smt-analysis-1793859047495-1",
+    "saved": false,
+    "model": "200002100.prt",
+    "revision": 1,
+    "units": "mm",
+    "surfaceCount": 222,
+    "planeCount": null,
+    "nativeConvertReady": false,
+    "nativeSheetmetalState": "UNKNOWN",
+    "thinWallShapeAssessment": "INSUFFICIENT_EVIDENCE",
+    "uniformThicknessAssessment": "INSUFFICIENT_EVIDENCE",
+    "estimatedThickness": null,
+    "suggestedMode": null,
+    "reasonCodes": [
+      "NATIVE_SHEETMETAL_STATE_NOT_READ",
+      "OPPOSED_SURFACE_AND_THICKNESS_EVIDENCE_UNAVAILABLE",
+      "BOUNDING_BOX_IS_NOT_WALL_THICKNESS"
+    ],
+    "revisionCheck": "FILE_AND_REVISION_MATCH",
+    "unitReadOutcome": "RETURNED_UNIT_STRING"
+  },
+  "allRecordedSavedFlagsFalse": true,
+  "credentialLikeKeysDetected": false,
+  "scope": {
+    "completeAnalysisAuditChain": "SUPPORTED_BY_PROVIDED_JSONL",
+    "valuesAgreeWithPriorScreenshot": true,
+    "rawGeometryResponsesProvided": false,
+    "beforeAfterRawFileInfoProvided": false,
+    "nativeStateVerified": false,
+    "uniformThicknessVerified": false,
+    "modelWriteAbsenceIndependentlyProven": false
+  },
+  "newRuntimeExecutedByCloud": false,
+  "codeChanged": false
+}
