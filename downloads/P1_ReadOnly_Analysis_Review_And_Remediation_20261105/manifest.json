@@ -1,0 +1,41 @@
+{
+  "type": "OFFLINE_ANALYSIS_REVIEW_AND_REMEDIATION_SPEC_NOT_IMPLEMENTATION",
+  "inputArchive": {
+    "fileName": "sheetmetal-readonly-analysis-verify-20261105.zip",
+    "sha256": "f333e5ea488d2440f89e9a9631073f51ad8075b59fb36ec450799d2feb4f9ad0"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "sha256": "a7dec5585f178dbe443490ddd34ce04f85d71ffc1e1a9ffba920a2b5d2768ba0",
+      "bytes": 721
+    },
+    {
+      "relativeName": "analysis-result.png",
+      "sha256": "c01400d62b0b77814e91c59ff44f777f2a5641d7d445118ced8cce71ed01c243",
+      "bytes": 206898
+    },
+    {
+      "relativeName": "jlink.log",
+      "sha256": "8137f1d5822dbcbd0fb4c3eba1a2dd754bfcf16012427a51089d66836aa54706",
+      "bytes": 187067
+    },
+    {
+      "relativeName": "original-part.png",
+      "sha256": "cb9fda4d28bb88961e4ca0b54ac2d6a342076a3c89e0e84e782cc4bcfed8ee3f",
+      "bytes": 65233
+    }
+  ],
+  "checks": {
+    "priorLogPrefixVerified": true,
+    "twoNewNavigationRequestsGrouped": true,
+    "sameUrlSkipAndReturnedUrlConfirmed": true,
+    "bothScreenshotsVisuallyReviewed": true,
+    "absenceOfWebInputsRecorded": true
+  },
+  "currentWebIdentityKnown": false,
+  "uniformThicknessAlgorithmImplemented": false,
+  "codeModified": false,
+  "newBinaryGenerated": false,
+  "runtimeExecuted": false
+}

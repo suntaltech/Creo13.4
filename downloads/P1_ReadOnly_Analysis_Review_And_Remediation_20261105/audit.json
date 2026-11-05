@@ -1,0 +1,152 @@
+{
+  "type": "OFFLINE_ANALYSIS_RESULT_AND_NAVIGATION_REVIEW",
+  "inputLogSha256": "8137f1d5822dbcbd0fb4c3eba1a2dd754bfcf16012427a51089d66836aa54706",
+  "priorLogExactPrefix": true,
+  "newSegment": {
+    "firstOriginalLine": 745,
+    "lastOriginalLine": 804,
+    "bytesAdded": 22551
+  },
+  "navigationRequests": [
+    {
+      "observedRequestId": "c9ac2c31-c2f1-46db-b003-91eb2c77fc90",
+      "events": [
+        {
+          "originalLogLine": 778,
+          "requestId": "c9ac2c31-c2f1-46db-b003-91eb2c77fc90",
+          "commandId": "SISWSheetMetal",
+          "phase": "PRE_NAVIGATION_URL_PROBE",
+          "outcome": "ATTEMPT",
+          "targetUrl": "http://localhost:9056/sheetmetal.html?modelMode=solid_part",
+          "preNavigationUrl": null,
+          "pageLoad": "UNVERIFIED"
+        },
+        {
+          "originalLogLine": 779,
+          "requestId": "c9ac2c31-c2f1-46db-b003-91eb2c77fc90",
+          "commandId": "SISWSheetMetal",
+          "phase": "PRE_NAVIGATION_URL_PROBE",
+          "outcome": "THROWN",
+          "targetUrl": "http://localhost:9056/sheetmetal.html?modelMode=solid_part",
+          "preNavigationUrl": null,
+          "pageLoad": "UNVERIFIED",
+          "exceptionClass": "com.ptc.wfc.Implementation.pfcExceptions$XToolkitGeneralError"
+        },
+        {
+          "originalLogLine": 790,
+          "requestId": "c9ac2c31-c2f1-46db-b003-91eb2c77fc90",
+          "commandId": "SISWSheetMetal",
+          "phase": "SET_URL",
+          "outcome": "ATTEMPT",
+          "targetUrl": "http://localhost:9056/sheetmetal.html?modelMode=solid_part",
+          "preNavigationUrl": null,
+          "pageLoad": "UNVERIFIED"
+        },
+        {
+          "originalLogLine": 791,
+          "requestId": "c9ac2c31-c2f1-46db-b003-91eb2c77fc90",
+          "commandId": "SISWSheetMetal",
+          "phase": "SET_URL",
+          "outcome": "RETURNED",
+          "targetUrl": "http://localhost:9056/sheetmetal.html?modelMode=solid_part",
+          "preNavigationUrl": null,
+          "pageLoad": "UNVERIFIED"
+        },
+        {
+          "originalLogLine": 793,
+          "requestId": "c9ac2c31-c2f1-46db-b003-91eb2c77fc90",
+          "commandId": "SISWSheetMetal",
+          "phase": "CALLBACK_COMPLETION",
+          "outcome": "RETURNED",
+          "targetUrl": "http://localhost:9056/sheetmetal.html?modelMode=solid_part",
+          "preNavigationUrl": null,
+          "pageLoad": "UNVERIFIED"
+        }
+      ]
+    },
+    {
+      "observedRequestId": "b19906b5-198c-44db-8cf7-946472ea0c3e",
+      "events": [
+        {
+          "originalLogLine": 797,
+          "requestId": "b19906b5-198c-44db-8cf7-946472ea0c3e",
+          "commandId": "SISWSheetMetal",
+          "phase": "PRE_NAVIGATION_URL_PROBE",
+          "outcome": "ATTEMPT",
+          "targetUrl": "http://localhost:9056/sheetmetal.html?modelMode=solid_part",
+          "preNavigationUrl": null,
+          "pageLoad": "UNVERIFIED"
+        },
+        {
+          "originalLogLine": 798,
+          "requestId": "b19906b5-198c-44db-8cf7-946472ea0c3e",
+          "commandId": "SISWSheetMetal",
+          "phase": "PRE_NAVIGATION_URL_PROBE",
+          "outcome": "RETURNED",
+          "targetUrl": "http://localhost:9056/sheetmetal.html?modelMode=solid_part",
+          "preNavigationUrl": "http://localhost:9056/sheetmetal.html?modelMode=solid_part",
+          "pageLoad": "UNVERIFIED"
+        },
+        {
+          "originalLogLine": 799,
+          "requestId": "b19906b5-198c-44db-8cf7-946472ea0c3e",
+          "commandId": "SISWSheetMetal",
+          "phase": "SET_URL",
+          "outcome": "SKIPPED_SAME_URL",
+          "targetUrl": "http://localhost:9056/sheetmetal.html?modelMode=solid_part",
+          "preNavigationUrl": "http://localhost:9056/sheetmetal.html?modelMode=solid_part",
+          "pageLoad": "UNVERIFIED"
+        },
+        {
+          "originalLogLine": 801,
+          "requestId": "b19906b5-198c-44db-8cf7-946472ea0c3e",
+          "commandId": "SISWSheetMetal",
+          "phase": "CALLBACK_COMPLETION",
+          "outcome": "RETURNED",
+          "targetUrl": "http://localhost:9056/sheetmetal.html?modelMode=solid_part",
+          "preNavigationUrl": "http://localhost:9056/sheetmetal.html?modelMode=solid_part",
+          "pageLoad": "UNVERIFIED"
+        }
+      ]
+    }
+  ],
+  "newSameUrlBranchCoverageSupported": true,
+  "analysisAuditOrHttpResponsesProvided": false,
+  "actualWebSourcesProvided": false,
+  "screenshotObservations": {
+    "analysis-result.png": {
+      "sha256": "c01400d62b0b77814e91c59ff44f777f2a5641d7d445118ced8cce71ed01c243",
+      "visuallyReviewed": true,
+      "model": "200002100.prt",
+      "surfaceCountDisplayed": 222,
+      "candidateCountDisplayed": 118,
+      "largestCandidateAreaDisplayed": 128863.44,
+      "boundingDimensionsDisplayed": [
+        337.5,
+        75.75,
+        389.0
+      ],
+      "displayedUnit": "mm",
+      "minimumExtentIsWallThickness": false,
+      "thicknessEstimateText": "未估算",
+      "desiredThicknessInputDisplayed": 1.0,
+      "suggestedModeDisplayed": "shell",
+      "originalStatusDisplayed": "普通实体零件（待人工确认转换方式）",
+      "statusBarTextObserved": "dbg_err_crash() - continuing from serious error (ORDER_DEBUG)."
+    },
+    "original-part.png": {
+      "sha256": "cb9fda4d28bb88961e4ca0b54ac2d6a342076a3c89e0e84e782cc4bcfed8ee3f",
+      "visuallyReviewed": true,
+      "appearance": "BENT_OR_FORMED_THIN_WALL_LIKE_SHAPE",
+      "uniformThicknessEstablished": false,
+      "nativeSheetmetalFeatureHistoryEstablished": false
+    }
+  },
+  "operatorReport": {
+    "analysisUsedCreosonHttp": true,
+    "originalSheetmetalExportedViaStepAndReopenedAsPrt": true
+  },
+  "runtimeEvidenceAuthenticated": false,
+  "newRuntimeExecuted": false,
+  "modelWriteAbsenceEstablished": false
+}
