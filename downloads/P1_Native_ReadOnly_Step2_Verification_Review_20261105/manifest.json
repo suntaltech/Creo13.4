@@ -1,0 +1,42 @@
+{
+  "type": "OFFLINE_NATIVE_STEP2_RUNTIME_EVIDENCE_REVIEW",
+  "inputArchive": {
+    "fileName": "native-readonly-step2-verify-20261105.zip",
+    "sha256": "63c0e512af5486b7e3f5bc07b3a19bd617a9ec0b78f7ab137762b1498f9eb057"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "bytes": 236,
+      "sha256": "e37031f14bd035a1cdf8f1af06324beb83024eab75b4dc6ae31422b6725ec301"
+    },
+    {
+      "relativeName": "geometry-sampling-9739f66d-2aaf-457f-9a50-eab24ceb88ac.jsonl",
+      "bytes": 1326262,
+      "sha256": "936d9c826d14d7b3635b6994fde33ec2e7836644b3650383c261399e880abbeb"
+    },
+    {
+      "relativeName": "sampling-ran.png",
+      "bytes": 171761,
+      "sha256": "6fa7a07089684797fa325570de3f2e1280b7960068a538bca9b591df5ba4fb1a"
+    }
+  ],
+  "referenceCandidateCommit": "4767d2bd72a3146c657406cebcbee98266fda5a9",
+  "checks": {
+    "1613EventsOneRequest": true,
+    "654AcceptedSamplesValidityFieldsAndVectorsChecked": true,
+    "500RejectionsAccountedFor": true,
+    "perFaceAttemptsCountsAndOrdinalsChecked": true,
+    "coverageRecomputed": true,
+    "fourZeroSamplePlanesIdentified": true,
+    "38CollinearPlaneGroupsDetected": true,
+    "versionStampSeparateFromNullRevision": true,
+    "step1FaceIdentityTypeAreaCrosscheck": true,
+    "screenshotVisuallyReviewed": true
+  },
+  "overallPartialPreserved": true,
+  "codeChanged": false,
+  "newCandidateGenerated": false,
+  "newRuntimeExecuted": false,
+  "wallThicknessAssessed": false
+}

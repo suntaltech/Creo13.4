@@ -1,0 +1,200 @@
+{
+  "type": "OFFLINE_REAL_NATIVE_STEP2_SAMPLING_REVIEW",
+  "inputJsonlSha256": "936d9c826d14d7b3635b6994fde33ec2e7836644b3650383c261399e880abbeb",
+  "eventCount": 1613,
+  "observedRequestId": "9739f66d-2aaf-457f-9a50-eab24ceb88ac",
+  "eventCounts": {
+    "COLLECTION_STARTED": 1,
+    "READ_UNAVAILABLE": 4,
+    "MODEL_BEFORE": 1,
+    "UNITS_AND_ACCURACY": 1,
+    "DEFAULT_BODY": 1,
+    "BODY": 1,
+    "SURFACE": 222,
+    "SAMPLING_STARTED": 1,
+    "POINT_NORMAL_SAMPLE": 654,
+    "SURFACE_SAMPLING_SUMMARY": 222,
+    "SAMPLE_REJECTED": 500,
+    "SAMPLING_SUMMARY": 1,
+    "MODEL_AFTER_ORIGINAL": 1,
+    "MODEL_AFTER_ACTIVE": 1,
+    "STEP2_IDENTITY_CONTEXT": 1,
+    "COLLECTION_SUMMARY": 1
+  },
+  "geometry": {
+    "targetFaces": 222,
+    "nativePlaneFaces": 126,
+    "nativeCylinderFaces": 96,
+    "sampledPlaneFaces": 122,
+    "sampledCylinderFaces": 96,
+    "facesAtThreeSampleQuota": 218,
+    "acceptedSamples": 654,
+    "acceptedSamplesByType": {
+      "PLANE": 366,
+      "CYLINDER": 288
+    },
+    "attempts": 1154,
+    "rejectedAttempts": 500,
+    "rejectedPlacementCounts": {
+      "PLACE_ON_BOUNDARY": 400,
+      "PLACE_OUTSIDE": 100
+    },
+    "allAcceptedTwoInsideAndExactReturnedUv": true,
+    "allAcceptedFinitePointsAndFiniteNonzeroNormals": true,
+    "allAcceptedUnitNormalsWithinTolerance": true,
+    "unitNormalLengthAbsoluteTolerance": 1e-12,
+    "perFacePointsNumericallyDistinct": true,
+    "faceQuotaFraction": 0.9819819819819819,
+    "pointQuotaFraction": 0.9819819819819819,
+    "quotaIsAreaCoverage": false,
+    "zeroSampleFaces": [
+      {
+        "surfaceId": 2710,
+        "surfaceTypeName": "PLANE",
+        "areaInModelLengthUnitsSquared": 7209.882640271349,
+        "attempts": 25,
+        "acceptedSamples": 0,
+        "stopReason": "CANDIDATE_LIMIT_OR_NO_VALID_INSIDE_POINT"
+      },
+      {
+        "surfaceId": 2738,
+        "surfaceTypeName": "PLANE",
+        "areaInModelLengthUnitsSquared": 7209.882640271349,
+        "attempts": 25,
+        "acceptedSamples": 0,
+        "stopReason": "CANDIDATE_LIMIT_OR_NO_VALID_INSIDE_POINT"
+      },
+      {
+        "surfaceId": 2752,
+        "surfaceTypeName": "PLANE",
+        "areaInModelLengthUnitsSquared": 7209.882640271349,
+        "attempts": 25,
+        "acceptedSamples": 0,
+        "stopReason": "CANDIDATE_LIMIT_OR_NO_VALID_INSIDE_POINT"
+      },
+      {
+        "surfaceId": 2843,
+        "surfaceTypeName": "PLANE",
+        "areaInModelLengthUnitsSquared": 7209.882640271349,
+        "attempts": 25,
+        "acceptedSamples": 0,
+        "stopReason": "CANDIDATE_LIMIT_OR_NO_VALID_INSIDE_POINT"
+      }
+    ],
+    "planeGroupsWithExactlyZeroComputedTriangleCrossProduct": 38,
+    "zeroCrossProductMeaning": "DIRECT_FLOATING_COORDINATE_CHECK_NOT_TOLERANCE_BASED_WHOLE_FACE_GEOMETRY_PROOF"
+  },
+  "identity": {
+    "beforeAfterVersionStamp": "3071",
+    "versionStampSource": "Model.GetVersionStamp",
+    "nativeRevision": null,
+    "revisionSource": "Model.GetRevision",
+    "versionStampContextMatches": true,
+    "legacyStrictIdentityStable": false,
+    "nativeRevisionSubstituted": false
+  },
+  "summary": {
+    "schema": "P1_NATIVE_READONLY_GEOMETRY_V1",
+    "timestamp": "2026-11-05T07:40:09.898678100Z",
+    "requestId": "9739f66d-2aaf-457f-9a50-eab24ceb88ac",
+    "commandId": "SISWReadOnlyGeometrySample",
+    "event": "COLLECTION_SUMMARY",
+    "collectorStep": "STEP_2",
+    "samplingSchema": "P1_NATIVE_GEOMETRY_SAMPLING_V1",
+    "outcome": "PARTIAL",
+    "errors": 0,
+    "unknownReadValues": 4,
+    "identityStableWithinObservedFields": false,
+    "identityOrDirtyChangeObserved": false,
+    "metadataComplete": false,
+    "defaultBodyStateKnown": true,
+    "allBodyEnumerationComplete": true,
+    "bodyMembershipEnumerationComplete": true,
+    "modelSurfaceEnumerationComplete": true,
+    "bodyStateCoverage": {
+      "denominator": 1,
+      "completed": 1,
+      "ratio": 1.0,
+      "status": "ALL_ENUMERATED_ENTRIES"
+    },
+    "modelSurfaceRecordCoverage": {
+      "denominator": 222,
+      "completed": 222,
+      "ratio": 1.0,
+      "status": "ALL_ENUMERATED_ENTRIES"
+    },
+    "modelSurfaceRequiredFieldCoverage": {
+      "denominator": 222,
+      "completed": 222,
+      "ratio": 1.0,
+      "status": "ALL_ENUMERATED_ENTRIES"
+    },
+    "uniqueFacesRetained": 222,
+    "surfaceRecordsEmitted": 222,
+    "bodyOnlySurfaceRecords": 0,
+    "modelSurfaceRecordsNotProduced": 0,
+    "modelSurfaceRecordsWithIncompleteFields": 0,
+    "bodySurfaceReferencesVisited": 222,
+    "truncated": false,
+    "truncationReason": "NONE",
+    "elapsedMs": 2520,
+    "nativeBodyStateDoesNotEstablishThinWallShape": true,
+    "thinWallShapeAssessment": "INSUFFICIENT_EVIDENCE",
+    "uniformThicknessAssessment": "INSUFFICIENT_EVIDENCE",
+    "samplingCoverage": "SEE_STEP2_SAMPLING_SUMMARY",
+    "step2SamplingCoverage": {
+      "scope": "MODEL_LISTED_PLANE_OR_CYLINDER",
+      "targetDenominator": 222,
+      "observedTargets": 222,
+      "facesVisited": 222,
+      "facesWithAnySample": 218,
+      "facesAtThreeSampleQuota": 218,
+      "attempts": 1154,
+      "acceptedSamples": 654,
+      "rejectedAttempts": 500,
+      "faceAnySampleCoverage": {
+        "denominator": 222,
+        "completed": 218,
+        "ratio": 0.9819819819819819,
+        "status": "PARTIAL"
+      },
+      "faceQuotaCoverage": {
+        "denominator": 222,
+        "completed": 218,
+        "ratio": 0.9819819819819819,
+        "status": "PARTIAL"
+      },
+      "pointQuotaCoverage": {
+        "denominator": 666,
+        "completed": 654,
+        "ratio": 0.9819819819819819,
+        "status": "PARTIAL"
+      },
+      "globalStopReason": "NO_GLOBAL_LIMIT",
+      "coverageMeansAreaOrThicknessCoverage": false
+    },
+    "versionStampContextMatches": true,
+    "samplingIdentityDisposition": "OBSERVED_STAMP_FILE_HANDLE_DIRTY_CONTEXT_MATCH_NOT_INDEPENDENT_PROOF",
+    "modelWriteAbsenceIndependentlyProven": false
+  },
+  "step1Crosscheck": {
+    "inputSha256": "df1da92dd4a4146a7ee97049010ed851437efe1aa33bcc17ca9d01760cf52618",
+    "allSurfaceIdsTypesAndAreasExactlyMatch": true,
+    "sameTransactionAuthenticated": false
+  },
+  "screenshot": {
+    "relativeName": "sampling-ran.png",
+    "sha256": "6fa7a07089684797fa325570de3f2e1280b7960068a538bca9b591df5ba4fb1a",
+    "visuallyReviewed": true,
+    "completionMessageVisible": true
+  },
+  "limits": {
+    "loadedBinaryHashProvided": false,
+    "trimDomainIndependentlyReconstructed": false,
+    "normalOutwardOrientationEstablished": false,
+    "wallThicknessAssessed": false,
+    "modelWriteAbsenceIndependentlyProven": false
+  },
+  "codeChanged": false,
+  "newRuntimeExecuted": false
+}
