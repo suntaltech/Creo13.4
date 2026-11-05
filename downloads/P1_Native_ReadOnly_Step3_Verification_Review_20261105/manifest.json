@@ -1,0 +1,40 @@
+{
+  "type": "OFFLINE_NATIVE_STEP3_RUNTIME_EVIDENCE_REVIEW",
+  "inputArchive": {
+    "fileName": "native-readonly-step3-verify-20261105.zip",
+    "sha256": "b2de7aa54be24b565c58900428ab4fc113d78ae34120a92fe8f6ed042223771c"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "bytes": 235,
+      "sha256": "72c29f38e76c57ac2b3521caa0660b1013e13b5468b206b84f9d2bfa82e764d3"
+    },
+    {
+      "relativeName": "geometry-sampling-step3-96648181-ec90-4295-afe0-1c0e1bf94036.jsonl",
+      "bytes": 1955383,
+      "sha256": "e9d9b7e94d690d10fcfff72f9f60e92d86827968b5dc132d1fa926f2c9bb569d"
+    },
+    {
+      "relativeName": "step3-ran.png",
+      "bytes": 171733,
+      "sha256": "0fbb46c6230c286a3e3c6f79bb8255794815a337825760b8f79e2b5c3fcbf6b9"
+    }
+  ],
+  "referenceCandidateCommit": "be49cf0183a925756e299e9356911f0978607ad5",
+  "checks": {
+    "2200EventsOneRequest": true,
+    "222UvRangesVerified": true,
+    "666AcceptedPointAndNormalRecordsChecked": true,
+    "allFourTargetsThreeRefinedSamplesEach": true,
+    "500RejectionsPreserved": true,
+    "all126PlaneQualityMetricsIndependentlyRecomputed": true,
+    "all654BaseSamplesMatchStep2": true,
+    "overallPartialPreserved": true,
+    "screenshotVisuallyReviewed": true
+  },
+  "codeChanged": false,
+  "newCandidateGenerated": false,
+  "newRuntimeExecuted": false,
+  "wallThicknessAssessed": false
+}

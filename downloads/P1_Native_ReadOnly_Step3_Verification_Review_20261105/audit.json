@@ -1,0 +1,253 @@
+{
+  "type": "OFFLINE_REAL_NATIVE_STEP3_REFINEMENT_AND_QUALITY_REVIEW",
+  "inputJsonlSha256": "e9d9b7e94d690d10fcfff72f9f60e92d86827968b5dc132d1fa926f2c9bb569d",
+  "eventCount": 2200,
+  "observedRequestId": "96648181-ec90-4295-afe0-1c0e1bf94036",
+  "eventCounts": {
+    "COLLECTION_STARTED": 1,
+    "READ_UNAVAILABLE": 4,
+    "MODEL_BEFORE": 1,
+    "UNITS_AND_ACCURACY": 1,
+    "DEFAULT_BODY": 1,
+    "BODY": 1,
+    "SURFACE_UV_RANGE": 222,
+    "SURFACE": 222,
+    "SAMPLING_STARTED": 1,
+    "SURFACE_CANDIDATE_PLAN": 222,
+    "POINT_NORMAL_SAMPLE": 666,
+    "PLANE_SAMPLE_QUALITY": 126,
+    "SURFACE_SAMPLING_SUMMARY": 222,
+    "SAMPLE_REJECTED": 500,
+    "SURFACE_REFINEMENT_STARTED": 4,
+    "TARGET_REFINEMENT_RESULTS": 1,
+    "SAMPLING_SUMMARY": 1,
+    "MODEL_AFTER_ORIGINAL": 1,
+    "MODEL_AFTER_ACTIVE": 1,
+    "STEP2_IDENTITY_CONTEXT": 1,
+    "COLLECTION_SUMMARY": 1
+  },
+  "verified": {
+    "modelSurfaceAndUvRangeCount": 222,
+    "finiteIncreasingUvRanges": 222,
+    "acceptedSamples": 666,
+    "facesAtThreePointQuota": 222,
+    "baseSamples": 654,
+    "refinementSamples": 12,
+    "attempts": 1166,
+    "rejectedBoundary": 400,
+    "rejectedOutside": 100,
+    "allAcceptedTwoNativeInsideAndExactReturnedUv": true,
+    "allAcceptedPointsAndNormalsFinite": true,
+    "unitNormalTolerance": 1e-12,
+    "perFaceXyzDistinct": true,
+    "quotaFraction": 1.0,
+    "quotaIsAreaCoverage": false,
+    "planeQualityRows": 126,
+    "numericallyNonCollinearPlaneGroups": 78,
+    "numericallyCollinearOrNearDegeneratePlaneGroups": 48,
+    "allQualityMetricsIndependentlyRecomputed": true,
+    "fourTargetQualityFlagsTrue": true
+  },
+  "targetResults": [
+    {
+      "surfaceId": 2710,
+      "status": "POINT_QUOTA_MET_AFTER_REFINEMENT",
+      "acceptedSamples": 3,
+      "baseAttempts": 25,
+      "refinementAttempts": 3,
+      "stopReason": "TARGET_QUOTA_MET"
+    },
+    {
+      "surfaceId": 2738,
+      "status": "POINT_QUOTA_MET_AFTER_REFINEMENT",
+      "acceptedSamples": 3,
+      "baseAttempts": 25,
+      "refinementAttempts": 3,
+      "stopReason": "TARGET_QUOTA_MET"
+    },
+    {
+      "surfaceId": 2752,
+      "status": "POINT_QUOTA_MET_AFTER_REFINEMENT",
+      "acceptedSamples": 3,
+      "baseAttempts": 25,
+      "refinementAttempts": 3,
+      "stopReason": "TARGET_QUOTA_MET"
+    },
+    {
+      "surfaceId": 2843,
+      "status": "POINT_QUOTA_MET_AFTER_REFINEMENT",
+      "acceptedSamples": 3,
+      "baseAttempts": 25,
+      "refinementAttempts": 3,
+      "stopReason": "TARGET_QUOTA_MET"
+    }
+  ],
+  "targetTriangleAreaExceedsWholeFaceArea": {
+    "2752": true,
+    "2738": true,
+    "2843": true,
+    "2710": true
+  },
+  "interpretation": "THREE_POINT_TRIANGLE_AND_PARAMETER_BOX_ARE_NOT_TRIMMED_MATERIAL_AREA_COVERAGE",
+  "samplingSummary": {
+    "schema": "P1_NATIVE_READONLY_GEOMETRY_V1",
+    "timestamp": "2026-11-05T08:13:02.042557700Z",
+    "requestId": "96648181-ec90-4295-afe0-1c0e1bf94036",
+    "commandId": "SISWReadOnlyGeometrySample3",
+    "event": "SAMPLING_SUMMARY",
+    "collectorStep": "STEP_3",
+    "samplingSchema": "P1_NATIVE_GEOMETRY_SAMPLING_V1",
+    "samplingQualitySchema": "P1_NATIVE_GEOMETRY_SAMPLING_QUALITY_V1",
+    "scope": "MODEL_LISTED_PLANE_OR_CYLINDER",
+    "targetDenominator": 222,
+    "observedTargets": 222,
+    "facesVisited": 222,
+    "facesWithAnySample": 222,
+    "facesAtThreeSampleQuota": 222,
+    "attempts": 1166,
+    "acceptedSamples": 666,
+    "rejectedAttempts": 500,
+    "faceAnySampleCoverage": {
+      "denominator": 222,
+      "completed": 222,
+      "ratio": 1.0,
+      "status": "ALL_ENUMERATED_ENTRIES"
+    },
+    "faceQuotaCoverage": {
+      "denominator": 222,
+      "completed": 222,
+      "ratio": 1.0,
+      "status": "ALL_ENUMERATED_ENTRIES"
+    },
+    "pointQuotaCoverage": {
+      "denominator": 666,
+      "completed": 666,
+      "ratio": 1.0,
+      "status": "ALL_ENUMERATED_ENTRIES"
+    },
+    "globalStopReason": "NO_GLOBAL_LIMIT",
+    "coverageMeansAreaOrThicknessCoverage": false,
+    "planeGroupsAtQuota": 126,
+    "numericallyNonCollinearPlaneGroups": 78,
+    "numericallyCollinearPlaneGroups": 48,
+    "planeQualityUnknownGroups": 0,
+    "planeGroupsBelowPointQuota": 0,
+    "outcome": "POINT_QUOTAS_MET_ONLY",
+    "modelIdentityFinalCheck": "SEE_COLLECTION_SUMMARY"
+  },
+  "collectionSummary": {
+    "schema": "P1_NATIVE_READONLY_GEOMETRY_V1",
+    "timestamp": "2026-11-05T08:13:02.060509500Z",
+    "requestId": "96648181-ec90-4295-afe0-1c0e1bf94036",
+    "commandId": "SISWReadOnlyGeometrySample3",
+    "event": "COLLECTION_SUMMARY",
+    "collectorStep": "STEP_3",
+    "samplingSchema": "P1_NATIVE_GEOMETRY_SAMPLING_V1",
+    "samplingQualitySchema": "P1_NATIVE_GEOMETRY_SAMPLING_QUALITY_V1",
+    "outcome": "PARTIAL",
+    "errors": 0,
+    "unknownReadValues": 4,
+    "identityStableWithinObservedFields": false,
+    "identityOrDirtyChangeObserved": false,
+    "metadataComplete": false,
+    "defaultBodyStateKnown": true,
+    "allBodyEnumerationComplete": true,
+    "bodyMembershipEnumerationComplete": true,
+    "modelSurfaceEnumerationComplete": true,
+    "bodyStateCoverage": {
+      "denominator": 1,
+      "completed": 1,
+      "ratio": 1.0,
+      "status": "ALL_ENUMERATED_ENTRIES"
+    },
+    "modelSurfaceRecordCoverage": {
+      "denominator": 222,
+      "completed": 222,
+      "ratio": 1.0,
+      "status": "ALL_ENUMERATED_ENTRIES"
+    },
+    "modelSurfaceRequiredFieldCoverage": {
+      "denominator": 222,
+      "completed": 222,
+      "ratio": 1.0,
+      "status": "ALL_ENUMERATED_ENTRIES"
+    },
+    "modelUvRangeCoverage": {
+      "denominator": 222,
+      "completed": 222,
+      "ratio": 1.0,
+      "status": "ALL_ENUMERATED_ENTRIES"
+    },
+    "uniqueFacesRetained": 222,
+    "surfaceRecordsEmitted": 222,
+    "bodyOnlySurfaceRecords": 0,
+    "modelSurfaceRecordsNotProduced": 0,
+    "modelSurfaceRecordsWithIncompleteFields": 0,
+    "bodySurfaceReferencesVisited": 222,
+    "truncated": false,
+    "truncationReason": "NONE",
+    "elapsedMs": 4930,
+    "nativeBodyStateDoesNotEstablishThinWallShape": true,
+    "thinWallShapeAssessment": "INSUFFICIENT_EVIDENCE",
+    "uniformThicknessAssessment": "INSUFFICIENT_EVIDENCE",
+    "samplingCoverage": "SEE_STEP2_SAMPLING_SUMMARY",
+    "step2SamplingCoverage": {
+      "scope": "MODEL_LISTED_PLANE_OR_CYLINDER",
+      "targetDenominator": 222,
+      "observedTargets": 222,
+      "facesVisited": 222,
+      "facesWithAnySample": 222,
+      "facesAtThreeSampleQuota": 222,
+      "attempts": 1166,
+      "acceptedSamples": 666,
+      "rejectedAttempts": 500,
+      "faceAnySampleCoverage": {
+        "denominator": 222,
+        "completed": 222,
+        "ratio": 1.0,
+        "status": "ALL_ENUMERATED_ENTRIES"
+      },
+      "faceQuotaCoverage": {
+        "denominator": 222,
+        "completed": 222,
+        "ratio": 1.0,
+        "status": "ALL_ENUMERATED_ENTRIES"
+      },
+      "pointQuotaCoverage": {
+        "denominator": 666,
+        "completed": 666,
+        "ratio": 1.0,
+        "status": "ALL_ENUMERATED_ENTRIES"
+      },
+      "globalStopReason": "NO_GLOBAL_LIMIT",
+      "coverageMeansAreaOrThicknessCoverage": false,
+      "planeGroupsAtQuota": 126,
+      "numericallyNonCollinearPlaneGroups": 78,
+      "numericallyCollinearPlaneGroups": 48,
+      "planeQualityUnknownGroups": 0,
+      "planeGroupsBelowPointQuota": 0
+    },
+    "versionStampContextMatches": true,
+    "samplingIdentityDisposition": "OBSERVED_STAMP_FILE_HANDLE_DIRTY_CONTEXT_MATCH_NOT_INDEPENDENT_PROOF",
+    "modelWriteAbsenceIndependentlyProven": false
+  },
+  "step2Crosscheck": {
+    "inputSha256": "936d9c826d14d7b3635b6994fde33ec2e7836644b3650383c261399e880abbeb",
+    "all654BaseSamplesMatchSelectedGeometryFields": true,
+    "sameTransactionAuthenticated": false
+  },
+  "screenshot": {
+    "relativeName": "step3-ran.png",
+    "sha256": "0fbb46c6230c286a3e3c6f79bb8255794815a337825760b8f79e2b5c3fcbf6b9",
+    "visuallyReviewed": true,
+    "completionMessageVisible": true
+  },
+  "limits": {
+    "exactLoadedBinaryHashesProvided": false,
+    "independentTrimDomainProof": false,
+    "wallThicknessAssessed": false,
+    "modelWriteAbsenceIndependentlyProven": false
+  },
+  "codeChanged": false,
+  "newRuntimeExecuted": false
+}
