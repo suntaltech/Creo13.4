@@ -1,0 +1,29 @@
+# API调用、来源和UNKNOWN字段
+
+## 会话与临时命令/UI
+
+pfcSession.GetCurrentSessionWithCompatibility(C4Compatible)、Session.UICreateCommand、UICommand.Designate、RemoveActionListener只用于独立应用生命周期；Session.UIDisplayMessage用于开始/结束提示，提示内容不宣称所有字段成功。无UIAddButton、RunMacro、Ribbon加载或持久化。命令标签格式沿用已验证的单空行key/value资源；本新命令的消息解析仍需实际注册验证。
+
+## 模型只读调用
+
+Session/GetActiveModel；Model.GetType/GetFileName/GetRevision/GetIsModified/ListItems；ModelItem.GetId；ModelItems.get/getarraysize；Solid.GetPrincipalUnits/GetRelativeAccuracy/GetAbsoluteAccuracy/GetDefaultBody；UnitSystem.GetUnit(UNIT_LENGTH)、Unit.GetName/GetExpression；SolidBody.GetId/IsSheetmetal/ListSurfaces；Surfaces.get/getarraysize；Surface.GetId/GetSurfaceType/EvalArea；SurfaceType.getValue；jxobject_i.getptr仅作前后原生对象句柄比较，不输出句柄值。
+
+实际编译符号可能以继承声明类BaseSession引用GetActiveModel。evidence/compiled-sdk-calls.json为完整字节码常量池提取的实际调用集合，包括lambda方法引用；sdk-signatures为依赖签名，里面存在的其他SDK方法不代表采集器调用了它们。
+
+未调用Create/Regenerate/Save/Delete/Erase/Rename、模型精度/单位setter、WFC建模、浏览器桥或网络接口。本候选不调用Eval3DData或计算法向，这是第二步范围。
+
+## 值的含义
+
+原生GetRevision为SDK返回字符串，不与CREOSON revision整数强行等同。GetFileName只保留叶文件名，不读取GetOrigin/模型目录。GetIsModified前后值和原生句柄、文件名/revision用于有限范围核对：dirty变更或身份变化使结果标记OBSERVED_IDENTITY_OR_DIRTY_CHANGE；同名同revision/dirty相同也不能证明所有模型变化都可检测。
+
+GetPrincipalUnits→UNIT_LENGTH读取实际主长度单位，不默认mm或换算。面积为原生EvalArea返回值，按模型长度单位平方记录，不作为壁厚。精度两getter的原值分别记录，null、非有限或非正值不伪造精度；有效模式保持UNVERIFIED_API_VALUES_ONLY，不仅凭哪个getter非空就声称已核实有效精度模式。
+
+默认体单独记录；all bodies仅指Model.ListItems(ITEM_BODY)本次返回集合。失败、非SolidBody对象、未知ID、重复ID、计数/限制均保留异常或问题标记。默认体未被枚举确认时可单独回退采集默认体以保留诊断数据，但不提升为全部实体覆盖。
+
+曲面ID以同一模型为范围，Body.ListSurfaces提供成员关系；多实体关联冲突记AMBIGUOUS_MEMBERSHIP。无成员证据记OWNER_UNKNOWN，不直接认定属于quilt或默认体。模型曲面枚举之外的实体曲面标modelListed=false，不暗中纳入模型枚举覆盖率。列表可能包含无几何/构造/消耗状态实体，其读取失败不被隐去，也不通过自动再生补齐。
+
+## UNKNOWN与未实施项
+
+读取异常/空值、未支持的代理接口、未确认体ID/面ID、未知长度单位、精度、revision或归属保持UNKNOWN或明确空值/状态。各失败带operation及实际堆栈；无效面积为UNKNOWN并DATA_ISSUE，不输出NaN/Infinity。
+
+原生IsSheetmetal返回false只代表该实体原生状态，不代表几何不是薄壁。thinWallShapeAssessment、uniformThicknessAssessment一直证据不足；有效域内点、法向、距离、局部厚度、覆盖率与可展性均未实现。模型有多少面，不等于有多少采样点，日志的samplingCoverage明确不是第一步几何字段覆盖率。

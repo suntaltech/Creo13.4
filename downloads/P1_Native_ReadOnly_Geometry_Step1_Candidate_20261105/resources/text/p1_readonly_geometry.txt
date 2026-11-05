@@ -1,0 +1,14 @@
+P1_GEO_LABEL
+Collect Read-Only Geometry
+
+P1_GEO_HELP
+Collect native body state and surface types without model modification
+
+P1_GEO_DESC
+Read-only step 1: identities, units, accuracy, bodies and surfaces. No sampling or conversion.
+
+P1_GEO_STARTED
+Read-only geometry collection started. Review the independent geometry JSONL.
+
+P1_GEO_FINISHED
+Collection ended. Review JSONL summary for partial, unknown, errors or changed identity. Model not saved by collector.

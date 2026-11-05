@@ -1,0 +1,133 @@
+{
+  "artifactType": "INDEPENDENT_NATIVE_READONLY_GEOMETRY_STEP1_BINARY_CANDIDATE_NOT_RELEASE",
+  "date": "2026-11-05",
+  "taskInput": {
+    "fileName": "P1_原生只读几何采集_任务单_20261105.md",
+    "sha256": "fa7c913865788ab351345b1dcbe69cbacd9c8b434f35d369447c70fa71e89072"
+  },
+  "applicationClass": "p1.readonly.geometry.P1ReadOnlyGeometryCollector",
+  "commandId": "SISWReadOnlyGeometryCollect",
+  "displayName": "Collect Read-Only Geometry",
+  "sourceFiles": [
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "3fbe5e528e64c45be4090362c0bb7a7f70f3679e9f7fc3f6836c5846d44b1ab1"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometryCollector.java",
+      "sha256": "043c170613ea1275880a330d5b9b8dcf497064dd6cb0b2d13d131411ad83f8af"
+    }
+  ],
+  "sdk": {
+    "fileName": "otk.jar",
+    "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "realSdkUsed": true,
+    "runtimeJava25Required": true,
+    "pfcasyncUsed": false,
+    "redistributed": false
+  },
+  "compiler": {
+    "argv": [
+      "/workspace/r8-next-binary/toolchain/jdk-25.0.5.0.3/bin/javac",
+      "--release",
+      "17",
+      "-encoding",
+      "UTF-8",
+      "-proc:none",
+      "-Xlint:all",
+      "-classpath",
+      "/workspace/r8-next-binary/sdk-input/creo134-jlink-sdk-jars-20261105/otk.jar",
+      "-d",
+      "classes",
+      "source/GeometryEvidenceSupport.java",
+      "source/P1ReadOnlyGeometryCollector.java"
+    ],
+    "exitCode": 0,
+    "realSdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "pfcasyncExcluded": true,
+    "compilerVersion": "javac 25.0.5.0.3"
+  },
+  "classes": [
+    {
+      "relativeName": "classes/p1/readonly/geometry/GeometryEvidenceSupport.class",
+      "sha256": "8752e27c8cc02da23acc02859d35f708bae234336162905822dd93902384ff55",
+      "bytes": 4902,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/P1ReadOnlyGeometryCollector$Face.class",
+      "sha256": "85f31da73feb4c4a81f162fc089552c9abf9a74df5f1de0fce19efb323844b85",
+      "bytes": 673,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/P1ReadOnlyGeometryCollector$Listener.class",
+      "sha256": "032df308174d290f0619e2ff4e7c45f1b2379d1c8cd6a1a741602da0689983a7",
+      "bytes": 1975,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/P1ReadOnlyGeometryCollector$Read.class",
+      "sha256": "2a23de083a2f1ef4a57f59cef81831b16779d4aac77ffb2f14314e8f7cd25693",
+      "bytes": 510,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/P1ReadOnlyGeometryCollector$Run.class",
+      "sha256": "5bfa2140829caffecad4ea3fce850650307210bc004c142e5003dedc4362bfdd",
+      "bytes": 29224,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/P1ReadOnlyGeometryCollector.class",
+      "sha256": "a5d16dab9263fc3f61c06fcc0e4c8ffda643246498bd3e1730a761c3dffbfe05",
+      "bytes": 5073,
+      "major": 61
+    }
+  ],
+  "jar": {
+    "relativeName": "lib/p1-readonly-geometry.jar",
+    "sha256": "cd379a7b14a6acb4bd8d6a5f71effa102a7168212cd7cdde4938da81b5806d29",
+    "classCount": 6,
+    "classBytesMatchLooseFiles": true,
+    "sdkBundled": false
+  },
+  "validation": {
+    "realSdkCompilation": true,
+    "repeatCleanCompileIdentical": true,
+    "classes": {
+      "p1/readonly/geometry/GeometryEvidenceSupport.class": "8752e27c8cc02da23acc02859d35f708bae234336162905822dd93902384ff55",
+      "p1/readonly/geometry/P1ReadOnlyGeometryCollector$Face.class": "85f31da73feb4c4a81f162fc089552c9abf9a74df5f1de0fce19efb323844b85",
+      "p1/readonly/geometry/P1ReadOnlyGeometryCollector$Listener.class": "032df308174d290f0619e2ff4e7c45f1b2379d1c8cd6a1a741602da0689983a7",
+      "p1/readonly/geometry/P1ReadOnlyGeometryCollector$Read.class": "2a23de083a2f1ef4a57f59cef81831b16779d4aac77ffb2f14314e8f7cd25693",
+      "p1/readonly/geometry/P1ReadOnlyGeometryCollector$Run.class": "5bfa2140829caffecad4ea3fce850650307210bc004c142e5003dedc4362bfdd",
+      "p1/readonly/geometry/P1ReadOnlyGeometryCollector.class": "a5d16dab9263fc3f61c06fcc0e4c8ffda643246498bd3e1730a761c3dffbfe05"
+    },
+    "classMajor": 61,
+    "sdkRuntimeMajor": 69,
+    "jarClassesMatchLooseFiles": true,
+    "compiledSdkCallsAllowlisted": true,
+    "pureLogicChecksPassed": 19,
+    "codecOutputParsedByPython": true,
+    "mockSdkUsed": false,
+    "collectorExecuted": false,
+    "creoExecuted": false
+  },
+  "limits": {
+    "bodies": 128,
+    "uniqueSurfaces": 10000,
+    "bodySurfaceReferences": 40000,
+    "softBudgetSeconds": 30,
+    "hardNativeCallTimeoutGuaranteed": false
+  },
+  "step2SamplingImplemented": false,
+  "thinWallOrUniformThicknessRecognitionImplemented": false,
+  "existingJavaOrWebChanged": false,
+  "runtime": {
+    "creoExecuted": false,
+    "modelCallsExecuted": false,
+    "registrationVerified": false,
+    "collectorVerified": false,
+    "deployed": false
+  }
+}
