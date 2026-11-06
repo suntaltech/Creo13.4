@@ -1,0 +1,267 @@
+{
+  "artifactType": "INDEPENDENT_STEP7_READONLY_ANALYTIC_LOCAL_POINT_DISTANCE_CANDIDATE_NOT_RELEASE",
+  "date": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "taskInput": {
+    "fileName": "P1_原生几何相对面距离_第七步_任务单_20261106.md",
+    "sha256": "c5f7f399ba0835f014b4e69378079dd98351c42fdf1fc54b7fddc0ec75c07680"
+  },
+  "applicationClass": "p1.readonly.geometry.step7.P1ReadOnlyGeometrySamplerStep7",
+  "commandId": "SISWReadOnlyGeometrySample7",
+  "displayName": "Sample Read-Only Geometry Step 7",
+  "sourceFiles": [
+    {
+      "relativeName": "source/GeometryAnalyticMath.java",
+      "sha256": "84ccabe21b615033950f9d2024577437863f6a4fe753fee60e0748b271aa9cb0"
+    },
+    {
+      "relativeName": "source/GeometryCandidateQueue.java",
+      "sha256": "6d671c5528591eb313170300e4d73ffbf0e16a37b5b55ebb7cc08af8322d8dcd"
+    },
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "2ecea9a7547b5b29607f0a32f3f3b47f884616a26e304b2494f8397625eefb2d"
+    },
+    {
+      "relativeName": "source/GeometryPairEvidence.java",
+      "sha256": "eb0c602d6d70ff4f8df08f905a484c6cd87ebe672428de5ccf88e646e8226fb2"
+    },
+    {
+      "relativeName": "source/GeometryPoolSelection.java",
+      "sha256": "d2a41866ad750dd2e5d543b507347059557eb9a65acd6d8f142a7dea2f977a1a"
+    },
+    {
+      "relativeName": "source/GeometryReferenceBaseline.java",
+      "sha256": "ff86b2dfafd73f8cb1cfd2eee8c1fa78e47b65b9e146a0e5e18d6eebd3437f19"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "1a631bbaa3dea63316e4e77505bbb863413a2043e07be4cab4a6945b9210d450"
+    },
+    {
+      "relativeName": "source/GeometrySpreadSelection.java",
+      "sha256": "34070f4ddb70ab87daab1712459d22a03ad5f303195fccc92b83d5d3b220c2e9"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySamplerStep7.java",
+      "sha256": "d0f6ecbd07777f94d3aae973bf3c156b84106c270a1eac4ad0403e7acee0169e"
+    }
+  ],
+  "sdk": {
+    "fileName": "otk.jar",
+    "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "realSdkUsed": true,
+    "runtimeJava25Required": true,
+    "pfcasyncUsed": false,
+    "redistributed": false
+  },
+  "classes": [
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/GeometryAnalyticMath.class",
+      "sha256": "c98339b6dc061b5dd18a98564e2faedc5824802a3e1402849069cab85fe5714b",
+      "bytes": 7591,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/GeometryCandidateQueue$Seed.class",
+      "sha256": "50996320b68b1415c20affb383ed8fac86fd33c3e609809f69696525c35c4f46",
+      "bytes": 624,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/GeometryCandidateQueue.class",
+      "sha256": "0f7f86058d9f2563bff63e794f6b5993da0229615dd1b36ba3de4ec326771138",
+      "bytes": 3558,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/GeometryEvidenceSupport.class",
+      "sha256": "0c93db31cc851f133fdbe4249f822a5946e830f2cea8c4c506677bea06ba72b7",
+      "bytes": 4908,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/GeometryPairEvidence.class",
+      "sha256": "6f4681499055f590c51dc4baefe0378bfb835632ecfdd890371d266f45a52bb3",
+      "bytes": 6178,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/GeometryPoolSelection.class",
+      "sha256": "3362de229935f7eff52302e1664a18514268c03639e723f0e9e8053b1a42e114",
+      "bytes": 3926,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/GeometryReferenceBaseline.class",
+      "sha256": "73ccadea909e900eab537f1f244049e90d56d2b4d0a0f27b26664aca5ddaa6c8",
+      "bytes": 11732,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/GeometrySamplingMath.class",
+      "sha256": "5be9dc46f3337e3f63a27878e551945132f4447dc05205d91d22a06ea1861eb1",
+      "bytes": 9552,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/GeometrySpreadSelection.class",
+      "sha256": "d50cb4c531cc52fce7c8b2a4a80a7ac5c3922289687151caa7a9b22557f09d34",
+      "bytes": 5787,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$AnalyticData.class",
+      "sha256": "e67d2ec7370f3d1c286bbbd5e49c0bf9ae7e20a41f7d4ea93345d0a7b4594705",
+      "bytes": 593,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$Candidate.class",
+      "sha256": "5b31169610cd10f951dc1d4d6d558f9c4f0f3f43fde37e42d4ab6bb1d855c40e",
+      "bytes": 739,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$DomainPoint.class",
+      "sha256": "3feaaf8079030362bc3a31d280a87ae389c37b3e3a3e182196a916c2b8969b25",
+      "bytes": 516,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$Face.class",
+      "sha256": "7accb713a8ebb7c918f16a4c47495ecdcf9828eb1d72fbca673abdfbed0017d2",
+      "bytes": 780,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$Listener.class",
+      "sha256": "01a74cb6a749a43ee3012e76b0321436dd5017b18d1b35bf4dc027e300fa168d",
+      "bytes": 2005,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$Read.class",
+      "sha256": "e4afab622638dc6e68a10c1988ecfa31921ffd74b5b032201e32ec593f5c3c52",
+      "bytes": 531,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$Run.class",
+      "sha256": "f51ec4663e528c89bfd0534cff12fe45f41517c4146fc8e414ef2ecc665be20f",
+      "bytes": 89189,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$SamplingCounters.class",
+      "sha256": "6572d86009cf96c1bba9a9a145806668cd39d8767207940c057980658c080214",
+      "bytes": 4106,
+      "major": 61
+    },
+    {
+      "relativeName": "classes/p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7.class",
+      "sha256": "47b1b5635bf1203e00bd11815e48be188f18987ae70626291de82f90c562b8b0",
+      "bytes": 5552,
+      "major": 61
+    }
+  ],
+  "jar": {
+    "relativeName": "lib/p1-readonly-geometry-sampling-step7.jar",
+    "sha256": "5884a26f9ea2996a7c0f16523e83736c3f5b2acf243b49034fb9210635290a2c",
+    "classBytesMatchLooseFiles": true,
+    "sdkBundled": false
+  },
+  "validation": {
+    "realSdkCompilation": true,
+    "repeatCleanCompileIdentical": true,
+    "classes": {
+      "p1/readonly/geometry/step7/GeometryAnalyticMath.class": "c98339b6dc061b5dd18a98564e2faedc5824802a3e1402849069cab85fe5714b",
+      "p1/readonly/geometry/step7/GeometryCandidateQueue$Seed.class": "50996320b68b1415c20affb383ed8fac86fd33c3e609809f69696525c35c4f46",
+      "p1/readonly/geometry/step7/GeometryCandidateQueue.class": "0f7f86058d9f2563bff63e794f6b5993da0229615dd1b36ba3de4ec326771138",
+      "p1/readonly/geometry/step7/GeometryEvidenceSupport.class": "0c93db31cc851f133fdbe4249f822a5946e830f2cea8c4c506677bea06ba72b7",
+      "p1/readonly/geometry/step7/GeometryPairEvidence.class": "6f4681499055f590c51dc4baefe0378bfb835632ecfdd890371d266f45a52bb3",
+      "p1/readonly/geometry/step7/GeometryPoolSelection.class": "3362de229935f7eff52302e1664a18514268c03639e723f0e9e8053b1a42e114",
+      "p1/readonly/geometry/step7/GeometryReferenceBaseline.class": "73ccadea909e900eab537f1f244049e90d56d2b4d0a0f27b26664aca5ddaa6c8",
+      "p1/readonly/geometry/step7/GeometrySamplingMath.class": "5be9dc46f3337e3f63a27878e551945132f4447dc05205d91d22a06ea1861eb1",
+      "p1/readonly/geometry/step7/GeometrySpreadSelection.class": "d50cb4c531cc52fce7c8b2a4a80a7ac5c3922289687151caa7a9b22557f09d34",
+      "p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$AnalyticData.class": "e67d2ec7370f3d1c286bbbd5e49c0bf9ae7e20a41f7d4ea93345d0a7b4594705",
+      "p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$Candidate.class": "5b31169610cd10f951dc1d4d6d558f9c4f0f3f43fde37e42d4ab6bb1d855c40e",
+      "p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$DomainPoint.class": "3feaaf8079030362bc3a31d280a87ae389c37b3e3a3e182196a916c2b8969b25",
+      "p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$Face.class": "7accb713a8ebb7c918f16a4c47495ecdcf9828eb1d72fbca673abdfbed0017d2",
+      "p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$Listener.class": "01a74cb6a749a43ee3012e76b0321436dd5017b18d1b35bf4dc027e300fa168d",
+      "p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$Read.class": "e4afab622638dc6e68a10c1988ecfa31921ffd74b5b032201e32ec593f5c3c52",
+      "p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$Run.class": "f51ec4663e528c89bfd0534cff12fe45f41517c4146fc8e414ef2ecc665be20f",
+      "p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7$SamplingCounters.class": "6572d86009cf96c1bba9a9a145806668cd39d8767207940c057980658c080214",
+      "p1/readonly/geometry/step7/P1ReadOnlyGeometrySamplerStep7.class": "47b1b5635bf1203e00bd11815e48be188f18987ae70626291de82f90c562b8b0"
+    },
+    "classMajor": 61,
+    "sdkRuntimeMajor": 69,
+    "jarClassesMatchLooseFiles": true,
+    "compiledSdkCallsAllowlisted": true,
+    "pureLogicChecksPassed": 19,
+    "samplingMathPolicyChecksPassed": 59,
+    "step3QualityChecksPassed": 428,
+    "step4PoolChecksPassed": 548,
+    "step5QueueChecksPassed": 5281,
+    "step6EvidenceChecksPassed": 104,
+    "analyticMathChecksPassed": 94,
+    "codecOutputParsedByPython": true,
+    "mockSdkUsed": false,
+    "collectorExecuted": false,
+    "creoExecuted": false
+  },
+  "analyticPolicy": {
+    "descriptorSource": "Surface.GetSurfaceDescriptor",
+    "frameSource": "TransformedSurfaceDescriptor.GetCoordSys",
+    "radiusSource": "CylinderDescriptor.GetRadius",
+    "coordinateAxisConvention": "Z_AXIS_CANDIDATE_CHECKED_AGAINST_THREE_NATIVE_SAMPLES",
+    "independentOfficialSemanticCertification": false,
+    "unknownOnMismatch": true,
+    "angularNumericGuard": 9.094947017729282e-13,
+    "lengthGuard": "512*ulp(max(1,abs(coordinatesAndRadius)))",
+    "modelToleranceInferred": false
+  },
+  "distancePolicy": {
+    "coarseCandidatesAreNotThicknessPairs": true,
+    "selection": "FIRST16_PUBLISHED_PER_TYPE_INTERLEAVED",
+    "maxSelectedPairsPerType": 16,
+    "maxNativeDomainPointEvaluationChains": 768,
+    "defaultPlanChainsUpperBound": 544,
+    "planeProbeLocationsMax": 11,
+    "cylinderProbeLocationsMax": 6,
+    "twoNativeInsidePerPointRequired": true,
+    "bothFacesSeparatelyRevalidated": true,
+    "exactReturnedUvRequired": true,
+    "xyzRoundTripRequired": true,
+    "entireTrimmedOverlapRegionProven": false,
+    "globalMinimumDistanceComputed": false,
+    "finalWallThicknessComputed": false
+  },
+  "samplingFrozen": {
+    "step6BaselinePlanes": 126,
+    "nativeAttemptLimit": 3000,
+    "pointLimit": 900,
+    "faceLimit": 300,
+    "poolLimit": 35,
+    "qualityAttemptsPerFace": 32,
+    "thresholdRelaxed": false,
+    "softBudgetSecondsShared": 30,
+    "step7PreservationRuntimeResult": "NOT_EXECUTED_UNKNOWN"
+  },
+  "priorStep6Input": {
+    "jsonlSha256": "3304fcdf15e053d3c78ba71b500badbf5741fe32136ab5a172b09385ff2a216c",
+    "publishedCoarseCandidates": 128,
+    "priorPlanPairs": 32,
+    "step7Results": "NOT_EXECUTED_UNKNOWN"
+  },
+  "step6ProductChanged": false,
+  "webBusinessOrRibbonChanged": false,
+  "runtime": {
+    "creoExecuted": false,
+    "newSamplingExecuted": false,
+    "deployed": false,
+    "analyticParametersVerified": false,
+    "nativeInteriorWitnessesVerified": false,
+    "localDistancesVerified": false
+  }
+}

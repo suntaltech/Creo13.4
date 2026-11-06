@@ -1,0 +1,14 @@
+P1_SAMPLE7_LABEL
+Sample Read-Only Geometry Step 7
+
+P1_SAMPLE7_HELP
+Read native analytic descriptors and validate bounded two-face interior point distance witnesses
+
+P1_SAMPLE7_DESC
+Read-only analytic candidates and local distances. No final wall thickness, saving or conversion.
+
+P1_SAMPLE7_STARTED
+Step 7 read-only sampling started. Review the new step7 JSONL.
+
+P1_SAMPLE7_FINISHED
+Step 7 sampling ended. Review analytic failures, both-face native inside witnesses, local distance scope and final identity status.

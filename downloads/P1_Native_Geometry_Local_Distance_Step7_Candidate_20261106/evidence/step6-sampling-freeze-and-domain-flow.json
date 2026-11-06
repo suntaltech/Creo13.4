@@ -1,0 +1,20 @@
+{
+  "step6SamplePathChecks": {
+    "void sampleTargets()": {
+      "identical": true,
+      "sha256": "7cd64ef70db74f2531306153a5eaeda71896e4ad94ebebe96ad94ad040a8e48d"
+    },
+    "Candidate validateCandidate(": {
+      "identical": true,
+      "sha256": "376d9cb53fc065dbc663ff33ae8a50043d824347c4b2a683aadfa62bcc163647"
+    },
+    "void reject(": {
+      "identical": true,
+      "sha256": "9f780864d4f9a8f2cb4f9da4e4c8c7533111030f40a34d5dd29694adc0aa0a99"
+    }
+  },
+  "allSevenStep6PureSourcesIdenticalExceptNamespace": true,
+  "newDomainSuccessOnlyAfterBothNativeInsideExactUvFiniteNormalAndXyzRoundTrip": true,
+  "newAnalyticAndDomainReadsRunAfterFrozenSamplingAndCoarsePairing": true,
+  "thisIsStaticAndCompileEvidenceNotNativeRuntime": true
+}

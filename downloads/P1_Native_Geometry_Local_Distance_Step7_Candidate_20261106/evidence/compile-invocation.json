@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "/workspace/r8-next-binary/toolchain/jdk-25.0.5.0.3/bin/javac",
+    "--release",
+    "17",
+    "-encoding",
+    "UTF-8",
+    "-proc:none",
+    "-Xlint:all",
+    "-classpath",
+    "/workspace/r8-next-binary/sdk-input/creo134-jlink-sdk-jars-20261105/otk.jar",
+    "-d",
+    "classes",
+    "source/GeometryEvidenceSupport.java",
+    "source/GeometrySamplingMath.java",
+    "source/GeometryPoolSelection.java",
+    "source/GeometryCandidateQueue.java",
+    "source/GeometrySpreadSelection.java",
+    "source/GeometryPairEvidence.java",
+    "source/GeometryReferenceBaseline.java",
+    "source/GeometryAnalyticMath.java",
+    "source/P1ReadOnlyGeometrySamplerStep7.java"
+  ],
+  "exitCode": 0,
+  "realSdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+  "pfcasyncExcluded": true,
+  "compilerVersion": "javac 25.0.5.0.3"
+}

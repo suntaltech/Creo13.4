@@ -1,0 +1,12 @@
+{
+  "type": "OFFLINE_STEP4_TRIPLES_WITHOUT_NEW_NATIVE_CANDIDATES",
+  "planeGroups": 126,
+  "beforeNumericallyNonCollinear": 94,
+  "afterNumericallyNonCollinear": 94,
+  "replacements": 0,
+  "newNativeCandidateDataAvailable": false,
+  "thresholdUnchanged": true,
+  "runtimeImprovementVerified": false,
+  "inputStep4JsonlSha256": "29241fc2139e4ce1d07e63da0114b20b36ec7b8bb0419653782593a161974039",
+  "rawPointCoordinatesRepublished": false
+}

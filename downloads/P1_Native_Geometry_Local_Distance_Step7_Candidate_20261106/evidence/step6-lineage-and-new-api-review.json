@@ -1,0 +1,58 @@
+{
+  "step6Commit": "856b9c530bc1a26c0ffa3b711964cce16959475e",
+  "step6ReviewCommit": "a05c577a71674b1a6d728509e4a86e250d00d397",
+  "step6Sources": [
+    {
+      "relativeName": "source/GeometryCandidateQueue.java",
+      "sha256": "dce04930b6f292374d43f735a70d8c4d8ee995e638cd432fd6464beb202fe860"
+    },
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "9284a37f8c1dc91e7d8ec7716b9ea8af5d539babb15d3becba4f9ee35887881b"
+    },
+    {
+      "relativeName": "source/GeometryPairEvidence.java",
+      "sha256": "2209c2de17ff3966ad4b284183713873d05e00cceb759281f78fb695b0e513ba"
+    },
+    {
+      "relativeName": "source/GeometryPoolSelection.java",
+      "sha256": "e04239a1aa41afa0f15edf7ac8aafc54f7fb0beb31d50023decaabdc5056f99f"
+    },
+    {
+      "relativeName": "source/GeometryReferenceBaseline.java",
+      "sha256": "28dd7c9dc3d1e183d4a9870785d0cfcf37304beabaaafb1c8a5633eaefa0d006"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "993e68c80bbdf94862e0ab817e85820ebdb85fb38b1ae52f5d63007050d10b1c"
+    },
+    {
+      "relativeName": "source/GeometrySpreadSelection.java",
+      "sha256": "d01a066623c446a87d5612438cdb8165715df97503ec77f54124d0abe3d469fc"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySamplerStep6.java",
+      "sha256": "93cd684e8b57cf45a43aafd5684f8f06fdeed4d40709d9985a6106d1ffda6486"
+    }
+  ],
+  "step6JarSha256": "a437b87120ba8e90cf720af532835f04ff0f98cd20be30101f5f109facc4b5b0",
+  "step6FilesVerifiedUnchanged": true,
+  "step7IndependentApplication": true,
+  "newSdkReferences": [
+    "com/ptc/pfc/pfcBase/Point3D.create",
+    "com/ptc/pfc/pfcBase/Point3D.set",
+    "com/ptc/pfc/pfcBase/Transform3D.GetOrigin",
+    "com/ptc/pfc/pfcBase/Transform3D.GetXAxis",
+    "com/ptc/pfc/pfcBase/Transform3D.GetYAxis",
+    "com/ptc/pfc/pfcBase/Transform3D.GetZAxis",
+    "com/ptc/pfc/pfcGeometry/CylinderDescriptor.GetRadius",
+    "com/ptc/pfc/pfcGeometry/Surface.EvalParameters",
+    "com/ptc/pfc/pfcGeometry/Surface.GetSurfaceDescriptor",
+    "com/ptc/pfc/pfcGeometry/SurfaceDescriptor.GetOrientation",
+    "com/ptc/pfc/pfcGeometry/SurfaceDescriptor.GetSurfaceType",
+    "com/ptc/pfc/pfcGeometry/TransformedSurfaceDescriptor.GetCoordSys"
+  ],
+  "newPoint3DSetIsFreshArgumentObjectOnly": true,
+  "modelSetSaveOrConversionApiAdded": false,
+  "signatureEvidenceDoesNotCertifyTransformZConvention": true
+}

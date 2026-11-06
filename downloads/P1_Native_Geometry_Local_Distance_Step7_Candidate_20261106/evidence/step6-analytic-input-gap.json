@@ -1,0 +1,9 @@
+{
+  "inputStep6Sha256": "3304fcdf15e053d3c78ba71b500badbf5741fe32136ab5a172b09385ff2a216c",
+  "existingFinalPointCount": 666,
+  "existingCoarsePairPublished": 128,
+  "nativeDescriptorsProvided": false,
+  "nativeInverseUvResultsProvided": false,
+  "newAnalyticOrDistanceRuntimeInferred": false,
+  "step7RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+}

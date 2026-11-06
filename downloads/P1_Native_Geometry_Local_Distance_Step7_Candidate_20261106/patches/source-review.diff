@@ -1,0 +1,307 @@
+--- /dev/null
++++ step7/source/GeometryAnalyticMath.java
+@@ -0,0 +1,68 @@
++package p1.readonly.geometry.step7;
++import java.util.*;
++/** Parameter hypotheses and local point arithmetic only. No native placements are simulated. */
++public final class GeometryAnalyticMath {
++ public static final double ANGULAR_NUMERIC_GUARD=4096*Math.ulp(1.0);
++ public static final int MAX_DISTANCE_PAIRS_PER_TYPE=16,MAX_DOMAIN_EVALUATIONS=768;
++ private GeometryAnalyticMath() { }
++ public static double dot(double[] a,double[] b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2];}
++ public static double[] sub(double[] a,double[] b){return new double[]{a[0]-b[0],a[1]-b[1],a[2]-b[2]};}
++ public static double crossLength(double[] a,double[] b){return length(new double[]{a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]});}
++ public static double length(double[] p){return Math.hypot(Math.hypot(p[0],p[1]),p[2]);}
++ public static double guard(double[]... values){double scale=1;for(double[] p:values)if(p!=null)for(double v:p){if(!Double.isFinite(v))return Double.NaN;scale=Math.max(scale,Math.abs(v));}return 512*Math.ulp(scale);}
++ public static Map<String,Object> validate(String kind,double[] origin,double[] x,double[] y,double[] z,Double radius,List<double[]> points,List<double[]> normals){
++  Map<String,Object> r=GeometryEvidenceSupport.map("parametersConsistentWithSamples",false,"status","UNKNOWN_INVALID_ANALYTIC_PARAMETERS",
++   "axisConvention","TRANSFORM_Z_AXIS_CANDIDATE_CHECKED_WITH_NATIVE_SAMPLES_NOT_OFFICIAL_SEMANTIC_CERTIFICATION",
++   "angularNumericGuard",ANGULAR_NUMERIC_GUARD,"numericGuardMeaning","FLOATING_POINT_REPRESENTATION_POLICY_NOT_MODEL_TOLERANCE");
++  if(!Arrays.asList("PLANE","CYLINDER").contains(kind)||!GeometrySamplingMath.finite3(origin)||points==null||normals==null||points.size()!=3||normals.size()!=3)return r;
++  double[] nx,ny,nz;
++  try{nx=GeometrySamplingMath.normalUnit(x);ny=GeometrySamplingMath.normalUnit(y);nz=GeometrySamplingMath.normalUnit(z);}catch(IllegalArgumentException e){return r;}
++  if(Math.max(Math.abs(dot(nx,ny)),Math.max(Math.abs(dot(nx,nz)),Math.abs(dot(ny,nz))))>ANGULAR_NUMERIC_GUARD){r.put("status","UNKNOWN_NONORTHOGONAL_COORDINATE_AXES");return r;}
++  if(kind.equals("CYLINDER")&&(radius==null||!Double.isFinite(radius)||radius<=0)){r.put("status","UNKNOWN_INVALID_RADIUS");return r;}
++  double worst=0,normalResidual=0,signedMin=1,signedMax=-1,g=guard(origin,new double[]{radius==null?0:radius});
++  for(int i=0;i<3;i++){
++   if(!GeometrySamplingMath.finite3(points.get(i)))return r;
++   double[] normal;try{normal=GeometrySamplingMath.normalUnit(normals.get(i));}catch(IllegalArgumentException e){return r;}
++   double[] delta=sub(points.get(i),origin);if(!GeometrySamplingMath.finite3(delta))return r;
++   g=Math.max(g,guard(origin,points.get(i)));double along=dot(delta,nz),sd=dot(normal,nz);signedMin=Math.min(signedMin,sd);signedMax=Math.max(signedMax,sd);
++   if(kind.equals("PLANE")){worst=Math.max(worst,Math.abs(along));normalResidual=Math.max(normalResidual,crossLength(normal,nz));}
++   else{
++    double[] radial={delta[0]-along*nz[0],delta[1]-along*nz[1],delta[2]-along*nz[2]};double len=length(radial);
++    if(!Double.isFinite(len)||len==0)return r;
++    worst=Math.max(worst,Math.abs(len-radius));double radialDot=dot(normal,new double[]{radial[0]/len,radial[1]/len,radial[2]/len});
++    normalResidual=Math.max(normalResidual,Math.max(Math.abs(sd),crossLength(normal,new double[]{radial[0]/len,radial[1]/len,radial[2]/len})));
++   }
++  }
++  boolean finite=Double.isFinite(worst)&&Double.isFinite(normalResidual)&&Double.isFinite(g);
++  boolean valid=finite&&worst<=g&&normalResidual<=ANGULAR_NUMERIC_GUARD;
++  r.put("parametersConsistentWithSamples",valid);r.put("status",valid?"ANALYTIC_AXIS_CANDIDATE_CONSISTENT_WITH_THREE_NATIVE_SAMPLES":"UNKNOWN_ANALYTIC_CANDIDATE_SAMPLE_MISMATCH");
++  r.put("sampleResidualMax",finite?worst:"UNKNOWN_NONFINITE");r.put("normalResidualMax",finite?normalResidual:"UNKNOWN_NONFINITE");r.put("lengthNumericGuard",finite?g:"UNKNOWN_NONFINITE");
++  r.put("sampleNormalDotZMin",signedMin);r.put("sampleNormalDotZMax",signedMax);return r;
++ }
++ public static double[] project(String kind,double[] point,double[] origin,double[] axis,Double radius){
++  if(!GeometrySamplingMath.finite3(point)||!GeometrySamplingMath.finite3(origin))return null;double[] n;
++  try{n=GeometrySamplingMath.normalUnit(axis);}catch(IllegalArgumentException e){return null;}
++  double[] d=sub(point,origin);if(!GeometrySamplingMath.finite3(d))return null;double t=dot(d,n);double[] q;
++  if(kind.equals("PLANE"))q=new double[]{point[0]-t*n[0],point[1]-t*n[1],point[2]-t*n[2]};
++  else if(kind.equals("CYLINDER")&&radius!=null&&Double.isFinite(radius)&&radius>0){double[] radial={d[0]-t*n[0],d[1]-t*n[1],d[2]-t*n[2]};double len=length(radial);if(!Double.isFinite(len)||len==0)return null;q=new double[]{origin[0]+t*n[0]+radius*radial[0]/len,origin[1]+t*n[1]+radius*radial[1]/len,origin[2]+t*n[2]+radius*radial[2]/len};}
++  else return null;
++  return GeometrySamplingMath.finite3(q)?q:null;
++ }
++ public static Map<String,Object> pair(String kind,double[] oa,double[] za,Double ra,double[] ob,double[] zb,Double rb){
++  Map<String,Object> r=GeometryEvidenceSupport.map("supportingGapCandidate","UNKNOWN","gapMeaning","ANALYTIC_SUPPORT_SURFACE_CANDIDATE_NOT_LOCAL_TRIMMED_DISTANCE_OR_WALL_THICKNESS","finalWallThickness","NOT_ASSESSED");
++  if(!GeometrySamplingMath.finite3(oa)||!GeometrySamplingMath.finite3(ob))return r;double[] a,b;
++  try{a=GeometrySamplingMath.normalUnit(za);b=GeometrySamplingMath.normalUnit(zb);}catch(IllegalArgumentException e){return r;}
++  double d=dot(a,b);r.put("analyticAxisDot",d);double cross=crossLength(a,b);r.put("analyticAxisCrossMagnitude",cross);boolean parallel=cross<=ANGULAR_NUMERIC_GUARD;r.put("axesNumericallyParallel",parallel);
++  if(!parallel){r.put("status","NONPARALLEL_NO_CONSTANT_SUPPORT_GAP");return r;}
++  double[] delta=sub(ob,oa);if(!GeometrySamplingMath.finite3(delta))return r;double along=dot(delta,a);
++  if(kind.equals("PLANE")){double g=Math.abs(along);if(Double.isFinite(g))r.put("supportingGapCandidate",g);r.put("status","PARALLEL_SUPPORT_PLANE_OFFSET_CANDIDATE");}
++  else if(kind.equals("CYLINDER")){
++   double[] off={delta[0]-along*a[0],delta[1]-along*a[1],delta[2]-along*a[2]};double residual=length(off),g=guard(oa,ob);boolean coaxial=Double.isFinite(residual)&&residual<=g;
++   r.put("axisPerpendicularOffsetCandidate",Double.isFinite(residual)?residual:"UNKNOWN");r.put("axisOffsetNumericGuard",g);r.put("axesNumericallyCoaxialCandidates",coaxial);
++   if(coaxial&&ra!=null&&rb!=null&&Double.isFinite(ra)&&Double.isFinite(rb)&&ra>0&&rb>0)r.put("supportingGapCandidate",Math.abs(ra-rb));
++   r.put("status",coaxial?"COAXIAL_CYLINDER_RADIUS_GAP_CANDIDATE":"NONCOAXIAL_RADIUS_GAP_UNKNOWN");
++  }
++  return r;
++ }
++ public static Map<String,Object> roundTrip(double[] requested,double[] actual){double residual=GeometrySamplingMath.finite3(requested)&&GeometrySamplingMath.finite3(actual)?length(sub(actual,requested)):Double.NaN;double g=guard(requested,actual);boolean ok=Double.isFinite(residual)&&Double.isFinite(g)&&residual<=g;return GeometryEvidenceSupport.map("roundTripMatchesWithinNumericGuard",ok,"xyzRoundTripResidual",Double.isFinite(residual)?residual:"UNKNOWN","xyzNumericGuard",Double.isFinite(g)?g:"UNKNOWN","guardIsModelTolerance",false);}
++}
+--- step6/source/GeometryCandidateQueue.java
++++ step7/source/GeometryCandidateQueue.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step6;
++package p1.readonly.geometry.step7;
+--- step6/source/GeometryEvidenceSupport.java
++++ step7/source/GeometryEvidenceSupport.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step6;
++package p1.readonly.geometry.step7;
+--- step6/source/GeometryPairEvidence.java
++++ step7/source/GeometryPairEvidence.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step6;
++package p1.readonly.geometry.step7;
+--- step6/source/GeometryPoolSelection.java
++++ step7/source/GeometryPoolSelection.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step6;
++package p1.readonly.geometry.step7;
+--- step6/source/GeometryReferenceBaseline.java
++++ step7/source/GeometryReferenceBaseline.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step6;
++package p1.readonly.geometry.step7;
+--- step6/source/GeometrySamplingMath.java
++++ step7/source/GeometrySamplingMath.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step6;
++package p1.readonly.geometry.step7;
+--- step6/source/GeometrySpreadSelection.java
++++ step7/source/GeometrySpreadSelection.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step6;
++package p1.readonly.geometry.step7;
+--- step6/source/P1ReadOnlyGeometrySamplerStep6.java
++++ step7/source/P1ReadOnlyGeometrySamplerStep7.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step6;
++package p1.readonly.geometry.step7;
+@@ -23 +23,2 @@
+-import static p1.readonly.geometry.step6.GeometryEvidenceSupport.*;
++import com.ptc.pfc.pfcBase.Transform3D;
++import static p1.readonly.geometry.step7.GeometryEvidenceSupport.*;
+@@ -26,3 +27,3 @@
+-public final class P1ReadOnlyGeometrySamplerStep6 {
+-    public static final String COMMAND_ID = "SISWReadOnlyGeometrySample6";
+-    private static final String MESSAGES = "p1_readonly_sampling_step6.txt";
++public final class P1ReadOnlyGeometrySamplerStep7 {
++    public static final String COMMAND_ID = "SISWReadOnlyGeometrySample7";
++    private static final String MESSAGES = "p1_readonly_sampling_step7.txt";
+@@ -36 +37 @@
+-    private P1ReadOnlyGeometrySamplerStep6() { }
++    private P1ReadOnlyGeometrySamplerStep7() { }
+@@ -47 +48 @@
+-            command.Designate(MESSAGES, "P1_SAMPLE6_LABEL", "P1_SAMPLE6_HELP", "P1_SAMPLE6_DESC");
++            command.Designate(MESSAGES, "P1_SAMPLE7_LABEL", "P1_SAMPLE7_HELP", "P1_SAMPLE7_DESC");
+@@ -95,0 +97,8 @@
++    }
++    private static final class AnalyticData {
++        final String kind;double[] origin,x,y,z;Double radius;boolean valid;
++        AnalyticData(String kind){this.kind=kind;}
++    }
++    private static final class DomainPoint {
++        final double[] point,normal;final int ordinal;
++        DomainPoint(double[] point,double[] normal,int ordinal){this.point=point;this.normal=normal;this.ordinal=ordinal;}
+@@ -143,0 +153,4 @@
++        boolean analyticPhaseStarted,analyticPhaseFinished,distancePhaseStarted,distancePhaseFinished,distancePhaseTruncated;
++        int analyticInvalid,domainEvaluations,domainAccepted,domainRejected;
++        final Map<Integer,AnalyticData> analyticData=new LinkedHashMap<>();
++        final Map<String,List<Map<String,Object>>> distancePairs=new LinkedHashMap<>();
+@@ -153 +166 @@
+-            Path output = directory.resolve("geometry-sampling-step6-" + requestId + ".jsonl");
++            Path output = directory.resolve("geometry-sampling-step7-" + requestId + ".jsonl");
+@@ -160 +173 @@
+-                    "collectorStep", "STEP_6", "samplingSchema", "P1_NATIVE_GEOMETRY_SAMPLING_V1",
++                    "collectorStep", "STEP_7", "samplingSchema", "P1_NATIVE_GEOMETRY_SAMPLING_V1",
+@@ -162 +175 @@
+-                    "selectionSchema", "P1_NATIVE_PLANE_POINT_POOL_V1", "queueSchema", "P1_NATIVE_MIXED_UV_QUEUE_V1", "spreadSchema","P1_NATIVE_SPREAD_FROZEN_BASELINE_V1","pairSchema","P1_NATIVE_RELATIVE_FACE_CANDIDATES_V1");
++                    "selectionSchema", "P1_NATIVE_PLANE_POINT_POOL_V1", "queueSchema", "P1_NATIVE_MIXED_UV_QUEUE_V1", "spreadSchema","P1_NATIVE_SPREAD_FROZEN_BASELINE_V1","pairSchema","P1_NATIVE_RELATIVE_FACE_CANDIDATES_V1","distanceSchema","P1_NATIVE_ANALYTIC_LOCAL_DISTANCE_V1");
+@@ -201 +214 @@
+-            read("Session.UIDisplayMessage(STARTED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE6_STARTED", null); return Boolean.TRUE; });
++            read("Session.UIDisplayMessage(STARTED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE7_STARTED", null); return Boolean.TRUE; });
+@@ -268,0 +282,2 @@
++                collectAnalyticParameters();
++                collectLocalDistances();
+@@ -306 +321 @@
+-                read("Session.UIDisplayMessage(FINISHED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE6_FINISHED", null); return Boolean.TRUE; });
++                read("Session.UIDisplayMessage(FINISHED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE7_FINISHED", null); return Boolean.TRUE; });
+@@ -311 +326 @@
+-                        && modelFaceTotal!=null && validModelUvBounds==modelFaceTotal && sampling.qualityUnimprovedFaces==0 && pairEvidenceFinished && !pairEvidenceTruncated;
++                        && modelFaceTotal!=null && validModelUvBounds==modelFaceTotal && sampling.qualityUnimprovedFaces==0 && pairEvidenceFinished && !pairEvidenceTruncated && analyticPhaseFinished && analyticInvalid==0 && distancePhaseFinished && !distancePhaseTruncated && unknownReads==0;
+@@ -329,0 +345,4 @@
++                        "analyticParametersFinished",analyticPhaseFinished,"analyticParametersUnknownOrInconsistent",analyticInvalid,
++                        "localDistanceEvidenceState",distancePhaseFinished?"BOUNDED_POINT_WITNESSES_ONLY":distancePhaseStarted?"PARTIAL_OR_ABORTED_UNKNOWN":"NOT_ENTERED_UNKNOWN",
++                        "domainEvaluationChains",domainEvaluations,"domainAccepted",domainAccepted,"domainRejected",domainRejected,
++                        "localDistanceEvidenceTruncated",distancePhaseTruncated,"finalWallThickness","NOT_ASSESSED","entireTrimmedOverlapRegionProven",false,
+@@ -601,0 +621,2 @@
++                List<Map<String,Object>> selected=distancePairs.computeIfAbsent(type,key->new ArrayList<>());
++                if(selected.size()<GeometryAnalyticMath.MAX_DISTANCE_PAIRS_PER_TYPE)selected.add(new LinkedHashMap<>(evidence));
+@@ -611,0 +633,135 @@
++        }
++        void collectAnalyticParameters() throws IOException {
++            int visited=0,valid=0;analyticPhaseStarted=true;
++            emit("ANALYTIC_PARAMETERS_STARTED",map("eligibleFaces",finalFaceSamples.size(),"source","Surface.GetSurfaceDescriptor / TransformedSurfaceDescriptor.GetCoordSys / CylinderDescriptor.GetRadius","newNativeReads",true));
++            for(Integer id:finalFaceSamples.keySet()) {
++                if(!withinBudget()){distancePhaseTruncated=true;break;}
++                Face face=faces.get(id);String kind=typeName(face.surfaceType);AnalyticData data=new AnalyticData(kind);
++                Map<String,Object> record=map("surfaceId",id,"bodyId",face.bodyIds.iterator().next(),"nativeSurfaceType",kind,
++                        "lengthUnit",known(lengthUnitName),"radiusLengthUnit",known(lengthUnitName),"coordinateFrame","ACTIVE_PART_MODEL_AS_RETURNED_BY_NATIVE_DESCRIPTOR",
++                        "normalIsOutwardCertified",false,"source","Surface.GetSurfaceDescriptor","failureValuesPreserved",true,
++                        "liveSurfaceOrientationCode",finalFaceSamples.get(id).get(0).record.get("surfaceOrientationCode"));
++                SurfaceDescriptor descriptor=read("Surface["+id+"].GetSurfaceDescriptor",face.surface::GetSurfaceDescriptor);
++                if(descriptor!=null){
++                    record.put("descriptorRuntimeClass",((Object)descriptor).getClass().getName());
++                    SurfaceType descriptorType=read("Descriptor["+id+"].GetSurfaceType",descriptor::GetSurfaceType);
++                    SurfaceOrientation descriptorOrientation=read("Descriptor["+id+"].GetOrientation",descriptor::GetOrientation);
++                    record.put("descriptorTypeCode",descriptorType==null?"UNKNOWN":descriptorType.getValue());
++                    record.put("descriptorOrientationCode",descriptorOrientation==null?"UNKNOWN":descriptorOrientation.getValue());
++                    boolean typed=kind.equals("PLANE")?descriptor instanceof PlaneDescriptor:descriptor instanceof CylinderDescriptor;
++                    if(typed&&descriptorType!=null&&descriptorType.getValue()==face.surfaceType.getValue()&&descriptor instanceof TransformedSurfaceDescriptor){
++                        TransformedSurfaceDescriptor transformed=(TransformedSurfaceDescriptor)descriptor;
++                        Transform3D frame=read("Descriptor["+id+"].GetCoordSys",transformed::GetCoordSys);
++                        if(frame!=null){
++                            Point3D origin=read("DescriptorFrame["+id+"].GetOrigin",frame::GetOrigin);
++                            Vector3D x=read("DescriptorFrame["+id+"].GetXAxis",frame::GetXAxis),y=read("DescriptorFrame["+id+"].GetYAxis",frame::GetYAxis),z=read("DescriptorFrame["+id+"].GetZAxis",frame::GetZAxis);
++                            data.origin=origin==null?null:read("DescriptorOrigin["+id+"].get",()->new double[]{origin.get(0),origin.get(1),origin.get(2)});
++                            data.x=x==null?null:read("DescriptorXAxis["+id+"].get",()->new double[]{x.get(0),x.get(1),x.get(2)});
++                            data.y=y==null?null:read("DescriptorYAxis["+id+"].get",()->new double[]{y.get(0),y.get(1),y.get(2)});
++                            data.z=z==null?null:read("DescriptorZAxis["+id+"].get",()->new double[]{z.get(0),z.get(1),z.get(2)});
++                        }
++                        if(descriptor instanceof CylinderDescriptor){CylinderDescriptor cylinder=(CylinderDescriptor)descriptor;data.radius=read("CylinderDescriptor["+id+"].GetRadius",cylinder::GetRadius);}
++                    }else record.put("descriptorFailure","PUBLIC_DESCRIPTOR_INTERFACE_OR_TYPE_MISMATCH");
++                }else record.put("descriptorFailure","DESCRIPTOR_UNAVAILABLE");
++                List<double[]> points=new ArrayList<>(),normals=new ArrayList<>();for(Candidate c:finalFaceSamples.get(id)){points.add(c.point);normals.add(vector(c.record.get("normalUnit")));}
++                Map<String,Object> validation=GeometryAnalyticMath.validate(kind,data.origin,data.x,data.y,data.z,data.radius,points,normals);
++                data.valid=lengthUnitName!=null&&Boolean.TRUE.equals(validation.get("parametersConsistentWithSamples"));
++                record.put("origin",GeometrySamplingMath.safeValues(data.origin));record.put("xAxisRaw",GeometrySamplingMath.safeValues(data.x));record.put("yAxisRaw",GeometrySamplingMath.safeValues(data.y));record.put("zAxisCandidateRaw",GeometrySamplingMath.safeValues(data.z));record.put("radiusCandidateRaw",data.radius==null?"UNKNOWN":Double.isFinite(data.radius)?data.radius:String.valueOf(data.radius));
++                record.put("parameterSampleValidation",validation);record.put("usableForLocalProjection",data.valid);record.put("analyticSemanticConventionIndependentlyCertified",false);
++                analyticData.put(id,data);visited++;if(data.valid)valid++;emit("SURFACE_ANALYTIC_PARAMETERS",record);
++            }
++            analyticInvalid=visited-valid;analyticPhaseFinished=visited==finalFaceSamples.size();
++            emit("ANALYTIC_PARAMETERS_SUMMARY",map("eligibleFaces",finalFaceSamples.size(),"visited",visited,"usableParameters",valid,"unknownOrInconsistent",analyticInvalid,"notVisited",finalFaceSamples.size()-visited,"finished",analyticPhaseFinished,"outcome",analyticPhaseFinished&&analyticInvalid==0?"SAMPLE_CONSISTENT_ANALYTIC_CANDIDATES_ONLY":"PARTIAL_OR_UNKNOWN_ANALYTIC_PARAMETERS","axisConventionCertified",false));
++        }
++        boolean canEvaluateDomain(){
++            if(!withinBudget()||domainEvaluations>=GeometryAnalyticMath.MAX_DOMAIN_EVALUATIONS){distancePhaseTruncated=true;return false;}return true;
++        }
++        DomainPoint evaluateDomain(Integer id,double[] requested,String pairId,String role) throws IOException {
++            if(!canEvaluateDomain())return null;int ordinal=++domainEvaluations;
++            Map<String,Object> e=map("pairId",pairId,"domainEvaluationOrdinal",ordinal,"surfaceId",id,"role",role,
++                    "requestedWorldPoint",GeometrySamplingMath.safeValues(requested),"lengthUnit",known(lengthUnitName),"nativeInsideAccepted",false,
++                    "nativeMethod","Surface.EvalParameters -> VerifyUV -> Eval3DData -> exact GetParams -> VerifyUV -> GetPoint/GetNormal",
++                    "xyzNumericGuardIsModelTolerance",false,"identityDisposition","PENDING_FINAL_COLLECTION_SUMMARY");
++            if(!GeometrySamplingMath.finite3(requested))return domainReject(e,"NONFINITE_WORLD_PROPOSAL");
++            Point3D argument=read("Point3D.create/set_ARGUMENT_ONLY[domain:"+ordinal+"]",()->{Point3D v=Point3D.create();if(v!=null)for(int k=0;k<3;k++)v.set(k,requested[k]);return v;});
++            if(argument==null)return domainReject(e,"POINT_ARGUMENT_UNAVAILABLE");
++            Surface surface=faces.get(id).surface;
++            UVParams uv=read("Surface["+id+"].EvalParameters[domain:"+ordinal+"]",()->surface.EvalParameters(argument));
++            double[] requestedUv=uv==null?null:read("DomainUV.get["+ordinal+"]",()->new double[]{uv.get(0),uv.get(1)});
++            e.put("requestedUv",GeometrySamplingMath.safeValues(requestedUv));
++            if(requestedUv==null||!Double.isFinite(requestedUv[0])||!Double.isFinite(requestedUv[1]))return domainReject(e,"NATIVE_PARAMETERS_UNAVAILABLE_OR_NONFINITE");
++            Placement first=read("Surface["+id+"].VerifyUV.requested[domain:"+ordinal+"]",()->surface.VerifyUV(uv));
++            e.put("requestedVerifyPlacementCode",first==null?"UNKNOWN":first.getValue());
++            if(first==null||first.getValue()!=Placement._PLACE_INSIDE)return domainReject(e,"REQUESTED_UV_NOT_NATIVE_INSIDE");
++            if(!withinBudget()){distancePhaseTruncated=true;return domainReject(e,"SOFT_BUDGET_BEFORE_DOMAIN_EVALUATION");}
++            SurfXYZData value=read("Surface["+id+"].Eval3DData[domain:"+ordinal+"]",()->surface.Eval3DData(uv));
++            if(value==null)return domainReject(e,"DOMAIN_EVAL3D_UNAVAILABLE");
++            UVParams back=read("DomainSurfXYZ.GetParams["+ordinal+"]",value::GetParams);
++            double[] actualUv=back==null?null:read("DomainReturnedUV.get["+ordinal+"]",()->new double[]{back.get(0),back.get(1)});
++            e.put("returnedUv",GeometrySamplingMath.safeValues(actualUv));
++            if(!GeometrySamplingMath.exactUv(requestedUv,actualUv))return domainReject(e,"RETURNED_UV_NOT_EXACT_NO_CANONICALIZATION");
++            Placement second=read("Surface["+id+"].VerifyUV.returned[domain:"+ordinal+"]",()->surface.VerifyUV(back));
++            e.put("returnedVerifyPlacementCode",second==null?"UNKNOWN":second.getValue());
++            if(second==null||second.getValue()!=Placement._PLACE_INSIDE)return domainReject(e,"RETURNED_UV_NOT_NATIVE_INSIDE");
++            Point3D point=read("DomainSurfXYZ.GetPoint["+ordinal+"]",value::GetPoint);Vector3D normal=read("DomainSurfXYZ.GetNormal["+ordinal+"]",value::GetNormal);
++            double[] xyz=point==null?null:read("DomainPoint.get["+ordinal+"]",()->new double[]{point.get(0),point.get(1),point.get(2)});
++            double[] raw=normal==null?null:read("DomainNormal.get["+ordinal+"]",()->new double[]{normal.get(0),normal.get(1),normal.get(2)});
++            e.put("point",GeometrySamplingMath.safeValues(xyz));e.put("normalRaw",GeometrySamplingMath.safeValues(raw));
++            if(!GeometrySamplingMath.finite3(xyz))return domainReject(e,"DOMAIN_POINT_UNAVAILABLE_OR_NONFINITE");
++            double[] unit;try{unit=GeometrySamplingMath.normalUnit(raw);}catch(IllegalArgumentException error){return domainReject(e,error.getMessage());}
++            Map<String,Object> roundTrip=GeometryAnalyticMath.roundTrip(requested,xyz);e.putAll(roundTrip);
++            if(!Boolean.TRUE.equals(roundTrip.get("roundTripMatchesWithinNumericGuard")))return domainReject(e,"XYZ_ROUNDTRIP_EXCEEDS_NUMERICAL_GUARD");
++            domainAccepted++;e.put("normalUnit",GeometrySamplingMath.list(unit));e.put("nativeInsideAccepted",true);e.put("reason","TWO_NATIVE_INSIDE_EXACT_UV_AND_XYZ_ROUNDTRIP");emit("PAIR_DOMAIN_POINT_EVALUATION",e);
++            return new DomainPoint(xyz,unit,ordinal);
++        }
++        DomainPoint domainReject(Map<String,Object> e,String reason) throws IOException {domainRejected++;e.put("reason",reason);emit("PAIR_DOMAIN_POINT_EVALUATION",e);return null;}
++        void collectLocalDistances() throws IOException {
++            distancePhaseStarted=true;int planned=0,visited=0,withWitness=0,totalWitnesses=0;
++            for(List<Map<String,Object>> values:distancePairs.values())planned+=values.size();
++            emit("LOCAL_DISTANCE_ANALYSIS_STARTED",map("plannedPairs",planned,"selection","FIRST_16_PUBLISHED_COARSE_CANDIDATES_PER_TYPE_INTERLEAVED_NOT_THICKNESS_PAIRS",
++                    "maxPairsPerType",GeometryAnalyticMath.MAX_DISTANCE_PAIRS_PER_TYPE,"maxDomainPointEvaluationChains",GeometryAnalyticMath.MAX_DOMAIN_EVALUATIONS,
++                    "planeProbeLocationsPerPairMax",11,"cylinderProbeLocationsPerPairMax",6,"entireTrimmedOverlapRegionProven",false,"finalWallThickness","NOT_ASSESSED"));
++            outer:for(int row=0;row<GeometryAnalyticMath.MAX_DISTANCE_PAIRS_PER_TYPE;row++)for(String type:Arrays.asList("PLANE_PLANE","CYLINDER_CYLINDER")){
++                List<Map<String,Object>> values=distancePairs.get(type);if(values==null||row>=values.size())continue;
++                if(!canEvaluateDomain())break outer;
++                Map<String,Object> coarse=values.get(row);int ia=(Integer)coarse.get("faceA"),ib=(Integer)coarse.get("faceB");String pairId=ia+"_"+ib;visited++;
++                AnalyticData aa=analyticData.get(ia),bb=analyticData.get(ib);
++                if(aa==null||bb==null||!aa.valid||!bb.valid){emit("PAIR_OVERLAP_VALIDATION_SUMMARY",map("pairId",pairId,"faceA",ia,"faceB",ib,"pairType",type,"lengthUnit",known(lengthUnitName),"supportingGapCandidate","UNKNOWN",
++                        "status","UNKNOWN_ANALYTIC_PARAMETERS","probeLocationsAttempted",0,"nativeInsideWitnesses",0,"entireTrimmedOverlapRegionProven",false,"finalWallThickness","NOT_ASSESSED"));continue;}
++                Map<String,Object> gap=GeometryAnalyticMath.pair(aa.kind,aa.origin,aa.z,aa.radius,bb.origin,bb.z,bb.radius);
++                gap.put("pairId",pairId);gap.put("faceA",ia);gap.put("faceB",ib);gap.put("lengthUnit",lengthUnitName);gap.put("analyticAxesRemainCandidates",true);emit("PAIR_ANALYTIC_GAP_CANDIDATE",gap);
++                List<Integer> sourceIds=new ArrayList<>();List<double[]> worldSeeds=new ArrayList<>();List<String> sources=new ArrayList<>();
++                for(int id:new int[]{ia,ib})for(Candidate c:finalFaceSamples.get(id)){sourceIds.add(id);worldSeeds.add(c.point);sources.add("REVALIDATED_FINAL_NATIVE_SAMPLE");}
++                if(type.equals("PLANE_PLANE")&&coarse.get("projectedOverlapRectangleCandidate") instanceof List<?>){
++                    List<?> box=(List<?>)coarse.get("projectedOverlapRectangleCandidate");double[] u=vector(coarse.get("projectionU")),v=vector(coarse.get("projectionV")),origin=finalFaceSamples.get(ia).get(0).point;
++                    double u0=((Number)box.get(0)).doubleValue(),u1=((Number)box.get(1)).doubleValue(),v0=((Number)box.get(2)).doubleValue(),v1=((Number)box.get(3)).doubleValue();
++                    for(double[] f:new double[][]{{.5,.5},{.25,.25},{.75,.25},{.25,.75},{.75,.75}}){double pu=u0+(u1-u0)*f[0],pv=v0+(v1-v0)*f[1];worldSeeds.add(new double[]{origin[0]+pu*u[0]+pv*v[0],origin[1]+pu*u[1]+pv*v[1],origin[2]+pu*u[2]+pv*v[2]});sourceIds.add(ia);sources.add("COMMON_PROJECTION_RECTANGLE_GRID_PROPOSAL_NOT_NATIVE_VALID_UNTIL_CHECKED");}
++                }
++                int probes=0,witnesses=0,aToB=0,bToA=0,grid=0,startEvaluations=domainEvaluations;
++                for(int probe=0;probe<worldSeeds.size();probe++){
++                    if(!canEvaluateDomain())break;probes++;
++                    int source=sourceIds.get(probe),target=source==ia?ib:ia;AnalyticData targetData=target==ia?aa:bb;
++                    DomainPoint from=evaluateDomain(source,worldSeeds.get(probe),pairId,"SOURCE_REVALIDATION");if(from==null)continue;
++                    double[] proposal=GeometryAnalyticMath.project(targetData.kind,from.point,targetData.origin,targetData.z,targetData.radius);
++                    if(proposal==null){emit("PAIR_LOCAL_PROBE_REJECTED",map("pairId",pairId,"probeOrdinal",probe+1,"reason","ANALYTIC_TARGET_PROJECTION_UNAVAILABLE","finalWallThickness","NOT_ASSESSED"));continue;}
++                    DomainPoint to=evaluateDomain(target,proposal,pairId,"TARGET_PROJECTED_POINT");if(to==null)continue;
++                    double distance=GeometryAnalyticMath.length(GeometryAnalyticMath.sub(to.point,from.point));if(!Double.isFinite(distance)){emit("PAIR_LOCAL_PROBE_REJECTED",map("pairId",pairId,"probeOrdinal",probe+1,"reason","NONFINITE_LOCAL_DISTANCE"));continue;}
++                    witnesses++;totalWitnesses++;if(source==ia)aToB++;else bToA++;if(sources.get(probe).startsWith("COMMON_"))grid++;
++                    emit("PAIR_LOCAL_DISTANCE_WITNESS",map("pairId",pairId,"faceA",ia,"faceB",ib,"sourceFace",source,"targetFace",target,"probeOrdinal",probe+1,"seedSource",sources.get(probe),
++                            "sourceDomainEvaluationOrdinal",from.ordinal,"targetDomainEvaluationOrdinal",to.ordinal,"sourcePoint",GeometrySamplingMath.list(from.point),"targetPoint",GeometrySamplingMath.list(to.point),
++                            "sourceNormalUnit",GeometrySamplingMath.list(from.normal),"targetNormalUnit",GeometrySamplingMath.list(to.normal),"sampleNormalDot",GeometryAnalyticMath.dot(from.normal,to.normal),
++                            "localPointDistance",distance,"lengthUnit",lengthUnitName,"distanceMeaning","DISTANCE_BETWEEN_TWO_NATIVE_INSIDE_MAPPED_POINTS_NOT_GLOBAL_MINIMUM_OR_WALL_THICKNESS",
++                            "mapping",aa.kind.equals("PLANE")?"TARGET_SUPPORT_PLANE_NORMAL_PROJECTION":"TARGET_CYLINDER_RADIAL_PROJECTION_CANDIDATE",
++                            "bothPointsNativeInside",true,"entireTrimmedOverlapRegionProven",false,"trueOppositeFacesConfirmed",false,"finalWallThickness","NOT_ASSESSED","identityDisposition","PENDING_FINAL_COLLECTION_SUMMARY"));
++                }
++                if(witnesses>0)withWitness++;
++                emit("PAIR_OVERLAP_VALIDATION_SUMMARY",map("pairId",pairId,"faceA",ia,"faceB",ib,"pairType",type,"probeLocationsPlanned",worldSeeds.size(),"probeLocationsAttempted",probes,"domainEvaluationChains",domainEvaluations-startEvaluations,
++                        "nativeInsideWitnesses",witnesses,"aToBWitnesses",aToB,"bToAWitnesses",bToA,"projectionGridWitnesses",grid,
++                        "status",distancePhaseTruncated?"PARTIAL_DOMAIN_PROBING":witnesses>0?"DISCRETE_TWO_FACE_NATIVE_INSIDE_WITNESSES":"NO_INTERIOR_WITNESS_NOT_PROOF_OF_NO_OVERLAP",
++                        "entireTrimmedOverlapRegionProven",false,"cylinderAngularAxialTrimCoverage","UNKNOWN_NOT_RECONSTRUCTED","finalWallThickness","NOT_ASSESSED"));
++            }
++            distancePhaseFinished=visited==planned&&!distancePhaseTruncated;
++            emit("LOCAL_DISTANCE_ANALYSIS_SUMMARY",map("plannedPairs",planned,"visitedPairs",visited,"pairsWithNativeInsideWitnesses",withWitness,"nativeInsideDistanceWitnesses",totalWitnesses,
++                    "outcome",planned==0?"NO_SELECTED_CANDIDATES_DISTANCE_UNKNOWN":distancePhaseFinished?"BOUNDED_DISCRETE_DOMAIN_WITNESSES_ONLY":"PARTIAL_OR_ABORTED_LOCAL_EVIDENCE",
++                    "domainEvaluationChains",domainEvaluations,"domainAccepted",domainAccepted,"domainRejected",domainRejected,"finished",distancePhaseFinished,"truncated",distancePhaseTruncated,
++                    "samplingAttemptsSeparateFromDomainEvaluations",true,"finalWallThickness","NOT_ASSESSED","uniformThicknessAssessment","INSUFFICIENT_EVIDENCE","entireTrimmedOverlapRegionProven",false));
