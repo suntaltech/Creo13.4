@@ -1,0 +1,53 @@
+{
+  "type": "OFFLINE_STEP13_PREWRITE_BLOCKED_EVIDENCE_REVIEW_NOT_RETRY_AUTHORIZATION",
+  "date": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "inputArchive": {
+    "fileName": "native-step13-blocked-evidence-20261106.zip",
+    "sha256": "042aec8ae684ab13717e924f7f69cd0f3a1c646906a46d31b036c9e2eefda0ff"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "step13-200002100-once.jsonl",
+      "bytes": 2057,
+      "sha256": "3fd9cee836db3eb1496efa899b9addb97429c6c89abc8ab112264cde07e62777"
+    }
+  ],
+  "referenceCandidateCommit": "013e34ae091eca85702c519293c44274445ed89d",
+  "referenceMainSourceSha256": "f02ea49dc29c6b6824dbb3be9e18a6d575db8fb30bbceaf39b0fbef16140258d",
+  "sourceGuardLine": 114,
+  "localSourceAndClassManifestVerified": true,
+  "classification": {
+    "outcome": "BLOCKED_BEFORE_WRITE_NO_SAVE",
+    "stoppedAt": "DEFAULT_BODY_COMBINED_PREFLIGHT_GUARD",
+    "sourceGuardLine": 114,
+    "actualDefaultBodyPresent": "NOT_LOGGED_UNKNOWN",
+    "actualListedBodyPresent": "NOT_LOGGED_UNKNOWN",
+    "actualBodyPointerOrObjectIdentityMatch": "NOT_LOGGED_UNKNOWN",
+    "nativeIsSheetmetalAtThisRun": "NOT_LOGGED_UNKNOWN",
+    "guardSubconditionTriggered": "NOT_DETERMINED",
+    "firstRiskConfirmationReachedGivenReferenceSource": false,
+    "thicknessInputReachedGivenReferenceSource": false,
+    "finalConfirmationReachedGivenReferenceSource": false,
+    "featureCreationReachedGivenReferenceSource": false,
+    "explicitRegenerationReachedGivenReferenceSource": false,
+    "conversionEngineAcceptanceTested": false,
+    "globalWallThicknessProven": false,
+    "oneClickConsumedReported": true,
+    "automaticRearmOrRetryPerformedByReviewer": false
+  },
+  "checks": {
+    "allFiveRowsParseAndSequenceMonotonic": true,
+    "recordedFinalOutcomeAndNoDispatchConsistent": true,
+    "errorMatchesExactlyOneCombinedReferenceGuard": true,
+    "localPublishedSourceAndClassManifestVerified": true,
+    "bothInternalAdapterRecordsPresentWithoutSemanticCertification": true
+  },
+  "realLoadedBinaryHashProvided": false,
+  "fuseClearedOrRearmed": false,
+  "anotherControlledClickOrConversionPerformed": false,
+  "codeModelConfigurationOrBinaryChanged": false,
+  "sdkModelGuiExecutedByReviewer": false,
+  "rawLedgerOrCoordinatesRedistributed": false,
+  "nativeConversionCapabilityVerified": false
+}

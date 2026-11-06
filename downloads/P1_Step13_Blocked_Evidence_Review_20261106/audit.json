@@ -1,0 +1,59 @@
+{
+  "type": "OFFLINE_STEP13_BLOCKED_BEFORE_WRITE_EVIDENCE_REVIEW",
+  "date": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "requestId": "2f8f2570-3dab-4da2-9022-0b701582ab66",
+  "inputRows": 5,
+  "inputJsonlSha256": "3fd9cee836db3eb1496efa899b9addb97429c6c89abc8ab112264cde07e62777",
+  "recordedFirstUtc": "2026-11-06T08:15:48.451280100Z",
+  "recordedFinalUtc": "2026-11-06T08:15:48.524085900Z",
+  "controlElapsedToFinalMs": 98.5332,
+  "firstToFinalRecordSpanMs": 71.9314,
+  "checks": {
+    "allFiveRowsParseAndSequenceMonotonic": true,
+    "recordedFinalOutcomeAndNoDispatchConsistent": true,
+    "errorMatchesExactlyOneCombinedReferenceGuard": true,
+    "localPublishedSourceAndClassManifestVerified": true,
+    "bothInternalAdapterRecordsPresentWithoutSemanticCertification": true
+  },
+  "classification": {
+    "outcome": "BLOCKED_BEFORE_WRITE_NO_SAVE",
+    "stoppedAt": "DEFAULT_BODY_COMBINED_PREFLIGHT_GUARD",
+    "sourceGuardLine": 114,
+    "actualDefaultBodyPresent": "NOT_LOGGED_UNKNOWN",
+    "actualListedBodyPresent": "NOT_LOGGED_UNKNOWN",
+    "actualBodyPointerOrObjectIdentityMatch": "NOT_LOGGED_UNKNOWN",
+    "nativeIsSheetmetalAtThisRun": "NOT_LOGGED_UNKNOWN",
+    "guardSubconditionTriggered": "NOT_DETERMINED",
+    "firstRiskConfirmationReachedGivenReferenceSource": false,
+    "thicknessInputReachedGivenReferenceSource": false,
+    "finalConfirmationReachedGivenReferenceSource": false,
+    "featureCreationReachedGivenReferenceSource": false,
+    "explicitRegenerationReachedGivenReferenceSource": false,
+    "conversionEngineAcceptanceTested": false,
+    "globalWallThicknessProven": false,
+    "oneClickConsumedReported": true,
+    "automaticRearmOrRetryPerformedByReviewer": false
+  },
+  "directError": "默认体未知/不一致/已是钣金，不执行。",
+  "exceptionClass": "java.lang.IllegalStateException",
+  "recordedFinalFlags": {
+    "writeDispatchIntentRecorded": false,
+    "automaticRollbackAttempted": false,
+    "saveApiInvokedByThisCommand": false,
+    "otherSaveEntrypointsIntercepted": false
+  },
+  "evidenceLimits": {
+    "actualLoadedClassSdkAndResourceHashesProvided": false,
+    "bodyMetadataAndNativeSheetmetalBooleanProvided": false,
+    "uiPromptsOrResultScreenshotProvided": false,
+    "fullStderrExceptionStackProvided": false,
+    "modelDirtyOrFeatureTreeBeforeAfterProvided": false,
+    "wholeSessionNoWriteIndependentlyAuthenticated": false,
+    "conversionSucceeded": false,
+    "reusableInternalAdapterContractCertified": false
+  },
+  "fuseRemovedOrRearmed": false,
+  "modelOrSdkExecutedByReviewer": false,
+  "codeConfigurationOrBinariesChanged": false
+}

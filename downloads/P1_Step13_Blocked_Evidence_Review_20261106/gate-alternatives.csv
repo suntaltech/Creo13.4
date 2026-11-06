@@ -1,0 +1,4 @@
+possibleCondition,nativeEvidenceNeeded,currentConclusion,nextAllowedDesignDirection
+GetDefaultBody returned null,defaultBodyPresent,UNKNOWN,Read-only default-body metadata; do not pick an arbitrary other body
+"Listed item absent or same(listed,default) returned false","listed/default presence, scoped IDs, proxy classes, identity metadata",UNKNOWN,Read-only paired metadata; do not bypass ownership checks or assume pointer equality is a documented identity contract
+Prior operands false and IsSheetmetal returned true,nativeIsSheetmetal explicit boolean,UNKNOWN,"If truly already sheetmetal, do not repeat conversion"
