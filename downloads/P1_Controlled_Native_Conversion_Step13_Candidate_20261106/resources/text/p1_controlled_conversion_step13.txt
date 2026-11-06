@@ -1,0 +1,20 @@
+P1_S13_LABEL
+Controlled Solid to Sheetmetal Step 13
+
+P1_S13_HELP
+One controlled conversion click; requires a disposable part, one selected planar face and two confirmations
+
+P1_S13_DESC
+Target 200002100.prt only. User-entered test thickness is not proven wall thickness. No Save or automatic rollback.
+
+P1_S13_THICKNESS
+Enter an explicit positive finite TEST thickness in mm. No suggested/default value; not global wall thickness proof.
+
+P1_S13_FAILED
+Step13 blocked, failed or unverified. One-shot consumed. Model may have changed if dispatched. Do NOT save or retry. Preserve the audit.
+
+P1_S13_VERIFIED
+Native sheetmetal/new-wall readback passed. Visual tree inspection remains pending. No Save issued; do NOT save or repeat this disposable test.
+
+P1_S13_CANCELLED
+Step13 cancelled before model write. One-shot consumed. No Save issued. Do not retry this controlled case.

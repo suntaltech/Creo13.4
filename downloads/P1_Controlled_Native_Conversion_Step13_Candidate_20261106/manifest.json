@@ -1,0 +1,108 @@
+{
+  "artifactType": "STEP13_ONE_CLICK_NATIVE_CONVERSION_OFFLINE_CANDIDATE_DOWNLOAD_NOT_PRODUCTION_RELEASE",
+  "date": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "taskInput": {
+    "fileName": "P1_实际转换受控实现第十三步_任务单_20261106.md",
+    "sha256": "9383cb6db4596dd2cc89c56f41b612822fb69a6e828034dc27df59894cedeb7c"
+  },
+  "applicationClass": "p1.controlled.step13.P1ControlledConversionStep13",
+  "commandId": "SISWControlledConvertStep13",
+  "targetModel": "200002100.prt",
+  "driver": "SINGLE_PRESELECTED_VISIBLE_PLANE_ON_SINGLE_DEFAULT_BODY",
+  "thicknessSource": "EXPLICIT_OPERATOR_TEST_INPUT_NOT_GLOBAL_PROOF",
+  "twoNativeConfirmationsDefaultNo": true,
+  "oneProcessClickAndPersistentCreateNewLedger": true,
+  "markerLeafName": "step13-200002100-once.jsonl",
+  "failurePolicy": "EXPLICIT_FAILED_OR_UNVERIFIED_STATE_RETAINED_NO_SAVE_NO_RETRY_NO_AUTO_ROLLBACK",
+  "globalSaveInterceptionImplemented": false,
+  "sourceFiles": [
+    {
+      "relativeName": "source/AuditSupport.java",
+      "sha256": "93c6c9a119f1573580a3539ea441044b4ae3ad4894d89aceee103bf332a947fc"
+    },
+    {
+      "relativeName": "source/P1ControlledConversionStep13.java",
+      "sha256": "f02ea49dc29c6b6824dbb3be9e18a6d575db8fb30bbceaf39b0fbef16140258d"
+    },
+    {
+      "relativeName": "source/Step13Control.java",
+      "sha256": "c00fe22e5decb2dc40926f2750867d0896f5ffe9def06b2910bdd407cc4626fc"
+    }
+  ],
+  "classes": [
+    {
+      "relativeName": "classes/p1/controlled/step13/AuditSupport.class",
+      "sha256": "789f249bcc3f0ab28da1b57d6b77a7c143d045fca7393332704211f9726513d5"
+    },
+    {
+      "relativeName": "classes/p1/controlled/step13/P1ControlledConversionStep13$Listener.class",
+      "sha256": "07463c438cbf50eebe04ba13c36b65c9a4404f1ae8fc727283becda75e915f55"
+    },
+    {
+      "relativeName": "classes/p1/controlled/step13/P1ControlledConversionStep13$Snapshot.class",
+      "sha256": "19990d4e1100e0b760fe89be66a39ba0f4d3b9e1ac09969aa06b0bb1ad9e736c"
+    },
+    {
+      "relativeName": "classes/p1/controlled/step13/P1ControlledConversionStep13.class",
+      "sha256": "6a0431e51260f484937d7b633b36a2e5af8b928f6611ef59de1f632a894eb4ea"
+    },
+    {
+      "relativeName": "classes/p1/controlled/step13/Step13Control$State.class",
+      "sha256": "f3c0c769c9ac2d00cbc209ecc86bf0737b8aae841a5b274e3319e6bb86994c92"
+    },
+    {
+      "relativeName": "classes/p1/controlled/step13/Step13Control.class",
+      "sha256": "5fd7ddd31738905ffe5bfe35bfadb8ba6ebe010d7c8ec6960bfd2cfb1fdfec2e"
+    }
+  ],
+  "historicalTreeBasis": {
+    "archiveName": "P1第六轮_ChatGPT离线SDK输入包_20261102.zip",
+    "archiveSha256": "6eb69bf7912f938d7eb9b140f691251dfc133ece5c8eca5ebe77b669f900ad04",
+    "documentName": "04_驱动面元素树与验收规则.md",
+    "documentSha256": "87426b07aee54bcc6bfd7ce92f9252e1faf4b0f6cfcacba383183765899e69fc",
+    "runtimeAcceptanceCertified": false
+  },
+  "validation": {
+    "compiler": "javac 25.0.5.0.3",
+    "realSdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "pfcasyncUsed": false,
+    "sdkMockOrModelMockUsed": false,
+    "classes": {
+      "p1/controlled/step13/AuditSupport.class": "789f249bcc3f0ab28da1b57d6b77a7c143d045fca7393332704211f9726513d5",
+      "p1/controlled/step13/P1ControlledConversionStep13$Listener.class": "07463c438cbf50eebe04ba13c36b65c9a4404f1ae8fc727283becda75e915f55",
+      "p1/controlled/step13/P1ControlledConversionStep13$Snapshot.class": "19990d4e1100e0b760fe89be66a39ba0f4d3b9e1ac09969aa06b0bb1ad9e736c",
+      "p1/controlled/step13/P1ControlledConversionStep13.class": "6a0431e51260f484937d7b633b36a2e5af8b928f6611ef59de1f632a894eb4ea",
+      "p1/controlled/step13/Step13Control$State.class": "f3c0c769c9ac2d00cbc209ecc86bf0737b8aae841a5b274e3319e6bb86994c92",
+      "p1/controlled/step13/Step13Control.class": "5fd7ddd31738905ffe5bfe35bfadb8ba6ebe010d7c8ec6960bfd2cfb1fdfec2e"
+    },
+    "classCount": 6,
+    "classMajor": 61,
+    "sdkRuntimeMajor": 69,
+    "java25RuntimeRequired": true,
+    "repeatCleanCompileIdentical": true,
+    "pureControlAssertionsPassed": 35,
+    "pureControlTestsUseActualTemporaryFilesAndNoSdkClasspath": true,
+    "pureConcurrencyTestHasNoNativeCalls": true,
+    "codeAuditOnlyOneCreateAndRegenSite": true,
+    "creoOrPluginExecutionPerformed": false,
+    "nativeConversionSucceeded": "NOT_EXECUTED_UNKNOWN",
+    "nativeDialogsTested": "NOT_EXECUTED_UNKNOWN",
+    "rollbackAutomaticallyAttempted": false,
+    "zipOrJarBuilt": false,
+    "publishedOrDeployed": false
+  },
+  "sdkRedistributed": false,
+  "jarOrZipBuilt": true,
+  "productionReadinessClaimed": false,
+  "actualControlledClickPerformed": false,
+  "realConversionSucceeded": "NOT_EXECUTED_UNKNOWN",
+  "materialOccupancyOrFinalThicknessProven": false,
+  "downloadPackagingAuthorizedBySubsequentUserRequest": true,
+  "pluginJarBuilt": false,
+  "distribution": "EXISTING_GITHUB_DELIVERY_BRANCH_FOR_DOWNLOAD_ONLY",
+  "deployed": false,
+  "sourceAndClassesUnchangedFromValidatedLocalCandidate": true,
+  "originalLocalCandidateManifestSha256": "60fe8735855962e87e410d8a209bf29d7782dae3d87cc702a4d8ffe02f2c90c7",
+  "validationStageNote": "Validation describes the original offline source/class build before this download packaging; no native execution has occurred."
+}

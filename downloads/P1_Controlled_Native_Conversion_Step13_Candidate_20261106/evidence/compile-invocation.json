@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/workspace/r8-next-binary/toolchain/jdk-25.0.5.0.3/bin/javac",
+    "--release",
+    "17",
+    "-encoding",
+    "UTF-8",
+    "-proc:none",
+    "-Xlint:all",
+    "-classpath",
+    "/workspace/r8-next-binary/sdk-input/creo134-jlink-sdk-jars-20261105/otk.jar",
+    "-d",
+    "/workspace/controlled-conversion-step13/local-candidate/classes",
+    "/workspace/controlled-conversion-step13/local-candidate/source/AuditSupport.java",
+    "/workspace/controlled-conversion-step13/local-candidate/source/P1ControlledConversionStep13.java",
+    "/workspace/controlled-conversion-step13/local-candidate/source/Step13Control.java"
+  ],
+  "exitCode": 0,
+  "sourceAndLooseClassOnly": true
+}

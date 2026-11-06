@@ -1,0 +1,29 @@
+{
+  "compiler": "javac 25.0.5.0.3",
+  "realSdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+  "pfcasyncUsed": false,
+  "sdkMockOrModelMockUsed": false,
+  "classes": {
+    "p1/controlled/step13/AuditSupport.class": "789f249bcc3f0ab28da1b57d6b77a7c143d045fca7393332704211f9726513d5",
+    "p1/controlled/step13/P1ControlledConversionStep13$Listener.class": "07463c438cbf50eebe04ba13c36b65c9a4404f1ae8fc727283becda75e915f55",
+    "p1/controlled/step13/P1ControlledConversionStep13$Snapshot.class": "19990d4e1100e0b760fe89be66a39ba0f4d3b9e1ac09969aa06b0bb1ad9e736c",
+    "p1/controlled/step13/P1ControlledConversionStep13.class": "6a0431e51260f484937d7b633b36a2e5af8b928f6611ef59de1f632a894eb4ea",
+    "p1/controlled/step13/Step13Control$State.class": "f3c0c769c9ac2d00cbc209ecc86bf0737b8aae841a5b274e3319e6bb86994c92",
+    "p1/controlled/step13/Step13Control.class": "5fd7ddd31738905ffe5bfe35bfadb8ba6ebe010d7c8ec6960bfd2cfb1fdfec2e"
+  },
+  "classCount": 6,
+  "classMajor": 61,
+  "sdkRuntimeMajor": 69,
+  "java25RuntimeRequired": true,
+  "repeatCleanCompileIdentical": true,
+  "pureControlAssertionsPassed": 35,
+  "pureControlTestsUseActualTemporaryFilesAndNoSdkClasspath": true,
+  "pureConcurrencyTestHasNoNativeCalls": true,
+  "codeAuditOnlyOneCreateAndRegenSite": true,
+  "creoOrPluginExecutionPerformed": false,
+  "nativeConversionSucceeded": "NOT_EXECUTED_UNKNOWN",
+  "nativeDialogsTested": "NOT_EXECUTED_UNKNOWN",
+  "rollbackAutomaticallyAttempted": false,
+  "zipOrJarBuilt": false,
+  "publishedOrDeployed": false
+}
