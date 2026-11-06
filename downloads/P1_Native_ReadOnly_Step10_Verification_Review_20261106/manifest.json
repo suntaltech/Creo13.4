@@ -1,0 +1,197 @@
+{
+  "type": "OFFLINE_STEP10_REDUCED_STDERR_RUNTIME_EVIDENCE_REVIEW",
+  "date": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "inputArchive": {
+    "fileName": "native-readonly-step10-verify-20261106.zip",
+    "sha256": "2f4ba6cf9dd0d1d6e24014e25d33c43de33553746f9dd6fda9756a2e3f6654f4"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "bytes": 292,
+      "sha256": "cd4360354ac943b0d361b2d06eabc3bc77420eae859b36decfc820f4b6b1be28"
+    },
+    {
+      "relativeName": "geometry-sampling-step10-33ccba11-87f3-43b8-84e5-f6f993871484.jsonl",
+      "bytes": 11235428,
+      "sha256": "7eb17bb0cea067181d77464184d8d64ee17b370f3253d971326ed24263e9abc3"
+    },
+    {
+      "relativeName": "geometry-timing-step10-lifecycle-T10-9c42909b61c-1.jsonl",
+      "bytes": 69566,
+      "sha256": "610e76d71633f080ca24a74e4e25a0ed0bf0972d7d6c1eb713a90a9bdf93e5ac"
+    },
+    {
+      "relativeName": "step10-ran.png",
+      "bytes": 171449,
+      "sha256": "168c59b96e50c4cd56d1353b6e7137875e91bf8a5dca0427a336198012d17e7b"
+    }
+  ],
+  "referenceCandidateCommit": "2970451bb41bd622ef891d0843709fe65692a23e",
+  "referenceSourceFiles": [
+    {
+      "relativeName": "source/GeometryAnalyticMath.java",
+      "sha256": "af507d44d1ab93d1734e3005978a84bccfc42a04904614e8595afeabee248b2b"
+    },
+    {
+      "relativeName": "source/GeometryCandidateClassification.java",
+      "sha256": "4fcbdd4c03c14b31dcd1b2cf40e0a979b2fbfefd28e1f1d367dc7a413ac6392f"
+    },
+    {
+      "relativeName": "source/GeometryCandidateQueue.java",
+      "sha256": "1735ddfa408574814afe12f81ba3a28364aec9ff2167939583b75704f630d09c"
+    },
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "4dca2172d6584e8e01bc097180530c25750fbc52b7a6e843b341531f7215bf99"
+    },
+    {
+      "relativeName": "source/GeometryPairEvidence.java",
+      "sha256": "fd475e68866966c1947f1af72b5dc043ad35a3144d0099a6eaa519f91a8c91ac"
+    },
+    {
+      "relativeName": "source/GeometryPoolSelection.java",
+      "sha256": "c0efbb1d9493f328a7380237edec51568137234634f682f6b200f8c2bd314627"
+    },
+    {
+      "relativeName": "source/GeometryReferenceBaseline.java",
+      "sha256": "5f586c65006637d0c95e60e928ba18d512734c05ceb1779b4e451df405e42cda"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "c741a027aaf7cc3859410345e4c1e9a48f429c772bc64843757dcf70f8b06484"
+    },
+    {
+      "relativeName": "source/GeometrySdkInterfaceReview.java",
+      "sha256": "57ca3853854d7dc15d9184bdf2e9bd052bf73a509dea4cf84bac769b5322d41c"
+    },
+    {
+      "relativeName": "source/GeometrySpreadSelection.java",
+      "sha256": "6d51c06afc1d95fd84a444e2a3eae4bb4a30630fca0c09c9a4ca1a81173805f2"
+    },
+    {
+      "relativeName": "source/GeometryStderrPolicy.java",
+      "sha256": "6653f32481d26e5fda085d2c799b3144e368d148d88002dd26f3d64c4af57b8b"
+    },
+    {
+      "relativeName": "source/GeometryTimingCounters.java",
+      "sha256": "4c95adad0317337beba200380c7433c4659247077f13718a38cd380106ac7696"
+    },
+    {
+      "relativeName": "source/GeometryTimingJournal.java",
+      "sha256": "59f02a7f07f1d79ed9336c6c9f02e36b54e3c883b836ce9af52b9d497bf0fa49"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySamplerStep10.java",
+      "sha256": "2d720fbcdc4364cf8d419758e35013cdae740fb6efef0d5e0fb62f5f8a835ab7"
+    }
+  ],
+  "referenceJarSha256": "b20652ae84558b306618da9d590b6fcadaa15c5be1efbe441f645f35bbb35010",
+  "localPublishedSourceClassesJarVerified": true,
+  "referenceStep9LogSha256": "2e3fe361d9aafcdc87e4afe29f89ed2f484f174e5a5381866e3671751c9ccbf1",
+  "checks": {
+    "everyJsonlRowParsed": true,
+    "sequenceMonotonicAndContiguous1To47": true,
+    "all15PhaseBeginEndAndReadCountersMatch": true,
+    "all78ReadAggregateCountsTimesMatch": true,
+    "businessWritesNewlinesFlushEach6432": true,
+    "normalDefaultReducedPolicyAndSnapshotFinalCountsReconciled": true,
+    "publishedPureJavaPolicyReplayMatchesAll27SelectionsAndPhaseAttempts": true,
+    "all6430OriginalBusinessEventsMatchEveryNonvolatileStep9Field": true,
+    "sourceClassesJarMatchLocalPublishedManifest": true
+  },
+  "metrics": {
+    "observableStaticInitMs": 17.0875,
+    "startCallbackMs": 45.6236,
+    "commandCallbackMs": 7487.6724,
+    "reportedCollectionElapsedMs": 7304,
+    "stderrMirroredAttempts": 27,
+    "stderrSuppressedRecords": 6405,
+    "businessOutputsRetained": 6432,
+    "wrappedReadActionGroups": 29415,
+    "wrappedReadActionMs": 5379.7299,
+    "businessOutputMs": 702.0814,
+    "stderrMs": 98.3527,
+    "flushMs": 129.4119,
+    "headerSerializationMs": 439.0097,
+    "maxWrappedReadActionMs": 35.2135,
+    "slowOutputSamples": [
+      {
+        "event": "SURFACE",
+        "startUtc": "2026-11-06T05:31:32.253401800Z",
+        "endUtc": "2026-11-06T05:31:32.393840600Z",
+        "headerAndSerializationNs": 140136500,
+        "writeNs": 1600,
+        "flushNs": 32000,
+        "stderrNs": 0,
+        "classificationObserverNs": 1500,
+        "totalObservedOutputNs": 140174500,
+        "completed": true
+      },
+      {
+        "event": "TARGET_REFINEMENT_RESULTS",
+        "startUtc": "2026-11-06T05:31:36.419710800Z",
+        "endUtc": "2026-11-06T05:31:36.451592400Z",
+        "headerAndSerializationNs": 48300,
+        "writeNs": 900,
+        "flushNs": 27800,
+        "stderrNs": 31400600,
+        "classificationObserverNs": 3100,
+        "totalObservedOutputNs": 31482100,
+        "completed": true
+      },
+      {
+        "event": "SAMPLING_SUMMARY",
+        "startUtc": "2026-11-06T05:31:36.451592400Z",
+        "endUtc": "2026-11-06T05:31:36.497515200Z",
+        "headerAndSerializationNs": 64600,
+        "writeNs": 1400,
+        "flushNs": 38700,
+        "stderrNs": 45689100,
+        "classificationObserverNs": 3400,
+        "totalObservedOutputNs": 45799600,
+        "completed": true
+      },
+      {
+        "event": "RELATIVE_FACE_PAIRING_SUMMARY",
+        "startUtc": "2026-11-06T05:31:36.883156500Z",
+        "endUtc": "2026-11-06T05:31:36.898118100Z",
+        "headerAndSerializationNs": 56200,
+        "writeNs": 1400,
+        "flushNs": 36000,
+        "stderrNs": 15014100,
+        "classificationObserverNs": 2400,
+        "totalObservedOutputNs": 15112200,
+        "completed": true
+      },
+      {
+        "event": "PAIR_LOCAL_DISTANCE_WITNESS",
+        "startUtc": "2026-11-06T05:31:37.815351800Z",
+        "endUtc": "2026-11-06T05:31:37.833304800Z",
+        "headerAndSerializationNs": 57500,
+        "writeNs": 900,
+        "flushNs": 21400,
+        "stderrNs": 0,
+        "classificationObserverNs": 17564100,
+        "totalObservedOutputNs": 17673800,
+        "completed": true
+      }
+    ],
+    "registrationToCommandUnobservedGapMs": 5470637.2362,
+    "operatorReportsPausePersists": true,
+    "operatorReportsInitialOldStep9Misclick": true,
+    "step10FullModeNativeRunProvided": false,
+    "step9Vs10ControlledBenchmark": false,
+    "pauseDurationMs": "UNKNOWN",
+    "pauseRootCause": "NOT_ESTABLISHED",
+    "pauseFixed": false
+  },
+  "codeChanged": false,
+  "creoExecutedByReviewer": false,
+  "rawCoordinatesScreenshotsOrMachinePathsRepublished": false,
+  "pauseFixed": false,
+  "rootCauseLocated": false,
+  "controlledPerformanceGainEstablished": false,
+  "newPluginClassOrJarGenerated": false
+}

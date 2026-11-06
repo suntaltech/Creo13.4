@@ -1,0 +1,9 @@
+metric,step9Ms,step10Ms,step10MinusStep9Ms,observedDecreasePercent,controlledCausalBenchmark
+commandCallbackMs,7907.7426,7487.6724,-420.0702,5.312138005098952,False
+wrappedReadActionMs,5284.6735,5379.7299,95.0564,-1.7987185017201157,False
+businessOutputMs,1593.859,702.0814,-891.7776,55.95084634211684,False
+stderrPrintlnMs,1103.8731,98.3527,-1005.5204,91.09021680118848,False
+writerFlushMs,184.3626,129.4119,-54.9507,29.80577405612635,False
+writerWriteNewlineMs,6.097,4.9561,-1.1409,18.712481548302446,False
+headerSerializationMs,272.0993,439.0097,166.9104,-61.341723407594216,False
+classificationObserverMs,25.8648,24.3914,-1.4734,5.696545111502892,False
