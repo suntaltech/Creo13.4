@@ -1,0 +1,166 @@
+{
+  "type": "OFFLINE_NATIVE_STEP9_TIMING_VERIFICATION_REVIEW",
+  "date": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "inputArchive": {
+    "fileName": "native-readonly-step9-verify-20261106.zip",
+    "sha256": "0fc367c2fe237213f8afc84a1a2d7b2c76006b16717d4012e795cb5623c476fc"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "bytes": 264,
+      "sha256": "3fe7b9c65e9736803969c8940b98cc0403925b1bd598828123cfa997839436bb"
+    },
+    {
+      "relativeName": "geometry-sampling-step9-6bf34b60-456f-4f4d-940a-0dd10d69b8bd.jsonl",
+      "bytes": 10725341,
+      "sha256": "2e3fe361d9aafcdc87e4afe29f89ed2f484f174e5a5381866e3671751c9ccbf1"
+    },
+    {
+      "relativeName": "geometry-timing-step9-lifecycle-T9-864ba854ea0-1.jsonl",
+      "bytes": 66647,
+      "sha256": "449268c24e978e592a55f27c7d8517bee51e714a27a0e8f8ab5c8ce37df026b3"
+    },
+    {
+      "relativeName": "step9-ran.png",
+      "bytes": 128490,
+      "sha256": "265539f9f0fb14251c22bce9813572116374261dab606ae36334fab07d76fb26"
+    }
+  ],
+  "referenceCandidateCommit": "14f1e865c07ec40736192fe758c2250615e0c43d",
+  "referenceSourceFiles": [
+    {
+      "relativeName": "source/GeometryAnalyticMath.java",
+      "sha256": "4616ab326155a3c2f994cd8cf863e6109a3512f6f5bc52a801e8d4a1a24bc153"
+    },
+    {
+      "relativeName": "source/GeometryCandidateClassification.java",
+      "sha256": "4b1821427e97437e6d3d2753f3b6103a68b32e7d1956f43ef9d7bacff141d26f"
+    },
+    {
+      "relativeName": "source/GeometryCandidateQueue.java",
+      "sha256": "c5004378e9d27fbfe11d669f300d5a23baa4fec9d3d4685dfe66f510a04bc730"
+    },
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "35b425d2f03d05f8526405cb6d108882572e0e77d6ac0506bf44fb210fea8121"
+    },
+    {
+      "relativeName": "source/GeometryPairEvidence.java",
+      "sha256": "6da9429f4bf85495b8f5cf985f8e0d35e8a33bbf4b250cbe8aa84ebf5d28700d"
+    },
+    {
+      "relativeName": "source/GeometryPoolSelection.java",
+      "sha256": "8095ff19a58f957c0a70facb4a54a4325d1407bc2659fff9248671c3c72d0c18"
+    },
+    {
+      "relativeName": "source/GeometryReferenceBaseline.java",
+      "sha256": "b255c268ac7bc9bc3f9d9e09deb38470addb1fad8d63bbf758626e4ccc9449f0"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "972ce65648b71cc31d473f765b335b3318b3afe1e68ecbd6bbb509174f7580a7"
+    },
+    {
+      "relativeName": "source/GeometrySdkInterfaceReview.java",
+      "sha256": "2990a93a0d450c3ba553d104c0f87c6fa1ed84d6a14365e4cafba48ba5aa1564"
+    },
+    {
+      "relativeName": "source/GeometrySpreadSelection.java",
+      "sha256": "06b4c4981d20a384602f269defd57b94540dc34d986292d7a8c845fe3ec52746"
+    },
+    {
+      "relativeName": "source/GeometryTimingCounters.java",
+      "sha256": "5b9d6240b530e22c27a3cbb77f7110de03844438ada708a6e668208854b60a36"
+    },
+    {
+      "relativeName": "source/GeometryTimingJournal.java",
+      "sha256": "a4a16151fa768948fe3645a8c717df16887af61fd00a2100dbc334fd34116364"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySamplerStep9.java",
+      "sha256": "9430b6b626165ca1cbd73d533801152d8879efc486b56f579b6ed54d3de60308"
+    }
+  ],
+  "referenceJarSha256": "84b896a439c38716becb6b98ee6b4596c063092b36c53bd807afb14033ef5ee5",
+  "referenceSourceClassJarManifestLocallyVerified": true,
+  "referenceStep8JsonlSha256": "743a741400aeed81ae2841ebe3b384a2e3f9096cdf6507ebe85186b6ab27f288",
+  "checks": {
+    "bothJsonlParseEveryRow": true,
+    "sequence1Through46ContiguousAndMonotonic": true,
+    "traceRequestAndThreadAssociationConsistent": true,
+    "all15BeginEndAndCounterDeltasMatched": true,
+    "all78ReadAggregateCountsTimesNullsExceptionsReconciled": true,
+    "snapshotExcludesItselfAndFinalSummaryAsDocumented": true,
+    "business6432OutputsMatchWritesNewlinesFlushAndStderrAttempts": true,
+    "all6430Step8RecordsMatchEveryNonvolatileOldField": true,
+    "step9SourceClassAndJarMatchPublishedLocalManifest": true
+  },
+  "metrics": {
+    "observableJavaStaticInitMs": 29.6379,
+    "lifecycleJournalOpenMs": 7.3917,
+    "startCallbackMs": 44.5402,
+    "registrationActions": [
+      {
+        "operation": "GetCurrentSessionWithCompatibility",
+        "ms": 0.5005,
+        "actionGroups": 1,
+        "outcome": "RETURNED"
+      },
+      {
+        "operation": "ListenerJavaConstruction",
+        "ms": 0.0543,
+        "actionGroups": 1,
+        "outcome": "RETURNED"
+      },
+      {
+        "operation": "Session.UICreateCommand",
+        "ms": 0.7337,
+        "actionGroups": 1,
+        "outcome": "RETURNED"
+      },
+      {
+        "operation": "UICommand.Designate",
+        "ms": 10.1251,
+        "actionGroups": 1,
+        "outcome": "RETURNED"
+      }
+    ],
+    "registrationExitToCommandEntryGapMs": 259684.0729,
+    "gapInterpretation": "UNOBSERVED_INTERVAL_NOT_REGISTRATION_OR_COMMAND_DURATION",
+    "commandCallbackMs": 7907.7426,
+    "uuidGenerationMs": 55.7107,
+    "commandEntryToRunStartedMs": 108.4031,
+    "runLogIoMs": 1.8417,
+    "businessCloseMs": 0.2262,
+    "reportedCollectionElapsedMs": 7797,
+    "step8ReportedCollectionElapsedMs": 7732,
+    "step9MinusStep8SingleRunElapsedMs": 65,
+    "singleRunDifferenceIsControlledPerformanceBenchmark": false,
+    "wrappedReadActionGroups": 29415,
+    "wrappedReadActionMs": 5284.6735,
+    "businessOutputMs": 1593.859,
+    "businessOutputPercentOfCommand": 20.155676286175527,
+    "stderrPrintlnMs": 1103.8731,
+    "stderrPercentOfCommand": 13.95939594695457,
+    "writerFlushMs": 184.3626,
+    "writerWriteAndNewlineMs": 6.097,
+    "headerAndSerializationMs": 272.0993,
+    "classificationObserverMs": 25.8648,
+    "snapshotOwnOutputMs": 3.4424,
+    "journalCumulativeObservedWriteMsBeforeCommandExitRecord": 10.7987,
+    "remainingCommandTimeOutsideReadAndBusinessOutputMs": 1029.2101,
+    "remainingTimeIsDiagnosedWaitOrPureNativeTime": false,
+    "maxObservedWrappedReadActionMs": 19.2601,
+    "slowOutputSampleCount": 1,
+    "uiUnresponsiveDurationMs": "UNKNOWN",
+    "uiHangRootCause": "NOT_ESTABLISHED"
+  },
+  "newJarOrClassGenerated": false,
+  "codeChanged": false,
+  "creoExecutedByReviewer": false,
+  "rawModelCoordinatesScreenshotsAndMachinePathsRepublished": false,
+  "uiUnresponsivenessRootCauseEstablished": false,
+  "materialOccupancyOrFinalWallThicknessProven": false
+}

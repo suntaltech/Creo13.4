@@ -1,0 +1,60 @@
+{
+  "observableJavaStaticInitMs": 29.6379,
+  "lifecycleJournalOpenMs": 7.3917,
+  "startCallbackMs": 44.5402,
+  "registrationActions": [
+    {
+      "operation": "GetCurrentSessionWithCompatibility",
+      "ms": 0.5005,
+      "actionGroups": 1,
+      "outcome": "RETURNED"
+    },
+    {
+      "operation": "ListenerJavaConstruction",
+      "ms": 0.0543,
+      "actionGroups": 1,
+      "outcome": "RETURNED"
+    },
+    {
+      "operation": "Session.UICreateCommand",
+      "ms": 0.7337,
+      "actionGroups": 1,
+      "outcome": "RETURNED"
+    },
+    {
+      "operation": "UICommand.Designate",
+      "ms": 10.1251,
+      "actionGroups": 1,
+      "outcome": "RETURNED"
+    }
+  ],
+  "registrationExitToCommandEntryGapMs": 259684.0729,
+  "gapInterpretation": "UNOBSERVED_INTERVAL_NOT_REGISTRATION_OR_COMMAND_DURATION",
+  "commandCallbackMs": 7907.7426,
+  "uuidGenerationMs": 55.7107,
+  "commandEntryToRunStartedMs": 108.4031,
+  "runLogIoMs": 1.8417,
+  "businessCloseMs": 0.2262,
+  "reportedCollectionElapsedMs": 7797,
+  "step8ReportedCollectionElapsedMs": 7732,
+  "step9MinusStep8SingleRunElapsedMs": 65,
+  "singleRunDifferenceIsControlledPerformanceBenchmark": false,
+  "wrappedReadActionGroups": 29415,
+  "wrappedReadActionMs": 5284.6735,
+  "businessOutputMs": 1593.859,
+  "businessOutputPercentOfCommand": 20.155676286175527,
+  "stderrPrintlnMs": 1103.8731,
+  "stderrPercentOfCommand": 13.95939594695457,
+  "writerFlushMs": 184.3626,
+  "writerWriteAndNewlineMs": 6.097,
+  "headerAndSerializationMs": 272.0993,
+  "classificationObserverMs": 25.8648,
+  "snapshotOwnOutputMs": 3.4424,
+  "journalCumulativeObservedWriteMsBeforeCommandExitRecord": 10.7987,
+  "remainingCommandTimeOutsideReadAndBusinessOutputMs": 1029.2101,
+  "remainingTimeIsDiagnosedWaitOrPureNativeTime": false,
+  "maxObservedWrappedReadActionMs": 19.2601,
+  "slowOutputSampleCount": 1,
+  "uiUnresponsiveDurationMs": "UNKNOWN",
+  "uiHangRootCause": "NOT_ESTABLISHED"
+}

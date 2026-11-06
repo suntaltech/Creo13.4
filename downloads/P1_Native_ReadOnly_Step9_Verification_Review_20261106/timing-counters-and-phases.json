@@ -1,0 +1,1805 @@
+{
+  "snapshotCounters": {
+    "totals": {
+      "readActionGroups": 29415,
+      "readActionNs": 5284673500,
+      "readNullGroups": 4,
+      "readExceptionGroups": 0,
+      "businessOutputAttempts": 6430,
+      "businessOutputCompleted": 6430,
+      "businessOutputFailed": 0,
+      "headerAndSerializationNs": 271598100,
+      "writerWriteCalls": 6430,
+      "writerNewLineCalls": 6430,
+      "writerFlushCalls": 6430,
+      "stderrPrintlnCalls": 6430,
+      "writerWriteNs": 5634200,
+      "writerFlushNs": 184234800,
+      "stderrPrintlnNs": 1101011000,
+      "classificationObserverNs": 25862900,
+      "observedOutputNs": 1589900600
+    },
+    "actionGroups": [
+      {
+        "phaseAndNormalizedOperation": "COLLECTION_SETUP_AND_STARTED_MESSAGE :: Session.UIDisplayMessage(STARTED)",
+        "actionGroups": 1,
+        "actionNs": 8400000,
+        "maxActionNs": 8400000,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Session.GetActiveModel.before",
+        "actionGroups": 1,
+        "actionNs": 7158700,
+        "maxActionNs": 7158700,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Model.GetType",
+        "actionGroups": 1,
+        "actionNs": 2034100,
+        "maxActionNs": 2034100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: before.GetFileName",
+        "actionGroups": 1,
+        "actionNs": 5046600,
+        "maxActionNs": 5046600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: before.GetRevision",
+        "actionGroups": 1,
+        "actionNs": 587700,
+        "maxActionNs": 587700,
+        "returnedNullGroups": 1,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: before.GetIsModified",
+        "actionGroups": 1,
+        "actionNs": 459500,
+        "maxActionNs": 459500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: before.GetVersionStamp",
+        "actionGroups": 1,
+        "actionNs": 494000,
+        "maxActionNs": 494000,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Solid.GetPrincipalUnits",
+        "actionGroups": 1,
+        "actionNs": 2642100,
+        "maxActionNs": 2642100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: UnitSystem.GetUnit(UNIT_LENGTH)",
+        "actionGroups": 1,
+        "actionNs": 1868400,
+        "maxActionNs": 1868400,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Unit.GetName",
+        "actionGroups": 1,
+        "actionNs": 553200,
+        "maxActionNs": 553200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Unit.GetExpression",
+        "actionGroups": 1,
+        "actionNs": 163100,
+        "maxActionNs": 163100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Solid.GetRelativeAccuracy",
+        "actionGroups": 1,
+        "actionNs": 788000,
+        "maxActionNs": 788000,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Solid.GetAbsoluteAccuracy",
+        "actionGroups": 1,
+        "actionNs": 103800,
+        "maxActionNs": 103800,
+        "returnedNullGroups": 1,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DEFAULT_BODY_STATE :: Solid.GetDefaultBody",
+        "actionGroups": 1,
+        "actionNs": 1974600,
+        "maxActionNs": 1974600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DEFAULT_BODY_STATE :: DefaultBody.GetId",
+        "actionGroups": 1,
+        "actionNs": 143800,
+        "maxActionNs": 143800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DEFAULT_BODY_STATE :: DefaultBody.IsSheetmetal",
+        "actionGroups": 1,
+        "actionNs": 1166500,
+        "maxActionNs": 1166500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "MODEL_SURFACE_ENUMERATION :: Model.ListItems(ITEM_SURFACE)",
+        "actionGroups": 1,
+        "actionNs": 5164100,
+        "maxActionNs": 5164100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "MODEL_SURFACE_ENUMERATION :: ModelSurfaceItems.getarraysize",
+        "actionGroups": 1,
+        "actionNs": 193800,
+        "maxActionNs": 193800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "MODEL_SURFACE_ENUMERATION :: ModelSurfaceItems.get[]",
+        "actionGroups": 222,
+        "actionNs": 21682600,
+        "maxActionNs": 2406200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "MODEL_SURFACE_ENUMERATION :: ModelSurface.GetId[]",
+        "actionGroups": 222,
+        "actionNs": 16400000,
+        "maxActionNs": 648900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: Model.ListItems(ITEM_BODY)",
+        "actionGroups": 1,
+        "actionNs": 729500,
+        "maxActionNs": 729500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: BodyItems.getarraysize",
+        "actionGroups": 1,
+        "actionNs": 116200,
+        "maxActionNs": 116200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: BodyItems.get[]",
+        "actionGroups": 1,
+        "actionNs": 96000,
+        "maxActionNs": 96000,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: Body.GetId",
+        "actionGroups": 1,
+        "actionNs": 72300,
+        "maxActionNs": 72300,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: Body.IsSheetmetal",
+        "actionGroups": 1,
+        "actionNs": 82100,
+        "maxActionNs": 82100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: Body[].ListSurfaces",
+        "actionGroups": 1,
+        "actionNs": 1552200,
+        "maxActionNs": 1552200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: BodySurfaceList.getarraysize",
+        "actionGroups": 1,
+        "actionNs": 728800,
+        "maxActionNs": 728800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: BodySurfaceList.get[]",
+        "actionGroups": 222,
+        "actionNs": 17339400,
+        "maxActionNs": 198200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: BodySurface.GetId",
+        "actionGroups": 222,
+        "actionNs": 15188300,
+        "maxActionNs": 163100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "SURFACE_TYPE_AREA_AND_UV_METADATA :: Surface[].GetSurfaceType",
+        "actionGroups": 222,
+        "actionNs": 40058000,
+        "maxActionNs": 1798400,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "SURFACE_TYPE_AREA_AND_UV_METADATA :: Surface[].EvalArea",
+        "actionGroups": 222,
+        "actionNs": 36116600,
+        "maxActionNs": 918400,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "SURFACE_TYPE_AREA_AND_UV_METADATA :: Surface[].GetUVExtents/UVOutline.get/UVParams.get",
+        "actionGroups": 222,
+        "actionNs": 151345000,
+        "maxActionNs": 2238100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: Surface[].GetOrientation",
+        "actionGroups": 222,
+        "actionNs": 43815400,
+        "maxActionNs": 566400,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: UVParams.create/set_ARGUMENT_ONLY[]",
+        "actionGroups": 2702,
+        "actionNs": 782536900,
+        "maxActionNs": 19260100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: Surface[].VerifyUV.requested[]",
+        "actionGroups": 2702,
+        "actionNs": 352407400,
+        "maxActionNs": 1027100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: Surface[].Eval3DData[]",
+        "actionGroups": 1690,
+        "actionNs": 210324500,
+        "maxActionNs": 988800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: SurfXYZData.GetParams[]",
+        "actionGroups": 1690,
+        "actionNs": 178331200,
+        "maxActionNs": 10902900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: ReturnedUVParams.get[]",
+        "actionGroups": 1690,
+        "actionNs": 330330700,
+        "maxActionNs": 19094600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: Surface[].VerifyUV.returned[]",
+        "actionGroups": 1690,
+        "actionNs": 203536100,
+        "maxActionNs": 781800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: SurfXYZData.GetPoint[]",
+        "actionGroups": 1690,
+        "actionNs": 169477600,
+        "maxActionNs": 406900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: SurfXYZData.GetNormal[]",
+        "actionGroups": 1690,
+        "actionNs": 170501200,
+        "maxActionNs": 422500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: Point3D.get[]",
+        "actionGroups": 1690,
+        "actionNs": 450502400,
+        "maxActionNs": 9311600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: Vector3D.get[]",
+        "actionGroups": 1690,
+        "actionNs": 432487200,
+        "maxActionNs": 1768100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: Surface[].GetSurfaceDescriptor",
+        "actionGroups": 222,
+        "actionNs": 55603300,
+        "maxActionNs": 11433700,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: Descriptor[].GetSurfaceType",
+        "actionGroups": 222,
+        "actionNs": 23929300,
+        "maxActionNs": 319900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: Descriptor[].GetOrientation",
+        "actionGroups": 222,
+        "actionNs": 22884200,
+        "maxActionNs": 190000,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: Descriptor[].GetCoordSys",
+        "actionGroups": 222,
+        "actionNs": 26253200,
+        "maxActionNs": 653600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorFrame[].GetOrigin",
+        "actionGroups": 222,
+        "actionNs": 25703500,
+        "maxActionNs": 221500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorFrame[].GetXAxis",
+        "actionGroups": 222,
+        "actionNs": 25454700,
+        "maxActionNs": 198900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorFrame[].GetYAxis",
+        "actionGroups": 222,
+        "actionNs": 25127300,
+        "maxActionNs": 190100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorFrame[].GetZAxis",
+        "actionGroups": 222,
+        "actionNs": 24848200,
+        "maxActionNs": 245300,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorOrigin[].get",
+        "actionGroups": 222,
+        "actionNs": 66679600,
+        "maxActionNs": 548900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorXAxis[].get",
+        "actionGroups": 222,
+        "actionNs": 66458200,
+        "maxActionNs": 671500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorYAxis[].get",
+        "actionGroups": 222,
+        "actionNs": 64748200,
+        "maxActionNs": 518000,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorZAxis[].get",
+        "actionGroups": 222,
+        "actionNs": 66138000,
+        "maxActionNs": 654900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: CylinderDescriptor[].GetRadius",
+        "actionGroups": 96,
+        "actionNs": 10055300,
+        "maxActionNs": 202300,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: Point3D.create/set_ARGUMENT_ONLY[]",
+        "actionGroups": 544,
+        "actionNs": 223894400,
+        "maxActionNs": 1053200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: Surface[].EvalParameters[]",
+        "actionGroups": 544,
+        "actionNs": 80065200,
+        "maxActionNs": 396800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainUV.get[]",
+        "actionGroups": 544,
+        "actionNs": 106128300,
+        "maxActionNs": 450800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: Surface[].VerifyUV.requested[]",
+        "actionGroups": 544,
+        "actionNs": 70569200,
+        "maxActionNs": 378600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: Surface[].Eval3DData[]",
+        "actionGroups": 468,
+        "actionNs": 63918900,
+        "maxActionNs": 408200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainSurfXYZ.GetParams[]",
+        "actionGroups": 468,
+        "actionNs": 50943000,
+        "maxActionNs": 335700,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainReturnedUV.get[]",
+        "actionGroups": 468,
+        "actionNs": 90053000,
+        "maxActionNs": 464500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: Surface[].VerifyUV.returned[]",
+        "actionGroups": 468,
+        "actionNs": 58781100,
+        "maxActionNs": 459400,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainSurfXYZ.GetPoint[]",
+        "actionGroups": 468,
+        "actionNs": 50671100,
+        "maxActionNs": 394700,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainSurfXYZ.GetNormal[]",
+        "actionGroups": 468,
+        "actionNs": 51344800,
+        "maxActionNs": 532600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainPoint.get[]",
+        "actionGroups": 468,
+        "actionNs": 134507000,
+        "maxActionNs": 749600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainNormal.get[]",
+        "actionGroups": 468,
+        "actionNs": 131221300,
+        "maxActionNs": 655500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: Session.GetActiveModel.after",
+        "actionGroups": 1,
+        "actionNs": 290600,
+        "maxActionNs": 290600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterOriginalModel.GetFileName",
+        "actionGroups": 1,
+        "actionNs": 305600,
+        "maxActionNs": 305600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterOriginalModel.GetRevision",
+        "actionGroups": 1,
+        "actionNs": 277300,
+        "maxActionNs": 277300,
+        "returnedNullGroups": 1,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterOriginalModel.GetIsModified",
+        "actionGroups": 1,
+        "actionNs": 130500,
+        "maxActionNs": 130500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterOriginalModel.GetVersionStamp",
+        "actionGroups": 1,
+        "actionNs": 192500,
+        "maxActionNs": 192500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterActiveModel.GetFileName",
+        "actionGroups": 1,
+        "actionNs": 268100,
+        "maxActionNs": 268100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterActiveModel.GetRevision",
+        "actionGroups": 1,
+        "actionNs": 231300,
+        "maxActionNs": 231300,
+        "returnedNullGroups": 1,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterActiveModel.GetIsModified",
+        "actionGroups": 1,
+        "actionNs": 184500,
+        "maxActionNs": 184500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterActiveModel.GetVersionStamp",
+        "actionGroups": 1,
+        "actionNs": 199800,
+        "maxActionNs": 199800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_SUMMARIES_AND_FINISHED_MESSAGE :: Session.UIDisplayMessage(FINISHED)",
+        "actionGroups": 1,
+        "actionNs": 1913400,
+        "maxActionNs": 1913400,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      }
+    ],
+    "actionKeyLimit": 256,
+    "actionGroupsOverflowed": 0,
+    "negativeDurationSamples": 0,
+    "firstReadThreadId": 3,
+    "differentReadThreadObserved": false,
+    "firstBusinessOutputUtc": "2026-11-06T03:39:31.347867100Z",
+    "lastBusinessOutputUtc": "2026-11-06T03:39:39.114232200Z",
+    "slowOutputThresholdNs": 10000000,
+    "slowOutputSampleLimit": 16,
+    "slowOutputSamples": [
+      {
+        "event": "PAIR_LOCAL_DISTANCE_WITNESS",
+        "startUtc": "2026-11-06T03:39:37.678370800Z",
+        "endUtc": "2026-11-06T03:39:37.695141500Z",
+        "headerAndSerializationNs": 53600,
+        "writeNs": 800,
+        "flushNs": 26300,
+        "stderrNs": 274700,
+        "classificationObserverNs": 16435700,
+        "totalObservedOutputNs": 16791500,
+        "completed": true
+      }
+    ],
+    "callCountingScope": "WRAPPED_READ_ACTION_GROUPS_NOT_EXHAUSTIVE_NATIVE_OR_JNI_METHOD_CALL_COUNTS",
+    "oneActionCanContainMultipleSdkGetters": true,
+    "actionNsExcludesFailureDiagnosticLogging": true,
+    "outputScope": "BUSINESS_JSONL_ONLY_LIFECYCLE_TIMING_JOURNAL_REPORTED_SEPARATELY",
+    "countersAreObservedNotExclusiveCpuTime": true
+  },
+  "fullBusinessCountersThroughClose": {
+    "totals": {
+      "readActionGroups": 29415,
+      "readActionNs": 5284673500,
+      "readNullGroups": 4,
+      "readExceptionGroups": 0,
+      "businessOutputAttempts": 6432,
+      "businessOutputCompleted": 6432,
+      "businessOutputFailed": 0,
+      "headerAndSerializationNs": 272099300,
+      "writerWriteCalls": 6432,
+      "writerNewLineCalls": 6432,
+      "writerFlushCalls": 6432,
+      "stderrPrintlnCalls": 6432,
+      "writerWriteNs": 6097000,
+      "writerFlushNs": 184362600,
+      "stderrPrintlnNs": 1103873100,
+      "classificationObserverNs": 25864800,
+      "observedOutputNs": 1593859000
+    },
+    "actionGroups": [
+      {
+        "phaseAndNormalizedOperation": "COLLECTION_SETUP_AND_STARTED_MESSAGE :: Session.UIDisplayMessage(STARTED)",
+        "actionGroups": 1,
+        "actionNs": 8400000,
+        "maxActionNs": 8400000,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Session.GetActiveModel.before",
+        "actionGroups": 1,
+        "actionNs": 7158700,
+        "maxActionNs": 7158700,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Model.GetType",
+        "actionGroups": 1,
+        "actionNs": 2034100,
+        "maxActionNs": 2034100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: before.GetFileName",
+        "actionGroups": 1,
+        "actionNs": 5046600,
+        "maxActionNs": 5046600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: before.GetRevision",
+        "actionGroups": 1,
+        "actionNs": 587700,
+        "maxActionNs": 587700,
+        "returnedNullGroups": 1,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: before.GetIsModified",
+        "actionGroups": 1,
+        "actionNs": 459500,
+        "maxActionNs": 459500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: before.GetVersionStamp",
+        "actionGroups": 1,
+        "actionNs": 494000,
+        "maxActionNs": 494000,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Solid.GetPrincipalUnits",
+        "actionGroups": 1,
+        "actionNs": 2642100,
+        "maxActionNs": 2642100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: UnitSystem.GetUnit(UNIT_LENGTH)",
+        "actionGroups": 1,
+        "actionNs": 1868400,
+        "maxActionNs": 1868400,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Unit.GetName",
+        "actionGroups": 1,
+        "actionNs": 553200,
+        "maxActionNs": 553200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Unit.GetExpression",
+        "actionGroups": 1,
+        "actionNs": 163100,
+        "maxActionNs": 163100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Solid.GetRelativeAccuracy",
+        "actionGroups": 1,
+        "actionNs": 788000,
+        "maxActionNs": 788000,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY :: Solid.GetAbsoluteAccuracy",
+        "actionGroups": 1,
+        "actionNs": 103800,
+        "maxActionNs": 103800,
+        "returnedNullGroups": 1,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DEFAULT_BODY_STATE :: Solid.GetDefaultBody",
+        "actionGroups": 1,
+        "actionNs": 1974600,
+        "maxActionNs": 1974600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DEFAULT_BODY_STATE :: DefaultBody.GetId",
+        "actionGroups": 1,
+        "actionNs": 143800,
+        "maxActionNs": 143800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DEFAULT_BODY_STATE :: DefaultBody.IsSheetmetal",
+        "actionGroups": 1,
+        "actionNs": 1166500,
+        "maxActionNs": 1166500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "MODEL_SURFACE_ENUMERATION :: Model.ListItems(ITEM_SURFACE)",
+        "actionGroups": 1,
+        "actionNs": 5164100,
+        "maxActionNs": 5164100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "MODEL_SURFACE_ENUMERATION :: ModelSurfaceItems.getarraysize",
+        "actionGroups": 1,
+        "actionNs": 193800,
+        "maxActionNs": 193800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "MODEL_SURFACE_ENUMERATION :: ModelSurfaceItems.get[]",
+        "actionGroups": 222,
+        "actionNs": 21682600,
+        "maxActionNs": 2406200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "MODEL_SURFACE_ENUMERATION :: ModelSurface.GetId[]",
+        "actionGroups": 222,
+        "actionNs": 16400000,
+        "maxActionNs": 648900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: Model.ListItems(ITEM_BODY)",
+        "actionGroups": 1,
+        "actionNs": 729500,
+        "maxActionNs": 729500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: BodyItems.getarraysize",
+        "actionGroups": 1,
+        "actionNs": 116200,
+        "maxActionNs": 116200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: BodyItems.get[]",
+        "actionGroups": 1,
+        "actionNs": 96000,
+        "maxActionNs": 96000,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: Body.GetId",
+        "actionGroups": 1,
+        "actionNs": 72300,
+        "maxActionNs": 72300,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: Body.IsSheetmetal",
+        "actionGroups": 1,
+        "actionNs": 82100,
+        "maxActionNs": 82100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: Body[].ListSurfaces",
+        "actionGroups": 1,
+        "actionNs": 1552200,
+        "maxActionNs": 1552200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: BodySurfaceList.getarraysize",
+        "actionGroups": 1,
+        "actionNs": 728800,
+        "maxActionNs": 728800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: BodySurfaceList.get[]",
+        "actionGroups": 222,
+        "actionNs": 17339400,
+        "maxActionNs": 198200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "BODY_ENUMERATION_AND_FALLBACK :: BodySurface.GetId",
+        "actionGroups": 222,
+        "actionNs": 15188300,
+        "maxActionNs": 163100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "SURFACE_TYPE_AREA_AND_UV_METADATA :: Surface[].GetSurfaceType",
+        "actionGroups": 222,
+        "actionNs": 40058000,
+        "maxActionNs": 1798400,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "SURFACE_TYPE_AREA_AND_UV_METADATA :: Surface[].EvalArea",
+        "actionGroups": 222,
+        "actionNs": 36116600,
+        "maxActionNs": 918400,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "SURFACE_TYPE_AREA_AND_UV_METADATA :: Surface[].GetUVExtents/UVOutline.get/UVParams.get",
+        "actionGroups": 222,
+        "actionNs": 151345000,
+        "maxActionNs": 2238100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: Surface[].GetOrientation",
+        "actionGroups": 222,
+        "actionNs": 43815400,
+        "maxActionNs": 566400,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: UVParams.create/set_ARGUMENT_ONLY[]",
+        "actionGroups": 2702,
+        "actionNs": 782536900,
+        "maxActionNs": 19260100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: Surface[].VerifyUV.requested[]",
+        "actionGroups": 2702,
+        "actionNs": 352407400,
+        "maxActionNs": 1027100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: Surface[].Eval3DData[]",
+        "actionGroups": 1690,
+        "actionNs": 210324500,
+        "maxActionNs": 988800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: SurfXYZData.GetParams[]",
+        "actionGroups": 1690,
+        "actionNs": 178331200,
+        "maxActionNs": 10902900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: ReturnedUVParams.get[]",
+        "actionGroups": 1690,
+        "actionNs": 330330700,
+        "maxActionNs": 19094600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: Surface[].VerifyUV.returned[]",
+        "actionGroups": 1690,
+        "actionNs": 203536100,
+        "maxActionNs": 781800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: SurfXYZData.GetPoint[]",
+        "actionGroups": 1690,
+        "actionNs": 169477600,
+        "maxActionNs": 406900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: SurfXYZData.GetNormal[]",
+        "actionGroups": 1690,
+        "actionNs": 170501200,
+        "maxActionNs": 422500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: Point3D.get[]",
+        "actionGroups": 1690,
+        "actionNs": 450502400,
+        "maxActionNs": 9311600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "POINT_NORMAL_SAMPLING_AND_SPREAD :: Vector3D.get[]",
+        "actionGroups": 1690,
+        "actionNs": 432487200,
+        "maxActionNs": 1768100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: Surface[].GetSurfaceDescriptor",
+        "actionGroups": 222,
+        "actionNs": 55603300,
+        "maxActionNs": 11433700,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: Descriptor[].GetSurfaceType",
+        "actionGroups": 222,
+        "actionNs": 23929300,
+        "maxActionNs": 319900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: Descriptor[].GetOrientation",
+        "actionGroups": 222,
+        "actionNs": 22884200,
+        "maxActionNs": 190000,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: Descriptor[].GetCoordSys",
+        "actionGroups": 222,
+        "actionNs": 26253200,
+        "maxActionNs": 653600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorFrame[].GetOrigin",
+        "actionGroups": 222,
+        "actionNs": 25703500,
+        "maxActionNs": 221500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorFrame[].GetXAxis",
+        "actionGroups": 222,
+        "actionNs": 25454700,
+        "maxActionNs": 198900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorFrame[].GetYAxis",
+        "actionGroups": 222,
+        "actionNs": 25127300,
+        "maxActionNs": 190100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorFrame[].GetZAxis",
+        "actionGroups": 222,
+        "actionNs": 24848200,
+        "maxActionNs": 245300,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorOrigin[].get",
+        "actionGroups": 222,
+        "actionNs": 66679600,
+        "maxActionNs": 548900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorXAxis[].get",
+        "actionGroups": 222,
+        "actionNs": 66458200,
+        "maxActionNs": 671500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorYAxis[].get",
+        "actionGroups": 222,
+        "actionNs": 64748200,
+        "maxActionNs": 518000,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: DescriptorZAxis[].get",
+        "actionGroups": 222,
+        "actionNs": 66138000,
+        "maxActionNs": 654900,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "ANALYTIC_DESCRIPTOR_READS :: CylinderDescriptor[].GetRadius",
+        "actionGroups": 96,
+        "actionNs": 10055300,
+        "maxActionNs": 202300,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: Point3D.create/set_ARGUMENT_ONLY[]",
+        "actionGroups": 544,
+        "actionNs": 223894400,
+        "maxActionNs": 1053200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: Surface[].EvalParameters[]",
+        "actionGroups": 544,
+        "actionNs": 80065200,
+        "maxActionNs": 396800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainUV.get[]",
+        "actionGroups": 544,
+        "actionNs": 106128300,
+        "maxActionNs": 450800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: Surface[].VerifyUV.requested[]",
+        "actionGroups": 544,
+        "actionNs": 70569200,
+        "maxActionNs": 378600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: Surface[].Eval3DData[]",
+        "actionGroups": 468,
+        "actionNs": 63918900,
+        "maxActionNs": 408200,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainSurfXYZ.GetParams[]",
+        "actionGroups": 468,
+        "actionNs": 50943000,
+        "maxActionNs": 335700,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainReturnedUV.get[]",
+        "actionGroups": 468,
+        "actionNs": 90053000,
+        "maxActionNs": 464500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: Surface[].VerifyUV.returned[]",
+        "actionGroups": 468,
+        "actionNs": 58781100,
+        "maxActionNs": 459400,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainSurfXYZ.GetPoint[]",
+        "actionGroups": 468,
+        "actionNs": 50671100,
+        "maxActionNs": 394700,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainSurfXYZ.GetNormal[]",
+        "actionGroups": 468,
+        "actionNs": 51344800,
+        "maxActionNs": 532600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainPoint.get[]",
+        "actionGroups": 468,
+        "actionNs": 134507000,
+        "maxActionNs": 749600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES :: DomainNormal.get[]",
+        "actionGroups": 468,
+        "actionNs": 131221300,
+        "maxActionNs": 655500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: Session.GetActiveModel.after",
+        "actionGroups": 1,
+        "actionNs": 290600,
+        "maxActionNs": 290600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterOriginalModel.GetFileName",
+        "actionGroups": 1,
+        "actionNs": 305600,
+        "maxActionNs": 305600,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterOriginalModel.GetRevision",
+        "actionGroups": 1,
+        "actionNs": 277300,
+        "maxActionNs": 277300,
+        "returnedNullGroups": 1,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterOriginalModel.GetIsModified",
+        "actionGroups": 1,
+        "actionNs": 130500,
+        "maxActionNs": 130500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterOriginalModel.GetVersionStamp",
+        "actionGroups": 1,
+        "actionNs": 192500,
+        "maxActionNs": 192500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterActiveModel.GetFileName",
+        "actionGroups": 1,
+        "actionNs": 268100,
+        "maxActionNs": 268100,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterActiveModel.GetRevision",
+        "actionGroups": 1,
+        "actionNs": 231300,
+        "maxActionNs": 231300,
+        "returnedNullGroups": 1,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterActiveModel.GetIsModified",
+        "actionGroups": 1,
+        "actionNs": 184500,
+        "maxActionNs": 184500,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_MODEL_IDENTITY :: afterActiveModel.GetVersionStamp",
+        "actionGroups": 1,
+        "actionNs": 199800,
+        "maxActionNs": 199800,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      },
+      {
+        "phaseAndNormalizedOperation": "FINAL_SUMMARIES_AND_FINISHED_MESSAGE :: Session.UIDisplayMessage(FINISHED)",
+        "actionGroups": 1,
+        "actionNs": 1913400,
+        "maxActionNs": 1913400,
+        "returnedNullGroups": 0,
+        "exceptionGroups": 0
+      }
+    ],
+    "actionKeyLimit": 256,
+    "actionGroupsOverflowed": 0,
+    "negativeDurationSamples": 0,
+    "firstReadThreadId": 3,
+    "differentReadThreadObserved": false,
+    "firstBusinessOutputUtc": "2026-11-06T03:39:31.347867100Z",
+    "lastBusinessOutputUtc": "2026-11-06T03:39:39.121249500Z",
+    "slowOutputThresholdNs": 10000000,
+    "slowOutputSampleLimit": 16,
+    "slowOutputSamples": [
+      {
+        "event": "PAIR_LOCAL_DISTANCE_WITNESS",
+        "startUtc": "2026-11-06T03:39:37.678370800Z",
+        "endUtc": "2026-11-06T03:39:37.695141500Z",
+        "headerAndSerializationNs": 53600,
+        "writeNs": 800,
+        "flushNs": 26300,
+        "stderrNs": 274700,
+        "classificationObserverNs": 16435700,
+        "totalObservedOutputNs": 16791500,
+        "completed": true
+      }
+    ],
+    "callCountingScope": "WRAPPED_READ_ACTION_GROUPS_NOT_EXHAUSTIVE_NATIVE_OR_JNI_METHOD_CALL_COUNTS",
+    "oneActionCanContainMultipleSdkGetters": true,
+    "actionNsExcludesFailureDiagnosticLogging": true,
+    "outputScope": "BUSINESS_JSONL_ONLY_LIFECYCLE_TIMING_JOURNAL_REPORTED_SEPARATELY",
+    "countersAreObservedNotExclusiveCpuTime": true
+  },
+  "phaseReports": [
+    {
+      "phase": "COLLECTION_SETUP_AND_STARTED_MESSAGE",
+      "beginUtc": "2026-11-06T03:39:31.347867100Z",
+      "endUtc": "2026-11-06T03:39:31.366120400Z",
+      "beginMonotonicNs": 9488612421700,
+      "endMonotonicNs": 9488631178700,
+      "elapsedNs": 18757000,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 1,
+        "readActionNs": 8400000,
+        "readNullGroups": 0,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 2,
+        "businessOutputCompleted": 2,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 367900,
+        "writerWriteCalls": 2,
+        "writerNewLineCalls": 2,
+        "writerFlushCalls": 2,
+        "stderrPrintlnCalls": 2,
+        "writerWriteNs": 12500,
+        "writerFlushNs": 261000,
+        "stderrPrintlnNs": 511200,
+        "classificationObserverNs": 140500,
+        "observedOutputNs": 1294700
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY",
+      "beginUtc": "2026-11-06T03:39:31.367118Z",
+      "endUtc": "2026-11-06T03:39:31.402736500Z",
+      "beginMonotonicNs": 9488631565500,
+      "endMonotonicNs": 9488667998700,
+      "elapsedNs": 36433200,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 12,
+        "readActionNs": 21899200,
+        "readNullGroups": 2,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 4,
+        "businessOutputCompleted": 4,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 709800,
+        "writerWriteCalls": 4,
+        "writerNewLineCalls": 4,
+        "writerFlushCalls": 4,
+        "stderrPrintlnCalls": 4,
+        "writerWriteNs": 18200,
+        "writerFlushNs": 414100,
+        "stderrPrintlnNs": 669300,
+        "classificationObserverNs": 18600,
+        "observedOutputNs": 1833100
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "DEFAULT_BODY_STATE",
+      "beginUtc": "2026-11-06T03:39:31.403731100Z",
+      "endUtc": "2026-11-06T03:39:31.409442400Z",
+      "beginMonotonicNs": 9488668257900,
+      "endMonotonicNs": 9488673901800,
+      "elapsedNs": 5643900,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 3,
+        "readActionNs": 3284900,
+        "readNullGroups": 0,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 1,
+        "businessOutputCompleted": 1,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 124500,
+        "writerWriteCalls": 1,
+        "writerNewLineCalls": 1,
+        "writerFlushCalls": 1,
+        "stderrPrintlnCalls": 1,
+        "writerWriteNs": 4100,
+        "writerFlushNs": 78100,
+        "stderrPrintlnNs": 204200,
+        "classificationObserverNs": 5500,
+        "observedOutputNs": 416900
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "MODEL_SURFACE_ENUMERATION",
+      "beginUtc": "2026-11-06T03:39:31.409442400Z",
+      "endUtc": "2026-11-06T03:39:31.474905900Z",
+      "beginMonotonicNs": 9488674167700,
+      "endMonotonicNs": 9488739413500,
+      "elapsedNs": 65245800,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 446,
+        "readActionNs": 43440500,
+        "readNullGroups": 0,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 0,
+        "businessOutputCompleted": 0,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 0,
+        "writerWriteCalls": 0,
+        "writerNewLineCalls": 0,
+        "writerFlushCalls": 0,
+        "stderrPrintlnCalls": 0,
+        "writerWriteNs": 0,
+        "writerFlushNs": 0,
+        "stderrPrintlnNs": 0,
+        "classificationObserverNs": 0,
+        "observedOutputNs": 0
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "BODY_ENUMERATION_AND_FALLBACK",
+      "beginUtc": "2026-11-06T03:39:31.474905900Z",
+      "endUtc": "2026-11-06T03:39:31.519787900Z",
+      "beginMonotonicNs": 9488739754900,
+      "endMonotonicNs": 9488785015600,
+      "elapsedNs": 45260700,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 451,
+        "readActionNs": 35904800,
+        "readNullGroups": 0,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 1,
+        "businessOutputCompleted": 1,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 207400,
+        "writerWriteCalls": 1,
+        "writerNewLineCalls": 1,
+        "writerFlushCalls": 1,
+        "stderrPrintlnCalls": 1,
+        "writerWriteNs": 7900,
+        "writerFlushNs": 139200,
+        "stderrPrintlnNs": 218600,
+        "classificationObserverNs": 6200,
+        "observedOutputNs": 580200
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "SURFACE_TYPE_AREA_AND_UV_METADATA",
+      "beginUtc": "2026-11-06T03:39:31.520784700Z",
+      "endUtc": "2026-11-06T03:39:31.924301700Z",
+      "beginMonotonicNs": 9488785298200,
+      "endMonotonicNs": 9489189068600,
+      "elapsedNs": 403770400,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 666,
+        "readActionNs": 227519600,
+        "readNullGroups": 0,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 444,
+        "businessOutputCompleted": 444,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 38198300,
+        "writerWriteCalls": 444,
+        "writerNewLineCalls": 444,
+        "writerFlushCalls": 444,
+        "stderrPrintlnCalls": 444,
+        "writerWriteNs": 1188000,
+        "writerFlushNs": 23325300,
+        "stderrPrintlnNs": 71127100,
+        "classificationObserverNs": 1614200,
+        "observedOutputNs": 135774900
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "POINT_NORMAL_SAMPLING_AND_SPREAD",
+      "beginUtc": "2026-11-06T03:39:31.924301700Z",
+      "endUtc": "2026-11-06T03:39:36.806947200Z",
+      "beginMonotonicNs": 9489189425800,
+      "endMonotonicNs": 9494071738700,
+      "elapsedNs": 4882312900,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 19146,
+        "readActionNs": 3324250600,
+        "readNullGroups": 0,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 4765,
+        "businessOutputCompleted": 4765,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 179949500,
+        "writerWriteCalls": 4765,
+        "writerNewLineCalls": 4765,
+        "writerFlushCalls": 4765,
+        "stderrPrintlnCalls": 4765,
+        "writerWriteNs": 3515500,
+        "writerFlushNs": 121003800,
+        "stderrPrintlnNs": 790997700,
+        "classificationObserverNs": 3611600,
+        "observedOutputNs": 1100005500
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "COARSE_PAIR_ENUMERATION",
+      "beginUtc": "2026-11-06T03:39:36.806947200Z",
+      "endUtc": "2026-11-06T03:39:37.002050700Z",
+      "beginMonotonicNs": 9494071928900,
+      "endMonotonicNs": 9494267006300,
+      "elapsedNs": 195077400,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 0,
+        "readActionNs": 0,
+        "readNullGroups": 0,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 130,
+        "businessOutputCompleted": 130,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 5318800,
+        "writerWriteCalls": 130,
+        "writerNewLineCalls": 130,
+        "writerFlushCalls": 130,
+        "stderrPrintlnCalls": 130,
+        "writerWriteNs": 80700,
+        "writerFlushNs": 3284900,
+        "stderrPrintlnNs": 28299400,
+        "classificationObserverNs": 152800,
+        "observedOutputNs": 37163900
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "ANALYTIC_DESCRIPTOR_READS",
+      "beginUtc": "2026-11-06T03:39:37.002050700Z",
+      "endUtc": "2026-11-06T03:39:37.650446200Z",
+      "beginMonotonicNs": 9494267097800,
+      "endMonotonicNs": 9494915419700,
+      "elapsedNs": 648321900,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 2760,
+        "readActionNs": 503883000,
+        "readNullGroups": 0,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 224,
+        "businessOutputCompleted": 224,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 12759700,
+        "writerWriteCalls": 224,
+        "writerNewLineCalls": 224,
+        "writerFlushCalls": 224,
+        "stderrPrintlnCalls": 224,
+        "writerWriteNs": 220100,
+        "writerFlushNs": 9504000,
+        "stderrPrintlnNs": 52105200,
+        "classificationObserverNs": 398800,
+        "observedOutputNs": 75058700
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "DOMAIN_VALIDATION_AND_LOCAL_DISTANCES",
+      "beginUtc": "2026-11-06T03:39:37.650446200Z",
+      "endUtc": "2026-11-06T03:39:39.064365300Z",
+      "beginMonotonicNs": 9494915533300,
+      "endMonotonicNs": 9496329685700,
+      "elapsedNs": 1414152400,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 5920,
+        "readActionNs": 1112097300,
+        "readNullGroups": 0,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 806,
+        "businessOutputCompleted": 806,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 32265500,
+        "writerWriteCalls": 806,
+        "writerNewLineCalls": 806,
+        "writerFlushCalls": 806,
+        "stderrPrintlnCalls": 806,
+        "writerWriteNs": 564900,
+        "writerFlushNs": 25081000,
+        "stderrPrintlnNs": 145821700,
+        "classificationObserverNs": 19387300,
+        "observedOutputNs": 223316200
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "CANDIDATE_CLASSIFICATION",
+      "beginUtc": "2026-11-06T03:39:39.064365300Z",
+      "endUtc": "2026-11-06T03:39:39.090294700Z",
+      "beginMonotonicNs": 9496329759800,
+      "endMonotonicNs": 9496355157100,
+      "elapsedNs": 25397300,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 0,
+        "readActionNs": 0,
+        "readNullGroups": 0,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 34,
+        "businessOutputCompleted": 34,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 1313500,
+        "writerWriteCalls": 34,
+        "writerNewLineCalls": 34,
+        "writerFlushCalls": 34,
+        "stderrPrintlnCalls": 34,
+        "writerWriteNs": 15400,
+        "writerFlushNs": 683600,
+        "stderrPrintlnNs": 8235800,
+        "classificationObserverNs": 491300,
+        "observedOutputNs": 10745700
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "STATIC_SDK_REVIEW_OUTPUT",
+      "beginUtc": "2026-11-06T03:39:39.090294700Z",
+      "endUtc": "2026-11-06T03:39:39.110243600Z",
+      "beginMonotonicNs": 9496355270400,
+      "endMonotonicNs": 9496374744400,
+      "elapsedNs": 19474000,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 0,
+        "readActionNs": 0,
+        "readNullGroups": 0,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 14,
+        "businessOutputCompleted": 14,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 288700,
+        "writerWriteCalls": 14,
+        "writerNewLineCalls": 14,
+        "writerFlushCalls": 14,
+        "stderrPrintlnCalls": 14,
+        "writerWriteNs": 5000,
+        "writerFlushNs": 318000,
+        "stderrPrintlnNs": 2095700,
+        "classificationObserverNs": 35300,
+        "observedOutputNs": 2745600
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "FINAL_MODEL_IDENTITY",
+      "beginUtc": "2026-11-06T03:39:39.110243600Z",
+      "endUtc": "2026-11-06T03:39:39.113235800Z",
+      "beginMonotonicNs": 9496374841400,
+      "endMonotonicNs": 9496378605400,
+      "elapsedNs": 3764000,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 9,
+        "readActionNs": 2080200,
+        "readNullGroups": 2,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 4,
+        "businessOutputCompleted": 4,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 79800,
+        "writerWriteCalls": 4,
+        "writerNewLineCalls": 4,
+        "writerFlushCalls": 4,
+        "stderrPrintlnCalls": 4,
+        "writerWriteNs": 1500,
+        "writerFlushNs": 133100,
+        "stderrPrintlnNs": 600900,
+        "classificationObserverNs": 600,
+        "observedOutputNs": 817000
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "FINAL_SUMMARIES_AND_FINISHED_MESSAGE",
+      "beginUtc": "2026-11-06T03:39:39.113235800Z",
+      "endUtc": "2026-11-06T03:39:39.116226100Z",
+      "beginMonotonicNs": 9496378676400,
+      "endMonotonicNs": 9496381404300,
+      "elapsedNs": 2727900,
+      "outcome": "BODY_RETURNED",
+      "businessCounterDelta": {
+        "readActionGroups": 1,
+        "readActionNs": 1913400,
+        "readNullGroups": 0,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 1,
+        "businessOutputCompleted": 1,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 14700,
+        "writerWriteCalls": 1,
+        "writerNewLineCalls": 1,
+        "writerFlushCalls": 1,
+        "stderrPrintlnCalls": 1,
+        "writerWriteNs": 400,
+        "writerFlushNs": 8700,
+        "stderrPrintlnNs": 124200,
+        "classificationObserverNs": 200,
+        "observedOutputNs": 148200
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    },
+    {
+      "phase": "FINAL_COLLECTION_SUMMARY_OUTPUT",
+      "beginUtc": "2026-11-06T03:39:39.120216500Z",
+      "endUtc": "2026-11-06T03:39:39.121249500Z",
+      "beginMonotonicNs": 9496385072600,
+      "endMonotonicNs": 9496385742400,
+      "elapsedNs": 669800,
+      "outcome": "RUN_CLOSED_OR_ABORTED",
+      "businessCounterDelta": {
+        "readActionGroups": 0,
+        "readActionNs": 0,
+        "readNullGroups": 0,
+        "readExceptionGroups": 0,
+        "businessOutputAttempts": 1,
+        "businessOutputCompleted": 1,
+        "businessOutputFailed": 0,
+        "headerAndSerializationNs": 64400,
+        "writerWriteCalls": 1,
+        "writerNewLineCalls": 1,
+        "writerFlushCalls": 1,
+        "stderrPrintlnCalls": 1,
+        "writerWriteNs": 14800,
+        "writerFlushNs": 16900,
+        "stderrPrintlnNs": 418100,
+        "classificationObserverNs": 600,
+        "observedOutputNs": 516000
+      },
+      "endJournalWriteExcluded": true,
+      "notExclusiveCpuOrPureJniTime": true
+    }
+  ],
+  "scope": "SANITIZED_DERIVED_TIMING_ONLY_NO_MODEL_XYZ_UV_OR_MACHINE_PATHS"
+}
