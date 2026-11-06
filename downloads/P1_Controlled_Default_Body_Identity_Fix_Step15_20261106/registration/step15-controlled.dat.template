@@ -1,0 +1,10 @@
+name p1_controlled_conversion_step15
+startup java
+java_app_class p1.controlled.step15.P1ControlledConversionStep15
+java_app_classpath @ABSOLUTE_STEP15_CLASSES_DIRECTORY@
+java_app_start start
+java_app_stop stop
+allow_stop true
+delay_start false
+text_dir @ABSOLUTE_STEP15_RESOURCES_TEXT_DIRECTORY@
+end

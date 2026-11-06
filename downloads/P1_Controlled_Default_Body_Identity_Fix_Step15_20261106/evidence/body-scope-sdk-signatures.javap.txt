@@ -1,0 +1,105 @@
+Compiled from "ModelItem.java"
+public interface com.ptc.pfc.pfcModelItem.ModelItem extends com.ptc.pfc.pfcObject.Child,com.ptc.pfc.pfcBase.ActionSource,com.ptc.pfc.pfcModelItem.RelationOwner,com.ptc.pfc.pfcModelItem.ParameterOwner {
+  public abstract int GetId() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModelItem.ModelItemType GetType() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetName() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetName(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "SolidBody.java"
+public interface com.ptc.pfc.pfcSolid.SolidBody extends com.ptc.pfc.pfcModelItem.ModelItem {
+  public abstract com.ptc.pfc.pfcSolid.SolidBodyState GetBodyState() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsConstruction() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsSheetmetal() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.Surfaces ListSurfaces() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Outline3D GetOutline() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Double GetDensity() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSolid.MassProperty GetMassProperty(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Features GetFeatures() throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "ModelItemType.java"
+public final class com.ptc.pfc.pfcModelItem.ModelItemType implements com.ptc.cipjava.jxenum {
+  public static final int _ITEM_FEATURE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_FEATURE;
+  public static final int _ITEM_SURFACE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_SURFACE;
+  public static final int _ITEM_EDGE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_EDGE;
+  public static final int _ITEM_COORD_SYS;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_COORD_SYS;
+  public static final int _ITEM_AXIS;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_AXIS;
+  public static final int _ITEM_POINT;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_POINT;
+  public static final int _ITEM_QUILT;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_QUILT;
+  public static final int _ITEM_CURVE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_CURVE;
+  public static final int _ITEM_LAYER;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_LAYER;
+  public static final int _ITEM_NOTE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_NOTE;
+  public static final int _ITEM_DIMENSION;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DIMENSION;
+  public static final int _ITEM_REF_DIMENSION;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_REF_DIMENSION;
+  public static final int _ITEM_SIMPREP;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_SIMPREP;
+  public static final int _ITEM_SOLID_GEOMETRY;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_SOLID_GEOMETRY;
+  public static final int _ITEM_TABLE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_TABLE;
+  public static final int _ITEM_DTL_ENTITY;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DTL_ENTITY;
+  public static final int _ITEM_DTL_NOTE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DTL_NOTE;
+  public static final int _ITEM_DTL_GROUP;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DTL_GROUP;
+  public static final int _ITEM_DTL_SYM_DEFINITION;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DTL_SYM_DEFINITION;
+  public static final int _ITEM_DTL_SYM_INSTANCE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DTL_SYM_INSTANCE;
+  public static final int _ITEM_DTL_OLE_OBJECT;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_DTL_OLE_OBJECT;
+  public static final int _ITEM_EXPLODED_STATE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_EXPLODED_STATE;
+  public static final int _ITEM_EDGE_START;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_EDGE_START;
+  public static final int _ITEM_LOG_EDGE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_LOG_EDGE;
+  public static final int _ITEM_EDGE_END;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_EDGE_END;
+  public static final int _ITEM_XSEC;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_XSEC;
+  public static final int _ITEM_LAYER_STATE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_LAYER_STATE;
+  public static final int _ITEM_COMBINED_STATE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_COMBINED_STATE;
+  public static final int _ITEM_STYLE_STATE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_STYLE_STATE;
+  public static final int _ITEM_RP_MATERIAL;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_RP_MATERIAL;
+  public static final int _ITEM_VIEW;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_VIEW;
+  public static final int _ITEM_SURF_FIN;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_SURF_FIN;
+  public static final int _ITEM_ANNOT_PLANE;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_ANNOT_PLANE;
+  public static final int _ITEM_ANNOTATION_ELEM;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_ANNOTATION_ELEM;
+  public static final int _ITEM_SET_DATUM_TAG;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_SET_DATUM_TAG;
+  public static final int _ITEM_GTOL;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_GTOL;
+  public static final int _ITEM_BODY;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_BODY;
+  public static final int _ITEM_CRV_START;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_CRV_START;
+  public static final int _ITEM_CRV_END;
+  public static final com.ptc.pfc.pfcModelItem.ModelItemType ITEM_CRV_END;
+  public static final int __Last;
+  public int getValue();
+  public static com.ptc.pfc.pfcModelItem.ModelItemType FromInt(int);
+  public static com.ptc.pfc.pfcModelItem.ModelItemType FromInt(java.lang.Integer);
+  public static int getValue(com.ptc.pfc.pfcModelItem.ModelItemType);
+  static {};
+}

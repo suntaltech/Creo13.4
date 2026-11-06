@@ -1,0 +1,198 @@
+--- step13/source/AuditSupport.java
++++ step15/source/AuditSupport.java
+@@ -1 +1 @@
+-package p1.controlled.step13;
++package p1.controlled.step15;
+--- step13/source/P1ControlledConversionStep13.java
++++ step15/source/P1ControlledConversionStep15.java
+@@ -1 +1 @@
+-package p1.controlled.step13;
++package p1.controlled.step15;
+@@ -25 +25 @@
+-import static p1.controlled.step13.AuditSupport.*;
++import static p1.controlled.step15.AuditSupport.*;
+@@ -28,3 +28,3 @@
+-public final class P1ControlledConversionStep13 {
+- public static final String COMMAND_ID="SISWControlledConvertStep13";
+- private static final String TARGET="200002100.prt",MESSAGES="p1_controlled_conversion_step13.txt";
++public final class P1ControlledConversionStep15 {
++ public static final String COMMAND_ID="SISWControlledConvertStep15";
++ private static final String TARGET="200002100.prt",MESSAGES="p1_controlled_conversion_step15.txt";
+@@ -37 +37 @@
+- private P1ControlledConversionStep13(){}
++ private P1ControlledConversionStep15(){}
+@@ -44 +44 @@
+-   command.Designate(MESSAGES,"P1_S13_LABEL","P1_S13_HELP","P1_S13_DESC");active=true;
++   command.Designate(MESSAGES,"P1_S15_LABEL","P1_S15_HELP","P1_S15_DESC");active=true;
+@@ -54 +54 @@
+-  options.SetDialogLabel("P1 Step13 — 不保存试验状态");MessageButtons buttons=MessageButtons.create();buttons.append(MessageButton.MESSAGE_BUTTON_OK);options.SetButtons(buttons);options.SetDefaultButton(MessageButton.MESSAGE_BUTTON_OK);
++  options.SetDialogLabel("P1 Step15 — 不保存试验状态");MessageButtons buttons=MessageButtons.create();buttons.append(MessageButton.MESSAGE_BUTTON_OK);options.SetButtons(buttons);options.SetDefaultButton(MessageButton.MESSAGE_BUTTON_OK);
+@@ -57 +57 @@
+- private static void feedback(String text,boolean error){feedback(text,error,"P1_S13_FAILED");}
++ private static void feedback(String text,boolean error){feedback(text,error,"P1_S15_FAILED");}
+@@ -59,3 +59,3 @@
+-  System.err.println("[P1_STEP13] "+text);
+-  try{display(text,error);}catch(Exception|LinkageError dialogError){System.err.println("[P1_STEP13] RESULT_DIALOG_FAILED "+dialogError.getClass().getName());
+-   try{session.UIDisplayMessage(MESSAGES,statusKey,null);}catch(Exception|LinkageError statusError){System.err.println("[P1_STEP13] BOTH_NATIVE_FEEDBACK_ROUTES_FAILED "+statusError.getClass().getName());}}
++  System.err.println("[P1_STEP15] "+text);
++  try{display(text,error);}catch(Exception|LinkageError dialogError){System.err.println("[P1_STEP15] RESULT_DIALOG_FAILED "+dialogError.getClass().getName());
++   try{session.UIDisplayMessage(MESSAGES,statusKey,null);}catch(Exception|LinkageError statusError){System.err.println("[P1_STEP15] BOTH_NATIVE_FEEDBACK_ROUTES_FAILED "+statusError.getClass().getName());}}
+@@ -64 +64 @@
+-  MessageDialogOptions options=pfcUI.MessageDialogOptions_Create();options.SetMessageDialogType(MessageDialogType.MESSAGE_WARNING);options.SetDialogLabel("P1 第十三步二次确认");
++  MessageDialogOptions options=pfcUI.MessageDialogOptions_Create();options.SetMessageDialogType(MessageDialogType.MESSAGE_WARNING);options.SetDialogLabel("P1 第十五步二次确认");
+@@ -72,2 +72,2 @@
+-   if(!clicked.compareAndSet(false,true)){busy.set(false);feedback("本进程第十三步点击次数已用尽；未进入转换，不重试。",true);return;}
+-   String message="本次未提交转换；一次点击已消耗，禁止自动重试。";boolean error=true;String statusKey="P1_S13_FAILED";
++   if(!clicked.compareAndSet(false,true)){busy.set(false);feedback("本进程第十五步点击次数已用尽；未进入转换，不重试。",true);return;}
++   String message="本次未提交转换；一次点击已消耗，禁止自动重试。";boolean error=true;String statusKey="P1_S15_FAILED";
+@@ -75,3 +75,3 @@
+-    Path directory=Paths.get(System.getProperty("user.home"),"CreoControlledConversionStep13");
+-    try(Step13Control control=new Step13Control(directory)){
+-     try{message=execute(control);error=false;statusKey=control.dispatched()?"P1_S13_VERIFIED":"P1_S13_CANCELLED";}
++    Path directory=Paths.get(System.getProperty("user.home"),"CreoControlledConversionStep15");
++    try(Step15Control control=new Step15Control(directory)){
++     try{message=execute(control);error=false;statusKey=control.dispatched()?"P1_S15_VERIFIED":"P1_S15_CANCELLED";}
+@@ -81 +81 @@
+-      try{control.record("ERROR",map("exceptionClass",failure.getClass().getName(),"message",String.valueOf(failure.getMessage()),"phase",phase));}catch(Exception logError){failure.addSuppressed(logError);}
++      try{control.record("ERROR",map("exceptionClass",failure.getClass().getName(),"message",String.valueOf(failure.getMessage()),"phase",phase,"errorCode",failure instanceof BodyIdentityFailure bodyFailure?bodyFailure.code.name():"OTHER_FAILURE","bodyCheckStage",failure instanceof BodyIdentityFailure bodyFailure?bodyFailure.stage:"NOT_BODY_CHECK"));}catch(Exception logError){failure.addSuppressed(logError);}
+@@ -84 +84 @@
+-      try{control.finish(outcome);}catch(Exception logError){System.err.println("[P1_STEP13] FINAL_AUDIT_WRITE_FAILED "+logError.getClass().getName());}
++      try{control.finish(outcome);}catch(Exception logError){System.err.println("[P1_STEP15] FINAL_AUDIT_WRITE_FAILED "+logError.getClass().getName());}
+@@ -88,2 +88,2 @@
+-   }catch(FileAlreadyExistsException already){message="本机第十三步一次点击锁已存在；本次未进入转换。不要删除记录、换目录或重载绕过单次限制。";}
+-   catch(Exception|LinkageError outer){error=true;statusKey="P1_S13_FAILED";outer.printStackTrace(System.err);message="受控记录创建或关闭失败，禁止继续/保存/重试；若已提交，模型可能已改变。请保留现场及stderr。\n"+outer.getClass().getSimpleName();}
++   }catch(FileAlreadyExistsException already){message="本机第十五步一次点击锁已存在；本次未进入转换。不要删除记录、换目录或重载绕过单次限制。";}
++   catch(Exception|LinkageError outer){error=true;statusKey="P1_S15_FAILED";outer.printStackTrace(System.err);message="受控记录创建或关闭失败，禁止继续/保存/重试；若已提交，模型可能已改变。请保留现场及stderr。\n"+outer.getClass().getSimpleName();}
+@@ -96 +96 @@
+- private static <T> T adapt(Object source,Class<T> type,String[] names,Step13Control control)throws Exception{
++ private static <T> T adapt(Object source,Class<T> type,String[] names,Step15Control control)throws Exception{
+@@ -105,5 +105,7 @@
+-  Model model;WSolid solid;SolidBody body;Surface face;WSession wsession;String stamp;boolean dirty;Set<Integer> featureIds;
+- }
+- private static Snapshot inspect(Step13Control control)throws Exception{
+-  Snapshot s=new Snapshot();s.model=session.GetActiveModel();
+-  if(s.model==null||s.model.GetType()!=ModelType.MDL_PART||!TARGET.equalsIgnoreCase(s.model.GetFileName()))throw new IllegalStateException("只允许当前普通零件200002100.prt，禁止装配/其他模型。");
++  Model model;WSolid solid;SolidBody body;Surface face;WSession wsession;Integer stableBodyId;String stamp;boolean dirty;Set<Integer> featureIds;
++ }
++ private static Snapshot inspect(Step15Control control)throws Exception{
++  Snapshot s=new Snapshot();
++  try{s.model=session.GetActiveModel();if(s.model==null||s.model.GetType()!=ModelType.MDL_PART||!TARGET.equalsIgnoreCase(s.model.GetFileName()))throw new BodyIdentityFailure(ScopedBodyIdentity.Code.MODEL_SCOPE_MISMATCH,"INITIAL","只允许当前普通零件200002100.prt，禁止装配/其他模型。",null);}
++  catch(BodyIdentityFailure mismatch){throw mismatch;}
++  catch(Exception|LinkageError readError){throw new BodyIdentityFailure(ScopedBodyIdentity.Code.STATE_READ_EXCEPTION,"INITIAL","活跃模型/类型/名称读取异常",readError);}
+@@ -112,3 +114,2 @@
+-  if(!same(s.model,s.solid))throw new IllegalStateException("WFC model identity mismatch");
+-  ModelItems bodies=s.model.ListItems(ModelItemType.ITEM_BODY);if(bodies==null||bodies.getarraysize()!=1)throw new IllegalStateException("本次只允许一个原生实体体；多体/未知不执行。");
+-  s.body=s.solid.GetDefaultBody();if(s.body==null||!same(bodies.get(0),s.body)||s.body.IsSheetmetal())throw new IllegalStateException("默认体未知/不一致/已是钣金，不执行。");
++  if(!same(s.model,s.solid))throw new BodyIdentityFailure(ScopedBodyIdentity.Code.MODEL_SCOPE_MISMATCH,"INITIAL","WFC model identity mismatch",null);
++  s.body=verifyDefaultBody(s,control,false);
+@@ -124,0 +126,37 @@
++ private static final class BodyIdentityFailure extends IllegalStateException {
++  private static final long serialVersionUID=1L;
++  final ScopedBodyIdentity.Code code;final String stage;
++  BodyIdentityFailure(ScopedBodyIdentity.Code code,String stage,String detail,Throwable cause){super(code.name()+": "+stage+": "+detail,cause);this.code=code;this.stage=stage;}
++ }
++ private static Map<String,Object> bodyHandle(Object value){
++  if(value==null)return map("status","NO_OBJECT","value",null,"diagnosticOnly",true);
++  if(!(value instanceof jxobject_i nativeView))return map("status","NO_WRAPPER_HANDLE_INTERFACE","value",null,"diagnosticOnly",true);
++  try{return map("status","RETURNED","value","0x"+Long.toUnsignedString(nativeView.getptr(),16),"diagnosticOnly",true);}
++  catch(RuntimeException|LinkageError error){return map("status","THREW","value",null,"exceptionClass",error.getClass().getName(),"diagnosticOnly",true);}
++ }
++ private static SolidBody verifyDefaultBody(Snapshot s,Step15Control control,boolean recheck)throws Exception{
++  String stage=recheck?"RECHECK":"INITIAL";boolean scope=false;
++  try{scope=active&&session!=null&&s.model!=null&&s.solid!=null&&same(session.GetActiveModel(),s.model)&&same(s.solid,s.model)&&s.model.GetType()==ModelType.MDL_PART&&TARGET.equalsIgnoreCase(s.model.GetFileName());}
++  catch(Exception|LinkageError error){control.record("BODY_IDENTITY_ERROR",map("stage",stage,"errorCode","STATE_READ_EXCEPTION","readOperation","MODEL_SCOPE_READ","exceptionClass",error.getClass().getName()));throw new BodyIdentityFailure(ScopedBodyIdentity.Code.STATE_READ_EXCEPTION,stage,"模型作用域读取异常",error);}
++  if(!scope){control.record("BODY_IDENTITY_ERROR",map("stage",stage,"errorCode","MODEL_SCOPE_MISMATCH","scopeVerified",false));throw new BodyIdentityFailure(ScopedBodyIdentity.Code.MODEL_SCOPE_MISMATCH,stage,"模型/零件类型/视图作用域不一致",null);}
++  ModelItem listed=null;SolidBody current=null;Integer count=null,listedId=null,currentId=null;Boolean sheetmetal=null;boolean readFailed=false,listedTypeOk=true,defaultTypeOk=true;Throwable firstError=null;
++  List<Map<String,Object>> readErrors=new ArrayList<>();
++  try{ModelItems bodies=s.model.ListItems(ModelItemType.ITEM_BODY);if(bodies!=null){count=bodies.getarraysize();if(count==1)listed=bodies.get(0);}}
++  catch(Exception|LinkageError error){readFailed=true;firstError=error;readErrors.add(map("operation","Model.ListItems/first","exceptionClass",error.getClass().getName(),"message",String.valueOf(error.getMessage())));}
++  try{current=s.solid.GetDefaultBody();}catch(Exception|LinkageError error){readFailed=true;if(firstError==null)firstError=error;readErrors.add(map("operation","Solid.GetDefaultBody","exceptionClass",error.getClass().getName(),"message",String.valueOf(error.getMessage())));}
++  if(listed!=null){try{listedId=listed.GetId();listedTypeOk=listed.GetType()==ModelItemType.ITEM_BODY;}catch(Exception|LinkageError error){readFailed=true;if(firstError==null)firstError=error;readErrors.add(map("operation","EnumeratedBody.GetId/GetType","exceptionClass",error.getClass().getName(),"message",String.valueOf(error.getMessage())));}}
++  if(current!=null){try{currentId=current.GetId();defaultTypeOk=current.GetType()==ModelItemType.ITEM_BODY;}catch(Exception|LinkageError error){readFailed=true;if(firstError==null)firstError=error;readErrors.add(map("operation","DefaultBody.GetId/GetType","exceptionClass",error.getClass().getName(),"message",String.valueOf(error.getMessage())));}
++   try{sheetmetal=current.IsSheetmetal();}catch(Exception|LinkageError error){readFailed=true;if(firstError==null)firstError=error;readErrors.add(map("operation","DefaultBody.IsSheetmetal","exceptionClass",error.getClass().getName(),"message",String.valueOf(error.getMessage())));}}
++  boolean typedScope=scope&&listedTypeOk&&defaultTypeOk;
++  ScopedBodyIdentity.Code code=ScopedBodyIdentity.evaluate(typedScope,count,listed!=null,current!=null,listedId,currentId,recheck,s.stableBodyId,sheetmetal,readFailed);
++  if(recheck&&s.stableBodyId==null)code=ScopedBodyIdentity.Code.STATE_READ_EXCEPTION;
++  Map<String,Object> listedHandle=bodyHandle(listed),currentHandle=bodyHandle(current),previousHandle=bodyHandle(s.body);
++  Object handlesEqual="RETURNED".equals(listedHandle.get("status"))&&"RETURNED".equals(currentHandle.get("status"))?Objects.equals(listedHandle.get("value"),currentHandle.get("value")):null;
++  control.record("BODY_IDENTITY_CHECK",map("stage",stage,"scopeVerified",typedScope,"model",TARGET,"nativePartTypeConfirmed",true,"bodyCount",count,"enumeratedBodyPresent",listed!=null,"defaultBodyPresent",current!=null,"enumeratedBodyId",listedId,"defaultBodyId",currentId,"baselineBodyId",s.stableBodyId,
++   "enumeratedBodyTypeConfirmed",listed==null?null:listedTypeOk,"defaultBodyTypeConfirmed",current==null?null:defaultTypeOk,"nativeDefaultIsSheetmetal",sheetmetal,"readErrors",readErrors,
++   "javaReferenceEqual",listed!=null&&current!=null?listed==current:null,"enumeratedHandle",listedHandle,"defaultHandle",currentHandle,"previousDefaultHandle",previousHandle,"enumeratedDefaultHandlesEqual",handlesEqual,
++   "idEquality",listedId!=null&&currentId!=null?listedId.equals(currentId):null,"bodyHandleEqualityUsedAsHardGate",false,"bodyIdPositiveOnlyRequired",false,"resultCode",code.name()));
++  if(code!=ScopedBodyIdentity.Code.ACCEPTED)throw new BodyIdentityFailure(code,stage,"默认体身份/状态检查未通过，详见BODY_IDENTITY_CHECK",firstError);
++  if(!recheck)s.stableBodyId=currentId;
++  return current;
++ }
+@@ -140,4 +178,5 @@
+- private static void recheck(Snapshot s)throws Exception{
+-  if(!active||!same(session.GetActiveModel(),s.model)||!TARGET.equalsIgnoreCase(s.model.GetFileName())||!Objects.equals(s.stamp,s.model.GetVersionStamp())||s.dirty!=s.model.GetIsModified())throw new IllegalStateException("确认期间激活模型/版本/dirty变化，未写模型。");
+-  SolidBody current=s.solid.GetDefaultBody();if(!same(current,s.body)||current.IsSheetmetal())throw new IllegalStateException("确认期间默认体变化，未执行。");
+-  ModelItems bodies=s.model.ListItems(ModelItemType.ITEM_BODY);if(bodies==null||bodies.getarraysize()!=1||!same(bodies.get(0),current))throw new IllegalStateException("实体体上下文变化。");
++ private static void recheck(Snapshot s,Step15Control control)throws Exception{
++  try{if(!active||!same(session.GetActiveModel(),s.model)||!TARGET.equalsIgnoreCase(s.model.GetFileName())||!Objects.equals(s.stamp,s.model.GetVersionStamp())||s.dirty!=s.model.GetIsModified())throw new BodyIdentityFailure(ScopedBodyIdentity.Code.MODEL_SCOPE_MISMATCH,"RECHECK","确认期间激活模型/版本/dirty变化，未写模型。",null);}
++  catch(BodyIdentityFailure mismatch){throw mismatch;}
++  catch(Exception|LinkageError readError){throw new BodyIdentityFailure(ScopedBodyIdentity.Code.STATE_READ_EXCEPTION,"RECHECK","确认期间模型作用域读取异常",readError);}
++  s.body=verifyDefaultBody(s,control,true);
+@@ -148 +187 @@
+- private static String execute(Step13Control control)throws Exception{
++ private static String execute(Step15Control control)throws Exception{
+@@ -151 +190 @@
+-  control.acceptRisk();session.UIDisplayMessage(MESSAGES,"P1_S13_THICKNESS",null);String input=session.UIReadStringMessage(Boolean.FALSE);
++  control.acceptRisk();session.UIDisplayMessage(MESSAGES,"P1_S15_THICKNESS",null);String input=session.UIReadStringMessage(Boolean.FALSE);
+@@ -153 +192 @@
+-  control.setThickness(input);recheck(s);
++  control.setThickness(input);recheck(s,control);
+@@ -155 +194 @@
+-  control.acceptFinal();recheck(s);
++  control.acceptFinal();recheck(s,control);
+@@ -159 +198 @@
+-  element(elements,wfcElemIds.PRO_E_STD_FEATURE_NAME,pfcArgument.CreateStringArgValue("P1_STEP13_DRIVING"),1);
++  element(elements,wfcElemIds.PRO_E_STD_FEATURE_NAME,pfcArgument.CreateStringArgValue("P1_STEP15_DRIVING"),1);
+@@ -167 +206 @@
+-  recheck(s);control.markDispatch();
++  recheck(s,control);control.markDispatch();
+@@ -189 +228 @@
+- private static void readonlyFailureSnapshot(Step13Control control){
++ private static void readonlyFailureSnapshot(Step15Control control){
+@@ -192 +231 @@
+-  }catch(Exception|LinkageError readError){System.err.println("[P1_STEP13] FAILURE_READBACK_UNAVAILABLE "+readError.getClass().getName());}
++  }catch(Exception|LinkageError readError){System.err.println("[P1_STEP15] FAILURE_READBACK_UNAVAILABLE "+readError.getClass().getName());}
+--- /dev/null
++++ step15/source/ScopedBodyIdentity.java
+@@ -0,0 +1,16 @@
++package p1.controlled.step15;
++/** Pure body-specific policy. Handles are diagnostics and are deliberately not policy inputs. */
++public final class ScopedBodyIdentity {
++ private ScopedBodyIdentity(){}
++ public enum Code { ACCEPTED, DEFAULT_BODY_NULL, ENUMERATED_BODY_UNAVAILABLE, MODEL_SCOPE_MISMATCH, BODY_ID_MISMATCH, ALREADY_SHEETMETAL, STATE_READ_EXCEPTION }
++ public static Code evaluate(boolean scopeVerified,Integer count,boolean listedPresent,boolean defaultPresent,Integer listedId,Integer defaultId,boolean recheck,Integer baselineId,Boolean nativeSheetmetal,boolean nativeReadFailed){
++  if(!scopeVerified)return Code.MODEL_SCOPE_MISMATCH;
++  if(nativeReadFailed)return Code.STATE_READ_EXCEPTION;
++  if(!defaultPresent)return Code.DEFAULT_BODY_NULL;
++  if(count==null||count!=1||!listedPresent)return Code.ENUMERATED_BODY_UNAVAILABLE;
++  if(listedId==null||defaultId==null||nativeSheetmetal==null||(recheck&&baselineId==null))return Code.STATE_READ_EXCEPTION;
++  if(!listedId.equals(defaultId)||(recheck&&!defaultId.equals(baselineId)))return Code.BODY_ID_MISMATCH;
++  if(nativeSheetmetal)return Code.ALREADY_SHEETMETAL;
++  return Code.ACCEPTED;
++ }
++}
+--- step13/source/Step13Control.java
++++ step15/source/Step15Control.java
+@@ -1 +1 @@
+-package p1.controlled.step13;
++package p1.controlled.step15;
+@@ -9 +9 @@
+-import static p1.controlled.step13.AuditSupport.*;
++import static p1.controlled.step15.AuditSupport.*;
+@@ -12 +12 @@
+-public final class Step13Control implements AutoCloseable {
++public final class Step15Control implements AutoCloseable {
+@@ -14 +14 @@
+- public static final String FILE_NAME="step13-200002100-once.jsonl";
++ public static final String FILE_NAME="step15-200002100-once.jsonl";
+@@ -22 +22 @@
+- public Step13Control(Path directory)throws IOException {
++ public Step15Control(Path directory)throws IOException {
+@@ -44 +44 @@
+-  Map<String,Object> row=map("schema","P1_STEP13_CONTROLLED_NATIVE_CONVERSION_V1","step","STEP_13","requestId",requestId,"sequence",++sequence,"timestamp",Instant.now().toString(),"elapsedNs",System.nanoTime()-entered,"javaThreadId",Thread.currentThread().getId(),"event",event,"controlState",state.toString());row.putAll(fields);
++  Map<String,Object> row=map("schema","P1_STEP15_CONTROLLED_NATIVE_CONVERSION_V1","step","STEP_15","requestId",requestId,"sequence",++sequence,"timestamp",Instant.now().toString(),"elapsedNs",System.nanoTime()-entered,"javaThreadId",Thread.currentThread().getId(),"event",event,"controlState",state.toString());row.putAll(fields);

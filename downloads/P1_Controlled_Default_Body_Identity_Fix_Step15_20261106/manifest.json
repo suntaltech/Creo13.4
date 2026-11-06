@@ -1,0 +1,166 @@
+{
+  "artifactType": "STEP15_CONTROLLED_DEFAULT_BODY_IDENTITY_FIX_OFFLINE_CANDIDATE_NOT_PRODUCTION_RELEASE",
+  "date": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "taskInput": {
+    "fileName": "P1_默认体身份修正第十五步_任务单_20261106.md",
+    "sha256": "163ac0b739e2f91fc9f0c7f0cf7d52e52c992cc959c1a14627841be0798ea62e"
+  },
+  "applicationClass": "p1.controlled.step15.P1ControlledConversionStep15",
+  "commandId": "SISWControlledConvertStep15",
+  "targetModel": "200002100.prt",
+  "sourceFiles": [
+    {
+      "relativeName": "source/AuditSupport.java",
+      "sha256": "a525b4130ff2c418dcf41b3ff4ff928c981deff1f192a652710b2ca71360d83c"
+    },
+    {
+      "relativeName": "source/P1ControlledConversionStep15.java",
+      "sha256": "4d66972075813751d2c38cdbd122a119c660e243f606ad510373bb07fd5a1312"
+    },
+    {
+      "relativeName": "source/ScopedBodyIdentity.java",
+      "sha256": "cab1306a1b6b96e1e4397ec0789ad9c8903017ca1e8ccf0f026780721b00bfd2"
+    },
+    {
+      "relativeName": "source/Step15Control.java",
+      "sha256": "70efb5ffc0787c4d51f98f60e2ceb1936fdef532e23f2068f06ecf08a7cc6fb3"
+    }
+  ],
+  "classes": [
+    {
+      "relativeName": "classes/p1/controlled/step15/AuditSupport.class",
+      "sha256": "33210fb66ae4b70ca610ad360d67ef965902d7bb13f44743c03032564401c143",
+      "bytes": 4880
+    },
+    {
+      "relativeName": "classes/p1/controlled/step15/P1ControlledConversionStep15$BodyIdentityFailure.class",
+      "sha256": "89bc8e75b6643296e842680dba4fb2809bdd6bf3333f37d93a603f85b2b0920b",
+      "bytes": 1378
+    },
+    {
+      "relativeName": "classes/p1/controlled/step15/P1ControlledConversionStep15$Listener.class",
+      "sha256": "6e4d40061aeed76fe6e1aea69f6525c07ae4d76be7e1e0bc30f6ce3e779d3890",
+      "bytes": 5347
+    },
+    {
+      "relativeName": "classes/p1/controlled/step15/P1ControlledConversionStep15$Snapshot.class",
+      "sha256": "e649c9b1c4f34f544c1c5919853a57236fc3f5e737cf00c0e09658627781b473",
+      "bytes": 827
+    },
+    {
+      "relativeName": "classes/p1/controlled/step15/P1ControlledConversionStep15.class",
+      "sha256": "0830cc90fd5e91846079c7ace08c3c8906361e0417ea88b8d6dbfd40caa74a80",
+      "bytes": 29301
+    },
+    {
+      "relativeName": "classes/p1/controlled/step15/ScopedBodyIdentity$Code.class",
+      "sha256": "a48355db1104936e99bb88bf28905a24dea769a678cf3b893d5afb933205640f",
+      "bytes": 1523
+    },
+    {
+      "relativeName": "classes/p1/controlled/step15/ScopedBodyIdentity.class",
+      "sha256": "3ee827a629b13b5112cb2e94a6ed32dbe3d12e13df90bdf6a19c3a48f6ffbb2d",
+      "bytes": 1130
+    },
+    {
+      "relativeName": "classes/p1/controlled/step15/Step15Control$State.class",
+      "sha256": "9ac01419f52c40a52b9bf2e11b26f19630f0970a343d64b0d43694d8e398d713",
+      "bytes": 1391
+    },
+    {
+      "relativeName": "classes/p1/controlled/step15/Step15Control.class",
+      "sha256": "b0ff7e613a9d8eb89c6e8b9657b6d1ce20b5278edcfe6975a5dcdf578312b10f",
+      "bytes": 6326
+    }
+  ],
+  "jar": {
+    "relativeName": "lib/p1-controlled-conversion-step15.jar",
+    "sha256": "dfce7230747acbaa0a7c9134bd207433b968d40af036ca55f8d45226bba9347c",
+    "classBytesMatchLooseFiles": true,
+    "sdkBundled": false
+  },
+  "sdk": {
+    "fileName": "otk.jar",
+    "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "runtimeJava25Required": true,
+    "pfcasyncUsed": false,
+    "redistributed": false
+  },
+  "validation": {
+    "realSdkCompilation": true,
+    "sdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "classCount": 9,
+    "classMajor": 61,
+    "sdkRuntimeMajor": 69,
+    "java25RuntimeRequired": true,
+    "repeatCompileIdentical": true,
+    "jarClassBytesMatchLooseFiles": true,
+    "classes": {
+      "p1/controlled/step15/AuditSupport.class": "33210fb66ae4b70ca610ad360d67ef965902d7bb13f44743c03032564401c143",
+      "p1/controlled/step15/P1ControlledConversionStep15$BodyIdentityFailure.class": "89bc8e75b6643296e842680dba4fb2809bdd6bf3333f37d93a603f85b2b0920b",
+      "p1/controlled/step15/P1ControlledConversionStep15$Listener.class": "6e4d40061aeed76fe6e1aea69f6525c07ae4d76be7e1e0bc30f6ce3e779d3890",
+      "p1/controlled/step15/P1ControlledConversionStep15$Snapshot.class": "e649c9b1c4f34f544c1c5919853a57236fc3f5e737cf00c0e09658627781b473",
+      "p1/controlled/step15/P1ControlledConversionStep15.class": "0830cc90fd5e91846079c7ace08c3c8906361e0417ea88b8d6dbfd40caa74a80",
+      "p1/controlled/step15/ScopedBodyIdentity$Code.class": "a48355db1104936e99bb88bf28905a24dea769a678cf3b893d5afb933205640f",
+      "p1/controlled/step15/ScopedBodyIdentity.class": "3ee827a629b13b5112cb2e94a6ed32dbe3d12e13df90bdf6a19c3a48f6ffbb2d",
+      "p1/controlled/step15/Step15Control$State.class": "9ac01419f52c40a52b9bf2e11b26f19630f0970a343d64b0d43694d8e398d713",
+      "p1/controlled/step15/Step15Control.class": "b0ff7e613a9d8eb89c6e8b9657b6d1ce20b5278edcfe6975a5dcdf578312b10f"
+    },
+    "pureControlAssertions": 35,
+    "pureBodyPolicyAssertions": 21,
+    "actualPriorStep14PrimitiveReplayDecisions": 4,
+    "actualStep15NativeRun": "NOT_EXECUTED_UNKNOWN",
+    "sameFunctionUnchangedExceptIndependentNames": true,
+    "faceOwnershipGateUnchanged": true,
+    "featureCreationRegenAndReadbackBlockFrozen": true,
+    "newNativeWriteReferences": false,
+    "step13CodeOrLockTouched": false,
+    "newStep15IndependentOneClickLedger": true,
+    "newLedgerDoesNotRearmStep13": true,
+    "sourceAndCompilerUseActualSdkNoMocks": true,
+    "creoModelOrPluginExecuted": false
+  },
+  "bodyPolicy": {
+    "targetAndPartAndModelScopeRequired": true,
+    "uniqueEnumeratedBodyAndDefaultBodyRequired": true,
+    "itemBodyTypesRequired": true,
+    "idsReadLiveInModelScope": true,
+    "initialStableBodyIdRechecked": true,
+    "negativeIdsAccepted": true,
+    "wrapperHandlesDiagnosticOnlyForBodies": true,
+    "sameFunctionGloballyReplaced": false,
+    "defaultBodyInitialAndAllRechecksUpdated": true,
+    "otherModelAndFaceIdentityGatesRetained": true,
+    "errorCodes": [
+      "DEFAULT_BODY_NULL",
+      "ENUMERATED_BODY_UNAVAILABLE",
+      "MODEL_SCOPE_MISMATCH",
+      "BODY_ID_MISMATCH",
+      "ALREADY_SHEETMETAL",
+      "STATE_READ_EXCEPTION"
+    ]
+  },
+  "control": {
+    "ledgerDirectoryUnderUserHome": "CreoControlledConversionStep15",
+    "ledgerFile": "step15-200002100-once.jsonl",
+    "manualCommandOnly": true,
+    "twoDefaultNoConfirmationsRequired": true,
+    "explicitTestThicknessOnly": true,
+    "automaticConversionRetryOrRearm": false,
+    "step13LockReadModifiedDeleted": false,
+    "saveOrGlobalSaveInterceptionImplemented": false,
+    "failedOrUnverifiedModelStateRetained": true,
+    "oneFeatureCreateAndOneExplicitRegenAtMost": true
+  },
+  "runtime": {
+    "deployed": false,
+    "registered": false,
+    "step15ClickPerformed": false,
+    "creoExecuted": false,
+    "defaultBodyGateAndLaterPromptsVerified": "NOT_EXECUTED_UNKNOWN",
+    "nativeConversionSucceeded": "NOT_EXECUTED_UNKNOWN",
+    "materialOccupancyOrFinalThicknessProven": false,
+    "productionReady": false
+  }
+}

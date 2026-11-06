@@ -1,0 +1,23 @@
+{
+  "step13CandidateCommit": "013e34ae091eca85702c519293c44274445ed89d",
+  "step14DiagnosticCandidateCommit": "c034b0491f32402602640085084d9f883267ec68",
+  "step14ReviewCommit": "6714cc3459f6a657218e632751f8ad76f31a7d98",
+  "step13SourceClassFilesVerifiedUnchanged": true,
+  "step13Sources": [
+    {
+      "relativeName": "source/AuditSupport.java",
+      "sha256": "93c6c9a119f1573580a3539ea441044b4ae3ad4894d89aceee103bf332a947fc"
+    },
+    {
+      "relativeName": "source/P1ControlledConversionStep13.java",
+      "sha256": "f02ea49dc29c6b6824dbb3be9e18a6d575db8fb30bbceaf39b0fbef16140258d"
+    },
+    {
+      "relativeName": "source/Step13Control.java",
+      "sha256": "c00fe22e5decb2dc40926f2750867d0896f5ffe9def06b2910bdd407cc4626fc"
+    }
+  ],
+  "step13OnceFileReadModifiedDeletedOrRearmed": false,
+  "step15UsesIndependentManualOneShotNotAutomaticRetry": true,
+  "step15LedgerLeaf": "step15-200002100-once.jsonl"
+}

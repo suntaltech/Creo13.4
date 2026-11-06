@@ -1,0 +1,20 @@
+P1_S15_LABEL
+Controlled Solid to Sheetmetal Step 15
+
+P1_S15_HELP
+Scoped default-body ID checks; one manual controlled click, explicit test thickness and two confirmations
+
+P1_S15_DESC
+Target 200002100.prt only. Wrapper handles are body diagnostics, not body identity gates. No Save or automatic retry.
+
+P1_S15_THICKNESS
+Enter an explicit positive finite TEST thickness in mm. No suggested value; not global thickness proof.
+
+P1_S15_FAILED
+Step15 blocked, failed or unverified. Review the error code and audit. One-shot consumed. Do NOT save or retry.
+
+P1_S15_VERIFIED
+Native sheetmetal/new-wall readback passed; visual tree check pending. No Save issued. Do not repeat this disposable test.
+
+P1_S15_CANCELLED
+Step15 cancelled before model write. One-shot consumed. No Save issued. Do not retry this controlled case.

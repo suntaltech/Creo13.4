@@ -1,0 +1,23 @@
+{
+  "type": "ACTUAL_PRIOR_STEP14_PRIMITIVE_POLICY_REPLAY_NOT_STEP15_NATIVE_RUN",
+  "inputStep14JsonlSha256": "675f08995ff51817649da5a56708be4e30f2aa06517490422aa9b3945b45a471",
+  "reportedBodyCount": 1,
+  "enumeratedId": -5778,
+  "defaultIds": [
+    -5778,
+    -5778
+  ],
+  "nativeSheetmetal": [
+    false,
+    false
+  ],
+  "wrapperHandlesDifferButAreNotPolicyInputs": true,
+  "scopeAssumption": "Caller must verify current target/part/model view and body types; not authenticated by this pure replay",
+  "initialAndRecheckDecisionsForBothViews": [
+    "ACCEPTED",
+    "ACCEPTED",
+    "ACCEPTED",
+    "ACCEPTED"
+  ],
+  "fullConversionOrOtherGatesTested": false
+}
