@@ -1,0 +1,14 @@
+{
+  "step9CandidateCommit": "14f1e865c07ec40736192fe758c2250615e0c43d",
+  "step9ReviewCommit": "1d757c283dacc28a4e48246ec0e9021293be2426",
+  "step9SourceClassJarVerifiedUnchanged": true,
+  "step9JarSha256": "84b896a439c38716becb6b98ee6b4596c063092b36c53bd807afb14033ef5ee5",
+  "twelveExistingHelpersEqualExceptIndependentStepNames": true,
+  "readUvBoundsThroughAllGeometryMethodsEqualExceptStepNames": true,
+  "readWrapperUnchangedExceptStepNames": true,
+  "completionAndBudgetFormulaUnchanged": true,
+  "writeNewlineFlushCodeAndOrderUnchanged": true,
+  "sdkReferencesExactlyUnchanged": 58,
+  "nativeThreadPolicyChanged": false,
+  "step10RuntimeGeometryOrPerformanceVerified": false
+}

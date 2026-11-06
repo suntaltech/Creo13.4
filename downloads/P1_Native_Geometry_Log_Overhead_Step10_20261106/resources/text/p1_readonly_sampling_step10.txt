@@ -1,0 +1,14 @@
+P1_SAMPLE10_LABEL
+Sample Read-Only Geometry Step 10
+
+P1_SAMPLE10_HELP
+Observe synchronous read-only geometry with reduced or full stderr mirroring
+
+P1_SAMPLE10_DESC
+All business JSONL rows retained with per-record flush. No final thickness or conversion.
+
+P1_SAMPLE10_STARTED
+Step 10 read-only sampling started. Preserve lifecycle and complete sampling JSONL.
+
+P1_SAMPLE10_FINISHED
+Step 10 sampling ended. Review stderr policy, timing, geometry and final identity status.

@@ -1,0 +1,169 @@
+--- step9/source/GeometryAnalyticMath.java
++++ step10/source/GeometryAnalyticMath.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step9;
++package p1.readonly.geometry.step10;
+--- step9/source/GeometryCandidateClassification.java
++++ step10/source/GeometryCandidateClassification.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step9;
++package p1.readonly.geometry.step10;
+--- step9/source/GeometryCandidateQueue.java
++++ step10/source/GeometryCandidateQueue.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step9;
++package p1.readonly.geometry.step10;
+--- step9/source/GeometryEvidenceSupport.java
++++ step10/source/GeometryEvidenceSupport.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step9;
++package p1.readonly.geometry.step10;
+--- step9/source/GeometryPairEvidence.java
++++ step10/source/GeometryPairEvidence.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step9;
++package p1.readonly.geometry.step10;
+--- step9/source/GeometryPoolSelection.java
++++ step10/source/GeometryPoolSelection.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step9;
++package p1.readonly.geometry.step10;
+--- step9/source/GeometryReferenceBaseline.java
++++ step10/source/GeometryReferenceBaseline.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step9;
++package p1.readonly.geometry.step10;
+--- step9/source/GeometrySamplingMath.java
++++ step10/source/GeometrySamplingMath.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step9;
++package p1.readonly.geometry.step10;
+--- step9/source/GeometrySdkInterfaceReview.java
++++ step10/source/GeometrySdkInterfaceReview.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step9;
++package p1.readonly.geometry.step10;
+--- step9/source/GeometrySpreadSelection.java
++++ step10/source/GeometrySpreadSelection.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step9;
++package p1.readonly.geometry.step10;
+--- /dev/null
++++ step10/source/GeometryStderrPolicy.java
+@@ -0,0 +1,45 @@
++package p1.readonly.geometry.step10;
++import java.util.Locale;
++import java.util.Map;
++import static p1.readonly.geometry.step10.GeometryEvidenceSupport.map;
++
++/** Synchronous stderr selection only. Does not filter, buffer or write the business JSONL. */
++public final class GeometryStderrPolicy {
++ public static final String ENVIRONMENT_KEY="P1_READONLY_GEOMETRY_STDERR_MODE";
++ public static final String DEFAULT_MODE="REDUCED",FULL_MODE="FULL";
++ private final String mode,configurationState;
++ private long decisions,mirrored,suppressed;
++ public GeometryStderrPolicy(String configured){
++  String value=configured==null?"":configured.strip().toUpperCase(Locale.ROOT);
++  if(value.isEmpty()){mode=DEFAULT_MODE;configurationState="DEFAULT_REDUCED";}
++  else if(value.equals(DEFAULT_MODE)||value.equals(FULL_MODE)){mode=value;configurationState="EXPLICIT_VALID";}
++  else{mode=FULL_MODE;configurationState="INVALID_VALUE_FALLBACK_FULL";}
++ }
++ public static GeometryStderrPolicy fromEnvironment(){
++  try{return new GeometryStderrPolicy(System.getenv(ENVIRONMENT_KEY));}
++  catch(SecurityException error){return new GeometryStderrPolicy("INVALID_ENVIRONMENT_UNAVAILABLE");}
++ }
++ public String mode(){return mode;}
++ public boolean fallbackFull(){return configurationState.equals("INVALID_VALUE_FALLBACK_FULL");}
++ public boolean shouldMirror(String event){
++  // Unknown future event types remain visible; suppress only explicitly known high-volume or bulky events.
++  if(mode.equals(FULL_MODE)||event==null)return true;
++  switch(event){
++   case "SURFACE_UV_RANGE":case "SURFACE":case "SURFACE_CANDIDATE_PLAN":case "POINT_NORMAL_SAMPLE":
++   case "PLANE_SAMPLE_QUALITY":case "CROSS_RUN_SPREAD_COMPARISON":case "SURFACE_SAMPLING_SUMMARY":
++   case "SAMPLE_REJECTED":case "PLANE_QUALITY_POOL_STARTED":case "POINT_NORMAL_POOL_CANDIDATE":
++   case "QUALITY_CANDIDATE_QUEUE":case "FROZEN_STEP5_SELECTION_BASELINE":case "PLANE_POOL_SELECTION":
++   case "SURFACE_REFINEMENT_STARTED":case "RELATIVE_FACE_PAIR_CANDIDATE":case "SURFACE_ANALYTIC_PARAMETERS":
++   case "PAIR_ANALYTIC_GAP_CANDIDATE":case "PAIR_DOMAIN_POINT_EVALUATION":case "PAIR_LOCAL_DISTANCE_WITNESS":
++   case "PAIR_OVERLAP_VALIDATION_SUMMARY":case "PAIR_CANDIDATE_CLASSIFICATION":case "SDK_READONLY_INTERFACE_REVIEW_ITEM":
++   case "TIMING_OBSERVATION_SNAPSHOT":return false;
++   default:return true;
++  }
++ }
++ /** Invoked after successful business flush, before any selected stderr attempt. */
++ public boolean decide(String event){boolean yes=shouldMirror(event);decisions++;if(yes)mirrored++;else suppressed++;return yes;}
++ public Map<String,Object> report(){return map("schema","P1_NATIVE_GEOMETRY_STDERR_POLICY_V1","effectiveMode",mode,"configurationState",configurationState,
++  "environmentKey",ENVIRONMENT_KEY,"selectionDecisionsAfterSuccessfulBusinessFlush",decisions,"mirrorSelectedAttempts",mirrored,"stderrSuppressedRecords",suppressed,
++  "unknownEventTypesMirrored",true,"businessJsonlFiltered",false,"businessFlushPolicy","EVERY_RECORD_UNCHANGED_FROM_STEP9","batchingEnabled",false,
++  "nativeThreadPolicyChanged",false,"decisionIsNotStderrDeliveryProof",true);}
++}
+--- step9/source/GeometryTimingCounters.java
++++ step10/source/GeometryTimingCounters.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step9;
++package p1.readonly.geometry.step10;
+--- step9/source/GeometryTimingJournal.java
++++ step10/source/GeometryTimingJournal.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step9;
++package p1.readonly.geometry.step10;
+@@ -13 +13 @@
+- private final String traceId="T9-"+Long.toHexString(openedNs)+"-"+NEXT.incrementAndGet();
++ private final String traceId="T10-"+Long.toHexString(openedNs)+"-"+NEXT.incrementAndGet();
+@@ -22 +22 @@
+-  Files.createDirectories(directory);Path file=directory.resolve("geometry-timing-step9-lifecycle-"+traceId+".jsonl");fileName=file.getFileName().toString();
++  Files.createDirectories(directory);Path file=directory.resolve("geometry-timing-step10-lifecycle-"+traceId+".jsonl");fileName=file.getFileName().toString();
+@@ -28 +28 @@
+-  try{Map<String,Object> row=GeometryEvidenceSupport.map("schema","P1_NATIVE_GEOMETRY_TIMING_LIFECYCLE_V1","event",event,"collectorStep","STEP_9","commandId",commandId,
++  try{Map<String,Object> row=GeometryEvidenceSupport.map("schema","P1_NATIVE_GEOMETRY_TIMING_LIFECYCLE_V1","event",event,"collectorStep","STEP_10","commandId",commandId,
+--- step9/source/P1ReadOnlyGeometrySamplerStep9.java
++++ step10/source/P1ReadOnlyGeometrySamplerStep10.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step9;
++package p1.readonly.geometry.step10;
+@@ -24 +24 @@
+-import static p1.readonly.geometry.step9.GeometryEvidenceSupport.*;
++import static p1.readonly.geometry.step10.GeometryEvidenceSupport.*;
+@@ -27 +27 @@
+-public final class P1ReadOnlyGeometrySamplerStep9 {
++public final class P1ReadOnlyGeometrySamplerStep10 {
+@@ -30,2 +30,2 @@
+-    public static final String COMMAND_ID = "SISWReadOnlyGeometrySample9";
+-    private static final String MESSAGES = "p1_readonly_sampling_step9.txt";
++    public static final String COMMAND_ID = "SISWReadOnlyGeometrySample10";
++    private static final String MESSAGES = "p1_readonly_sampling_step10.txt";
+@@ -54 +54 @@
+-    private P1ReadOnlyGeometrySamplerStep9() { }
++    private P1ReadOnlyGeometrySamplerStep10() { }
+@@ -68 +68 @@
+-                registrationAction("UICommand.Designate",()->{command.Designate(MESSAGES,"P1_SAMPLE9_LABEL","P1_SAMPLE9_HELP","P1_SAMPLE9_DESC");return Boolean.TRUE;});
++                registrationAction("UICommand.Designate",()->{command.Designate(MESSAGES,"P1_SAMPLE10_LABEL","P1_SAMPLE10_HELP","P1_SAMPLE10_DESC");return Boolean.TRUE;});
+@@ -168,0 +169 @@
++        final GeometryStderrPolicy stderrPolicy=GeometryStderrPolicy.fromEnvironment();
+@@ -203 +204 @@
+-                Files.createDirectories(directory);Path output=directory.resolve("geometry-sampling-step9-"+requestId+".jsonl");
++                Files.createDirectories(directory);Path output=directory.resolve("geometry-sampling-step10-"+requestId+".jsonl");
+@@ -204,0 +206,2 @@
++                timingSink.record("LOG_OUTPUT_POLICY_SELECTED",id,map("policy",stderrPolicy.report(),"scope","BUSINESS_STDERR_MIRROR_ONLY_ALL_JSONL_ROWS_AND_FLUSH_RETAINED"));
++                if(stderrPolicy.fallbackFull())lifecycle("LOG_STDERR_MODE_INVALID_OR_UNAVAILABLE; fallback=FULL",null);
+@@ -214 +217 @@
+-                    "collectorStep","STEP_9","samplingSchema","P1_NATIVE_GEOMETRY_SAMPLING_V1","samplingQualitySchema","P1_NATIVE_GEOMETRY_SAMPLING_QUALITY_V1",
++                    "collectorStep","STEP_10","samplingSchema","P1_NATIVE_GEOMETRY_SAMPLING_V1","samplingQualitySchema","P1_NATIVE_GEOMETRY_SAMPLING_QUALITY_V1",
+@@ -217 +220,2 @@
+-                    "timingSchema","P1_NATIVE_TIMING_OBSERVATION_V1","timingPhase",timingPhase);
++                    "timingSchema","P1_NATIVE_TIMING_OBSERVATION_V1","timingPhase",timingPhase,
++                    "loggingSchema","P1_NATIVE_GEOMETRY_STDERR_POLICY_V1","stderrMode",stderrPolicy.mode());
+@@ -221 +225 @@
+-                mark=System.nanoTime();try{stderrLines++;System.err.println("[P1GEO] "+json);}finally{stderrElapsed=System.nanoTime()-mark;}
++                if(stderrPolicy.decide(event)){mark=System.nanoTime();try{stderrLines++;System.err.println("[P1GEO] "+json);}finally{stderrElapsed=System.nanoTime()-mark;}}
+@@ -270 +274 @@
+-            read("Session.UIDisplayMessage(STARTED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE9_STARTED", null); return Boolean.TRUE; });
++            read("Session.UIDisplayMessage(STARTED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE10_STARTED", null); return Boolean.TRUE; });
+@@ -395 +399 @@
+-                read("Session.UIDisplayMessage(FINISHED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE9_FINISHED", null); return Boolean.TRUE; });
++                read("Session.UIDisplayMessage(FINISHED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE10_FINISHED", null); return Boolean.TRUE; });
+@@ -397 +401 @@
+-                emitTimingRecord("TIMING_OBSERVATION_SNAPSHOT",map("timingTraceId",timingSink.traceId(),"lifecycleFileName",timingSink.fileName(),"phaseReports",timingPhaseReports,"counters",timing.report(),
++                emitTimingRecord("TIMING_OBSERVATION_SNAPSHOT",map("timingTraceId",timingSink.traceId(),"lifecycleFileName",timingSink.fileName(),"phaseReports",timingPhaseReports,"counters",timing.report(),"stderrPolicyBeforeSnapshotOutput",stderrPolicy.report(),
+@@ -1051 +1055 @@
+-                timingSink.record("RUN_OBSERVATION_TOTALS",requestId,map("businessCountersThroughClose",timing.report(),"businessWriterCloseNs",end-begin,"businessWriterCloseCompleted",completed,
++                timingSink.record("RUN_OBSERVATION_TOTALS",requestId,map("businessCountersThroughClose",timing.report(),"stderrPolicyThroughClose",stderrPolicy.report(),"businessWriterCloseNs",end-begin,"businessWriterCloseCompleted",completed,

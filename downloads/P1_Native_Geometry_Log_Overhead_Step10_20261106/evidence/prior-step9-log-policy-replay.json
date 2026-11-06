@@ -1,0 +1,54 @@
+{
+  "type": "FILE_ONLY_STDERR_SELECTION_REPLAY_NOT_STEP10_NATIVE_EXECUTION",
+  "inputStep9JsonlSha256": "2e3fe361d9aafcdc87e4afe29f89ed2f484f174e5a5381866e3671751c9ccbf1",
+  "sourceRows": 6432,
+  "everyBusinessJsonTextLineRetainedInBothModes": true,
+  "businessFieldsMutated": false,
+  "allExistingCriticalRowsStillMirrored": true,
+  "modes": {
+    "FULL": {
+      "sourceLinesRetained": 6432,
+      "selectedMirrorUtf8BytesLf": 10770365,
+      "policy": {
+        "schema": "P1_NATIVE_GEOMETRY_STDERR_POLICY_V1",
+        "effectiveMode": "FULL",
+        "configurationState": "EXPLICIT_VALID",
+        "environmentKey": "P1_READONLY_GEOMETRY_STDERR_MODE",
+        "selectionDecisionsAfterSuccessfulBusinessFlush": 6432,
+        "mirrorSelectedAttempts": 6432,
+        "stderrSuppressedRecords": 0,
+        "unknownEventTypesMirrored": true,
+        "businessJsonlFiltered": false,
+        "businessFlushPolicy": "EVERY_RECORD_UNCHANGED_FROM_STEP9",
+        "batchingEnabled": false,
+        "nativeThreadPolicyChanged": false,
+        "decisionIsNotStderrDeliveryProof": true
+      },
+      "nativeCallsMade": false,
+      "replayIsNativePerformanceBenchmark": false
+    },
+    "REDUCED": {
+      "sourceLinesRetained": 6432,
+      "selectedMirrorUtf8BytesLf": 34823,
+      "policy": {
+        "schema": "P1_NATIVE_GEOMETRY_STDERR_POLICY_V1",
+        "effectiveMode": "REDUCED",
+        "configurationState": "EXPLICIT_VALID",
+        "environmentKey": "P1_READONLY_GEOMETRY_STDERR_MODE",
+        "selectionDecisionsAfterSuccessfulBusinessFlush": 6432,
+        "mirrorSelectedAttempts": 27,
+        "stderrSuppressedRecords": 6405,
+        "unknownEventTypesMirrored": true,
+        "businessJsonlFiltered": false,
+        "businessFlushPolicy": "EVERY_RECORD_UNCHANGED_FROM_STEP9",
+        "batchingEnabled": false,
+        "nativeThreadPolicyChanged": false,
+        "decisionIsNotStderrDeliveryProof": true
+      },
+      "nativeCallsMade": false,
+      "replayIsNativePerformanceBenchmark": false
+    }
+  },
+  "elapsedPerformanceCompared": false,
+  "rawModelLogRedistributed": false
+}
