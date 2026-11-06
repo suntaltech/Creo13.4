@@ -1,0 +1,84 @@
+{
+  "type": "STEP14_READONLY_BODY_DIAGNOSTIC_REVIEW_HANDLE_GATE_FALSE_NEGATIVE_REPRODUCED",
+  "date": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "inputArchive": {
+    "fileName": "step14-default-body-diagnostic-evidence-20261106.zip",
+    "sha256": "b5ac2677d72841fdaedda7c4143c3acac3b386dbfb561af181ae38bdb4505392"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "default-body-step14-50bcabaa-56b6-4e79-b0ee-7c50c560a04a.jsonl",
+      "bytes": 10450,
+      "sha256": "675f08995ff51817649da5a56708be4e30f2aa06517490422aa9b3945b45a471"
+    }
+  ],
+  "referenceStep14CandidateCommit": "c034b0491f32402602640085084d9f883267ec68",
+  "referenceStep13CandidateCommit": "013e34ae091eca85702c519293c44274445ed89d",
+  "referenceStep13BlockedReviewCommit": "ccc8c259cd8d022cdab82c3296fd863355906311",
+  "referenceStep14Sources": [
+    {
+      "relativeName": "source/BodyIdentity.java",
+      "sha256": "26db3984bba767b4217cb1df323acf1bd101acc8cfa980ec3ad54fadba82ed7b"
+    },
+    {
+      "relativeName": "source/DiagnosticSupport.java",
+      "sha256": "f6a8027be48b4f5410dc447e65796ef7e13c74872dd346c837d7c248810f28c9"
+    },
+    {
+      "relativeName": "source/P1DefaultBodyDiagnosticStep14.java",
+      "sha256": "2ecb7f69d5fa3801bf3f0a4820ee8d7fd74b247872a63b8e6c2bc15e2f78f539"
+    }
+  ],
+  "referenceStep14JarSha256": "46790d996434cfd5feb4fc6935df6430723b528ed5033fd4d0c7d74b081f7958",
+  "checks": {
+    "allRowsParseAndSequenceMonotonic": true,
+    "threeIndependentSheetmetalFalseProbesAndIdsVerified": true,
+    "allThreeRecordedOpaqueHandlesDistinctNonzero": true,
+    "bothComparisonAxesIndependentlyRecomputed": true,
+    "bothPublishedSdkFreeJavaComparisonOutputsExactlyMatch": true,
+    "sourceClassJarManifestsUnchanged": true,
+    "step13SourcesAndClassesVerifiedUnchanged": true,
+    "beforeAfterFileTypeStampDirtyValuesMatch": true
+  },
+  "findings": {
+    "defaultBodyNullInThisRun": false,
+    "nativeSheetmetalTrueInThisRun": false,
+    "enumeratedBodyCount": 1,
+    "allThreeModelScopedBodyIds": [
+      -5778,
+      -5778,
+      -5778
+    ],
+    "allThreeNativeSheetmetalReads": [
+      false,
+      false,
+      false
+    ],
+    "threeDistinctNonzeroWrapperHandles": true,
+    "javaReferenceEqualToEnumerated": {
+      "STEP13_WFC_VIEW": false,
+      "PUBLIC_PFC_SOLID_VIEW": false
+    },
+    "pointerEqualToEnumerated": {
+      "STEP13_WFC_VIEW": false,
+      "PUBLIC_PFC_SOLID_VIEW": false
+    },
+    "idEqualToEnumerated": {
+      "STEP13_WFC_VIEW": true,
+      "PUBLIC_PFC_SOLID_VIEW": true
+    },
+    "sameFunctionReconstructedFromCurrentProbes": false,
+    "combinedGuardReconstructedFromCurrentProbes": "FIRST_ITEM_IDENTITY_CHECK_FALSE",
+    "handleBasedGuardFalseNegativeMechanismReproduced": true,
+    "exactHistoricalStep13SubconditionIndependentlyRecorded": false,
+    "currentIdMatchAloneCertifiesCompleteOwnershipContract": false,
+    "conversionNowAuthorizedOrRetried": false
+  },
+  "actualLoadedBinaryAndSdkAuthenticated": false,
+  "pluginOrGuardCodeChanged": false,
+  "conversionLockReadClearedOrRearmed": false,
+  "conversionRetriedOrSdkModelExecutedByReviewer": false,
+  "rawJsonlCoordinatesOrOpaqueRuntimeAddressesRedistributed": false,
+  "nativeConversionSucceededOrGlobalThicknessProven": false
+}

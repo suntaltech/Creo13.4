@@ -1,0 +1,79 @@
+{
+  "type": "OFFLINE_STEP14_DEFAULT_BODY_IDENTITY_DIAGNOSTIC_REVIEW",
+  "date": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "requestId": "50bcabaa-56b6-4e79-b0ee-7c50c560a04a",
+  "inputRows": 13,
+  "inputJsonlSha256": "675f08995ff51817649da5a56708be4e30f2aa06517490422aa9b3945b45a471",
+  "recordedUtcBegin": "2026-11-06T08:55:50.949865900Z",
+  "recordedUtcEnd": "2026-11-06T08:55:50.958807500Z",
+  "reportedDiagnosticElapsedMs": 13,
+  "recordedElapsedToSummaryMs": 13.4833,
+  "findings": {
+    "defaultBodyNullInThisRun": false,
+    "nativeSheetmetalTrueInThisRun": false,
+    "enumeratedBodyCount": 1,
+    "allThreeModelScopedBodyIds": [
+      -5778,
+      -5778,
+      -5778
+    ],
+    "allThreeNativeSheetmetalReads": [
+      false,
+      false,
+      false
+    ],
+    "threeDistinctNonzeroWrapperHandles": true,
+    "javaReferenceEqualToEnumerated": {
+      "STEP13_WFC_VIEW": false,
+      "PUBLIC_PFC_SOLID_VIEW": false
+    },
+    "pointerEqualToEnumerated": {
+      "STEP13_WFC_VIEW": false,
+      "PUBLIC_PFC_SOLID_VIEW": false
+    },
+    "idEqualToEnumerated": {
+      "STEP13_WFC_VIEW": true,
+      "PUBLIC_PFC_SOLID_VIEW": true
+    },
+    "sameFunctionReconstructedFromCurrentProbes": false,
+    "combinedGuardReconstructedFromCurrentProbes": "FIRST_ITEM_IDENTITY_CHECK_FALSE",
+    "handleBasedGuardFalseNegativeMechanismReproduced": true,
+    "exactHistoricalStep13SubconditionIndependentlyRecorded": false,
+    "currentIdMatchAloneCertifiesCompleteOwnershipContract": false,
+    "conversionNowAuthorizedOrRetried": false
+  },
+  "checks": {
+    "allRowsParseAndSequenceMonotonic": true,
+    "threeIndependentSheetmetalFalseProbesAndIdsVerified": true,
+    "allThreeRecordedOpaqueHandlesDistinctNonzero": true,
+    "bothComparisonAxesIndependentlyRecomputed": true,
+    "bothPublishedSdkFreeJavaComparisonOutputsExactlyMatch": true,
+    "sourceClassJarManifestsUnchanged": true,
+    "step13SourcesAndClassesVerifiedUnchanged": true,
+    "beforeAfterFileTypeStampDirtyValuesMatch": true
+  },
+  "nativeExceptionsObserved": 0,
+  "unavailableProbesObserved": 0,
+  "summaryOutcome": "READ_DIAGNOSTICS_RECORDED_ONLY",
+  "modelContext": {
+    "fileName": "200002100.prt",
+    "typeValue": 1,
+    "versionStamp": "3071",
+    "isModified": false,
+    "lengthUnitName": "mm",
+    "lengthUnitExpression": "mm"
+  },
+  "sourceScope": {
+    "modelWritesPresentInStep14": false,
+    "step13LockCodeAccessPresent": false,
+    "actualLoadedBinaryAndSdkHashesProvided": false,
+    "wholeSessionNoWriteIndependentlyProven": false,
+    "internalAdapterStableContractCertified": false
+  },
+  "modelOrSdkExecutedByReviewer": false,
+  "pluginOrGuardCodeChanged": false,
+  "conversionLockReadClearedOrRearmedByReviewer": false,
+  "conversionRetried": false,
+  "rawRuntimeHandleAddressesRepublished": false
+}

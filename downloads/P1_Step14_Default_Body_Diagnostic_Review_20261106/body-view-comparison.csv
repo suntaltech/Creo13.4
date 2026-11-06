@@ -1,0 +1,4 @@
+view,present,javaClass,nativeBodyId,opaqueHandleLabel,nativeIsSheetmetal,javaSameAsEnumerated,handleEqualToEnumerated,idEqualToEnumerated,step13SameReconstructed,step13GuardReconstructed
+ENUMERATED_FIRST,True,com.ptc.wfc.Implementation.pfcSolid$SolidBody,-5778,HANDLE_ENUM,False,NOT_COMPARED_TO_SELF,SELF,True,NOT_APPLICABLE,NOT_APPLICABLE
+STEP13_WFC_VIEW,True,com.ptc.wfc.Implementation.pfcSolid$SolidBody,-5778,HANDLE_WFC_DEFAULT,False,False,False,True,False,FIRST_ITEM_IDENTITY_CHECK_FALSE
+PUBLIC_PFC_SOLID_VIEW,True,com.ptc.wfc.Implementation.pfcSolid$SolidBody,-5778,HANDLE_PFC_DEFAULT,False,False,False,True,False,FIRST_ITEM_IDENTITY_CHECK_FALSE
