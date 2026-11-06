@@ -1,0 +1,137 @@
+{
+  "type": "OFFLINE_STEP11_THREE_RUN_EVIDENCE_REVIEW_WITH_INCOMPLETE_EXTERNAL_OBSERVATIONS",
+  "date": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "inputArchive": {
+    "fileName": "native-readonly-step11-multirun-20261106.zip",
+    "sha256": "9165ec95444bf08b906e196edcb58859f41ac54ab60689e67bad7ec57c03c7ec"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "bytes": 283,
+      "sha256": "1481ac064aeb9ee9af063ec7ca30c8320614822630ab771c8df38e0020588cf7"
+    },
+    {
+      "relativeName": "input/observations.csv",
+      "bytes": 524,
+      "sha256": "ea889bbf6ec67f7e0c672bfea3d4c6843553093b002c8acca5e72d5de346d803"
+    },
+    {
+      "relativeName": "input/raw/geometry-sampling-step10-12dc5445-4471-4270-a644-b2a3b9486fda.jsonl",
+      "bytes": 11233792,
+      "sha256": "35c784d2631217664b60302fac22c4c225ff4ee05e26ee08e32f627f280423d3"
+    },
+    {
+      "relativeName": "input/raw/geometry-sampling-step10-55f8fa7c-8552-446a-97fe-c45f85f0696e.jsonl",
+      "bytes": 11233766,
+      "sha256": "53f81b9fd81c25aae01e78ceedc5122c4f3f517ea3d8f0be31bdf9a25aa3b927"
+    },
+    {
+      "relativeName": "input/raw/geometry-sampling-step10-dea74afc-f599-4cd2-800f-a4d0c815775b.jsonl",
+      "bytes": 11233581,
+      "sha256": "6e1d05301946bdf5099c3d1e7e4b4ef7bdce544c1ad8bc97df979cbf901ab912"
+    },
+    {
+      "relativeName": "input/raw/geometry-timing-step10-lifecycle-T10-101fe7981158-1.jsonl",
+      "bytes": 191799,
+      "sha256": "809a3854b6089ae8db50e0da4d35671051b90170e25e8681500404b022bc5884"
+    },
+    {
+      "relativeName": "input/raw/geometry-timing-step10-lifecycle-T10-9c42909b61c-1.jsonl",
+      "bytes": 72230,
+      "sha256": "34e66f419f606d75d76e5971b22a80b8dd1c07e1149e8f005b14df92b9416c00"
+    },
+    {
+      "relativeName": "input/session-context.json",
+      "bytes": 644,
+      "sha256": "290242449a7b1cc7fb01049c58f103e140f7d94d11e492cc7823c7552bb75b64"
+    },
+    {
+      "relativeName": "output/README.md",
+      "bytes": 401,
+      "sha256": "272b22c33e9f25667292d232ade25ab29370a2aac5ab80d67331743b5536d512"
+    },
+    {
+      "relativeName": "output/comparison.json",
+      "bytes": 18025,
+      "sha256": "323771ff573e0958cae88089ff3d9f35028a1423c9b871bc58dcd20c3b90af2a"
+    },
+    {
+      "relativeName": "output/phases.csv",
+      "bytes": 4632,
+      "sha256": "511a4c56d62321a042349285996925fb0259063ae762c63286f48ca5cae0f601"
+    },
+    {
+      "relativeName": "output/runs.csv",
+      "bytes": 876,
+      "sha256": "4e9d702b3e003aa611ccd034bb7fe8f43849f5b4be25d58fd0bb5d8bf0167725"
+    }
+  ],
+  "referenceStep11ToolCommit": "6a5e5e4c4e665c9b454f2509d7e0d2e85636d4c5",
+  "referenceStep10CandidateCommit": "2970451bb41bd622ef891d0843709fe65692a23e",
+  "referenceStep10ReviewCommit": "4a2a2443d8882c0823d518d875d4405a21fb111f",
+  "unchangedToolSha256": "24cf116123f71c8961bd473664d91ee93af853707910e2613ce4600f0e5504f3",
+  "checks": {
+    "uploadedAnalyzerJsonExactlyMatchesRecomputation": true,
+    "allThreeUploadedTextOutputsMatchRecomputation": true,
+    "threeIndependentCompletedRequestsInSharedLifecycleOrder": true,
+    "all45PhasePairsAndCounterGroupsReconciled": true,
+    "allThree6430StableBusinessRecordsMatchEachOtherAndPriorStep10": true,
+    "eachRunAll6432RowsAnd27Mirrors6405SuppressionsReconciled": true,
+    "oldTraceFirst47RecordsMatchPriorStep10ThenStop": true
+  },
+  "statistics": {
+    "elapsedMs": {
+      "count": 3,
+      "min": 5533,
+      "median": 5661,
+      "max": 7122
+    },
+    "commandCallbackMs": {
+      "count": 3,
+      "min": 5534.9183,
+      "median": 5662.9688,
+      "max": 7192.4487
+    },
+    "readMs": {
+      "count": 3,
+      "min": 4976.252,
+      "median": 5017.568,
+      "max": 5786.4032
+    },
+    "outputMs": {
+      "count": 3,
+      "min": 294.2385,
+      "median": 328.8646,
+      "max": 532.3396
+    },
+    "stderrMs": {
+      "count": 3,
+      "min": 6.4355,
+      "median": 6.7927,
+      "max": 6.9904
+    },
+    "flushMs": {
+      "count": 3,
+      "min": 101.6527,
+      "median": 121.1431,
+      "max": 203.7313
+    }
+  },
+  "analyzerStatus": "PENDING_REAL_RUNS_OR_OBSERVATIONS",
+  "pending": [
+    "INCOMPLETE_EXTERNAL_OBSERVATION:12dc5445-4471-4270-a644-b2a3b9486fda",
+    "INCOMPLETE_EXTERNAL_OBSERVATION:55f8fa7c-8552-446a-97fe-c45f85f0696e",
+    "INCOMPLETE_EXTERNAL_OBSERVATION:dea74afc-f599-4cd2-800f-a4d0c815775b"
+  ],
+  "actualIndependentCompletedRequests": 3,
+  "externalObservationsComplete": false,
+  "actualLoadedBinaryOrConfigurationIndependentlyAuthenticated": false,
+  "uiPauseOccurrenceOrDurationForThisSeries": "UNKNOWN",
+  "uiPauseFixedOrRootCauseLocated": false,
+  "sdkModelGuiExecutedByReviewer": false,
+  "pluginCodeOrBinariesChanged": false,
+  "rawModelCoordinatesLogsScreenshotsOrMachinePathsRedistributed": false,
+  "finalWallThicknessAssessed": false
+}

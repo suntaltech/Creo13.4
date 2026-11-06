@@ -1,0 +1,4 @@
+run_order,requestId,commandEnteredUtc,commandExitedUtc,elapsedMs,commandCallbackMs,readMs,outputMs,stderrMs,flushMs,mode,unresponsive,observed_command_start,observed_command_end,unresponsive_start,unresponsive_end,observedCommandDurationMs,pauseDurationMs,businessRows,stderrAttempts,outcome,unknownReads
+1,12dc5445-4471-4270-a644-b2a3b9486fda,2026-11-06T05:57:23.334531600Z,2026-11-06T05:57:30.526640500Z,7122,7192.4487,5786.4032,532.3396,6.9904,203.7313,REDUCED,UNKNOWN,,,,,,,6432,27,PARTIAL,4
+2,55f8fa7c-8552-446a-97fe-c45f85f0696e,2026-11-06T05:57:33.209177900Z,2026-11-06T05:57:38.871833700Z,5661,5662.9688,5017.568,328.8646,6.7927,121.1431,REDUCED,UNKNOWN,,,,,,,6432,27,PARTIAL,4
+3,dea74afc-f599-4cd2-800f-a4d0c815775b,2026-11-06T05:57:42.629956200Z,2026-11-06T05:57:48.164884100Z,5533,5534.9183,4976.252,294.2385,6.4355,101.6527,REDUCED,UNKNOWN,,,,,,,6432,27,PARTIAL,4

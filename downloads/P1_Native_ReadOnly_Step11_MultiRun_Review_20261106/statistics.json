@@ -1,0 +1,62 @@
+{
+  "type": "DESCRIPTIVE_SAME_MODE_THREE_RECORDED_RUNS_NOT_CAUSAL_BENCHMARK",
+  "statistics": {
+    "elapsedMs": {
+      "count": 3,
+      "min": 5533,
+      "median": 5661,
+      "max": 7122
+    },
+    "commandCallbackMs": {
+      "count": 3,
+      "min": 5534.9183,
+      "median": 5662.9688,
+      "max": 7192.4487
+    },
+    "readMs": {
+      "count": 3,
+      "min": 4976.252,
+      "median": 5017.568,
+      "max": 5786.4032
+    },
+    "outputMs": {
+      "count": 3,
+      "min": 294.2385,
+      "median": 328.8646,
+      "max": 532.3396
+    },
+    "stderrMs": {
+      "count": 3,
+      "min": 6.4355,
+      "median": 6.7927,
+      "max": 6.9904
+    },
+    "flushMs": {
+      "count": 3,
+      "min": 101.6527,
+      "median": 121.1431,
+      "max": 203.7313
+    }
+  },
+  "interCommandGapsMs": [
+    2682.0785,
+    3757.7736
+  ],
+  "externalPauseObservedOrTimed": "UNKNOWN",
+  "sharedModelRecordedContext": {
+    "fileName": "200002100.prt",
+    "revision": null,
+    "versionStamp": "3071",
+    "isModified": false
+  },
+  "operatorContextKnownFields": {
+    "session_id": "step11-controlled-20261106",
+    "model_context": "200002100.prt",
+    "configuration_id": "step10-reduced-controlled",
+    "stderrMode": "REDUCED",
+    "loadedArtifactKind": "CLASSES_DIR"
+  },
+  "actualJavaVersion": "UNKNOWN",
+  "actualSdkOtkSha256": "UNKNOWN",
+  "actualLoadedArtifactHash": "UNKNOWN"
+}
