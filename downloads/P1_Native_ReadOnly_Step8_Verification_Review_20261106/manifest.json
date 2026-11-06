@@ -1,0 +1,148 @@
+{
+  "type": "OFFLINE_NATIVE_STEP8_CLASSIFICATION_AND_STATIC_INTERFACE_RUNTIME_OUTPUT_REVIEW",
+  "reviewDate": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "inputArchive": {
+    "fileName": "native-readonly-step8-verify-20261106.zip",
+    "sha256": "cacd3fefb201704f6780ca8459df739cc92aa956e730992514b87499c5ff6d3d"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "bytes": 283,
+      "sha256": "2d83564ae9e9c659400bb8a2c7dddb4f7c4df0f2f0a9dc1bb71eb28401b8ace1"
+    },
+    {
+      "relativeName": "geometry-sampling-step8-b1fa712a-08fb-491a-ab28-b8cad5d40e35.jsonl",
+      "bytes": 10063840,
+      "sha256": "743a741400aeed81ae2841ebe3b384a2e3f9096cdf6507ebe85186b6ab27f288"
+    },
+    {
+      "relativeName": "step8-ran.png",
+      "bytes": 284468,
+      "sha256": "98597491077c95425f172854295edbd13a00bd5a159ecc9ec24ba63ce16b921b"
+    }
+  ],
+  "referenceCandidateCommit": "073f1f48a9b7a997066337300899cbc416121402",
+  "referenceCandidateSourceFiles": [
+    {
+      "relativeName": "source/GeometryAnalyticMath.java",
+      "sha256": "7eb9746164af940c3e0933ac8d901b98aca9daeb5c21da517ccaa03d82318ab4"
+    },
+    {
+      "relativeName": "source/GeometryCandidateClassification.java",
+      "sha256": "ef74198cd80289336e3edafcee54ed3ea185d0031c8e0a11130d2ed6c83cbe8a"
+    },
+    {
+      "relativeName": "source/GeometryCandidateQueue.java",
+      "sha256": "6c35b2d10b52b7acada43c646230e867b4ff48c97c527c45479028bbdffb55f1"
+    },
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "e3ae43b55f0d2268760fe8b93bf2dcffa29f78eb6213f63b7ffdd467408e0348"
+    },
+    {
+      "relativeName": "source/GeometryPairEvidence.java",
+      "sha256": "bbbfeea54a437b885d5d19d117fc9dab03de103c72ba2639a5581ffacd045a35"
+    },
+    {
+      "relativeName": "source/GeometryPoolSelection.java",
+      "sha256": "31936d84eb0016c7c30e3a0dd5672d0f225c7f6889c4f67cdf8f01718b4d0265"
+    },
+    {
+      "relativeName": "source/GeometryReferenceBaseline.java",
+      "sha256": "68f9b1ad358f7663191c785b876babb46898b4ff160116536b64c97d9091a166"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "ae7b7043a545ee2670f5984e028269f3ff6f897acbd94173ebc88b6dfa26ba24"
+    },
+    {
+      "relativeName": "source/GeometrySdkInterfaceReview.java",
+      "sha256": "7303b68f5c4215578f6af4bae2b95579609ab43a4ce6e7422eccb9d1b0a46eff"
+    },
+    {
+      "relativeName": "source/GeometrySpreadSelection.java",
+      "sha256": "c1e1ab16cb57edaf6688c217b22efd1ddf7f50b3a683abeacdd9c42faa2066ee"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySamplerStep8.java",
+      "sha256": "26dca192aa1931680b6581a4339cf4fc1e3e5f103d6dc22ed4a8b6d226b07879"
+    }
+  ],
+  "referenceCandidateJarSha256": "d513770795f88172f1f5ff6c50ed9217e4183bf662b1bb7e1a5c8225156b5087",
+  "referenceLocalCandidateUnchanged": true,
+  "checks": {
+    "all6382Step7LegacyRecordsMatchNonvolatileFields": true,
+    "all32ClassificationCountersAndLabelPredicatesIndependentlyRecomputed": true,
+    "farReviewUsesMmAndGreaterThan10NotThicknessOrModelTolerance": true,
+    "noWitnessDistancesRemainUnknownNotZero": true,
+    "all32ClassificationsExactlyReplayedWithPublishedSdkFreeJava": true,
+    "all12StaticSdkCatalogEntriesExactlyReplayedWithPublishedSdkFreeJava": true,
+    "unknownInterfaceSemanticsNotPromotedToRuntimeSuccess": true,
+    "crossRunIdentityAuthenticated": false
+  },
+  "results": {
+    "step7LegacyRecordsMatchedNonvolatileFields": 6382,
+    "nonCollinearPlaneGroupsPreserved": 126,
+    "step6Prior16AreaRestorationPreserved": true,
+    "analyticFacesPreserved": 222,
+    "pairsWithInteriorWitnessesPreserved": 28,
+    "localDistanceWitnessRecordsPreserved": 196,
+    "domainPointChainsPreserved": 544,
+    "domainAcceptedPreserved": 468,
+    "domainOutsideRejectedPreserved": 76,
+    "classifiedPairs": 32,
+    "invalidPairInputs": 0,
+    "zeroDistancePairs": 2,
+    "nonparallelPlanePairs": 7,
+    "noncoaxialCylinderPairs": 8,
+    "above10MmReviewPairs": 18,
+    "singleDirectionPairs": 8,
+    "noWitnessPairs": 4,
+    "labelsOverlap": true,
+    "staticSdkCatalogEntries": 12,
+    "runtimeRayMaterialOrOcclusionVerified": false,
+    "globalWallThicknessAssessed": false
+  },
+  "tagCounts": {
+    "BIDIRECTIONAL_LOCAL_WITNESSES_NOT_MATERIAL_PROOF": 20,
+    "APPROXIMATELY_OPPOSED_NORMAL_SAMPLES_PRESENT": 21,
+    "MATERIAL_OCCUPANCY_OCCLUSION_AND_FINAL_THICKNESS_UNCONFIRMED": 32,
+    "LOCAL_DISTANCE_EXCEEDS_10_MM_REVIEW_HINT": 18,
+    "APPROXIMATELY_SAME_DIRECTION_NORMAL_SAMPLES_PRESENT": 7,
+    "NONPARALLEL_PLANE_CANDIDATE": 7,
+    "SINGLE_DIRECTION_WITNESSES_ONLY": 8,
+    "ZERO_DISTANCE_COINCIDENT_MAPPED_POINTS_RECORDED": 2,
+    "NO_LOCAL_DISTANCE_WITNESSES_RECORDED": 4,
+    "NONCOAXIAL_CYLINDER_CANDIDATE": 8
+  },
+  "directionCounts": {
+    "BIDIRECTIONAL_WITNESSES": 20,
+    "B_TO_A_ONLY": 6,
+    "NO_WITNESSES_IN_BOUNDED_PROBES": 4,
+    "A_TO_B_ONLY": 2
+  },
+  "responseObservation": {
+    "collectionLogSpanMs": 7706.943,
+    "reportedMonotonicElapsedMs": 7732,
+    "classificationLogSpanMs": 24.062,
+    "staticSdkReviewLogSpanMs": 3.9880000000000004,
+    "operatorReportedTemporaryUnresponsivenessDuringLoading": true,
+    "operatorReportedRecoveryAndEnded": true,
+    "loadingPauseDurationProvided": false,
+    "loadingPauseWindowCorrelatedWithCollectionLog": false,
+    "unresponsivenessRootCauseEstablished": false,
+    "nativeCallsMovedToBackground": false
+  },
+  "screenshotVisuallyReviewed": true,
+  "codeChanged": false,
+  "newCandidateGenerated": false,
+  "creoExecutedByReviewer": false,
+  "publishedPureJavaClassificationAndCatalogReplayed": true,
+  "sdkStubOrModelMockUsed": false,
+  "rawCoordinatesAndScreenshotRepublished": false,
+  "finalWallThicknessAssessed": false,
+  "exactLoadedBinaryIdentityAuthenticated": false,
+  "temporaryUnresponsivenessRootCauseEstablished": false
+}

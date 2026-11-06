@@ -1,0 +1,12 @@
+{
+  "collectionLogSpanMs": 7706.943,
+  "reportedMonotonicElapsedMs": 7732,
+  "classificationLogSpanMs": 24.062,
+  "staticSdkReviewLogSpanMs": 3.9880000000000004,
+  "operatorReportedTemporaryUnresponsivenessDuringLoading": true,
+  "operatorReportedRecoveryAndEnded": true,
+  "loadingPauseDurationProvided": false,
+  "loadingPauseWindowCorrelatedWithCollectionLog": false,
+  "unresponsivenessRootCauseEstablished": false,
+  "nativeCallsMovedToBackground": false
+}
