@@ -1,0 +1,127 @@
+{
+  "type": "STEP12_EXTERNAL_NO_OBSERVATION_EVIDENCE_REVIEW_WITH_MISSING_EXACT_CLICK_RETURN_TIMES",
+  "date": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "inputArchive": {
+    "fileName": "native-readonly-step12-external-20261106.zip",
+    "sha256": "5035d8182a544bee9c3000fb31bef51c819feacd31a5a78fc0165e1ae535d049"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "input/observations.csv",
+      "bytes": 836,
+      "sha256": "678e2cb77733d283e8f2e668e85f9c0d257b8e71c9735ce9b726152e6e7edee6"
+    },
+    {
+      "relativeName": "input/raw/geometry-sampling-step10-2965c726-15fc-46a3-9aad-9a7388dd1ce8.jsonl",
+      "bytes": 11233680,
+      "sha256": "0ad4da22ac1ed721955a367caa306173bef6446a4377643fe604d24e7a18a0c0"
+    },
+    {
+      "relativeName": "input/raw/geometry-sampling-step10-659644e4-08fe-44d0-9f21-8d38a96e6fbf.jsonl",
+      "bytes": 11234553,
+      "sha256": "52d1a7c09076a0b1c4f734ec2a49755aa6a423f6fa600fe8a14cf6a73300a989"
+    },
+    {
+      "relativeName": "input/raw/geometry-sampling-step10-bb6ddb33-db38-49e2-ab15-05f292c34fa2.jsonl",
+      "bytes": 11233624,
+      "sha256": "c00efbca1ef7e4ae347271f5462deaf77bcc90a91cd34954b715bcbad800719d"
+    },
+    {
+      "relativeName": "input/raw/geometry-timing-step10-lifecycle-T10-101fe7981158-1.jsonl",
+      "bytes": 440801,
+      "sha256": "ace677e9361fcccdfd7c42e76c2fe27afdc56665b632c67ca47b1c73a4c23ea1"
+    },
+    {
+      "relativeName": "input/session-context.json",
+      "bytes": 681,
+      "sha256": "aeb823f325939bce9cbd2c728ae0252f164c628c57bfd9cdae02cde2c3c65dbc"
+    },
+    {
+      "relativeName": "output/README.md",
+      "bytes": 401,
+      "sha256": "272b22c33e9f25667292d232ade25ab29370a2aac5ab80d67331743b5536d512"
+    },
+    {
+      "relativeName": "output/comparison.json",
+      "bytes": 18399,
+      "sha256": "dab4d58c44d36378fa66cd4d797f7d37cfb54de9eaa013b1abed550cfdba0db8"
+    },
+    {
+      "relativeName": "output/phases.csv",
+      "bytes": 4672,
+      "sha256": "32c10619e657faa8a49061ac6b7b5ab99060b8220b94f05f161a3be5b86f72fe"
+    },
+    {
+      "relativeName": "output/runs.csv",
+      "bytes": 869,
+      "sha256": "cf1d21fe1301cef05c6db0065e53265c99db9639b6b95db1da0ad16f31272fae"
+    }
+  ],
+  "unchangedToolCommit": "6a5e5e4c4e665c9b454f2509d7e0d2e85636d4c5",
+  "unchangedToolSha256": "24cf116123f71c8961bd473664d91ee93af853707910e2613ce4600f0e5504f3",
+  "referenceStep12PreparationCommit": "56d774f39ab1c844ec8561cb9767fb86f1813d06",
+  "referenceStep11ReviewCommit": "27bec6042bf3cf0a3d649d98641c936de7800541",
+  "checks": {
+    "providedJsonAndThreeTextOutputsExactlyMatchRecomputed": true,
+    "selectedThreeCommandsConsecutiveWithinProvidedLifecycle": true,
+    "all45PhasesAndReadOutputPolicyCountersReconciled": true,
+    "allThree6430StableBusinessRecordsMatchEachOtherAndStep11Baseline": true,
+    "each6432BusinessRows27Mirrors6405SuppressionsRetained": true,
+    "threeNoObservationsRecordedWithoutInventingPauseDurationZero": true
+  },
+  "statistics": {
+    "elapsedMs": {
+      "count": 3,
+      "min": 11289,
+      "median": 13213,
+      "max": 16365
+    },
+    "commandCallbackMs": {
+      "count": 3,
+      "min": 11303.7795,
+      "median": 13217.0376,
+      "max": 16444.6437
+    },
+    "readMs": {
+      "count": 3,
+      "min": 10063.6506,
+      "median": 11783.3683,
+      "max": 13838.9887
+    },
+    "outputMs": {
+      "count": 3,
+      "min": 636.5835,
+      "median": 749.9729,
+      "max": 1123.787
+    },
+    "stderrMs": {
+      "count": 3,
+      "min": 15.2846,
+      "median": 18.1475,
+      "max": 20.5462
+    },
+    "flushMs": {
+      "count": 3,
+      "min": 208.9999,
+      "median": 240.9896,
+      "max": 307.2679
+    }
+  },
+  "independentSelectedRuns": 3,
+  "operatorNoObservations": 3,
+  "exactExternalCommandTimesProvided": false,
+  "pauseTimesForNo": "NOT_APPLICABLE_NOT_ZERO",
+  "analyzerStatus": "PENDING_REAL_RUNS_OR_OBSERVATIONS",
+  "pending": [
+    "INCOMPLETE_EXTERNAL_OBSERVATION:659644e4-08fe-44d0-9f21-8d38a96e6fbf",
+    "INCOMPLETE_EXTERNAL_OBSERVATION:2965c726-15fc-46a3-9aad-9a7388dd1ce8",
+    "INCOMPLETE_EXTERNAL_OBSERVATION:bb6ddb33-db38-49e2-ab15-05f292c34fa2"
+  ],
+  "laterUnpairedCommandExcluded": true,
+  "codeConfigurationOrBinariesChanged": false,
+  "sdkModelGuiExecutedByReviewer": false,
+  "rawCoordinatesLogsScreenshotsAndMachinePathsRedistributed": false,
+  "pauseFixOrCauseProven": false,
+  "materialOccupancyOrWallThicknessProven": false
+}

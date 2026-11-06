@@ -1,0 +1,54 @@
+{
+  "type": "DESCRIPTIVE_STEP12_THREE_RECORDED_REDUCED_RUNS",
+  "statistics": {
+    "elapsedMs": {
+      "count": 3,
+      "min": 11289,
+      "median": 13213,
+      "max": 16365
+    },
+    "commandCallbackMs": {
+      "count": 3,
+      "min": 11303.7795,
+      "median": 13217.0376,
+      "max": 16444.6437
+    },
+    "readMs": {
+      "count": 3,
+      "min": 10063.6506,
+      "median": 11783.3683,
+      "max": 13838.9887
+    },
+    "outputMs": {
+      "count": 3,
+      "min": 636.5835,
+      "median": 749.9729,
+      "max": 1123.787
+    },
+    "stderrMs": {
+      "count": 3,
+      "min": 15.2846,
+      "median": 18.1475,
+      "max": 20.5462
+    },
+    "flushMs": {
+      "count": 3,
+      "min": 208.9999,
+      "median": 240.9896,
+      "max": 307.2679
+    }
+  },
+  "externalUnresponsiveObservations": [
+    "NO",
+    "NO",
+    "NO"
+  ],
+  "externalClickAndMessageReturnTimes": "NOT_RECORDED",
+  "pauseDuration": "NOT_APPLICABLE_FOR_NO_NOT_A_MEASURED_ZERO",
+  "operatorSpinnerDescription": "ABOUT_FIVE_SECONDS_ROUGH_REPORT_NOT_EXACT_CALLBACK_DURATION",
+  "interCommandGapsMs": [
+    3538.3954,
+    2159.5059
+  ],
+  "controlledPerformanceBenefitEstablished": false
+}
