@@ -1,0 +1,29 @@
+# 探针与解释口径
+
+JSONL schema=P1_STEP14_DEFAULT_BODY_READONLY_V1，step=STEP_14。各行有requestId/sequence/UTC/单调elapsedNs/Java线程ID。DIAGNOSTIC_STARTED→MODEL_BEFORE→BODY_ENUMERATION/ENUMERATED_BODY→WFC_VIEW→两种DEFAULT_BODY/FIRST_BODY_COMPARISON→UNITS→前后模型上下文与DIAGNOSTIC_SUMMARY；异常/目标不符可能早退，但尽力写摘要，I/O失败仍可能缺失尾部，不补成功。
+
+## 对象和原生值
+
+objectState=RETURNED/RETURNED_NULL/THREW/NOT_ATTEMPTED等，present在已返回空时false、读取未完成时null。每个id/pointer/isSheetmetal probe独立status/value/exception；RETURNED false是本次真实布尔值，THREW/无接口/无对象时value=null，不按false或0处理。指针以0x开头的无符号十六进制字符串输出，避免JSON/JavaScript大整数精度丢失；0句柄单列RETURNED_ZERO，不当有效原生身份。
+
+ListItems返回null与空集合0分别记录；getarraysize或单项读取异常不冒充空表。最多访问128项，超过时保留reportedCount、visited与不完整标记，不把它伪称全量。若body项是通用ModelItem而非SolidBody，不直接转型/反射构造体视图；记录Java接口门不可用（诊断层UnsupportedOperationException说明，非SDK实际抛出），与真正调用IsSheetmetal后THREW分开。默认体原生返回类型为SolidBody，单独调用其IsSheetmetal，不由枚举项状态代填。
+
+## 两条默认体路线
+
+STEP13_WFC_VIEW复用固定WFC视图适配方式（已有WSolid直接使用，否则固定Implementation.wfcPart$WPart(long)/wfcSolid$WSolid(long)）后只调用GetDefaultBody；公开PFC路线只在当前对象实现Solid时读取。内部适配使用现有模型句柄，不创建模型特征；其签名/视图取得不等于稳定公开身份契约或许可认证。失败记录具体异常，不执行模型API恢复或重试转换。路线先WFC后PFC，getter返回对象各自记录，不用“备用路线成功”掩盖另一条失败。
+
+源码中的内部适配器是本次唯一固定反射入口，不导入/调用任何转换控制类，不从用户输入加载任意类，也不创建WFC会话元素树。原Step13一次锁路径没有出现在本命令源码或文件操作中。
+
+## 三个比较维度
+
+Java同对象、非零包装句柄相等、GetId相等分别报告；差异列表可同时包含JAVA_REFERENCES_DIFFER/WRAPPER_HANDLES_DIFFER/MODEL_SCOPED_IDS_DIFFER，未知比较为null，不把多个维度捏成单一错误。Java不同不自动等于底层体不同；句柄相等不是已认证稳定身份契约；ID相同也不单独证明模型/体归属。
+
+step13SameFunctionReconstruction只按本次已记录对象/句柄信息解释原same函数：Java对象相同可短路为true，两个非零可读句柄才比较，句柄未知/0可能在原函数抛异常；已知null参数返回false。两对象缺失/读取异常时，不把null占位符的Java相等当有效原生身份。
+
+step13CombinedGuardReconstruction仅重建原来三个条件的顺序：默认体null；第一项身份false；身份true后IsSheetmetal=true。新IsSheetmetal探针与这条解释独立，即使句柄不同，也记录实际true/false/异常。它不是第十三步历史调用重放，也不证明当时被短路的IsSheetmetal实际执行过。
+
+NONE_OF_THREE_RECORDED_CONDITIONS_TRUE只表示这三个条件本次无真值，不是符合其他门禁、更不是允许转换；各记录conversionDecisionMade=false。本步永不改原检查、清锁或自动调用下一步。若需修复体身份判断，先核对作用域与SDK契约，再由新的任务定义，不能只凭ID相同删门禁。
+
+## 限制
+
+所有getter在同步OnCommand调用，无后台原生线程，无风险/厚度输入对话框。状态区给出结束/部分/失败/目标不符，stderr给出日志位置；若宿主消息区也失败，stderr记录错误，不保证失效宿主仍显示反馈。日志只证明有限观测，不独立证明整会话零写入、加载身份或默认体语义。前后文件/版本戳/dirty记录不会把revision未知或旧false升级为当前认证。当前未执行真机，不能提前选择任何阻断子原因。

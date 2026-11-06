@@ -1,0 +1,31 @@
+{
+  "realSdkCompile": true,
+  "realSdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+  "pfcasyncUsed": false,
+  "sourceCount": 3,
+  "classCount": 6,
+  "classMajor": 61,
+  "sdkRuntimeMajor": 69,
+  "java25RuntimeRequired": true,
+  "classes": {
+    "p1/readonly/body/step14/BodyIdentity.class": "500c5c712e84a59801a63404f27868690f7432e5a896b0dd9ba6e9b1f22bfb9c",
+    "p1/readonly/body/step14/DiagnosticSupport.class": "7cba8467e8cfa9767f84d5fc7f4f940512fc522e1283de03b6167a0ddf34756f",
+    "p1/readonly/body/step14/P1DefaultBodyDiagnosticStep14$Listener.class": "483ecccc83d6b8595deae0d3942a2b41b8381584244d7e31337cb9f98139bcaf",
+    "p1/readonly/body/step14/P1DefaultBodyDiagnosticStep14$Read.class": "4388491b696902ccc2fa25fc6eba275f20381448a1be38d257b94608f5d3d233",
+    "p1/readonly/body/step14/P1DefaultBodyDiagnosticStep14$Run.class": "5cc939d0c4988d7f2e068217bc2ed059a1d924e1a2a96b24b2633fa63f34affa",
+    "p1/readonly/body/step14/P1DefaultBodyDiagnosticStep14.class": "2e69e4670d68b45b0fc4d51c7ce7f789f97e034c049076ba579b9d38c6fa6bba"
+  },
+  "repeatCompileIdentical": true,
+  "jarClassBytesMatch": true,
+  "identityPureAssertionsPassed": 60,
+  "pureTestsUseNoSdkOrModelObjects": true,
+  "compiledSdkReferences": 24,
+  "readOnlyCallsAllowlisted": true,
+  "conversionLockCodeAbsent": true,
+  "nativeRiskConfirmationAbsent": true,
+  "repeatableCommand": true,
+  "sdkMockOrModelMockUsed": false,
+  "creoOrPluginExecuted": false,
+  "actualStep14BodyDiagnostics": "NOT_EXECUTED_UNKNOWN",
+  "step13GuardModified": false
+}

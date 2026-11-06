@@ -1,0 +1,26 @@
+P1_S14_LABEL
+Default Body Read-Only Diagnostic Step 14
+
+P1_S14_HELP
+Log body enumeration, default-body views, handles, IDs and native sheetmetal reads independently
+
+P1_S14_DESC
+Repeatable read-only command. No conversion, save, risk confirmations or conversion-lock access.
+
+P1_S14_STARTED
+Step14 read-only body diagnostic started. No conversion or lock access.
+
+P1_S14_ENDED
+Step14 read-only probes recorded. Review both default-body routes and JSONL; no conversion decision.
+
+P1_S14_PARTIAL
+Step14 diagnostic recorded with errors or unavailable probes. Review JSONL; unknown is not false.
+
+P1_S14_FAILED
+Step14 diagnostic/log output failed. Preserve JSONL and stderr. No conversion or lock access.
+
+P1_S14_BUSY
+Step14 diagnostic already running. Wait for completion; later read-only runs are allowed.
+
+P1_S14_BLOCKED
+Step14 requires current ordinary part 200002100.prt. See JSONL; no conversion attempted.

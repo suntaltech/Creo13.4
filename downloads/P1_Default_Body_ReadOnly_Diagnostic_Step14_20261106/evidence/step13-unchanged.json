@@ -1,0 +1,23 @@
+{
+  "step13CandidateCommit": "013e34ae091eca85702c519293c44274445ed89d",
+  "step13BlockedReviewCommit": "ccc8c259cd8d022cdab82c3296fd863355906311",
+  "step13SourceClassesVerifiedUnchanged": true,
+  "step13Sources": [
+    {
+      "relativeName": "source/AuditSupport.java",
+      "sha256": "93c6c9a119f1573580a3539ea441044b4ae3ad4894d89aceee103bf332a947fc"
+    },
+    {
+      "relativeName": "source/P1ControlledConversionStep13.java",
+      "sha256": "f02ea49dc29c6b6824dbb3be9e18a6d575db8fb30bbceaf39b0fbef16140258d"
+    },
+    {
+      "relativeName": "source/Step13Control.java",
+      "sha256": "c00fe22e5decb2dc40926f2750867d0896f5ffe9def06b2910bdd407cc4626fc"
+    }
+  ],
+  "actualOnceLedgerOpenedReadDeletedOrModified": false,
+  "conversionRetried": false,
+  "step13GuardModified": false,
+  "newDiagnosticHasNoReferenceToConversionControlClassOrLockFileName": true
+}
