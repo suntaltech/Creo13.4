@@ -1,0 +1,15 @@
+# 汇总口径、重复文件与限制
+
+脚本只扫描geometry-sampling-step10-*.jsonl和geometry-timing-step10-lifecycle-*.jsonl，逐条JSON解析。按业务requestId与trace关联生命周期中的COMMAND_EXIT、RUN_OBSERVATION_TOTALS及匹配COMMAND_ENTER，检查单调跨度/sequence、正常close、读/输出/策略/阶段计数。一个生命周期可对应多个request，不能用“文件个数”代替轮数；同一trace的多份快照仅在内容严格前缀兼容时取最长版本，冲突则报告错误。重复业务request即使是相同文件也只计一次并报重复，不会凑三轮。
+
+观察CSV空request_id只代表计划，不计次数；重复请求/顺序、矛盾的NO加暂停时间、未带时区时间及反向时间区间均拒绝。缺少命令外部起止、YES缺少暂停边界或UNKNOWN都保留待补；NO的暂停时长是不适用，留空而不是测量0。工具不自动同步时钟或推断Windows是否“未响应”，也不认证人类观察精度。未响应时间未能与日志窗口对应时需人工复核，不据它宣布某SDK调用为根因。
+
+状态RECORDS_COMPLETE_DECLARED_SAME_CONTEXT要求至少3个独立完整请求、观察齐备、相同非空session/model/configuration声明、相同stderr模式及原记录稳定字段一致。时间顺序及同trace中有无未配对夹入命令会核对；工具只能发现已提供日志内的夹入，无法证明整个会话没有其他未记录操作。context模板用于交接，不被脚本当成独立加载身份认证；模式以日志为准，CSV标签仍只代表申报。ID填UNKNOWN不作为已确认同上下文。各轮实际加载二进制与配置散列还需人工查证，不能凭相同标签升级认证。
+
+稳定业务SHA剔除TIMING_*事件后，对保留事件的所有字段按原顺序生成规范化摘要，仅排除timestamp/requestId/candidateEvaluationTimestamp/elapsedMs/timingTraceId。其余包括原几何、schema、Step10命令/步骤、模式、错误/未知/截断和身份标记；有差异报告STABLE_BUSINESS_FIELDS_DIFFER，不能由工具删减为“通过”。新模型未必产生既有222面/666点数量，不在工具强填这些模板值。单次输入不会被宣称跨运行保持。
+
+runs.csv记录原生命令UTC、外部命令/暂停边界、elapsedMs、commandCallbackMs及read/output/stderr/flush、模式和状态；phases.csv给每次关键阶段相同比较项。comparison.json保留所有issues/pending、上下文、输入散列及count/min/median/max；不足三轮时统计仅描述已提供数据，不是完整实验。readMs是包装动作组时间，不是精确JNI/CPU时间；output包含stderr/flush等子项，阶段包含其内读和输出，不重复相加。不同request未确认同JVM时不能直接跨mono时钟拼时间线，跨轮排序用UTC和申报顺序，时钟调整仍须人工判断。
+
+返回码0仅是记录齐备/本工具一致性，不代表加载身份、性能因果、暂停根因、SDK线程契约、全过程零写入或等厚/壁厚。原PARTIAL/unknownReads不会强制变为FULL。返回2可为缺证据或不一致，应看status/issues/pending，不以退出码单值替代审核。
+
+现有真机只有一轮Step10；本包的9项离线工具检查覆盖元数据未知/时区/矛盾和反向时间、空输入、历史单轮解析、复制三份仍只算一轮、缺少生命周期拒绝。实际3个新request及多命令共享生命周期完整成功路径仍待现场回收；没有用伪造日志/模型Mock测试冒充该路径。原件、截图不随包；未知错误、手工标签虚假或未提供的插件操作也不可能由本工具完全识别。

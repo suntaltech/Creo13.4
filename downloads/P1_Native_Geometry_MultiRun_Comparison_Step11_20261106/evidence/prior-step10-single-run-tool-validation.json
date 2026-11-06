@@ -1,0 +1,16 @@
+{
+  "type": "PRIOR_STEP10_SINGLE_RUN_TOOL_VALIDATION_NOT_STEP11_THREE_RUN_RESULTS",
+  "referenceRequestId": "33ccba11-87f3-43b8-84e5-f6f993871484",
+  "sourceBusinessSha256": "7eb17bb0cea067181d77464184d8d64ee17b370f3253d971326ed24263e9abc3",
+  "sourceLifecycleSha256": "610e76d71633f080ca24a74e4e25a0ed0bf0972d7d6c1eb713a90a9bdf93e5ac",
+  "toolStatus": "PENDING_REAL_RUNS_OR_OBSERVATIONS",
+  "distinctCompletedRequests": 1,
+  "minimumRequired": 3,
+  "observationsNotInferred": true,
+  "blankTemplateRowsNotCounted": true,
+  "cliIncompleteReturnCode": 2,
+  "existingOutputRefusedReturnCode": 1,
+  "rawCoordinatesOrLogsRedistributed": false,
+  "realStep11SeriesExecuted": false,
+  "testsPassed": 9
+}

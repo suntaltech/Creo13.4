@@ -1,0 +1,14 @@
+{
+  "schema": "P1_STEP11_OPERATOR_CONTEXT_TEMPLATE_V1",
+  "status": "UNFILLED_NOT_RUNTIME_EVIDENCE",
+  "session_id": "UNKNOWN",
+  "model_context": "UNKNOWN",
+  "configuration_id": "UNKNOWN",
+  "stderrMode": "REDUCED",
+  "actualJavaVersion": "UNKNOWN",
+  "loadedArtifactKind": "UNKNOWN_JAR_OR_CLASSES",
+  "actualLoadedArtifactSha256OrClassManifestSha256": "UNKNOWN",
+  "actualSdkOtkSha256": "UNKNOWN",
+  "sameOpenModelSameConfigurationAndNoInterveningCommandsConfirmed": "UNKNOWN",
+  "notes": "填写现场事实；未知保留UNKNOWN，不将模板内容当作已验证结果。"
+}
