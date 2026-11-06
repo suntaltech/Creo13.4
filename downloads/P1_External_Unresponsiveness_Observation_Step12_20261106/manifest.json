@@ -1,0 +1,42 @@
+{
+  "artifactType": "STEP12_EXTERNAL_OBSERVATION_RECORDING_DOCUMENTS_ONLY_NOT_RUNTIME_RESULTS",
+  "date": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "taskInput": {
+    "fileName": "P1_外部未响应观察第十二步_任务单_20261106.md",
+    "sha256": "ce08c4b7436d54dc110868e1ce27d554caa659e1e34e6f4049a34bb4efe805a7"
+  },
+  "plannedRuns": 3,
+  "actualNewRunsPerformedByReviewer": 0,
+  "actualExternalObservationsRecorded": 0,
+  "status": "PENDING_ONSITE_EXTERNAL_OBSERVATIONS",
+  "newOrModifiedPluginOrToolCode": false,
+  "newClassJarOrAlgorithm": false,
+  "samplingPrecisionInsideBudgetOrConfigurationChanged": false,
+  "fullReducedModeSwitched": false,
+  "sdkModelGuiOrSaveConvertInvoked": false,
+  "existingStep10AndStep11CodeBinaryHashesVerifiedUnchanged": true,
+  "csvHeaderMatchesUnchangedStep11ToolTemplate": true,
+  "allRequestAndTimeCellsBlank": true,
+  "initialUnresponsiveValues": "UNKNOWN_UNFILLED_NOT_OBSERVATIONS",
+  "historicalTimestampsBackfilled": false,
+  "runtimePerformancePauseOrGeometryClaimsAdded": false,
+  "files": [
+    {
+      "relativeName": "README.md",
+      "sha256": "4150c38878744877155815e5c6239d04d4c67fad82610969235a563e83f45c30"
+    },
+    {
+      "relativeName": "observations.csv",
+      "sha256": "5e903f869c8334bc405eb4acec0b1bb90d88b0315cd5479655c94001f41b2721"
+    },
+    {
+      "relativeName": "references.json",
+      "sha256": "9e87cf2a792ebfac597c5066d134686040ad5240ee062d6ebd7948e5efb13963"
+    },
+    {
+      "relativeName": "现场记录说明.md",
+      "sha256": "89d11439d2fc5d7199d47109b26dc07cbfc9e0f523123914afca27927a4e9d02"
+    }
+  ]
+}

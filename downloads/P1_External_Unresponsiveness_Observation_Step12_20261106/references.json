@@ -1,0 +1,17 @@
+{
+  "step10CandidateCommit": "2970451bb41bd622ef891d0843709fe65692a23e",
+  "step10ApplicationClass": "p1.readonly.geometry.step10.P1ReadOnlyGeometrySamplerStep10",
+  "step10CommandId": "SISWReadOnlyGeometrySample10",
+  "step10JarSha256": "b20652ae84558b306618da9d590b6fcadaa15c5be1efbe441f645f35bbb35010",
+  "step10ExistingSourceClassesJarVerifiedUnchanged": true,
+  "step11ToolCommit": "6a5e5e4c4e665c9b454f2509d7e0d2e85636d4c5",
+  "step11ToolRelativeName": "tools/summarize_step10_runs.py",
+  "step11ToolSha256": "24cf116123f71c8961bd473664d91ee93af853707910e2613ce4600f0e5504f3",
+  "step11ToolVerifiedUnchanged": true,
+  "step11ToolPackageUrl": "https://github.com/suntaltech/Creo13.4/raw/6a5e5e4c4e665c9b454f2509d7e0d2e85636d4c5/downloads/P1_Native_Geometry_MultiRun_Comparison_Step11_20261106.zip",
+  "step11LatestReviewCommit": "27bec6042bf3cf0a3d649d98641c936de7800541",
+  "existingModel": "200002100.prt",
+  "existingMode": "REDUCED",
+  "newPluginOrToolCode": false,
+  "actualLoadedFieldIdentityIndependentlyAuthenticated": false
+}
