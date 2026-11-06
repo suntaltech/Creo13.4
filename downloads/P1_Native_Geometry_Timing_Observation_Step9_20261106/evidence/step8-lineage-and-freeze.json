@@ -1,0 +1,12 @@
+{
+  "step8CandidateCommit": "073f1f48a9b7a997066337300899cbc416121402",
+  "step8ReviewCommit": "a7cb66719ec13493f27503c7b04fd731bfd17e29",
+  "step8SourceAndJarManifestVerified": true,
+  "step8JarSha256": "d513770795f88172f1f5ff6c50ed9217e4183bf662b1bb7e1a5c8225156b5087",
+  "tenExistingHelpersEqualExceptNamespace": true,
+  "readUvBoundsThroughAllGeometryMethodsEqualExceptNamespaceAndNames": true,
+  "requiredReadsCompleteFormulaUnchanged": true,
+  "sdkReferencesExactlyUnchanged": 58,
+  "newNativeThreadIntroduced": false,
+  "runtimeGeometryEquivalenceProven": false
+}

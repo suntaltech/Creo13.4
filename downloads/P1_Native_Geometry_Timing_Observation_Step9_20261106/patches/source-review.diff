@@ -1,0 +1,414 @@
+--- step8/source/GeometryAnalyticMath.java
++++ step9/source/GeometryAnalyticMath.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step8;
++package p1.readonly.geometry.step9;
+--- step8/source/GeometryCandidateClassification.java
++++ step9/source/GeometryCandidateClassification.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step8;
++package p1.readonly.geometry.step9;
+--- step8/source/GeometryCandidateQueue.java
++++ step9/source/GeometryCandidateQueue.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step8;
++package p1.readonly.geometry.step9;
+--- step8/source/GeometryEvidenceSupport.java
++++ step9/source/GeometryEvidenceSupport.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step8;
++package p1.readonly.geometry.step9;
+--- step8/source/GeometryPairEvidence.java
++++ step9/source/GeometryPairEvidence.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step8;
++package p1.readonly.geometry.step9;
+--- step8/source/GeometryPoolSelection.java
++++ step9/source/GeometryPoolSelection.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step8;
++package p1.readonly.geometry.step9;
+--- step8/source/GeometryReferenceBaseline.java
++++ step9/source/GeometryReferenceBaseline.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step8;
++package p1.readonly.geometry.step9;
+--- step8/source/GeometrySamplingMath.java
++++ step9/source/GeometrySamplingMath.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step8;
++package p1.readonly.geometry.step9;
+--- step8/source/GeometrySdkInterfaceReview.java
++++ step9/source/GeometrySdkInterfaceReview.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step8;
++package p1.readonly.geometry.step9;
+--- step8/source/GeometrySpreadSelection.java
++++ step9/source/GeometrySpreadSelection.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step8;
++package p1.readonly.geometry.step9;
+--- /dev/null
++++ step9/source/GeometryTimingCounters.java
+@@ -0,0 +1,47 @@
++package p1.readonly.geometry.step9;
++import java.util.*;
++import java.util.regex.Pattern;
++
++/** Counters over synchronous observed actions; no SDK, thread creation or I/O. */
++public final class GeometryTimingCounters {
++ public static final int MAX_ACTION_KEYS=256,MAX_SLOW_OUTPUT_SAMPLES=16;
++ public static final long SLOW_OUTPUT_SAMPLE_NS=10_000_000L;
++ private static final Pattern BRACKETS=Pattern.compile("\\[[^\\]]*\\]");
++ private final Map<String,Action> actions=new LinkedHashMap<>();
++ private final List<Map<String,Object>> slowOutputs=new ArrayList<>();
++ private long reads,readNs,nulls,failures,actionOverflow,negativeDurations;
++ private long outputAttempts,outputCompleted,outputFailed,headerJsonNs,writeCalls,newlineCalls,flushCalls,stderrCalls;
++ private long writeNs,flushNs,stderrNs,observerNs,totalOutputNs;
++ private String firstOutputUtc,lastOutputUtc;
++ private long firstReadThread=-1;private boolean differentReadThread;
++ private static final class Action {
++  long count,total,max,nulls,errors;
++ }
++ public static String normalize(String operation){return BRACKETS.matcher(operation==null?"UNKNOWN_OPERATION":operation).replaceAll("[]");}
++ private long duration(long value){if(value<0){negativeDurations++;return 0;}return value;}
++ public void read(String phase,String operation,long elapsedNs,String outcome,long threadId){
++  long ns=duration(elapsedNs);reads++;readNs+=ns;if(outcome.equals("RETURNED_NULL"))nulls++;if(outcome.equals("THREW"))failures++;
++  if(firstReadThread<0)firstReadThread=threadId;else if(threadId!=firstReadThread)differentReadThread=true;
++  String key=(phase==null?"UNSCOPED":phase)+" :: "+normalize(operation);
++  if(!actions.containsKey(key)&&actions.size()>=MAX_ACTION_KEYS){key="OVERFLOW_ACTION_GROUPS";actionOverflow++;}
++  Action a=actions.computeIfAbsent(key,k->new Action());a.count++;a.total+=ns;a.max=Math.max(a.max,ns);if(outcome.equals("RETURNED_NULL"))a.nulls++;if(outcome.equals("THREW"))a.errors++;
++ }
++ public void output(String event,String startUtc,String endUtc,long headerNs,long writes,long newlines,long flushes,long stderrLines,long wNs,long fNs,long eNs,long oNs,long totalNs,boolean completed){
++  outputAttempts++;if(completed)outputCompleted++;else outputFailed++;if(firstOutputUtc==null)firstOutputUtc=startUtc;lastOutputUtc=endUtc;
++  headerJsonNs+=duration(headerNs);writeCalls+=writes;newlineCalls+=newlines;flushCalls+=flushes;stderrCalls+=stderrLines;
++  writeNs+=duration(wNs);flushNs+=duration(fNs);stderrNs+=duration(eNs);observerNs+=duration(oNs);long total=duration(totalNs);totalOutputNs+=total;
++  if(total>=SLOW_OUTPUT_SAMPLE_NS&&slowOutputs.size()<MAX_SLOW_OUTPUT_SAMPLES)slowOutputs.add(GeometryEvidenceSupport.map("event",event,"startUtc",startUtc,"endUtc",endUtc,
++   "headerAndSerializationNs",headerNs,"writeNs",wNs,"flushNs",fNs,"stderrNs",eNs,"classificationObserverNs",oNs,"totalObservedOutputNs",total,"completed",completed));
++ }
++ public Map<String,Long> marks(){Map<String,Long> r=new LinkedHashMap<>();r.put("readActionGroups",reads);r.put("readActionNs",readNs);r.put("readNullGroups",nulls);r.put("readExceptionGroups",failures);
++  r.put("businessOutputAttempts",outputAttempts);r.put("businessOutputCompleted",outputCompleted);r.put("businessOutputFailed",outputFailed);r.put("headerAndSerializationNs",headerJsonNs);
++  r.put("writerWriteCalls",writeCalls);r.put("writerNewLineCalls",newlineCalls);r.put("writerFlushCalls",flushCalls);r.put("stderrPrintlnCalls",stderrCalls);r.put("writerWriteNs",writeNs);r.put("writerFlushNs",flushNs);r.put("stderrPrintlnNs",stderrNs);r.put("classificationObserverNs",observerNs);r.put("observedOutputNs",totalOutputNs);return r;}
++ public Map<String,Object> delta(Map<String,Long> before){Map<String,Object> r=new LinkedHashMap<>();for(Map.Entry<String,Long> e:marks().entrySet())r.put(e.getKey(),e.getValue()-before.getOrDefault(e.getKey(),0L));return r;}
++ public Map<String,Object> report(){List<Map<String,Object>> groups=new ArrayList<>();for(Map.Entry<String,Action> e:actions.entrySet()){Action a=e.getValue();groups.add(GeometryEvidenceSupport.map("phaseAndNormalizedOperation",e.getKey(),"actionGroups",a.count,"actionNs",a.total,"maxActionNs",a.max,"returnedNullGroups",a.nulls,"exceptionGroups",a.errors));}
++  return GeometryEvidenceSupport.map("totals",marks(),"actionGroups",groups,"actionKeyLimit",MAX_ACTION_KEYS,"actionGroupsOverflowed",actionOverflow,"negativeDurationSamples",negativeDurations,
++   "firstReadThreadId",firstReadThread<0?"UNKNOWN":firstReadThread,"differentReadThreadObserved",differentReadThread,"firstBusinessOutputUtc",firstOutputUtc==null?"UNKNOWN":firstOutputUtc,"lastBusinessOutputUtc",lastOutputUtc==null?"UNKNOWN":lastOutputUtc,
++   "slowOutputThresholdNs",SLOW_OUTPUT_SAMPLE_NS,"slowOutputSampleLimit",MAX_SLOW_OUTPUT_SAMPLES,"slowOutputSamples",new ArrayList<>(slowOutputs),
++   "callCountingScope","WRAPPED_READ_ACTION_GROUPS_NOT_EXHAUSTIVE_NATIVE_OR_JNI_METHOD_CALL_COUNTS","oneActionCanContainMultipleSdkGetters",true,"actionNsExcludesFailureDiagnosticLogging",true,
++   "outputScope","BUSINESS_JSONL_ONLY_LIFECYCLE_TIMING_JOURNAL_REPORTED_SEPARATELY","countersAreObservedNotExclusiveCpuTime",true);
++ }
++}
+--- /dev/null
++++ step9/source/GeometryTimingJournal.java
+@@ -0,0 +1,40 @@
++package p1.readonly.geometry.step9;
++import java.io.*;
++import java.nio.charset.StandardCharsets;
++import java.nio.file.*;
++import java.time.Instant;
++import java.util.*;
++import java.util.concurrent.atomic.AtomicLong;
++
++/** Synchronous best-effort timing journal, independent from the business JSONL. No SDK calls or new threads. */
++public final class GeometryTimingJournal implements AutoCloseable {
++ private static final AtomicLong NEXT=new AtomicLong();
++ private final long openedNs=System.nanoTime();
++ private final String traceId="T9-"+Long.toHexString(openedNs)+"-"+NEXT.incrementAndGet();
++ private final String commandId;
++ private BufferedWriter writer;
++ private String fileName="UNKNOWN_FILE_UNAVAILABLE",openError="NONE";
++ private boolean closed;
++ private long sequence,writeAttempts,writeErrors,writeNs,openNs,closeNs;
++ public GeometryTimingJournal(String commandId){this(commandId,null);}
++ public GeometryTimingJournal(String commandId,Path overrideDirectory){this.commandId=commandId;long begin=System.nanoTime();try{
++  String configured=System.getenv("P1_READONLY_GEOMETRY_LOG_DIR");Path directory=overrideDirectory!=null?overrideDirectory:configured==null||configured.isBlank()?Paths.get(System.getProperty("user.home"),"CreoReadOnlyGeometry"):Paths.get(configured);
++  Files.createDirectories(directory);Path file=directory.resolve("geometry-timing-step9-lifecycle-"+traceId+".jsonl");fileName=file.getFileName().toString();
++  writer=Files.newBufferedWriter(file,StandardCharsets.UTF_8,StandardOpenOption.CREATE_NEW,StandardOpenOption.WRITE);
++ }catch(IOException|RuntimeException e){openError=e.getClass().getName();writeErrors++;}finally{openNs=System.nanoTime()-begin;}}
++ public String traceId(){return traceId;}public String fileName(){return fileName;}
++ public synchronized void record(String event,String requestId,Map<String,Object> fields){
++  long begin=System.nanoTime();writeAttempts++;
++  try{Map<String,Object> row=GeometryEvidenceSupport.map("schema","P1_NATIVE_GEOMETRY_TIMING_LIFECYCLE_V1","event",event,"collectorStep","STEP_9","commandId",commandId,
++    "timingTraceId",traceId,"sequence",++sequence,"timestamp",Instant.now().toString(),"monotonicNs",begin,"journalElapsedNs",begin-openedNs,
++    "requestId",requestId==null?"NO_COMMAND_REQUEST_YET":requestId,"javaThreadId",Thread.currentThread().getId(),"javaThreadName",Thread.currentThread().getName(),
++    "timingSinkState",writer!=null&&!closed?"FILE":"STDERR_FALLBACK","journalOpenFailure",openError);
++   row.putAll(fields);String line=GeometryEvidenceSupport.json(row);
++   if(writer!=null&&!closed){writer.write(line);writer.newLine();writer.flush();}else System.err.println("[P1GEO_TIMING] "+line);
++  }catch(IOException|RuntimeException e){writeErrors++;try{System.err.println("[P1GEO_TIMING] TIMING_WRITE_FAILED event="+event+" exception="+e.getClass().getName()+" trace="+traceId);}catch(RuntimeException ignored){/* Do not change native/business control flow for a timing failure. */}}
++  finally{writeNs+=Math.max(0,System.nanoTime()-begin);}
++ }
++ public Map<String,Object> state(){return GeometryEvidenceSupport.map("timingTraceId",traceId,"lifecycleFileName",fileName,"journalWriteAttemptsBeforeThisRecord",writeAttempts,"journalWriteErrors",writeErrors,
++  "journalOpenNs",openNs,"journalObservedWriteNsBeforeThisRecord",writeNs,"journalCloseNs",closeNs,"closed",closed,"timingSinkState",writer!=null&&!closed?"FILE":"STDERR_FALLBACK","recordOwnWriteExcludedFromState",true);}
++ @Override public synchronized void close(){long begin=System.nanoTime();try{if(writer!=null)writer.close();}catch(IOException|RuntimeException e){writeErrors++;}finally{closed=true;closeNs=System.nanoTime()-begin;}}
++}
+--- step8/source/P1ReadOnlyGeometrySamplerStep8.java
++++ step9/source/P1ReadOnlyGeometrySamplerStep9.java
+@@ -1 +1 @@
+-package p1.readonly.geometry.step8;
++package p1.readonly.geometry.step9;
+@@ -24 +24 @@
+-import static p1.readonly.geometry.step8.GeometryEvidenceSupport.*;
++import static p1.readonly.geometry.step9.GeometryEvidenceSupport.*;
+@@ -27,3 +27,5 @@
+-public final class P1ReadOnlyGeometrySamplerStep8 {
+-    public static final String COMMAND_ID = "SISWReadOnlyGeometrySample8";
+-    private static final String MESSAGES = "p1_readonly_sampling_step8.txt";
++public final class P1ReadOnlyGeometrySamplerStep9 {
++    private static final long JAVA_INIT_OBSERVED_BEGIN_NS=System.nanoTime();
++    private static final String JAVA_INIT_OBSERVED_BEGIN_UTC=Instant.now().toString();
++    public static final String COMMAND_ID = "SISWReadOnlyGeometrySample9";
++    private static final String MESSAGES = "p1_readonly_sampling_step9.txt";
+@@ -37 +39,16 @@
+-    private P1ReadOnlyGeometrySamplerStep8() { }
++    private static GeometryTimingJournal timingJournal;
++    static {
++        GeometryTimingJournal sink=journal();long end=System.nanoTime();
++        sink.record("JAVA_STATIC_INITIALIZATION_OBSERVED",null,map("beginUtc",JAVA_INIT_OBSERVED_BEGIN_UTC,"endUtc",Instant.now().toString(),
++                "beginMonotonicNs",JAVA_INIT_OBSERVED_BEGIN_NS,"endMonotonicNs",end,"observedElapsedNs",end-JAVA_INIT_OBSERVED_BEGIN_NS,
++                "scope","OBSERVABLE_JAVA_STATIC_INITIALIZATION_NOT_JVM_DEFINITION_VERIFICATION_OR_LINKING_TOTAL","includesTimingJournalSetup",true,
++                "firstRecordSerializationAndWriteExcluded",true,"classLoadBeforeJavaEntryKnown",false,"journalState",sink.state()));
++    }
++    private static synchronized GeometryTimingJournal journal(){if(timingJournal==null)timingJournal=new GeometryTimingJournal(COMMAND_ID);return timingJournal;}
++    private static <T> T registrationAction(String operation,Read<T> action) throws Exception {
++        long begin=System.nanoTime();String utc=Instant.now().toString(),outcome="THREW";
++        try{T value=action.get();outcome=value==null?"RETURNED_NULL":"RETURNED";return value;}
++        finally{long end=System.nanoTime();journal().record("REGISTRATION_ACTION_SPAN",null,map("operation",operation,"beginUtc",utc,"endUtc",Instant.now().toString(),
++                "beginMonotonicNs",begin,"endMonotonicNs",end,"elapsedNs",end-begin,"outcome",outcome,"includesActionJavaAndSdkWork",true,"countingScope","ONE_WRAPPED_REGISTRATION_ACTION_NOT_INTERNAL_JNI_FANOUT","actionGroups",1));}
++    }
++    private P1ReadOnlyGeometrySamplerStep9() { }
+@@ -40,5 +57,2 @@
+-        if (active) return;
+-        if (command != null || listener != null) throw new IllegalStateException("Restart Creo: prior registration may still be attached");
+-        session = pfcSession.GetCurrentSessionWithCompatibility(CreoCompatibility.C4Compatible);
+-        if (session == null) throw new IllegalStateException("No synchronous session");
+-        listener = new Listener();
++        long begin=System.nanoTime();String utc=Instant.now().toString(),outcome="THREW";
++        journal().record("PLUGIN_START_ENTER",null,map("enteredUtc",utc,"enteredMonotonicNs",begin));
+@@ -46,14 +60,18 @@
+-            command = session.UICreateCommand(COMMAND_ID, listener);
+-            if (command == null) throw new IllegalStateException("UICreateCommand returned null");
+-            command.Designate(MESSAGES, "P1_SAMPLE8_LABEL", "P1_SAMPLE8_HELP", "P1_SAMPLE8_DESC");
+-            active = true;
+-            lifecycle("REGISTERED; command=" + COMMAND_ID + "; collection=NOT_EXECUTED", null);
+-        } catch (Exception | LinkageError error) {
+-            lifecycle("REGISTRATION_FAILED", error);
+-            if (command != null) {
+-                try { command.RemoveActionListener(listener); command = null; listener = null; }
+-                catch (Exception | LinkageError detachError) { lifecycle("DETACH_FAILED; restart_required", detachError); }
+-            } else listener = null;
+-            session = null;
+-            throw error;
+-        }
++            if (active){outcome="ALREADY_ACTIVE_NO_REGISTRATION";return;}
++            if (command != null || listener != null) throw new IllegalStateException("Restart Creo: prior registration may still be attached");
++            session=registrationAction("GetCurrentSessionWithCompatibility",()->pfcSession.GetCurrentSessionWithCompatibility(CreoCompatibility.C4Compatible));
++            if(session==null)throw new IllegalStateException("No synchronous session");
++            listener=registrationAction("ListenerJavaConstruction",Listener::new);
++            try {
++                command=registrationAction("Session.UICreateCommand",()->session.UICreateCommand(COMMAND_ID,listener));
++                if(command==null)throw new IllegalStateException("UICreateCommand returned null");
++                registrationAction("UICommand.Designate",()->{command.Designate(MESSAGES,"P1_SAMPLE9_LABEL","P1_SAMPLE9_HELP","P1_SAMPLE9_DESC");return Boolean.TRUE;});
++                active=true;lifecycle("REGISTERED; command="+COMMAND_ID+"; collection=NOT_EXECUTED",null);outcome="REGISTERED";
++            }catch(Exception|LinkageError error){
++                lifecycle("REGISTRATION_FAILED",error);
++                if(command!=null){try{registrationAction("UICommand.RemoveActionListener.registrationCleanup",()->{command.RemoveActionListener(listener);return Boolean.TRUE;});command=null;listener=null;}
++                    catch(Exception|LinkageError detachError){lifecycle("DETACH_FAILED; restart_required",detachError);}}
++                else listener=null;
++                session=null;throw error;
++            }
++        }finally{long end=System.nanoTime();journal().record("PLUGIN_START_EXIT",null,map("beginUtc",utc,"endUtc",Instant.now().toString(),"beginMonotonicNs",begin,"endMonotonicNs",end,"elapsedNs",end-begin,"outcome",outcome,"ownExitRecordWriteExcluded",true));}
+@@ -62,9 +80,12 @@
+-        active = false;
+-        if (collecting.get()) throw new IllegalStateException("Collection in progress; do not unload");
+-        if (command != null && listener != null) command.RemoveActionListener(listener);
+-        command = null; listener = null; session = null;
+-        lifecycle("STOP_RETURNED", null);
+-    }
+-    private static void lifecycle(String message, Throwable error) {
+-        System.err.println("[P1GEO] " + Instant.now() + " " + message);
+-        if (error != null) error.printStackTrace(System.err);
++        long begin=System.nanoTime();boolean completed=false;
++        journal().record("PLUGIN_STOP_ENTER",null,map("enteredMonotonicNs",begin));
++        try{
++            active=false;
++            if(collecting.get())throw new IllegalStateException("Collection in progress; do not unload");
++            if(command!=null&&listener!=null)registrationAction("UICommand.RemoveActionListener.stop",()->{command.RemoveActionListener(listener);return Boolean.TRUE;});
++            command=null;listener=null;session=null;lifecycle("STOP_RETURNED",null);completed=true;
++        }finally{GeometryTimingJournal sink=journal();sink.record("PLUGIN_STOP_EXIT",null,map("elapsedNs",System.nanoTime()-begin,"completed",completed,"journalStateBeforeClose",sink.state()));if(completed){sink.close();timingJournal=null;}}
++    }
++    private static void lifecycle(String message,Throwable error){
++        System.err.println("[P1GEO] "+Instant.now()+" "+message);if(error!=null)error.printStackTrace(System.err);
++        journal().record("LIFECYCLE_DIAGNOSTIC",null,map("message",message,"exceptionClass",error==null?"NONE":error.getClass().getName(),"stackRemainsInOriginalStderr",error!=null));
+@@ -74,9 +95,14 @@
+-            if (!active || session == null || !collecting.compareAndSet(false, true)) {
+-                lifecycle("COLLECTION_NOT_ENTERED; inactive_or_busy", null); return;
+-            }
+-            String requestId = UUID.randomUUID().toString();
+-            try (Run run = new Run(requestId)) { run.collect(); }
+-            catch (Exception | LinkageError error) { lifecycle("COLLECTION_OR_LOG_IO_FAILED; requestId=" + requestId, error); }
+-            finally { collecting.set(false); }
+-        }
+-    }
++            long entered=System.nanoTime();String utc=Instant.now().toString();GeometryTimingJournal sink=journal();String requestId=null;String outcome="NOT_ENTERED";
++            sink.record("COMMAND_ENTER",null,map("enteredUtc",utc,"enteredMonotonicNs",entered));
++            if(!active||session==null||!collecting.compareAndSet(false,true)){
++                lifecycle("COLLECTION_NOT_ENTERED; inactive_or_busy",null);sink.record("COMMAND_REJECTED",null,map("elapsedNs",System.nanoTime()-entered,"reason","INACTIVE_OR_BUSY"));return;
++            }
++            try{
++                long uuidBegin=System.nanoTime();requestId=UUID.randomUUID().toString();sink.record("REQUEST_ID_GENERATED",requestId,map("generationNs",System.nanoTime()-uuidBegin));
++                try(Run run=new Run(requestId,entered,utc)){run.collect();outcome="COLLECT_AND_LOG_CLOSE_RETURNED";}
++            }catch(Exception|LinkageError error){outcome="COLLECTION_OR_LOG_IO_FAILED";lifecycle("COLLECTION_OR_LOG_IO_FAILED; requestId="+requestId,error);}
++            finally{collecting.set(false);long end=System.nanoTime();sink.record("COMMAND_EXIT",requestId,map("enteredUtc",utc,"endUtc",Instant.now().toString(),"beginMonotonicNs",entered,"endMonotonicNs",end,"elapsedNs",end-entered,
++                    "outcome",outcome,"ownExitRecordWriteAndSubsequentUiRepaintExcluded",true,"noBackgroundNativeThreadIntroduced",true,"journalState",sink.state()));}
++        }
++    }
++
+@@ -141,0 +168,7 @@
++        final GeometryTimingCounters timing=new GeometryTimingCounters();
++        final GeometryTimingJournal timingSink=journal();
++        final long commandEnteredNs;final String commandEnteredUtc;
++        String timingPhase="RUN_CONSTRUCTION";boolean timingPhaseActive;
++        long timingPhaseBeginNs;String timingPhaseBeginUtc;
++        Map<String,Long> timingPhaseMarks;
++        final List<Map<String,Object>> timingPhaseReports=new ArrayList<>();
+@@ -164,34 +197,49 @@
+-        Run(String id) throws IOException {
+-            requestId = id;
+-            String configured = System.getenv("P1_READONLY_GEOMETRY_LOG_DIR");
+-            Path directory = configured == null || configured.isBlank()
+-                    ? Paths.get(System.getProperty("user.home"), "CreoReadOnlyGeometry") : Paths.get(configured);
+-            Files.createDirectories(directory);
+-            Path output = directory.resolve("geometry-sampling-step8-" + requestId + ".jsonl");
+-            writer = Files.newBufferedWriter(output, StandardCharsets.UTF_8, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE);
+-            lifecycle("EVIDENCE_FILE=" + output + "; requestId=" + requestId, null);
+-        }
+-        void emit(String event, Map<String,Object> fields) throws IOException {
+-            Map<String,Object> line = map("schema", "P1_NATIVE_READONLY_GEOMETRY_V1", "timestamp", Instant.now().toString(),
+-                    "requestId", requestId, "commandId", COMMAND_ID, "event", event,
+-                    "collectorStep", "STEP_8", "samplingSchema", "P1_NATIVE_GEOMETRY_SAMPLING_V1",
+-                    "samplingQualitySchema", "P1_NATIVE_GEOMETRY_SAMPLING_QUALITY_V1",
+-                    "selectionSchema", "P1_NATIVE_PLANE_POINT_POOL_V1", "queueSchema", "P1_NATIVE_MIXED_UV_QUEUE_V1", "spreadSchema","P1_NATIVE_SPREAD_FROZEN_BASELINE_V1","pairSchema","P1_NATIVE_RELATIVE_FACE_CANDIDATES_V1","distanceSchema","P1_NATIVE_ANALYTIC_LOCAL_DISTANCE_V1","classificationSchema","P1_NATIVE_LOCAL_DISTANCE_CLASSIFICATION_V1","interfaceReviewSchema","P1_NATIVE_READONLY_API_REVIEW_V1");
+-            line.putAll(fields);
+-            String json = json(line);
+-            writer.write(json); writer.newLine(); writer.flush();
+-            System.err.println("[P1GEO] " + json);
+-            observeClassificationInput(event,fields);
+-        }
+-        <T> T read(String operation, Read<T> action) throws IOException {
+-            try {
+-                T value = action.get();
+-                if (value == null) { unknownReads++; emit("READ_UNAVAILABLE", map("operation", operation, "outcome", "RETURNED_NULL")); }
+-                return value;
+-            } catch (Exception | LinkageError error) {
+-                errors++;
+-                StringWriter stack = new StringWriter(); error.printStackTrace(new PrintWriter(stack));
+-                emit("READ_EXCEPTION", map("operation", operation, "exceptionClass", error.getClass().getName(), "stack", stack.toString()));
+-                return null;
+-            }
+-        }
++        Run(String id,long commandEntered,String enteredUtc) throws IOException {
++            requestId=id;commandEnteredNs=commandEntered;commandEnteredUtc=enteredUtc;
++            long begin=System.nanoTime();String utc=Instant.now().toString();boolean opened=false;
++            timingSink.record("RUN_LOG_IO_BEGIN",id,map("beginUtc",utc,"beginMonotonicNs",begin,"commandEntryMonotonicNs",commandEntered));
++            try{
++                String configured=System.getenv("P1_READONLY_GEOMETRY_LOG_DIR");Path directory=configured==null||configured.isBlank()?Paths.get(System.getProperty("user.home"),"CreoReadOnlyGeometry"):Paths.get(configured);
++                Files.createDirectories(directory);Path output=directory.resolve("geometry-sampling-step9-"+requestId+".jsonl");
++                writer=Files.newBufferedWriter(output,StandardCharsets.UTF_8,StandardOpenOption.CREATE_NEW,StandardOpenOption.WRITE);opened=true;
++                lifecycle("EVIDENCE_FILE="+output+"; requestId="+requestId,null);
++            }finally{long end=System.nanoTime();timingSink.record("RUN_LOG_IO_END",id,map("beginUtc",utc,"endUtc",Instant.now().toString(),"beginMonotonicNs",begin,"endMonotonicNs",end,"elapsedNs",end-begin,"opened",opened,
++                    "runStartedMonotonicNs",started,"commandEntryToIoEndNs",end-commandEntered,"includesEvidenceDirectoryAndFileSetupAndDiagnosticLogging",true));}
++        }
++        void emit(String event,Map<String,Object> fields) throws IOException {
++            long outputBegin=System.nanoTime(),headerEnd=outputBegin,writeElapsed=0,flushElapsed=0,stderrElapsed=0,observerElapsed=0,writes=0,newlines=0,flushes=0,stderrLines=0;
++            String utc=Instant.now().toString();boolean completed=false,headerCompleted=false;
++            try{
++                Map<String,Object> line=map("schema","P1_NATIVE_READONLY_GEOMETRY_V1","timestamp",utc,"requestId",requestId,"commandId",COMMAND_ID,"event",event,
++                    "collectorStep","STEP_9","samplingSchema","P1_NATIVE_GEOMETRY_SAMPLING_V1","samplingQualitySchema","P1_NATIVE_GEOMETRY_SAMPLING_QUALITY_V1",
++                    "selectionSchema","P1_NATIVE_PLANE_POINT_POOL_V1","queueSchema","P1_NATIVE_MIXED_UV_QUEUE_V1","spreadSchema","P1_NATIVE_SPREAD_FROZEN_BASELINE_V1","pairSchema","P1_NATIVE_RELATIVE_FACE_CANDIDATES_V1",
++                    "distanceSchema","P1_NATIVE_ANALYTIC_LOCAL_DISTANCE_V1","classificationSchema","P1_NATIVE_LOCAL_DISTANCE_CLASSIFICATION_V1","interfaceReviewSchema","P1_NATIVE_READONLY_API_REVIEW_V1",
++                    "timingSchema","P1_NATIVE_TIMING_OBSERVATION_V1","timingPhase",timingPhase);
++                line.putAll(fields);String json=json(line);headerEnd=System.nanoTime();headerCompleted=true;long mark=System.nanoTime();
++                try{writes++;writer.write(json);newlines++;writer.newLine();}finally{writeElapsed=System.nanoTime()-mark;}
++                mark=System.nanoTime();try{flushes++;writer.flush();}finally{flushElapsed=System.nanoTime()-mark;}
++                mark=System.nanoTime();try{stderrLines++;System.err.println("[P1GEO] "+json);}finally{stderrElapsed=System.nanoTime()-mark;}
++                mark=System.nanoTime();try{observeClassificationInput(event,fields);}finally{observerElapsed=System.nanoTime()-mark;}
++                completed=true;
++            }finally{long end=System.nanoTime();timing.output(event,utc,Instant.now().toString(),(headerCompleted?headerEnd:end)-outputBegin,writes,newlines,flushes,stderrLines,writeElapsed,flushElapsed,stderrElapsed,observerElapsed,end-outputBegin,completed);}
++        }
++        <T> T read(String operation,Read<T> action) throws IOException {
++            T value;
++            try{
++                long begin=System.nanoTime();String result="THREW";
++                try{value=action.get();result=value==null?"RETURNED_NULL":"RETURNED";}
++                finally{timing.read(timingPhase,operation,System.nanoTime()-begin,result,Thread.currentThread().getId());}
++                if(value==null){unknownReads++;emit("READ_UNAVAILABLE",map("operation",operation,"outcome","RETURNED_NULL"));}return value;
++            }catch(Exception|LinkageError error){errors++;StringWriter stack=new StringWriter();error.printStackTrace(new PrintWriter(stack));emit("READ_EXCEPTION",map("operation",operation,"exceptionClass",error.getClass().getName(),"stack",stack.toString()));return null;}
++        }
++        void beginTimingPhase(String name){
++            endTimingPhase("BODY_RETURNED");timingPhase=name;timingPhaseActive=true;timingPhaseBeginNs=System.nanoTime();timingPhaseBeginUtc=Instant.now().toString();timingPhaseMarks=timing.marks();
++            timingSink.record("PHASE_BEGIN",requestId,map("phase",name,"beginUtc",timingPhaseBeginUtc,"beginMonotonicNs",timingPhaseBeginNs,"includesThisBeginJournalWrite",true));
++        }
++        void endTimingPhase(String outcome){
++            if(!timingPhaseActive)return;long end=System.nanoTime();Map<String,Object> report=map("phase",timingPhase,"beginUtc",timingPhaseBeginUtc,"endUtc",Instant.now().toString(),
++                "beginMonotonicNs",timingPhaseBeginNs,"endMonotonicNs",end,"elapsedNs",end-timingPhaseBeginNs,"outcome",outcome,"businessCounterDelta",timing.delta(timingPhaseMarks),
++                "endJournalWriteExcluded",true,"notExclusiveCpuOrPureJniTime",true);
++            if(timingPhaseReports.size()<32)timingPhaseReports.add(report);timingPhaseActive=false;timingPhase="BETWEEN_PHASES";timingSink.record("PHASE_END",requestId,report);
++        }
++        void emitTimingRecord(String event,Map<String,Object> values){try{emit(event,values);}catch(IOException|RuntimeException error){timingSink.record("BUSINESS_TIMING_RECORD_FAILED",requestId,map("event",event,"exceptionClass",error.getClass().getName()));}}
+@@ -215,0 +264 @@
++            beginTimingPhase("COLLECTION_SETUP_AND_STARTED_MESSAGE");
+@@ -219 +268,3 @@
+-            read("Session.UIDisplayMessage(STARTED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE8_STARTED", null); return Boolean.TRUE; });
++            emitTimingRecord("TIMING_COMMAND_CONTEXT",map("commandEnteredUtc",commandEnteredUtc,"commandEnteredMonotonicNs",commandEnteredNs,"runStartedMonotonicNs",started,
++                    "timingTraceId",timingSink.traceId(),"lifecycleFileName",timingSink.fileName(),"javaThreadId",Thread.currentThread().getId(),"javaThreadName",Thread.currentThread().getName(),"classLoadBeforeJavaEntryKnown",false));
++            read("Session.UIDisplayMessage(STARTED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE9_STARTED", null); return Boolean.TRUE; });
+@@ -223,0 +275 @@
++                beginTimingPhase("ACTIVE_MODEL_IDENTITY_UNITS_ACCURACY");
+@@ -244,0 +297 @@
++                beginTimingPhase("DEFAULT_BODY_STATE");
+@@ -252,0 +306 @@
++                beginTimingPhase("MODEL_SURFACE_ENUMERATION");
+@@ -253,0 +308 @@
++                beginTimingPhase("BODY_ENUMERATION_AND_FALLBACK");
+@@ -259,0 +315 @@
++                beginTimingPhase("SURFACE_TYPE_AREA_AND_UV_METADATA");
+@@ -284,0 +341 @@
++                beginTimingPhase("POINT_NORMAL_SAMPLING_AND_SPREAD");
+@@ -285,0 +343 @@
++                beginTimingPhase("COARSE_PAIR_ENUMERATION");
+@@ -286,0 +345 @@
++                beginTimingPhase("ANALYTIC_DESCRIPTOR_READS");
+@@ -287,0 +347 @@
++                beginTimingPhase("DOMAIN_VALIDATION_AND_LOCAL_DISTANCES");
+@@ -288,0 +349 @@
++                beginTimingPhase("CANDIDATE_CLASSIFICATION");
+@@ -289,0 +351 @@
++                beginTimingPhase("STATIC_SDK_REVIEW_OUTPUT");
+@@ -290,0 +353 @@
++                endTimingPhase("BODY_RETURNED");
+@@ -291,0 +355 @@
++                endTimingPhase("THREW_OR_ABORTED");
+@@ -295,0 +360,2 @@
++                endTimingPhase("EARLY_TRY_EXIT");
++                beginTimingPhase("FINAL_MODEL_IDENTITY");
+@@ -323,0 +390 @@
++                beginTimingPhase("FINAL_SUMMARIES_AND_FINISHED_MESSAGE");
+@@ -328 +395,5 @@
+-                read("Session.UIDisplayMessage(FINISHED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE8_FINISHED", null); return Boolean.TRUE; });
++                read("Session.UIDisplayMessage(FINISHED)", () -> { session.UIDisplayMessage(MESSAGES, "P1_SAMPLE9_FINISHED", null); return Boolean.TRUE; });
++                endTimingPhase("BODY_RETURNED");
++                emitTimingRecord("TIMING_OBSERVATION_SNAPSHOT",map("timingTraceId",timingSink.traceId(),"lifecycleFileName",timingSink.fileName(),"phaseReports",timingPhaseReports,"counters",timing.report(),
++                        "snapshotExcludesThisRecordFinalCollectionSummaryAndClose",true,"fullBusinessOutputTotalsFollowInLifecycleJournalAfterClose",true,"journalStateBeforeThisRecord",timingSink.state(),"nativeCallsMovedToBackground",false));
++                beginTimingPhase("FINAL_COLLECTION_SUMMARY_OUTPUT");
+@@ -335 +406 @@
+-                emit("COLLECTION_SUMMARY", map("outcome", outcome, "errors", errors, "unknownReadValues", unknownReads,
++                emit("COLLECTION_SUMMARY", map("outcome", outcome,"timingTraceId",timingSink.traceId(),"timingObservationScope","OBSERVED_ACTION_GROUPS_AND_SYNCHRONOUS_IO_NOT_FULL_JVM_LOAD_OR_UI_RESPONSIVENESS_PROOF","timingJournalWriteErrorsBeforeSummary",timingSink.state().get("journalWriteErrors"), "errors", errors, "unknownReadValues", unknownReads,
+@@ -976 +1047,7 @@
+-        @Override public void close() throws IOException { writer.close(); }
++        @Override public void close() throws IOException {
++            endTimingPhase("RUN_CLOSED_OR_ABORTED");long begin=System.nanoTime();String utc=Instant.now().toString();boolean completed=false;
++            try{writer.close();completed=true;}
++            finally{long end=System.nanoTime();timingSink.record("RUN_LOG_CLOSE",requestId,map("beginUtc",utc,"endUtc",Instant.now().toString(),"elapsedNs",end-begin,"completed",completed));
++                timingSink.record("RUN_OBSERVATION_TOTALS",requestId,map("businessCountersThroughClose",timing.report(),"businessWriterCloseNs",end-begin,"businessWriterCloseCompleted",completed,
++                    "phaseReports",timingPhaseReports,"commandEntryToCloseNs",end-commandEnteredNs,"journalStateBeforeThisRecord",timingSink.state(),"journalOwnCurrentAndLaterWritesExcluded",true,"allNativeApisRemainOnCallerThread",true));}
++        }

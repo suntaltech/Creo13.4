@@ -1,0 +1,19 @@
+{
+  "type": "PURE_STEP5_POINT_PAIR_HINT_REPLAY_NOT_STEP6_RUNTIME",
+  "faces": 222,
+  "comparisons": 12435,
+  "candidateCountsByType": {
+    "PLANE_PLANE": 135,
+    "CYLINDER_CYLINDER": 128
+  },
+  "outcomeCounts": {
+    "UNKNOWN_DEGENERATE_SAMPLED_BOX": 4181,
+    "NO_COARSE_HINT_NOT_PROOF_OF_NO_OPPOSITE_FACE": 7991,
+    "COARSE_PAIR_CANDIDATE": 263
+  },
+  "newNativeCalls": 0,
+  "thicknessAssessed": false,
+  "inputStep5Sha256": "80fa5f111652daa20b2697a07841f43997e057ff5f0265fd5c6f436bdf340527",
+  "candidateHintsAreNotConfirmedOppositeFaces": true,
+  "rawCoordinatesRepublished": false
+}

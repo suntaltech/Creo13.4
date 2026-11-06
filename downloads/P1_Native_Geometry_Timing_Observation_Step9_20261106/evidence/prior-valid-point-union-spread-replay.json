@@ -1,0 +1,110 @@
+{
+  "type": "OFFLINE_TWO_PRIOR_RUN_POINT_UNION_NOT_STEP6_NATIVE_RUNTIME",
+  "inputStep4Sha256": "29241fc2139e4ce1d07e63da0114b20b36ec7b8bb0419653782593a161974039",
+  "inputStep5Sha256": "80fa5f111652daa20b2697a07841f43997e057ff5f0265fd5c6f436bdf340527",
+  "groupsReplayed": 48,
+  "nonCollinearGroupsPreserved": 48,
+  "sameRunFrozenAreaNondecreaseChecksPassed": 48,
+  "sixteenPriorSpreadTargets": [
+    {
+      "surfaceId": 2689,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2693,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2695,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2706,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2712,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2722,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2726,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2736,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2740,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2754,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2756,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2773,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2813,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2815,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2845,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    },
+    {
+      "surfaceId": 2847,
+      "priorKnownPoolSize": 12,
+      "replayedToStep4TriangleAreaRatio": 1.0,
+      "step6RuntimeResult": "NOT_EXECUTED_UNKNOWN"
+    }
+  ],
+  "unobservedNativeValidityGuessed": false,
+  "crossRunIdentityAuthenticated": false,
+  "rawCoordinatesRepublished": false,
+  "step6RuntimeVerified": false
+}

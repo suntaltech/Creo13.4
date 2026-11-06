@@ -1,0 +1,30 @@
+{
+  "suppliedSdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+  "javapOwnersInspected": [
+    "com.ptc.pfc.pfcSolid.Solid",
+    "com.ptc.pfc.pfcSolid.SolidBody",
+    "com.ptc.pfc.pfcGeometry.Surface",
+    "com.ptc.pfc.pfcModel.Model",
+    "com.ptc.wfc.wfcModel.WModel",
+    "com.ptc.wfc.wfcModel.Ray",
+    "com.ptc.wfc.wfcModel.wfcModel",
+    "com.ptc.wfc.wfcSolid.WSolid",
+    "com.ptc.wfc.wfcSolid.WSolidBody",
+    "com.ptc.wfc.wfcSolid.ProjectionInfo",
+    "com.ptc.wfc.wfcSolid.ShellData",
+    "com.ptc.wfc.wfcPart.WPart",
+    "com.ptc.wfc.wfcGeometry.WSurface",
+    "com.ptc.pfc.pfcInterference.SelectionEvaluator",
+    "com.ptc.pfc.pfcInterference.GlobalEvaluator",
+    "com.ptc.pfc.pfcInterference.pfcInterference",
+    "com.ptc.pfc.pfcInterference.ClearanceData",
+    "com.ptc.pfc.pfcInterference.CriticalDistanceData",
+    "com.ptc.pfc.pfcSelect.Selection",
+    "com.ptc.pfc.pfcSelect.SelectionPair"
+  ],
+  "scopeCount": 20,
+  "publicMethodNameIndexIsNotASemanticCompletenessProof": true,
+  "nativeMethodsInvoked": false,
+  "readOnlySemanticsCertified": false,
+  "runtimeLicensingOrObjectCompatibilityTested": false
+}

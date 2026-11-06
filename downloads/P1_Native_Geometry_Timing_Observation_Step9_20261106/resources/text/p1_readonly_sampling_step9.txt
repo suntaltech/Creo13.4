@@ -1,0 +1,14 @@
+P1_SAMPLE9_LABEL
+Sample Read-Only Geometry Step 9
+
+P1_SAMPLE9_HELP
+Observe synchronous registration, command, native stages and log output timing
+
+P1_SAMPLE9_DESC
+Read-only timing observation. Keep business and lifecycle JSONL. No final thickness or conversion.
+
+P1_SAMPLE9_STARTED
+Step 9 read-only sampling started. Preserve both lifecycle and sampling JSONL.
+
+P1_SAMPLE9_FINISHED
+Step 9 sampling ended. Review timing, original geometry evidence and final identity status.

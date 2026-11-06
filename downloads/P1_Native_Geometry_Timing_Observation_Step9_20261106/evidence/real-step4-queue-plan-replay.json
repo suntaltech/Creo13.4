@@ -1,0 +1,876 @@
+{
+  "type": "PURE_PARAMETER_PLAN_REPLAY_NOT_NATIVE_RUNTIME",
+  "inputStep4Sha256": "29241fc2139e4ce1d07e63da0114b20b36ec7b8bb0419653782593a161974039",
+  "groups": 48,
+  "plans": [
+    {
+      "surfaceId": 2687,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2688,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2689,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2693,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2695,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2696,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2697,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2706,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2707,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2712,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2713,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2714,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2720,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2721,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2722,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2726,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2727,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2728,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2734,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2735,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2736,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2740,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2741,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2742,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2748,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2749,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2754,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2756,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2761,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2762,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2763,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2764,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2773,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2774,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2775,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2781,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2813,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2815,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2825,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2826,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2827,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2828,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2845,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2847,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 4,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2854,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2855,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2856,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    },
+    {
+      "surfaceId": 2857,
+      "planned": 32,
+      "strategyCounts": {
+        "LOCAL_INSIDE_OFFSET": 16,
+        "INTERNAL_HALTON": 8,
+        "EDGE_SINGLE_LAYER": 8
+      },
+      "firstFourStrategies": [
+        "LOCAL_INSIDE_OFFSET",
+        "INTERNAL_HALTON",
+        "LOCAL_INSIDE_OFFSET",
+        "EDGE_SINGLE_LAYER"
+      ],
+      "step4KnownNewValidUvIncluded": 0,
+      "step5NativePlacement": "UNKNOWN_NOT_EXECUTED",
+      "newXyzGenerated": false
+    }
+  ],
+  "all48PlansReachAllStrategiesBySlot4": true,
+  "all16PriorImprovedFacesIncludeFourPreviouslyValidUvProposals": true,
+  "poolOrBudgetMayStopBeforeThoseSlots": true,
+  "rawUvOrXyzRepublished": false,
+  "runtimeImprovementVerified": false
+}
