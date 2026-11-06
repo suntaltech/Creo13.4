@@ -1,0 +1,47 @@
+{
+  "step7Commit": "5cca1a90304ecda495f6b0225368199f30f8405d",
+  "step7ReviewCommit": "ba1d0f26806de64c0d34927f4854e38905073f6e",
+  "step7Sources": [
+    {
+      "relativeName": "source/GeometryAnalyticMath.java",
+      "sha256": "84ccabe21b615033950f9d2024577437863f6a4fe753fee60e0748b271aa9cb0"
+    },
+    {
+      "relativeName": "source/GeometryCandidateQueue.java",
+      "sha256": "6d671c5528591eb313170300e4d73ffbf0e16a37b5b55ebb7cc08af8322d8dcd"
+    },
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "2ecea9a7547b5b29607f0a32f3f3b47f884616a26e304b2494f8397625eefb2d"
+    },
+    {
+      "relativeName": "source/GeometryPairEvidence.java",
+      "sha256": "eb0c602d6d70ff4f8df08f905a484c6cd87ebe672428de5ccf88e646e8226fb2"
+    },
+    {
+      "relativeName": "source/GeometryPoolSelection.java",
+      "sha256": "d2a41866ad750dd2e5d543b507347059557eb9a65acd6d8f142a7dea2f977a1a"
+    },
+    {
+      "relativeName": "source/GeometryReferenceBaseline.java",
+      "sha256": "ff86b2dfafd73f8cb1cfd2eee8c1fa78e47b65b9e146a0e5e18d6eebd3437f19"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "1a631bbaa3dea63316e4e77505bbb863413a2043e07be4cab4a6945b9210d450"
+    },
+    {
+      "relativeName": "source/GeometrySpreadSelection.java",
+      "sha256": "34070f4ddb70ab87daab1712459d22a03ad5f303195fccc92b83d5d3b220c2e9"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySamplerStep7.java",
+      "sha256": "d0f6ecbd07777f94d3aae973bf3c156b84106c270a1eac4ad0403e7acee0169e"
+    }
+  ],
+  "step7JarSha256": "5884a26f9ea2996a7c0f16523e83736c3f5b2acf243b49034fb9210635290a2c",
+  "step7FilesVerifiedUnchanged": true,
+  "step8IndependentApplication": true,
+  "sdkMethodReferencesExactlyUnchanged": true,
+  "newNativeRayMaterialOrOcclusionCalls": false
+}

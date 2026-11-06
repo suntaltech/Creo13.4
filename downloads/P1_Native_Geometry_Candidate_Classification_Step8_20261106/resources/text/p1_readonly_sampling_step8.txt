@@ -1,0 +1,14 @@
+P1_SAMPLE8_LABEL
+Sample Read-Only Geometry Step 8
+
+P1_SAMPLE8_HELP
+Classify bounded local distance candidates and log a static SDK interface review
+
+P1_SAMPLE8_DESC
+Read-only multi-label review. No native ray or material-occupancy calls, no final thickness or conversion.
+
+P1_SAMPLE8_STARTED
+Step 8 read-only sampling started. Review the new step8 JSONL.
+
+P1_SAMPLE8_FINISHED
+Step 8 sampling ended. Review overlapping labels, probing coverage, unconfirmed SDK semantics and final identity status.

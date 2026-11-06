@@ -1,0 +1,10 @@
+name p1_native_readonly_geometry_step8_controlled
+startup java
+java_app_class p1.readonly.geometry.step8.P1ReadOnlyGeometrySamplerStep8
+java_app_classpath @ABSOLUTE_NEW_STEP8_CLASSES_DIRECTORY@
+java_app_start start
+java_app_stop stop
+allow_stop true
+delay_start false
+text_dir @ABSOLUTE_STEP8_RESOURCES_TEXT_DIRECTORY@
+end

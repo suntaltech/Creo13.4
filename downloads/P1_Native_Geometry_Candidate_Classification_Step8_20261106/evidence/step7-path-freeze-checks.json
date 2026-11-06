@@ -1,0 +1,27 @@
+{
+  "allEightStep7PureSourcesIdenticalExceptNamespace": true,
+  "frozenMethodBlocks": {
+    "void sampleTargets()": {
+      "identical": true,
+      "sha256": "7cd64ef70db74f2531306153a5eaeda71896e4ad94ebebe96ad94ad040a8e48d"
+    },
+    "void collectPairEvidence()": {
+      "identical": true,
+      "sha256": "905cd4c0770efb4113d20522633d982af70b9fa764a9af71cf29614e8c4b9037"
+    },
+    "void collectAnalyticParameters()": {
+      "identical": true,
+      "sha256": "9b057e30381eb3676e3c17d58b9f5894f3961d7ccdc569e9cfb6b76599597e38"
+    },
+    "Candidate validateCandidate(": {
+      "identical": true,
+      "sha256": "376d9cb53fc065dbc663ff33ae8a50043d824347c4b2a683aadfa62bcc163647"
+    },
+    "void reject(": {
+      "identical": true,
+      "sha256": "9f780864d4f9a8f2cb4f9da4e4c8c7533111030f40a34d5dd29694adc0aa0a99"
+    }
+  },
+  "classificationObservesAlreadyWrittenOwnEventsWithoutNativeCalls": true,
+  "staticEvidenceOnlyNotRuntimePreservationProof": true
+}

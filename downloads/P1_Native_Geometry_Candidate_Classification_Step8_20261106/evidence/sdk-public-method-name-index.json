@@ -1,0 +1,62 @@
+{
+  "type": "READ_ONLY_CLASSFILE_PUBLIC_DECLARED_METHOD_NAME_INDEX_NOT_SEMANTIC_OR_RUNTIME_PROOF",
+  "sdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+  "scopePrefixes": [
+    "com.ptc.pfc",
+    "com.ptc.wfc"
+  ],
+  "implementationPackagesExcluded": true,
+  "publicFacingClassesInspected": 1612,
+  "publicDeclaredMethodsIndexed": 8076,
+  "candidateNameMatches": [
+    {
+      "owner": "com.ptc.pfc.pfcInterference.SelectionEvaluator",
+      "method": "ComputeInterference",
+      "descriptor": "(Z)Lcom/ptc/pfc/pfcInterference/InterferenceVolume;"
+    },
+    {
+      "owner": "com.ptc.pfc.pfcInterference.SelectionEvaluator",
+      "method": "ComputeClearance",
+      "descriptor": "()Lcom/ptc/pfc/pfcInterference/ClearanceData;"
+    },
+    {
+      "owner": "com.ptc.pfc.pfcInterference.SelectionEvaluator",
+      "method": "ComputeNearestCriticalDistance",
+      "descriptor": "()Lcom/ptc/pfc/pfcInterference/CriticalDistanceData;"
+    },
+    {
+      "owner": "com.ptc.pfc.pfcInterference.pfcInterference",
+      "method": "CreateSelectionEvaluator",
+      "descriptor": "(Lcom/ptc/pfc/pfcSelect/SelectionPair;)Lcom/ptc/pfc/pfcInterference/SelectionEvaluator;"
+    },
+    {
+      "owner": "com.ptc.wfc.wfcModel.WModel",
+      "method": "ComputeRayIntersections",
+      "descriptor": "(DLcom/ptc/wfc/wfcModel/Ray;)Lcom/ptc/pfc/pfcSelect/Selections;"
+    },
+    {
+      "owner": "com.ptc.wfc.wfcModel.wfcModel",
+      "method": "Ray_Create",
+      "descriptor": "(Lcom/ptc/pfc/pfcBase/Point3D;Lcom/ptc/pfc/pfcBase/Vector3D;)Lcom/ptc/wfc/wfcModel/Ray;"
+    },
+    {
+      "owner": "com.ptc.wfc.wfcPart.WPart",
+      "method": "FindGeometry",
+      "descriptor": "(Lcom/ptc/pfc/pfcBase/Point3D;)Lcom/ptc/pfc/pfcSelect/Selections;"
+    },
+    {
+      "owner": "com.ptc.wfc.wfcSolid.WSolid",
+      "method": "FindShellsAndVoids",
+      "descriptor": "()Lcom/ptc/wfc/wfcSolid/ShellData;"
+    },
+    {
+      "owner": "com.ptc.wfc.wfcSolid.WSolid",
+      "method": "ProjectPoint",
+      "descriptor": "(Lcom/ptc/pfc/pfcBase/Point3D;D)Lcom/ptc/wfc/wfcSolid/ProjectionInfo;"
+    }
+  ],
+  "searchPattern": "^(ComputeRayIntersections|Ray_Create|ProjectPoint|FindGeometry|FindShellsAndVoids|ComputeClearance|ComputeNearestCriticalDistance|ComputeInterference|CreateSelectionEvaluator|.*Classif.*Point.*|.*Point.*Classif.*|.*Point.*Contain.*|.*Contain.*Point.*|.*Point.*Inside.*|.*Inside.*Point.*|.*PointInSolid.*|.*Occlu.*|.*Obstruct.*)$",
+  "noClaimOfSemanticExhaustiveness": true,
+  "runtimeClassesLoaded": false,
+  "nativeCallsExecuted": false
+}
