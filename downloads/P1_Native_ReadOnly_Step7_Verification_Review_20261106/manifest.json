@@ -1,0 +1,126 @@
+{
+  "type": "OFFLINE_NATIVE_STEP7_ANALYTIC_AND_LOCAL_DISTANCE_RUNTIME_EVIDENCE_REVIEW",
+  "reviewDate": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "inputArchive": {
+    "fileName": "native-readonly-step7-verify-20261106.zip",
+    "sha256": "729e2e623027fd49b83478e47c0e6ffe1f60ffa979190fde1e155f79b2bda416"
+  },
+  "inputFiles": [
+    {
+      "relativeName": "CONCLUSION.md",
+      "bytes": 226,
+      "sha256": "ef98d10eba7648709f019837d8e2c4ca4d6ba0a7e4dc1f874a3751395c844a4a"
+    },
+    {
+      "relativeName": "geometry-sampling-step7-5c1326c6-da55-408b-9318-a51024ac0952.jsonl",
+      "bytes": 9156261,
+      "sha256": "04a2966babfa2841226de59662126bae2f8e5a4a5fc781550864a346419b1c72"
+    },
+    {
+      "relativeName": "step7-ran.png",
+      "bytes": 177629,
+      "sha256": "2f2c04cfc4204e414d3ee5fa3fce31badc5272b7a4fbfa053281a4670867a7a2"
+    }
+  ],
+  "referenceCandidateCommit": "5cca1a90304ecda495f6b0225368199f30f8405d",
+  "referenceCandidateSourceFiles": [
+    {
+      "relativeName": "source/GeometryAnalyticMath.java",
+      "sha256": "84ccabe21b615033950f9d2024577437863f6a4fe753fee60e0748b271aa9cb0"
+    },
+    {
+      "relativeName": "source/GeometryCandidateQueue.java",
+      "sha256": "6d671c5528591eb313170300e4d73ffbf0e16a37b5b55ebb7cc08af8322d8dcd"
+    },
+    {
+      "relativeName": "source/GeometryEvidenceSupport.java",
+      "sha256": "2ecea9a7547b5b29607f0a32f3f3b47f884616a26e304b2494f8397625eefb2d"
+    },
+    {
+      "relativeName": "source/GeometryPairEvidence.java",
+      "sha256": "eb0c602d6d70ff4f8df08f905a484c6cd87ebe672428de5ccf88e646e8226fb2"
+    },
+    {
+      "relativeName": "source/GeometryPoolSelection.java",
+      "sha256": "d2a41866ad750dd2e5d543b507347059557eb9a65acd6d8f142a7dea2f977a1a"
+    },
+    {
+      "relativeName": "source/GeometryReferenceBaseline.java",
+      "sha256": "ff86b2dfafd73f8cb1cfd2eee8c1fa78e47b65b9e146a0e5e18d6eebd3437f19"
+    },
+    {
+      "relativeName": "source/GeometrySamplingMath.java",
+      "sha256": "1a631bbaa3dea63316e4e77505bbb863413a2043e07be4cab4a6945b9210d450"
+    },
+    {
+      "relativeName": "source/GeometrySpreadSelection.java",
+      "sha256": "34070f4ddb70ab87daab1712459d22a03ad5f303195fccc92b83d5d3b220c2e9"
+    },
+    {
+      "relativeName": "source/P1ReadOnlyGeometrySamplerStep7.java",
+      "sha256": "d0f6ecbd07777f94d3aae973bf3c156b84106c270a1eac4ad0403e7acee0169e"
+    }
+  ],
+  "referenceCandidateJarSha256": "5884a26f9ea2996a7c0f16523e83736c3f5b2acf243b49034fb9210635290a2c",
+  "referenceLocalCandidateUnchanged": true,
+  "checks": {
+    "all5352LegacyRecordsMatchStep6NonvolatileFields": true,
+    "all222AnalyticSampleChecksIndependentlyRecomputed": true,
+    "all32AnalyticGapFormulasIndependentlyRecomputed": true,
+    "all468AcceptedDomainChainsLogDoubleInsideExactUvFinitePointNormalAndXyzRoundtrip": true,
+    "all76RejectedDomainChainsAreTargetOutside": true,
+    "all272SourceAndTargetProposalLocationsReconstructed": true,
+    "all196DistancesAndNormalDotsIndependentlyRecomputed": true,
+    "everyDistanceReferencesTwoAcceptedDomainChains": true,
+    "all32PairAndGlobalCountersConserved": true,
+    "publishedPureJavaAnalyticValidation222AndGap32AndRoundtrip468AndProjection272ExactlyReplayed": true,
+    "sameCrossRunTransactionAuthenticated": false
+  },
+  "results": {
+    "frozenLegacyEventsMatched": 5352,
+    "samplingFinalPoints": 666,
+    "nonCollinearPlaneGroups": 126,
+    "step6Prior16AreaRestorationPreserved": true,
+    "analyticFacesUsable": 222,
+    "analyticPlanes": 126,
+    "analyticCylinders": 96,
+    "selectedPairs": 32,
+    "pairsWithInteriorWitnesses": 28,
+    "pairsWithoutWitnessesInThisPlan": 4,
+    "localDistanceWitnessRecords": 196,
+    "domainPointChains": 544,
+    "domainAccepted": 468,
+    "domainRejectedOutside": 76,
+    "sourceChainsAccepted": 272,
+    "targetChainsAccepted": 196,
+    "domainBoundaryAccepted": 0,
+    "distanceMinModelLengthUnits": 0.0,
+    "distanceMaxModelLengthUnits": 388.9999999998,
+    "zeroDistanceRecords": 22,
+    "lengthUnit": "mm",
+    "completeTrimmedOverlapProven": false,
+    "finalWallThicknessAssessed": false
+  },
+  "directionalPairCounts": {
+    "BOTH_DIRECTIONS": 20,
+    "B_TO_A_ONLY": 6,
+    "NO_WITNESS": 4,
+    "A_TO_B_ONLY": 2
+  },
+  "gapStatusCounts": {
+    "PARALLEL_SUPPORT_PLANE_OFFSET_CANDIDATE": 9,
+    "COAXIAL_CYLINDER_RADIUS_GAP_CANDIDATE": 8,
+    "NONPARALLEL_NO_CONSTANT_SUPPORT_GAP": 7,
+    "NONCOAXIAL_RADIUS_GAP_UNKNOWN": 8
+  },
+  "screenshotVisuallyReviewed": true,
+  "codeChanged": false,
+  "newCandidateGenerated": false,
+  "creoExecutedByReviewer": false,
+  "pureJavaAnalyticAndProjectionMathReplayed": true,
+  "sdkStubOrModelMockUsed": false,
+  "rawCoordinatesAndScreenshotRepublished": false,
+  "finalWallThicknessAssessed": false,
+  "exactLoadedBinaryIdentityAuthenticated": false
+}
