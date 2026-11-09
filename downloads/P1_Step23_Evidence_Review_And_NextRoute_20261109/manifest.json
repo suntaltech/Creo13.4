@@ -1,0 +1,32 @@
+{
+  "artifactType": "STEP23_EVIDENCE_REVIEW_AND_NEXT_ROUTE_ASSESSMENT",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "inputArchiveSha256": "78b4dcaad5cb398c7ab82833d4d0e733df7685677af1dec857964ef60442d0ea",
+  "rawEvidenceRedistributed": false,
+  "newExecutableCreated": false,
+  "sourcesCompared": 7,
+  "ledgersParsed": 2,
+  "rowsPerLedger": 212,
+  "conclusion": "BLOCK_CURRENT_WFC_ELEMENTTREE_FACTORY_ROUTE_NO_AUTOMATIC_RETRY_OR_CONVERSION_RESTORE",
+  "runtimeRootCause": "UNKNOWN",
+  "sdkStaticInspectionOnly": true,
+  "files": [
+    {
+      "name": "README.md",
+      "sha256": "31a9674bfa39bb987af790d8615a1a610aef9a5f944a5c1844d78f93acd37f92"
+    },
+    {
+      "name": "review.json",
+      "sha256": "7562517295d7851b51bf193f94403eaf93179dc77cdd1ec1f142a82bdb1e697f"
+    },
+    {
+      "name": "sdk-route-assessment.json",
+      "sha256": "6ae87ffcfa37b0ab02e2925e10bf7c3d4c668828f91ac17cc5fded196a60a3b0"
+    },
+    {
+      "name": "sdk-route-signatures.javap.txt",
+      "sha256": "d04a2294de7dfef2adeaf6c92bd498b270b763c587290d23e57bff621838a2b7"
+    }
+  ]
+}

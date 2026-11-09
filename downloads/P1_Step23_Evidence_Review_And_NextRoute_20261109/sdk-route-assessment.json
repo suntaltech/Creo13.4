@@ -1,0 +1,23 @@
+{
+  "sdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+  "pfcCreateFeatureExists": true,
+  "pfcCreateFeatureSignature": "Solid.CreateFeature(FeatureCreateInstructions)",
+  "publicInstructionInterfaceMethods": [
+    "FeatureType GetType()"
+  ],
+  "scanMethod": "PUBLIC_PFC_CLASS_CONSTANT_POOL_REFERENCES_AND_JAVAP_NOT_EXECUTION",
+  "publicPfcClassesReferencingFeatureCreateInstructions": [
+    "com.ptc.pfc.pfcFeature.FeatureCreateInstructions",
+    "com.ptc.pfc.pfcSolid.Solid"
+  ],
+  "concretePublicPfcSheetmetalInstructionBuilderFound": false,
+  "scopeOfNegativeFinding": "THIS_OTK_JAR_PUBLIC_PFC_CLASSES_ONLY_NOT_ALL_PTC_PRODUCTS_OR_LANGUAGES",
+  "udfCreationSignatureExists": true,
+  "usableReviewedUdfOrTemplateSupplied": false,
+  "xmlTreeMethodExists": true,
+  "xmlSharesWfcRoute": true,
+  "xmlInvoked": false,
+  "pfcCreateFeatureInvoked": false,
+  "nativeCppSdkAndLicenseReadinessVerified": false,
+  "officialRuntimeAndLicenseContractVerified": false
+}

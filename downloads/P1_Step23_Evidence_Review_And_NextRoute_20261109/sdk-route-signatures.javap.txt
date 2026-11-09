@@ -1,0 +1,481 @@
+Compiled from "Solid.java"
+public interface com.ptc.pfc.pfcSolid.Solid extends com.ptc.pfc.pfcFamily.FamilyMember,com.ptc.pfc.pfcModel.Model {
+  public abstract com.ptc.pfc.pfcBase.Outline3D GetGeomOutline() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcBase/Outline3D;
+
+  public abstract java.lang.Double GetRelativeAccuracy() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Ljava/lang/Double;
+
+  public abstract void SetRelativeAccuracy(java.lang.Double) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/Double;)V
+
+  public abstract java.lang.Double GetAbsoluteAccuracy() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Ljava/lang/Double;
+
+  public abstract void SetAbsoluteAccuracy(java.lang.Double) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/Double;)V
+
+  public abstract boolean GetIsSkeleton() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Z
+
+  public abstract com.ptc.pfc.pfcSolid.SolidBody GetDefaultBody() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcSolid/SolidBody;
+
+  public abstract com.ptc.pfc.pfcSolid.SolidBody GetSurfaceSolidBody(com.ptc.pfc.pfcGeometry.Surface) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcGeometry/Surface;)Lcom/ptc/pfc/pfcSolid/SolidBody;
+
+  public abstract com.ptc.pfc.pfcSolid.SolidBody GetEdgeSolidBody(com.ptc.pfc.pfcGeometry.Edge) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcGeometry/Edge;)Lcom/ptc/pfc/pfcSolid/SolidBody;
+
+  public abstract void Regenerate(com.ptc.pfc.pfcSolid.RegenInstructions) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcSolid/RegenInstructions;)V
+
+  public abstract void ExecuteFeatureOps(com.ptc.pfc.pfcFeature.FeatureOperations, com.ptc.pfc.pfcSolid.RegenInstructions) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcFeature/FeatureOperations;Lcom/ptc/pfc/pfcSolid/RegenInstructions;)V
+
+  public abstract com.ptc.pfc.pfcBase.Outline3D EvalOutline(com.ptc.pfc.pfcBase.Transform3D, com.ptc.pfc.pfcModelItem.ModelItemTypes) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcBase/Transform3D;Lcom/ptc/pfc/pfcModelItem/ModelItemTypes;)Lcom/ptc/pfc/pfcBase/Outline3D;
+
+  public abstract com.ptc.pfc.pfcFeature.FeatureGroup CreateLocalGroup(com.ptc.pfc.pfcFeature.Features, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcFeature/Features;Ljava/lang/String;)Lcom/ptc/pfc/pfcFeature/FeatureGroup;
+
+  public abstract com.ptc.pfc.pfcModelItem.ModelItem CreateNote(com.ptc.cipjava.stringseq, com.ptc.pfc.pfcModelItem.ModelItem) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/cipjava/stringseq;Lcom/ptc/pfc/pfcModelItem/ModelItem;)Lcom/ptc/pfc/pfcModelItem/ModelItem;
+
+  public abstract com.ptc.pfc.pfcFeature.Features ListFailedFeatures() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/Features;
+
+  public abstract com.ptc.pfc.pfcFeature.Features ListFeaturesByType(java.lang.Boolean, com.ptc.pfc.pfcFeature.FeatureType) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/Boolean;Lcom/ptc/pfc/pfcFeature/FeatureType;)Lcom/ptc/pfc/pfcFeature/Features;
+
+  public abstract com.ptc.pfc.pfcXSection.XSections ListCrossSections() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcXSection/XSections;
+
+  public abstract com.ptc.pfc.pfcXSection.XSection GetCrossSection(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Lcom/ptc/pfc/pfcXSection/XSection;
+
+  public abstract boolean HasRetrievalErrors() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Z
+
+  public abstract com.ptc.pfc.pfcFeature.Feature GetFeatureByName(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Lcom/ptc/pfc/pfcFeature/Feature;
+
+  public abstract com.ptc.pfc.pfcFeature.Feature GetFeatureById(int) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (I)Lcom/ptc/pfc/pfcFeature/Feature;
+
+  public abstract com.ptc.pfc.pfcFeature.Feature CreateImportFeat(com.ptc.pfc.pfcModel.IntfDataSource, com.ptc.pfc.pfcGeometry.CoordSystem, com.ptc.pfc.pfcModel.ImportFeatAttr) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcModel/IntfDataSource;Lcom/ptc/pfc/pfcGeometry/CoordSystem;Lcom/ptc/pfc/pfcModel/ImportFeatAttr;)Lcom/ptc/pfc/pfcFeature/Feature;
+
+  public abstract void ActivateSimpRep(com.ptc.pfc.pfcSimpRep.SimpRep) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcSimpRep/SimpRep;)V
+
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep GetActiveSimpRep() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcSimpRep/SimpRep;
+
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep CreateSimpRep(com.ptc.pfc.pfcSimpRep.CreateNewSimpRepInstructions) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcSimpRep/CreateNewSimpRepInstructions;)Lcom/ptc/pfc/pfcSimpRep/SimpRep;
+
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep SelectSimpRep() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcSimpRep/SimpRep;
+
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep GetSimpRep(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Lcom/ptc/pfc/pfcSimpRep/SimpRep;
+
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep GetMasterRep() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcSimpRep/SimpRep;
+
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep GetGraphicsRep() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcSimpRep/SimpRep;
+
+  public abstract com.ptc.pfc.pfcSimpRep.SimpRep GetGeomRep() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcSimpRep/SimpRep;
+
+  public abstract void DeleteSimpRep(com.ptc.pfc.pfcSimpRep.SimpRep) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcSimpRep/SimpRep;)V
+
+  public abstract com.ptc.pfc.pfcSolid.MassProperty GetMassProperty(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Lcom/ptc/pfc/pfcSolid/MassProperty;
+
+  public abstract com.ptc.pfc.pfcSolid.MassProperty GetMassPropertyWithDensity(java.lang.String, com.ptc.pfc.pfcSolid.MPDensityUse, java.lang.Double) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/pfc/pfcSolid/MPDensityUse;Ljava/lang/Double;)Lcom/ptc/pfc/pfcSolid/MassProperty;
+
+  public abstract com.ptc.pfc.pfcFeature.FeatureGroups ListGroups() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/FeatureGroups;
+
+  public abstract com.ptc.pfc.pfcFeature.Feature CreateFeature(com.ptc.pfc.pfcFeature.FeatureCreateInstructions) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcFeature/FeatureCreateInstructions;)Lcom/ptc/pfc/pfcFeature/Feature;
+
+  public abstract com.ptc.pfc.pfcFeature.FeatureGroup CreateUDFGroup(com.ptc.pfc.pfcUDFGroup.UDFGroupCreateInstructions) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcUDFGroup/UDFGroupCreateInstructions;)Lcom/ptc/pfc/pfcFeature/FeatureGroup;
+
+  public abstract void ExportShrinkwrap(com.ptc.pfc.pfcSolid.ShrinkwrapExportInstructions) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcSolid/ShrinkwrapExportInstructions;)V
+
+  public abstract com.ptc.pfc.pfcUnits.UnitSystem GetPrincipalUnits() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcUnits/UnitSystem;
+
+  public abstract void SetPrincipalUnits(com.ptc.pfc.pfcUnits.UnitSystem, com.ptc.pfc.pfcUnits.UnitConversionOptions) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcUnits/UnitSystem;Lcom/ptc/pfc/pfcUnits/UnitConversionOptions;)V
+
+  public abstract com.ptc.pfc.pfcUnits.Units ListUnits(com.ptc.pfc.pfcBase.UnitType) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcBase/UnitType;)Lcom/ptc/pfc/pfcUnits/Units;
+
+  public abstract com.ptc.pfc.pfcUnits.UnitSystems ListUnitSystems() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcUnits/UnitSystems;
+
+  public abstract com.ptc.pfc.pfcUnits.Unit GetUnit(java.lang.String, java.lang.Boolean) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Ljava/lang/Boolean;)Lcom/ptc/pfc/pfcUnits/Unit;
+
+  public abstract com.ptc.pfc.pfcUnits.Unit CreateCustomUnit(java.lang.String, com.ptc.pfc.pfcUnits.UnitConversionFactor, com.ptc.pfc.pfcUnits.Unit) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/pfc/pfcUnits/UnitConversionFactor;Lcom/ptc/pfc/pfcUnits/Unit;)Lcom/ptc/pfc/pfcUnits/Unit;
+
+  public abstract com.ptc.pfc.pfcUnits.UnitSystem CreateUnitSystem(java.lang.String, com.ptc.pfc.pfcUnits.UnitSystemType, com.ptc.pfc.pfcUnits.Units) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/pfc/pfcUnits/UnitSystemType;Lcom/ptc/pfc/pfcUnits/Units;)Lcom/ptc/pfc/pfcUnits/UnitSystem;
+}
+Compiled from "FeatureCreateInstructions.java"
+public interface com.ptc.pfc.pfcFeature.FeatureCreateInstructions extends com.ptc.cipjava.jxobject {
+  public abstract com.ptc.pfc.pfcFeature.FeatureType GetType() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/FeatureType;
+}
+Compiled from "Feature.java"
+public interface com.ptc.pfc.pfcFeature.Feature extends com.ptc.pfc.pfcModelItem.ModelItem {
+  public abstract com.ptc.pfc.pfcFeature.FeatureType GetFeatType() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/FeatureType;
+
+  public abstract java.lang.String GetFeatTypeName() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Ljava/lang/String;
+
+  public abstract java.lang.String GetFeatSubType() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Ljava/lang/String;
+
+  public abstract com.ptc.pfc.pfcFeature.FeatureStatus GetStatus() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/FeatureStatus;
+
+  public abstract com.ptc.pfc.pfcFeature.FeatureGroup GetGroup() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/FeatureGroup;
+
+  public abstract com.ptc.pfc.pfcFeature.FeaturePattern GetPattern() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/FeaturePattern;
+
+  public abstract com.ptc.pfc.pfcFeature.GroupPattern GetGroupPattern() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/GroupPattern;
+
+  public abstract com.ptc.pfc.pfcFeature.PatternStatus GetPatternStatus() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/PatternStatus;
+
+  public abstract com.ptc.pfc.pfcFeature.GroupStatus GetGroupStatus() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/GroupStatus;
+
+  public abstract com.ptc.pfc.pfcFeature.GroupPatternStatus GetGroupPatternStatus() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/GroupPatternStatus;
+
+  public abstract boolean GetIsVisible() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Z
+
+  public abstract boolean GetIsReadonly() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Z
+
+  public abstract java.lang.Integer GetNumber() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Ljava/lang/Integer;
+
+  public abstract java.lang.String GetVersionStamp() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Ljava/lang/String;
+
+  public abstract boolean GetIsGroupMember() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Z
+
+  public abstract boolean GetIsEmbedded() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Z
+
+  public abstract com.ptc.pfc.pfcFeature.FeatureGroup GetGroupDirectHeader() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/FeatureGroup;
+
+  public abstract com.ptc.pfc.pfcFeature.FeaturePattern GetPatternByType(com.ptc.pfc.pfcFeature.PatternType) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcFeature/PatternType;)Lcom/ptc/pfc/pfcFeature/FeaturePattern;
+
+  public abstract com.ptc.pfc.pfcFeature.SuppressOperation CreateSuppressOp() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/SuppressOperation;
+
+  public abstract com.ptc.pfc.pfcFeature.ResumeOperation CreateResumeOp() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/ResumeOperation;
+
+  public abstract com.ptc.pfc.pfcFeature.DeleteOperation CreateDeleteOp() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/DeleteOperation;
+
+  public abstract com.ptc.pfc.pfcFeature.ReorderBeforeOperation CreateReorderBeforeOp(com.ptc.pfc.pfcFeature.Feature) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcFeature/Feature;)Lcom/ptc/pfc/pfcFeature/ReorderBeforeOperation;
+
+  public abstract com.ptc.pfc.pfcFeature.ReorderAfterOperation CreateReorderAfterOp(com.ptc.pfc.pfcFeature.Feature) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcFeature/Feature;)Lcom/ptc/pfc/pfcFeature/ReorderAfterOperation;
+
+  public abstract com.ptc.pfc.pfcFeature.Features ListChildren() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/Features;
+
+  public abstract com.ptc.pfc.pfcFeature.Features ListParents() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/pfc/pfcFeature/Features;
+
+  public abstract com.ptc.pfc.pfcModelItem.ModelItems ListSubItems(com.ptc.pfc.pfcModelItem.ModelItemType) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcModelItem/ModelItemType;)Lcom/ptc/pfc/pfcModelItem/ModelItems;
+}
+Compiled from "UDFGroupCreateInstructions.java"
+public interface com.ptc.pfc.pfcUDFGroup.UDFGroupCreateInstructions extends com.ptc.cipjava.jxobject {
+  public abstract java.lang.String GetName() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Ljava/lang/String;
+
+  public abstract void SetName(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)V
+
+  public abstract boolean GetShowUDFEditMenu() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Z
+
+  public abstract void SetShowUDFEditMenu(boolean) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Z)V
+
+  public abstract boolean GetShowModifyNCSeqMenu() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Z
+
+  public abstract void SetShowModifyNCSeqMenu(boolean) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Z)V
+
+  public abstract boolean GetUseExistingTools() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Z
+
+  public abstract void SetUseExistingTools(boolean) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Z)V
+
+  public abstract boolean GetTurnOffUDFRedefineMenu() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Z
+
+  public abstract void SetTurnOffUDFRedefineMenu(boolean) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Z)V
+
+  public abstract boolean GetTurnOffFixModelUI() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Z
+
+  public abstract void SetTurnOffFixModelUI(boolean) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Z)V
+}
+Compiled from "WSession.java"
+public interface com.ptc.wfc.wfcSession.WSession extends com.ptc.wfc.wfcSession.WBaseSession,com.ptc.pfc.pfcSession.Session {
+  public abstract com.ptc.wfc.wfcSession.ElementWstringOption GetElemWstrOption() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/wfc/wfcSession/ElementWstringOption;
+
+  public abstract void SetElemWstrOption(com.ptc.wfc.wfcSession.ElementWstringOption) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcSession/ElementWstringOption;)V
+
+  public abstract com.ptc.wfc.wfcSession.CreoType GetCreoType() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/wfc/wfcSession/CreoType;
+
+  public abstract void RunAsCreoType(com.ptc.wfc.wfcSession.CreoType) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcSession/CreoType;)V
+
+  public abstract java.lang.String GetGTolSymbolString(com.ptc.wfc.wfcGTol.GTolSymbol, com.ptc.wfc.wfcGTol.SymbolFont) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcGTol/GTolSymbol;Lcom/ptc/wfc/wfcGTol/SymbolFont;)Ljava/lang/String;
+
+  public abstract com.ptc.wfc.wfcElementTree.ElementTree CreateElementTreeFromXML(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Lcom/ptc/wfc/wfcElementTree/ElementTree;
+
+  public abstract com.ptc.wfc.wfcElementTree.ElementTree CreateElementTree(com.ptc.wfc.wfcElementTree.Elements) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcElementTree/Elements;)Lcom/ptc/wfc/wfcElementTree/ElementTree;
+
+  public abstract com.ptc.pfc.pfcModel.Model ImportAsModel(java.lang.String, com.ptc.pfc.pfcImport.NewModelImportType, com.ptc.pfc.pfcModel.ModelType, java.lang.String, com.ptc.wfc.wfcImport.ImportRepType, java.lang.String, com.ptc.pfc.pfcImport.LayerImportFilter) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/pfc/pfcImport/NewModelImportType;Lcom/ptc/pfc/pfcModel/ModelType;Ljava/lang/String;Lcom/ptc/wfc/wfcImport/ImportRepType;Ljava/lang/String;Lcom/ptc/pfc/pfcImport/LayerImportFilter;)Lcom/ptc/pfc/pfcModel/Model;
+
+  public abstract com.ptc.wfc.wfcSection.Section GetActiveSection() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/wfc/wfcSection/Section;
+
+  public abstract com.ptc.wfc.wfcSection.Section CreateSection2D() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/wfc/wfcSection/Section;
+
+  public abstract java.lang.String GetDisplayDateCode() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Ljava/lang/String;
+
+  public abstract int GetReleaseNumericVersion() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()I
+
+  public abstract void AddCollectionToSelectionBuffer(com.ptc.wfc.wfcCollection.Collection) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcCollection/Collection;)V
+
+  public abstract void RegisterExternalSelectionHighlight(com.ptc.wfc.wfcSelect.ExternalSelectionHighlight) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcSelect/ExternalSelectionHighlight;)V
+
+  public abstract void ReleaseExternalSelectionHighlight(com.ptc.wfc.wfcSelect.ExternalSelectionHighlight) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcSelect/ExternalSelectionHighlight;)V
+
+  public abstract com.ptc.pfc.pfcAssembly.Assembly RetrieveLightweightGraphicsSimpRep(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Lcom/ptc/pfc/pfcAssembly/Assembly;
+
+  public abstract com.ptc.pfc.pfcAssembly.Assembly RetrieveDefaultEnvelopeSimprep(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Lcom/ptc/pfc/pfcAssembly/Assembly;
+
+  public abstract com.ptc.pfc.pfcAssembly.Assembly RetrieveAssemblySimpRep(java.lang.String, com.ptc.wfc.wfcModel.MdlfileType, com.ptc.pfc.pfcSimpRep.SimpRepInstructions) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/wfc/wfcModel/MdlfileType;Lcom/ptc/pfc/pfcSimpRep/SimpRepInstructions;)Lcom/ptc/pfc/pfcAssembly/Assembly;
+
+  public abstract com.ptc.pfc.pfcSolid.Solid RetrieveSimpRep(java.lang.String, com.ptc.wfc.wfcModel.MdlfileType, com.ptc.pfc.pfcSimpRep.SimpRepType, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/wfc/wfcModel/MdlfileType;Lcom/ptc/pfc/pfcSimpRep/SimpRepType;Ljava/lang/String;)Lcom/ptc/pfc/pfcSolid/Solid;
+
+  public abstract double GetDefaultTolerance(com.ptc.wfc.wfcSolid.ToleranceType, int) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcSolid/ToleranceType;I)D
+
+  public abstract com.ptc.pfc.pfcModel.Model LoadModelRepresentation(java.lang.String, com.ptc.pfc.pfcModel.ModelType, java.lang.String, com.ptc.pfc.pfcSimpRep.SimpRepInstructions) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/pfc/pfcModel/ModelType;Ljava/lang/String;Lcom/ptc/pfc/pfcSimpRep/SimpRepInstructions;)Lcom/ptc/pfc/pfcModel/Model;
+
+  public abstract com.ptc.pfc.pfcSolid.Solid GetSolid(java.lang.String, com.ptc.pfc.pfcModel.ModelType) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/pfc/pfcModel/ModelType;)Lcom/ptc/pfc/pfcSolid/Solid;
+
+  public abstract com.ptc.wfc.wfcFeature.ImportfeatRedefSourceType GetImportFeatRedefSourceType(com.ptc.wfc.wfcFeature.ImportFeatRedefOperationType) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcFeature/ImportFeatRedefOperationType;)Lcom/ptc/wfc/wfcFeature/ImportfeatRedefSourceType;
+
+  public abstract com.ptc.wfc.wfcSession.LineStyleData GetLineStyleData(com.ptc.pfc.pfcBase.StdLineStyle) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcBase/StdLineStyle;)Lcom/ptc/wfc/wfcSession/LineStyleData;
+
+  public abstract com.ptc.wfc.wfcSession.IntfDataSourceType GetDataSourceType(com.ptc.pfc.pfcModel.IntfType) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcModel/IntfType;)Lcom/ptc/wfc/wfcSession/IntfDataSourceType;
+
+  public abstract com.ptc.wfc.wfcDisplay.WWindow CreateAccessorywindowWithTree(java.lang.String, com.ptc.wfc.wfcModel.MdlfileType, java.lang.Boolean) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/wfc/wfcModel/MdlfileType;Ljava/lang/Boolean;)Lcom/ptc/wfc/wfcDisplay/WWindow;
+
+  public abstract com.ptc.wfc.wfcDisplay.WWindow CreateBarewindow(java.lang.String, com.ptc.wfc.wfcModel.MdlfileType) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/wfc/wfcModel/MdlfileType;)Lcom/ptc/wfc/wfcDisplay/WWindow;
+
+  public abstract boolean IsTextureFileEmbedded(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Z
+
+  public abstract java.lang.String GetTextureFilePath(java.lang.String, boolean) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Z)Ljava/lang/String;
+
+  public abstract void DisplayInformationWindow(java.lang.String, java.lang.Double, java.lang.Double, java.lang.Integer, java.lang.Integer) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Integer;Ljava/lang/Integer;)V
+
+  public abstract com.ptc.pfc.pfcDrawing.Drawing OpenDrawingAsReadOnly(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Lcom/ptc/pfc/pfcDrawing/Drawing;
+
+  public abstract boolean UIEditFile(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Z
+
+  public abstract com.ptc.wfc.wfcSession.ParsedFileNameData ParseFileName(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Lcom/ptc/wfc/wfcSession/ParsedFileNameData;
+
+  public abstract java.lang.String UIOpenFileType(com.ptc.wfc.wfcSession.FiletypeOpenOptions) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcSession/FiletypeOpenOptions;)Ljava/lang/String;
+
+  public abstract java.lang.String UISaveFileType(com.ptc.wfc.wfcSession.FiletypeSaveOptions) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcSession/FiletypeSaveOptions;)Ljava/lang/String;
+
+  public abstract boolean IsOptionOrdered(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Z
+
+  public abstract java.lang.String GetResourcePath() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Ljava/lang/String;
+
+  public abstract com.ptc.wfc.wfcModel.MdlfileDescriptor GetMdlfileDescriptor(com.ptc.pfc.pfcModel.ModelDescriptor) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcModel/ModelDescriptor;)Lcom/ptc/wfc/wfcModel/MdlfileDescriptor;
+
+  public abstract com.ptc.pfc.pfcWindow.Window OpenSource(com.ptc.wfc.wfcModel.MdlfileDescriptor) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcModel/MdlfileDescriptor;)Lcom/ptc/pfc/pfcWindow/Window;
+
+  public abstract com.ptc.pfc.pfcModel.Model RetrieveModelByFiletype(com.ptc.wfc.wfcModel.MdlfileDescriptor, com.ptc.pfc.pfcSession.RetrieveModelOptions) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcModel/MdlfileDescriptor;Lcom/ptc/pfc/pfcSession/RetrieveModelOptions;)Lcom/ptc/pfc/pfcModel/Model;
+
+  public abstract com.ptc.wfc.wfcExternalObject.ExternalObjectClass CreateExternalClass(java.lang.String, int) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;I)Lcom/ptc/wfc/wfcExternalObject/ExternalObjectClass;
+
+  public abstract void AddNavigatorPaneLayout(java.lang.String, java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+
+  public abstract java.lang.String GetNavigatorPaneDevice(com.ptc.pfc.pfcWindow.Window) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcWindow/Window;)Ljava/lang/String;
+
+  public abstract java.lang.String GetNavigatorPaneComponent(java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+  public abstract java.lang.String GetNavigatorPaneLayoutComponent(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Ljava/lang/String;
+
+  public abstract com.ptc.pfc.pfcModel.Model GetModelFromMdlfileDescriptor(com.ptc.wfc.wfcModel.MdlfileDescriptor) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcModel/MdlfileDescriptor;)Lcom/ptc/pfc/pfcModel/Model;
+
+  public abstract void AddModelRetrievePreListener(com.ptc.wfc.wfcSession.BeforeModelRetrieveListener) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcSession/BeforeModelRetrieveListener;)V
+
+  public abstract void AddBeforeModelRetrieveListener(com.ptc.wfc.wfcSession.BeforeModelRetrieveActionListener) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcSession/BeforeModelRetrieveActionListener;)V
+
+  public abstract void AddModelSavePreAllListener(com.ptc.wfc.wfcSession.BeforeModelSaveAllListener) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcSession/BeforeModelSaveAllListener;)V
+
+  public abstract com.ptc.wfc.wfcUDFCreate.UDFVariableParameters GetUDFDataDefaultVariableParameters(java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Ljava/lang/String;)Lcom/ptc/wfc/wfcUDFCreate/UDFVariableParameters;
+
+  public abstract com.ptc.wfc.wfcClient.Status ReleaseVisitor(com.ptc.wfc.wfcClient.VisitingClient) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcClient/VisitingClient;)Lcom/ptc/wfc/wfcClient/Status;
+
+  public abstract void AutoPropagate() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()V
+
+  public abstract java.lang.String GetApplicationPath() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Ljava/lang/String;
+
+  public abstract java.lang.String GetApplicationTextPath() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Ljava/lang/String;
+
+  public abstract void ExecuteMacro() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()V
+
+  public abstract java.lang.String GetKnownDirectory(com.ptc.wfc.wfcSession.KnownDirectoryType) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcSession/KnownDirectoryType;)Ljava/lang/String;
+
+  public abstract void AddBrowserMessageListener(java.lang.String, com.ptc.wfc.wfcSession.BrowserMessageListener) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/wfc/wfcSession/BrowserMessageListener;)V
+
+  public abstract void DeleteBrowserMessageListener(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)V
+
+  public abstract boolean GetIncompleteSurfaceTessellationAllowed() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Z
+
+  public abstract void SetIncompleteSurfaceTessellationAllowed(boolean) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Z)V
+
+  public abstract com.ptc.pfc.pfcAssembly.Assembly RetrieveAutomaticSimpRep(java.lang.String, com.ptc.wfc.wfcModel.MdlfileType, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/wfc/wfcModel/MdlfileType;Ljava/lang/String;)Lcom/ptc/pfc/pfcAssembly/Assembly;
+
+  public abstract void StartKinDrag() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()V
+
+  public abstract void StopKinDrag() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()V
+
+  public abstract void MoveKinDrag(com.ptc.pfc.pfcSelect.Selection, com.ptc.pfc.pfcBase.Point2Ds) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcSelect/Selection;Lcom/ptc/pfc/pfcBase/Point2Ds;)V
+
+  public abstract com.ptc.wfc.wfcSession.SnapshotTransformations GetKinSnapshotTransformations(java.lang.String, com.ptc.pfc.pfcAssembly.ComponentPath) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/pfc/pfcAssembly/ComponentPath;)Lcom/ptc/wfc/wfcSession/SnapshotTransformations;
+
+  public abstract void SetKinDragEnvironment(com.ptc.wfc.wfcSession.KinDragType, java.lang.String, com.ptc.pfc.pfcAssembly.ComponentPath, com.ptc.pfc.pfcSelect.Selection) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcSession/KinDragType;Ljava/lang/String;Lcom/ptc/pfc/pfcAssembly/ComponentPath;Lcom/ptc/pfc/pfcSelect/Selection;)V
+
+  public abstract void CreateSnapshot(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)V
+
+  public abstract void DeleteSnapshot(java.lang.String, com.ptc.pfc.pfcAssembly.ComponentPath) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;Lcom/ptc/pfc/pfcAssembly/ComponentPath;)V
+
+  public abstract void UpdateSnapshot(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)V
+
+  public abstract void MoveKinDragForModel(com.ptc.pfc.pfcSelect.Selection, com.ptc.pfc.pfcBase.Point3Ds, com.ptc.pfc.pfcBase.Matrix3D) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcSelect/Selection;Lcom/ptc/pfc/pfcBase/Point3Ds;Lcom/ptc/pfc/pfcBase/Matrix3D;)V
+
+  public abstract void UpdateCreoNotificationMgr() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()V
+
+  public abstract boolean CheckCreoNotificationMgrModelEvent(com.ptc.pfc.pfcModel.Model, com.ptc.wfc.wfcSession.CreoNotificationMgrEvent) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcModel/Model;Lcom/ptc/wfc/wfcSession/CreoNotificationMgrEvent;)Z
+
+  public abstract com.ptc.wfc.wfcSession.CreoNotificationMgrEvents GetCreoNotificationMgrModelEvents(com.ptc.pfc.pfcModel.Model) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcModel/Model;)Lcom/ptc/wfc/wfcSession/CreoNotificationMgrEvents;
+
+  public abstract com.ptc.wfc.wfcSession.ModelReportedEventsSeq GetCreoNotificationMgrAllEvents() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/wfc/wfcSession/ModelReportedEventsSeq;
+}
