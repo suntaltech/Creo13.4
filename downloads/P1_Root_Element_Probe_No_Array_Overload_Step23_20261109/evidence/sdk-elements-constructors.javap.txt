@@ -1,0 +1,52 @@
+Compiled from "Elements.java"
+public abstract class com.ptc.wfc.wfcElementTree.Elements extends com.ptc.cipjava.jxobject_i {
+  public int getarraysize() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()I
+
+  public com.ptc.wfc.wfcElementTree.Element get(int) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (I)Lcom/ptc/wfc/wfcElementTree/Element;
+
+  public void set(int, com.ptc.wfc.wfcElementTree.Element) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (ILcom/ptc/wfc/wfcElementTree/Element;)V
+
+  public void removerange(int, int) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (II)V
+
+  public void insert(int, com.ptc.wfc.wfcElementTree.Element) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (ILcom/ptc/wfc/wfcElementTree/Element;)V
+
+  public void append(com.ptc.wfc.wfcElementTree.Element) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcElementTree/Element;)V
+
+  public void insertseq(int, com.ptc.wfc.wfcElementTree.Elements) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (ILcom/ptc/wfc/wfcElementTree/Elements;)V
+
+  public void clear() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()V
+
+  public static com.ptc.wfc.wfcElementTree.Elements create() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/wfc/wfcElementTree/Elements;
+
+  protected com.ptc.wfc.wfcElementTree.Elements(long);
+    descriptor: (J)V
+}
+Compiled from "wfcElementTree.java"
+public class com.ptc.wfc.wfcElementTree.wfcElementTree {
+  public com.ptc.wfc.wfcElementTree.wfcElementTree();
+    descriptor: ()V
+
+  public static com.ptc.wfc.wfcElementTree.ElemPathItem ElemPathItem_Create(com.ptc.wfc.wfcElementTree.ElemPathItemType, int) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcElementTree/ElemPathItemType;I)Lcom/ptc/wfc/wfcElementTree/ElemPathItem;
+
+  public static com.ptc.wfc.wfcElementTree.ElementPath ElementPath_Create(com.ptc.wfc.wfcElementTree.ElemPathItems) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/wfc/wfcElementTree/ElemPathItems;)Lcom/ptc/wfc/wfcElementTree/ElementPath;
+
+  public static com.ptc.wfc.wfcElementTree.ElementDiagnostic ElementDiagnostic_Create() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/wfc/wfcElementTree/ElementDiagnostic;
+
+  public static com.ptc.wfc.wfcElementTree.SpecialValue SpecialValue_Create() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/wfc/wfcElementTree/SpecialValue;
+
+  public static com.ptc.wfc.wfcElementTree.Element Element_Create(int, com.ptc.pfc.pfcArgument.ArgValue, int) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (ILcom/ptc/pfc/pfcArgument/ArgValue;I)Lcom/ptc/wfc/wfcElementTree/Element;
+}

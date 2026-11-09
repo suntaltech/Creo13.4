@@ -1,0 +1,20 @@
+P1_S23_LABEL
+Read-Only Root Element Probe Step 23
+
+P1_S23_HELP
+Bypass Elements.create and append. One root Element_Create only; offline SDK has no array or non-Elements collection tree overload.
+
+P1_S23_DESC
+Root-only diagnostic, NOT a complete element tree. No model creation, regeneration, save or retry.
+
+P1_S23_THICKNESS
+Enter explicit positive finite TEST thickness for logging only, NOT applied to the root. Final read-only confirmation follows. No available array tree overload in the offline SDK.
+
+P1_S23_FAILED
+Step23 root probe blocked or failed. Preserve audit and stderr; no automatic retry, model creation, regeneration or save.
+
+P1_S23_ROOT_ONLY
+Root Element_Create returned; no supported array or collection overload in offline SDK. NO TREE CONSTRUCTED. No model write or save; do not retry.
+
+P1_S23_CANCELLED
+Step23 cancelled. One-shot consumed. No model creation, regeneration or save.

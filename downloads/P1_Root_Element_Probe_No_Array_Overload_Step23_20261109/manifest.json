@@ -1,0 +1,271 @@
+{
+  "artifactType": "STEP23_ROOT_ELEMENT_ONLY_PROBE_NO_ARRAY_TREE_OVERLOAD_IN_REAL_SDK",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "taskInput": {
+    "fileName": "P1_元素构造替代第二十三步_任务单_20261109.md",
+    "sha256": "95a8af6f3ef58e6ada696bbe8814e852a2b8cb031be0ff73647db7c526c664ce"
+  },
+  "applicationClass": "p1.controlled.step23.P1RootElementProbeStep23",
+  "commandId": "SISWRootElementProbeStep23",
+  "datName": "p1s23",
+  "targetModel": "200002100.prt",
+  "sourceFiles": [
+    {
+      "relativeName": "source/AuditSupport.java",
+      "sha256": "7e305a3ce6b8065932c7c863ccd0e8b4a48cbc37c8be0386c5d7b6f43e7fe6b2"
+    },
+    {
+      "relativeName": "source/FeatureStateGate.java",
+      "sha256": "4f7e6dcb2b0a8b54de9ef31edc4d1a2a9ddf8fdd39982454ca0c7d002cac2de9"
+    },
+    {
+      "relativeName": "source/P1RootElementProbeStep23.java",
+      "sha256": "06db2768b3ce83d22cf5a954b7b5b7376c0a86b5dfd7582d5c608cede162b99d"
+    },
+    {
+      "relativeName": "source/PreflightAudit.java",
+      "sha256": "a39ad6d3a04965397d12c2d73ba5132dbfb1d44926a2f9da2b1e94daa4dd9526"
+    },
+    {
+      "relativeName": "source/ScopedBodyIdentity.java",
+      "sha256": "459fdc8fc7e1623b380a77aacb71bdbbf136f5ed39b72ecac352987e7d67b8a5"
+    },
+    {
+      "relativeName": "source/ScopedFaceIdentity.java",
+      "sha256": "81f893f1ace1b2142c1d6ff4778a7d793d23809255fdce4121ab11d0e1bce94e"
+    },
+    {
+      "relativeName": "source/Step23Control.java",
+      "sha256": "5b8bac228384faae858b748a7ef1eb98e6636c59c2cb497ce8655ad2fe7a9d59"
+    }
+  ],
+  "classes": [
+    {
+      "relativeName": "classes/p1/controlled/step23/AuditSupport.class",
+      "sha256": "3d10b7671441aa02414a0fb5e21298dc4a72c840d8e9ad50834bc74a43a61a22",
+      "bytes": 4880
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/FeatureStateGate.class",
+      "sha256": "aa7583d5a3ab466568259347e7a86b16c6ac8ec545334cd1fe340cc2ac8e5975",
+      "bytes": 1122
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/P1RootElementProbeStep23$BodyIdentityFailure.class",
+      "sha256": "4e1a5817e8169b79c937d80174ef8888069969133df8977ba6c265741a39483c",
+      "bytes": 1366
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/P1RootElementProbeStep23$FaceIdentityFailure.class",
+      "sha256": "2a2aeca17f022efeefd7b44ca0b581ec27ddbad4a4318fc819d11712a9ef86f6",
+      "bytes": 1366
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/P1RootElementProbeStep23$Listener.class",
+      "sha256": "f1ff07d95b1205e139a5d29eacce14bceae91e0ea03af5e397eb22db764cf5e5",
+      "bytes": 5692
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/P1RootElementProbeStep23$Snapshot.class",
+      "sha256": "4ee041d20391ea48790e7aa7e88e174409eb9679aff7bb99ac71b81af2d4f898",
+      "bytes": 1041
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/P1RootElementProbeStep23.class",
+      "sha256": "cbc842c8a98ac12b7f54433b0a9483b3bf59dfccf3aff12d1372d30596e0feeb",
+      "bytes": 43622
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/PreflightAudit$Call.class",
+      "sha256": "5c3ea64ad71e038f2139f7aa98158ba39542146ee519ca07700bd9f09dec09bd",
+      "bytes": 471
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/PreflightAudit$ProbeFailure.class",
+      "sha256": "031e88401e67cd8e59a4e7f4fb12bed7295c8c84e4c86ac758ce9473f52fc16e",
+      "bytes": 1135
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/PreflightAudit.class",
+      "sha256": "cfc9989a50b5af24d615539fd099b0fdf19ae72d6ac21b3db2a1dc8aa2672647",
+      "bytes": 3639
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/ScopedBodyIdentity$Code.class",
+      "sha256": "3ea6a1d2069cd67fc18d876e5796098718b4b8ab2e9ca4f58ffe5adceb69c18e",
+      "bytes": 1523
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/ScopedBodyIdentity.class",
+      "sha256": "1d5967e83d389cbefccd81885eeebc5abe417733938be686c32c451fa677df6e",
+      "bytes": 1130
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/ScopedFaceIdentity$Code.class",
+      "sha256": "b00cfecd2ff229d116b959e965a5bd6cf28389473c6b5e567bc9def453325c2e",
+      "bytes": 1674
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/ScopedFaceIdentity.class",
+      "sha256": "10279587d5e1551326452aa64dc269597bbbc76fb5debcd9ae48241f960a706c",
+      "bytes": 1278
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/Step23Control$State.class",
+      "sha256": "e6916d2fc133951e2f9ab76c104af2bdc203cc6fc175f482f113c838b2ce3971",
+      "bytes": 1337
+    },
+    {
+      "relativeName": "classes/p1/controlled/step23/Step23Control.class",
+      "sha256": "049c865f5b8d85fca57e2830a5b2ba33b6d56d0c1fea9e09a51fea9bd0c2765a",
+      "bytes": 6250
+    }
+  ],
+  "jar": {
+    "relativeName": "lib/p1-root-element-probe-step23.jar",
+    "sha256": "f6bfe8d32b8560a11a9e4c382d3a9f968734450f649ea68a1fb02ce53f649908",
+    "classBytesMatchLooseFiles": true,
+    "sdkBundled": false
+  },
+  "sdk": {
+    "fileName": "otk.jar",
+    "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "java25RuntimeRequired": true,
+    "redistributed": false,
+    "pfcasyncUsed": false
+  },
+  "validation": {
+    "realSdkCompilation": true,
+    "sdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "classCount": 16,
+    "classMajor": 61,
+    "sdkRuntimeMajor": 69,
+    "java25RuntimeRequired": true,
+    "repeatCompileIdentical": true,
+    "jarClassBytesMatchLooseFiles": true,
+    "classes": {
+      "p1/controlled/step23/AuditSupport.class": "3d10b7671441aa02414a0fb5e21298dc4a72c840d8e9ad50834bc74a43a61a22",
+      "p1/controlled/step23/FeatureStateGate.class": "aa7583d5a3ab466568259347e7a86b16c6ac8ec545334cd1fe340cc2ac8e5975",
+      "p1/controlled/step23/P1RootElementProbeStep23$BodyIdentityFailure.class": "4e1a5817e8169b79c937d80174ef8888069969133df8977ba6c265741a39483c",
+      "p1/controlled/step23/P1RootElementProbeStep23$FaceIdentityFailure.class": "2a2aeca17f022efeefd7b44ca0b581ec27ddbad4a4318fc819d11712a9ef86f6",
+      "p1/controlled/step23/P1RootElementProbeStep23$Listener.class": "f1ff07d95b1205e139a5d29eacce14bceae91e0ea03af5e397eb22db764cf5e5",
+      "p1/controlled/step23/P1RootElementProbeStep23$Snapshot.class": "4ee041d20391ea48790e7aa7e88e174409eb9679aff7bb99ac71b81af2d4f898",
+      "p1/controlled/step23/P1RootElementProbeStep23.class": "cbc842c8a98ac12b7f54433b0a9483b3bf59dfccf3aff12d1372d30596e0feeb",
+      "p1/controlled/step23/PreflightAudit$Call.class": "5c3ea64ad71e038f2139f7aa98158ba39542146ee519ca07700bd9f09dec09bd",
+      "p1/controlled/step23/PreflightAudit$ProbeFailure.class": "031e88401e67cd8e59a4e7f4fb12bed7295c8c84e4c86ac758ce9473f52fc16e",
+      "p1/controlled/step23/PreflightAudit.class": "cfc9989a50b5af24d615539fd099b0fdf19ae72d6ac21b3db2a1dc8aa2672647",
+      "p1/controlled/step23/ScopedBodyIdentity$Code.class": "3ea6a1d2069cd67fc18d876e5796098718b4b8ab2e9ca4f58ffe5adceb69c18e",
+      "p1/controlled/step23/ScopedBodyIdentity.class": "1d5967e83d389cbefccd81885eeebc5abe417733938be686c32c451fa677df6e",
+      "p1/controlled/step23/ScopedFaceIdentity$Code.class": "b00cfecd2ff229d116b959e965a5bd6cf28389473c6b5e567bc9def453325c2e",
+      "p1/controlled/step23/ScopedFaceIdentity.class": "10279587d5e1551326452aa64dc269597bbbc76fb5debcd9ae48241f960a706c",
+      "p1/controlled/step23/Step23Control$State.class": "e6916d2fc133951e2f9ab76c104af2bdc203cc6fc175f482f113c838b2ce3971",
+      "p1/controlled/step23/Step23Control.class": "049c865f5b8d85fca57e2830a5b2ba33b6d56d0c1fea9e09a51fea9bd0c2765a"
+    },
+    "pureTraceControlAssertions": 30,
+    "pureBodyAssertions": 21,
+    "pureFaceAssertions": 25,
+    "pureFeatureStateAssertions": 20,
+    "pureElementDiagnosticAssertions": 13,
+    "defaultBodyAndFaceRuleSourcesFrozen": true,
+    "newSdkReferencesComparedWithStep22": [],
+    "createRegenerateSaveAndWfcStatusFlagReferencesAbsent": true,
+    "oldStep16Through22LockAccessAbsent": true,
+    "callStartForcedBeforeAction": true,
+    "failedStartAuditDoesNotExecuteActionTested": true,
+    "perFeatureIdAndPfcStatusBoundaries": true,
+    "wfcStatusFlagPathRemoved": true,
+    "fiveFailureFlagsChecked": false,
+    "statusGateSource": "PFC_FEATURE_STATUS_ONLY_WFC_STATUS_FLAG_DISABLED_DUE_TO_HANG",
+    "featureIdIndexInStartDoneAndException": true,
+    "wholeSolidFlagsCallAbsent": true,
+    "twoDefaultNoConfirmationsExplicitThicknessBeforeFinal": true,
+    "strictExactlyFiveActiveFeaturesBeforePreparation": true,
+    "onlyOneRootElementCreateSite": true,
+    "elementsCreateAndAppendReferencesAbsent": true,
+    "rootLiteralNullValueNoFactory": true,
+    "noTreeConstructionFallback": true,
+    "sessionCreateElementTreeReferenceAbsent": true,
+    "thicknessRecordedButNotAppliedToElement": true,
+    "elementIdLevelIndexInContext": true,
+    "modelCreationAndRegenerationPathsRemoved": true,
+    "endsAfterRootAndUnavailableOverloadRecord": true,
+    "nativeCallOrPluginExecuted": false,
+    "rootCauseLocated": "NOT_EXECUTED_UNKNOWN",
+    "sdkOrModelMocksUsed": false
+  },
+  "sdkOverloadAssessment": {
+    "sdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "scanMethod": "JAVAP_PUBLIC_RECURSIVE_INTERFACE_HIERARCHY_NO_SDK_EXECUTION",
+    "interfacesChecked": [
+      "com.ptc.cipjava.jxadapter",
+      "com.ptc.cipjava.jxobject",
+      "com.ptc.pfc.pfcBase.ActionSource",
+      "com.ptc.pfc.pfcDisplay.Display",
+      "com.ptc.pfc.pfcObject.Object",
+      "com.ptc.pfc.pfcObject.Parent",
+      "com.ptc.pfc.pfcSession.BaseSession",
+      "com.ptc.pfc.pfcSession.Session",
+      "com.ptc.wfc.wfcDisplay.WDisplay",
+      "com.ptc.wfc.wfcSession.WBaseSession",
+      "com.ptc.wfc.wfcSession.WSession"
+    ],
+    "createElementTreeSignatures": [
+      "public abstract com.ptc.wfc.wfcElementTree.ElementTree CreateElementTree(com.ptc.wfc.wfcElementTree.Elements) throws com.ptc.cipjava.jxthrowable;"
+    ],
+    "acceptsElementArray": false,
+    "acceptsNonElementsCollection": false,
+    "elementsPublicArrayConstructor": false,
+    "elementsOnlyVisibleConstructor": "protected Elements(long)",
+    "xmlIsDistinctMethodSignatures": [
+      "public abstract com.ptc.wfc.wfcElementTree.ElementTree CreateElementTreeFromXML(java.lang.String) throws com.ptc.cipjava.jxthrowable;"
+    ],
+    "xmlIsNotAnArrayOrCollectionOverload": true,
+    "xmlInvoked": false,
+    "runtimeSdkSignaturesInspected": false,
+    "arrayOverloadInvoked": false
+  },
+  "probe": {
+    "bodyFaceSelectionCreationPreserved": true,
+    "rootElementIdName": "PRO_E_FEATURE_TREE",
+    "rootValue": null,
+    "rootLevel": 0,
+    "rootCreateSites": 1,
+    "elementsCreateOrAppend": false,
+    "treeConstructed": false,
+    "nonElementsArrayOrCollectionOverloadAvailable": false,
+    "xmlInvoked": false,
+    "fallbackAttempted": false,
+    "thicknessRecordedOnly": true,
+    "rootReturnedDoesNotMeanTreeCreated": true
+  },
+  "preflight": {
+    "expectedFeatureCount": 5,
+    "allFeaturesMustBeActive": true,
+    "initialDirtyMustBeFalse": true,
+    "bodyFaceVersionAndContextRulesFrozenFromStep22": true,
+    "fiveFailureFlagsChecked": false,
+    "fullFailureFlagCoverage": false
+  },
+  "control": {
+    "ledgerDirectoryUnderUserHome": "CreoRootElementProbeStep23",
+    "ledgerFile": "step23-200002100-once.jsonl",
+    "oldLocksAccessedDeletedModified": false,
+    "manualOneClickOnly": true,
+    "automaticRetryOrRearm": false,
+    "twoDefaultNoConfirmationsAndExplicitThickness": true,
+    "modelCreationRegenerationSavePaths": false,
+    "automaticRestore": false,
+    "rootReturnedOutcome": "ROOT_RETURNED_NO_TREE_OVERLOAD_NO_MODEL_WRITE_NO_SAVE"
+  },
+  "runtime": {
+    "deployed": false,
+    "registered": false,
+    "creoOrPluginExecuted": false,
+    "rootElementCreate": "NOT_EXECUTED_UNKNOWN",
+    "arrayOverloadCall": "UNAVAILABLE_NOT_INVOKED",
+    "treeConstructed": false,
+    "exactStallLocated": "NOT_EXECUTED_UNKNOWN",
+    "modelSaved": false
+  }
+}
