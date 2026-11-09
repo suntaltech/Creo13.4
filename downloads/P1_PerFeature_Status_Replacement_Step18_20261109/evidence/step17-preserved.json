@@ -1,0 +1,9 @@
+{
+  "step17CandidateCommit": "6504799c1e61399558981006da0c2ffe5aba165c",
+  "step17SourceClassJarHashesVerifiedUnchanged": true,
+  "step17OnceLockAccessedDeletedModifiedRearmed": false,
+  "reportedStep17RequestId": "b08acfe2-b704-4988-b8e0-979f577af618",
+  "runtimeFactsSource": "USER_TASK_NOTE_NOT_RAW_NATIVE_LEDGER",
+  "reportedLastStartOperation": "WSolid.GetSolidFeatureStatusFlags",
+  "step18DiagnosticExecuted": false
+}

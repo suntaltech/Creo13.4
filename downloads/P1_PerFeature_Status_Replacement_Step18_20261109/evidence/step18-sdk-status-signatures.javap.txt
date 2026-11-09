@@ -1,0 +1,95 @@
+Compiled from "Feature.java"
+public interface com.ptc.pfc.pfcFeature.Feature extends com.ptc.pfc.pfcModelItem.ModelItem {
+  public abstract com.ptc.pfc.pfcFeature.FeatureType GetFeatType() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetFeatTypeName() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetFeatSubType() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.FeatureStatus GetStatus() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.FeatureGroup GetGroup() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.FeaturePattern GetPattern() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.GroupPattern GetGroupPattern() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.PatternStatus GetPatternStatus() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.GroupStatus GetGroupStatus() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.GroupPatternStatus GetGroupPatternStatus() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsVisible() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsReadonly() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Integer GetNumber() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetVersionStamp() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsGroupMember() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsEmbedded() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.FeatureGroup GetGroupDirectHeader() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.FeaturePattern GetPatternByType(com.ptc.pfc.pfcFeature.PatternType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.SuppressOperation CreateSuppressOp() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.ResumeOperation CreateResumeOp() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.DeleteOperation CreateDeleteOp() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.ReorderBeforeOperation CreateReorderBeforeOp(com.ptc.pfc.pfcFeature.Feature) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.ReorderAfterOperation CreateReorderAfterOp(com.ptc.pfc.pfcFeature.Feature) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Features ListChildren() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Features ListParents() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModelItem.ModelItems ListSubItems(com.ptc.pfc.pfcModelItem.ModelItemType) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "FeatureStatus.java"
+public final class com.ptc.pfc.pfcFeature.FeatureStatus implements com.ptc.cipjava.jxenum {
+  public static final int _FEAT_ACTIVE;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_ACTIVE;
+  public static final int _FEAT_INACTIVE;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_INACTIVE;
+  public static final int _FEAT_FAMILY_TABLE_SUPPRESSED;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_FAMILY_TABLE_SUPPRESSED;
+  public static final int _FEAT_SIMP_REP_SUPPRESSED;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_SIMP_REP_SUPPRESSED;
+  public static final int _FEAT_PROGRAM_SUPPRESSED;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_PROGRAM_SUPPRESSED;
+  public static final int _FEAT_SUPPRESSED;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_SUPPRESSED;
+  public static final int _FEAT_UNREGENERATED;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_UNREGENERATED;
+  public static final int __Last;
+  public int getValue();
+  public static com.ptc.pfc.pfcFeature.FeatureStatus FromInt(int);
+  public static com.ptc.pfc.pfcFeature.FeatureStatus FromInt(java.lang.Integer);
+  public static int getValue(com.ptc.pfc.pfcFeature.FeatureStatus);
+  static {};
+}
+Compiled from "WFeature.java"
+public interface com.ptc.wfc.wfcFeature.WFeature extends com.ptc.wfc.wfcModelItem.WModelItem,com.ptc.wfc.wfcLayerState.LayerItem,com.ptc.pfc.pfcFeature.Feature {
+  public abstract com.ptc.wfc.wfcElementTree.ElementTree GetElementTree(com.ptc.pfc.pfcAssembly.ComponentPath, com.ptc.wfc.wfcFeature.FeatureElemTreeExtractOptions) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsElementVisible(com.ptc.wfc.wfcElementTree.ElementPath) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsElementIncomplete(com.ptc.wfc.wfcElementTree.ElementPath) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcFeature.FeatureStatusFlag GetStatusFlag() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcFeature.WFeature RedefineFeature(com.ptc.pfc.pfcAssembly.ComponentPath, com.ptc.wfc.wfcElementTree.ElementTree, com.ptc.wfc.wfcFeatureInstructions.FeatCreateOptions, com.ptc.wfc.wfcSolidInstructions.WRegenInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcFeature.WFeature CreatePattern(com.ptc.wfc.wfcElementTree.ElementTree, com.ptc.wfc.wfcFeature.PatternType) throws com.ptc.cipjava.jxthrowable;
+  public abstract int GetDimensionId(com.ptc.wfc.wfcElementTree.ElementPath) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcSection.Sections GetSections() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcFeature.ImportFeatureData GetImportFeatureData() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcFeature.ImportFeatureIdMaps GetIdMap() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.cipjava.intseq GetItemIds(int, com.ptc.pfc.pfcModelItem.ModelItemType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.cipjava.intseq GetUserIds(int, com.ptc.pfc.pfcModelItem.ModelItemType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcFeature.WFeature RedefineImportFeature(com.ptc.wfc.wfcFeature.ImportFeatureRedefSource) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcFeature.ZoneFeatureReferences GetZoneFeatureReferences() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcXSection.ZoneXSectionGeometries GetZoneXSectionGeometry() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Transform3Ds GetZoneFeaturePlaneData() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSolid.Solid GetSolid() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsCableCosmetic() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcExternalObject.ExternalReferenceInfos GetExternalParents(com.ptc.wfc.wfcExternalObject.ExternalReferenceType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcClient.Status VisitItems(com.ptc.wfc.wfcClient.VisitingClient, com.ptc.pfc.pfcModelItem.ModelItemType) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsInFooter() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Integer MoveToFooter() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Integer MoveFromFooter() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModelItem.ModelItems ListVariedItems() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModelItem.Parameters ListVariedParameters() throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "FeatureStatusFlag.java"
+public interface com.ptc.wfc.wfcFeature.FeatureStatusFlag extends com.ptc.cipjava.jxobject {
+  public abstract int GetFeatureId() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsInvalid() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsInactive() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsActive() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsFamtabSuppressed() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsSimprepSuppressed() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsProgramSuppressed() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsSuppressed() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsUnregenerated() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsFailed() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsChildOfFailed() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsChildOfExternalFailed() throws com.ptc.cipjava.jxthrowable;
+}

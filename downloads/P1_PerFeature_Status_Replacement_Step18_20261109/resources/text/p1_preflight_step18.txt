@@ -1,0 +1,20 @@
+P1_S18_LABEL
+Read-Only Per-Feature Status Diagnostic Step 18
+
+P1_S18_HELP
+Read per-feature status with durable feature ID START/DONE boundaries; one click only
+
+P1_S18_DESC
+No solid-wide status call, feature creation, regeneration, save or conversion retry
+
+P1_S18_THICKNESS
+Per-feature preflight passed. Enter explicit positive finite TEST thickness in mm for logging only. No conversion follows.
+
+P1_S18_FAILED
+Step18 read-only diagnostic blocked or failed. Preserve audit and stderr; do not repeat or save.
+
+P1_S18_INPUT_DONE
+Step18 preflight and input observed. Ends here: no conversion, regeneration or Save.
+
+P1_S18_CANCELLED
+Step18 diagnostic cancelled. One-shot consumed. No model write, regeneration or Save.
