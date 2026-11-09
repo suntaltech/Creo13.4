@@ -1,0 +1,62 @@
+{
+  "artifactType": "STEP25_SUPPLEMENT_JDK_DISK_IDENTITY_REVIEW_NO_NEW_CODE",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "inputDocument": {
+    "fileName": "P1_JDK_Disk_Identity_20261109.md",
+    "sha256": "b2cec0e6c9dd0c3ef3fae922f6c450ffc6ddfcb46ebb7000423da2c8a8c685fe",
+    "evidenceLevel": "USER_PROVIDED_READONLY_FILE_METADATA_SUMMARY_NOT_ORIGINAL_RELEASE_OR_DLL"
+  },
+  "reportedDiskJdk": {
+    "configuredJavaExe": "D:\\creoson\\jdk25\\jdk-25.0.5+8\\bin\\java.exe",
+    "releaseProperties": {
+      "IMPLEMENTOR": "Eclipse Adoptium",
+      "IMPLEMENTOR_VERSION": "Temurin-25.0.5+8",
+      "JAVA_RUNTIME_VERSION": "25.0.5+8-LTS",
+      "JAVA_VERSION": "25.0.5",
+      "OS_ARCH": "x86_64",
+      "OS_NAME": "Windows",
+      "IMAGE_TYPE": "JDK",
+      "JVM_VARIANT": "Hotspot",
+      "JVM_VERSION": "25.0.5+8-LTS"
+    },
+    "jvmDll": {
+      "path": "D:\\creoson\\jdk25\\jdk-25.0.5+8\\bin\\server\\jvm.dll",
+      "bytes": 15489656,
+      "reportedSha256Lowercase": "3db3f5cf8ea1a5798783731fb9ad36d8b425b9d69d676ef07d0b40d709cbde1c",
+      "sha256FormatValid": true,
+      "dllIndependentlyReadOrRehashedInCloud": false,
+      "peArchitectureIndependentlyParsed": false
+    }
+  },
+  "comparisons": {
+    "javaPathMatchesPreviousConfigSnapshot": true,
+    "previousEnvironmentEvidenceCommit": "dd7ee09418005bdc0ce19604ddd716ac9faeb980",
+    "sdkClassMajor69Present": true,
+    "classMajor69RequiresJava25ClassFormatSupport": true,
+    "reportedJava25MeetsClassFormatGeneration": true,
+    "previousSdkAndStep23DiskHashesMatched": true,
+    "oracleCreatedBySdkManifestDoesNotRequireOracleJvmByItself": true,
+    "reportedVendorDifferenceProvesIncompatibility": false
+  },
+  "stillUnknown": {
+    "faultSessionActuallyLoadedThisJvm": true,
+    "actualLoadedJvmVendorVersionArchitecture": true,
+    "runtimeSdkAndNativeModuleCompatibility": true,
+    "ptcOfficialJdkVendorVersionSupportMatrix": true,
+    "otkLicenseRegistrationInitializationContract": true,
+    "nativeCrashRootCause": true
+  },
+  "interpretation": "REDUCE_CONFIGURED_DISK_JDK_TOO_OLD_HYPOTHESIS_PRIORITY_NO_RUNTIME_OR_OFFICIAL_SUPPORT_CERTIFICATION",
+  "recommendation": "KEEP_JAVA_UI_PFC_READONLY_AND_FREEZE_COLLECTOR_R1_PAUSE_WFC_FACTORY_ROUTE_VERIFY_EXISTING_RUNTIME_AND_OFFICIAL_SUPPORT_EVIDENCE",
+  "actions": {
+    "javaExeOrJvmDllExecuted": false,
+    "creoStartedRestartedOrAttached": false,
+    "jdkChanged": false,
+    "configChanged": false,
+    "oldLocksDeletedOrRearmed": false,
+    "newCollectorOrNativeProbeGenerated": false,
+    "automaticConversionRestore": false,
+    "jdkBinariesRedistributed": false
+  }
+}

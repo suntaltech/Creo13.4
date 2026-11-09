@@ -1,0 +1,15 @@
+{
+  "artifactType": "JDK_DISK_IDENTITY_SUPPLEMENT_REVIEW_ONLY",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "inputDocumentSha256": "b2cec0e6c9dd0c3ef3fae922f6c450ffc6ddfcb46ebb7000423da2c8a8c685fe",
+  "javaPathMatchesPriorConfig": true,
+  "reportedJdk": "Eclipse Adoptium Temurin 25.0.5+8 Windows x86_64 Hotspot",
+  "sdkClassFormatGenerationMatches": true,
+  "actualFaultSessionJvmKnown": false,
+  "officialPtcSupportCertified": false,
+  "dllRehashedFromBytes": false,
+  "newCodeOrProbeGenerated": false,
+  "siteStateChanged": false,
+  "automaticConversionRestore": false
+}
