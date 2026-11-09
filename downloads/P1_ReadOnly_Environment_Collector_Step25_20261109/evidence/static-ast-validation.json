@@ -1,0 +1,56 @@
+[
+  {
+    "file": "Collect-P1Environment.ps1",
+    "forbiddenCommandOrSdkTypeAbsent": true,
+    "commands": [
+      "Add-P1Issue",
+      "Add-P1Path",
+      "Add-Type",
+      "Convert-P1Configuration",
+      "ConvertTo-Json",
+      "ForEach-Object",
+      "Get-ChildItem",
+      "Get-CimInstance",
+      "Get-P1ClasspathFromCommand",
+      "Get-P1Files",
+      "Get-P1Identity",
+      "Get-P1JvmMetadata",
+      "Get-P1LogSummary",
+      "Get-P1PeArchitecture",
+      "Get-P1ProcessEvidence",
+      "Get-Process",
+      "Initialize-P1Privacy",
+      "Join-Path",
+      "New-Item",
+      "New-Object",
+      "New-P1PathSet",
+      "Protect-P1Text",
+      "Read-P1ConfigurationFile",
+      "Read-P1TextSnapshot",
+      "Resolve-P1Reference",
+      "Save-P1Json",
+      "Set-StrictMode",
+      "Test-Path"
+    ],
+    "parsePassed": true
+  },
+  {
+    "file": "Collector.Core.ps1",
+    "forbiddenCommandOrSdkTypeAbsent": true,
+    "commands": [
+      "ConvertFrom-Json",
+      "Get-ChildItem",
+      "Get-Item",
+      "Get-P1Identity",
+      "Get-P1PeArchitecture",
+      "Get-P1ShaBytes",
+      "Join-Path",
+      "New-Object",
+      "Protect-P1Text",
+      "Read-P1TextSnapshot",
+      "Set-StrictMode",
+      "Test-Path"
+    ],
+    "parsePassed": true
+  }
+]

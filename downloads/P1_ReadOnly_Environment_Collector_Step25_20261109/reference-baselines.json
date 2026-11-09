@@ -1,0 +1,21 @@
+{
+  "kind": "DELIVERY_AND_UPLOADED_SDK_REFERENCES_NOT_CURRENT_RUNTIME",
+  "otkJar": {
+    "bytes": 4362992,
+    "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "classMajor69Present": true,
+    "ptcOfficialHashCertified": false
+  },
+  "pfcasyncJar": {
+    "bytes": 1207086,
+    "sha256": "b1765537e2754332fa923e418b81541e3caa2d2a197ebec4ae1decb9ab8bfdb3"
+  },
+  "step23CandidateJar": {
+    "bytes": 39698,
+    "sha256": "f6bfe8d32b8560a11a9e4c382d3a9f968734450f649ea68a1fb02ce53f649908",
+    "commit": "eb8b330519fb8bf91cc0d973da09c99632e212f1"
+  },
+  "actualSiteMatchingTheseFiles": "UNKNOWN_UNTIL_EVIDENCE_REVIEW",
+  "doNotAddPfcasyncAsFix": true,
+  "referenceHashesDoNotProveLoadingOrLicense": true
+}

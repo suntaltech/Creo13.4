@@ -1,0 +1,21 @@
+{
+  "powershellVersion": "7.4.6",
+  "platform": "Linux x86_64; fixture files only",
+  "pureChecks": 34,
+  "integrationZipIntegrity": true,
+  "integrationInternalChecksumsVerified": true,
+  "allInputHashesUnchanged": true,
+  "privateFixtureValuesAbsentFromArchive": true,
+  "activeAndCommentedDatCollected": true,
+  "sdkAndPluginHashMetadataNotBinaries": true,
+  "noModelOrRawLogCopied": true,
+  "diskOnlyDoesNotQueryProcesses": true,
+  "windowsCimAndLoadedModulesExecuted": false,
+  "windowsPowerShell51Executed": false,
+  "actualCreoSiteExecuted": false,
+  "outputInsideInputRootRejected": true,
+  "symlinkTraversalSkipped": true,
+  "unicodeAndSpacesPathsCovered": true,
+  "datSnapshotLimitEnforcedAt200": true,
+  "installationExecutableHashedWithoutExecutionOrCopy": true
+}
