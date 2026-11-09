@@ -1,0 +1,6 @@
+{"seq": 1, "step": 31, "utc": "2026-11-09T08:54:45.692432+00:00", "event": "IDENTITY_UPDATE", "status": "USER_REPORTED", "detail": "cl FileVersion 19.44.35229.0, ProductVersion 14.44.35229.0; SDK Include/Lib 10.0.26100.0; one toolset directory"}
+{"seq": 2, "step": 31, "utc": "2026-11-09T08:54:45.692432+00:00", "event": "VERSION_SAMPLING", "status": "COMPLETE_AT_REQUESTED_SUMMARY_LEVEL", "detail": "No repeated collection of supplied versions requested"}
+{"seq": 3, "step": 31, "utc": "2026-11-09T08:54:45.692432+00:00", "event": "OFFICIAL_SUPPORT", "status": "UNVERIFIED", "detail": "Applicable PTC compiler rule still unavailable; Step29 CONNECT failure is historical"}
+{"seq": 4, "step": 31, "utc": "2026-11-09T08:54:45.692432+00:00", "event": "OBJECT_COMPILE_DECISION", "status": "HOLD_PENDING_EVIDENCE", "detail": "Officially supported build environment not established; no incompatibility inferred"}
+{"seq": 5, "step": 31, "utc": "2026-11-09T08:54:45.692432+00:00", "event": "SITE_ACTIONS", "status": "NOT_PERFORMED", "detail": "No compiler probe, compilation, DLL generation, installation or Creo startup"}
+{"seq": 6, "step": 31, "utc": "2026-11-09T08:54:45.692432+00:00", "event": "NEXT_INPUT", "status": "OFFICIAL_DOCUMENT_ONLY", "detail": "Obtain applicable compiler row, release scope and footnotes"}

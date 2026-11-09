@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "task": {
+    "file_name": "P1_编译器版本补采第三十一步_任务单_20261109.md",
+    "sha256": "2d6e921f2f5a1132421c93cceff2df97568e5333067a865c6d652b2f2618650f",
+    "role": "USER_TASK_AND_REPORTED_FILE_VERSION_METADATA"
+  },
+  "previous_comparison": {
+    "step": 30,
+    "commit": "52a81b756c3c7c06c21b2cae71b417ecd84a35b0",
+    "sha256": "6d39de9b9871c662299ea59e4afba594e86f8bf491bf331a126c9d1258609522"
+  },
+  "raw_cl_binary_or_version_output_received": false,
+  "applicable_official_support_text_received": false,
+  "historical_online_request": {
+    "step": 29,
+    "url": "https://support.ptc.com/help/creo_toolkit/protoolkit_plus/usascii/creo_toolkit/get_started/Platform_and_Compiler_Support.html",
+    "result": "PROXY_CONNECT_403_NO_ORIGIN_DOCUMENT",
+    "new_request_this_step": false,
+    "url_pins_creo_version": false
+  },
+  "public_artifact_contains_sdk_or_site_raw_logs": false
+}

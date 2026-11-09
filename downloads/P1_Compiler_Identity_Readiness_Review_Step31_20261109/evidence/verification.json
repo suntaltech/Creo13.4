@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "verification_type": "DOCUMENT_AND_JSON_CONSISTENCY_ONLY",
+  "checks": {
+    "version_fields_distinct": true,
+    "no_new_version_sampling_requested": true,
+    "support_unknown_not_unsupported": true,
+    "no_install_necessity_invented": true,
+    "no_site_execution_claimed": true,
+    "step31_event_sequence_valid": true
+  },
+  "all_checks_passed": true,
+  "native_compilation_test_performed": false,
+  "official_support_certified": false
+}

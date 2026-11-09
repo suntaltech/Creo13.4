@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "step": 31,
+  "target": "Creo 13.4.0.0 Pro/TOOLKIT",
+  "evidence_level": "USER_READONLY_RESULTS_SUMMARY_NOT_DIRECT_SITE_OBSERVATION",
+  "identity": {
+    "vs_product_version_previously_reported": "17.14.41",
+    "msvc_toolset_directory": "14.44.35207",
+    "cl_file_version": "19.44.35229.0",
+    "cl_product_version": "14.44.35229.0",
+    "sdk_include_version": "10.0.26100.0",
+    "sdk_lib_version": "10.0.26100.0",
+    "only_one_toolset_reported": true,
+    "reported_installed_toolsets": [
+      "14.44.35207"
+    ],
+    "actual_cmake_detected_compiler_version": null
+  },
+  "identity_collection": {
+    "requested_summary_fields_received": true,
+    "repeat_same_version_sampling_needed": false,
+    "old_toolset_reported_available": false,
+    "full_machine_inventory_independently_verified": false
+  },
+  "support_decision": {
+    "applicable_ptc_support_text_available": false,
+    "msvc_supported": null,
+    "sdk_supported": null,
+    "supported_object_compile_environment_established": false,
+    "current_compiler_proven_unsupported": false,
+    "another_vs_required": null,
+    "status": "HOLD_PENDING_APPLICABLE_OFFICIAL_SUPPORT_RULE",
+    "recommended_action": "RETAIN_CURRENT_INSTALLATION_AND_OBTAIN_OFFICIAL_RULE"
+  },
+  "scope": {
+    "compile_permitted_by_step31_task": false,
+    "cl_or_link_executed": false,
+    "cmake_compiler_probe_executed": false,
+    "object_or_dll_generated": false,
+    "vs_installed_or_toolset_switched": false,
+    "creo_started": false,
+    "site_configuration_changed": false,
+    "step28_template_changed": false
+  },
+  "next_input": {
+    "request": "Applicable official compiler row and footnotes including any SDK conditions, document title/revision and release scope",
+    "more_version_sampling_requested": false
+  }
+}
