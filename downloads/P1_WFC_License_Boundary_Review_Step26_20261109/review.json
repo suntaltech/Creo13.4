@@ -1,0 +1,63 @@
+{
+  "artifactType": "STEP26_WFC_LICENSE_AND_SUPPORT_BOUNDARY_REVIEW_NO_NEW_PROBE",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "decision": {
+    "currentInternalBridgeJavaWfcTreeRoute": "STOP_BLOCKED_WFC_SUPPORT_CONTRACT",
+    "javaUiAndValidatedPfcReadonlyLayer": "RETAIN_WITH_ITS_OWN_DOCUMENTED_ENTITLEMENTS",
+    "xmlTreeAlternativeLiveProbe": "DO_NOT_PROCEED",
+    "cppProToolkit": "ENTER_OFFLINE_PREREQUISITE_ASSESSMENT_ONLY_KEEP_JAVA_UI",
+    "actualConversionCertifiedAvailable": false
+  },
+  "apiClassification": {
+    "publicPackage": "com.ptc.wfc.wfcElementTree",
+    "family": "WFC_EXTENDED_CREO_OBJECT_TOOLKIT_JAVA_API_SURFACE",
+    "publicSdkDeclarationVerified": true,
+    "ordinaryJlinkFreeCoverageForTheseFactoriesEstablished": false,
+    "wfcPackageAllMethodsIdenticalLicenseRuleAsserted": false,
+    "internalApiDistinction": "NONPUBLIC_COM_PTC_WFC_IMPLEMENTATION_CONSTRUCTORS_USED_BY_CURRENT_BRIDGE",
+    "exactCurrentVersionMethodLicenseTerms": "NOT_VERIFIED_ORIGINAL_DOCUMENTATION_MISSING"
+  },
+  "licenseAndUnlock": {
+    "currentEntitlement": "UNKNOWN",
+    "noLicenseProvenCauseOfSilentHang": false,
+    "officialNoLicenseSilentHangBehaviorEstablished": false,
+    "javaLicenseExceptionTypesExist": true,
+    "suchExceptionObservedInProvidedStep22Step23Ledgers": false,
+    "unlockAndSigningStatus": "UNKNOWN_NOT_CERTIFIED",
+    "unlockRequiredBeforeEveryApiCallProven": false,
+    "licenseUnlockSigningRegistrationAreDifferentConditions": true,
+    "evidenceStatus": "BLOCKED_NOT_LICENSE_VIOLATION_OR_CRASH_CAUSE_CERTIFICATION"
+  },
+  "sessionAndRegistration": {
+    "pfcCompatibilitySessionCallPublic": true,
+    "C4CompatibleGrantsOtkLicenseOrInitialization": false,
+    "internalLongConstructorBridgeOfficiallySupported": "NOT_ESTABLISHED_DO_NOT_ACCEPT_AS_SUPPORTED_CREATION_ROUTE",
+    "startupJavaAndJlinkJava2ObservedOnDisk": true,
+    "sufficientProofOfOtkRuntimeRegistrationOrEntitlement": false,
+    "allStartupJavaApplicationsCategoricallyInvalidForOtkAsserted": false,
+    "startupOtkJavaHistoricalSummaryNotCurrentFullText": true,
+    "changeStartupRequestedOrPerformed": false
+  },
+  "causeLimits": {
+    "factoryNoReturnLogBoundaryObserved": true,
+    "actualNativeRootCauseKnown": false,
+    "staticFactoriesDependOnReflectedWrapperCauseProven": false,
+    "faultSessionJvmActuallyLoadedKnown": false,
+    "diskSdkAndStep23ClassIdentityPreviouslyMatched": true,
+    "reportedTemurin25FormatGenerationMatchesSdk": true
+  },
+  "nextMinimalOfflineAction": "FILL_SAME_RELEASE_OFFICIAL_DOC_LICENSE_UNLOCK_SIGNING_REGISTRATION_EVIDENCE_MATRIX_USING_EXISTING_MATERIALS",
+  "siteActions": {
+    "restart": false,
+    "retryElementTree": false,
+    "changeJdk": false,
+    "addPfcasync": false,
+    "modifyStartupOrConfig": false,
+    "newBusinessButtonOrProbe": false,
+    "modelCreateRegenSave": false,
+    "oldLocksDeletedOrRearmed": false
+  },
+  "officialFullTextAccess": "NOT_OBTAINED_HTTP_403",
+  "noRuntimeLicenseVerdictIssued": true
+}

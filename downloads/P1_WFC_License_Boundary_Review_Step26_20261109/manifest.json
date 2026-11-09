@@ -1,0 +1,17 @@
+{
+  "artifactType": "STEP26_WFC_LICENSE_BOUNDARY_OFFLINE_DECISION_PACKAGE",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "taskSha256": "6c38f731e2522448b3fc192742af973da4408c994fa7ba3d1b5cc7174ba008b2",
+  "decision": "STOP_CURRENT_JAVA_WFC_TREE_ROUTE_RETAIN_JAVA_UI_PFC_READONLY",
+  "licenseCausedHangProven": false,
+  "officialCurrentReleaseFullTextObtained": false,
+  "officialPageAccessStatus": "403",
+  "exactLicenseFeatureOrUnlockProcedureInvented": false,
+  "cppPrerequisiteAssessmentRecommended": true,
+  "nextAction": "DOCUMENT_AND_ENTITLEMENT_MATRIX_ONLY",
+  "newCodeOrProbeGenerated": false,
+  "siteRestartRetryJdkOrClasspathOrStartupChanged": false,
+  "modelsWrittenOrSaved": false,
+  "oldLocksChanged": false
+}

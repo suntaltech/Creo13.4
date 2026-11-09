@@ -1,0 +1,20 @@
+public abstract class com.ptc.wfc.wfcElementTree.Elements extends com.ptc.cipjava.jxobject_i {
+  public static com.ptc.wfc.wfcElementTree.Elements create() throws com.ptc.cipjava.jxthrowable;
+    descriptor: ()Lcom/ptc/wfc/wfcElementTree/Elements;
+public class com.ptc.wfc.wfcElementTree.wfcElementTree {
+  public static com.ptc.wfc.wfcElementTree.Element Element_Create(int, com.ptc.pfc.pfcArgument.ArgValue, int) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (ILcom/ptc/pfc/pfcArgument/ArgValue;I)Lcom/ptc/wfc/wfcElementTree/Element;
+  public abstract com.ptc.wfc.wfcElementTree.ElementTree CreateElementTreeFromXML(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Lcom/ptc/wfc/wfcElementTree/ElementTree;
+class com.ptc.wfc.Implementation.wfcSession$WSession extends com.ptc.cipjava.jxobject_i implements com.ptc.wfc.wfcSession.WSession {
+  public com.ptc.wfc.Implementation.wfcSession$WSession(long);
+    descriptor: (J)V
+  public com.ptc.wfc.wfcElementTree.ElementTree CreateElementTreeFromXML(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Ljava/lang/String;)Lcom/ptc/wfc/wfcElementTree/ElementTree;
+class com.ptc.wfc.Implementation.wfcPart$WPart extends com.ptc.cipjava.jxobject_i implements com.ptc.wfc.wfcPart.WPart {
+  public com.ptc.wfc.Implementation.wfcPart$WPart(long);
+    descriptor: (J)V
+  public static com.ptc.pfc.pfcSession.Session GetCurrentSessionWithCompatibility(com.ptc.pfc.pfcSession.CreoCompatibility) throws com.ptc.cipjava.jxthrowable;
+    descriptor: (Lcom/ptc/pfc/pfcSession/CreoCompatibility;)Lcom/ptc/pfc/pfcSession/Session;
+public class com.ptc.pfc.pfcExceptions.XMethodNotLicensed extends com.ptc.pfc.pfcExceptions.XPFC {
+public class com.ptc.pfc.pfcExceptions.XToolkitAppNoLicense extends com.ptc.pfc.pfcExceptions.XToolkitError {

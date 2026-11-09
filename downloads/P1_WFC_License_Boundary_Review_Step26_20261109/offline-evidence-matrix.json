@@ -1,0 +1,50 @@
+{
+  "purpose": "ONE_MINIMAL_OFFLINE_DOCUMENT_AND_ENTITLEMENT_MATRIX_NO_SITE_API_CALL",
+  "requirements": [
+    {
+      "id": "DOC_PRODUCT_AND_METHOD_SCOPE",
+      "needed": "准确Creo维护版本的J-Link Free/OTK Java兼容说明及Elements.create/Element_Create对应API页许可/支持条件",
+      "status": "ORIGINAL_NOT_PROVIDED",
+      "localLocator": "otk_java_doc/online_help/creo_toolkit/user_guide/Compatibility_with_J_Link.html及对应WFC API页"
+    },
+    {
+      "id": "DOC_REGISTER",
+      "needed": "官方注册文件字段及同步/异步、会话获得方式、初始化/线程契约全文",
+      "status": "ORIGINAL_NOT_PROVIDED",
+      "localLocator": "Registry_File.html、RegistryFile1.html、Registry_File_2.html、Registry_File_Data.html（安装版本内实际文件为准）"
+    },
+    {
+      "id": "DOC_UNLOCK_SIGN",
+      "needed": "官方解锁、运行、签名章节，注明开发/运行/分发场景分别适用的条件",
+      "status": "ORIGINAL_NOT_PROVIDED",
+      "localLocator": "Unlocking_Running_and_Signing_the_Creo_Object_TOOLKIT_Java_Application.html"
+    },
+    {
+      "id": "SITE_ENTITLEMENT",
+      "needed": "合法OTK Java许可项名称/版本和开发或运行状态、既有签出结果摘要及时间；由官方说明确认具体feature名称",
+      "status": "UNKNOWN",
+      "exclude": "不提交密钥/完整许可文件，不猜测feature代码"
+    },
+    {
+      "id": "ARTIFACT_UNLOCK_SIGN_IDENTITY",
+      "needed": "当前应用JAR/散装class的官方分发形式、散列及相应解锁/签名状态；有状态则核对是否针对同一工件",
+      "status": "UNKNOWN",
+      "exclude": "不生成解锁/签名文件或工具命令"
+    },
+    {
+      "id": "RUN_CONTRACT_IDENTITY",
+      "needed": "已存在的实际注册/启动日志、有效配置来源与classpath、加载模式；与官方示例逐字段对照",
+      "status": "DISK_DAT_EXISTS_RUNTIME_MATCH_UNKNOWN",
+      "exclude": "不改startup，不重载/重启来试错"
+    },
+    {
+      "id": "CPP_PRECHECK",
+      "needed": "匹配维护版本/位数的Pro/TOOLKIT headers/import libraries、PTC支持编译器/ABI、合法C++开发/运行许可与官方最小示例",
+      "status": "NOT_CERTIFIED",
+      "exclude": "不因Java OTK未验证就假设C++免许可或立即生成转换DLL"
+    }
+  ],
+  "runtimeTestsRequiredThisRound": false,
+  "collectLicenseSecrets": false,
+  "currentCollectorVersion": "FREEZE_STEP25_R1_NO_NEW_VERSION"
+}

@@ -1,0 +1,14 @@
+{
+  "sdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+  "sourceFileSha256": "06db2768b3ce83d22cf5a954b7b5b7376c0a86b5dfd7582d5c608cede162b99d",
+  "publicWfcElementFactoryDeclared": true,
+  "publicWfcElementsCreateDeclared": true,
+  "implementationWSessionAndWPartClassesPublic": false,
+  "implementationLongConstructorsDeclaredPublicWithinNonPublicClasses": true,
+  "sourceReflectsLongConstructors": true,
+  "sourceSetsAccessible": true,
+  "originalStep23LedgerReportedInternalApiRuntimeContractCertified": false,
+  "javaOrModelApiExecutedInThisReview": false,
+  "publicApiPresenceProvesLicenseEntitlement": false,
+  "reflectionOrHandleEqualityProvesOfficialRuntimeSupport": false
+}
