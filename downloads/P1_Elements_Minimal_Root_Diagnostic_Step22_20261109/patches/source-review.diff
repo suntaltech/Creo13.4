@@ -1,0 +1,185 @@
+--- step21/source/AuditSupport.java
++++ step22/source/AuditSupport.java
+@@ -1 +1 @@
+-package p1.controlled.step21;
++package p1.controlled.step22;
+--- step21/source/FeatureStateGate.java
++++ step22/source/FeatureStateGate.java
+@@ -1 +1 @@
+-package p1.controlled.step21;
++package p1.controlled.step22;
+--- step21/source/P1ElementTreeDiagnosticStep21.java
++++ step22/source/P1ElementsMinimalStep22.java
+@@ -1 +1 @@
+-package p1.controlled.step21;
++package p1.controlled.step22;
+@@ -22 +22 @@
+-import static p1.controlled.step21.AuditSupport.*;
++import static p1.controlled.step22.AuditSupport.*;
+@@ -25,3 +25,3 @@
+-public final class P1ElementTreeDiagnosticStep21 {
+- public static final String COMMAND_ID="SISWElementTreeStep21";
+- private static final String TARGET="200002100.prt",MESSAGES="p1_element_tree_step21.txt";
++public final class P1ElementsMinimalStep22 {
++ public static final String COMMAND_ID="SISWElementsMinimalStep22";
++ private static final String TARGET="200002100.prt",MESSAGES="p1_elements_minimal_step22.txt";
+@@ -34 +34 @@
+- private P1ElementTreeDiagnosticStep21(){}
++ private P1ElementsMinimalStep22(){}
+@@ -41 +41 @@
+-   command.Designate(MESSAGES,"P1_S21_LABEL","P1_S21_HELP","P1_S21_DESC");active=true;
++   command.Designate(MESSAGES,"P1_S22_LABEL","P1_S22_HELP","P1_S22_DESC");active=true;
+@@ -51 +51 @@
+-  options.SetDialogLabel("P1 Step21 — 不保存试验状态");MessageButtons buttons=MessageButtons.create();buttons.append(MessageButton.MESSAGE_BUTTON_OK);options.SetButtons(buttons);options.SetDefaultButton(MessageButton.MESSAGE_BUTTON_OK);
++  options.SetDialogLabel("P1 Step22 — 不保存试验状态");MessageButtons buttons=MessageButtons.create();buttons.append(MessageButton.MESSAGE_BUTTON_OK);options.SetButtons(buttons);options.SetDefaultButton(MessageButton.MESSAGE_BUTTON_OK);
+@@ -54 +54 @@
+- private static void feedback(String text,boolean error){feedback(text,error,"P1_S21_FAILED");}
++ private static void feedback(String text,boolean error){feedback(text,error,"P1_S22_FAILED");}
+@@ -56,3 +56,3 @@
+-  System.err.println("[P1_STEP21] "+text);
+-  try{display(text,error);}catch(Exception|LinkageError dialogError){System.err.println("[P1_STEP21] RESULT_DIALOG_FAILED "+dialogError.getClass().getName());
+-   try{session.UIDisplayMessage(MESSAGES,statusKey,null);}catch(Exception|LinkageError statusError){System.err.println("[P1_STEP21] BOTH_NATIVE_FEEDBACK_ROUTES_FAILED "+statusError.getClass().getName());}}
++  System.err.println("[P1_STEP22] "+text);
++  try{display(text,error);}catch(Exception|LinkageError dialogError){System.err.println("[P1_STEP22] RESULT_DIALOG_FAILED "+dialogError.getClass().getName());
++   try{session.UIDisplayMessage(MESSAGES,statusKey,null);}catch(Exception|LinkageError statusError){System.err.println("[P1_STEP22] BOTH_NATIVE_FEEDBACK_ROUTES_FAILED "+statusError.getClass().getName());}}
+@@ -61 +61 @@
+-  MessageDialogOptions options=pfcUI.MessageDialogOptions_Create();options.SetMessageDialogType(MessageDialogType.MESSAGE_WARNING);options.SetDialogLabel("P1 Step21 只读元素树定位确认");
++  MessageDialogOptions options=pfcUI.MessageDialogOptions_Create();options.SetMessageDialogType(MessageDialogType.MESSAGE_WARNING);options.SetDialogLabel("P1 Step22 只读Elements最小定位确认");
+@@ -69,2 +69,2 @@
+-   if(!clicked.compareAndSet(false,true)){busy.set(false);feedback("本进程第二十一步点击次数已用尽；未进入转换，不重试。",true);return;}
+-   String message="本次元素树定位未完成；一次点击已消耗。";boolean error=true;String statusKey="P1_S21_FAILED";
++   if(!clicked.compareAndSet(false,true)){busy.set(false);feedback("本进程第二十二步点击次数已用尽；未进入转换，不重试。",true);return;}
++   String message="本次元素树定位未完成；一次点击已消耗。";boolean error=true;String statusKey="P1_S22_FAILED";
+@@ -72,3 +72,3 @@
+-    Path directory=Paths.get(System.getProperty("user.home"),"CreoElementTreeDiagnosticsStep21");
+-    try(Step21Control control=new Step21Control(directory)){
+-     try{message=execute(control);error=false;statusKey="ELEMENT_TREE_PREPARED_NO_MODEL_WRITE_NO_SAVE".equals(control.outcome())?"P1_S21_PREPARED":"P1_S21_CANCELLED";}
++    Path directory=Paths.get(System.getProperty("user.home"),"CreoElementsMinimalStep22");
++    try(Step22Control control=new Step22Control(directory)){
++     try{message=execute(control);error=false;statusKey="MINIMAL_ROOT_APPENDED_NO_MODEL_WRITE_NO_SAVE".equals(control.outcome())?"P1_S22_ROOT_DONE":"P1_S22_CANCELLED";}
+@@ -80 +80 @@
+-      try{control.finish(outcome);}catch(Exception logError){System.err.println("[P1_STEP21] FINAL_AUDIT_WRITE_FAILED "+logError.getClass().getName());}
++      try{control.finish(outcome);}catch(Exception logError){System.err.println("[P1_STEP22] FINAL_AUDIT_WRITE_FAILED "+logError.getClass().getName());}
+@@ -84,2 +84,2 @@
+-   }catch(FileAlreadyExistsException already){message="本机第二十一步一次点击锁已存在；本次未进入转换。不要删除记录、换目录或重载绕过单次限制。";}
+-   catch(Exception|LinkageError outer){error=true;statusKey="P1_S21_FAILED";outer.printStackTrace(System.err);message="记录创建或关闭失败；本命令没有模型创建/再生/保存调用。不要重复点击，保留现场和stderr。\n"+outer.getClass().getSimpleName();}
++   }catch(FileAlreadyExistsException already){message="本机第二十二步一次点击锁已存在；本次未进入转换。不要删除记录、换目录或重载绕过单次限制。";}
++   catch(Exception|LinkageError outer){error=true;statusKey="P1_S22_FAILED";outer.printStackTrace(System.err);message="记录创建或关闭失败；本命令没有模型创建/再生/保存调用。不要重复点击，保留现场和stderr。\n"+outer.getClass().getSimpleName();}
+@@ -92 +92 @@
+- private static <T> T adapt(Object source,Class<T> type,String[] names,Step21Control control)throws Exception{
++ private static <T> T adapt(Object source,Class<T> type,String[] names,Step22Control control)throws Exception{
+@@ -103 +103 @@
+- private static Snapshot inspect(Step21Control control)throws Exception{
++ private static Snapshot inspect(Step22Control control)throws Exception{
+@@ -136 +136 @@
+- private static SolidBody verifyDefaultBody(Snapshot s,Step21Control control,boolean recheck)throws Exception{
++ private static SolidBody verifyDefaultBody(Snapshot s,Step22Control control,boolean recheck)throws Exception{
+@@ -167 +167 @@
+- private static FaceIdentityFailure faceReadFailure(Step21Control control,String stage,String operation,Throwable error)throws Exception{
++ private static FaceIdentityFailure faceReadFailure(Step22Control control,String stage,String operation,Throwable error)throws Exception{
+@@ -171 +171 @@
+- private static Surface selectedFace(Snapshot s,Step21Control control,boolean recheck)throws Exception{
++ private static Surface selectedFace(Snapshot s,Step22Control control,boolean recheck)throws Exception{
+@@ -185 +185 @@
+- private static void requireFace(Snapshot s,Step21Control control,boolean recheck)throws Exception{
++ private static void requireFace(Snapshot s,Step22Control control,boolean recheck)throws Exception{
+@@ -260 +260 @@
+- private static void recheck(Snapshot s,Step21Control control)throws Exception{
++ private static void recheck(Snapshot s,Step22Control control)throws Exception{
+@@ -273,9 +273 @@
+- private static void appendElement(Elements elements,int index,int id,String idName,int level,String argumentKind,PreflightAudit.Call<ArgValue> factory,PreflightAudit trace)throws Exception{
+-  Map<String,Object> context=map("elementIndex",index,"elementId",id,"elementIdName",idName,"level",level,"argumentKind",argumentKind);
+-  ArgValue value=factory==null?null:trace.read("ELEMENT_VALUE_CREATE_START","ELEMENT_VALUE_CREATE_DONE","pfcArgument."+argumentKind,context,factory,result->map("returnedNull",result==null));
+-  if(factory!=null&&value==null)throw new IllegalStateException("Argument value returned null for "+idName);
+-  Element element=trace.read("ELEMENT_CREATE_START","ELEMENT_CREATE_DONE","wfcElementTree.Element_Create",context,()->wfcElementTree.Element_Create(id,value,level),result->map("returnedNull",result==null));
+-  if(element==null)throw new IllegalStateException("Element_Create returned null for "+idName);
+-  trace.read("ELEMENT_APPEND_START","ELEMENT_APPEND_DONE","Elements.append",context,()->{elements.append(element);return Boolean.TRUE;},result->map("returned",result));
+- }
+- private static ElementTree prepareTree(Snapshot s,Step21Control control)throws Exception{
++ private static Boolean prepareMinimalRoot(Snapshot s,Step22Control control)throws Exception{
+@@ -287,13 +279,10 @@
+-  Elements elements=trace.read("ELEMENTS_CREATE_START","ELEMENTS_CREATE_DONE","Elements.create",Elements::create,value->map("returnedNull",value==null));
+-  if(elements==null)throw new IllegalStateException("Elements.create returned null");
+-  appendElement(elements,0,wfcElemIds.PRO_E_FEATURE_TREE,"PRO_E_FEATURE_TREE",0,"NULL_ROOT",null,trace);
+-  appendElement(elements,1,wfcElemIds.PRO_E_FEATURE_TYPE,"PRO_E_FEATURE_TYPE",1,"CreateIntArgValue",()->pfcArgument.CreateIntArgValue(FeatureType.FEATTYPE_DATUM_SURFACE.getValue()),trace);
+-  appendElement(elements,2,wfcElemIds.PRO_E_STD_FEATURE_NAME,"PRO_E_STD_FEATURE_NAME",1,"CreateStringArgValue",()->pfcArgument.CreateStringArgValue("P1_STEP21_DRIVING"),trace);
+-  appendElement(elements,3,wfcElemIds.PRO_E_DTM_SRF_TYPE,"PRO_E_DTM_SRF_TYPE",1,"CreateIntArgValue",()->pfcArgument.CreateIntArgValue(15),trace);
+-  appendElement(elements,4,wfcElemIds.PRO_E_SMT_CONV_BODY,"PRO_E_SMT_CONV_BODY",1,"CreateSelectionArgValue",()->pfcArgument.CreateSelectionArgValue(body),trace);
+-  appendElement(elements,5,wfcElemIds.PRO_E_SMT_DRV_SURF,"PRO_E_SMT_DRV_SURF",1,"CreateSelectionArgValue",()->pfcArgument.CreateSelectionArgValue(face),trace);
+-  appendElement(elements,6,wfcElemIds.PRO_E_STD_SMT_THICKNESS,"PRO_E_STD_SMT_THICKNESS",1,"CreateDoubleArgValue",()->pfcArgument.CreateDoubleArgValue(control.thickness()),trace);
+-  ElementTree tree=trace.read("SESSION_CREATE_ELEMENT_TREE_START","SESSION_CREATE_ELEMENT_TREE_DONE","WSession.CreateElementTree",()->s.wsession.CreateElementTree(elements),value->map("returnedNull",value==null,"elementsAppended",7));
+-  if(tree==null)throw new IllegalStateException("Session.CreateElementTree returned null");return tree;
+- }
+- private static String execute(Step21Control control)throws Exception{
++  Elements elements=trace.read("ELEMENTS_CREATE_MINIMAL_START","ELEMENTS_CREATE_MINIMAL_DONE","Elements.create",Elements::create,value->map("returnedNull",value==null));
++  if(elements==null)throw new IllegalStateException("Elements.create returned null; no root attempted");
++  Map<String,Object> context=map("elementIndex",0,"elementId",wfcElemIds.PRO_E_FEATURE_TREE,"elementIdName","PRO_E_FEATURE_TREE","level",0,"argumentKind","NULL_ROOT");
++  ArgValue value=trace.read("ROOT_ELEMENT_VALUE_CREATE_START","ROOT_ELEMENT_VALUE_CREATE_DONE","ROOT_NULL_VALUE_NO_FACTORY",context,()->(ArgValue)null,result->map("valueIsNull",result==null,"valueFactoryInvoked",false));
++  Element root=trace.read("ROOT_ELEMENT_CREATE_START","ROOT_ELEMENT_CREATE_DONE","wfcElementTree.Element_Create",context,()->wfcElementTree.Element_Create(wfcElemIds.PRO_E_FEATURE_TREE,value,0),result->map("returnedNull",result==null));
++  if(root==null)throw new IllegalStateException("Root Element_Create returned null; no append attempted");
++  trace.read("ROOT_ELEMENT_APPEND_START","ROOT_ELEMENT_APPEND_DONE","Elements.append",context,()->{elements.append(root);return Boolean.TRUE;},result->map("returned",result,"elementsAppended",1));
++  return Boolean.TRUE;
++ }
++ private static String execute(Step22Control control)throws Exception{
+@@ -301 +290 @@
+-  boolean first=trace.read("FIRST_CONFIRMATION_START","FIRST_CONFIRMATION_DONE","Session.UIShowMessageDialog_FIRST",()->confirm("第一次确认：本Step21只定位内存元素树准备，不创建模型特征、不再生、不保存、不重试。\n当前200002100.prt，原五类失败flag未检查；全局壁厚未证明。\n确认在可丢弃试验模型中继续输入本次测试厚度吗？"),value->map("accepted",value));
++  boolean first=trace.read("FIRST_CONFIRMATION_START","FIRST_CONFIRMATION_DONE","Session.UIShowMessageDialog_FIRST",()->confirm("第一次确认：本Step22只定位Elements.create及一个根元素构造/追加，不创建模型特征、不再生、不保存、不重试。\n当前200002100.prt，原五类失败flag未检查；全局壁厚未证明。\n确认在可丢弃试验模型中继续输入本次测试厚度吗？"),value->map("accepted",value));
+@@ -303 +292 @@
+-  control.acceptRisk();trace.read("THICKNESS_PROMPT_START","THICKNESS_PROMPT_DONE","Session.UIDisplayMessage",()->{session.UIDisplayMessage(MESSAGES,"P1_S21_THICKNESS",null);return Boolean.TRUE;},value->map("returned",value));
++  control.acceptRisk();trace.read("THICKNESS_PROMPT_START","THICKNESS_PROMPT_DONE","Session.UIDisplayMessage",()->{session.UIDisplayMessage(MESSAGES,"P1_S22_THICKNESS",null);return Boolean.TRUE;},value->map("returned",value));
+@@ -307 +296 @@
+-  boolean last=trace.read("FINAL_CONFIRMATION_START","FINAL_CONFIRMATION_DONE","Session.UIShowMessageDialog_FINAL",()->confirm("第二次确认：仅准备内存元素树以定位卡点。模型200002100.prt，原驱动面ID="+s.stableFaceId+"，明确测试厚度="+control.thickness()+" mm。\n将逐项记录选择、参数值、元素构造/追加及CreateElementTree；不调用模型创建、再生或保存。\n接受后只准备一次并结束，不恢复Step20转换，继续吗？"),value->map("accepted",value));
++  boolean last=trace.read("FINAL_CONFIRMATION_START","FINAL_CONFIRMATION_DONE","Session.UIShowMessageDialog_FINAL",()->confirm("第二次确认：仅准备根元素以定位卡点。模型200002100.prt，原驱动面ID="+s.stableFaceId+"，明确测试厚度="+control.thickness()+" mm。\n本次厚度仅记录，不写入根元素。只创建Elements并构造/追加PRO_E_FEATURE_TREE根元素，随后立即结束；不追加其他元素、不调用会话建树、模型创建、再生或保存。\n接受后只定位一次并结束，不恢复Step20/21，继续吗？"),value->map("accepted",value));
+@@ -310,3 +299,3 @@
+-  trace.read("ELEMENT_TREE_PREPARE_START","ELEMENT_TREE_PREPARE_DONE","PREPARE_IN_MEMORY_DRIVING_TREE",()->prepareTree(s,control),value->map("available",true,"elementsAppended",7,"drivingSubtype",15,"testThicknessMm",control.thickness(),"noModelWrite",true));
+-  control.finish("ELEMENT_TREE_PREPARED_NO_MODEL_WRITE_NO_SAVE");
+-  return "本次内存元素树准备已返回，逐项日志已记录；本命令到此结束。\n没有模型创建、再生或保存调用，不自动恢复Step20。本次成功不证明此前卡顿是偶发；请回收日志，不再点击。";
++  trace.read("ELEMENT_TREE_PREPARE_START","ELEMENT_TREE_PREPARE_DONE","PREPARE_MINIMAL_ELEMENTS_AND_ROOT_ONLY",()->prepareMinimalRoot(s,control),value->map("rootAppended",value,"elementsAppended",1,"sessionElementTreeCreated",false,"thicknessAppliedToElement",false,"noModelWrite",true));
++  control.finish("MINIMAL_ROOT_APPENDED_NO_MODEL_WRITE_NO_SAVE");
++  return "Elements.create与一个根元素构造/追加已返回，逐项日志已记录；本命令到此结束。\n未追加其他元素或调用会话建树；没有模型创建、再生或保存调用，不自动恢复Step20/21。本次成功不证明此前卡顿是偶发；请回收日志，不再点击。";
+--- step21/source/PreflightAudit.java
++++ step22/source/PreflightAudit.java
+@@ -1 +1 @@
+-package p1.controlled.step21;
++package p1.controlled.step22;
+@@ -5 +5 @@
+-import static p1.controlled.step21.AuditSupport.*;
++import static p1.controlled.step22.AuditSupport.*;
+@@ -13,2 +13,2 @@
+- private final Step21Control control;private int nextCall;
+- public PreflightAudit(Step21Control control){this.control=control;}
++ private final Step22Control control;private int nextCall;
++ public PreflightAudit(Step22Control control){this.control=control;}
+--- step21/source/ScopedBodyIdentity.java
++++ step22/source/ScopedBodyIdentity.java
+@@ -1 +1 @@
+-package p1.controlled.step21;
++package p1.controlled.step22;
+--- step21/source/ScopedFaceIdentity.java
++++ step22/source/ScopedFaceIdentity.java
+@@ -1 +1 @@
+-package p1.controlled.step21;
++package p1.controlled.step22;
+--- step21/source/Step21Control.java
++++ step22/source/Step22Control.java
+@@ -1 +1 @@
+-package p1.controlled.step21;
++package p1.controlled.step22;
+@@ -9 +9 @@
+-import static p1.controlled.step21.AuditSupport.*;
++import static p1.controlled.step22.AuditSupport.*;
+@@ -12 +12 @@
+-public final class Step21Control implements AutoCloseable {
++public final class Step22Control implements AutoCloseable {
+@@ -14 +14 @@
+- public static final String FILE_NAME="step21-200002100-once.jsonl";
++ public static final String FILE_NAME="step22-200002100-once.jsonl";
+@@ -22 +22 @@
+- public Step21Control(Path directory)throws IOException {
++ public Step22Control(Path directory)throws IOException {
+@@ -40 +40 @@
+- public void acceptFinal()throws IOException{require(State.THICKNESS_SET);record("FINAL_CONFIRMATION_ACCEPTED",map("testThicknessMm",thickness,"elementPreparationOnly",true,"noModelWrite",true,"noSave",true,"fiveFailureFlagsChecked",false));state=State.FINAL_ACCEPTED;}
++ public void acceptFinal()throws IOException{require(State.THICKNESS_SET);record("FINAL_CONFIRMATION_ACCEPTED",map("testThicknessMm",thickness,"minimalElementsAndRootOnly",true,"noModelWrite",true,"noSave",true,"fiveFailureFlagsChecked",false));state=State.FINAL_ACCEPTED;}
+@@ -43 +43 @@
+-  Map<String,Object> row=map("schema","P1_STEP21_ELEMENT_TREE_DIAGNOSTIC_V1","step","STEP_21","requestId",requestId,"sequence",++sequence,"timestamp",Instant.now().toString(),"elapsedNs",System.nanoTime()-entered,"javaThreadId",Thread.currentThread().getId(),"event",event,"controlState",state.toString());row.putAll(fields);
++  Map<String,Object> row=map("schema","P1_STEP22_ELEMENTS_MINIMAL_DIAGNOSTIC_V1","step","STEP_22","requestId",requestId,"sequence",++sequence,"timestamp",Instant.now().toString(),"elapsedNs",System.nanoTime()-entered,"javaThreadId",Thread.currentThread().getId(),"event",event,"controlState",state.toString());row.putAll(fields);

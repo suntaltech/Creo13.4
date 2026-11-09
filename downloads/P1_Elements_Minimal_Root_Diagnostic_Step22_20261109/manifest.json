@@ -1,0 +1,242 @@
+{
+  "artifactType": "STEP22_READONLY_ELEMENTS_CREATE_AND_ONE_NULL_ROOT_MINIMAL_DIAGNOSTIC",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "taskInput": {
+    "fileName": "P1_Elements创建定位第二十二步_任务单_20261109.md",
+    "sha256": "6bafd00a785ce1f3bfba4c401bf3ec56501dffb3e5598042f5263922be1f7188"
+  },
+  "applicationClass": "p1.controlled.step22.P1ElementsMinimalStep22",
+  "commandId": "SISWElementsMinimalStep22",
+  "datName": "p1s22",
+  "targetModel": "200002100.prt",
+  "sourceFiles": [
+    {
+      "relativeName": "source/AuditSupport.java",
+      "sha256": "4ac517797e3ee6e55fdc97aef98c50fc41cda89b445ef448a127a991dcecb46d"
+    },
+    {
+      "relativeName": "source/FeatureStateGate.java",
+      "sha256": "265879f093619a42e7f7b88ae6b2554757d822fc81c49c82fd0202feaa69238d"
+    },
+    {
+      "relativeName": "source/P1ElementsMinimalStep22.java",
+      "sha256": "9602647b15b6f91280f8f0b10327d249fe5dfc65c01d19333a0029c0436fbbb3"
+    },
+    {
+      "relativeName": "source/PreflightAudit.java",
+      "sha256": "5e47929c64e04c3a9712b95d92df9c38156123232eed16ed9bc7d1a65b2bd58b"
+    },
+    {
+      "relativeName": "source/ScopedBodyIdentity.java",
+      "sha256": "55efdb55b4f405c0753d6019f6bc32039e15a9cac97b8f8185a56fa9f9926d98"
+    },
+    {
+      "relativeName": "source/ScopedFaceIdentity.java",
+      "sha256": "96b7183bd848e61e382156cde3046d3f5be4f047c86d04876310858d0b1ec457"
+    },
+    {
+      "relativeName": "source/Step22Control.java",
+      "sha256": "86e552e1d998c2b2eb66a597803ec8bb632f7aac123d89161ec5bcce53836bed"
+    }
+  ],
+  "classes": [
+    {
+      "relativeName": "classes/p1/controlled/step22/AuditSupport.class",
+      "sha256": "bf4b257011d8b0b5cf6080819699edb84537cf47a9740a370ac1ec14df81df78",
+      "bytes": 4880
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/FeatureStateGate.class",
+      "sha256": "6936ff97cf6a3572ea2837b6abc9660cd4bb184508cff57e8ddb19a33349d0c1",
+      "bytes": 1122
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/P1ElementsMinimalStep22$BodyIdentityFailure.class",
+      "sha256": "42fa58b38969656e8d18b1143dd8d394b9e24312d4930c116ac221fecb1b92fd",
+      "bytes": 1363
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/P1ElementsMinimalStep22$FaceIdentityFailure.class",
+      "sha256": "83023a7c7c9b0c02933d3973a3b0fa22e597e490598bb464a6e6742cf67dd0c7",
+      "bytes": 1363
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/P1ElementsMinimalStep22$Listener.class",
+      "sha256": "3a326ed63a8dbad5c14b7e5ff69cb269e588985fcfe440318a458ba114aa59d8",
+      "bytes": 5677
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/P1ElementsMinimalStep22$Snapshot.class",
+      "sha256": "9359f7dedf3f3ee06bc88309d8e5ecfee76a5108deff1d6ddd94be0a4ca0c8e5",
+      "bytes": 1038
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/P1ElementsMinimalStep22.class",
+      "sha256": "a01b505f4e85042762a29bb63d4fd963b30b7543c6e8d389788bed3723013d49",
+      "bytes": 44804
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/PreflightAudit$Call.class",
+      "sha256": "3f3a1b21ba4c71baa1525c98f8464a0d6d5e2ce508edadd5e6c1befb83b71681",
+      "bytes": 471
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/PreflightAudit$ProbeFailure.class",
+      "sha256": "b3c2edf4c387da03d4d250d952700ef3a48832d9fd63c215a00528747693c045",
+      "bytes": 1135
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/PreflightAudit.class",
+      "sha256": "0114951a382807a325dcb154e630e50e4186028bd7f2bfd0ff57f9651b34660c",
+      "bytes": 3639
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/ScopedBodyIdentity$Code.class",
+      "sha256": "9160e087874774250633629542c40d9736cb59c44322a5c4e70874e90e60724d",
+      "bytes": 1523
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/ScopedBodyIdentity.class",
+      "sha256": "2a7df67af660d7b6f55604938b043347832b06a0b2e59ac0ee75a361bd1bf379",
+      "bytes": 1130
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/ScopedFaceIdentity$Code.class",
+      "sha256": "d0e17777a0b4fa4604ce390d647394b63cb24ea039364a468c1f936ebc7932cc",
+      "bytes": 1674
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/ScopedFaceIdentity.class",
+      "sha256": "14e3edc67d5c968dfa42feefd88197b987fc29b0183546d179d8c83abd5df43b",
+      "bytes": 1278
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/Step22Control$State.class",
+      "sha256": "2f0ef1b105ddf8d9cda4a734ed3591e10dcd9b1de498adf126464de388f075f1",
+      "bytes": 1337
+    },
+    {
+      "relativeName": "classes/p1/controlled/step22/Step22Control.class",
+      "sha256": "f6add3f3c2673c185684b70b731de3540164366461a06d5be8752c0b8f7bd020",
+      "bytes": 6256
+    }
+  ],
+  "jar": {
+    "relativeName": "lib/p1-elements-minimal-step22.jar",
+    "sha256": "9641da44ba08619fa374981eb5f90eaa14e018592d251868f4a9618e5f0ccc10",
+    "classBytesMatchLooseFiles": true,
+    "sdkBundled": false
+  },
+  "sdk": {
+    "fileName": "otk.jar",
+    "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "java25RuntimeRequired": true,
+    "redistributed": false,
+    "pfcasyncUsed": false
+  },
+  "validation": {
+    "realSdkCompilation": true,
+    "sdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "classCount": 16,
+    "classMajor": 61,
+    "sdkRuntimeMajor": 69,
+    "java25RuntimeRequired": true,
+    "repeatCompileIdentical": true,
+    "jarClassBytesMatchLooseFiles": true,
+    "classes": {
+      "p1/controlled/step22/AuditSupport.class": "bf4b257011d8b0b5cf6080819699edb84537cf47a9740a370ac1ec14df81df78",
+      "p1/controlled/step22/FeatureStateGate.class": "6936ff97cf6a3572ea2837b6abc9660cd4bb184508cff57e8ddb19a33349d0c1",
+      "p1/controlled/step22/P1ElementsMinimalStep22$BodyIdentityFailure.class": "42fa58b38969656e8d18b1143dd8d394b9e24312d4930c116ac221fecb1b92fd",
+      "p1/controlled/step22/P1ElementsMinimalStep22$FaceIdentityFailure.class": "83023a7c7c9b0c02933d3973a3b0fa22e597e490598bb464a6e6742cf67dd0c7",
+      "p1/controlled/step22/P1ElementsMinimalStep22$Listener.class": "3a326ed63a8dbad5c14b7e5ff69cb269e588985fcfe440318a458ba114aa59d8",
+      "p1/controlled/step22/P1ElementsMinimalStep22$Snapshot.class": "9359f7dedf3f3ee06bc88309d8e5ecfee76a5108deff1d6ddd94be0a4ca0c8e5",
+      "p1/controlled/step22/P1ElementsMinimalStep22.class": "a01b505f4e85042762a29bb63d4fd963b30b7543c6e8d389788bed3723013d49",
+      "p1/controlled/step22/PreflightAudit$Call.class": "3f3a1b21ba4c71baa1525c98f8464a0d6d5e2ce508edadd5e6c1befb83b71681",
+      "p1/controlled/step22/PreflightAudit$ProbeFailure.class": "b3c2edf4c387da03d4d250d952700ef3a48832d9fd63c215a00528747693c045",
+      "p1/controlled/step22/PreflightAudit.class": "0114951a382807a325dcb154e630e50e4186028bd7f2bfd0ff57f9651b34660c",
+      "p1/controlled/step22/ScopedBodyIdentity$Code.class": "9160e087874774250633629542c40d9736cb59c44322a5c4e70874e90e60724d",
+      "p1/controlled/step22/ScopedBodyIdentity.class": "2a7df67af660d7b6f55604938b043347832b06a0b2e59ac0ee75a361bd1bf379",
+      "p1/controlled/step22/ScopedFaceIdentity$Code.class": "d0e17777a0b4fa4604ce390d647394b63cb24ea039364a468c1f936ebc7932cc",
+      "p1/controlled/step22/ScopedFaceIdentity.class": "14e3edc67d5c968dfa42feefd88197b987fc29b0183546d179d8c83abd5df43b",
+      "p1/controlled/step22/Step22Control$State.class": "2f0ef1b105ddf8d9cda4a734ed3591e10dcd9b1de498adf126464de388f075f1",
+      "p1/controlled/step22/Step22Control.class": "f6add3f3c2673c185684b70b731de3540164366461a06d5be8752c0b8f7bd020"
+    },
+    "pureTraceControlAssertions": 30,
+    "pureBodyAssertions": 21,
+    "pureFaceAssertions": 25,
+    "pureFeatureStateAssertions": 20,
+    "pureElementDiagnosticAssertions": 13,
+    "defaultBodyAndFaceRuleSourcesFrozen": true,
+    "newSdkReferencesComparedWithStep21": [],
+    "createRegenerateSaveAndWfcStatusFlagReferencesAbsent": true,
+    "oldStep16Through21LockAccessAbsent": true,
+    "callStartForcedBeforeAction": true,
+    "failedStartAuditDoesNotExecuteActionTested": true,
+    "perFeatureIdAndPfcStatusBoundaries": true,
+    "wfcStatusFlagPathRemoved": true,
+    "fiveFailureFlagsChecked": false,
+    "statusGateSource": "PFC_FEATURE_STATUS_ONLY_WFC_STATUS_FLAG_DISABLED_DUE_TO_HANG",
+    "featureIdIndexInStartDoneAndException": true,
+    "wholeSolidFlagsCallAbsent": true,
+    "twoDefaultNoConfirmationsExplicitThicknessBeforeFinal": true,
+    "strictExactlyFiveActiveFeaturesBeforePreparation": true,
+    "minimalElementsCreateAndRootCreateAppendSeparateBoundaries": true,
+    "rootNullValueNoSdkFactory": true,
+    "onlyOneRootAppended": true,
+    "sessionCreateElementTreeReferenceAbsent": true,
+    "thicknessRecordedButNotAppliedToElement": true,
+    "elementIdLevelIndexInContext": true,
+    "modelCreationAndRegenerationPathsRemoved": true,
+    "endsImmediatelyAfterRootAppend": true,
+    "nativeCallOrPluginExecuted": false,
+    "rootCauseLocated": "NOT_EXECUTED_UNKNOWN",
+    "sdkOrModelMocksUsed": false
+  },
+  "minimalProbe": {
+    "bodyAndFaceSelectionsBeforeElementsCreate": true,
+    "elementsCreateSites": 1,
+    "elementsCreateDoneHasNoNativeGetters": true,
+    "rootElementIdName": "PRO_E_FEATURE_TREE",
+    "rootValue": null,
+    "rootLevel": 0,
+    "rootElementCreateSites": 1,
+    "rootAppendSites": 1,
+    "rootValueFactoryInvoked": false,
+    "nonRootElementsAppended": false,
+    "sessionCreateElementTreeCalled": false,
+    "thicknessRecordedOnlyNotAppliedToElement": true,
+    "automaticAlternativeConstruction": false,
+    "endsImmediatelyAfterRootAppend": true
+  },
+  "preflight": {
+    "expectedFeatureCount": 5,
+    "allFeaturesMustBeActive": true,
+    "initialDirtyMustBeFalse": true,
+    "bodyFaceVersionAndContextRulesFrozenFromStep21": true,
+    "fiveFailureFlagsChecked": false,
+    "fullFailureFlagCoverage": false
+  },
+  "control": {
+    "ledgerDirectoryUnderUserHome": "CreoElementsMinimalStep22",
+    "ledgerFile": "step22-200002100-once.jsonl",
+    "oldLocksAccessedDeletedModified": false,
+    "manualOneClickOnly": true,
+    "automaticRetryOrRearm": false,
+    "twoDefaultNoConfirmationsForMinimalProbeOnly": true,
+    "explicitPositiveFiniteThicknessRecordedOnly": true,
+    "modelCreationRegenerationSavePaths": false,
+    "automaticStep20Or21Restore": false,
+    "successOutcome": "MINIMAL_ROOT_APPENDED_NO_MODEL_WRITE_NO_SAVE"
+  },
+  "runtime": {
+    "deployed": false,
+    "registered": false,
+    "creoOrPluginExecuted": false,
+    "elementsCreateRootCreateAppend": "NOT_EXECUTED_UNKNOWN",
+    "exactStallLocated": "NOT_EXECUTED_UNKNOWN",
+    "previousHangCertifiedIntermittent": false,
+    "modelConversionPerformed": false,
+    "modelSaved": false
+  }
+}

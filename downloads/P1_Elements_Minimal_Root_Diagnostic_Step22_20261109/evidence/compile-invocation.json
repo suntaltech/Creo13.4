@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "/workspace/r8-next-binary/toolchain/jdk-25.0.5.0.3/bin/javac",
+    "--release",
+    "17",
+    "-encoding",
+    "UTF-8",
+    "-proc:none",
+    "-Xlint:all",
+    "-classpath",
+    "/workspace/r8-next-binary/sdk-input/creo134-jlink-sdk-jars-20261105/otk.jar",
+    "-d",
+    "/workspace/elements-minimal-step22/candidate/classes",
+    "/workspace/elements-minimal-step22/candidate/source/AuditSupport.java",
+    "/workspace/elements-minimal-step22/candidate/source/FeatureStateGate.java",
+    "/workspace/elements-minimal-step22/candidate/source/P1ElementsMinimalStep22.java",
+    "/workspace/elements-minimal-step22/candidate/source/PreflightAudit.java",
+    "/workspace/elements-minimal-step22/candidate/source/ScopedBodyIdentity.java",
+    "/workspace/elements-minimal-step22/candidate/source/ScopedFaceIdentity.java",
+    "/workspace/elements-minimal-step22/candidate/source/Step22Control.java"
+  ],
+  "exitCode": 0,
+  "stderrEmpty": true,
+  "realSdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+  "pfcasyncExcluded": true
+}

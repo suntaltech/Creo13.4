@@ -1,0 +1,20 @@
+P1_S22_LABEL
+Read-Only Elements Minimal Diagnostic Step 22
+
+P1_S22_HELP
+One Elements.create, one null-valued root element and one append; then stop. Forced START/DONE audit.
+
+P1_S22_DESC
+No other elements, session tree creation, model feature creation, regeneration, save or retry.
+
+P1_S22_THICKNESS
+Enter explicit positive finite TEST thickness for logging only; it is NOT applied to the root element. Final read-only confirmation follows. No model write or save.
+
+P1_S22_FAILED
+Step22 minimal diagnostic blocked or failed. Preserve audit and stderr; no automatic retry, model creation, regeneration or save.
+
+P1_S22_ROOT_DONE
+Elements.create and one root append returned. Ends here. No other elements, session tree creation or model write. Prior hang cause remains unverified.
+
+P1_S22_CANCELLED
+Step22 cancelled. One-shot consumed. No model creation, regeneration or save.

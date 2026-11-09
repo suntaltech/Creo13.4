@@ -1,0 +1,32 @@
+Compiled from "pfcSelect.java"
+public class com.ptc.pfc.pfcSelect.pfcSelect {
+  public com.ptc.pfc.pfcSelect.pfcSelect();
+  public static com.ptc.pfc.pfcSelect.SelectionOptions SelectionOptions_Create(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSelect.SelectionPair SelectionPair_Create(com.ptc.pfc.pfcSelect.Selection, com.ptc.pfc.pfcSelect.Selection) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSelect.Selection CreateComponentSelection(com.ptc.pfc.pfcAssembly.ComponentPath) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSelect.Selection CreateModelSelection(com.ptc.pfc.pfcModel.Model) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSelect.Selection CreateModelItemSelection(com.ptc.pfc.pfcModelItem.ModelItem, com.ptc.pfc.pfcAssembly.ComponentPath) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSelect.Selection CreateSelectionFromString(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "Elements.java"
+public abstract class com.ptc.wfc.wfcElementTree.Elements extends com.ptc.cipjava.jxobject_i {
+  public int getarraysize() throws com.ptc.cipjava.jxthrowable;
+  public com.ptc.wfc.wfcElementTree.Element get(int) throws com.ptc.cipjava.jxthrowable;
+  public void set(int, com.ptc.wfc.wfcElementTree.Element) throws com.ptc.cipjava.jxthrowable;
+  public void removerange(int, int) throws com.ptc.cipjava.jxthrowable;
+  public void insert(int, com.ptc.wfc.wfcElementTree.Element) throws com.ptc.cipjava.jxthrowable;
+  public void append(com.ptc.wfc.wfcElementTree.Element) throws com.ptc.cipjava.jxthrowable;
+  public void insertseq(int, com.ptc.wfc.wfcElementTree.Elements) throws com.ptc.cipjava.jxthrowable;
+  public void clear() throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.wfc.wfcElementTree.Elements create() throws com.ptc.cipjava.jxthrowable;
+  protected com.ptc.wfc.wfcElementTree.Elements(long);
+}
+Compiled from "wfcElementTree.java"
+public class com.ptc.wfc.wfcElementTree.wfcElementTree {
+  public com.ptc.wfc.wfcElementTree.wfcElementTree();
+  public static com.ptc.wfc.wfcElementTree.ElemPathItem ElemPathItem_Create(com.ptc.wfc.wfcElementTree.ElemPathItemType, int) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.wfc.wfcElementTree.ElementPath ElementPath_Create(com.ptc.wfc.wfcElementTree.ElemPathItems) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.wfc.wfcElementTree.ElementDiagnostic ElementDiagnostic_Create() throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.wfc.wfcElementTree.SpecialValue SpecialValue_Create() throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.wfc.wfcElementTree.Element Element_Create(int, com.ptc.pfc.pfcArgument.ArgValue, int) throws com.ptc.cipjava.jxthrowable;
+}
