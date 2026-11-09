@@ -1,0 +1,122 @@
+Compiled from "pfcSelect.java"
+public class com.ptc.pfc.pfcSelect.pfcSelect {
+  public com.ptc.pfc.pfcSelect.pfcSelect();
+  public static com.ptc.pfc.pfcSelect.SelectionOptions SelectionOptions_Create(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSelect.SelectionPair SelectionPair_Create(com.ptc.pfc.pfcSelect.Selection, com.ptc.pfc.pfcSelect.Selection) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSelect.Selection CreateComponentSelection(com.ptc.pfc.pfcAssembly.ComponentPath) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSelect.Selection CreateModelSelection(com.ptc.pfc.pfcModel.Model) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSelect.Selection CreateModelItemSelection(com.ptc.pfc.pfcModelItem.ModelItem, com.ptc.pfc.pfcAssembly.ComponentPath) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSelect.Selection CreateSelectionFromString(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "pfcArgument.java"
+public class com.ptc.pfc.pfcArgument.pfcArgument {
+  public com.ptc.pfc.pfcArgument.pfcArgument();
+  public static com.ptc.pfc.pfcArgument.ArgValue CreateIntArgValue(int) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcArgument.ArgValue CreateDoubleArgValue(double) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcArgument.ArgValue CreateBoolArgValue(boolean) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcArgument.ArgValue CreateASCIIStringArgValue(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcArgument.ArgValue CreateStringArgValue(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcArgument.ArgValue CreateSelectionArgValue(com.ptc.pfc.pfcSelect.Selection) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcArgument.ArgValue CreateTransformArgValue(com.ptc.pfc.pfcBase.Transform3D) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcArgument.Argument Argument_Create(java.lang.String, com.ptc.pfc.pfcArgument.ArgValue) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcArgument.Argument FindArgumentByLabel(com.ptc.pfc.pfcArgument.Arguments, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "Elements.java"
+public abstract class com.ptc.wfc.wfcElementTree.Elements extends com.ptc.cipjava.jxobject_i {
+  public int getarraysize() throws com.ptc.cipjava.jxthrowable;
+  public com.ptc.wfc.wfcElementTree.Element get(int) throws com.ptc.cipjava.jxthrowable;
+  public void set(int, com.ptc.wfc.wfcElementTree.Element) throws com.ptc.cipjava.jxthrowable;
+  public void removerange(int, int) throws com.ptc.cipjava.jxthrowable;
+  public void insert(int, com.ptc.wfc.wfcElementTree.Element) throws com.ptc.cipjava.jxthrowable;
+  public void append(com.ptc.wfc.wfcElementTree.Element) throws com.ptc.cipjava.jxthrowable;
+  public void insertseq(int, com.ptc.wfc.wfcElementTree.Elements) throws com.ptc.cipjava.jxthrowable;
+  public void clear() throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.wfc.wfcElementTree.Elements create() throws com.ptc.cipjava.jxthrowable;
+  protected com.ptc.wfc.wfcElementTree.Elements(long);
+}
+Compiled from "wfcElementTree.java"
+public class com.ptc.wfc.wfcElementTree.wfcElementTree {
+  public com.ptc.wfc.wfcElementTree.wfcElementTree();
+  public static com.ptc.wfc.wfcElementTree.ElemPathItem ElemPathItem_Create(com.ptc.wfc.wfcElementTree.ElemPathItemType, int) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.wfc.wfcElementTree.ElementPath ElementPath_Create(com.ptc.wfc.wfcElementTree.ElemPathItems) throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.wfc.wfcElementTree.ElementDiagnostic ElementDiagnostic_Create() throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.wfc.wfcElementTree.SpecialValue SpecialValue_Create() throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.wfc.wfcElementTree.Element Element_Create(int, com.ptc.pfc.pfcArgument.ArgValue, int) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "WSession.java"
+public interface com.ptc.wfc.wfcSession.WSession extends com.ptc.wfc.wfcSession.WBaseSession,com.ptc.pfc.pfcSession.Session {
+  public abstract com.ptc.wfc.wfcSession.ElementWstringOption GetElemWstrOption() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetElemWstrOption(com.ptc.wfc.wfcSession.ElementWstringOption) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcSession.CreoType GetCreoType() throws com.ptc.cipjava.jxthrowable;
+  public abstract void RunAsCreoType(com.ptc.wfc.wfcSession.CreoType) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetGTolSymbolString(com.ptc.wfc.wfcGTol.GTolSymbol, com.ptc.wfc.wfcGTol.SymbolFont) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcElementTree.ElementTree CreateElementTreeFromXML(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcElementTree.ElementTree CreateElementTree(com.ptc.wfc.wfcElementTree.Elements) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model ImportAsModel(java.lang.String, com.ptc.pfc.pfcImport.NewModelImportType, com.ptc.pfc.pfcModel.ModelType, java.lang.String, com.ptc.wfc.wfcImport.ImportRepType, java.lang.String, com.ptc.pfc.pfcImport.LayerImportFilter) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcSection.Section GetActiveSection() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcSection.Section CreateSection2D() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetDisplayDateCode() throws com.ptc.cipjava.jxthrowable;
+  public abstract int GetReleaseNumericVersion() throws com.ptc.cipjava.jxthrowable;
+  public abstract void AddCollectionToSelectionBuffer(com.ptc.wfc.wfcCollection.Collection) throws com.ptc.cipjava.jxthrowable;
+  public abstract void RegisterExternalSelectionHighlight(com.ptc.wfc.wfcSelect.ExternalSelectionHighlight) throws com.ptc.cipjava.jxthrowable;
+  public abstract void ReleaseExternalSelectionHighlight(com.ptc.wfc.wfcSelect.ExternalSelectionHighlight) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcAssembly.Assembly RetrieveLightweightGraphicsSimpRep(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcAssembly.Assembly RetrieveDefaultEnvelopeSimprep(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcAssembly.Assembly RetrieveAssemblySimpRep(java.lang.String, com.ptc.wfc.wfcModel.MdlfileType, com.ptc.pfc.pfcSimpRep.SimpRepInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSolid.Solid RetrieveSimpRep(java.lang.String, com.ptc.wfc.wfcModel.MdlfileType, com.ptc.pfc.pfcSimpRep.SimpRepType, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract double GetDefaultTolerance(com.ptc.wfc.wfcSolid.ToleranceType, int) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model LoadModelRepresentation(java.lang.String, com.ptc.pfc.pfcModel.ModelType, java.lang.String, com.ptc.pfc.pfcSimpRep.SimpRepInstructions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcSolid.Solid GetSolid(java.lang.String, com.ptc.pfc.pfcModel.ModelType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcFeature.ImportfeatRedefSourceType GetImportFeatRedefSourceType(com.ptc.wfc.wfcFeature.ImportFeatRedefOperationType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcSession.LineStyleData GetLineStyleData(com.ptc.pfc.pfcBase.StdLineStyle) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcSession.IntfDataSourceType GetDataSourceType(com.ptc.pfc.pfcModel.IntfType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcDisplay.WWindow CreateAccessorywindowWithTree(java.lang.String, com.ptc.wfc.wfcModel.MdlfileType, java.lang.Boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcDisplay.WWindow CreateBarewindow(java.lang.String, com.ptc.wfc.wfcModel.MdlfileType) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsTextureFileEmbedded(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetTextureFilePath(java.lang.String, boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract void DisplayInformationWindow(java.lang.String, java.lang.Double, java.lang.Double, java.lang.Integer, java.lang.Integer) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcDrawing.Drawing OpenDrawingAsReadOnly(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean UIEditFile(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcSession.ParsedFileNameData ParseFileName(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String UIOpenFileType(com.ptc.wfc.wfcSession.FiletypeOpenOptions) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String UISaveFileType(com.ptc.wfc.wfcSession.FiletypeSaveOptions) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean IsOptionOrdered(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetResourcePath() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcModel.MdlfileDescriptor GetMdlfileDescriptor(com.ptc.pfc.pfcModel.ModelDescriptor) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcWindow.Window OpenSource(com.ptc.wfc.wfcModel.MdlfileDescriptor) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model RetrieveModelByFiletype(com.ptc.wfc.wfcModel.MdlfileDescriptor, com.ptc.pfc.pfcSession.RetrieveModelOptions) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcExternalObject.ExternalObjectClass CreateExternalClass(java.lang.String, int) throws com.ptc.cipjava.jxthrowable;
+  public abstract void AddNavigatorPaneLayout(java.lang.String, java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetNavigatorPaneDevice(com.ptc.pfc.pfcWindow.Window) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetNavigatorPaneComponent(java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetNavigatorPaneLayoutComponent(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModel.Model GetModelFromMdlfileDescriptor(com.ptc.wfc.wfcModel.MdlfileDescriptor) throws com.ptc.cipjava.jxthrowable;
+  public abstract void AddModelRetrievePreListener(com.ptc.wfc.wfcSession.BeforeModelRetrieveListener) throws com.ptc.cipjava.jxthrowable;
+  public abstract void AddBeforeModelRetrieveListener(com.ptc.wfc.wfcSession.BeforeModelRetrieveActionListener) throws com.ptc.cipjava.jxthrowable;
+  public abstract void AddModelSavePreAllListener(com.ptc.wfc.wfcSession.BeforeModelSaveAllListener) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcUDFCreate.UDFVariableParameters GetUDFDataDefaultVariableParameters(java.lang.String, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcClient.Status ReleaseVisitor(com.ptc.wfc.wfcClient.VisitingClient) throws com.ptc.cipjava.jxthrowable;
+  public abstract void AutoPropagate() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetApplicationPath() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetApplicationTextPath() throws com.ptc.cipjava.jxthrowable;
+  public abstract void ExecuteMacro() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetKnownDirectory(com.ptc.wfc.wfcSession.KnownDirectoryType) throws com.ptc.cipjava.jxthrowable;
+  public abstract void AddBrowserMessageListener(java.lang.String, com.ptc.wfc.wfcSession.BrowserMessageListener) throws com.ptc.cipjava.jxthrowable;
+  public abstract void DeleteBrowserMessageListener(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIncompleteSurfaceTessellationAllowed() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetIncompleteSurfaceTessellationAllowed(boolean) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcAssembly.Assembly RetrieveAutomaticSimpRep(java.lang.String, com.ptc.wfc.wfcModel.MdlfileType, java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void StartKinDrag() throws com.ptc.cipjava.jxthrowable;
+  public abstract void StopKinDrag() throws com.ptc.cipjava.jxthrowable;
+  public abstract void MoveKinDrag(com.ptc.pfc.pfcSelect.Selection, com.ptc.pfc.pfcBase.Point2Ds) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcSession.SnapshotTransformations GetKinSnapshotTransformations(java.lang.String, com.ptc.pfc.pfcAssembly.ComponentPath) throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetKinDragEnvironment(com.ptc.wfc.wfcSession.KinDragType, java.lang.String, com.ptc.pfc.pfcAssembly.ComponentPath, com.ptc.pfc.pfcSelect.Selection) throws com.ptc.cipjava.jxthrowable;
+  public abstract void CreateSnapshot(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void DeleteSnapshot(java.lang.String, com.ptc.pfc.pfcAssembly.ComponentPath) throws com.ptc.cipjava.jxthrowable;
+  public abstract void UpdateSnapshot(java.lang.String) throws com.ptc.cipjava.jxthrowable;
+  public abstract void MoveKinDragForModel(com.ptc.pfc.pfcSelect.Selection, com.ptc.pfc.pfcBase.Point3Ds, com.ptc.pfc.pfcBase.Matrix3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract void UpdateCreoNotificationMgr() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean CheckCreoNotificationMgrModelEvent(com.ptc.pfc.pfcModel.Model, com.ptc.wfc.wfcSession.CreoNotificationMgrEvent) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcSession.CreoNotificationMgrEvents GetCreoNotificationMgrModelEvents(com.ptc.pfc.pfcModel.Model) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.wfc.wfcSession.ModelReportedEventsSeq GetCreoNotificationMgrAllEvents() throws com.ptc.cipjava.jxthrowable;
+}

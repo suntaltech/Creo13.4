@@ -1,0 +1,20 @@
+P1_S21_LABEL
+Read-Only Element Tree Diagnostic Step 21
+
+P1_S21_HELP
+Locate each selection, argument, element creation, append and in-memory tree call with forced START/DONE audit
+
+P1_S21_DESC
+No model feature creation, regeneration, save or retry. WFC status flags disabled; one diagnostic click only
+
+P1_S21_THICKNESS
+Enter explicit positive finite TEST thickness in mm for in-memory tree preparation only. Final read-only confirmation follows. No model creation, regeneration or save.
+
+P1_S21_FAILED
+Step21 element tree diagnostic blocked or failed. No model create, regeneration or save call. Preserve audit and stderr; do not repeat.
+
+P1_S21_PREPARED
+Step21 in-memory tree preparation returned; diagnostic ends here. No model create, regeneration or save. Does not prove the prior hang was intermittent.
+
+P1_S21_CANCELLED
+Step21 diagnostic cancelled. One-shot consumed. No model creation, regeneration or save.
