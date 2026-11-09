@@ -1,0 +1,17 @@
+{
+  "artifactType": "CPP_SDK_INVENTORY_REVIEW_TARGETED_OFFLINE_INPUT_SELECTION",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "inputArchiveSha256": "876566ef3f82fda97b7e738eb86d553d51a751b900510ac02dcd3e1d048b2021",
+  "criticalHeadersObserved": 13,
+  "libraryCandidatesObserved": 8,
+  "platformDocsLocatedButContentsNotRead": true,
+  "scanComplete": false,
+  "sdkFilesAbsentProven": false,
+  "compilerLibraryAbiLicenseCertified": false,
+  "targetReady": false,
+  "newCodeOrDllGenerated": false,
+  "creoOrCompilerExecuted": false,
+  "siteConfigurationOrLocksChanged": false,
+  "sdkOrLibraryContentsRedistributed": false
+}

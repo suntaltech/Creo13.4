@@ -1,0 +1,157 @@
+{
+  "criticalHeaders": [
+    {
+      "relativeName": "includes/ProToolkit.h",
+      "bytes": 2636,
+      "stableDuringRead": true,
+      "sha256": "2f34bc4ac991a9525bd52410dc5effb1a3e86dc03afaa32206f47a56e5b6f8dc",
+      "kind": "HEADER"
+    },
+    {
+      "relativeName": "includes/ProMdl.h",
+      "bytes": 105989,
+      "stableDuringRead": true,
+      "sha256": "6361f48d087533974062f02685e6675600c6b98582873a805eb1ebcac4ac946e",
+      "kind": "HEADER"
+    },
+    {
+      "relativeName": "includes/ProSolid.h",
+      "bytes": 73073,
+      "stableDuringRead": true,
+      "sha256": "1c77729c8cef7b18583d594a3317765f5f1413b0c52283723ba23d0e5bffe569",
+      "kind": "HEADER"
+    },
+    {
+      "relativeName": "includes/ProSolidBody.h",
+      "bytes": 7918,
+      "stableDuringRead": true,
+      "sha256": "38b54ed4b7e9008b1d00644fa5295d9afd3f04060d36d87b6a7c551d875e0652",
+      "kind": "HEADER"
+    },
+    {
+      "relativeName": "includes/ProModelitem.h",
+      "bytes": 9704,
+      "stableDuringRead": true,
+      "sha256": "b734752efa85332ab379fe6a897962b7a6209b6fee6a11871482c2687740f3d2",
+      "kind": "HEADER"
+    },
+    {
+      "relativeName": "includes/ProSelection.h",
+      "bytes": 27541,
+      "stableDuringRead": true,
+      "sha256": "57c1bfd7fd4722edab8a8248ac25d32675aa8ab078251e9bec9f4f88bcf1bd2e",
+      "kind": "HEADER"
+    },
+    {
+      "relativeName": "includes/ProSurface.h",
+      "bytes": 41207,
+      "stableDuringRead": true,
+      "sha256": "3b17c0fa50732c93e0582b69134055ece6a78069a31ff6966983582b074a0b90",
+      "kind": "HEADER"
+    },
+    {
+      "relativeName": "includes/ProFeature.h",
+      "bytes": 121589,
+      "stableDuringRead": true,
+      "sha256": "652c6d46c67c1faa1b12a060a7497d23289bc46cde69e914e1a93c5c0b363fcf",
+      "kind": "HEADER"
+    },
+    {
+      "relativeName": "includes/ProElement.h",
+      "bytes": 93855,
+      "stableDuringRead": true,
+      "sha256": "44e63a4707abe31daa725ca4d437f1ce8ce169d6d7f97e5e972189290f8c27a4",
+      "kind": "HEADER"
+    },
+    {
+      "relativeName": "includes/ProElemId.h",
+      "bytes": 323929,
+      "stableDuringRead": true,
+      "sha256": "298efba448331f454c6257fddfc8dc2e7f6eb4359e8224b93e6abb75ddfc0622",
+      "kind": "HEADER"
+    },
+    {
+      "relativeName": "includes/ProValue.h",
+      "bytes": 10085,
+      "stableDuringRead": true,
+      "sha256": "e207df7354eebc72d723e4981927fc0895805bc1961bec0ebfe7e63e2d21753d",
+      "kind": "HEADER"
+    },
+    {
+      "relativeName": "includes/ProArray.h",
+      "bytes": 6710,
+      "stableDuringRead": true,
+      "sha256": "2ebc769267b88a1f40a3c4849ef217f59134e2fcc56176230f9089120a8ade03",
+      "kind": "HEADER"
+    },
+    {
+      "relativeName": "includes/ProSmtDrvSurf.h",
+      "bytes": 4371,
+      "stableDuringRead": true,
+      "sha256": "fae93ff1e65cb0c1cbda29d5aaea14671a289d6e81bb464d53140150cb12f651",
+      "kind": "HEADER"
+    }
+  ],
+  "libraryCandidates": [
+    {
+      "relativeName": "x86e_win64/obj/protk_dll_NU.lib",
+      "bytes": 66698112,
+      "stableDuringRead": true,
+      "sha256": "233ffa189951483beebbbd033962eb127f57a3fd899a4d57ed616c5140c2e7fb",
+      "kind": "LIBRARY_CANDIDATE_NOT_ARCHITECTURE_CERTIFIED"
+    },
+    {
+      "relativeName": "x86e_win64/obj/protk_dllmd_NU.lib",
+      "bytes": 77319316,
+      "stableDuringRead": true,
+      "sha256": "9fac8cae94df1d56f863233e449057f021fbf1c6b6a21b69a3e7a3d61d201ac2",
+      "kind": "LIBRARY_CANDIDATE_NOT_ARCHITECTURE_CERTIFIED"
+    },
+    {
+      "relativeName": "x86e_win64/obj/protkmd_NU.lib",
+      "bytes": 61889148,
+      "stableDuringRead": true,
+      "sha256": "c749d4d5eacaa41426b38dfa6ceb053568b5f85f3662bf10716a3c3f00114985",
+      "kind": "LIBRARY_CANDIDATE_NOT_ARCHITECTURE_CERTIFIED"
+    },
+    {
+      "relativeName": "x86e_win64/obj/protoolkit_NU.lib",
+      "bytes": 76498306,
+      "stableDuringRead": true,
+      "sha256": "a763941c097cd6bc98e8de50eda8364f0d84ce02a7e7a8b7e69d6abacee293fe",
+      "kind": "LIBRARY_CANDIDATE_NOT_ARCHITECTURE_CERTIFIED"
+    },
+    {
+      "relativeName": "x86e_win64/obj/pt_asynchronous.lib",
+      "bytes": 108753438,
+      "stableDuringRead": true,
+      "sha256": "fe05e20cf4149ff20dc4db6084f3be91d7c02628ea3e330fe1ae10934f939ee0",
+      "kind": "LIBRARY_CANDIDATE_NOT_ARCHITECTURE_CERTIFIED"
+    },
+    {
+      "relativeName": "x86e_win64/obj/ptasyncmd.lib",
+      "bytes": 109781434,
+      "stableDuringRead": true,
+      "sha256": "cd8285c03cd60573135a1e7655ac52ef570be68aa73fb5076a8b3dd5efb96c90",
+      "kind": "LIBRARY_CANDIDATE_NOT_ARCHITECTURE_CERTIFIED"
+    },
+    {
+      "relativeName": "x86e_win64/obj/ucore.lib",
+      "bytes": 1064736,
+      "stableDuringRead": true,
+      "sha256": "b7a9c5ac5cb5839661c2fab438a54ecce470530d723eca997155a396a7812624",
+      "kind": "LIBRARY_CANDIDATE_NOT_ARCHITECTURE_CERTIFIED"
+    },
+    {
+      "relativeName": "x86e_win64/obj/udata.lib",
+      "bytes": 1686,
+      "stableDuringRead": true,
+      "sha256": "024e8484d180b887490d79aeb51ad874a1ae809192d850909fefc47c93dc05ce",
+      "kind": "LIBRARY_CANDIDATE_NOT_ARCHITECTURE_CERTIFIED"
+    }
+  ],
+  "allSdkFilesAreMetadataNotOriginals": true,
+  "libraryImportStaticTypeCoffArchitectureOrExportsInspected": false,
+  "filenameNuOrMdSuffixCertifiesLicenseOrCrt": false,
+  "physicalSdkRootToCreo134InstallMapped": "UNKNOWN_ROOT_LABEL_ONLY"
+}

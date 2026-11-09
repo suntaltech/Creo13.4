@@ -1,0 +1,147 @@
+{
+  "purpose": "TARGETED_OFFLINE_TEXT_INPUTS_NOT_ANOTHER_GLOBAL_SCAN",
+  "rootMappingNeeded": "Confirm the operator selected the protoolkit subtree belonging to the observed Creo 13.4 installation; no private profile path required",
+  "firstSmallInput": [
+    {
+      "relativeName": "online_help/creo_toolkit/get_started/Platform_and_Compiler_Support.html",
+      "bytes": 5066,
+      "reportedSha256": "27226a525094ec1340648bf4ea73271b417f5708caa29137af95aacd7c4cb90a",
+      "priority": "FIRST",
+      "neededAs": "ORIGINAL_LOCAL_OFFICIAL_PAGE_TEXT_AND_ANY_REFERENCED_VERSION_SPECIFIC_PLATFORM_TABLE",
+      "contentsProvidedThisRound": false
+    },
+    {
+      "relativeName": "online_help/creo_toolkit/get_started/Makefiles.html",
+      "bytes": 5282,
+      "reportedSha256": "90fd24367afec9f18552de6b874a1b3216ad7bc20b5c0c3208e81d10dfa0a4d9",
+      "priority": "FIRST",
+      "neededAs": "ORIGINAL_LOCAL_OFFICIAL_PAGE_TEXT_AND_ANY_REFERENCED_VERSION_SPECIFIC_PLATFORM_TABLE",
+      "contentsProvidedThisRound": false
+    }
+  ],
+  "officialWindowsSampleMakefile": {
+    "status": "NO_ACTUAL_SAMPLE_MAKEFILE_RECORD_IN_CURRENT_BOUNDED_FILTERED_INVENTORY",
+    "needed": "Locate from Makefiles.html or a targeted listing of matching protk_appls example directory; provide its necessary text and relative path",
+    "absenceOfRecordProvesMissing": false
+  },
+  "readonlyHeaderGroup": [
+    {
+      "relativeName": "includes/ProToolkit.h",
+      "bytes": 2636,
+      "reportedSha256": "2f34bc4ac991a9525bd52410dc5effb1a3e86dc03afaa32206f47a56e5b6f8dc",
+      "priority": "AFTER_BUILD_DOCS",
+      "neededAs": "PUBLIC_DECLARATIONS_FOR_LIFECYCLE_AND_READONLY_MODEL_BODY_SELECTION_NO_EXECUTION",
+      "contentsProvidedThisRound": false
+    },
+    {
+      "relativeName": "includes/ProToolkitDll.h",
+      "bytes": 8942,
+      "reportedSha256": "3520e603f78bf33625ff9c8694b9ef3635e3d321124d07acc4bb016e71da7604",
+      "priority": "AFTER_BUILD_DOCS",
+      "neededAs": "PUBLIC_DECLARATIONS_FOR_LIFECYCLE_AND_READONLY_MODEL_BODY_SELECTION_NO_EXECUTION",
+      "contentsProvidedThisRound": false
+    },
+    {
+      "relativeName": "includes/ProMdl.h",
+      "bytes": 105989,
+      "reportedSha256": "6361f48d087533974062f02685e6675600c6b98582873a805eb1ebcac4ac946e",
+      "priority": "AFTER_BUILD_DOCS",
+      "neededAs": "PUBLIC_DECLARATIONS_FOR_LIFECYCLE_AND_READONLY_MODEL_BODY_SELECTION_NO_EXECUTION",
+      "contentsProvidedThisRound": false
+    },
+    {
+      "relativeName": "includes/ProSolid.h",
+      "bytes": 73073,
+      "reportedSha256": "1c77729c8cef7b18583d594a3317765f5f1413b0c52283723ba23d0e5bffe569",
+      "priority": "AFTER_BUILD_DOCS",
+      "neededAs": "PUBLIC_DECLARATIONS_FOR_LIFECYCLE_AND_READONLY_MODEL_BODY_SELECTION_NO_EXECUTION",
+      "contentsProvidedThisRound": false
+    },
+    {
+      "relativeName": "includes/ProSolidBody.h",
+      "bytes": 7918,
+      "reportedSha256": "38b54ed4b7e9008b1d00644fa5295d9afd3f04060d36d87b6a7c551d875e0652",
+      "priority": "AFTER_BUILD_DOCS",
+      "neededAs": "PUBLIC_DECLARATIONS_FOR_LIFECYCLE_AND_READONLY_MODEL_BODY_SELECTION_NO_EXECUTION",
+      "contentsProvidedThisRound": false
+    },
+    {
+      "relativeName": "includes/ProModelitem.h",
+      "bytes": 9704,
+      "reportedSha256": "b734752efa85332ab379fe6a897962b7a6209b6fee6a11871482c2687740f3d2",
+      "priority": "AFTER_BUILD_DOCS",
+      "neededAs": "PUBLIC_DECLARATIONS_FOR_LIFECYCLE_AND_READONLY_MODEL_BODY_SELECTION_NO_EXECUTION",
+      "contentsProvidedThisRound": false
+    },
+    {
+      "relativeName": "includes/ProSelection.h",
+      "bytes": 27541,
+      "reportedSha256": "57c1bfd7fd4722edab8a8248ac25d32675aa8ab078251e9bec9f4f88bcf1bd2e",
+      "priority": "AFTER_BUILD_DOCS",
+      "neededAs": "PUBLIC_DECLARATIONS_FOR_LIFECYCLE_AND_READONLY_MODEL_BODY_SELECTION_NO_EXECUTION",
+      "contentsProvidedThisRound": false
+    },
+    {
+      "relativeName": "includes/ProSelbuffer.h",
+      "bytes": 4685,
+      "reportedSha256": "673f1a21ec89968e3a3388d3d0a2317a649a96413fa717a0aa7017a8a316c57c",
+      "priority": "AFTER_BUILD_DOCS",
+      "neededAs": "PUBLIC_DECLARATIONS_FOR_LIFECYCLE_AND_READONLY_MODEL_BODY_SELECTION_NO_EXECUTION",
+      "contentsProvidedThisRound": false
+    },
+    {
+      "relativeName": "includes/ProSurface.h",
+      "bytes": 41207,
+      "reportedSha256": "3b17c0fa50732c93e0582b69134055ece6a78069a31ff6966983582b074a0b90",
+      "priority": "AFTER_BUILD_DOCS",
+      "neededAs": "PUBLIC_DECLARATIONS_FOR_LIFECYCLE_AND_READONLY_MODEL_BODY_SELECTION_NO_EXECUTION",
+      "contentsProvidedThisRound": false
+    }
+  ],
+  "treeHeaderGroupForLater": [
+    {
+      "relativeName": "includes/ProSmtDrvSurf.h",
+      "bytes": 4371,
+      "reportedSha256": "fae93ff1e65cb0c1cbda29d5aaea14671a289d6e81bb464d53140150cb12f651",
+      "priority": "LATER_OFFLINE_ONLY",
+      "neededAs": "DRIVING_TREE_SEMANTICS_AND_EXACT_SYMBOL_SIGNATURES_NOT_MODEL_WRITE_AUTHORIZATION",
+      "contentsProvidedThisRound": false
+    },
+    {
+      "relativeName": "includes/ProFeature.h",
+      "bytes": 121589,
+      "reportedSha256": "652c6d46c67c1faa1b12a060a7497d23289bc46cde69e914e1a93c5c0b363fcf",
+      "priority": "LATER_OFFLINE_ONLY",
+      "neededAs": "DRIVING_TREE_SEMANTICS_AND_EXACT_SYMBOL_SIGNATURES_NOT_MODEL_WRITE_AUTHORIZATION",
+      "contentsProvidedThisRound": false
+    },
+    {
+      "relativeName": "includes/ProElement.h",
+      "bytes": 93855,
+      "reportedSha256": "44e63a4707abe31daa725ca4d437f1ce8ce169d6d7f97e5e972189290f8c27a4",
+      "priority": "LATER_OFFLINE_ONLY",
+      "neededAs": "DRIVING_TREE_SEMANTICS_AND_EXACT_SYMBOL_SIGNATURES_NOT_MODEL_WRITE_AUTHORIZATION",
+      "contentsProvidedThisRound": false
+    },
+    {
+      "relativeName": "includes/ProFeatType.h",
+      "bytes": 17243,
+      "reportedSha256": "dfe692c85289693a0276b484f1b555f616ee7ba7bc3bf27814eabc02c45b5270",
+      "priority": "LATER_OFFLINE_ONLY",
+      "neededAs": "DRIVING_TREE_SEMANTICS_AND_EXACT_SYMBOL_SIGNATURES_NOT_MODEL_WRITE_AUTHORIZATION",
+      "contentsProvidedThisRound": false
+    },
+    {
+      "relativeName": "includes/ProElemId.h",
+      "bytes": 323929,
+      "reportedSha256": "298efba448331f454c6257fddfc8dc2e7f6eb4359e8224b93e6abb75ddfc0622",
+      "priority": "LATER_OFFLINE_ONLY",
+      "neededAs": "DRIVING_TREE_SEMANTICS_AND_EXACT_SYMBOL_SIGNATURES_NOT_MODEL_WRITE_AUTHORIZATION",
+      "contentsProvidedThisRound": false
+    }
+  ],
+  "doNotUploadLibraryDllExeOrJdkBinaries": true,
+  "doNotUploadAll505Headers": true,
+  "officialLicenseStatusSummaryStillNeeded": true,
+  "compileOrCreoRunRequiredNow": false
+}

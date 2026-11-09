@@ -1,0 +1,73 @@
+{
+  "artifactType": "STEP27_NATIVE_SDK_INVENTORY_EVIDENCE_REVIEW_NO_DLL",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "inputArchive": {
+    "fileName": "P1_CPP_SDK_Inventory_20261109T081225Z_e168d6c2.zip",
+    "sha256": "876566ef3f82fda97b7e738eb86d553d51a751b900510ac02dcd3e1d048b2021",
+    "zipIntegrityPassed": true,
+    "internalSnapshotChecksumMatched": true
+  },
+  "collectedShanghai": "2026-11-09T16:13:36.480203+08:00",
+  "scope": {
+    "rootLabel": "<PROTOOLKIT_ROOT>",
+    "absoluteRootNotStored": true,
+    "collectorScriptHashRecorded": false,
+    "scanLimited": true,
+    "entriesSeen": 20001,
+    "directoriesVisited": 152,
+    "issues": [],
+    "allSelectedFilesStableDuringRead": true,
+    "duplicateRelativeNames": 0
+  },
+  "observed": {
+    "metadataFiles": 521,
+    "headers": 505,
+    "libraryCandidates": 8,
+    "buildOrDocMetadata": 8,
+    "criticalHeaderCandidatesPresent": 13,
+    "criticalHeaderCandidatesCompared": 13,
+    "libraryNames": [
+      "x86e_win64/obj/protk_dll_NU.lib",
+      "x86e_win64/obj/protk_dllmd_NU.lib",
+      "x86e_win64/obj/protkmd_NU.lib",
+      "x86e_win64/obj/protoolkit_NU.lib",
+      "x86e_win64/obj/pt_asynchronous.lib",
+      "x86e_win64/obj/ptasyncmd.lib",
+      "x86e_win64/obj/ucore.lib",
+      "x86e_win64/obj/udata.lib"
+    ],
+    "platformAndCompilerSupportPageLocated": true,
+    "makefilesHelpPageLocated": true,
+    "actualSampleMakefileContentsProvided": false
+  },
+  "evidenceBoundary": {
+    "underlyingHeaderLibraryHashesIndependentlyRecomputedInCloud": false,
+    "rawHeadersOrLibraryBytesProvided": false,
+    "exactNativeApiSignaturesChecked": false,
+    "sdkVersionAndOfficialDistributionCertified": false,
+    "coffLibraryArchitectureChecked": false,
+    "microsoftCompilerVersionKnown": false,
+    "runtimeCrtLibraryVariantKnown": false,
+    "licenseUnlockSigningKnown": false
+  },
+  "updatedPrerequisiteDecision": {
+    "sdkFileAbsenceAsPurchaseReason": "NOT_SUPPORTED_BY_THIS_INVENTORY",
+    "sdkFilesAvailableForTargetedOfflineReview": true,
+    "buildToolchainAndSupportedAbiReady": false,
+    "targetImplementationReady": false,
+    "p1ModelWrites": "PAUSED",
+    "javaUiAndValidatedPfcReadonly": "RETAIN",
+    "javaWfcFactoryRoute": "STOPPED",
+    "next": "READ_TWO_LOCATED_OFFICIAL_HELP_PAGES_AND_THEIR_VERSION_SPECIFIC_REFERENCES_THEN_MATCH_WINDOWS_SAMPLE_MAKEFILE_AND_PUBLIC_HEADERS"
+  },
+  "actionsThisRound": {
+    "newCollectorScriptOrNativeCodeGenerated": false,
+    "headersOrLibrariesRedistributed": false,
+    "compiledOrLinked": false,
+    "dllCreated": false,
+    "creoStartedOrConfigured": false,
+    "oldLocksChanged": false,
+    "conversionCertified": false
+  }
+}
