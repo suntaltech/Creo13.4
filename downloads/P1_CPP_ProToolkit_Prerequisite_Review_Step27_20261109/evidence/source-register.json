@@ -1,0 +1,28 @@
+{
+  "task": {
+    "fileName": "P1_CPP前置评估第二十七步_任务单_20261109.md",
+    "sha256": "ce09d5ad30c7793de2d8186717e08f3ac9a7274ab693d571fd5ea6edaefdc208"
+  },
+  "observedWindowsSampleConfig": {
+    "path": "D:\\Program Files\\PTC\\Creo 13.4.0.0\\Common Files\\protoolkit\\protk_appls\\pt_userguide\\config.pro",
+    "snapshotSha256": "f71279135ae895fe15a17697c3766878d13a0d1c5b91cfd07c1d10d5a33191b1",
+    "proves": "Example subtree only, not complete SDK or entitlement"
+  },
+  "historicalSources": [
+    {
+      "fileName": "P1_R7_官方资料定位与未决问题索引_20261104.md",
+      "sha256": "0495c47d2377cdb4f7fa2ea346c0f4bbc3a830a39a56783eb9f92331218a751b",
+      "level": "USER_DOCUMENT_SUMMARY_OR_DERIVED_REVIEW_NOT_ORIGINAL_C_HEADERS"
+    },
+    {
+      "fileName": "review.json",
+      "sha256": "22db1d3bf5324b0109ca26b33217d9cde8d0b968df3da9cf62028a2043acbfc1",
+      "level": "USER_DOCUMENT_SUMMARY_OR_DERIVED_REVIEW_NOT_ORIGINAL_C_HEADERS"
+    }
+  ],
+  "windowsInstallScanKnownLimited": true,
+  "originalCppHeadersLibrariesOrOfficialToolsetMatrixProvided": false,
+  "currentRoundOnlineResearch": false,
+  "currentRoundCppSdkCompileOrLink": false,
+  "windowsSiteOrCreoExecuted": false
+}

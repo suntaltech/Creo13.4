@@ -1,0 +1,13 @@
+{
+  "host": "PowerShell 7.4.6 Linux x64",
+  "parseAndEndToEndFixtureZipPassed": true,
+  "inputsUnchanged": true,
+  "unicodeAndSpacesPaths": true,
+  "linkTraversalSkipped": true,
+  "modelAndSdkContentsNotCopied": true,
+  "outputRootOverlapRejected": true,
+  "presenceDoesNotSetTargetReady": true,
+  "actualWindowsSiteExecuted": false,
+  "actualProToolkitSdkUsedOrCompiled": false,
+  "testDataAreFileIoFixturesNotHeadersOrSdkStubs": true
+}

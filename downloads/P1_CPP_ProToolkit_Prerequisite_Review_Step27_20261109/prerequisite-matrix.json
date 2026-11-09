@@ -1,0 +1,87 @@
+{
+  "decision": "CONDITIONAL_CPP_PREASSESSMENT_NOT_READY_PAUSE_P1_MODEL_WRITES",
+  "requirements": [
+    {
+      "id": "SDK_INSTALLATION",
+      "need": "Matching Creo 13.4 x64 Pro/TOOLKIT includes, dependent headers and native libraries",
+      "status": "UNKNOWN_NOT_IN_INPUT",
+      "knownFact": "Only protoolkit/protk_appls/pt_userguide/config.pro was observed",
+      "purchaseOrReinstallJustifiedByCurrentEvidence": false
+    },
+    {
+      "id": "BASE_HEADERS",
+      "need": [
+        "ProToolkit.h",
+        "ProMdl.h",
+        "ProSolid.h",
+        "ProModelitem.h",
+        "ProSelection.h",
+        "ProSurface.h",
+        "ProFeature.h",
+        "ProElement.h",
+        "ProElemId.h",
+        "ProValue.h",
+        "ProArray.h"
+      ],
+      "status": "CANDIDATE_NAMES_NOT_CURRENT_VERSION_VERIFIED",
+      "versionDependentBodyAndSmtHeaders": [
+        "ProSolidBody.h",
+        "ProSmtDrvSurf.h"
+      ],
+      "missingOneCandidateIsNotProofWholeSdkMissing": true
+    },
+    {
+      "id": "IMPORT_LIBRARIES",
+      "need": "Official Windows x64 import library variant and dependencies from this release makefile",
+      "searchNamePattern": "protk_dll*.lib",
+      "exactNameAndVariant": "UNKNOWN",
+      "examplesNotConfirmedInstalled": [
+        "protk_dll.lib",
+        "protk_dll_NU.lib"
+      ],
+      "archiveArchitectureAndExports": "NOT_INSPECTED"
+    },
+    {
+      "id": "COMPILER",
+      "need": "PTC-supported MSVC/Visual Studio toolset and Windows SDK for exact Creo maintenance version",
+      "specificVersion": "UNKNOWN_NO_OFFICIAL_SUPPORT_MATRIX",
+      "usingLinuxGccOrMinGWAsCertifiedSubstitute": false
+    },
+    {
+      "id": "ABI",
+      "need": [
+        "Windows x64 LLP64",
+        "Exact public C declarations/exported entry and callback prototypes",
+        "Compiler/toolset/CRT/library variant match",
+        "SDK allocation ownership and character/packing macros"
+      ],
+      "status": "NOT_VERIFIED"
+    },
+    {
+      "id": "LICENSE",
+      "need": "Legitimate Pro/TOOLKIT development/runtime/distribution conditions plus applicable unlocking/signing requirements",
+      "status": "UNKNOWN",
+      "javaOtkEntitlementAutomaticallyCoversCpp": false,
+      "exactLicenseFeatureCodeInvented": false
+    },
+    {
+      "id": "REGISTRATION",
+      "need": "Version-matched official native module registration and lifecycle example",
+      "commonMechanism": "Registry file often named protk.dat, synchronous DLL startup semantics",
+      "exactFieldsAndLoadOrder": "NOT_CERTIFIED",
+      "newDatGenerated": false
+    },
+    {
+      "id": "FEATURE_TREE",
+      "need": "Original driver-surface tree documentation and headers/official example, validated body/reference/units/material-side semantics",
+      "status": "HISTORICAL_SUMMARY_ONLY_NO_CPP_IMPLEMENTATION_READY"
+    },
+    {
+      "id": "FIRST_FUTURE_VALIDATION",
+      "need": "Public lifecycle plus read-only controlled model/body/face identity, no element tree or model writes",
+      "status": "DESIGN_ONLY_NO_DLL"
+    }
+  ],
+  "localWindowsSdkReady": false,
+  "absenceOfCollectedHeadersIsNotSdkNotInstalledProof": true
+}

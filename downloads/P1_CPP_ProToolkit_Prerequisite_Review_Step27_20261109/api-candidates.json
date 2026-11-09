@@ -1,0 +1,85 @@
+{
+  "scope": "C_API_PROTOOLKIT_COMPILED_IN_CPP_NOT_AUTOMATICALLY_OBJECT_TOOLKIT_CPP",
+  "allSymbolsAreCandidatesUntilCreo134HeadersAndDocsChecked": true,
+  "prototypeOrStubGenerated": false,
+  "pipeline": [
+    {
+      "phase": "MODEL",
+      "candidateSymbols": [
+        "ProMdlCurrentGet",
+        "ProMdlTypeGet",
+        "ProMdlNameGet"
+      ],
+      "requiredChecks": [
+        "part type",
+        "stable scope",
+        "units and version context"
+      ]
+    },
+    {
+      "phase": "BODY",
+      "candidateSymbols": [
+        "ProSolidDefaultBodyGet"
+      ],
+      "status": "MULTIBODY_NAMES_AND_PROTOTYPES_UNVERIFIED",
+      "requiredChecks": [
+        "single default body",
+        "current model membership",
+        "stable body identity",
+        "sheetmetal state"
+      ]
+    },
+    {
+      "phase": "FACE",
+      "candidateSymbols": [
+        "ProSelect",
+        "ProSelectionModelitemGet",
+        "ProSelectionAlloc"
+      ],
+      "requiredChecks": [
+        "one surface",
+        "current model/body scope",
+        "original selection preserved",
+        "no Java internal pointer transfer"
+      ]
+    },
+    {
+      "phase": "TREE",
+      "candidateSymbols": [
+        "ProElementAlloc",
+        "ProElemtreeElementAdd",
+        "ProElementIntegerSet",
+        "ProElementDoubleSet"
+      ],
+      "status": "VALUE_AND_REFERENCE_SETTING_MUST_FOLLOW_ACTUAL_HEADER",
+      "useJavaEnumIntegerConstants": false
+    },
+    {
+      "phase": "CREATE",
+      "candidateSymbols": [
+        "ProFeatureWithoptionsCreate"
+      ],
+      "status": "NO_CREATION_THIS_ROUND_NO_GUESSED_OPTIONS_OR_PROTOTYPE"
+    },
+    {
+      "phase": "REGENERATE",
+      "candidateSymbols": [
+        "ProSolidRegenerate"
+      ],
+      "status": "FUTURE_AT_MOST_ONE_EXPLICIT_CALL_IF_AUTHORIZED"
+    },
+    {
+      "phase": "READBACK_AND_RELEASE",
+      "candidateSymbols": [
+        "ProFeatureTypeGet",
+        "ProFeatureStatusGet",
+        "ProElementFree",
+        "ProSelectionFree",
+        "ProArrayFree"
+      ],
+      "status": "EXACT_REQUIRED_FUNCTIONS_AND_OWNERSHIP_UNVERIFIED"
+    }
+  ],
+  "firstFutureValidation": "LIFECYCLE_AND_READONLY_IDENTITY_ONLY_NO_TREE_CREATE_REGEN_SAVE",
+  "currentImplementationOrConversionCertified": false
+}
