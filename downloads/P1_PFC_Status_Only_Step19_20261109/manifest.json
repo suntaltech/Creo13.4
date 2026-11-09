@@ -1,0 +1,232 @@
+{
+  "artifactType": "STEP19_PFC_STATUS_ONLY_REDUCED_READONLY_DIAGNOSTIC_CANDIDATE",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "taskInput": {
+    "fileName": "P1_状态门降级第十九步_任务单_20261109.md",
+    "sha256": "5f4bc45e7790ef5ef57fd8e994b5316fb1426d45040f2eaee4cbe5a338aeb27d"
+  },
+  "applicationClass": "p1.controlled.step19.P1PreflightDiagnosticStep19",
+  "commandId": "SISWPreflightStep19",
+  "datName": "p1s19",
+  "targetModel": "200002100.prt",
+  "sourceFiles": [
+    {
+      "relativeName": "source/AuditSupport.java",
+      "sha256": "92fa08b90ced2f938d18668dc34264e45f001d581a81e1b38b98bea4147dd78c"
+    },
+    {
+      "relativeName": "source/FeatureStateGate.java",
+      "sha256": "ea4d702261d1a0ed2880c880ea3650d73d2488a94838458e09d6d1f9a2d60477"
+    },
+    {
+      "relativeName": "source/P1PreflightDiagnosticStep19.java",
+      "sha256": "736cb1e07da2002b34583673d7679b919d5e62f663be284f36d017e3f938ca2a"
+    },
+    {
+      "relativeName": "source/PreflightAudit.java",
+      "sha256": "287622ececbb5bd7ff1c1b7605a08a3b8a3ea88f389bbe8076099f636c2594b9"
+    },
+    {
+      "relativeName": "source/ScopedBodyIdentity.java",
+      "sha256": "eab5a15316ad90590e38406cfbf95b19b2150e2b505085bbc07c040a64062b54"
+    },
+    {
+      "relativeName": "source/ScopedFaceIdentity.java",
+      "sha256": "e7f9a7727c0e6ac333ec92b673909fa66ff67061d70e657be1549307ae5a1977"
+    },
+    {
+      "relativeName": "source/Step19Control.java",
+      "sha256": "611219b23c9a2efd976b4109227bdcf584013259301cad37c273c0f1920b44c6"
+    }
+  ],
+  "classes": [
+    {
+      "relativeName": "classes/p1/controlled/step19/AuditSupport.class",
+      "sha256": "cd7488ca01d5e7e29665f6651e09c62556dbe6c2e57edf6a3dc1be99beaa4157",
+      "bytes": 4880
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/FeatureStateGate.class",
+      "sha256": "df59a333aa96c1bc76ac6d4361b55769a292c4d1eb0e9d393fe9ac37ee297968",
+      "bytes": 1241
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/P1PreflightDiagnosticStep19$BodyIdentityFailure.class",
+      "sha256": "14addfbef7a3fd33181f7a811096b1a1f08edbd1407433815f280338b7e5b9d6",
+      "bytes": 1375
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/P1PreflightDiagnosticStep19$FaceIdentityFailure.class",
+      "sha256": "aa1ca72050c7585ea12e1bb1d156b939fd9b3814e1b0a21f0c55c74778106be3",
+      "bytes": 1375
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/P1PreflightDiagnosticStep19$Listener.class",
+      "sha256": "0ec698db81ab49d20c3c67da5947ed1804954d6fdf71634cb00703c89197b522",
+      "bytes": 5692
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/P1PreflightDiagnosticStep19$Snapshot.class",
+      "sha256": "1e4cd94c79150042c54d1cde5a606d1a4ea0306e66fdcd8aa45f2daed75ce19b",
+      "bytes": 1050
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/P1PreflightDiagnosticStep19.class",
+      "sha256": "dc0111a448771734b2ab0e180a8cb7f8cde63b1156e3443b8c86da341394f0d0",
+      "bytes": 35989
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/PreflightAudit$Call.class",
+      "sha256": "ca04252e8d6fcdf50abc195eb92e18f3ea66b06a41cc15abb85008aebe5732bc",
+      "bytes": 471
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/PreflightAudit$ProbeFailure.class",
+      "sha256": "80c6150d3996fc306cfdb3ceda4a8220895219d296569decad368edd6304d757",
+      "bytes": 1135
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/PreflightAudit.class",
+      "sha256": "e62758f949aaf2fd85e09b2428e89250b01c846f0a39a117f730448c8391b7e5",
+      "bytes": 3639
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/ScopedBodyIdentity$Code.class",
+      "sha256": "ceb899f4bf8aeb08bb13ad97118eee49425f679dacfb461bf804f72c345435cf",
+      "bytes": 1523
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/ScopedBodyIdentity.class",
+      "sha256": "000ba52e0ce6379488f27dd80b7b87f557080c74e580fee156fd4b0e12c21f75",
+      "bytes": 1130
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/ScopedFaceIdentity$Code.class",
+      "sha256": "379456c2081d9e513fc6c93d9bb552d1a9a99a7487acce5f06b3db98ce83de30",
+      "bytes": 1674
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/ScopedFaceIdentity.class",
+      "sha256": "ae0ff81fbb3852faeae7a2dd927a888a063286e11760d0acb49e43efc757b297",
+      "bytes": 1278
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/Step19Control$State.class",
+      "sha256": "a162581080fa90c96149ade2a4dfa53696235f13e54e5eab7aa4c4395ab92ac9",
+      "bytes": 1280
+    },
+    {
+      "relativeName": "classes/p1/controlled/step19/Step19Control.class",
+      "sha256": "446caa5aea0ccec3306973ee3fc7feee3c59743459768a7d4121d5a5e3494060",
+      "bytes": 5871
+    }
+  ],
+  "jar": {
+    "relativeName": "lib/p1-preflight-diagnostic-step19.jar",
+    "sha256": "4a6766434a930b850d460d75f4a4374b5514fb06c5c46b2cb9f94329db18f5ea",
+    "classBytesMatchLooseFiles": true,
+    "sdkBundled": false
+  },
+  "sdk": {
+    "fileName": "otk.jar",
+    "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "java25RuntimeRequired": true,
+    "redistributed": false,
+    "pfcasyncUsed": false
+  },
+  "validation": {
+    "realSdkCompilation": true,
+    "sdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "classCount": 16,
+    "classMajor": 61,
+    "sdkRuntimeMajor": 69,
+    "java25RuntimeRequired": true,
+    "repeatCompileIdentical": true,
+    "jarClassBytesMatchLooseFiles": true,
+    "classes": {
+      "p1/controlled/step19/AuditSupport.class": "cd7488ca01d5e7e29665f6651e09c62556dbe6c2e57edf6a3dc1be99beaa4157",
+      "p1/controlled/step19/FeatureStateGate.class": "df59a333aa96c1bc76ac6d4361b55769a292c4d1eb0e9d393fe9ac37ee297968",
+      "p1/controlled/step19/P1PreflightDiagnosticStep19$BodyIdentityFailure.class": "14addfbef7a3fd33181f7a811096b1a1f08edbd1407433815f280338b7e5b9d6",
+      "p1/controlled/step19/P1PreflightDiagnosticStep19$FaceIdentityFailure.class": "aa1ca72050c7585ea12e1bb1d156b939fd9b3814e1b0a21f0c55c74778106be3",
+      "p1/controlled/step19/P1PreflightDiagnosticStep19$Listener.class": "0ec698db81ab49d20c3c67da5947ed1804954d6fdf71634cb00703c89197b522",
+      "p1/controlled/step19/P1PreflightDiagnosticStep19$Snapshot.class": "1e4cd94c79150042c54d1cde5a606d1a4ea0306e66fdcd8aa45f2daed75ce19b",
+      "p1/controlled/step19/P1PreflightDiagnosticStep19.class": "dc0111a448771734b2ab0e180a8cb7f8cde63b1156e3443b8c86da341394f0d0",
+      "p1/controlled/step19/PreflightAudit$Call.class": "ca04252e8d6fcdf50abc195eb92e18f3ea66b06a41cc15abb85008aebe5732bc",
+      "p1/controlled/step19/PreflightAudit$ProbeFailure.class": "80c6150d3996fc306cfdb3ceda4a8220895219d296569decad368edd6304d757",
+      "p1/controlled/step19/PreflightAudit.class": "e62758f949aaf2fd85e09b2428e89250b01c846f0a39a117f730448c8391b7e5",
+      "p1/controlled/step19/ScopedBodyIdentity$Code.class": "ceb899f4bf8aeb08bb13ad97118eee49425f679dacfb461bf804f72c345435cf",
+      "p1/controlled/step19/ScopedBodyIdentity.class": "000ba52e0ce6379488f27dd80b7b87f557080c74e580fee156fd4b0e12c21f75",
+      "p1/controlled/step19/ScopedFaceIdentity$Code.class": "379456c2081d9e513fc6c93d9bb552d1a9a99a7487acce5f06b3db98ce83de30",
+      "p1/controlled/step19/ScopedFaceIdentity.class": "ae0ff81fbb3852faeae7a2dd927a888a063286e11760d0acb49e43efc757b297",
+      "p1/controlled/step19/Step19Control$State.class": "a162581080fa90c96149ade2a4dfa53696235f13e54e5eab7aa4c4395ab92ac9",
+      "p1/controlled/step19/Step19Control.class": "446caa5aea0ccec3306973ee3fc7feee3c59743459768a7d4121d5a5e3494060"
+    },
+    "pureTraceControlAssertions": 30,
+    "pureBodyAssertions": 21,
+    "pureFaceAssertions": 25,
+    "pureFeatureStateAssertions": 25,
+    "defaultBodyAndFaceRuleSourcesFrozen": true,
+    "addedSdkReadonlyStatusReferences": [],
+    "modelCreateRegenSaveReferencesAbsent": true,
+    "oldStep16And17And18LockAccessAbsent": true,
+    "callStartForcedBeforeAction": true,
+    "failedStartAuditDoesNotExecuteActionTested": true,
+    "perFeatureIdAndPfcStatusBoundaries": true,
+    "wfcStatusFlagPathRemoved": true,
+    "fiveFailureFlagsChecked": false,
+    "statusGateSource": "PFC_FEATURE_STATUS_ONLY_WFC_STATUS_FLAG_DISABLED_DUE_TO_HANG",
+    "featureIdIndexInStartDoneAndException": true,
+    "wholeSolidFlagsCallAbsent": true,
+    "onlyFirstConfirmationAndThicknessInputThenStop": true,
+    "nativeCallOrPluginExecuted": false,
+    "rootCauseLocated": "NOT_EXECUTED_UNKNOWN",
+    "sdkOrModelMocksUsed": false
+  },
+  "audit": {
+    "startForcedBeforeAction": true,
+    "perFeatureIdAndPfcStatus": true,
+    "featureIdentityBeforeIdRead": "INDEX_ONLY_ID_NOT_YET_KNOWN",
+    "featureIdInStatusStartDoneException": true,
+    "step18BodyFaceEnumerationAndOtherPreflightBoundariesPreserved": true,
+    "lastStartIsBoundaryNotProofOfCrashRootCause": true
+  },
+  "gate": {
+    "source": "PFC_FEATURE_STATUS_ONLY_WFC_STATUS_FLAG_DISABLED_DUE_TO_HANG",
+    "acceptedStatus": "FEAT_ACTIVE",
+    "diagnosticOnlyAcceptedStatuses": [
+      "FEAT_INACTIVE",
+      "FEAT_FAMILY_TABLE_SUPPRESSED",
+      "FEAT_SIMP_REP_SUPPRESSED",
+      "FEAT_PROGRAM_SUPPRESSED",
+      "FEAT_SUPPRESSED"
+    ],
+    "blockedStatus": "FEAT_UNREGENERATED",
+    "unknownNullExceptionOrIdChangeBlocked": true,
+    "wFeatureStatusViewAdaptationRemoved": true,
+    "wfcStatusFlagEnabled": false,
+    "fiveFailureFlagsChecked": false,
+    "fullFailureFlagCoverage": false,
+    "conversionReadinessCertified": false,
+    "fallbackToWholeSolidFlagsOrWfcStatusFlag": false
+  },
+  "control": {
+    "ledgerDirectoryUnderUserHome": "CreoPreflightDiagnosticsStep19",
+    "ledgerFile": "step19-200002100-once.jsonl",
+    "oldLocksAccessedDeletedModified": false,
+    "manualOneClickOnly": true,
+    "automaticRetryOrRearm": false,
+    "firstDefaultNoConfirmationThenExplicitInput": true,
+    "endsAfterInput": true,
+    "writeDispatchOrConversionPath": false
+  },
+  "runtime": {
+    "deployed": false,
+    "registered": false,
+    "creoOrPluginExecuted": false,
+    "actualPerFeatureStatuses": "NOT_EXECUTED_UNKNOWN",
+    "crashFixedOnRealMachine": "NOT_EXECUTED_UNKNOWN",
+    "modelConversionPerformed": false,
+    "modelCreateRegenSaveCalls": false
+  }
+}

@@ -1,0 +1,52 @@
+Compiled from "Feature.java"
+public interface com.ptc.pfc.pfcFeature.Feature extends com.ptc.pfc.pfcModelItem.ModelItem {
+  public abstract com.ptc.pfc.pfcFeature.FeatureType GetFeatType() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetFeatTypeName() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetFeatSubType() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.FeatureStatus GetStatus() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.FeatureGroup GetGroup() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.FeaturePattern GetPattern() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.GroupPattern GetGroupPattern() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.PatternStatus GetPatternStatus() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.GroupStatus GetGroupStatus() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.GroupPatternStatus GetGroupPatternStatus() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsVisible() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsReadonly() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Integer GetNumber() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetVersionStamp() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsGroupMember() throws com.ptc.cipjava.jxthrowable;
+  public abstract boolean GetIsEmbedded() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.FeatureGroup GetGroupDirectHeader() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.FeaturePattern GetPatternByType(com.ptc.pfc.pfcFeature.PatternType) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.SuppressOperation CreateSuppressOp() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.ResumeOperation CreateResumeOp() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.DeleteOperation CreateDeleteOp() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.ReorderBeforeOperation CreateReorderBeforeOp(com.ptc.pfc.pfcFeature.Feature) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.ReorderAfterOperation CreateReorderAfterOp(com.ptc.pfc.pfcFeature.Feature) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Features ListChildren() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Features ListParents() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModelItem.ModelItems ListSubItems(com.ptc.pfc.pfcModelItem.ModelItemType) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "FeatureStatus.java"
+public final class com.ptc.pfc.pfcFeature.FeatureStatus implements com.ptc.cipjava.jxenum {
+  public static final int _FEAT_ACTIVE;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_ACTIVE;
+  public static final int _FEAT_INACTIVE;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_INACTIVE;
+  public static final int _FEAT_FAMILY_TABLE_SUPPRESSED;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_FAMILY_TABLE_SUPPRESSED;
+  public static final int _FEAT_SIMP_REP_SUPPRESSED;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_SIMP_REP_SUPPRESSED;
+  public static final int _FEAT_PROGRAM_SUPPRESSED;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_PROGRAM_SUPPRESSED;
+  public static final int _FEAT_SUPPRESSED;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_SUPPRESSED;
+  public static final int _FEAT_UNREGENERATED;
+  public static final com.ptc.pfc.pfcFeature.FeatureStatus FEAT_UNREGENERATED;
+  public static final int __Last;
+  public int getValue();
+  public static com.ptc.pfc.pfcFeature.FeatureStatus FromInt(int);
+  public static com.ptc.pfc.pfcFeature.FeatureStatus FromInt(java.lang.Integer);
+  public static int getValue(com.ptc.pfc.pfcFeature.FeatureStatus);
+  static {};
+}

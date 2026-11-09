@@ -1,0 +1,20 @@
+P1_S19_LABEL
+Read-Only PFC Status Diagnostic Step 19
+
+P1_S19_HELP
+Reduced PFC status-only gate; WFC failure flags disabled due to reported hang; one click only
+
+P1_S19_DESC
+Five failure flags NOT checked. No feature creation, regeneration, save or conversion retry
+
+P1_S19_THICKNESS
+PFC status-only gate passed; five failure flags NOT checked. Enter explicit positive finite TEST thickness in mm for logging only. No conversion follows.
+
+P1_S19_FAILED
+Step19 read-only diagnostic blocked or failed. Preserve audit and stderr; do not repeat or save.
+
+P1_S19_INPUT_DONE
+Step19 PFC status and input observed; five failure flags NOT checked. Ends here: no conversion, regeneration or Save.
+
+P1_S19_CANCELLED
+Step19 diagnostic cancelled. One-shot consumed. No model write, regeneration or Save.

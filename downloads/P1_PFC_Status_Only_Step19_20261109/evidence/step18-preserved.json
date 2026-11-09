@@ -1,0 +1,10 @@
+{
+  "step18CandidateCommit": "8baf74b3a9d453a81b0368753f141d6c94a271be",
+  "step18SourceClassJarHashesVerifiedUnchanged": true,
+  "step18OnceLockAccessedDeletedModifiedRearmed": false,
+  "reportedStep18RequestId": "7a53455b-0afe-4cbf-81ea-7580c01d913f",
+  "runtimeFactsSource": "USER_TASK_NOTE_NOT_RAW_NATIVE_LEDGER",
+  "reportedLastStartOperation": "WFeature.GetStatusFlag",
+  "reportedLastFeatureId": 1,
+  "step19DiagnosticExecuted": false
+}
