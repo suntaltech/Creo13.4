@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "task": {
+    "file_name": "P1_CPP工具链核对第二十九步_任务单_20261109.md",
+    "sha256": "d17e4b77b943e4696076f3bb1e49b08498e5f7d114321444e3e58472f64b0cd2",
+    "role": "USER_PROVIDED_TASK_AND_INSTALLATION_SUMMARY"
+  },
+  "prior_artifact": {
+    "name": "P1_CPP_Minimal_Entry_Build_Template_Step28_20261109.zip",
+    "sha256": "1bf13c819461c2f066512da551250b70c81e83f5dbd04b4f9b0fc37f70bf07d9"
+  },
+  "official_request": {
+    "url": "https://support.ptc.com/help/creo_toolkit/protoolkit_plus/usascii/creo_toolkit/get_started/Platform_and_Compiler_Support.html",
+    "version_pinned_by_url": false,
+    "sandbox_attempt": {
+      "curl_exit": 7,
+      "http_status": null,
+      "result": "PROXY_CONNECTION_FAILED"
+    },
+    "outer_executor_attempt": {
+      "curl_exit": 56,
+      "connect_status": 403,
+      "origin_http_status": null,
+      "result": "PROXY_CONNECT_DENIED_NO_DOCUMENT_BODY"
+    },
+    "policy_bypassed": false,
+    "full_text_reviewed": false
+  },
+  "original_vswhere_output_received": false,
+  "local_platform_page_body_received": false,
+  "official_support_range_deduced_from_library_names": false
+}

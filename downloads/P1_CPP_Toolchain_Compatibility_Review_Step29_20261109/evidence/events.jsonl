@@ -1,0 +1,6 @@
+{"seq": 1, "step": 29, "utc": "2026-11-09T08:43:33.751697+00:00", "event": "INPUT_RECEIVED", "status": "USER_REPORTED", "detail": "VS2022 17.14.41 and C++ component summary; no compiler/toolset version"}
+{"seq": 2, "step": 29, "utc": "2026-11-09T08:43:33.751697+00:00", "event": "HISTORICAL_EVIDENCE_REVIEW", "status": "OBSERVED", "detail": "Step27/28 have no applicable official compiler range"}
+{"seq": 3, "step": 29, "utc": "2026-11-09T08:43:33.751697+00:00", "event": "OFFICIAL_PAGE_REQUEST", "status": "BLOCKED", "detail": "Proxy CONNECT 403; no official document body retrieved"}
+{"seq": 4, "step": 29, "utc": "2026-11-09T08:43:33.751697+00:00", "event": "COMPATIBILITY_DECISION", "status": "UNVERIFIED", "detail": "Neither supported nor unsupported established; no replacement version selected"}
+{"seq": 5, "step": 29, "utc": "2026-11-09T08:43:33.751697+00:00", "event": "SITE_EXECUTION", "status": "NOT_PERFORMED", "detail": "No installation, compiler, DLL link, registration, configuration changes or Creo launch"}
+{"seq": 6, "step": 29, "utc": "2026-11-09T08:43:33.751697+00:00", "event": "NEXT_INPUT", "status": "PENDING_EVIDENCE", "detail": "Version-specific PTC compiler row and actual installed/selected toolset metadata"}

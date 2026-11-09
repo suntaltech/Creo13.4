@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "step": 29,
+  "target_product": {
+    "reported_creo_version": "13.4.0.0",
+    "sdk_release_independently_bound": false
+  },
+  "site_installation": {
+    "evidence_level": "USER_TASK_SUMMARY_NOT_RAW_INSTALLATION_OUTPUT",
+    "product": "Visual Studio Community 2022",
+    "product_version": "17.14.41",
+    "component_reported_present": "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
+    "complete_reported": true,
+    "launchable_reported": true,
+    "reboot_required_reported": false,
+    "msvc_toolset_versions": null,
+    "actual_selected_compiler_version": null,
+    "windows_sdk_versions": null
+  },
+  "official_support": {
+    "status": "UNVERIFIED_OFFICIAL_COMPILER_SUPPORT",
+    "applicable_ptc_matrix_received": false,
+    "supported_vs_versions": null,
+    "supported_msvc_range": null,
+    "vs_17_14_in_range": null,
+    "unsupported_proven": false,
+    "replacement_vs_version": null,
+    "no_installation_recommendation_without_evidence": true
+  },
+  "step28": {
+    "commit": "a3d9d260d5b6768afa0285eeda0801178b265eb1",
+    "template_changed": false,
+    "abi_and_library_mapping": "STILL_PROVISIONAL"
+  },
+  "execution": {
+    "cloud_host": "Linux",
+    "real_cpp_sdk_header_content_available": false,
+    "site_compiler_executed": false,
+    "object_generated": false,
+    "dll_linked": false,
+    "registered": false,
+    "creo_started": false,
+    "business_code_compiled": false,
+    "config_changed": false,
+    "vs_installed_or_modified": false
+  },
+  "next_scope": "APPLICABLE_OFFICIAL_SUPPORT_TEXT_THEN_MATCH_INSTALLED_TOOLSET; OBJECT_ONLY_FUTURE_CHECK",
+  "object_compile_would_certify_official_support": false
+}
