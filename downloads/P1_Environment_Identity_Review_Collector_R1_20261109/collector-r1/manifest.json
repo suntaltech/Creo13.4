@@ -1,0 +1,96 @@
+{
+  "artifactType": "STEP25_R1_PASSIVE_ENVIRONMENT_COLLECTOR_INLINE_COMMENT_FIX",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "task": {
+    "fileName": "P1_环境身份只读采集第二十五步_任务单_20261109.md",
+    "sha256": "0a72e969e5b59f180ac7f28a2693a0b55a97bad9c80029bfe50be990b83e46a7"
+  },
+  "entryPoint": "scripts/Collect-P1Environment.ps1",
+  "core": "scripts/Collector.Core.ps1",
+  "target": "Windows PowerShell 5.1 or PowerShell 7; actual Windows backend pending validation",
+  "dependencies": [
+    "PowerShell/.NET",
+    "Windows CIM/process metadata for optional running-process branch"
+  ],
+  "creoOrSdkDependency": false,
+  "collectedEvidence": {
+    "installationImages": "Disk version/hash only",
+    "sdkAndPluginFiles": "Disk path/size/SHA256, no binaries",
+    "configProAndDat": "All-line redacted normalized text, original read-byte hash; not unredacted exact copies",
+    "registryReferences": "Active/commented disk references; effective startup state unknown",
+    "jvm": "Observed JVM module file metadata plus nearby release; no attach/live System Properties",
+    "classpath": "Only existing command/config/log metadata",
+    "moduleOrder": "Existing recognized load log partial order; enumeration order not loading chronology",
+    "logs": "Canonical tokens/class-load entries/event counts only; no raw logs/dumps",
+    "actualLoadedClassIdentity": "UNKNOWN unless supported existing provenance is correlated"
+  },
+  "bounds": {
+    "defaultMaxTextBytes": 16777216,
+    "defaultMaxScanEntries": 20000,
+    "defaultMaxDirectories": 3000,
+    "maxRegistryDatSnapshots": 200,
+    "noDriveOrProfileRootScan": true,
+    "reparsePointTraversal": false,
+    "limitsExplicitlyReported": true
+  },
+  "privacy": {
+    "modelFilesOrCoordinatesCopied": false,
+    "rawConfigsOrRawLogsCopied": false,
+    "sdkOrPluginBinariesCopied": false,
+    "unknownConfigValuesRedacted": true,
+    "knownUserIdentifiersAndSecretKeysRedacted": true,
+    "manualReviewForUnrecognizedPrivateNamesStillNeeded": true,
+    "automaticUpload": false
+  },
+  "safety": {
+    "creoApiOrNativeFactoryCalls": false,
+    "wfcObjectConstruction": false,
+    "newBusinessButton": false,
+    "configOrDatEdits": false,
+    "restartAttachOrJavaStartup": false,
+    "existingOnceLocksDeletedOrRearmed": false,
+    "sourceFileWrites": "NONE; evidence files only in fresh selected output directory"
+  },
+  "validation": {
+    "powershellVersion": "7.4.6",
+    "platform": "Linux x86_64; fixture files only",
+    "pureChecks": 42,
+    "integrationZipIntegrity": true,
+    "integrationInternalChecksumsVerified": true,
+    "allInputHashesUnchanged": true,
+    "privateFixtureValuesAbsentFromArchive": true,
+    "activeAndCommentedDatCollected": true,
+    "sdkAndPluginHashMetadataNotBinaries": true,
+    "noModelOrRawLogCopied": true,
+    "diskOnlyDoesNotQueryProcesses": true,
+    "windowsCimAndLoadedModulesExecuted": false,
+    "windowsPowerShell51Executed": false,
+    "actualCreoSiteExecuted": false,
+    "outputInsideInputRootRejected": true,
+    "symlinkTraversalSkipped": true,
+    "unicodeAndSpacesPathsCovered": true,
+    "datSnapshotLimitEnforcedAt200": true,
+    "installationExecutableHashedWithoutExecutionOrCopy": true,
+    "inlineRegistryCommentsDoNotBreakPathResolution": true,
+    "mainAndCoreScriptHashesRecorded": true
+  },
+  "staticAstValidationPassed": true,
+  "actualSiteCollectionPerformed": false,
+  "actualSdkJvmLicenseSupportVerified": false,
+  "automaticConversionRestore": false,
+  "sourceFiles": [
+    {
+      "name": "scripts/Collect-P1Environment.ps1",
+      "bytes": 18153,
+      "sha256": "f805d047688eefef6a7c8fd84802c2de76f47a28abe6fede2f2e5cf4aac0e2c9"
+    },
+    {
+      "name": "scripts/Collector.Core.ps1",
+      "bytes": 16542,
+      "sha256": "e2638e1406c85361e18225d13b67f36faaf60d549aa5285652ef0a7e5885b2bf"
+    }
+  ],
+  "revision": "STEP25_R1_INLINE_DAT_COMMENTS",
+  "fixScope": "Quote-aware inline registry/classpath comments and core script hash only; no native probe"
+}

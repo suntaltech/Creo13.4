@@ -1,0 +1,37 @@
+--- step25-original/scripts/Collect-P1Environment.ps1
++++ step25-r1/scripts/Collect-P1Environment.ps1
+@@ -129 +129,6 @@
+-            foreach($part in $cp.value.Split(';')){
++            $classpathText=Split-P1PathValue $cp.value
++            if($null -eq $classpathText){Add-P1Issue 'CLASSPATH' 'UNBALANCED_QUOTES_NOT_RESOLVED' $Path;continue}
++            foreach($quoteChar in @([char]34,[char]39)){
++                if($classpathText.Length -ge 2 -and $classpathText[0] -eq $quoteChar -and $classpathText[$classpathText.Length-1] -eq $quoteChar -and ($classpathText.ToCharArray()|Where-Object{$_ -eq $quoteChar}|Measure-Object).Count -eq 2){$classpathText=$classpathText.Substring(1,$classpathText.Length-2);break}
++            }
++            foreach($part in $classpathText.Split(';')){
+@@ -185 +190 @@
+-Save-P1Json 'collector-manifest.json' @{schema='P1_STEP25_PASSIVE_ENV_IDENTITY_V1';startedUtc=$started;finishedUtc=[DateTime]::UtcNow.ToString('o');collectorPowerShellVersion=$PSVersionTable.PSVersion.ToString();collectorPowerShellIsNotCreoJvm=$true;diskOnly=[bool]$DiskOnly;scriptSha256=(Get-P1Identity $PSCommandPath);configurationCodePageRequested=$TextCodePage;maxTextBytes=$MaxTextBytes;maxScanEntries=$MaxScanEntries;maxScanDirectories=$MaxScanDirectories;maxRegistryDatSnapshots=200;privacyPolicy='FULL_CONFIG_LINE_SEQUENCE_REDACTED_LOG_WHITELIST_ONLY';manualPrivacyReviewStillRequiredForUnrecognizedSensitiveValues=$true;modelApisCalled=$false;wfcObjectsConstructed=$false;newBusinessButton=$false;javaOrCreoStarted=$false;attachOrDebuggerUsed=$false;configurationEdited=$false;onceLocksDeletedOrRearmed=$false;autoUpload=$false;licenseAndRegistrationSupportVerdict='UNVERIFIED';rawConfigsCopied=$false}
++Save-P1Json 'collector-manifest.json' @{schema='P1_STEP25_PASSIVE_ENV_IDENTITY_V1';collectorRevision='STEP25_R1_INLINE_DAT_COMMENTS';collectorCoreSha256=(Get-P1Identity (Join-Path $PSScriptRoot 'Collector.Core.ps1'));startedUtc=$started;finishedUtc=[DateTime]::UtcNow.ToString('o');collectorPowerShellVersion=$PSVersionTable.PSVersion.ToString();collectorPowerShellIsNotCreoJvm=$true;diskOnly=[bool]$DiskOnly;scriptSha256=(Get-P1Identity $PSCommandPath);configurationCodePageRequested=$TextCodePage;maxTextBytes=$MaxTextBytes;maxScanEntries=$MaxScanEntries;maxScanDirectories=$MaxScanDirectories;maxRegistryDatSnapshots=200;privacyPolicy='FULL_CONFIG_LINE_SEQUENCE_REDACTED_LOG_WHITELIST_ONLY';manualPrivacyReviewStillRequiredForUnrecognizedSensitiveValues=$true;modelApisCalled=$false;wfcObjectsConstructed=$false;newBusinessButton=$false;javaOrCreoStarted=$false;attachOrDebuggerUsed=$false;configurationEdited=$false;onceLocksDeletedOrRearmed=$false;autoUpload=$false;licenseAndRegistrationSupportVerdict='UNVERIFIED';rawConfigsCopied=$false}
+--- step25-original/scripts/Collector.Core.ps1
++++ step25-r1/scripts/Collector.Core.ps1
+@@ -80,0 +81,12 @@
++function Split-P1PathValue([AllowNull()][string]$Value) {
++    if($null -eq $Value){return $null}
++    $text=$Value.Trim();$quote=[char]0
++    for($i=0;$i -lt $text.Length;$i++) {
++        $c=$text[$i]
++        if($quote -ne [char]0){if($c -eq $quote){$quote=[char]0};continue}
++        if(($c -eq [char]34 -or $c -eq [char]39) -and ($i -eq 0 -or [char]::IsWhiteSpace($text[$i-1]))){$quote=$c;continue}
++        if(($c -eq [char]33 -or $c -eq [char]35) -and ($i -eq 0 -or [char]::IsWhiteSpace($text[$i-1]))){return $text.Substring(0,$i).TrimEnd()}
++    }
++    if($quote -ne [char]0){return $null}
++    return $text
++}
+@@ -82 +94,3 @@
+-    $v=$Value.Trim().Trim('"').Trim("'")
++    $v=Split-P1PathValue $Value
++    if($null -eq $v){return $null}
++    $v=$v.Trim().Trim('"').Trim("'")
+@@ -98 +112,2 @@
+-            $key=$Matches[1];$value=$Matches[2]
++            $key=$Matches[1];$rawValue=$Matches[2];$value=Split-P1PathValue $rawValue
++            if($null -eq $value){$value=$rawValue}

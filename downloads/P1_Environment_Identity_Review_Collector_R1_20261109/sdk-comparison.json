@@ -1,0 +1,23 @@
+{
+  "files": [
+    {
+      "fileName": "otk.jar",
+      "observedDiskPath": "D:\\Program Files\\PTC\\Creo 13.4.0.0\\Common Files\\text\\java\\otk.jar",
+      "bytes": 4362992,
+      "observedDiskSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+      "matchesOfflineSdk": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "fileName": "pfcasync.jar",
+      "observedDiskPath": "D:\\Program Files\\PTC\\Creo 13.4.0.0\\Common Files\\text\\java\\pfcasync.jar",
+      "bytes": 1207086,
+      "observedDiskSha256": "b1765537e2754332fa923e418b81541e3caa2d2a197ebec4ae1decb9ab8bfdb3",
+      "matchesOfflineSdk": true,
+      "loadedIdentityProven": false
+    }
+  ],
+  "wrongDiskSdkVersionEvidence": false,
+  "actualRuntimeMixedClasspath": "UNKNOWN",
+  "presenceOfBothJarsIsNotMixedLoadingProof": true
+}

@@ -1,0 +1,115 @@
+{
+  "artifactType": "STEP25_ENVIRONMENT_IDENTITY_REVIEW_AND_MINIMAL_COLLECTOR_R1",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "inputArchive": {
+    "fileName": "P1_EnvIdentity_20261109T065527Z_359c1b3c.zip",
+    "sha256": "98cdeb30c2ed6ee77205e22073bc9086e1c680f1ebe60cd7dcc0f2f2f875b3d4",
+    "zipIntegrityChecked": true,
+    "allInternalChecksumsMatched": true
+  },
+  "collectionWindowUtc": {
+    "start": "2026-11-09T06:55:27.9562579Z",
+    "end": "2026-11-09T06:55:52.9328196Z"
+  },
+  "collectorPowerShellVersion": "7.6.4",
+  "collectorPowerShellIsNotCreoJvm": true,
+  "collectorMainHashMatchesDeliveredStep25": true,
+  "collectorCoreHashInOldEvidence": "NOT_RECORDED",
+  "diskFacts": {
+    "installationImages": [
+      {
+        "path": "D:\\Program Files\\PTC\\Creo 13.4.0.0\\Parametric\\bin\\parametric.exe",
+        "status": "DISK_FILE_HASHED_NOT_PROOF_OF_LOADING",
+        "bytes": 46387168,
+        "sha256": "875040128cb715a09741a9b349bb417da8430625676cebbead0dc6a7cec74fb9",
+        "lastWriteUtc": "2026-08-28T09:12:03.6599888Z",
+        "stableDuringRead": true,
+        "loadedIdentityProven": false,
+        "fileVersion": "28, 0, 2007, 220",
+        "productVersion": "13.4.0.0",
+        "company": "PTC Inc.",
+        "architecture": "x64",
+        "discovery": "INSTALLATION_DISK_SCAN_NOT_PROCESS_IDENTITY"
+      },
+      {
+        "path": "D:\\Program Files\\PTC\\Creo 13.4.0.0\\Common Files\\x86e_win64\\obj\\xtop.exe",
+        "status": "DISK_FILE_HASHED_NOT_PROOF_OF_LOADING",
+        "bytes": 323334624,
+        "sha256": "9442d1dbc3aa2f0d75dfe59dcc2fa59b8feddfb8dd4b12daf6396e09c2af7b2a",
+        "lastWriteUtc": "2026-08-28T09:11:56.1182604Z",
+        "stableDuringRead": true,
+        "loadedIdentityProven": false,
+        "fileVersion": "41,0,2026,092",
+        "productVersion": "13.4.0.0",
+        "company": "PTC Inc.",
+        "architecture": "x64",
+        "discovery": "INSTALLATION_DISK_SCAN_NOT_PROCESS_IDENTITY"
+      }
+    ],
+    "sdkFilesMatchOfflineCopies": true,
+    "step23ClassesCompared": 16,
+    "step23ClassesMatched": 16,
+    "diskConfigEnvironmentRows": [
+      {
+        "sourceKind": "DISK_CONFIG_SNAPSHOT",
+        "key": "jlink_java2",
+        "value": "on",
+        "effectiveAtCrashedSessionStartup": "UNKNOWN"
+      },
+      {
+        "sourceKind": "DISK_CONFIG_SNAPSHOT",
+        "key": "jlink_java_command",
+        "value": "D:\\creoson\\jdk25\\jdk-25.0.5+8\\bin\\java.exe",
+        "effectiveAtCrashedSessionStartup": "UNKNOWN"
+      }
+    ],
+    "activeStep23DatOnDisk": {
+      "fileSha256": "71399ae378dfaeeb84d9927e8be3a65614843f658c727820ef3e449deb8d6384",
+      "name": "p1s23",
+      "startup": "java",
+      "applicationClass": "p1.controlled.step23.P1RootElementProbeStep23",
+      "classpathKind": "STEP23_CLASSES_DIRECTORY",
+      "textDirKind": "STEP23_RESOURCES_TEXT_DIRECTORY"
+    },
+    "explicitPfcasyncEntryInCollectedDatClasspaths": false
+  },
+  "runtimeFacts": {
+    "processObservation": "NO_CREO_PROCESS_OBSERVED",
+    "observedCreoProcessCount": 0,
+    "runtimeJvmVendorVersionArchitecture": "UNKNOWN",
+    "actualLoadedSdkOrPluginVersion": "UNKNOWN",
+    "moduleLoadOrder": "UNKNOWN",
+    "otkLicenseAndOfficialRuntimeContract": "UNKNOWN",
+    "processTerminationOrCrashProven": false
+  },
+  "coverage": {
+    "configSnapshots": 10,
+    "datSnapshots": 2,
+    "activeDatReferencesOnDisk": 1,
+    "commentedDatReferencesOnDisk": 12,
+    "inlineCommentReferencesNotRead": 11,
+    "installationScanLimited": true,
+    "installationEntriesSeen": 20001,
+    "logSummaries": 1,
+    "recognizedClassLoadEntries": 0,
+    "nativeStderrCrashStackSupplied": false
+  },
+  "collectorDefect": {
+    "id": "STEP25_INLINE_REGISTRY_COMMENT_PATH_PARSE",
+    "cause": "Inline !/# comment suffix was treated as part of dat path",
+    "incorrectOldResult": "UNSUPPORTED_INPUT_NOT_READ / existsAtCollection=false did not prove target absence",
+    "affectedEvidenceReferences": 11,
+    "oldArchiveModifiedOrReinterpretedAsSuccessfullyCollected": false,
+    "r1FixIncluded": true,
+    "r1AlsoRecordsCoreScriptHash": true
+  },
+  "updatedConclusion": "DISK_ARTIFACTS_MATCH_RUNTIME_IDENTITY_AND_OFFICIAL_SUPPORT_STILL_UNKNOWN",
+  "routeDecision": "RETAIN_STABLE_JAVA_UI_PFC_READONLY_PAUSE_CURRENT_WFC_TREE_WRITES",
+  "wrongSdkOnDiskOrBadStep23ClassArtifactProven": false,
+  "mixedSdkClasspathProven": false,
+  "noLicenseOrVersionBugProven": false,
+  "siteConfigChangedRestartedOrOldFactoryRetried": false,
+  "oldLocksDeletedOrRearmed": false,
+  "rawEnvironmentBundleRedistributed": false
+}

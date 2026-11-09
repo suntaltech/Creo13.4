@@ -1,0 +1,137 @@
+{
+  "referenceCommit": "eb8b330519fb8bf91cc0d973da09c99632e212f1",
+  "diskClassesCompared": 16,
+  "matching": 16,
+  "different": 0,
+  "classes": [
+    {
+      "relativeName": "p1/controlled/step23/AuditSupport.class",
+      "bytes": 4880,
+      "observedDiskSha256": "3d10b7671441aa02414a0fb5e21298dc4a72c840d8e9ad50834bc74a43a61a22",
+      "deliveredSha256": "3d10b7671441aa02414a0fb5e21298dc4a72c840d8e9ad50834bc74a43a61a22",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/FeatureStateGate.class",
+      "bytes": 1122,
+      "observedDiskSha256": "aa7583d5a3ab466568259347e7a86b16c6ac8ec545334cd1fe340cc2ac8e5975",
+      "deliveredSha256": "aa7583d5a3ab466568259347e7a86b16c6ac8ec545334cd1fe340cc2ac8e5975",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/P1RootElementProbeStep23.class",
+      "bytes": 43622,
+      "observedDiskSha256": "cbc842c8a98ac12b7f54433b0a9483b3bf59dfccf3aff12d1372d30596e0feeb",
+      "deliveredSha256": "cbc842c8a98ac12b7f54433b0a9483b3bf59dfccf3aff12d1372d30596e0feeb",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/P1RootElementProbeStep23$BodyIdentityFailure.class",
+      "bytes": 1366,
+      "observedDiskSha256": "4e1a5817e8169b79c937d80174ef8888069969133df8977ba6c265741a39483c",
+      "deliveredSha256": "4e1a5817e8169b79c937d80174ef8888069969133df8977ba6c265741a39483c",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/P1RootElementProbeStep23$FaceIdentityFailure.class",
+      "bytes": 1366,
+      "observedDiskSha256": "2a2aeca17f022efeefd7b44ca0b581ec27ddbad4a4318fc819d11712a9ef86f6",
+      "deliveredSha256": "2a2aeca17f022efeefd7b44ca0b581ec27ddbad4a4318fc819d11712a9ef86f6",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/P1RootElementProbeStep23$Listener.class",
+      "bytes": 5692,
+      "observedDiskSha256": "f1ff07d95b1205e139a5d29eacce14bceae91e0ea03af5e397eb22db764cf5e5",
+      "deliveredSha256": "f1ff07d95b1205e139a5d29eacce14bceae91e0ea03af5e397eb22db764cf5e5",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/P1RootElementProbeStep23$Snapshot.class",
+      "bytes": 1041,
+      "observedDiskSha256": "4ee041d20391ea48790e7aa7e88e174409eb9679aff7bb99ac71b81af2d4f898",
+      "deliveredSha256": "4ee041d20391ea48790e7aa7e88e174409eb9679aff7bb99ac71b81af2d4f898",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/PreflightAudit.class",
+      "bytes": 3639,
+      "observedDiskSha256": "cfc9989a50b5af24d615539fd099b0fdf19ae72d6ac21b3db2a1dc8aa2672647",
+      "deliveredSha256": "cfc9989a50b5af24d615539fd099b0fdf19ae72d6ac21b3db2a1dc8aa2672647",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/PreflightAudit$Call.class",
+      "bytes": 471,
+      "observedDiskSha256": "5c3ea64ad71e038f2139f7aa98158ba39542146ee519ca07700bd9f09dec09bd",
+      "deliveredSha256": "5c3ea64ad71e038f2139f7aa98158ba39542146ee519ca07700bd9f09dec09bd",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/PreflightAudit$ProbeFailure.class",
+      "bytes": 1135,
+      "observedDiskSha256": "031e88401e67cd8e59a4e7f4fb12bed7295c8c84e4c86ac758ce9473f52fc16e",
+      "deliveredSha256": "031e88401e67cd8e59a4e7f4fb12bed7295c8c84e4c86ac758ce9473f52fc16e",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/ScopedBodyIdentity.class",
+      "bytes": 1130,
+      "observedDiskSha256": "1d5967e83d389cbefccd81885eeebc5abe417733938be686c32c451fa677df6e",
+      "deliveredSha256": "1d5967e83d389cbefccd81885eeebc5abe417733938be686c32c451fa677df6e",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/ScopedBodyIdentity$Code.class",
+      "bytes": 1523,
+      "observedDiskSha256": "3ea6a1d2069cd67fc18d876e5796098718b4b8ab2e9ca4f58ffe5adceb69c18e",
+      "deliveredSha256": "3ea6a1d2069cd67fc18d876e5796098718b4b8ab2e9ca4f58ffe5adceb69c18e",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/ScopedFaceIdentity.class",
+      "bytes": 1278,
+      "observedDiskSha256": "10279587d5e1551326452aa64dc269597bbbc76fb5debcd9ae48241f960a706c",
+      "deliveredSha256": "10279587d5e1551326452aa64dc269597bbbc76fb5debcd9ae48241f960a706c",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/ScopedFaceIdentity$Code.class",
+      "bytes": 1674,
+      "observedDiskSha256": "b00cfecd2ff229d116b959e965a5bd6cf28389473c6b5e567bc9def453325c2e",
+      "deliveredSha256": "b00cfecd2ff229d116b959e965a5bd6cf28389473c6b5e567bc9def453325c2e",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/Step23Control.class",
+      "bytes": 6250,
+      "observedDiskSha256": "049c865f5b8d85fca57e2830a5b2ba33b6d56d0c1fea9e09a51fea9bd0c2765a",
+      "deliveredSha256": "049c865f5b8d85fca57e2830a5b2ba33b6d56d0c1fea9e09a51fea9bd0c2765a",
+      "matches": true,
+      "loadedIdentityProven": false
+    },
+    {
+      "relativeName": "p1/controlled/step23/Step23Control$State.class",
+      "bytes": 1337,
+      "observedDiskSha256": "e6916d2fc133951e2f9ab76c104af2bdc203cc6fc175f482f113c838b2ce3971",
+      "deliveredSha256": "e6916d2fc133951e2f9ab76c104af2bdc203cc6fc175f482f113c838b2ce3971",
+      "matches": true,
+      "loadedIdentityProven": false
+    }
+  ],
+  "actualLoadedClassesIdentity": "UNKNOWN"
+}

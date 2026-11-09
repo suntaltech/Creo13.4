@@ -1,0 +1,60 @@
+[
+  {
+    "parsePassed": true,
+    "commands": [
+      "Add-P1Issue",
+      "Add-P1Path",
+      "Add-Type",
+      "Convert-P1Configuration",
+      "ConvertTo-Json",
+      "ForEach-Object",
+      "Get-ChildItem",
+      "Get-CimInstance",
+      "Get-P1ClasspathFromCommand",
+      "Get-P1Files",
+      "Get-P1Identity",
+      "Get-P1JvmMetadata",
+      "Get-P1LogSummary",
+      "Get-P1PeArchitecture",
+      "Get-P1ProcessEvidence",
+      "Get-Process",
+      "Initialize-P1Privacy",
+      "Join-Path",
+      "Measure-Object",
+      "New-Item",
+      "New-Object",
+      "New-P1PathSet",
+      "Protect-P1Text",
+      "Read-P1ConfigurationFile",
+      "Read-P1TextSnapshot",
+      "Resolve-P1Reference",
+      "Save-P1Json",
+      "Set-StrictMode",
+      "Split-P1PathValue",
+      "Test-Path",
+      "Where-Object"
+    ],
+    "forbiddenCommandOrSdkTypeAbsent": true,
+    "file": "Collect-P1Environment.ps1"
+  },
+  {
+    "parsePassed": true,
+    "commands": [
+      "ConvertFrom-Json",
+      "Get-ChildItem",
+      "Get-Item",
+      "Get-P1Identity",
+      "Get-P1PeArchitecture",
+      "Get-P1ShaBytes",
+      "Join-Path",
+      "New-Object",
+      "Protect-P1Text",
+      "Read-P1TextSnapshot",
+      "Set-StrictMode",
+      "Split-P1PathValue",
+      "Test-Path"
+    ],
+    "forbiddenCommandOrSdkTypeAbsent": true,
+    "file": "Collector.Core.ps1"
+  }
+]
