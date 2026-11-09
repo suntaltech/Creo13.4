@@ -1,0 +1,79 @@
+{
+  "artifactType": "STEP24_OFFLINE_ENVIRONMENT_SDK_SUPPORT_REVIEW_NO_EXECUTABLE",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "taskSha256": "9d618caba7bdab47bd3780fef4ce6a184e9ceb864f573f27f3544dae11770276",
+  "realSdkInspected": true,
+  "currentRuntimeIdentityConfirmed": false,
+  "currentRuntimeFieldsVerified": 0,
+  "officialSupportAndLicenseCertified": false,
+  "rootCauseKnown": false,
+  "javaRecommendation": "RETAIN_STABLE_UI_PFC_READONLY_PAUSE_CURRENT_WFC_TREE_AND_WRITE_ROUTE",
+  "nextMinimalProbe": "PASSIVE_IDENTITY_EVIDENCE_FIRST_DESIGN_ONLY",
+  "cppRecommendation": "CONDITIONAL_CONVERSION_CORE_EVALUATION_REQUIRES_MATCHING_SDK_ABI_LICENSE_AND_OFFICIAL_EXAMPLE",
+  "noNewButtonOrProbeCode": true,
+  "noDatOrConfigChanges": true,
+  "noRestartOrLiveRun": true,
+  "noModelWriteOrSave": true,
+  "noLockDeletionOrRearm": true,
+  "noElementArrayOverloadOrFakeFeatureInstructions": true,
+  "noUiMacroRoute": true,
+  "newNativeOrJvmProbeExecuted": false,
+  "files": [
+    {
+      "relativeName": "README.md",
+      "bytes": 11637,
+      "sha256": "34d49e781e45515b5461f30ed3312f6f7f09f3c71126cc116080f87d1cb2e269"
+    },
+    {
+      "relativeName": "actual-environment-matrix.json",
+      "bytes": 3541,
+      "sha256": "db96f74ce18a9ba196a7f04a879b1654e206d5d8de52add009533bb0fe97a69c"
+    },
+    {
+      "relativeName": "current-runtime-evidence-template.json",
+      "bytes": 1497,
+      "sha256": "9857c3c3e3b24e9bda31a998e368866985852e2bb094ab27374d8b84486644af"
+    },
+    {
+      "relativeName": "evidence/offline-sdk-and-artifact-metadata.json",
+      "bytes": 2888,
+      "sha256": "f13739fb9bba484a1732476aae091d63a92294d350637289b6427ee21a94f167"
+    },
+    {
+      "relativeName": "evidence/pfc-route-assessment.json",
+      "bytes": 990,
+      "sha256": "6ae87ffcfa37b0ab02e2925e10bf7c3d4c668828f91ac17cc5fded196a60a3b0"
+    },
+    {
+      "relativeName": "evidence/sdk-support-signatures.javap.txt",
+      "bytes": 60596,
+      "sha256": "a4bd8a22cc7435a6e3940a00b38382742f9b2b11eae0812cfbb80534425b87c7"
+    },
+    {
+      "relativeName": "evidence/source-provenance.json",
+      "bytes": 1080,
+      "sha256": "07dafaa69a4552a926db2ae96b928c91775337eca054f64e6a9e69a6c9f5f609"
+    },
+    {
+      "relativeName": "evidence/tree-overload-assessment.json",
+      "bytes": 1309,
+      "sha256": "2253a5c65e6cad1e19e63657c1ab41958b6934bc6bc8c3fbeddfeebf64a8bcaf"
+    },
+    {
+      "relativeName": "hypothesis-ranking.json",
+      "bytes": 3546,
+      "sha256": "cfd52d6da2a634b30530e380e39271101b0a848a6bdffa54276f8fb44233447b"
+    },
+    {
+      "relativeName": "next-readonly-evidence.md",
+      "bytes": 3360,
+      "sha256": "d59318779ce36986d7723f510bf29c24ea1f730f1ae7903c76a59c0941332973"
+    },
+    {
+      "relativeName": "support-conditions.json",
+      "bytes": 1642,
+      "sha256": "004d41ee96d156b78e23dc2894eab7878087903ee57be591bffc18f3c2b11e58"
+    }
+  ]
+}

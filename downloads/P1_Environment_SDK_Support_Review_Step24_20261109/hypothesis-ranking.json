@@ -1,0 +1,66 @@
+{
+  "rankingIsInvestigationOrderNotStatisticalProbability": true,
+  "rootCauseKnown": false,
+  "hypotheses": [
+    {
+      "rank": 1,
+      "hypothesis": "JLINK_REGISTRATION_AND_INTERNAL_WFC_BRIDGE_SUPPORT_CONTRACT",
+      "likelihood": "WORKING_PRIORITY_NOT_PROVEN_CAUSE",
+      "basis": "startup java是交付模板；源码先获PFC兼容会话，再反射内部WPart/WSession(long)视图，日志标记内部运行契约未认证；多个WFC工厂/状态调用无返回记录。",
+      "limitation": "尚无当前真实dat、OTK运行许可/初始化及官方全文，不能断言startup java本身非法或应直接替换otk_java。",
+      "evidenceNeeded": [
+        "实际dat/config/启动模式",
+        "当前OTK Java开发/运行许可与解锁签名状态摘要",
+        "同版本官方J-Link兼容和注册运行说明及官方示例要求"
+      ]
+    },
+    {
+      "rank": 2,
+      "hypothesis": "SDK_NATIVE_CREO_JVM_OR_CLASSLOADER_MISMATCH",
+      "likelihood": "HIGH_PRIORITY_TO_EXCLUDE_NOT_OBSERVED_CONFLICT",
+      "basis": "离线otk多数类major69；otk/pfcasync同名类1076个且431个不同；当前实际加载来源/JVM/本地模块身份均未提供。",
+      "limitation": "相同Java线程和PFC读取成功不足以证明WFC ABI匹配；SDK要求可加载Java25字节码也不是PTC官方支持矩阵。未证明现场同时加载两JAR。",
+      "evidenceNeeded": [
+        "宿主JVM版本供应商位数与java.home",
+        "实际otk、pfcasync有无混装及加载先后",
+        "Creo/SDK/本地JNI模块文件版本与散列",
+        "重复插件class与有效classpath"
+      ]
+    },
+    {
+      "rank": 3,
+      "hypothesis": "CALL_CONTEXT_INITIALIZATION_THREAD_OR_CALLBACK_CONTRACT",
+      "likelihood": "UNVERIFIED_POSSIBLE_PRECONDITION",
+      "basis": "同步PFC命令回调取得会话，内部WFC视图未由官方公开运行模式认证；工厂签名不能证明模块已初始化。",
+      "limitation": "两轮Java线程ID始终3，但未证明它是符合SDK要求的Creo原生线程；没有证据要求异步连接，不能通过新线程或加pfcasync作为修复。",
+      "evidenceNeeded": [
+        "官方同步/异步与线程规则全文",
+        "原启动/初始化顺序",
+        "已有回调线程信息和相关stderr/native栈"
+      ]
+    },
+    {
+      "rank": 4,
+      "hypothesis": "VERSION_SPECIFIC_NATIVE_DEFECT_OR_HOST_FAILURE",
+      "likelihood": "POSSIBLE_AFTER_SUPPORT_CONTRACT_VERIFIED",
+      "basis": "两个不同最小WFC工厂均未观察返回，且普通PFC读取完成。",
+      "limitation": "没有崩溃栈、外部未响应时间线或官方问题公告，不能命名已知缺陷或指定修复版本；还不能排除返回后审计失败/外部终止。",
+      "evidenceNeeded": [
+        "原stderr/jlink/已有hs_err或dump栈的受限摘要",
+        "准确Creo维护版本与本地模块版本",
+        "同版本官方已知问题/支持结论"
+      ]
+    },
+    {
+      "rank": 5,
+      "hypothesis": "SHEETMETAL_MODE_OR_ROOT_ARGUMENT_RULE",
+      "likelihood": "LOWER_PRIORITY_NOT_EXCLUDED",
+      "basis": "普通根工厂参数仅id/null/level，Elements集合工厂无模型输入；尚未提交业务转换树。",
+      "limitation": "缺少官方Element_Create根规则全文，不能排除参数前提，也不能凭猜测要求先切钣金模式。",
+      "evidenceNeeded": [
+        "官方根元素null/level规则与同版本示例",
+        "官方对模式/会话前提的明确说明"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "P1_STEP24_PASSIVE_ENV_IDENTITY_V1",
+  "isTemplate": true,
+  "collectedAtShanghai": null,
+  "sessionStartedAt": null,
+  "creo": {
+    "version": null,
+    "processImagePath": null,
+    "imageSha256": null,
+    "installRoot": null
+  },
+  "jvmInCreo": {
+    "version": null,
+    "vendor": null,
+    "architecture": null,
+    "javaHome": null,
+    "jvmImagePath": null,
+    "evidenceSource": null
+  },
+  "loadedOtk": {
+    "codeSource": null,
+    "diskPath": null,
+    "bytes": null,
+    "sha256": null,
+    "loadedIdentityProven": false
+  },
+  "plugin": {
+    "jarOrClassDirectory": null,
+    "hashManifest": null,
+    "loadedIdentityEvidence": null
+  },
+  "registration": {
+    "datPath": null,
+    "sha256": null,
+    "contents": null,
+    "textDirResolved": null
+  },
+  "configuration": {
+    "effectiveFiles": [],
+    "relevantJlinkToolkitRows": [],
+    "precedenceEvidence": null
+  },
+  "launch": {
+    "commandSource": null,
+    "relevantCommandLine": null,
+    "classPath": null,
+    "loadOrderEvidence": null,
+    "bothOtkAndPfcasyncPresent": null
+  },
+  "otkSupport": {
+    "officialVersionDocReferences": [],
+    "licenseFeatureNamesAndCheckoutStatusOnly": null,
+    "unlockOrSigningStatusSummary": null,
+    "documentedRegistrationMode": null
+  },
+  "constraints": {
+    "modelCallsAllowed": false,
+    "newButtonOrProbeAllowedThisRound": false,
+    "restartOrReloadPerformed": false,
+    "oldLocksReadEditedDeletedRearmed": false,
+    "licenseSecretsIncluded": false
+  }
+}

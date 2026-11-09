@@ -1,0 +1,71 @@
+{
+  "sdkJars": [
+    {
+      "fileName": "otk.jar",
+      "offlinePath": "/workspace/r8-next-binary/sdk-input/creo134-jlink-sdk-jars-20261105/otk.jar",
+      "bytes": 4362992,
+      "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+      "classMajorCounts": {
+        "51": 116,
+        "69": 3429
+      },
+      "jarManifestText": "Manifest-Version: 1.0\r\nCreated-By: 25 (Oracle Corporation)\r\n\r\n",
+      "actualRuntimeLoadedPath": "UNKNOWN",
+      "actualRuntimeLoadedHash": "UNKNOWN",
+      "officialDistributionAuthenticityVerified": false
+    },
+    {
+      "fileName": "pfcasync.jar",
+      "offlinePath": "/workspace/r8-next-binary/sdk-input/creo134-jlink-sdk-jars-20261105/pfcasync.jar",
+      "bytes": 1207086,
+      "sha256": "b1765537e2754332fa923e418b81541e3caa2d2a197ebec4ae1decb9ab8bfdb3",
+      "classMajorCounts": {
+        "51": 11,
+        "50": 95,
+        "69": 1816
+      },
+      "jarManifestText": "Manifest-Version: 1.0\r\nCreated-By: 25 (Oracle Corporation)\r\n\r\n",
+      "actualRuntimeLoadedPath": "UNKNOWN",
+      "actualRuntimeLoadedHash": "UNKNOWN",
+      "officialDistributionAuthenticityVerified": false
+    }
+  ],
+  "offlineSdkClassNameOverlap": {
+    "classesShared": 1076,
+    "sharedClassesWithDifferentBytes": 431,
+    "actualRuntimeBothJarsLoaded": "UNKNOWN",
+    "compilerClasspathUsedOnlyOtk": true,
+    "pfcasyncAddedOrExecuted": false
+  },
+  "offlineCompilerJdk": {
+    "IMPLEMENTOR": "Oracle Corporation",
+    "JAVA_RUNTIME_VERSION": "25.0.5.0.3+1-LTS-2",
+    "JAVA_VERSION": "25.0.5.0.3",
+    "OS_ARCH": "x86_64",
+    "OS_NAME": "Linux"
+  },
+  "offlineCompilerJdkIsNotRuntimeJvmEvidence": true,
+  "step23OfflineArtifact": {
+    "relativeJar": "lib/p1-root-element-probe-step23.jar",
+    "bytes": 39698,
+    "sha256": "f6bfe8d32b8560a11a9e4c382d3a9f968734450f649ea68a1fb02ce53f649908",
+    "classMajor": 61,
+    "runtimeDeploymentPath": "UNKNOWN",
+    "runtimeHash": "UNKNOWN"
+  },
+  "registrationTemplateOnly": {
+    "sha256": "3436d3fc2a82852824089f82c88a3cff715977f73f227d2ce70831104da43585",
+    "content": "name p1s23\nstartup java\njava_app_class p1.controlled.step23.P1RootElementProbeStep23\njava_app_classpath @ABSOLUTE_STEP23_CLASSES_DIRECTORY@\njava_app_start start\njava_app_stop stop\nallow_stop true\ndelay_start false\ntext_dir @ABSOLUTE_STEP23_RESOURCES_TEXT_DIRECTORY@\nend\n",
+    "actualStep23DatContent": "NOT_SUPPLIED"
+  },
+  "sourceSessionAcquisition": "pfcSession.GetCurrentSessionWithCompatibility(C4Compatible)",
+  "sourceWfcViewAcquisition": "INTERNAL_IMPLEMENTATION_CONSTRUCTOR_LONG_REFLECTION_AND_HANDLE_MATCH",
+  "internalApiRuntimeContractCertified": false,
+  "step22And23JavaThreadIdsObserved": [
+    3
+  ],
+  "nativeCreoThreadAffinityVerified": false,
+  "officialFullDocumentationProvided": false,
+  "creoJvmSupportMatrixProvided": false,
+  "knownDefectBulletinProvided": false
+}

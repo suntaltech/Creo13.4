@@ -1,0 +1,31 @@
+{
+  "sdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+  "scanMethod": "JAVAP_PUBLIC_RECURSIVE_INTERFACE_HIERARCHY_NO_SDK_EXECUTION",
+  "interfacesChecked": [
+    "com.ptc.cipjava.jxadapter",
+    "com.ptc.cipjava.jxobject",
+    "com.ptc.pfc.pfcBase.ActionSource",
+    "com.ptc.pfc.pfcDisplay.Display",
+    "com.ptc.pfc.pfcObject.Object",
+    "com.ptc.pfc.pfcObject.Parent",
+    "com.ptc.pfc.pfcSession.BaseSession",
+    "com.ptc.pfc.pfcSession.Session",
+    "com.ptc.wfc.wfcDisplay.WDisplay",
+    "com.ptc.wfc.wfcSession.WBaseSession",
+    "com.ptc.wfc.wfcSession.WSession"
+  ],
+  "createElementTreeSignatures": [
+    "public abstract com.ptc.wfc.wfcElementTree.ElementTree CreateElementTree(com.ptc.wfc.wfcElementTree.Elements) throws com.ptc.cipjava.jxthrowable;"
+  ],
+  "acceptsElementArray": false,
+  "acceptsNonElementsCollection": false,
+  "elementsPublicArrayConstructor": false,
+  "elementsOnlyVisibleConstructor": "protected Elements(long)",
+  "xmlIsDistinctMethodSignatures": [
+    "public abstract com.ptc.wfc.wfcElementTree.ElementTree CreateElementTreeFromXML(java.lang.String) throws com.ptc.cipjava.jxthrowable;"
+  ],
+  "xmlIsNotAnArrayOrCollectionOverload": true,
+  "xmlInvoked": false,
+  "runtimeSdkSignaturesInspected": false,
+  "arrayOverloadInvoked": false
+}

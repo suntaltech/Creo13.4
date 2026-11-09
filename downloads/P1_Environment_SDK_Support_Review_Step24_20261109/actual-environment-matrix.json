@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "currentFieldValidation": "NO_CURRENT_MACHINE_IDENTITY_BUNDLE_SUPPLIED",
+  "fields": [
+    {
+      "field": "creoVersion",
+      "availableValue": "13.4.0.0",
+      "evidenceStatus": "HISTORICAL_USER_REPORT_20261105_NOT_CURRENT_BINARY_IDENTITY",
+      "currentRuntimeVerified": false,
+      "neededReadOnlyEvidence": "当前Creo关于信息、实际映像文件版本/散列及会话启动时间"
+    },
+    {
+      "field": "creoInstallPath",
+      "availableValue": "D:\\Program Files\\PTC\\Creo 13.4.0.0\\Common Files",
+      "evidenceStatus": "HISTORICAL_DOCUMENT_PATH_ONLY_NOT_CURRENT_PROCESS_PATH",
+      "currentRuntimeVerified": false,
+      "neededReadOnlyEvidence": "当前运行Creo映像完整路径与对应安装根目录"
+    },
+    {
+      "field": "loadedOtkJar",
+      "availableValue": "UNKNOWN",
+      "evidenceStatus": "NOT_SUPPLIED_CURRENT_MACHINE",
+      "currentRuntimeVerified": false,
+      "neededReadOnlyEvidence": "实际加载CodeSource或既有类加载日志、真实路径/大小/SHA256，与离线SDK逐项比对"
+    },
+    {
+      "field": "deployedPluginJarOrClasses",
+      "availableValue": "UNKNOWN",
+      "evidenceStatus": "NOT_SUPPLIED_CURRENT_MACHINE",
+      "currentRuntimeVerified": false,
+      "neededReadOnlyEvidence": "实际部署路径、JAR或全部class散列、注册java_app_classpath、已加载来源；磁盘文件不等于已加载类"
+    },
+    {
+      "field": "runtimeJvmVersionVendor",
+      "availableValue": "UNKNOWN",
+      "evidenceStatus": "NOT_SUPPLIED_CURRENT_MACHINE",
+      "currentRuntimeVerified": false,
+      "neededReadOnlyEvidence": "Creo实际宿主JVM的版本/供应商/位数/java.home及既有启动记录；终端默认java-version不代替宿主JVM"
+    },
+    {
+      "field": "actualProtkDatAndTextDir",
+      "availableValue": "UNKNOWN",
+      "evidenceStatus": "TEMPLATE_ONLY_ACTUAL_FILE_NOT_SUPPLIED",
+      "currentRuntimeVerified": false,
+      "neededReadOnlyEvidence": "实际被引用的dat原文/哈希、绝对路径、text_dir解析路径及编码；不得填模板占位符"
+    },
+    {
+      "field": "effectiveConfigProEntries",
+      "availableValue": "Step23 dat仍启用",
+      "evidenceStatus": "CURRENT_TASK_REPORT_ONLY_NO_FILE_CONTENT",
+      "currentRuntimeVerified": false,
+      "neededReadOnlyEvidence": "本会话有效config.pro/config.sup路径及jlink/toolkit/protk相关行、启动时覆盖关系；不修改配置"
+    },
+    {
+      "field": "launchCommandAndClasspath",
+      "availableValue": "UNKNOWN",
+      "evidenceStatus": "NOT_SUPPLIED_CURRENT_MACHINE",
+      "currentRuntimeVerified": false,
+      "neededReadOnlyEvidence": "原有启动命令/快捷方式/psf或bat相关配置、实际进程参数和JVM classpath来源"
+    },
+    {
+      "field": "moduleLoadOrder",
+      "availableValue": "UNKNOWN",
+      "evidenceStatus": "CALL_LEDGER_IS_NOT_LOAD_ORDER",
+      "currentRuntimeVerified": false,
+      "neededReadOnlyEvidence": "已有jlink/stdout/stderr/类加载日志中的加载先后、重复SDK与插件版本；不要为采集而重载/重启"
+    },
+    {
+      "field": "otkJavaLicenseUnlockSignature",
+      "availableValue": "UNKNOWN",
+      "evidenceStatus": "NO_LICENSE_OR_OFFICIAL_RUNTIME_CONTRACT_EVIDENCE",
+      "currentRuntimeVerified": false,
+      "neededReadOnlyEvidence": "合法许可项名称/版本/签出结果、开发/运行模式及官方解锁/签名状态摘要；不提交密钥或完整许可文件"
+    }
+  ]
+}

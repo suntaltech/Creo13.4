@@ -1,0 +1,28 @@
+{
+  "task": {
+    "fileName": "P1_环境与SDK支持条件核查第二十四步_任务单_20261109.md",
+    "sha256": "9d618caba7bdab47bd3780fef4ce6a184e9ceb864f573f27f3544dae11770276"
+  },
+  "priorMaterials": [
+    {
+      "fileName": "P1_R7_官方资料定位与未决问题索引_20261104.md",
+      "sha256": "0495c47d2377cdb4f7fa2ea346c0f4bbc3a830a39a56783eb9f92331218a751b",
+      "evidenceLevel": "HISTORICAL_USER_DOCUMENT_SUMMARY_NOT_OFFICIAL_FULL_TEXT"
+    },
+    {
+      "fileName": "sdk-and-document-sources.md",
+      "sha256": "04e25fc90a830a124842844673358a3c91f477487c8b7847aea8d7a76886ca82",
+      "evidenceLevel": "HISTORICAL_USER_DOCUMENT_SUMMARY_NOT_OFFICIAL_FULL_TEXT"
+    },
+    {
+      "fileName": "review.json",
+      "sha256": "7562517295d7851b51bf193f94403eaf93179dc77cdd1ec1f142a82bdb1e697f",
+      "evidenceLevel": "DERIVED_REVIEW"
+    }
+  ],
+  "officialOriginalHtmlOrSupportMatrixRetrieved": false,
+  "networkResearchPerformed": false,
+  "sdkModelApisExecuted": false,
+  "creoEnvironmentInspectedLive": false,
+  "originalCrashRootCauseProven": false
+}

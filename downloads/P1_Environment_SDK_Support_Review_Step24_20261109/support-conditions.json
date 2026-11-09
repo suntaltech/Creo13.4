@@ -1,0 +1,35 @@
+{
+  "conditions": [
+    {
+      "condition": "sheetmetalMode",
+      "status": "UNVERIFIED_NO_OFFICIAL_FULL_DOC",
+      "assessment": "静态工厂无模型/模式参数，但签名不排除文档前提；当前不建议为试错切换模式。"
+    },
+    {
+      "condition": "elementTreeInitialization",
+      "status": "UNVERIFIED_NO_REQUIRED_INIT_API_IDENTIFIED",
+      "assessment": "列出的wfcElementTree工厂声明没有ElementTree_Init之类初始化入口；不能据此证明无需模块初始化，也不发明初始化调用。"
+    },
+    {
+      "condition": "asynchronousConnectionRequired",
+      "status": "NOT_ESTABLISHED",
+      "assessment": "本轮同步回调和PFC读取已返回；没有材料要求工厂必须异步，pfcasync不是默认补丁。"
+    },
+    {
+      "condition": "requiredThread",
+      "status": "PARTIALLY_OBSERVED_NOT_CERTIFIED",
+      "assessment": "日志Java线程ID均为3；原生Creo线程规则、线程名称/关联和支持契约未知。"
+    },
+    {
+      "condition": "additionalLicenseOrInternalApiSupport",
+      "status": "HIGH_PRIORITY_UNVERIFIED",
+      "assessment": "SDK存在许可/未初始化异常类型，但现场无相应THREW；异常类型存在不证明已缺许可。内部反射桥不构成官方API认证。"
+    },
+    {
+      "condition": "knownVersionCompatibilityIssue",
+      "status": "UNKNOWN_NO_MATRIX_OR_BULLETIN",
+      "assessment": "无当前同版本官方支持矩阵或缺陷公告；不能宣称13.4已知bug或建议未经核验JDK变更。"
+    }
+  ],
+  "officialDocSourceLevel": "HISTORICAL_USER_SUMMARY_ONLY_ORIGINAL_HTML_NOT_PROVIDED"
+}
