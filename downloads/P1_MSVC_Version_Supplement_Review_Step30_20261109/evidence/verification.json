@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "type": "DOCUMENT_DATA_CONSISTENCY_AND_EXAMPLE_SYNTAX_ONLY",
+  "checks": {
+    "new_version_fields_recorded": true,
+    "toolset_not_converted_to_invented_compiler_version": true,
+    "unknown_support_not_marked_unsupported": true,
+    "no_sdk_support_or_alternate_install_invented": true,
+    "access_failure_correctly_historical": true,
+    "no_site_execution_claimed": true,
+    "event_sequence_valid": true,
+    "example_parse_only": true
+  },
+  "powershell_example": {
+    "commandNames": [
+      "Get-ChildItem",
+      "Get-Item",
+      "Join-Path",
+      "Select-Object"
+    ],
+    "checkHost": "PowerShell 7.4.6 Linux; not a Windows runtime test",
+    "parsePassed": true,
+    "exampleExecuted": false
+  },
+  "native_compiler_test_performed": false,
+  "official_support_validated": false,
+  "all_observed_checks_passed": true
+}

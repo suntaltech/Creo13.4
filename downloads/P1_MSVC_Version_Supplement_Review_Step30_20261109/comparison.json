@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "step": 30,
+  "target_product": "Creo 13.4.0.0 Pro/TOOLKIT",
+  "input_evidence": "USER_PROVIDED_READONLY_SUMMARY_NOT_DIRECT_SITE_OBSERVATION",
+  "installation": {
+    "vs_product": "Visual Studio 2022 Community",
+    "vs_product_version": "17.14.41",
+    "default_msvc_toolset_version": "14.44.35207",
+    "windows_sdk_version": "10.0.26100.0",
+    "x64_component_reported_present": true,
+    "actual_cl_compiler_version": null,
+    "all_installed_toolset_versions": null,
+    "all_installed_sdk_versions": null,
+    "selected_future_build_toolset": null
+  },
+  "changes_since_step29": {
+    "default_msvc_toolset_version": {
+      "before": null,
+      "after": "14.44.35207"
+    },
+    "windows_sdk_version": {
+      "before": null,
+      "after": "10.0.26100.0"
+    }
+  },
+  "decisions": {
+    "msvc_14_44_35207_officially_supported": null,
+    "sdk_10_0_26100_0_officially_supported": null,
+    "older_toolset_already_installed": null,
+    "must_install_another_vs": null,
+    "current_toolchain_proven_unsupported": false,
+    "status": "UNVERIFIED_OFFICIAL_SUPPORT_AND_SIDE_BY_SIDE_INVENTORY",
+    "install_now_recommended": false
+  },
+  "scope": {
+    "cl_or_link_executed": false,
+    "object_or_dll_generated": false,
+    "creo_started": false,
+    "vs_installed": false,
+    "site_configuration_changed": false,
+    "step28_template_changed": false
+  }
+}

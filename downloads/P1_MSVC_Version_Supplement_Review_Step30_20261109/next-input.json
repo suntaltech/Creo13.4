@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "already_received_do_not_repeat": [
+    "VS2022 17.14.41",
+    "Default MSVC 14.44.35207",
+    "Windows SDK 10.0.26100.0",
+    "x64 C++ component present"
+  ],
+  "remaining": [
+    {
+      "id": "OFFICIAL_SUPPORT",
+      "needed": "Version-applicable PTC compiler/SDK rows and all limiting footnotes, document title/revision and actual local Platform-page reference",
+      "purpose": "Determine the target versions or range before recommending a switch"
+    },
+    {
+      "id": "SIDE_BY_SIDE",
+      "needed": "Version directory names under the selected VS VC/Tools/MSVC root and Windows Kits Include/Lib roots",
+      "purpose": "Determine whether a required alternative is already installed",
+      "limitation": "Only selected installation roots; not a machine-wide absence claim"
+    },
+    {
+      "id": "COMPILER_FILE_VERSION",
+      "needed": "FileVersion/ProductVersion metadata of the actual Hostx64/x64/cl.exe; do not execute it",
+      "purpose": "Avoid confusing toolset directory version with compiler version",
+      "limitation": "Not compiler execution, actual future selection, or PTC certification"
+    }
+  ]
+}

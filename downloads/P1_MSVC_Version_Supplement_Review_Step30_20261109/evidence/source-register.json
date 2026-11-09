@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "task": {
+    "file_name": "P1_MSVC版本补采第三十步_任务单_20261109.md",
+    "sha256": "7c8bc92876500d2889b186192948c1f57b56826f3386d0e4740d9324fa3c3a94",
+    "level": "USER_TASK_AND_VERSION_SUMMARY"
+  },
+  "previous_review": {
+    "commit": "d00590fb0c624d67afbb43c78ffc1c6e54ce223e",
+    "source_register_sha256": "54b09b199f0a1b2fc246aced99d03e07d7ca25100093f58c765cd5e355fcbe42"
+  },
+  "official_source_access": {
+    "request_this_step": false,
+    "historical_step": 29,
+    "historical_result": "PROXY_CONNECT_403_NO_ORIGIN_DOCUMENT",
+    "url": "https://support.ptc.com/help/creo_toolkit/protoolkit_plus/usascii/creo_toolkit/get_started/Platform_and_Compiler_Support.html",
+    "url_version_pinned": false,
+    "applicable_official_text_received": false,
+    "access_policy_bypassed": false
+  },
+  "raw_msvc_inventory_received": false,
+  "cl_file_metadata_received": false
+}
