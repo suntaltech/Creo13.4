@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "host": "Linux cloud",
+  "cmake_version": "3.31.6",
+  "verification_scope": "DEFAULT_REVIEW_MODE_AND_STATIC_SCOPE_CHECKS_ONLY",
+  "checks": [
+    {
+      "id": "default-configure",
+      "pass": true,
+      "detail": {
+        "exit_code": 0
+      }
+    },
+    {
+      "id": "default-build",
+      "pass": true,
+      "detail": {
+        "exit_code": 0
+      }
+    },
+    {
+      "id": "sample-flags-and-macros-in-plan",
+      "pass": true
+    },
+    {
+      "id": "no-cxx-compiler-configured",
+      "pass": true
+    },
+    {
+      "id": "reject-md",
+      "pass": true,
+      "detail": {
+        "exit_code": 1
+      }
+    },
+    {
+      "id": "reject-old-certification-parameter",
+      "pass": true,
+      "detail": {
+        "exit_code": 1
+      }
+    },
+    {
+      "id": "reject-nonwindows-object",
+      "pass": true,
+      "detail": {
+        "exit_code": 1
+      }
+    },
+    {
+      "id": "compiler-sentinel-never-invoked",
+      "pass": true
+    },
+    {
+      "id": "no-native-build-artifacts",
+      "pass": true
+    },
+    {
+      "id": "entry-unchanged-from-step28",
+      "pass": true
+    },
+    {
+      "id": "object-settings-static-review",
+      "pass": true
+    },
+    {
+      "id": "future-direct-command-static-review",
+      "pass": true,
+      "detail": {
+        "windows_command_executed": false
+      }
+    },
+    {
+      "id": "future-link-plan-only",
+      "pass": true
+    }
+  ],
+  "all_checks_passed": true,
+  "windows_cmake_branch_executed": false,
+  "batch_example_executed": false,
+  "real_sdk_compilation_performed": false,
+  "dll_link_or_creo_load_performed": false,
+  "sdk_stub_used": false,
+  "original_official_sample_reviewed": false,
+  "exact_ptc_patch_support_certified": false
+}

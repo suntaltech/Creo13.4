@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "step": 32,
+  "status": "FUTURE_LINK_REFERENCE_ONLY_NO_LINK_TARGET",
+  "basis": "USER_REPORTED_OFFICIAL_SAMPLE_EXTRACT",
+  "sample_relative_path": "x86e_win64/obj/protk_install_example.zip",
+  "configuration": "Windows x64 synchronous DLL MT route as reported",
+  "ptc_libraries": [
+    "protk_dll_NU.lib",
+    "ucore.lib",
+    "udata.lib"
+  ],
+  "crt_library_reported": "libcmt.lib",
+  "crt_compiler_option": "/MT",
+  "system_libraries": [
+    "kernel32.lib",
+    "user32.lib",
+    "wsock32.lib",
+    "advapi32.lib",
+    "mpr.lib",
+    "winspool.lib",
+    "netapi32.lib",
+    "psapi.lib",
+    "gdi32.lib",
+    "shell32.lib",
+    "comdlg32.lib",
+    "ole32.lib",
+    "ws2_32.lib"
+  ],
+  "object_compile_links_these_libraries": false,
+  "library_dependencies_independently_verified": false,
+  "dll_link_performed": false
+}

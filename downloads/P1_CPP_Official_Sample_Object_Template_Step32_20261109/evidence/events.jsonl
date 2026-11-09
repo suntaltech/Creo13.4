@@ -1,0 +1,7 @@
+{"seq": 1, "step": 32, "utc": "2026-11-09T09:04:08.897538+00:00", "event": "SAMPLE_INPUT", "status": "USER_EXTRACT_RECEIVED", "detail": "v143, MT DLL route, ucore/udata and compiler flags reported from local sample"}
+{"seq": 2, "step": 32, "utc": "2026-11-09T09:04:08.897538+00:00", "event": "TOOLSET_FAMILY", "status": "MATCHED_AT_FAMILY_LEVEL", "detail": "Reported VS2022/MSVC 14.44 agrees with v143 family; not precise PTC patch certification"}
+{"seq": 3, "step": 32, "utc": "2026-11-09T09:04:08.897538+00:00", "event": "TEMPLATE_UPDATE", "status": "IMPLEMENTED", "detail": "MT fixed; sample macros, GS and fp:precise added; object-only targets retained"}
+{"seq": 4, "step": 32, "utc": "2026-11-09T09:04:08.897538+00:00", "event": "NEXT_ROUND_COMMAND", "status": "PREPARED_NOT_EXECUTED", "detail": "Direct /c command and manual example with future compiler log, exit code and events"}
+{"seq": 5, "step": 32, "utc": "2026-11-09T09:04:08.897538+00:00", "event": "EXACT_SUPPORT_AND_ENTRY_ABI", "status": "UNVERIFIED", "detail": "Original project, applicable support matrix and real header declarations not reviewed"}
+{"seq": 6, "step": 32, "utc": "2026-11-09T09:04:08.897538+00:00", "event": "SITE_ACTIONS", "status": "NOT_PERFORMED", "detail": "No native compilation, DLL link, registration or Creo startup"}
+{"seq": 7, "step": 32, "utc": "2026-11-09T09:05:17.858464+00:00", "event": "CLOUD_REVIEW_VALIDATION", "status": "PASS", "detail": "Default configure/build, rejection paths and static scope checks passed; native Windows/SDK paths not executed"}

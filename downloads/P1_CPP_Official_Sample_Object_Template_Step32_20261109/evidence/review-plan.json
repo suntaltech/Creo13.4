@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "step": 32,
+  "parameter_basis": "USER_REPORTED_OFFICIAL_SAMPLE_EXTRACT_NOT_ORIGINAL_PROJECT",
+  "toolset_family": "v143",
+  "crt": "MT",
+  "compiler_options": [
+    "/c",
+    "/GS",
+    "/fp:precise",
+    "/MT"
+  ],
+  "definitions": [
+    "_WSTDIO_DEFINED",
+    "PRO_MACHINE=36",
+    "PRO_OS=4"
+  ],
+  "reported_toolset_directory": "14.44.35207",
+  "reported_compiler_file_version": "19.44.35229.0",
+  "reported_windows_sdk": "10.0.26100.0",
+  "object_check_requested": "OFF",
+  "dll_target_present": false,
+  "registration_or_deployment_present": false,
+  "compilation_status": "NOT_MEASURED_BY_CONFIGURATION",
+  "exact_patch_support_certified": false
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "task": {
+    "file_name": "P1_官方样例工程核对第三十二步_任务单_20261109.md",
+    "sha256": "81c19ac01e3d4c64f02943aa48b8d8d9eae650fcb18c444a7d2ba8cef3a88cce",
+    "evidence_level": "USER_EXTRACT_OF_OFFICIAL_SAMPLE_NOT_ORIGINAL_PROJECT"
+  },
+  "sample_zip_received": false,
+  "sample_project_full_text_reviewed": false,
+  "entry_source": {
+    "base_step": 28,
+    "sha256": "b8ecc4df538cd246ef490ce0265d561c886d33d2bebea6f52d50b514bae5568e",
+    "changed": false,
+    "actual_sdk_prototype_verified": false
+  },
+  "compiler_family_crosscheck": {
+    "source": "CMake 3.31.6 Modules/Platform/Windows-MSVC.cmake",
+    "sha256": "2c0aa731d2822bf449c605d648ff870bbcf8892507b95464519bfea1e257eaaa",
+    "lines": "72-74",
+    "rule": "MSVC_VERSION >= 1930 maps to toolset 143 in this CMake version",
+    "is_ptc_certification": false
+  },
+  "prior_identity_commit": "2a48f75f0ef3efcb971bfb427938fc3ae5b12b2e",
+  "official_exact_patch_and_sdk_support_certified": false,
+  "new_ptc_network_request_performed": false
+}

@@ -1,0 +1,35 @@
+@echo off
+rem FUTURE MANUAL EXAMPLE: not executed in Step32. Replace placeholders first.
+setlocal
+set "P1_VS_ROOT=@VS_INSTALL_ROOT@"
+set "P1_SDK_ROOT=@PROTOOLKIT_ROOT@"
+if not exist "%P1_VS_ROOT%\VC\Auxiliary\Build\vcvarsall.bat" exit /b 2
+if not exist "%P1_SDK_ROOT%\includes\ProToolkit.h" exit /b 2
+if not exist "%P1_SDK_ROOT%\includes\ProToolkitDll.h" exit /b 2
+call "%P1_VS_ROOT%\VC\Auxiliary\Build\vcvarsall.bat" x64 10.0.26100.0 -vcvars_ver=14.44.35207
+if errorlevel 1 exit /b 3
+set "P1_CL=%P1_VS_ROOT%\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\cl.exe"
+if not exist "%P1_CL%" exit /b 2
+rem Avoid inherited flags adding output paths, PCH, extra includes, etc.
+set "CL="
+set "_CL_="
+pushd "%~dp0.."
+if errorlevel 1 exit /b 4
+rem A new directory keeps any previous diagnostic evidence intact.
+if exist "object-check-step32" (
+  popd
+  exit /b 5
+)
+mkdir "object-check-step32"
+if errorlevel 1 (
+  popd
+  exit /b 4
+)
+> "object-check-step32\events.jsonl" echo {"step":32,"event":"OBJECT_COMPILE_BEGIN","parameter_basis":"USER_REPORTED_SAMPLE_EXTRACT","actual_compiler_version_measured":false}
+"%P1_CL%" /nologo /c /GS /fp:precise /MT /D_WSTDIO_DEFINED /DPRO_MACHINE=36 /DPRO_OS=4 /I"%P1_SDK_ROOT%\includes" /Fo"object-check-step32\entry.obj" "src\entry.cpp" > "object-check-step32\compiler.log" 2>&1
+set "P1_RESULT=%ERRORLEVEL%"
+if "%P1_RESULT%"=="0" if not exist "object-check-step32\entry.obj" set "P1_RESULT=6"
+> "object-check-step32\exit-code.txt" echo %P1_RESULT%
+>> "object-check-step32\events.jsonl" echo {"step":32,"event":"OBJECT_COMPILE_EXIT","exit_code":%P1_RESULT%,"dll_linked":false}
+popd
+exit /b %P1_RESULT%
