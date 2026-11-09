@@ -1,0 +1,10 @@
+name p1s17
+startup java
+java_app_class p1.controlled.step17.P1PreflightDiagnosticStep17
+java_app_classpath @ABSOLUTE_STEP17_CLASSES_DIRECTORY@
+java_app_start start
+java_app_stop stop
+allow_stop true
+delay_start false
+text_dir @ABSOLUTE_STEP17_RESOURCES_TEXT_DIRECTORY@
+end

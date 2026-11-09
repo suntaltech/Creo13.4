@@ -1,0 +1,284 @@
+--- step16/source/AuditSupport.java
++++ step17/source/AuditSupport.java
+@@ -1 +1 @@
+-package p1.controlled.step16;
++package p1.controlled.step17;
+--- step16/source/P1ControlledConversionStep16.java
++++ step17/source/P1PreflightDiagnosticStep17.java
+@@ -1 +1 @@
+-package p1.controlled.step16;
++package p1.controlled.step17;
+@@ -17 +16,0 @@
+-import com.ptc.pfc.pfcArgument.*;
+@@ -21,5 +20 @@
+-import com.ptc.wfc.wfcFeatureInstructions.*;
+-import com.ptc.wfc.wfcSolidInstructions.*;
+-import com.ptc.wfc.wfcElementTree.*;
+-import com.ptc.wfc.wfcElemIds.wfcElemIds;
+-import static p1.controlled.step16.AuditSupport.*;
++import static p1.controlled.step17.AuditSupport.*;
+@@ -28,3 +23,3 @@
+-public final class P1ControlledConversionStep16 {
+- public static final String COMMAND_ID="SISWControlledConvertStep16";
+- private static final String TARGET="200002100.prt",MESSAGES="p1_controlled_conversion_step16.txt";
++public final class P1PreflightDiagnosticStep17 {
++ public static final String COMMAND_ID="SISWPreflightStep17";
++ private static final String TARGET="200002100.prt",MESSAGES="p1_preflight_step17.txt";
+@@ -37 +32 @@
+- private P1ControlledConversionStep16(){}
++ private P1PreflightDiagnosticStep17(){}
+@@ -44 +39 @@
+-   command.Designate(MESSAGES,"P1_S16_LABEL","P1_S16_HELP","P1_S16_DESC");active=true;
++   command.Designate(MESSAGES,"P1_S17_LABEL","P1_S17_HELP","P1_S17_DESC");active=true;
+@@ -54 +49 @@
+-  options.SetDialogLabel("P1 Step16 — 不保存试验状态");MessageButtons buttons=MessageButtons.create();buttons.append(MessageButton.MESSAGE_BUTTON_OK);options.SetButtons(buttons);options.SetDefaultButton(MessageButton.MESSAGE_BUTTON_OK);
++  options.SetDialogLabel("P1 Step17 — 不保存试验状态");MessageButtons buttons=MessageButtons.create();buttons.append(MessageButton.MESSAGE_BUTTON_OK);options.SetButtons(buttons);options.SetDefaultButton(MessageButton.MESSAGE_BUTTON_OK);
+@@ -57 +52 @@
+- private static void feedback(String text,boolean error){feedback(text,error,"P1_S16_FAILED");}
++ private static void feedback(String text,boolean error){feedback(text,error,"P1_S17_FAILED");}
+@@ -59,3 +54,3 @@
+-  System.err.println("[P1_STEP16] "+text);
+-  try{display(text,error);}catch(Exception|LinkageError dialogError){System.err.println("[P1_STEP16] RESULT_DIALOG_FAILED "+dialogError.getClass().getName());
+-   try{session.UIDisplayMessage(MESSAGES,statusKey,null);}catch(Exception|LinkageError statusError){System.err.println("[P1_STEP16] BOTH_NATIVE_FEEDBACK_ROUTES_FAILED "+statusError.getClass().getName());}}
++  System.err.println("[P1_STEP17] "+text);
++  try{display(text,error);}catch(Exception|LinkageError dialogError){System.err.println("[P1_STEP17] RESULT_DIALOG_FAILED "+dialogError.getClass().getName());
++   try{session.UIDisplayMessage(MESSAGES,statusKey,null);}catch(Exception|LinkageError statusError){System.err.println("[P1_STEP17] BOTH_NATIVE_FEEDBACK_ROUTES_FAILED "+statusError.getClass().getName());}}
+@@ -64 +59 @@
+-  MessageDialogOptions options=pfcUI.MessageDialogOptions_Create();options.SetMessageDialogType(MessageDialogType.MESSAGE_WARNING);options.SetDialogLabel("P1 第十六步二次确认");
++  MessageDialogOptions options=pfcUI.MessageDialogOptions_Create();options.SetMessageDialogType(MessageDialogType.MESSAGE_WARNING);options.SetDialogLabel("P1 Step17 只读Preflight确认");
+@@ -72,2 +67,2 @@
+-   if(!clicked.compareAndSet(false,true)){busy.set(false);feedback("本进程第十六步点击次数已用尽；未进入转换，不重试。",true);return;}
+-   String message="本次未提交转换；一次点击已消耗，禁止自动重试。";boolean error=true;String statusKey="P1_S16_FAILED";
++   if(!clicked.compareAndSet(false,true)){busy.set(false);feedback("本进程第十七步点击次数已用尽；未进入转换，不重试。",true);return;}
++   String message="本次只读Preflight未完成；一次点击已消耗。";boolean error=true;String statusKey="P1_S17_FAILED";
+@@ -75,3 +70,3 @@
+-    Path directory=Paths.get(System.getProperty("user.home"),"CreoControlledConversionStep16");
+-    try(Step16Control control=new Step16Control(directory)){
+-     try{message=execute(control);error=false;statusKey=control.dispatched()?"P1_S16_VERIFIED":"P1_S16_CANCELLED";}
++    Path directory=Paths.get(System.getProperty("user.home"),"CreoPreflightDiagnosticsStep17");
++    try(Step17Control control=new Step17Control(directory)){
++     try{message=execute(control);error=false;statusKey="PREFLIGHT_AND_INPUT_RECORDED_NO_CONVERSION_NO_SAVE".equals(control.outcome())?"P1_S17_INPUT_DONE":"P1_S17_CANCELLED";}
+@@ -79 +74 @@
+-      String outcome=control.dispatched()?"FAILED_OR_UNVERIFIED_MODEL_STATE_RETAINED_NO_SAVE":"BLOCKED_BEFORE_WRITE_NO_SAVE";
++      String outcome="READ_ONLY_PREFLIGHT_BLOCKED_NO_WRITE";
+@@ -81 +76 @@
+-      try{control.record("ERROR",map("exceptionClass",failure.getClass().getName(),"message",String.valueOf(failure.getMessage()),"phase",phase,"errorCode",failure instanceof FaceIdentityFailure faceFailure?faceFailure.code.name():failure instanceof BodyIdentityFailure bodyFailure?bodyFailure.code.name():"OTHER_FAILURE","bodyCheckStage",failure instanceof BodyIdentityFailure bodyFailure?bodyFailure.stage:"NOT_BODY_CHECK","faceCheckStage",failure instanceof FaceIdentityFailure faceFailure?faceFailure.stage:"NOT_FACE_CHECK"));}catch(Exception logError){failure.addSuppressed(logError);}
++      try{control.record("ERROR",map("exceptionClass",failure.getClass().getName(),"message",String.valueOf(failure.getMessage()),"phase",phase,"errorCode",failure instanceof PreflightAudit.ProbeFailure?"PREFLIGHT_READ_EXCEPTION":failure instanceof FaceIdentityFailure faceFailure?faceFailure.code.name():failure instanceof BodyIdentityFailure bodyFailure?bodyFailure.code.name():"OTHER_FAILURE","bodyCheckStage",failure instanceof BodyIdentityFailure bodyFailure?bodyFailure.stage:"NOT_BODY_CHECK","faceCheckStage",failure instanceof FaceIdentityFailure faceFailure?faceFailure.stage:"NOT_FACE_CHECK"));}catch(Exception logError){failure.addSuppressed(logError);}
+@@ -83,3 +78,2 @@
+-      if(control.dispatched())readonlyFailureSnapshot(control);
+-      try{control.finish(outcome);}catch(Exception logError){System.err.println("[P1_STEP16] FINAL_AUDIT_WRITE_FAILED "+logError.getClass().getName());}
+-      message=control.dispatched()?"转换失败或核验不完整。模型可能已部分改变；未自动回滚，失败状态保留。本命令没有保存能力；禁止通过其他入口保存当前试验状态，不重试。\n错误："+failure.getClass().getSimpleName()+" / "+failure.getMessage():"未执行模型转换（前置检查/确认/审计未通过）。一次点击已消耗，不重试。\n原因："+failure.getMessage();
++      try{control.finish(outcome);}catch(Exception logError){System.err.println("[P1_STEP17] FINAL_AUDIT_WRITE_FAILED "+logError.getClass().getName());}
++      message="只读Preflight未完成或被阻断；本命令不调用模型创建/再生/保存。本步一次点击已消耗，保留日志，不重试。\n原因："+failure.getMessage();
+@@ -88,2 +82,2 @@
+-   }catch(FileAlreadyExistsException already){message="本机第十六步一次点击锁已存在；本次未进入转换。不要删除记录、换目录或重载绕过单次限制。";}
+-   catch(Exception|LinkageError outer){error=true;statusKey="P1_S16_FAILED";outer.printStackTrace(System.err);message="受控记录创建或关闭失败，禁止继续/保存/重试；若已提交，模型可能已改变。请保留现场及stderr。\n"+outer.getClass().getSimpleName();}
++   }catch(FileAlreadyExistsException already){message="本机第十七步一次点击锁已存在；本次未进入转换。不要删除记录、换目录或重载绕过单次限制。";}
++   catch(Exception|LinkageError outer){error=true;statusKey="P1_S17_FAILED";outer.printStackTrace(System.err);message="只读诊断记录创建或关闭失败；不要重复点击，保留现场和stderr。本命令没有模型写入调用。\n"+outer.getClass().getSimpleName();}
+@@ -96 +90 @@
+- private static <T> T adapt(Object source,Class<T> type,String[] names,Step16Control control)throws Exception{
++ private static <T> T adapt(Object source,Class<T> type,String[] names,Step17Control control)throws Exception{
+@@ -105,3 +99,3 @@
+-  Model model;WSolid solid;SolidBody body;Surface face;WSession wsession;Selection capturedSelection;Integer capturedSelectionCount,stableFaceId;Integer stableBodyId;String stamp;boolean dirty;Set<Integer> featureIds;
+- }
+- private static Snapshot inspect(Step16Control control)throws Exception{
++  Model model;WSolid solid;SolidBody body;Surface face;WSession wsession;PreflightAudit trace;Selection capturedSelection;Integer capturedSelectionCount,stableFaceId;Integer stableBodyId;String stamp;boolean dirty;Set<Integer> featureIds;
++ }
++ private static Snapshot inspect(Step17Control control)throws Exception{
+@@ -118 +112,4 @@
+-  requireFace(s,control,false);s.stamp=s.model.GetVersionStamp();s.dirty=s.model.GetIsModified();
++  requireFace(s,control,false);
++  PreflightAudit trace=new PreflightAudit(control);s.trace=trace;
++  s.stamp=trace.read("VERSION_STAMP_READ_START","VERSION_STAMP_READ","Model.GetVersionStamp",()->s.model.GetVersionStamp(),value->map("returnedNull",value==null,"value",value));
++  s.dirty=trace.read("MODIFIED_FLAG_READ_START","MODIFIED_FLAG_READ","Model.GetIsModified",()->s.model.GetIsModified(),value->map("value",value));
+@@ -120,2 +117,4 @@
+-  s.featureIds=featureIds(s.model);requireNoNativeFailure(s.solid);
+-  control.record("PREFLIGHT",map("model",TARGET,"nativeIsSheetmetal",false,"bodyId",s.body.GetId(),"drivingFaceId",s.face.GetId(),"drivingFaceRequired",true,"lengthUnit","mm","globalThicknessProven",false,"modelVersionStamp",s.stamp,"dirtyBefore",s.dirty,"featureCountBefore",s.featureIds.size()));return s;
++  s.featureIds=featureIds(s.model,trace);requireNoNativeFailure(s.solid,trace);
++  Integer bodyId=trace.read("PREFLIGHT_BODY_ID_READ_START","PREFLIGHT_BODY_ID_READ_DONE","SolidBody.GetId",()->s.body.GetId(),value->map("value",value));
++  Integer faceId=trace.read("PREFLIGHT_FACE_ID_READ_START","PREFLIGHT_FACE_ID_READ_DONE","Surface.GetId",()->s.face.GetId(),value->map("value",value));
++  control.record("PREFLIGHT",map("phase","DONE","model",TARGET,"nativeIsSheetmetal",false,"bodyId",bodyId,"drivingFaceId",faceId,"drivingFaceRequired",true,"lengthUnit","mm","globalThicknessProven",false,"modelVersionStamp",s.stamp,"dirtyBefore",s.dirty,"featureCountBefore",s.featureIds.size()));return s;
+@@ -134 +133 @@
+- private static SolidBody verifyDefaultBody(Snapshot s,Step16Control control,boolean recheck)throws Exception{
++ private static SolidBody verifyDefaultBody(Snapshot s,Step17Control control,boolean recheck)throws Exception{
+@@ -165 +164 @@
+- private static FaceIdentityFailure faceReadFailure(Step16Control control,String stage,String operation,Throwable error)throws Exception{
++ private static FaceIdentityFailure faceReadFailure(Step17Control control,String stage,String operation,Throwable error)throws Exception{
+@@ -169 +168 @@
+- private static Surface selectedFace(Snapshot s,Step16Control control,boolean recheck)throws Exception{
++ private static Surface selectedFace(Snapshot s,Step17Control control,boolean recheck)throws Exception{
+@@ -183 +182 @@
+- private static void requireFace(Snapshot s,Step16Control control,boolean recheck)throws Exception{
++ private static void requireFace(Snapshot s,Step17Control control,boolean recheck)throws Exception{
+@@ -214,18 +213,36 @@
+- private static Set<Integer> featureIds(Model model)throws Exception{
+-  ModelItems items=model.ListItems(ModelItemType.ITEM_FEATURE);if(items==null||items.getarraysize()>10000)throw new IllegalStateException("Feature list unavailable/too large");Set<Integer> ids=new LinkedHashSet<>();
+-  for(int i=0;i<items.getarraysize();i++){ModelItem item=items.get(i);if(!(item instanceof Feature)||!ids.add(item.GetId()))throw new IllegalStateException("Invalid/duplicate feature identity");}return ids;
+- }
+- private static void requireNoNativeFailure(WSolid solid)throws Exception{
+-  FeatureStatusFlags flags=solid.GetSolidFeatureStatusFlags();if(flags==null||flags.getarraysize()>10000)throw new IllegalStateException("Feature error flags unknown/too large");
+-  for(int i=0;i<flags.getarraysize();i++){FeatureStatusFlag flag=flags.get(i);if(flag==null||flag.GetIsFailed()||flag.GetIsInvalid()||flag.GetIsUnregenerated()||flag.GetIsChildOfFailed()||flag.GetIsChildOfExternalFailed())throw new IllegalStateException("Native feature failed/invalid/unregenerated flag present");}
+- }
+- private static void recheck(Snapshot s,Step16Control control)throws Exception{
+-  try{if(!active||!same(session.GetActiveModel(),s.model)||!TARGET.equalsIgnoreCase(s.model.GetFileName())||!Objects.equals(s.stamp,s.model.GetVersionStamp())||s.dirty!=s.model.GetIsModified())throw new BodyIdentityFailure(ScopedBodyIdentity.Code.MODEL_SCOPE_MISMATCH,"RECHECK","确认期间激活模型/版本/dirty变化，未写模型。",null);}
+-  catch(BodyIdentityFailure mismatch){throw mismatch;}
+-  catch(Exception|LinkageError readError){throw new BodyIdentityFailure(ScopedBodyIdentity.Code.STATE_READ_EXCEPTION,"RECHECK","确认期间模型作用域读取异常",readError);}
+-  s.body=verifyDefaultBody(s,control,true);
+-  UnitSystem units=s.solid.GetPrincipalUnits();Unit unit=units==null?null:units.GetUnit(UnitType.UNIT_LENGTH);if(unit==null||!"mm".equalsIgnoreCase(unit.GetName()))throw new IllegalStateException("长度单位变化。");
+-  if(!s.featureIds.equals(featureIds(s.model)))throw new IllegalStateException("确认期间特征列表变化。");requireFace(s,control,true);requireNoNativeFailure(s.solid);
+- }
+- private static void element(Elements elements,int id,ArgValue value,int level)throws Exception{elements.append(wfcElementTree.Element_Create(id,value,level));}
+- private static String execute(Step16Control control)throws Exception{
++ private static Set<Integer> featureIds(Model model,PreflightAudit trace)throws Exception{
++  ModelItems items=trace.read("FEATURE_LIST_START","FEATURE_LIST_COLLECTION_DONE","Model.ListItems(ITEM_FEATURE)",()->model.ListItems(ModelItemType.ITEM_FEATURE),value->map("returnedNull",value==null));
++  if(items==null)throw new IllegalStateException("Feature list unavailable");
++  int count=trace.read("FEATURE_LIST_COUNT_START","FEATURE_LIST_COUNT_DONE","ModelItems.getarraysize",items::getarraysize,value->map("count",value));
++  if(count<0||count>10000)throw new IllegalStateException("Feature list outside existing bound");
++  List<Feature> objects=trace.read("FEATURE_LIST_ITEMS_START","FEATURE_LIST_ITEMS_DONE","ModelItems.get[*]",()->{
++   List<Feature> result=new ArrayList<>();for(int i=0;i<count;i++){ModelItem item=items.get(i);if(!(item instanceof Feature feature))throw new IllegalStateException("Invalid feature interface at index "+i);result.add(feature);}return result;
++  },value->map("processed",value.size(),"groupedRead",true));
++  Set<Integer> ids=trace.read("FEATURE_LIST_IDS_START","FEATURE_LIST_DONE","ModelItem.GetId[*]",()->{
++   Set<Integer> values=new LinkedHashSet<>();for(int i=0;i<objects.size();i++)if(!values.add(objects.get(i).GetId()))throw new IllegalStateException("Duplicate feature ID at index "+i);return values;
++  },value->map("uniqueIds",value.size(),"processed",objects.size(),"groupedRead",true));
++  trace.note("FEATURE_LIST_ITEM_DONE",map("samplePolicy","FINAL_COUNTS_ONLY","itemsFetched",objects.size(),"idsRead",ids.size()));return ids;
++ }
++ private static boolean flagValue(FeatureStatusFlag flag,String method)throws Exception{
++  return switch(method){
++   case "GetIsFailed"->flag.GetIsFailed();case "GetIsInvalid"->flag.GetIsInvalid();case "GetIsUnregenerated"->flag.GetIsUnregenerated();
++   case "GetIsChildOfFailed"->flag.GetIsChildOfFailed();case "GetIsChildOfExternalFailed"->flag.GetIsChildOfExternalFailed();
++   default->throw new IllegalArgumentException("Unknown fixed flag method");};
++ }
++ private static void requireNoNativeFailure(WSolid solid,PreflightAudit trace)throws Exception{
++  FeatureStatusFlags flags=trace.read("NATIVE_FAILURE_FLAGS_START","NATIVE_FAILURE_FLAGS_COLLECTION_DONE","WSolid.GetSolidFeatureStatusFlags",solid::GetSolidFeatureStatusFlags,value->map("returnedNull",value==null));
++  if(flags==null)throw new IllegalStateException("Feature error flags unknown");
++  int count=trace.read("NATIVE_FAILURE_FLAGS_COUNT_START","NATIVE_FAILURE_FLAGS_COUNT_DONE","FeatureStatusFlags.getarraysize",flags::getarraysize,value->map("count",value));
++  if(count<0||count>10000)throw new IllegalStateException("Feature status flags outside existing bound");
++  List<FeatureStatusFlag> objects=trace.read("NATIVE_FAILURE_FLAGS_ITEMS_START","NATIVE_FAILURE_FLAGS_ITEMS_DONE","FeatureStatusFlags.get[*]",()->{
++   List<FeatureStatusFlag> values=new ArrayList<>();for(int i=0;i<count;i++){FeatureStatusFlag flag=flags.get(i);if(flag==null)throw new IllegalStateException("Null feature status flag at index "+i);values.add(flag);}return values;
++  },value->map("processed",value.size(),"groupedRead",true));
++  for(String method:new String[]{"GetIsFailed","GetIsInvalid","GetIsUnregenerated","GetIsChildOfFailed","GetIsChildOfExternalFailed"}){
++   boolean hit=trace.read("NATIVE_FAILURE_FLAG_SCAN_START","NATIVE_FAILURE_FLAG_SCAN_DONE","FeatureStatusFlag."+method+"[*]",()->{
++    for(FeatureStatusFlag flag:objects)if(flagValue(flag,method))return true;return false;
++   },value->map("flagMethod",method,"anyTrue",value,"batchSize",objects.size(),"groupedRead",true));
++   if(hit){trace.note("NATIVE_FAILURE_FLAGS_REJECTED",map("flagMethod",method,"reason","NATIVE_FLAG_TRUE"));throw new IllegalStateException("Native feature failed/invalid/unregenerated flag present: "+method);}
++  }
++  trace.note("NATIVE_FAILURE_FLAGS_DONE",map("flags",count,"fieldsChecked",5,"anyRejectedFlag",false));
++ }
++ private static String execute(Step17Control control)throws Exception{
+@@ -233,43 +250,7 @@
+-  if(!confirm("第一次确认：当前零件200002100.prt；原生默认体IsSheetmetal=false。\n全局壁厚尚未证明，局部1.2mm不是全局厚度依据。\n仅对可丢弃试验模型执行一次转换，不保存、不覆盖原文件；失败可能保留部分改变，不自动回滚。\n你确认当前模型可丢弃并同意继续准备本次试验吗？")){control.finish("CANCELLED_FIRST_CONFIRMATION_NO_WRITE");return "已取消第一次确认，未写模型；本次点击已消耗，不重试。";}
+-  control.acceptRisk();session.UIDisplayMessage(MESSAGES,"P1_S16_THICKNESS",null);String input=session.UIReadStringMessage(Boolean.FALSE);
+-  if(input==null||input.isBlank()){control.finish("CANCELLED_THICKNESS_INPUT_NO_WRITE");return "未输入试验厚度，未写模型；本次点击已消耗。";}
+-  control.setThickness(input);recheck(s,control);
+-  if(!confirm("第二次最终确认：原生IsSheetmetal=false；全局壁厚未证明。\n可丢弃模型：200002100.prt；预选驱动面ID="+s.face.GetId()+"。\n本次仅使用你明确输入的试验厚度 "+control.thickness()+" mm，不视为真实全局壁厚。\n确认后最多调用一次WCreateFeature与一次WRegenerate；不保存。失败保留状态，禁止保存/重试。\n现在提交这唯一一次原生转换吗？")){control.finish("CANCELLED_FINAL_CONFIRMATION_NO_WRITE");return "已取消最终确认，未写模型；本次点击已消耗。";}
+-  control.acceptFinal();recheck(s,control);
+-  Selection body=pfcSelect.CreateModelItemSelection(s.body,null),face=pfcSelect.CreateModelItemSelection(s.face,null);if(body==null||face==null)throw new IllegalStateException("Native selections unavailable");
+-  Elements elements=Elements.create();element(elements,wfcElemIds.PRO_E_FEATURE_TREE,null,0);
+-  element(elements,wfcElemIds.PRO_E_FEATURE_TYPE,pfcArgument.CreateIntArgValue(FeatureType.FEATTYPE_DATUM_SURFACE.getValue()),1);
+-  element(elements,wfcElemIds.PRO_E_STD_FEATURE_NAME,pfcArgument.CreateStringArgValue("P1_STEP16_DRIVING"),1);
+-  element(elements,wfcElemIds.PRO_E_DTM_SRF_TYPE,pfcArgument.CreateIntArgValue(15),1);
+-  element(elements,wfcElemIds.PRO_E_SMT_CONV_BODY,pfcArgument.CreateSelectionArgValue(body),1);
+-  element(elements,wfcElemIds.PRO_E_SMT_DRV_SURF,pfcArgument.CreateSelectionArgValue(face),1);
+-  element(elements,wfcElemIds.PRO_E_STD_SMT_THICKNESS,pfcArgument.CreateDoubleArgValue(control.thickness()),1);
+-  ElementTree tree=s.wsession.CreateElementTree(elements);if(tree==null)throw new IllegalStateException("Element tree unavailable");
+-  FeatCreateOptions options=FeatCreateOptions.create();options.append(FeatCreateOption.FEAT_CR_NO_OPTS);
+-  WRegenInstructions regen=wfcSolidInstructions.WRegenInstructions_Create();regen.SetNoResolveMode(true);regen.SetAllowConfirm(false);
+-  recheck(s,control);control.markDispatch();
+-  WFeature created=s.solid.WCreateFeature(tree,options,regen); // sole feature create site; no loops/retries
+-  if(created==null)throw new IllegalStateException("WCreateFeature returned null; model state unknown");
+-  control.record("CREATE_RETURNED",map("createdFeatureId",created.GetId(),"createdFeatureName",created.GetName()));
+-  s.solid.WRegenerate(regen); // sole explicit regeneration site
+-  control.record("REGENERATE_RETURNED",map("readbackFollows",true));
+-  if(!same(session.GetActiveModel(),s.model))throw new IllegalStateException("Active model changed after dispatch");
+-  SolidBody converted=s.solid.GetDefaultBody();boolean sheetmetal=converted!=null&&converted.IsSheetmetal();Set<Integer> after=featureIds(s.model);int id=created.GetId();
+-  FeatureType type=created.GetFeatType();FeatureStatus status=created.GetStatus();boolean freshListed=after.contains(id)&&!s.featureIds.contains(id);
+-  FeatureStatusFlag flag=created.GetStatusFlag();if(flag==null)throw new IllegalStateException("Created feature status flags unavailable");
+-  boolean failed=flag.GetIsFailed()||flag.GetIsInvalid()||flag.GetIsUnregenerated();
+-  boolean wall=type==FeatureType.FEATTYPE_WALL;boolean drivingSubtype15=false;
+-  ElementTree actual=created.GetElementTree(null,FeatureElemTreeExtractOptions.FEAT_EXTRACT_NO_OPTS);if(actual==null)throw new IllegalStateException("Created feature tree unavailable");
+-  Elements actualElements=actual.ListTreeElements();if(actualElements==null||actualElements.getarraysize()>10000)throw new IllegalStateException("Created tree readback unavailable");
+-  for(int i=0;i<actualElements.getarraysize();i++){Element e=actualElements.get(i);if(e!=null&&e.GetLevel()==1&&e.GetId()==wfcElemIds.PRO_E_DTM_SRF_TYPE){ArgValue value=e.GetValue();drivingSubtype15=value!=null&&value.GetIntValue()==15;}}
+-  wall=wall||(type==FeatureType.FEATTYPE_DATUM_SURFACE&&drivingSubtype15);
+-  control.record("NATIVE_READBACK",map("nativeIsSheetmetalAfter",sheetmetal,"createdFeatureId",id,"createdFeatureName",created.GetName(),"featureType",type==null?"UNKNOWN":type.getValue(),"featureTypeName",created.GetFeatTypeName(),"featureSubtype",created.GetFeatSubType(),"featureStatus",status==null?"UNKNOWN":status.getValue(),"newFeatureListed",freshListed,"nativeFailedOrInvalidOrUnregenerated",failed,"wallTypeOrExtractedDriving15",wall,"extractedDrivingSubtype15",drivingSubtype15,"visualTreeInspection","PENDING_OPERATOR_OBSERVATION","modelIsModifiedAfter",s.model.GetIsModified(),"globalThicknessProof",false));
+-  requireNoNativeFailure(s.solid);
+-  if(!sheetmetal||!freshListed||failed||status!=FeatureStatus.FEAT_ACTIVE||!wall)throw new IllegalStateException("Post-conversion sheetmetal/new wall/active status verification incomplete");
+-  control.finish("NATIVE_CONVERSION_READBACK_CONFIRMED_NOT_SAVED_VISUAL_TREE_PENDING");
+-  return "原生转换已返回，默认体IsSheetmetal=true；新特征ID="+id+"，钣金墙类型/驱动墙元素回读通过，状态ACTIVE，未发现所查失败标志。\n请只读查看特征树是否显示新钣金壁并记录界面错误。模型未由本命令保存；全局壁厚未证明，不可用于生产发布，不再点击或保存。";
+- }
+- private static void readonlyFailureSnapshot(Step16Control control){
+-  try{Model current=session.GetActiveModel();if(current==null||!TARGET.equalsIgnoreCase(current.GetFileName())||!(current instanceof Solid solid)){control.record("FAILURE_MODEL_READBACK",map("state","UNAVAILABLE_OR_CHANGED"));return;}
+-   SolidBody body=solid.GetDefaultBody();control.record("FAILURE_MODEL_READBACK",map("model",TARGET,"nativeDefaultBodyIsSheetmetal",body==null?"UNKNOWN":body.IsSheetmetal(),"dirty",current.GetIsModified(),"versionStamp",known(current.GetVersionStamp()),"noRollbackAttempted",true,"noSave",true));
+-  }catch(Exception|LinkageError readError){System.err.println("[P1_STEP16] FAILURE_READBACK_UNAVAILABLE "+readError.getClass().getName());}
++  boolean confirmed=s.trace.read("FIRST_CONFIRMATION_START","FIRST_CONFIRMATION_DONE","Session.UIShowMessageDialog_WITH_EXPLICIT_OPTIONS",()->confirm("只读Preflight已通过。当前200002100.prt，原生默认体非钣金；全局壁厚仍未证明。\n本Step17仅观察确认和厚度输入，不创建特征、不再生、不保存、不提交转换。\n确认当前为可丢弃试验模型，继续输入本次试验厚度并结束诊断吗？"),value->map("accepted",value));
++  if(!confirmed){control.finish("CANCELLED_FIRST_CONFIRMATION_READONLY");return "已取消只读确认；本次点击已消耗，没有模型写入调用。";}
++  control.acceptRisk();s.trace.read("THICKNESS_PROMPT_START","THICKNESS_PROMPT_DONE","Session.UIDisplayMessage",()->{session.UIDisplayMessage(MESSAGES,"P1_S17_THICKNESS",null);return Boolean.TRUE;},value->map("returned",value));
++  String input=s.trace.read("THICKNESS_INPUT_START","THICKNESS_INPUT_DONE","Session.UIReadStringMessage",()->session.UIReadStringMessage(Boolean.FALSE),value->map("returnedNull",value==null,"textLength",value==null?null:value.length()));
++  if(input==null||input.isBlank()){control.finish("CANCELLED_THICKNESS_INPUT_READONLY");return "未输入试验厚度，结束只读诊断；本次点击已消耗。";}
++  control.setThickness(input);control.finish("PREFLIGHT_AND_INPUT_RECORDED_NO_CONVERSION_NO_SAVE");
++  return "预检及输入阶段已完成。试验厚度="+control.thickness()+" mm，仅记录，不构造特征/不再生/不保存。本命令到此结束，不再点击。";
+--- /dev/null
++++ step17/source/PreflightAudit.java
+@@ -0,0 +1,22 @@
++package p1.controlled.step17;
++import java.io.IOException;
++import java.util.*;
++import java.util.function.Function;
++import static p1.controlled.step17.AuditSupport.*;
++/** Durable START/return boundaries. Summaries must be Java-only and must not call native getters. */
++public final class PreflightAudit {
++ @FunctionalInterface public interface Call<T>{T get()throws Exception;}
++ public static final class ProbeFailure extends Exception {
++  private static final long serialVersionUID=1L;
++  ProbeFailure(String operation,Throwable cause){super("PREFLIGHT_READ_EXCEPTION: "+operation+": "+cause.getClass().getName()+": "+cause.getMessage(),cause);}
++ }
++ private final Step17Control control;private int nextCall;
++ public PreflightAudit(Step17Control control){this.control=control;}
++ public <T>T read(String start,String done,String operation,Call<T> action,Function<T,Map<String,Object>> summary)throws Exception{
++  int call=++nextCall;long begin=System.nanoTime();
++  control.record(start,map("phase","START","probeId",call,"operation",operation,"groupedGetterNotation",operation.endsWith("[*]"),"writeModel",false));
++  try{T value=action.get();long returned=System.nanoTime();Map<String,Object> fields=map("phase","DONE","probeId",call,"operation",operation,"actionAndStartAuditElapsedNs",returned-begin,"returnSummary",summary.apply(value));control.record(done,fields);return value;}
++  catch(Exception|LinkageError error){try{control.record("PREFLIGHT_PROBE_EXCEPTION",map("phase","THREW","probeId",call,"operation",operation,"startEvent",start,"exceptionClass",error.getClass().getName(),"exceptionMessage",String.valueOf(error.getMessage())));}catch(IOException|RuntimeException auditError){error.addSuppressed(auditError);}throw new ProbeFailure(operation,error);}
++ }
++ public void note(String event,Map<String,Object> fields)throws IOException{Map<String,Object> row=map("phase","DONE");row.putAll(fields);control.record(event,row);}
++}
+--- step16/source/ScopedBodyIdentity.java
++++ step17/source/ScopedBodyIdentity.java
+@@ -1 +1 @@
+-package p1.controlled.step16;
++package p1.controlled.step17;
+--- step16/source/ScopedFaceIdentity.java
++++ step17/source/ScopedFaceIdentity.java
+@@ -1 +1 @@
+-package p1.controlled.step16;
++package p1.controlled.step17;
+--- step16/source/Step16Control.java
++++ step17/source/Step17Control.java
+@@ -1 +1 @@
+-package p1.controlled.step16;
++package p1.controlled.step17;
+@@ -9 +9 @@
+-import static p1.controlled.step16.AuditSupport.*;
++import static p1.controlled.step17.AuditSupport.*;
+@@ -12,3 +12,3 @@
+-public final class Step16Control implements AutoCloseable {
+- public enum State { CLAIMED, RISK_ACCEPTED, THICKNESS_SET, FINAL_ACCEPTED, DISPATCHED, FINISHED }
+- public static final String FILE_NAME="step16-200002100-once.jsonl";
++public final class Step17Control implements AutoCloseable {
++ public enum State { CLAIMED, RISK_ACCEPTED, THICKNESS_SET, FINISHED }
++ public static final String FILE_NAME="step17-200002100-once.jsonl";
+@@ -21,2 +21,2 @@
+- private boolean dispatched;
+- public Step16Control(Path directory)throws IOException {
++ private String outcome;
++ public Step17Control(Path directory)throws IOException {
+@@ -30 +30 @@
+- public boolean dispatched(){return dispatched;}
++ public String outcome(){return outcome;}
+@@ -40,3 +40 @@
+- public void acceptFinal()throws IOException{require(State.THICKNESS_SET);record("FINAL_CONFIRMATION_ACCEPTED",map("testThicknessMm",thickness,"oneCreateAtMost",true,"noSave",true));state=State.FINAL_ACCEPTED;}
+- public void markDispatch()throws IOException{require(State.FINAL_ACCEPTED);record("WRITE_DISPATCH_INTENT",map("testThicknessMm",thickness,"modelMayChangeAfterThisBoundary",true));state=State.DISPATCHED;dispatched=true;}
+- public void finish(String outcome)throws IOException{if(state==State.FINISHED)throw new IllegalStateException("Already finished");record("FINAL_RESULT",map("outcome",outcome,"writeDispatchIntentRecorded",dispatched,"automaticRollbackAttempted",false,"saveApiInvokedByThisCommand",false,"otherSaveEntrypointsIntercepted",false));state=State.FINISHED;}
++ public void finish(String outcome)throws IOException{if(state==State.FINISHED)throw new IllegalStateException("Already finished");record("FINAL_RESULT",map("outcome",outcome,"writeDispatchIntentRecorded",false,"automaticRollbackAttempted",false,"saveApiInvokedByThisCommand",false,"otherSaveEntrypointsIntercepted",false));state=State.FINISHED;this.outcome=outcome;}
+@@ -44 +42 @@
+-  Map<String,Object> row=map("schema","P1_STEP16_CONTROLLED_NATIVE_CONVERSION_V1","step","STEP_16","requestId",requestId,"sequence",++sequence,"timestamp",Instant.now().toString(),"elapsedNs",System.nanoTime()-entered,"javaThreadId",Thread.currentThread().getId(),"event",event,"controlState",state.toString());row.putAll(fields);
++  Map<String,Object> row=map("schema","P1_STEP17_READONLY_PREFLIGHT_V1","step","STEP_17","requestId",requestId,"sequence",++sequence,"timestamp",Instant.now().toString(),"elapsedNs",System.nanoTime()-entered,"javaThreadId",Thread.currentThread().getId(),"event",event,"controlState",state.toString());row.putAll(fields);

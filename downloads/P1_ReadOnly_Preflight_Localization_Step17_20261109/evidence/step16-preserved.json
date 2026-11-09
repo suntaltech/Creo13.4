@@ -1,0 +1,10 @@
+{
+  "step16CandidateCommit": "bf123fb1019f9655cd52f9dd31a65fc66daed4e8",
+  "step16SourceClassJarVerifiedUnchanged": true,
+  "step16OnceLockReadDeletedModifiedOrRearmed": false,
+  "reportedStep16RunRequestId": "bfdcfb7d-27c5-4e82-9aa5-7fb183c494f2",
+  "runtimeFactsSource": "USER_TASK_NOTE_NOT_RAW_NATIVE_LEDGER",
+  "step17LedgerLeaf": "step17-200002100-once.jsonl",
+  "step17DatName": "p1s17",
+  "step17ReadOnlyDiagnosticNotConversionRetry": true
+}

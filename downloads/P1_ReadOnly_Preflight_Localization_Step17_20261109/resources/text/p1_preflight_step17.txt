@@ -1,0 +1,20 @@
+P1_S17_LABEL
+Read-Only Preflight Diagnostic Step 17
+
+P1_S17_HELP
+Locate preflight reads with forced START/DONE audit boundaries; one diagnostic click only
+
+P1_S17_DESC
+No feature creation, regeneration, save or conversion retry. Step16 body/face rules retained.
+
+P1_S17_THICKNESS
+Preflight passed. Enter an explicit positive finite TEST thickness in mm for logging only. No conversion follows.
+
+P1_S17_FAILED
+Step17 read-only diagnostic blocked or failed. Preserve audit and stderr; do not repeat or save.
+
+P1_S17_INPUT_DONE
+Step17 preflight and input observed. Diagnostic ends here: no conversion, regeneration or Save.
+
+P1_S17_CANCELLED
+Step17 diagnostic cancelled. One-shot consumed. No model write, regeneration or Save.
