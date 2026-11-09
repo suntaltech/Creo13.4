@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "scope": "DOCUMENT_JSON_CONSISTENCY_AND_MANUAL_COMMAND_REVIEW_ONLY",
+  "checks": {
+    "native_result_distinguished_from_cloud_observation": true,
+    "full_sample_link_list_preserved": true,
+    "no_native_execution_claimed": true,
+    "callback_observation_not_invented": true,
+    "future_command_manually_reviewed_link_and_inspect_only": true,
+    "no_binary_artifacts": true
+  },
+  "all_checks_passed": true,
+  "windows_command_execution_test_performed": false,
+  "native_link_or_pe_export_validation_performed": false
+}

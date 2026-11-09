@@ -1,0 +1,6 @@
+{"seq": 1, "step": 33, "utc": "2026-11-09T09:15:36.486554+00:00", "event": "OBJECT_RESULT", "status": "USER_REPORTED_PASS", "detail": "Exit 0, entry.obj generated; raw object/log not received"}
+{"seq": 2, "step": 33, "utc": "2026-11-09T09:15:36.486554+00:00", "event": "ENTRY_LOGIC", "status": "KEEP_MINIMAL", "detail": "No additional business initialization, DllMain or model calls"}
+{"seq": 3, "step": 33, "utc": "2026-11-09T09:15:36.486554+00:00", "event": "LINK_SCOPE", "status": "PREPARED_FOR_NEXT_ROUND", "detail": "Existing object plus sample PTC, MT runtime and system libraries"}
+{"seq": 4, "step": 33, "utc": "2026-11-09T09:15:36.486554+00:00", "event": "LIFECYCLE_PLAN", "status": "AFTER_LINK_AND_BINARY_REVIEW", "detail": "One manual load/stop in empty model session; UI state and callback tracing separated"}
+{"seq": 5, "step": 33, "utc": "2026-11-09T09:15:36.486554+00:00", "event": "EXAMPLE_REVIEW", "status": "STATIC_ONLY", "detail": "No Windows execution; link/inspection example contains no automatic registration or Creo launch"}
+{"seq": 6, "step": 33, "utc": "2026-11-09T09:15:36.486554+00:00", "event": "SITE_ACTIONS", "status": "NOT_PERFORMED", "detail": "No compilation, linking, DLL generation, registration, model operation or config change"}

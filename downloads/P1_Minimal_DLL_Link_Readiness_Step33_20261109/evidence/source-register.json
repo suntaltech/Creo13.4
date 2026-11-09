@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task": {
+    "file_name": "P1_最小对象编译通过第三十三步_任务单_20261109.md",
+    "sha256": "1b7581e4a6cbd7b46798193562362fe572559c103c88fdc31fd13eb8b677d101",
+    "level": "USER_OBJECT_COMPILE_RESULT_SUMMARY_NOT_RAW_LOG"
+  },
+  "step32": {
+    "commit": "0bab98cd42f32aad3c0a2ec4d75bf14facf935cb",
+    "zip_sha256_previously_published": "9adf5f2d9b24948fb11a085ed2d0dafe17cfd1cd57d729d5e28652b3e325a8a8",
+    "source_sha256": "b8ecc4df538cd246ef490ce0265d561c886d33d2bebea6f52d50b514bae5568e",
+    "link_plan_sha256": "7f0c90a3fdcdd5ed374cc9b3f10847b1a360b0152559b4fb72f213db2e37e73f",
+    "library_basis": "USER_EXTRACT_OF_OFFICIAL_SAMPLE"
+  },
+  "original_official_sample_received": false,
+  "native_object_or_dll_received": false,
+  "new_official_website_request_performed": false
+}

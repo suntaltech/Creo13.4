@@ -1,0 +1,57 @@
+@echo off
+rem Future manual link/inspection example. NOT executed in Step33.
+rem Replace placeholders, keep this file under commands, and save as .cmd.
+setlocal
+set "P1_VS_ROOT=@VS_INSTALL_ROOT@"
+set "P1_SDK_ROOT=@PROTOOLKIT_ROOT@"
+set "P1_OBJ=@VERIFIED_ENTRY_OBJ_ABSOLUTE_PATH@"
+if not exist "%P1_OBJ%" exit /b 2
+if not exist "%P1_VS_ROOT%\VC\Auxiliary\Build\vcvarsall.bat" exit /b 2
+for %%L in (protk_dll_NU.lib ucore.lib udata.lib) do if not exist "%P1_SDK_ROOT%\x86e_win64\obj\%%L" exit /b 2
+call "%P1_VS_ROOT%\VC\Auxiliary\Build\vcvarsall.bat" x64 10.0.26100.0 -vcvars_ver=14.44.35207
+if errorlevel 1 exit /b 3
+set "P1_LINK=%P1_VS_ROOT%\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\link.exe"
+set "P1_DUMPBIN=%P1_VS_ROOT%\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\dumpbin.exe"
+if not exist "%P1_LINK%" exit /b 2
+if not exist "%P1_DUMPBIN%" exit /b 2
+set "LINK="
+set "_LINK_="
+pushd "%~dp0.."
+if errorlevel 1 exit /b 4
+if exist "dll-link-step33" (
+  popd
+  exit /b 5
+)
+mkdir "dll-link-step33"
+if errorlevel 1 (
+  popd
+  exit /b 4
+)
+> "dll-link-step33\events.jsonl" echo {"step":33,"event":"DLL_LINK_BEGIN","object_sha256_measured_by_example":false}
+"%P1_LINK%" /nologo /DLL /MACHINE:X64 /INCREMENTAL:NO /OUT:"dll-link-step33\p1_entry_minimal.dll" /IMPLIB:"dll-link-step33\p1_entry_minimal.lib" /LIBPATH:"%P1_SDK_ROOT%\x86e_win64\obj" "%P1_OBJ%" protk_dll_NU.lib ucore.lib udata.lib libcmt.lib kernel32.lib user32.lib wsock32.lib advapi32.lib mpr.lib winspool.lib netapi32.lib psapi.lib gdi32.lib shell32.lib comdlg32.lib ole32.lib ws2_32.lib > "dll-link-step33\linker.log" 2>&1
+set "P1_RESULT=%ERRORLEVEL%"
+>> "dll-link-step33\events.jsonl" echo {"step":33,"event":"DLL_LINK_EXIT","exit_code":%P1_RESULT%}
+if not "%P1_RESULT%"=="0" goto finish
+if not exist "dll-link-step33\p1_entry_minimal.dll" (
+  set "P1_RESULT=6"
+  goto finish
+)
+set "P1_STAGE=HEADERS"
+"%P1_DUMPBIN%" /headers "dll-link-step33\p1_entry_minimal.dll" > "dll-link-step33\headers.log" 2>&1
+if errorlevel 1 goto inspection_failed
+set "P1_STAGE=EXPORTS"
+"%P1_DUMPBIN%" /exports "dll-link-step33\p1_entry_minimal.dll" > "dll-link-step33\exports.log" 2>&1
+if errorlevel 1 goto inspection_failed
+set "P1_STAGE=DEPENDENTS"
+"%P1_DUMPBIN%" /dependents "dll-link-step33\p1_entry_minimal.dll" > "dll-link-step33\dependents.log" 2>&1
+if errorlevel 1 goto inspection_failed
+>> "dll-link-step33\events.jsonl" echo {"step":33,"event":"INSPECTION_OUTPUT_CAPTURED","binary_review_passed":false,"creo_load_performed":false}
+goto finish
+:inspection_failed
+set "P1_RESULT=7"
+>> "dll-link-step33\events.jsonl" echo {"step":33,"event":"INSPECTION_COMMAND_FAILED","stage":"%P1_STAGE%"}
+:finish
+> "dll-link-step33\exit-code.txt" echo %P1_RESULT%
+>> "dll-link-step33\events.jsonl" echo {"step":33,"event":"EXAMPLE_FINISHED","exit_code":%P1_RESULT%,"registration_performed":false,"creo_load_performed":false}
+popd
+exit /b %P1_RESULT%

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "step": 33,
+  "object_result": {
+    "status": "OBJECT_COMPILE_PASS_USER_REPORTED",
+    "step32_package_hash_match_reported": true,
+    "exit_code_reported": 0,
+    "entry_obj_exists_reported": true,
+    "headers_included_reported": [
+      "ProToolkit.h",
+      "ProToolkitDll.h"
+    ],
+    "entry_prototypes_compile_reported": true,
+    "link_or_dll_generation_reported": false,
+    "object_sha256_received": null,
+    "raw_compiler_log_or_obj_received": false
+  },
+  "decisions": {
+    "next_minimal_dll_link_trial": "READY_BASED_ON_REPORTED_OBJECT_RESULT",
+    "add_business_initialization_first": false,
+    "keep_empty_initialize_terminate": true,
+    "only_three_ptc_libraries_are_complete_link_input": false,
+    "controlled_single_load_stop_observation": "PLAN_AFTER_LINK_AND_BINARY_REVIEW",
+    "official_exact_toolchain_support_certified": false
+  },
+  "future_link_inputs": {
+    "object": "Existing verified entry.obj, not a cloud substitute",
+    "ptc_libraries": [
+      "protk_dll_NU.lib",
+      "ucore.lib",
+      "udata.lib"
+    ],
+    "crt_library": "libcmt.lib",
+    "system_libraries": [
+      "kernel32.lib",
+      "user32.lib",
+      "wsock32.lib",
+      "advapi32.lib",
+      "mpr.lib",
+      "winspool.lib",
+      "netapi32.lib",
+      "psapi.lib",
+      "gdi32.lib",
+      "shell32.lib",
+      "comdlg32.lib",
+      "ole32.lib",
+      "ws2_32.lib"
+    ],
+    "target": "Windows x64 DLL",
+    "default_runtime_library_rules_retained": true
+  },
+  "future_binary_review": [
+    "Input object and output DLL identity hashes",
+    "x64 DLL PE headers",
+    "Exact user_initialize and user_terminate exports",
+    "Direct dependencies and actual resolution conditions"
+  ],
+  "lifecycle_evidence": {
+    "ui_state_observation_not_callback_trace": true,
+    "callbacks_have_diagnostic_markers": false,
+    "auto_load_or_retry": false
+  },
+  "execution_this_step": {
+    "cl_or_link_executed": false,
+    "dll_generated": false,
+    "dumpbin_executed": false,
+    "registered_or_loaded": false,
+    "creo_started": false,
+    "model_saved": false,
+    "feature_created": false,
+    "conversion_logic_written": false,
+    "config_pro_changed": false,
+    "step32_source_or_cmake_modified": false
+  }
+}
