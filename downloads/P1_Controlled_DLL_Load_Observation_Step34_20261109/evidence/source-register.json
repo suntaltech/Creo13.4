@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task": {
+    "file_name": "P1_最小DLL链接通过第三十四步_任务单_20261109.md",
+    "sha256": "33caa28a9cc080f6aa9dadc8e1ee8933155cfb414fffb4a8fa56c6b269fda314",
+    "evidence_level": "USER_LINK_AND_EXPORT_RESULT_SUMMARY_NOT_ORIGINAL_DLL"
+  },
+  "step33_reference": {
+    "commit": "062ce8d10463fd5a263fbfe34846e0fefcb45799",
+    "zip_sha256_previously_published": "04e09609f036bb9fee5d178c46faa9b7b4be5453f0279f8b4799cf3dd8231173"
+  },
+  "dll_or_dumpbin_original_received": false,
+  "registration_field_basis": "Prior synchronous DLL candidate template; not validated by loading in this step",
+  "new_official_site_request_performed": false
+}

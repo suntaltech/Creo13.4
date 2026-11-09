@@ -1,0 +1,6 @@
+{"seq": 1, "step": 34, "utc": "2026-11-09T09:27:31.237417+00:00", "event": "LINK_RESULT", "status": "USER_REPORTED_PASS", "detail": "Link exit 0, two exports, KERNEL32 direct dependency; original binary not received"}
+{"seq": 2, "step": 34, "utc": "2026-11-09T09:27:31.237417+00:00", "event": "REGISTRATION_EXAMPLE", "status": "PREPARED_NOT_ACTIVATED", "detail": "Single DLL entry, allow_stop true, delay_start false; local placeholders remain"}
+{"seq": 3, "step": 34, "utc": "2026-11-09T09:27:31.237417+00:00", "event": "FIRST_TEST_SCOPE", "status": "UI_STATE_ONLY", "detail": "Current empty DLL may be used for one controlled load/stop observation after local checks"}
+{"seq": 4, "step": 34, "utc": "2026-11-09T09:27:31.237417+00:00", "event": "CALLBACK_EVIDENCE", "status": "NOT_AVAILABLE", "detail": "No direct callback markers; do not infer callbacks or OS module removal from UI state"}
+{"seq": 5, "step": 34, "utc": "2026-11-09T09:27:31.237417+00:00", "event": "OBSERVATION_TEMPLATE", "status": "NOT_PERFORMED", "detail": "Future site fields remain null; no lifecycle success fabricated"}
+{"seq": 6, "step": 34, "utc": "2026-11-09T09:27:31.237417+00:00", "event": "SITE_ACTIONS", "status": "NOT_PERFORMED", "detail": "No automatic Creo startup, registration, model operation, save or config change"}

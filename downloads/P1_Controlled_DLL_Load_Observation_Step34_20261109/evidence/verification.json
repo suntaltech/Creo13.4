@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "scope": "DOCUMENT_AND_TEMPLATE_CONSISTENCY_ONLY",
+  "checks": {
+    "reported_binary_results_distinguished": true,
+    "no_site_action_claimed": true,
+    "future_observation_results_unknown": true,
+    "registration_has_single_dll_entry_and_placeholders": true,
+    "ui_and_callback_proof_not_conflated": true,
+    "event_sequence_valid": true,
+    "no_binary_or_live_dat_artifacts": true
+  },
+  "all_checks_passed": true,
+  "registration_parser_or_creo_runtime_test_performed": false,
+  "callback_or_os_unmap_observed": false
+}

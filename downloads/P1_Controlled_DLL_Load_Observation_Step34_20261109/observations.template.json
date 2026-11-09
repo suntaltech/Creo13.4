@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "step": 34,
+  "record_status": "TEMPLATE_NOT_PERFORMED",
+  "session": {
+    "no_open_models_confirmed": null,
+    "no_unsaved_work_confirmed": null,
+    "creo_version": null
+  },
+  "binary": {
+    "sha256": null,
+    "x64_dll_headers_verified": null,
+    "initialize_export_verified": null,
+    "terminate_export_verified": null,
+    "direct_dependents_reviewed": null
+  },
+  "registration": {
+    "entry_name": "p1_native_entry_step34",
+    "local_paths_verified": null,
+    "actual_registration_or_start_method": null,
+    "may_initialize_during_registration": true
+  },
+  "observed_actions": [],
+  "outcomes": {
+    "registration_accepted": null,
+    "running_state_observed": null,
+    "stop_requested": null,
+    "stopped_state_observed": null,
+    "ui_responsive_after_test": null,
+    "initialize_callback_directly_observed": null,
+    "terminate_callback_directly_observed": null,
+    "os_module_unmapping_directly_observed": null
+  },
+  "error_summary": null,
+  "final_result": null,
+  "recording_rule": "Fill actions with UTC time, actual action, UI state and necessary prompt summary; unknown remains null; UI state is not callback or OS-unmap proof"
+}

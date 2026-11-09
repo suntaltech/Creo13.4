@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "step": 34,
+  "reported_link_result": {
+    "evidence_level": "USER_SITE_RESULT_SUMMARY",
+    "step33_package_hash_match_reported": true,
+    "link_exit_code_reported": 0,
+    "dll_exists_reported": true,
+    "exports_reported": [
+      "user_initialize",
+      "user_terminate"
+    ],
+    "direct_dependents_reported": [
+      "KERNEL32.dll"
+    ],
+    "registered_reported": false,
+    "creo_started_reported": false,
+    "business_model_operations_reported": false,
+    "dll_sha256_received": null,
+    "pe_headers_independently_reviewed": false
+  },
+  "decisions": {
+    "single_controlled_load_stop": "READY_TO_PREPARE_AFTER_LOCAL_IDENTITY_AND_X64_REVIEW",
+    "recommended_first_pass": "EXISTING_EMPTY_DLL_UI_STATE_OBSERVATION",
+    "file_trace_required_before_ui_only_test": false,
+    "direct_callback_proof_available_from_current_empty_entry": false,
+    "file_trace_or_equivalent_needed_for_direct_callback_proof": true,
+    "trace_patch_included_this_step": false,
+    "temporary_registration_example_included": true
+  },
+  "execution_this_step": {
+    "dll_loaded": false,
+    "registered": false,
+    "creo_started": false,
+    "model_operated": false,
+    "model_saved": false,
+    "config_pro_changed": false,
+    "source_changed": false,
+    "native_compile_or_link_performed": false
+  }
+}

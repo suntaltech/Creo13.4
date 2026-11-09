@@ -1,0 +1,7 @@
+name p1_native_entry_step34
+startup dll
+exec_file @VERIFIED_DLL_ABSOLUTE_PATH@
+text_dir @EXISTING_LOCAL_TEXT_DIRECTORY@
+allow_stop true
+delay_start false
+end
