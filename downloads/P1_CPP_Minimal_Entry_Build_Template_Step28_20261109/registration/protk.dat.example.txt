@@ -1,0 +1,7 @@
+name p1_cpp_entry_review
+startup dll
+exec_file @UNBUILT_NATIVE_DLL_ABSOLUTE_PATH@
+text_dir @LOCAL_TEXT_DIRECTORY@
+allow_stop true
+delay_start false
+end

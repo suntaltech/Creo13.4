@@ -1,0 +1,5 @@
+{"seq": 1, "step": 28, "event": "TASK_SCOPE", "status": "OBSERVED", "detail": "Offline source/build template only; no DLL deployment"}
+{"seq": 2, "step": 28, "event": "LINK_PROFILE", "status": "PROVISIONAL", "detail": "MT/protk_dll_NU.lib default; MD/protk_dllmd_NU.lib alternative; official text pending"}
+{"seq": 3, "step": 28, "event": "REVIEW_CONFIGURE_BUILD", "status": "PASS", "checks_passed": 11}
+{"seq": 4, "step": 28, "event": "REAL_SDK_OBJECT_LINK_LOAD", "status": "NOT_PERFORMED"}
+{"seq": 5, "step": 28, "event": "NEXT_GATE", "status": "PENDING_EVIDENCE", "detail": "Applicable PTC compiler/library/entry documentation and read-only local Build Tools inventory"}

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    {
+      "role": "step28-task",
+      "sha256": "3edebbba8b789e98437d28e038d1a5e0784adfbe6f81d79404cba3b9e060b44b"
+    },
+    {
+      "role": "step27-inventory-zip",
+      "sha256": "876566ef3f82fda97b7e738eb86d553d51a751b900510ac02dcd3e1d048b2021"
+    }
+  ],
+  "sdk_header_or_library_content_received": false,
+  "official_compiler_and_library_text_received": false,
+  "actual_local_compiler_inventory_received": false,
+  "user_task_claims": [
+    "Platform page redirects to external PTC support",
+    "No local sample project was found"
+  ],
+  "provisional_decisions": [
+    "MT+protk_dll_NU.lib",
+    "MD+protk_dllmd_NU.lib alternative",
+    "C entry signature pending actual SDK text"
+  ],
+  "license_status": "UNRESOLVED",
+  "sdk_redistributed": false
+}

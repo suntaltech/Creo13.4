@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "step": 28,
+  "date_utc": "2026-11-09",
+  "host": "Linux x86_64 cloud",
+  "cmake_version": "3.31.6",
+  "checks": [
+    {
+      "id": "configure-MT",
+      "pass": true,
+      "exit_code": 0
+    },
+    {
+      "id": "build-MT",
+      "pass": true,
+      "exit_code": 0
+    },
+    {
+      "id": "plan-no-compiler-MT",
+      "pass": true
+    },
+    {
+      "id": "configure-MD",
+      "pass": true,
+      "exit_code": 0
+    },
+    {
+      "id": "build-MD",
+      "pass": true,
+      "exit_code": 0
+    },
+    {
+      "id": "plan-no-compiler-MD",
+      "pass": true
+    },
+    {
+      "id": "reject-invalid-crt",
+      "pass": true,
+      "exit_code": 1
+    },
+    {
+      "id": "reject-nonwindows-object",
+      "pass": true,
+      "exit_code": 1
+    },
+    {
+      "id": "compiler-sentinel-never-invoked",
+      "pass": true
+    },
+    {
+      "id": "no-native-build-artifacts",
+      "pass": true
+    },
+    {
+      "id": "manual-scope-review",
+      "pass": true,
+      "observed": "Only OBJECT native target; no native link, install, copy-to-Creo or business API calls"
+    }
+  ],
+  "native_sdk_compile": "NOT_PERFORMED",
+  "native_link": "NOT_PERFORMED",
+  "windows_msvc_branch": "NOT_EXECUTED",
+  "creo_load": "NOT_PERFORMED",
+  "library_and_entry_abi": "PROVISIONAL",
+  "sdk_stub_used": false,
+  "all_observed_checks_passed": true
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "step": 28,
+  "crt_candidate": "@P1_CRT@",
+  "sync_dll_library_candidate": "@P1_CANDIDATE_LIBRARY@",
+  "mapping_status": "PROVISIONAL_NOT_VERIFIED_AGAINST_LOCAL_OFFICIAL_TEXT",
+  "object_check_requested": "@P1_ENABLE_OBJECT_CHECK@",
+  "dll_target_present": false,
+  "native_compilation_status": "NOT_MEASURED_BY_CONFIGURATION",
+  "native_link_enabled": false,
+  "creo_load_enabled": false
+}
