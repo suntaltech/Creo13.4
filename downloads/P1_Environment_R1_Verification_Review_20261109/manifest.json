@@ -1,0 +1,17 @@
+{
+  "artifactType": "ENVIRONMENT_R1_EVIDENCE_VERIFICATION_ONLY",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "inputArchiveSha256": "37a4b2a0ba26ddcbd86faca774f929d8efc9bf4cb21696de9fff84d4ceba35b2",
+  "r1ParsingVerifiedOnProvidedEvidence": true,
+  "referencedDatsRead": 13,
+  "readIssues": 0,
+  "diskSdkMatches": 2,
+  "diskStep23ClassMatches": 16,
+  "runtimeIdentityKnown": false,
+  "sameJlinkBytesAsPrevious": true,
+  "rawInputRedistributed": false,
+  "newCodeOrProbeGenerated": false,
+  "siteStateChanged": false,
+  "automaticConversionRestore": false
+}

@@ -1,0 +1,248 @@
+{
+  "artifactType": "STEP25_R1_ENVIRONMENT_EVIDENCE_VERIFICATION_REVIEW_NO_NEW_CODE",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "inputArchive": {
+    "fileName": "P1_EnvIdentity_20261109T071147Z_8647b4d8.zip",
+    "sha256": "37a4b2a0ba26ddcbd86faca774f929d8efc9bf4cb21696de9fff84d4ceba35b2",
+    "zipIntegrityPassed": true,
+    "internalChecksumsAllMatched": true
+  },
+  "collectionWindowShanghai": {
+    "start": "2026-11-09T15:11:47.855971+08:00",
+    "end": "2026-11-09T15:12:15.891008+08:00"
+  },
+  "collectorRevision": "STEP25_R1_INLINE_DAT_COMMENTS",
+  "scriptComparisons": [
+    {
+      "fileName": "Collect-P1Environment.ps1",
+      "observedDiskSha256": "f805d047688eefef6a7c8fd84802c2de76f47a28abe6fede2f2e5cf4aac0e2c9",
+      "deliveredR1Sha256": "f805d047688eefef6a7c8fd84802c2de76f47a28abe6fede2f2e5cf4aac0e2c9",
+      "matches": true
+    },
+    {
+      "fileName": "Collector.Core.ps1",
+      "observedDiskSha256": "e2638e1406c85361e18225d13b67f36faaf60d549aa5285652ef0a7e5885b2bf",
+      "deliveredR1Sha256": "e2638e1406c85361e18225d13b67f36faaf60d549aa5285652ef0a7e5885b2bf",
+      "matches": true
+    }
+  ],
+  "registryReadCoverage": {
+    "references": 13,
+    "datSnapshots": 13,
+    "commentedReferences": 12,
+    "uncommentedReferences": 1,
+    "readIssues": 0,
+    "soleUncommentedDiskEntry": "STEP23_PROTKDAT",
+    "effectiveAtPastSessionStartup": "UNKNOWN"
+  },
+  "datIdentities": [
+    {
+      "fileName": "batchrename.dat",
+      "sha256": "e6ffe5df9f21d6657a96f13b41dfb96eb538472608466cf08583142cc4ecabb0",
+      "startup": "java",
+      "snapshotStableDuringRead": true
+    },
+    {
+      "fileName": "sisw_r2_controlled_test.dat",
+      "sha256": "ccf997ed26a24e3f40bb57a51ba64380e06e21b2191e9965b07471e0ca9d2933",
+      "startup": "java",
+      "snapshotStableDuringRead": true
+    },
+    {
+      "fileName": "p1-controlled-step13.dat",
+      "sha256": "e63cd67319dd5982854afa80594b81a226276e310f15b0471d6be8f07687a874",
+      "startup": "java",
+      "snapshotStableDuringRead": true
+    },
+    {
+      "fileName": "p1-step14-diagnostic.dat",
+      "sha256": "e5717d7a1b4bfa3365431f96fe5b3670e1f4f81e3f2b2eb213a32627d6cde769",
+      "startup": "java",
+      "snapshotStableDuringRead": true
+    },
+    {
+      "fileName": "p1-step15-convert.dat",
+      "sha256": "3f48ba781508d9cb438a9a93136826881b2f4800f0b2d0fc90c86f6498ee91bc",
+      "startup": "java",
+      "snapshotStableDuringRead": true
+    },
+    {
+      "fileName": "p1-step16-convert.dat",
+      "sha256": "6ad7ade45a53cd1e10fd5e98ad68c8b8b4988c485109b8269b1faf52ff006c85",
+      "startup": "java",
+      "snapshotStableDuringRead": true
+    },
+    {
+      "fileName": "p1-step17.dat",
+      "sha256": "e7ee9f4a776940032eae92b4948fdb3c3b8a5d45cd62e4bf98053a7c1a5b6ed5",
+      "startup": "java",
+      "snapshotStableDuringRead": true
+    },
+    {
+      "fileName": "p1-step18.dat",
+      "sha256": "88da648dc4f45e27df1c0e45f862dab9526e1055154f16c44a2c5875d35ea1c0",
+      "startup": "java",
+      "snapshotStableDuringRead": true
+    },
+    {
+      "fileName": "p1-step19.dat",
+      "sha256": "9c7d75d092d40aaa9e49527f4544b453d36496b74cf173a8a98012babc84f3cb",
+      "startup": "java",
+      "snapshotStableDuringRead": true
+    },
+    {
+      "fileName": "p1-step20.dat",
+      "sha256": "982539a481f18819116b74bf95a0b19faf7df9e198bf8236879ac3186c1d97d7",
+      "startup": "java",
+      "snapshotStableDuringRead": true
+    },
+    {
+      "fileName": "p1-step21.dat",
+      "sha256": "46f45f995df417079a3e2487380310bf36eeec6c37a5d27d4433be83e4a84978",
+      "startup": "java",
+      "snapshotStableDuringRead": true
+    },
+    {
+      "fileName": "p1-step22.dat",
+      "sha256": "bf8f99b49e930d7c89980650a2be8c5228421323a0415c6c65975af53ba459cf",
+      "startup": "java",
+      "snapshotStableDuringRead": true
+    },
+    {
+      "fileName": "p1-step23.dat",
+      "sha256": "71399ae378dfaeeb84d9927e8be3a65614843f658c727820ef3e449deb8d6384",
+      "startup": "java",
+      "snapshotStableDuringRead": true
+    }
+  ],
+  "diskSdkComparisons": [
+    {
+      "fileName": "otk.jar",
+      "bytes": 4362992,
+      "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+      "matchesOfflineSdk": true,
+      "actualLoadingProven": false
+    },
+    {
+      "fileName": "pfcasync.jar",
+      "bytes": 1207086,
+      "sha256": "b1765537e2754332fa923e418b81541e3caa2d2a197ebec4ae1decb9ab8bfdb3",
+      "matchesOfflineSdk": true,
+      "actualLoadingProven": false
+    }
+  ],
+  "step23DiskClassComparisons": [
+    {
+      "relativeName": "p1/controlled/step23/AuditSupport.class",
+      "sha256": "3d10b7671441aa02414a0fb5e21298dc4a72c840d8e9ad50834bc74a43a61a22",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/FeatureStateGate.class",
+      "sha256": "aa7583d5a3ab466568259347e7a86b16c6ac8ec545334cd1fe340cc2ac8e5975",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/P1RootElementProbeStep23.class",
+      "sha256": "cbc842c8a98ac12b7f54433b0a9483b3bf59dfccf3aff12d1372d30596e0feeb",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/P1RootElementProbeStep23$BodyIdentityFailure.class",
+      "sha256": "4e1a5817e8169b79c937d80174ef8888069969133df8977ba6c265741a39483c",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/P1RootElementProbeStep23$FaceIdentityFailure.class",
+      "sha256": "2a2aeca17f022efeefd7b44ca0b581ec27ddbad4a4318fc819d11712a9ef86f6",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/P1RootElementProbeStep23$Listener.class",
+      "sha256": "f1ff07d95b1205e139a5d29eacce14bceae91e0ea03af5e397eb22db764cf5e5",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/P1RootElementProbeStep23$Snapshot.class",
+      "sha256": "4ee041d20391ea48790e7aa7e88e174409eb9679aff7bb99ac71b81af2d4f898",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/PreflightAudit.class",
+      "sha256": "cfc9989a50b5af24d615539fd099b0fdf19ae72d6ac21b3db2a1dc8aa2672647",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/PreflightAudit$Call.class",
+      "sha256": "5c3ea64ad71e038f2139f7aa98158ba39542146ee519ca07700bd9f09dec09bd",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/PreflightAudit$ProbeFailure.class",
+      "sha256": "031e88401e67cd8e59a4e7f4fb12bed7295c8c84e4c86ac758ce9473f52fc16e",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/ScopedBodyIdentity.class",
+      "sha256": "1d5967e83d389cbefccd81885eeebc5abe417733938be686c32c451fa677df6e",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/ScopedBodyIdentity$Code.class",
+      "sha256": "3ea6a1d2069cd67fc18d876e5796098718b4b8ab2e9ca4f58ffe5adceb69c18e",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/ScopedFaceIdentity.class",
+      "sha256": "10279587d5e1551326452aa64dc269597bbbc76fb5debcd9ae48241f960a706c",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/ScopedFaceIdentity$Code.class",
+      "sha256": "b00cfecd2ff229d116b959e965a5bd6cf28389473c6b5e567bc9def453325c2e",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/Step23Control.class",
+      "sha256": "049c865f5b8d85fca57e2830a5b2ba33b6d56d0c1fea9e09a51fea9bd0c2765a",
+      "matchesDeliveredStep23": true
+    },
+    {
+      "relativeName": "p1/controlled/step23/Step23Control$State.class",
+      "sha256": "e6916d2fc133951e2f9ab76c104af2bdc203cc6fc175f482f113c838b2ce3971",
+      "matchesDeliveredStep23": true
+    }
+  ],
+  "observedHistoricalPluginDiskFiles": 152,
+  "historicalFilesOnDiskAreNotLoadedModules": true,
+  "configAndDatSnapshotsStableAcrossCommonFiles": 12,
+  "allCollectedSnapshotsStableDuringRead": true,
+  "processObservation": "NO_CREO_PROCESS_OBSERVED",
+  "observedCreoProcesses": 0,
+  "collectorPowerShellVersion": "7.6.4",
+  "collectorPowerShellIsNotCreoJvm": true,
+  "runtimeJvmVersionVendorArchitecture": "UNKNOWN",
+  "loadedSdkPluginClassSources": "UNKNOWN",
+  "runtimeModuleLoadOrder": "UNKNOWN",
+  "licenseAndOfficialRegistrationContract": "UNKNOWN",
+  "existingJlinkSummary": {
+    "bytesRead": 206774,
+    "linesInspected": 1056,
+    "readBytesSha256": "b4d33a99947096ac7cae41cbd8065c99939a5bb79d9c456b8b37d30874f5985f",
+    "sameAsPrevious": true,
+    "recognizedClassLoadEntries": 0,
+    "absenceOfErrorTokensDoesNotProveHealthy": true
+  },
+  "installationScan": {
+    "limited": true,
+    "entriesSeen": 20001,
+    "exactReferencedDatReadCompleteDoesNotMeanAllGlobalConfigsFound": true
+  },
+  "verdict": "R1_DAT_PARSE_VERIFIED_DISK_BASELINE_SUFFICIENT_RUNTIME_SUPPORT_STILL_UNVERIFIED",
+  "recommendation": "FREEZE_COLLECTOR_R1_AVOID_REPEATING_SAME_DISK_CAPTURE_REVIEW_EXISTING_SUPPORT_AND_STARTUP_RECORDS",
+  "newCollectorVersionOrNativeProbeGenerated": false,
+  "siteRestartConfigChangesOrOldLockChanges": false,
+  "automaticConversionRestore": false,
+  "rawInputArchiveOrConfigSnapshotsRedistributed": false
+}

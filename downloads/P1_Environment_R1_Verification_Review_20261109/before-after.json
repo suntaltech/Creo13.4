@@ -1,0 +1,90 @@
+{
+  "beforeArchiveSha256": "98cdeb30c2ed6ee77205e22073bc9086e1c680f1ebe60cd7dcc0f2f2f875b3d4",
+  "currentArchiveSha256": "37a4b2a0ba26ddcbd86faca774f929d8efc9bf4cb21696de9fff84d4ceba35b2",
+  "before": {
+    "configSnapshots": 10,
+    "datSnapshots": 2,
+    "datReferences": 13,
+    "datReferenceReadFailures": 11,
+    "collectorCoreHashRecorded": false,
+    "pluginDiskFiles": 20,
+    "processObservation": "NO_CREO_PROCESS_OBSERVED"
+  },
+  "after": {
+    "configSnapshots": 10,
+    "datSnapshots": 13,
+    "datReferences": 13,
+    "allReferencedDatsObservedOnDisk": true,
+    "datReferenceReadFailures": 0,
+    "collectorCoreHashRecorded": true,
+    "pluginDiskFiles": 152,
+    "processObservation": "NO_CREO_PROCESS_OBSERVED"
+  },
+  "commonSnapshotsUnchanged": [
+    {
+      "kind": "CONFIG",
+      "snapshotSha256": "a516899b5684de10b281d6916de17f2dc4ebf73522b094af31e1ce16f1ab0f0e",
+      "unchanged": true
+    },
+    {
+      "kind": "CONFIG",
+      "snapshotSha256": "47e6c8427afe117e9e99c8ce3a8eb42f952bdfe2f06869b1388ceff4a5eff430",
+      "unchanged": true
+    },
+    {
+      "kind": "CONFIG",
+      "snapshotSha256": "e010e6bb95ce1f4e1e5d4be8c3911c312374b9748bfd1539617460c0c458c970",
+      "unchanged": true
+    },
+    {
+      "kind": "CONFIG",
+      "snapshotSha256": "8344aed8a840e15ebd48cd8f19c07142a6b289c1cbb7151e01f9ba0056c08e19",
+      "unchanged": true
+    },
+    {
+      "kind": "CONFIG",
+      "snapshotSha256": "47e6c8427afe117e9e99c8ce3a8eb42f952bdfe2f06869b1388ceff4a5eff430",
+      "unchanged": true
+    },
+    {
+      "kind": "CONFIG",
+      "snapshotSha256": "e010e6bb95ce1f4e1e5d4be8c3911c312374b9748bfd1539617460c0c458c970",
+      "unchanged": true
+    },
+    {
+      "kind": "CONFIG",
+      "snapshotSha256": "7a89a3e2a33c0b9ed510d2d96f6403acf4477fec34ac79ec97805f34301f4579",
+      "unchanged": true
+    },
+    {
+      "kind": "CONFIG",
+      "snapshotSha256": "a96152a3a66058b7004a0c41168d2c69e65b819a80a50aead4fddcef154adcc6",
+      "unchanged": true
+    },
+    {
+      "kind": "CONFIG",
+      "snapshotSha256": "0ab96cf16023644339343649a8f11fde6e42fba07216bd98dfc57a3d7e8da58e",
+      "unchanged": true
+    },
+    {
+      "kind": "CONFIG",
+      "snapshotSha256": "f71279135ae895fe15a17697c3766878d13a0d1c5b91cfd07c1d10d5a33191b1",
+      "unchanged": true
+    },
+    {
+      "kind": "DAT",
+      "snapshotSha256": "e6ffe5df9f21d6657a96f13b41dfb96eb538472608466cf08583142cc4ecabb0",
+      "unchanged": true
+    },
+    {
+      "kind": "DAT",
+      "snapshotSha256": "71399ae378dfaeeb84d9927e8be3a65614843f658c727820ef3e449deb8d6384",
+      "unchanged": true
+    }
+  ],
+  "commonPluginDiskHashesUnchanged": 20,
+  "jlinkLogReadByteSha256Unchanged": true,
+  "newRuntimeEvidenceAdded": false,
+  "r1ParsingRegressionOnProvidedWindowsEvidence": "PASS",
+  "allInstallationCoverageComplete": false
+}
