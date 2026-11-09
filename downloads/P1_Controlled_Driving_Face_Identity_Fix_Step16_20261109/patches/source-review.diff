@@ -1,0 +1,215 @@
+--- step15/source/AuditSupport.java
++++ step16/source/AuditSupport.java
+@@ -1 +1 @@
+-package p1.controlled.step15;
++package p1.controlled.step16;
+--- step15/source/P1ControlledConversionStep15.java
++++ step16/source/P1ControlledConversionStep16.java
+@@ -1 +1 @@
+-package p1.controlled.step15;
++package p1.controlled.step16;
+@@ -25 +25 @@
+-import static p1.controlled.step15.AuditSupport.*;
++import static p1.controlled.step16.AuditSupport.*;
+@@ -28,3 +28,3 @@
+-public final class P1ControlledConversionStep15 {
+- public static final String COMMAND_ID="SISWControlledConvertStep15";
+- private static final String TARGET="200002100.prt",MESSAGES="p1_controlled_conversion_step15.txt";
++public final class P1ControlledConversionStep16 {
++ public static final String COMMAND_ID="SISWControlledConvertStep16";
++ private static final String TARGET="200002100.prt",MESSAGES="p1_controlled_conversion_step16.txt";
+@@ -37 +37 @@
+- private P1ControlledConversionStep15(){}
++ private P1ControlledConversionStep16(){}
+@@ -44 +44 @@
+-   command.Designate(MESSAGES,"P1_S15_LABEL","P1_S15_HELP","P1_S15_DESC");active=true;
++   command.Designate(MESSAGES,"P1_S16_LABEL","P1_S16_HELP","P1_S16_DESC");active=true;
+@@ -54 +54 @@
+-  options.SetDialogLabel("P1 Step15 — 不保存试验状态");MessageButtons buttons=MessageButtons.create();buttons.append(MessageButton.MESSAGE_BUTTON_OK);options.SetButtons(buttons);options.SetDefaultButton(MessageButton.MESSAGE_BUTTON_OK);
++  options.SetDialogLabel("P1 Step16 — 不保存试验状态");MessageButtons buttons=MessageButtons.create();buttons.append(MessageButton.MESSAGE_BUTTON_OK);options.SetButtons(buttons);options.SetDefaultButton(MessageButton.MESSAGE_BUTTON_OK);
+@@ -57 +57 @@
+- private static void feedback(String text,boolean error){feedback(text,error,"P1_S15_FAILED");}
++ private static void feedback(String text,boolean error){feedback(text,error,"P1_S16_FAILED");}
+@@ -59,3 +59,3 @@
+-  System.err.println("[P1_STEP15] "+text);
+-  try{display(text,error);}catch(Exception|LinkageError dialogError){System.err.println("[P1_STEP15] RESULT_DIALOG_FAILED "+dialogError.getClass().getName());
+-   try{session.UIDisplayMessage(MESSAGES,statusKey,null);}catch(Exception|LinkageError statusError){System.err.println("[P1_STEP15] BOTH_NATIVE_FEEDBACK_ROUTES_FAILED "+statusError.getClass().getName());}}
++  System.err.println("[P1_STEP16] "+text);
++  try{display(text,error);}catch(Exception|LinkageError dialogError){System.err.println("[P1_STEP16] RESULT_DIALOG_FAILED "+dialogError.getClass().getName());
++   try{session.UIDisplayMessage(MESSAGES,statusKey,null);}catch(Exception|LinkageError statusError){System.err.println("[P1_STEP16] BOTH_NATIVE_FEEDBACK_ROUTES_FAILED "+statusError.getClass().getName());}}
+@@ -64 +64 @@
+-  MessageDialogOptions options=pfcUI.MessageDialogOptions_Create();options.SetMessageDialogType(MessageDialogType.MESSAGE_WARNING);options.SetDialogLabel("P1 第十五步二次确认");
++  MessageDialogOptions options=pfcUI.MessageDialogOptions_Create();options.SetMessageDialogType(MessageDialogType.MESSAGE_WARNING);options.SetDialogLabel("P1 第十六步二次确认");
+@@ -72,2 +72,2 @@
+-   if(!clicked.compareAndSet(false,true)){busy.set(false);feedback("本进程第十五步点击次数已用尽；未进入转换，不重试。",true);return;}
+-   String message="本次未提交转换；一次点击已消耗，禁止自动重试。";boolean error=true;String statusKey="P1_S15_FAILED";
++   if(!clicked.compareAndSet(false,true)){busy.set(false);feedback("本进程第十六步点击次数已用尽；未进入转换，不重试。",true);return;}
++   String message="本次未提交转换；一次点击已消耗，禁止自动重试。";boolean error=true;String statusKey="P1_S16_FAILED";
+@@ -75,3 +75,3 @@
+-    Path directory=Paths.get(System.getProperty("user.home"),"CreoControlledConversionStep15");
+-    try(Step15Control control=new Step15Control(directory)){
+-     try{message=execute(control);error=false;statusKey=control.dispatched()?"P1_S15_VERIFIED":"P1_S15_CANCELLED";}
++    Path directory=Paths.get(System.getProperty("user.home"),"CreoControlledConversionStep16");
++    try(Step16Control control=new Step16Control(directory)){
++     try{message=execute(control);error=false;statusKey=control.dispatched()?"P1_S16_VERIFIED":"P1_S16_CANCELLED";}
+@@ -81 +81 @@
+-      try{control.record("ERROR",map("exceptionClass",failure.getClass().getName(),"message",String.valueOf(failure.getMessage()),"phase",phase,"errorCode",failure instanceof BodyIdentityFailure bodyFailure?bodyFailure.code.name():"OTHER_FAILURE","bodyCheckStage",failure instanceof BodyIdentityFailure bodyFailure?bodyFailure.stage:"NOT_BODY_CHECK"));}catch(Exception logError){failure.addSuppressed(logError);}
++      try{control.record("ERROR",map("exceptionClass",failure.getClass().getName(),"message",String.valueOf(failure.getMessage()),"phase",phase,"errorCode",failure instanceof FaceIdentityFailure faceFailure?faceFailure.code.name():failure instanceof BodyIdentityFailure bodyFailure?bodyFailure.code.name():"OTHER_FAILURE","bodyCheckStage",failure instanceof BodyIdentityFailure bodyFailure?bodyFailure.stage:"NOT_BODY_CHECK","faceCheckStage",failure instanceof FaceIdentityFailure faceFailure?faceFailure.stage:"NOT_FACE_CHECK"));}catch(Exception logError){failure.addSuppressed(logError);}
+@@ -84 +84 @@
+-      try{control.finish(outcome);}catch(Exception logError){System.err.println("[P1_STEP15] FINAL_AUDIT_WRITE_FAILED "+logError.getClass().getName());}
++      try{control.finish(outcome);}catch(Exception logError){System.err.println("[P1_STEP16] FINAL_AUDIT_WRITE_FAILED "+logError.getClass().getName());}
+@@ -88,2 +88,2 @@
+-   }catch(FileAlreadyExistsException already){message="本机第十五步一次点击锁已存在；本次未进入转换。不要删除记录、换目录或重载绕过单次限制。";}
+-   catch(Exception|LinkageError outer){error=true;statusKey="P1_S15_FAILED";outer.printStackTrace(System.err);message="受控记录创建或关闭失败，禁止继续/保存/重试；若已提交，模型可能已改变。请保留现场及stderr。\n"+outer.getClass().getSimpleName();}
++   }catch(FileAlreadyExistsException already){message="本机第十六步一次点击锁已存在；本次未进入转换。不要删除记录、换目录或重载绕过单次限制。";}
++   catch(Exception|LinkageError outer){error=true;statusKey="P1_S16_FAILED";outer.printStackTrace(System.err);message="受控记录创建或关闭失败，禁止继续/保存/重试；若已提交，模型可能已改变。请保留现场及stderr。\n"+outer.getClass().getSimpleName();}
+@@ -96 +96 @@
+- private static <T> T adapt(Object source,Class<T> type,String[] names,Step15Control control)throws Exception{
++ private static <T> T adapt(Object source,Class<T> type,String[] names,Step16Control control)throws Exception{
+@@ -105,3 +105,3 @@
+-  Model model;WSolid solid;SolidBody body;Surface face;WSession wsession;Integer stableBodyId;String stamp;boolean dirty;Set<Integer> featureIds;
+- }
+- private static Snapshot inspect(Step15Control control)throws Exception{
++  Model model;WSolid solid;SolidBody body;Surface face;WSession wsession;Selection capturedSelection;Integer capturedSelectionCount,stableFaceId;Integer stableBodyId;String stamp;boolean dirty;Set<Integer> featureIds;
++ }
++ private static Snapshot inspect(Step16Control control)throws Exception{
+@@ -118,4 +118 @@
+-  SelectionBuffer buffer=session.GetCurrentSelectionBuffer();Selections selected=buffer==null?null:buffer.GetContents();
+-  if(selected==null||selected.getarraysize()!=1)throw new IllegalStateException("需要预选且只预选一个平面作为驱动面；本次未写模型。");
+-  Selection selection=selected.get(0);if(selection==null||!same(selection.GetSelModel(),s.model)||selection.GetPath()!=null||!(selection.GetSelItem() instanceof Surface face))throw new IllegalStateException("需要当前零件本体上的单个曲面，不接受装配路径/其他模型。");
+-  s.face=face;requireFace(s);s.stamp=s.model.GetVersionStamp();s.dirty=s.model.GetIsModified();
++  requireFace(s,control,false);s.stamp=s.model.GetVersionStamp();s.dirty=s.model.GetIsModified();
+@@ -137 +134 @@
+- private static SolidBody verifyDefaultBody(Snapshot s,Step15Control control,boolean recheck)throws Exception{
++ private static SolidBody verifyDefaultBody(Snapshot s,Step16Control control,boolean recheck)throws Exception{
+@@ -163,6 +160,53 @@
+- private static void requireFace(Snapshot s)throws Exception{
+-  if(s.face.GetSurfaceType()!=SurfaceType.SURFACE_PLANE||!s.face.GetIsVisible())throw new IllegalStateException("驱动面必须是当前实体体的可见平面。");
+-  double area=s.face.EvalArea();if(!Double.isFinite(area)||area<=0)throw new IllegalStateException("驱动面面积无效。");
+-  Surfaces faces=s.body.ListSurfaces();if(faces==null||faces.getarraysize()>10000)throw new IllegalStateException("体曲面列表未知/超过界限。");
+-  for(int i=0;i<faces.getarraysize();i++){Surface candidate=faces.get(i);if(candidate!=null&&candidate.GetId()==s.face.GetId()&&same(candidate,s.face))return;}
+-  throw new IllegalStateException("驱动面未通过单体原生列表及对象身份匹配。");
++ private static final class FaceIdentityFailure extends IllegalStateException {
++  private static final long serialVersionUID=1L;
++  final ScopedFaceIdentity.Code code;final String stage;
++  FaceIdentityFailure(ScopedFaceIdentity.Code code,String stage,String detail,Throwable cause){super(code.name()+": "+stage+": "+detail,cause);this.code=code;this.stage=stage;}
++ }
++ private static FaceIdentityFailure faceReadFailure(Step16Control control,String stage,String operation,Throwable error)throws Exception{
++  control.record("FACE_SCOPE_ERROR",map("stage",stage,"errorCode","FACE_SCOPE_READ_EXCEPTION","operation",operation,"exceptionClass",error.getClass().getName(),"exceptionMessage",String.valueOf(error.getMessage())));
++  return new FaceIdentityFailure(ScopedFaceIdentity.Code.FACE_SCOPE_READ_EXCEPTION,stage,operation,error);
++ }
++ private static Surface selectedFace(Snapshot s,Step16Control control,boolean recheck)throws Exception{
++  String stage=recheck?"RECHECK":"INITIAL";Selection selection=s.capturedSelection;Integer count=s.capturedSelectionCount;
++  try{
++   if(!recheck){SelectionBuffer buffer=session.GetCurrentSelectionBuffer();Selections selected=buffer==null?null:buffer.GetContents();count=selected==null?0:selected.getarraysize();selection=count==1?selected.get(0):null;}
++   Surface face=null;boolean pathPresent=false,selectedModelMatches=false;
++   if(selection!=null){pathPresent=selection.GetPath()!=null;selectedModelMatches=same(selection.GetSelModel(),s.model);ModelItem item=selection.GetSelItem();if(item instanceof Surface surface)face=surface;}
++   ScopedFaceIdentity.Code code=ScopedFaceIdentity.selection(count,selection!=null,pathPresent,face!=null,selectedModelMatches,false);
++   control.record("FACE_SELECTION_CHECK",map("stage",stage,"selectionSource",recheck?"ORIGINAL_CAPTURED_SELECTION_NOT_NEW_BUFFER":"CURRENT_PRESELECTION_BUFFER","selectionCount",count,"selectionPresent",selection!=null,"pathPresent",pathPresent,"itemIsSurface",face!=null,"selectionModelMatches",selectedModelMatches,"resultCode",code.name()));
++   if(code!=ScopedFaceIdentity.Code.ACCEPTED)throw new FaceIdentityFailure(code,stage,"只接受当前零件无装配路径的单个曲面",null);
++   if(!recheck){s.capturedSelection=selection;s.capturedSelectionCount=count;}
++   return face;
++  }catch(FaceIdentityFailure failure){throw failure;}
++  catch(Exception|LinkageError error){throw faceReadFailure(control,stage,"SELECTION_READ",error);}
++ }
++ private static void requireFace(Snapshot s,Step16Control control,boolean recheck)throws Exception{
++  String stage=recheck?"RECHECK":"INITIAL";Surface selected=selectedFace(s,control,recheck);Integer selectedId=null,bodyId=null,defaultId=null,enumeratedBodyId=null,bodyCount=null;boolean scope=false;
++  try{
++   boolean modelScope=active&&s.model!=null&&s.solid!=null&&same(session.GetActiveModel(),s.model)&&same(s.solid,s.model)&&s.model.GetType()==ModelType.MDL_PART&&TARGET.equalsIgnoreCase(s.model.GetFileName());
++   if(s.body!=null)bodyId=s.body.GetId();SolidBody current=s.solid.GetDefaultBody();if(current!=null)defaultId=current.GetId();
++   ModelItems bodies=s.model.ListItems(ModelItemType.ITEM_BODY);if(bodies!=null){bodyCount=bodies.getarraysize();if(bodyCount==1){ModelItem body=bodies.get(0);if(body!=null)enumeratedBodyId=body.GetId();}}
++   scope=modelScope&&s.stableBodyId!=null&&s.stableBodyId.equals(bodyId)&&s.stableBodyId.equals(defaultId)&&bodyCount!=null&&bodyCount==1&&s.stableBodyId.equals(enumeratedBodyId);
++   selectedId=selected.GetId();
++  }catch(Exception|LinkageError error){throw faceReadFailure(control,stage,"MODEL_AND_CURRENT_BODY_SCOPE_READ",error);}
++  if(!scope){control.record("FACE_IDENTITY_CHECK",map("stage",stage,"scopeVerified",false,"model",TARGET,"stableBodyId",s.stableBodyId,"snapshotBodyId",bodyId,"currentDefaultBodyId",defaultId,"enumeratedBodyId",enumeratedBodyId,"bodyCount",bodyCount,"selectedFaceId",selectedId,"resultCode","FACE_BODY_SCOPE_MISMATCH"));throw new FaceIdentityFailure(ScopedFaceIdentity.Code.FACE_BODY_SCOPE_MISMATCH,stage,"面ID只能在当前目标模型和已核验当前体作用域内匹配",null);}
++  if(recheck&&s.stableFaceId==null)throw faceReadFailure(control,stage,"BASELINE_FACE_ID",new IllegalStateException("No initial confirmed face ID"));
++  if(recheck&&!Objects.equals(selectedId,s.stableFaceId)){control.record("FACE_IDENTITY_CHECK",map("stage",stage,"selectedFaceId",selectedId,"baselineFaceId",s.stableFaceId,"resultCode","FACE_ID_CHANGED"));throw new FaceIdentityFailure(ScopedFaceIdentity.Code.FACE_ID_CHANGED,stage,"原选中面ID在确认期间变化，不替换已确认驱动面",null);}
++  SurfaceType type;boolean visible;double area;
++  try{type=selected.GetSurfaceType();visible=selected.GetIsVisible();area=selected.EvalArea();}
++  catch(Exception|LinkageError error){throw faceReadFailure(control,stage,"SELECTED_FACE_TYPE_VISIBILITY_AREA",error);}
++  // Preserve the original geometric gates and their OTHER_FAILURE classification.
++  if(type!=SurfaceType.SURFACE_PLANE||!visible)throw new IllegalStateException("驱动面必须是当前实体体的可见平面。");
++  if(!Double.isFinite(area)||area<=0.0)throw new IllegalStateException("驱动面面积无效。");
++  Surface matched=null;int matches=0,total;
++  try{
++   Surfaces faces=s.body.ListSurfaces();if(faces==null)throw new IllegalStateException("Body surface list returned null");total=faces.getarraysize();if(total<0||total>10000)throw new IllegalStateException("Body surface list outside existing bound");
++   for(int i=0;i<total;i++){Surface candidate=faces.get(i);if(candidate!=null&&candidate.GetId()==selectedId){matches++;if(matched==null)matched=candidate;}}
++  }catch(Exception|LinkageError error){throw faceReadFailure(control,stage,"CURRENT_BODY_LISTSURFACES_IDS",error);}
++  ScopedFaceIdentity.Code code=ScopedFaceIdentity.face(scope,selectedId,recheck,s.stableFaceId,matches,false);
++  Map<String,Object> selectedHandle=bodyHandle(selected),listedHandle=bodyHandle(matched);
++  Object handlesEqual="RETURNED".equals(selectedHandle.get("status"))&&"RETURNED".equals(listedHandle.get("status"))?Objects.equals(selectedHandle.get("value"),listedHandle.get("value")):null;
++  control.record("FACE_IDENTITY_CHECK",map("stage",stage,"model",TARGET,"scopeVerified",scope,"stableBodyId",s.stableBodyId,"bodyId",bodyId,"currentDefaultBodyId",defaultId,"enumeratedBodyId",enumeratedBodyId,"bodyCount",bodyCount,"selectedFaceId",selectedId,"baselineFaceId",s.stableFaceId,"bodySurfaceCount",total,"matchingIdsInCurrentBody",matches,"selectedFaceType",type.getValue(),"selectedFaceVisible",visible,"selectedFaceArea",area,
++   "javaReferenceEqual",matched==null?null:Boolean.valueOf(matched==selected),"selectedFaceHandle",selectedHandle,"listedFaceHandle",listedHandle,"wrapperHandlesEqual",handlesEqual,"faceHandleEqualityUsedAsHardGate",false,"source","CURRENT_VERIFIED_BODY_LISTSURFACES_ONLY","resultCode",code.name()));
++  if(code!=ScopedFaceIdentity.Code.ACCEPTED)throw new FaceIdentityFailure(code,stage,"当前体原生曲面列表未找到唯一相同面ID，不跨体按ID匹配",null);
++  if(!recheck)s.stableFaceId=selectedId;s.face=selected;
+@@ -178 +222 @@
+- private static void recheck(Snapshot s,Step15Control control)throws Exception{
++ private static void recheck(Snapshot s,Step16Control control)throws Exception{
+@@ -184 +228 @@
+-  if(!s.featureIds.equals(featureIds(s.model)))throw new IllegalStateException("确认期间特征列表变化。");requireFace(s);requireNoNativeFailure(s.solid);
++  if(!s.featureIds.equals(featureIds(s.model)))throw new IllegalStateException("确认期间特征列表变化。");requireFace(s,control,true);requireNoNativeFailure(s.solid);
+@@ -187 +231 @@
+- private static String execute(Step15Control control)throws Exception{
++ private static String execute(Step16Control control)throws Exception{
+@@ -190 +234 @@
+-  control.acceptRisk();session.UIDisplayMessage(MESSAGES,"P1_S15_THICKNESS",null);String input=session.UIReadStringMessage(Boolean.FALSE);
++  control.acceptRisk();session.UIDisplayMessage(MESSAGES,"P1_S16_THICKNESS",null);String input=session.UIReadStringMessage(Boolean.FALSE);
+@@ -198 +242 @@
+-  element(elements,wfcElemIds.PRO_E_STD_FEATURE_NAME,pfcArgument.CreateStringArgValue("P1_STEP15_DRIVING"),1);
++  element(elements,wfcElemIds.PRO_E_STD_FEATURE_NAME,pfcArgument.CreateStringArgValue("P1_STEP16_DRIVING"),1);
+@@ -228 +272 @@
+- private static void readonlyFailureSnapshot(Step15Control control){
++ private static void readonlyFailureSnapshot(Step16Control control){
+@@ -231 +275 @@
+-  }catch(Exception|LinkageError readError){System.err.println("[P1_STEP15] FAILURE_READBACK_UNAVAILABLE "+readError.getClass().getName());}
++  }catch(Exception|LinkageError readError){System.err.println("[P1_STEP16] FAILURE_READBACK_UNAVAILABLE "+readError.getClass().getName());}
+--- step15/source/ScopedBodyIdentity.java
++++ step16/source/ScopedBodyIdentity.java
+@@ -1 +1 @@
+-package p1.controlled.step15;
++package p1.controlled.step16;
+--- /dev/null
++++ step16/source/ScopedFaceIdentity.java
+@@ -0,0 +1,22 @@
++package p1.controlled.step16;
++/** Face-specific policy: scope and original selection precede ID membership; handles are not inputs. */
++public final class ScopedFaceIdentity {
++ private ScopedFaceIdentity(){}
++ public enum Code { ACCEPTED, SELECTION_EMPTY_OR_MULTIPLE, SELECTION_PATH_NOT_EMPTY, SELECTION_NOT_FACE, SELECTION_OTHER_MODEL, FACE_ID_NOT_FOUND_IN_BODY, FACE_SCOPE_READ_EXCEPTION, FACE_BODY_SCOPE_MISMATCH, FACE_ID_CHANGED }
++ public static Code selection(Integer count,boolean present,boolean pathPresent,boolean surface,boolean selectedModelMatches,boolean readFailed){
++  if(readFailed)return Code.FACE_SCOPE_READ_EXCEPTION;
++  if(count==null||count!=1)return Code.SELECTION_EMPTY_OR_MULTIPLE;
++  if(!present||!surface)return Code.SELECTION_NOT_FACE;
++  if(pathPresent)return Code.SELECTION_PATH_NOT_EMPTY;
++  if(!selectedModelMatches)return Code.SELECTION_OTHER_MODEL;
++  return Code.ACCEPTED;
++ }
++ public static Code face(boolean currentModelAndBodyScope,Integer selectedId,boolean recheck,Integer originalId,Integer matchingIdsInCurrentBody,boolean readFailed){
++  if(readFailed)return Code.FACE_SCOPE_READ_EXCEPTION;
++  if(!currentModelAndBodyScope)return Code.FACE_BODY_SCOPE_MISMATCH;
++  if(selectedId==null||(recheck&&originalId==null)||matchingIdsInCurrentBody==null)return Code.FACE_SCOPE_READ_EXCEPTION;
++  if(recheck&&!selectedId.equals(originalId))return Code.FACE_ID_CHANGED;
++  if(matchingIdsInCurrentBody!=1)return Code.FACE_ID_NOT_FOUND_IN_BODY;
++  return Code.ACCEPTED;
++ }
++}
+--- step15/source/Step15Control.java
++++ step16/source/Step16Control.java
+@@ -1 +1 @@
+-package p1.controlled.step15;
++package p1.controlled.step16;
+@@ -9 +9 @@
+-import static p1.controlled.step15.AuditSupport.*;
++import static p1.controlled.step16.AuditSupport.*;
+@@ -12 +12 @@
+-public final class Step15Control implements AutoCloseable {
++public final class Step16Control implements AutoCloseable {
+@@ -14 +14 @@
+- public static final String FILE_NAME="step15-200002100-once.jsonl";
++ public static final String FILE_NAME="step16-200002100-once.jsonl";
+@@ -22 +22 @@
+- public Step15Control(Path directory)throws IOException {
++ public Step16Control(Path directory)throws IOException {
+@@ -44 +44 @@
+-  Map<String,Object> row=map("schema","P1_STEP15_CONTROLLED_NATIVE_CONVERSION_V1","step","STEP_15","requestId",requestId,"sequence",++sequence,"timestamp",Instant.now().toString(),"elapsedNs",System.nanoTime()-entered,"javaThreadId",Thread.currentThread().getId(),"event",event,"controlState",state.toString());row.putAll(fields);
++  Map<String,Object> row=map("schema","P1_STEP16_CONTROLLED_NATIVE_CONVERSION_V1","step","STEP_16","requestId",requestId,"sequence",++sequence,"timestamp",Instant.now().toString(),"elapsedNs",System.nanoTime()-entered,"javaThreadId",Thread.currentThread().getId(),"event",event,"controlState",state.toString());row.putAll(fields);

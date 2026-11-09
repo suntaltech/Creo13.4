@@ -1,0 +1,198 @@
+{
+  "artifactType": "STEP16_CONTROLLED_MODEL_BODY_SCOPED_DRIVING_FACE_IDENTITY_FIX_CANDIDATE",
+  "date": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "taskInput": {
+    "fileName": "P1_驱动面身份修正第十六步_任务单_20261109.md",
+    "sha256": "68691299275d24f08013a29e8c93206c447f71932a82a2e8ab9a2352ad6a13c3"
+  },
+  "applicationClass": "p1.controlled.step16.P1ControlledConversionStep16",
+  "commandId": "SISWControlledConvertStep16",
+  "targetModel": "200002100.prt",
+  "sourceFiles": [
+    {
+      "relativeName": "source/AuditSupport.java",
+      "sha256": "220f23c652528c7f04d5a0d867dea263669f5f5578634e79ac1ce79c7b9d3d41"
+    },
+    {
+      "relativeName": "source/P1ControlledConversionStep16.java",
+      "sha256": "a1cf82b6baab1bba3ffc91d0f70da5af6e7a7179f5a9d80a960beb1fde0c4f68"
+    },
+    {
+      "relativeName": "source/ScopedBodyIdentity.java",
+      "sha256": "e0f724f5e321d141e67b94f2983e2ea93afdad104f7f455add4a2cb7e07fb61e"
+    },
+    {
+      "relativeName": "source/ScopedFaceIdentity.java",
+      "sha256": "3aff95158708d96a9fa8b97c8e1999aad0b495fa13d4bc78b22f6bc7bce3219d"
+    },
+    {
+      "relativeName": "source/Step16Control.java",
+      "sha256": "050f3ea9b0755dc5d1b8a9aa0dc92c40774b37904cc64d74067d70b50868ce32"
+    }
+  ],
+  "classes": [
+    {
+      "relativeName": "classes/p1/controlled/step16/AuditSupport.class",
+      "sha256": "a68cc8e458fd6f009d585ea54c5a9e1253b52341c0e050037bbef5baac3456d2",
+      "bytes": 4880
+    },
+    {
+      "relativeName": "classes/p1/controlled/step16/P1ControlledConversionStep16$BodyIdentityFailure.class",
+      "sha256": "99578d3b4c1a7a6d941861dd0f11cf6aa24d890ec1729b016f266abc8d7a26bc",
+      "bytes": 1378
+    },
+    {
+      "relativeName": "classes/p1/controlled/step16/P1ControlledConversionStep16$FaceIdentityFailure.class",
+      "sha256": "aae2fa7d9804b1a6e5c8d629f302976b4825eef61f49d6725f1d26d266e30884",
+      "bytes": 1378
+    },
+    {
+      "relativeName": "classes/p1/controlled/step16/P1ControlledConversionStep16$Listener.class",
+      "sha256": "3c907a6dc7544b248a2b0b4a38bcf1331c931927db7c3fed7d0595b3525af8cc",
+      "bytes": 5863
+    },
+    {
+      "relativeName": "classes/p1/controlled/step16/P1ControlledConversionStep16$Snapshot.class",
+      "sha256": "e2dfd12cfabaf9e41176bcaa195d95ea7a079b35b377146908c1b8697d2f39d1",
+      "bytes": 947
+    },
+    {
+      "relativeName": "classes/p1/controlled/step16/P1ControlledConversionStep16.class",
+      "sha256": "e24c8f4b9b8ec7e2d45ed515814176e0b6c8e3be55fa0005f61bb14d1919a92a",
+      "bytes": 34405
+    },
+    {
+      "relativeName": "classes/p1/controlled/step16/ScopedBodyIdentity$Code.class",
+      "sha256": "246f29460c395e06d74cb8a2eebc82d4ef3eccbe0e7ab1aae0dc1be582a47ac4",
+      "bytes": 1523
+    },
+    {
+      "relativeName": "classes/p1/controlled/step16/ScopedBodyIdentity.class",
+      "sha256": "744e0cb83eccba4c53bccbedf0fbd093f8019ec6027736fe2756dc006d3bf4b5",
+      "bytes": 1130
+    },
+    {
+      "relativeName": "classes/p1/controlled/step16/ScopedFaceIdentity$Code.class",
+      "sha256": "75b9dacfc6b692a2c8916ae9e6ef114a0bca0c96aff24ac5505b02c6a20928a7",
+      "bytes": 1674
+    },
+    {
+      "relativeName": "classes/p1/controlled/step16/ScopedFaceIdentity.class",
+      "sha256": "048dbfcb93634a7a04c4c167f9ffdcef8d6fc17bd46c21f8c8bd7a28ef42a28b",
+      "bytes": 1278
+    },
+    {
+      "relativeName": "classes/p1/controlled/step16/Step16Control$State.class",
+      "sha256": "16b87b2467824a38169f5d41eab3b41ca1367d0de4acf6b044a95b908fc958ab",
+      "bytes": 1391
+    },
+    {
+      "relativeName": "classes/p1/controlled/step16/Step16Control.class",
+      "sha256": "b2c7617cbaf6ac3dc347048ad9cc4fd35d09c81cab47c817b39baf56818c72b0",
+      "bytes": 6326
+    }
+  ],
+  "jar": {
+    "relativeName": "lib/p1-controlled-conversion-step16.jar",
+    "sha256": "ce03aea9ef128057eae4f166ef97ded5b5cbc8f050a7559cbee26d9c4cbde77b",
+    "classBytesMatchLooseFiles": true,
+    "sdkBundled": false
+  },
+  "sdk": {
+    "fileName": "otk.jar",
+    "sha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "runtimeJava25Required": true,
+    "pfcasyncUsed": false,
+    "redistributed": false
+  },
+  "validation": {
+    "realSdkCompilation": true,
+    "sdkSha256": "0f95b0cf9c88792c0bd18aff4e7a3ef730fdc3d7924ffe681779a40bfcda2319",
+    "classCount": 12,
+    "classMajor": 61,
+    "sdkRuntimeMajor": 69,
+    "java25RuntimeRequired": true,
+    "repeatCompileIdentical": true,
+    "jarClassBytesMatchLooseFiles": true,
+    "classes": {
+      "p1/controlled/step16/AuditSupport.class": "a68cc8e458fd6f009d585ea54c5a9e1253b52341c0e050037bbef5baac3456d2",
+      "p1/controlled/step16/P1ControlledConversionStep16$BodyIdentityFailure.class": "99578d3b4c1a7a6d941861dd0f11cf6aa24d890ec1729b016f266abc8d7a26bc",
+      "p1/controlled/step16/P1ControlledConversionStep16$FaceIdentityFailure.class": "aae2fa7d9804b1a6e5c8d629f302976b4825eef61f49d6725f1d26d266e30884",
+      "p1/controlled/step16/P1ControlledConversionStep16$Listener.class": "3c907a6dc7544b248a2b0b4a38bcf1331c931927db7c3fed7d0595b3525af8cc",
+      "p1/controlled/step16/P1ControlledConversionStep16$Snapshot.class": "e2dfd12cfabaf9e41176bcaa195d95ea7a079b35b377146908c1b8697d2f39d1",
+      "p1/controlled/step16/P1ControlledConversionStep16.class": "e24c8f4b9b8ec7e2d45ed515814176e0b6c8e3be55fa0005f61bb14d1919a92a",
+      "p1/controlled/step16/ScopedBodyIdentity$Code.class": "246f29460c395e06d74cb8a2eebc82d4ef3eccbe0e7ab1aae0dc1be582a47ac4",
+      "p1/controlled/step16/ScopedBodyIdentity.class": "744e0cb83eccba4c53bccbedf0fbd093f8019ec6027736fe2756dc006d3bf4b5",
+      "p1/controlled/step16/ScopedFaceIdentity$Code.class": "75b9dacfc6b692a2c8916ae9e6ef114a0bca0c96aff24ac5505b02c6a20928a7",
+      "p1/controlled/step16/ScopedFaceIdentity.class": "048dbfcb93634a7a04c4c167f9ffdcef8d6fc17bd46c21f8c8bd7a28ef42a28b",
+      "p1/controlled/step16/Step16Control$State.class": "16b87b2467824a38169f5d41eab3b41ca1367d0de4acf6b044a95b908fc958ab",
+      "p1/controlled/step16/Step16Control.class": "b2c7617cbaf6ac3dc347048ad9cc4fd35d09c81cab47c817b39baf56818c72b0"
+    },
+    "pureControlAssertions": 35,
+    "pureBodyPolicyAssertions": 21,
+    "pureFacePolicyAssertions": 25,
+    "sameFunctionUnchanged": true,
+    "bodyIdentityFunctionAndPurePolicyFrozen": true,
+    "modelScopeAndSelectionModelSameChecksRetained": true,
+    "faceMembershipUsesCurrentBodyListOnly": true,
+    "faceHandleEqualityOnlyDiagnostic": true,
+    "initialAndAllFaceRechecksUpdated": true,
+    "facePlanarVisiblePositiveAreaGatesRetained": true,
+    "featureCreationRegenAndReadbackBlockFrozen": true,
+    "newNativeWriteReferences": false,
+    "oldStep15CodeOrLockTouched": false,
+    "newStep16IndependentOneClickLedger": true,
+    "creoOrPluginExecuted": false,
+    "actualStep16NativeConversion": "NOT_EXECUTED_UNKNOWN",
+    "sdkOrModelMocksUsed": false
+  },
+  "facePolicy": {
+    "captureExactlyOneSurface": true,
+    "nonNullAssemblyPathRejected": true,
+    "otherModelRejectedByOriginalSame": true,
+    "targetPartAndStableCurrentBodyScopeRequired": true,
+    "faceIdOnlyMatchedInCurrentBodyListSurfaces": true,
+    "uniqueMatchingIdRequired": true,
+    "sameGloballyReplaced": false,
+    "wrapperHandlesDiagnosticOnlyForFaceAndBody": true,
+    "initialAndAllFaceRechecksUpdated": true,
+    "originalSelectionAndInitialFaceIdRetainedDuringConfirmations": true,
+    "planeVisibleFinitePositiveAreaGatesUnchanged": true,
+    "requiredCodes": [
+      "SELECTION_EMPTY_OR_MULTIPLE",
+      "SELECTION_PATH_NOT_EMPTY",
+      "SELECTION_NOT_FACE",
+      "SELECTION_OTHER_MODEL",
+      "FACE_ID_NOT_FOUND_IN_BODY",
+      "FACE_SCOPE_READ_EXCEPTION"
+    ],
+    "additionalCodes": [
+      "FACE_BODY_SCOPE_MISMATCH",
+      "FACE_ID_CHANGED"
+    ]
+  },
+  "control": {
+    "ledgerDirectoryUnderUserHome": "CreoControlledConversionStep16",
+    "ledgerFile": "step16-200002100-once.jsonl",
+    "oldStep15LockReadDeletedModified": false,
+    "manualClickOnly": true,
+    "automaticRetryOrRearm": false,
+    "doubleDefaultNoConfirmation": true,
+    "explicitTestThicknessOnly": true,
+    "saveImplemented": false,
+    "globalSaveInterceptionImplemented": false,
+    "failedStateRetainedNoAutoRollback": true,
+    "oneCreateOneExplicitRegenAtMost": true
+  },
+  "reportedStep15FactsAreTaskNoteNotRawLedger": true,
+  "runtime": {
+    "deployed": false,
+    "registered": false,
+    "step16ClickPerformed": false,
+    "creoExecuted": false,
+    "faceScopeAndLaterPromptsVerified": "NOT_EXECUTED_UNKNOWN",
+    "nativeConversionSucceeded": "NOT_EXECUTED_UNKNOWN",
+    "globalThicknessMaterialOccupancyOrProductionReadinessProven": false
+  }
+}

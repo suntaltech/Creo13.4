@@ -1,0 +1,27 @@
+{
+  "step15CandidateCommit": "4c222a8b11299beb7d123f533b7f5570e48a01ad",
+  "step15SourceClassJarVerifiedUnchanged": true,
+  "step15Sources": [
+    {
+      "relativeName": "source/AuditSupport.java",
+      "sha256": "a525b4130ff2c418dcf41b3ff4ff928c981deff1f192a652710b2ca71360d83c"
+    },
+    {
+      "relativeName": "source/P1ControlledConversionStep15.java",
+      "sha256": "4d66972075813751d2c38cdbd122a119c660e243f606ad510373bb07fd5a1312"
+    },
+    {
+      "relativeName": "source/ScopedBodyIdentity.java",
+      "sha256": "cab1306a1b6b96e1e4397ec0789ad9c8903017ca1e8ccf0f026780721b00bfd2"
+    },
+    {
+      "relativeName": "source/Step15Control.java",
+      "sha256": "70efb5ffc0787c4d51f98f60e2ceb1936fdef532e23f2068f06ecf08a7cc6fb3"
+    }
+  ],
+  "oldStep15OnceReadDeletedModifiedOrRearmed": false,
+  "step16UsesOwnManualOneShot": "step16-200002100-once.jsonl",
+  "reportedStep15RunRequestId": "f39c897e-b07f-455f-829f-b07096bde7cd",
+  "reportedStep15RuntimeSource": "USER_TASK_NOTE_NOT_RAW_NATIVE_LEDGER",
+  "fullReportedStep15RuntimeIndependentlyReviewed": false
+}

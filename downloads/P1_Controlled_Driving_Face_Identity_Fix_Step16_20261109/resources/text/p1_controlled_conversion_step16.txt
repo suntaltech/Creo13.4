@@ -1,0 +1,20 @@
+P1_S16_LABEL
+Controlled Solid to Sheetmetal Step 16
+
+P1_S16_HELP
+Model/body-scoped driving face IDs; one manual click, explicit test thickness and two confirmations
+
+P1_S16_DESC
+No assembly paths or foreign-model faces. Body/face handles are diagnostic only. No Save or automatic retry.
+
+P1_S16_THICKNESS
+Enter an explicit positive finite TEST thickness in mm. No suggested value; not global thickness proof.
+
+P1_S16_FAILED
+Step16 blocked, failed or unverified. Review the face/body code and audit. One-shot consumed. Do NOT save or retry.
+
+P1_S16_VERIFIED
+Native sheetmetal/new-wall readback passed; visual tree check pending. No Save issued. Do not repeat this disposable test.
+
+P1_S16_CANCELLED
+Step16 cancelled before model write. One-shot consumed. No Save issued. Do not retry this controlled case.

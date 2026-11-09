@@ -1,0 +1,121 @@
+Compiled from "Selection.java"
+public interface com.ptc.pfc.pfcSelect.Selection extends com.ptc.pfc.pfcObject.Object {
+  public abstract com.ptc.pfc.pfcModel.Model GetSelModel() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcModelItem.ModelItem GetSelItem() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetSelItem(com.ptc.pfc.pfcModelItem.ModelItem) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcTable.TableCell GetSelTableCell() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetSelTableCell(com.ptc.pfc.pfcTable.TableCell) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcView2D.View2D GetSelView2D() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetSelView2D(com.ptc.pfc.pfcView2D.View2D) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Integer GetSelTableSegment() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcAssembly.ComponentPath GetPath() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetPath(com.ptc.pfc.pfcAssembly.ComponentPath) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.UVParams GetParams() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetParams(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.Double GetTParam() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetTParam(java.lang.Double) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D GetPoint() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetPoint(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract double GetDepth() throws com.ptc.cipjava.jxthrowable;
+  public abstract java.lang.String GetSelectionString() throws com.ptc.cipjava.jxthrowable;
+  public abstract void Highlight(com.ptc.pfc.pfcBase.StdColor) throws com.ptc.cipjava.jxthrowable;
+  public abstract void UnHighlight() throws com.ptc.cipjava.jxthrowable;
+  public abstract void Display() throws com.ptc.cipjava.jxthrowable;
+  public abstract void SetIntf3DCsys(com.ptc.pfc.pfcSelect.Selection) throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "SelectionBuffer.java"
+public interface com.ptc.pfc.pfcSelect.SelectionBuffer extends com.ptc.pfc.pfcObject.Child {
+  public abstract com.ptc.pfc.pfcSelect.Selections GetContents() throws com.ptc.cipjava.jxthrowable;
+  public abstract void AddSelection(com.ptc.pfc.pfcSelect.Selection) throws com.ptc.cipjava.jxthrowable;
+  public abstract void RemoveSelection(int) throws com.ptc.cipjava.jxthrowable;
+  public abstract void Clear() throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "Selections.java"
+public abstract class com.ptc.pfc.pfcSelect.Selections extends com.ptc.cipjava.jxobject_i {
+  public int getarraysize() throws com.ptc.cipjava.jxthrowable;
+  public com.ptc.pfc.pfcSelect.Selection get(int) throws com.ptc.cipjava.jxthrowable;
+  public void set(int, com.ptc.pfc.pfcSelect.Selection) throws com.ptc.cipjava.jxthrowable;
+  public void removerange(int, int) throws com.ptc.cipjava.jxthrowable;
+  public void insert(int, com.ptc.pfc.pfcSelect.Selection) throws com.ptc.cipjava.jxthrowable;
+  public void append(com.ptc.pfc.pfcSelect.Selection) throws com.ptc.cipjava.jxthrowable;
+  public void insertseq(int, com.ptc.pfc.pfcSelect.Selections) throws com.ptc.cipjava.jxthrowable;
+  public void clear() throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcSelect.Selections create() throws com.ptc.cipjava.jxthrowable;
+  protected com.ptc.pfc.pfcSelect.Selections(long);
+}
+Compiled from "Surface.java"
+public interface com.ptc.pfc.pfcGeometry.Surface extends com.ptc.pfc.pfcModelItem.ModelItem {
+  public abstract boolean GetIsVisible() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.Quilt GetOwnerQuilt() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcFeature.Feature GetFeature() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D EvalClosestPointOnSurface(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D EvalClosestPoint(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.SurfXYZData Eval3DData(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.UVParams EvalParameters(com.ptc.pfc.pfcBase.Point3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract double EvalArea() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.CurvatureData EvalPrincipalCurv(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Placement VerifyUV(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract double EvalDiameter(com.ptc.pfc.pfcBase.UVParams) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D EvalMaximum(com.ptc.pfc.pfcBase.Vector3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Point3D EvalMinimum(com.ptc.pfc.pfcBase.Vector3D) throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.Contours ListContours() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.Surfaces ListSameSurfaces() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.SurfaceType GetSurfaceType() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.Outline3D GetXYZExtents() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcBase.UVOutline GetUVExtents() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.SurfaceOrientation GetOrientation() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.SurfaceDescriptor GetSurfaceDescriptor() throws com.ptc.cipjava.jxthrowable;
+  public abstract com.ptc.pfc.pfcGeometry.NURBSSurfaceDescriptor GetNURBSRepresentation() throws com.ptc.cipjava.jxthrowable;
+}
+Compiled from "Surfaces.java"
+public abstract class com.ptc.pfc.pfcGeometry.Surfaces extends com.ptc.cipjava.jxobject_i {
+  public int getarraysize() throws com.ptc.cipjava.jxthrowable;
+  public com.ptc.pfc.pfcGeometry.Surface get(int) throws com.ptc.cipjava.jxthrowable;
+  public void set(int, com.ptc.pfc.pfcGeometry.Surface) throws com.ptc.cipjava.jxthrowable;
+  public void removerange(int, int) throws com.ptc.cipjava.jxthrowable;
+  public void insert(int, com.ptc.pfc.pfcGeometry.Surface) throws com.ptc.cipjava.jxthrowable;
+  public void append(com.ptc.pfc.pfcGeometry.Surface) throws com.ptc.cipjava.jxthrowable;
+  public void insertseq(int, com.ptc.pfc.pfcGeometry.Surfaces) throws com.ptc.cipjava.jxthrowable;
+  public void clear() throws com.ptc.cipjava.jxthrowable;
+  public static com.ptc.pfc.pfcGeometry.Surfaces create() throws com.ptc.cipjava.jxthrowable;
+  protected com.ptc.pfc.pfcGeometry.Surfaces(long);
+}
+Compiled from "SurfaceType.java"
+public final class com.ptc.pfc.pfcGeometry.SurfaceType implements com.ptc.cipjava.jxenum {
+  public static final int _SURFACE_PLANE;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_PLANE;
+  public static final int _SURFACE_CYLINDER;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_CYLINDER;
+  public static final int _SURFACE_CONE;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_CONE;
+  public static final int _SURFACE_TORUS;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_TORUS;
+  public static final int _SURFACE_RULED;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_RULED;
+  public static final int _SURFACE_REVOLVED;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_REVOLVED;
+  public static final int _SURFACE_TABULATED_CYLINDER;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_TABULATED_CYLINDER;
+  public static final int _SURFACE_FILLET;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_FILLET;
+  public static final int _SURFACE_COONS_PATCH;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_COONS_PATCH;
+  public static final int _SURFACE_SPLINE;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_SPLINE;
+  public static final int _SURFACE_NURBS;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_NURBS;
+  public static final int _SURFACE_CYLINDRICAL_SPLINE;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_CYLINDRICAL_SPLINE;
+  public static final int _SURFACE_SPHERICAL_SPLINE;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_SPHERICAL_SPLINE;
+  public static final int _SURFACE_FOREIGN;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_FOREIGN;
+  public static final int _SURFACE_SPL2DER;
+  public static final com.ptc.pfc.pfcGeometry.SurfaceType SURFACE_SPL2DER;
+  public static final int __Last;
+  public int getValue();
+  public static com.ptc.pfc.pfcGeometry.SurfaceType FromInt(int);
+  public static com.ptc.pfc.pfcGeometry.SurfaceType FromInt(java.lang.Integer);
+  public static int getValue(com.ptc.pfc.pfcGeometry.SurfaceType);
+  static {};
+}
