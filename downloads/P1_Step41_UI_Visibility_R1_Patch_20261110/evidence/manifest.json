@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "step": 41,
+  "revision": "UI_R1",
+  "one_variable": "Third ProCmdDesignate message-file basename only",
+  "input_archive": {
+    "name": "P1_Step41_UI_Visibility_Handoff_20261110.zip",
+    "sha256": "7ec8e7af596b291863449ed209f1cedc65e5b19b3014b28a056bbbafd7665c90"
+  },
+  "input_files": [
+    {
+      "name": "README.md",
+      "sha256": "57923228d592b0d8a85fa5af994d8f7ba1b33bb4c4a0b4f45169740268eff721"
+    },
+    {
+      "name": "customize-list-after-restart.png",
+      "sha256": "717348cae954718956f1f2c2c59d816606d45f69faaff1f367a8a0c2d1a0d62e"
+    },
+    {
+      "name": "entry.cpp",
+      "sha256": "fdd9fd0dccfe2f20f5a84336bbd5720a6fb3a68cb187fb374bb316e4a7b1322c"
+    },
+    {
+      "name": "p1_readonly_body_face_count.txt",
+      "sha256": "c991ea6263a506b16907aa1a13d1ff6147ee730ff9e06d2527ce82b1d0dbefff"
+    },
+    {
+      "name": "p1_readonly_ping.txt",
+      "sha256": "c1b5728fb79294697a1e0e9672bd8baeef7b1c082d9534ba2180020a12875e21"
+    },
+    {
+      "name": "step41-restart-log.jsonl",
+      "sha256": "c6f5f58949b2243e7e9a51f1083132a1b2ab73cc76105cd53534ec8b37ec7245"
+    }
+  ],
+  "baseline_source_sha256": "fdd9fd0dccfe2f20f5a84336bbd5720a6fb3a68cb187fb374bb316e4a7b1322c",
+  "old_message_basename": "p1_readonly_body_face_count.txt",
+  "new_message_basename": "p1_fc.txt",
+  "message_bytes_sha256": "c991ea6263a506b16907aa1a13d1ff6147ee730ff9e06d2527ce82b1d0dbefff",
+  "supplied_registration_statuses_all_zero": true,
+  "ui_missing_from_screenshot_and_user_report": true,
+  "exact_filename_length_limit_proven": false,
+  "deployed_resource_location_independently_verified": false,
+  "surface_count_logic_changed": false,
+  "raw_screenshot_or_logs_redistributed": false,
+  "actual_sdk_build_or_ui_test_performed": false
+}

@@ -1,0 +1,6 @@
+{"seq": 1, "utc": "2026-11-10T06:26:50.885197+00:00", "phase": "INPUT_REVIEW", "status": "COMPLETED", "detail": "Screenshot shows two existing commands; three ActionAdd/Designate pairs return 0; no body-count callback events supplied"}
+{"seq": 2, "utc": "2026-11-10T06:26:50.885197+00:00", "phase": "CALL_COMPARISON", "status": "COMPLETED", "detail": "Same priority, access callback, flags and argument ordering; third resource basename longest"}
+{"seq": 3, "utc": "2026-11-10T06:26:50.885197+00:00", "phase": "PATCH", "status": "ONE_RESOURCE_NAME_VARIABLE", "detail": "Short basename p1_fc.txt; resource content and all other source bytes unchanged"}
+{"seq": 4, "utc": "2026-11-10T06:26:50.885197+00:00", "phase": "CAUSE_STATUS", "status": "HYPOTHESIS_NOT_NUMERIC_LIMIT_PROOF", "detail": "Test resource lookup/name association; do not assert undocumented length maximum"}
+{"seq": 5, "utc": "2026-11-10T06:26:50.885197+00:00", "phase": "NATIVE_UI_VALIDATION", "status": "NOT_PERFORMED", "detail": "No compiler, Creo restart, model operation or UI change executed by cloud"}
+{"seq": 6, "utc": "2026-11-10T06:29:59.623504+00:00", "phase": "PATCH_CHECK", "status": "PASS_OFFLINE_BYTE_SCOPE", "detail": "Exactly one literal differs; inverse substitution reproduces baseline; new resource bytes identical; actual UI test pending"}

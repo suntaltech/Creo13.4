@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "scope": "ONE_LITERAL_REVERSE_SUBSTITUTION_AND_EXACT_DIFF_RESOURCE_CHECK",
+  "checks": {
+    "baseline_matches_supplied_source": true,
+    "only_one_cpp_literal_changed": true,
+    "single_diff_reproduces_source_and_new_resource": true,
+    "new_resource_byte_identical_to_input_long_name": true,
+    "no_new_binary_active_dat_or_private_image": true
+  },
+  "all_observed_checks_passed": true,
+  "surface_count_logic_proven_byte_unchanged_by_reverse_substitution": true,
+  "sdk_compile_or_ui_visibility_test_performed": false,
+  "filename_length_root_cause_proven": false
+}

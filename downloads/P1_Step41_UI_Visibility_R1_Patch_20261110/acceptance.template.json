@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "status": "NOT_EXECUTED",
+  "baseline_sha256_verified": null,
+  "only_message_filename_changed": null,
+  "new_dll_sha256": null,
+  "new_message_bytes_sha256": null,
+  "same_successful_resource_location_verified": null,
+  "plus_exports_preserved": null,
+  "all_action_add_and_designate_returns_zero": null,
+  "body_face_count_visible_in_toolkit_list": null,
+  "manual_trigger_count": null,
+  "body_face_count_enter_seen": null,
+  "body_face_count_return_seen": null,
+  "ui_visibility_result": null,
+  "surface_count_runtime_result": null,
+  "rule": "Visible label remains p1_readonly_body_face_count. UI visibility is separate from callback/count success; do not infer a numeric filename limit."
+}

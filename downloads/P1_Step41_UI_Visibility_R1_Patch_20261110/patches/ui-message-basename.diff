@@ -1,0 +1,20 @@
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -561 +561 @@
+-    static wchar_t message_file[] = L"p1_readonly_body_face_count.txt";
++    static wchar_t message_file[] = L"p1_fc.txt";
+--- /dev/null
++++ b/text/p1_fc.txt
+@@ -0,0 +1,12 @@
++P1_BODY_FACE_COUNT_LABEL
++p1_readonly_body_face_count
++
++
++P1_BODY_FACE_COUNT_HELP
++Log the number of faces in the current part default body only.
++
++
++P1_BODY_FACE_COUNT_DESC
++Read-only array length. No face IDs, geometry queries, selection or model writes.
++
++
