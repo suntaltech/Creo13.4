@@ -1,0 +1,17 @@
+{
+  "task": "Step41_designation_contract_and_resource_lookup_only",
+  "ProCmdDesignate_semantic_comment_or_official_help": null,
+  "source_version_and_section": null,
+  "ProCmdItemLabel_typedef": null,
+  "ProCmdLineHelp_typedef": null,
+  "ProCmdDescription_typedef": null,
+  "ProFileName_typedef": null,
+  "text_dir_to_resource_root_relative_mapping": null,
+  "current_UI_language": null,
+  "relative_resource_tree": null,
+  "same_name_copies_if_any": null,
+  "lookup_precedence_documented": null,
+  "actual_file_loaded_proven": false,
+  "missing_materials": [],
+  "no_new_GUI_or_build_required": true
+}

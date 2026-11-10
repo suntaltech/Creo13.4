@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "revision": "R4R1_OFFLINE_REVIEW",
+  "input_files": [
+    {
+      "name": "README.md",
+      "sha256": "9089484fc9079108a4ee0e800095771f0dc21352c2c38b54313c421e7de42387"
+    },
+    {
+      "name": "customize-list-r4r1-still-missing.png",
+      "sha256": "55b80876236bef599d6a92ccb4066a2547e736e4c0ac9dcf807df1391998644c"
+    },
+    {
+      "name": "r4r1-log.jsonl",
+      "sha256": "b393354ae4fd6727571f32896b5025f82a0e318581f713185cb47b3af9ea0298"
+    }
+  ],
+  "plugin_modified": false,
+  "runtime_review_origin": "latest initialization segment in current uploaded log",
+  "resource_review_origin": "previously supplied bytes; hashes match local R4 compile-gate handoff report",
+  "resource_resolution_confirmed": false,
+  "actual_current_source_or_DLL_hash_supplied": false,
+  "new_DLL_candidate_generated": false,
+  "root_cause_established": false
+}

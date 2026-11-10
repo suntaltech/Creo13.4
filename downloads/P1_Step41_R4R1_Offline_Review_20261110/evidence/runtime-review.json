@@ -1,0 +1,56 @@
+{
+  "input_log_sha256": "b393354ae4fd6727571f32896b5025f82a0e318581f713185cb47b3af9ea0298",
+  "pid": 23640,
+  "load_token": 25534343,
+  "older_rows_ignored": 13,
+  "identity_mapping": [
+    {
+      "revision": "UI_R4_R1_DIAG",
+      "command": "p1_readonly_body_face_count",
+      "sdk_action_name": "p1_readonly_fc",
+      "label_key": "P1_BODY_FACE_COUNT_LABEL",
+      "help_key": "P1_BODY_FACE_COUNT_HELP",
+      "description_key": "P1_BODY_FACE_COUNT_DESC",
+      "message_file": "p1_fc.txt",
+      "id_equality_group": 1
+    },
+    {
+      "revision": "UI_R4_R1_DIAG",
+      "command": "p1_readonly_model_info",
+      "sdk_action_name": "p1_readonly_model_info",
+      "label_key": "P1_READONLY_MODEL_INFO_LABEL",
+      "help_key": "P1_READONLY_MODEL_INFO_HELP",
+      "description_key": "P1_READONLY_MODEL_INFO_DESC",
+      "message_file": "p1_readonly_model_info.txt",
+      "id_equality_group": 2
+    },
+    {
+      "revision": "UI_R4_R1_DIAG",
+      "command": "p1_readonly_ping",
+      "sdk_action_name": "p1_readonly_ping",
+      "label_key": "P1_READONLY_PING_LABEL",
+      "help_key": "P1_READONLY_PING_HELP",
+      "description_key": "P1_READONLY_PING_DESCRIPTION",
+      "message_file": "p1_readonly_ping.txt",
+      "id_equality_group": 3
+    }
+  ],
+  "identity_count": 3,
+  "distinct_id_count": 3,
+  "all_three_ids_distinct": true,
+  "sdk_return_codes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "six_returns_zero": true,
+  "init_return_codes": [
+    0
+  ],
+  "body_action_enter_observed": false,
+  "ui_visibility_proven_by_log": false,
+  "sdk_root_cause_established": false
+}

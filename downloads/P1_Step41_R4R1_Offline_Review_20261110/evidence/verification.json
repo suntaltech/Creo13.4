@@ -1,0 +1,9 @@
+{
+  "actual_evidence_audit_pass": true,
+  "latest_init_segment_selection_pass": true,
+  "missing_key_detection_pass": true,
+  "duplicate_key_detection_pass": true,
+  "BOM_detection_pass": true,
+  "SDK_parser_tested": false,
+  "Creo_executed": false
+}

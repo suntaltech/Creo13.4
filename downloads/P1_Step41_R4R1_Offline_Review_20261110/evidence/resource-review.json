@@ -1,0 +1,116 @@
+{
+  "p1_fc.txt": {
+    "sha256": "c991ea6263a506b16907aa1a13d1ff6147ee730ff9e06d2527ce82b1d0dbefff",
+    "byte_count": 252,
+    "has_utf8_bom": false,
+    "has_nul": false,
+    "crlf_count": 0,
+    "lf_count": 12,
+    "sdk_parser_executed": false,
+    "ascii_decode_pass": true,
+    "entries": [
+      {
+        "key": "P1_BODY_FACE_COUNT_LABEL",
+        "occurrences": 1,
+        "line_1_based": 1,
+        "key_ascii_length": 24,
+        "value": "p1_readonly_body_face_count",
+        "value_ascii_length": 27
+      },
+      {
+        "key": "P1_BODY_FACE_COUNT_HELP",
+        "occurrences": 1,
+        "line_1_based": 5,
+        "key_ascii_length": 23,
+        "value": "Log the number of faces in the current part default body only.",
+        "value_ascii_length": 62
+      },
+      {
+        "key": "P1_BODY_FACE_COUNT_DESC",
+        "occurrences": 1,
+        "line_1_based": 9,
+        "key_ascii_length": 23,
+        "value": "Read-only array length. No face IDs, geometry queries, selection or model writes.",
+        "value_ascii_length": 81
+      }
+    ],
+    "structural_parity_pass": true,
+    "structural_parity_definition": "three key/value/blank/blank groups; observed common layout only"
+  },
+  "p1_readonly_model_info.txt": {
+    "sha256": "360e9a10b5bae965a476a7cdc3c3fde0286680d1a4608d587d173e3747a09958",
+    "byte_count": 272,
+    "has_utf8_bom": false,
+    "has_nul": false,
+    "crlf_count": 0,
+    "lf_count": 12,
+    "sdk_parser_executed": false,
+    "ascii_decode_pass": true,
+    "entries": [
+      {
+        "key": "P1_READONLY_MODEL_INFO_LABEL",
+        "occurrences": 1,
+        "line_1_based": 1,
+        "key_ascii_length": 28,
+        "value": "p1_readonly_model_info",
+        "value_ascii_length": 22
+      },
+      {
+        "key": "P1_READONLY_MODEL_INFO_HELP",
+        "occurrences": 1,
+        "line_1_based": 5,
+        "key_ascii_length": 27,
+        "value": "Log current part name, type, default body presence and feature count only.",
+        "value_ascii_length": 74
+      },
+      {
+        "key": "P1_READONLY_MODEL_INFO_DESC",
+        "occurrences": 1,
+        "line_1_based": 9,
+        "key_ascii_length": 27,
+        "value": "Read-only current-model information. No selection, geometry, modification or save.",
+        "value_ascii_length": 82
+      }
+    ],
+    "structural_parity_pass": true,
+    "structural_parity_definition": "three key/value/blank/blank groups; observed common layout only"
+  },
+  "p1_readonly_ping.txt": {
+    "sha256": "c1b5728fb79294697a1e0e9672bd8baeef7b1c082d9534ba2180020a12875e21",
+    "byte_count": 230,
+    "has_utf8_bom": false,
+    "has_nul": false,
+    "crlf_count": 0,
+    "lf_count": 12,
+    "sdk_parser_executed": false,
+    "ascii_decode_pass": true,
+    "entries": [
+      {
+        "key": "P1_READONLY_PING_LABEL",
+        "occurrences": 1,
+        "line_1_based": 1,
+        "key_ascii_length": 22,
+        "value": "p1_readonly_ping",
+        "value_ascii_length": 16
+      },
+      {
+        "key": "P1_READONLY_PING_HELP",
+        "occurrences": 1,
+        "line_1_based": 5,
+        "key_ascii_length": 21,
+        "value": "Write one diagnostic JSONL ping without accessing a model.",
+        "value_ascii_length": 58
+      },
+      {
+        "key": "P1_READONLY_PING_DESCRIPTION",
+        "occurrences": 1,
+        "line_1_based": 9,
+        "key_ascii_length": 28,
+        "value": "Manual read-only ping. No model access, selection, modification, or save.",
+        "value_ascii_length": 73
+      }
+    ],
+    "structural_parity_pass": true,
+    "structural_parity_definition": "three key/value/blank/blank groups; observed common layout only"
+  }
+}
