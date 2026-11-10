@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "status": "NOT_EXECUTED",
+  "source_sha256": null,
+  "dll_sha256": null,
+  "all_six_register_designate_statuses_zero": null,
+  "latest_log_order_is_body_model_ping": null,
+  "visible_names": {
+    "p1_readonly_body_face_count": null,
+    "p1_readonly_model_info": null,
+    "p1_readonly_ping": null
+  },
+  "resources_left_unchanged": null,
+  "same_model_and_ui_mode_conditions": null,
+  "body_callback_triggered_once_if_visible": null,
+  "body_count_runtime_result": null,
+  "interpretation": null,
+  "rule": "SDK call order is verified from latest log segment, not alphabetically sorted UI rows. No SDK two-command limit inferred."
+}

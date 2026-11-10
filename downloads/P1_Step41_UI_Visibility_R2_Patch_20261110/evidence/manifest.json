@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "step": 41,
+  "revision": "UI_R2",
+  "one_variable": "Swap first and third registration-call positions; middle command unchanged",
+  "baseline_source_sha256": "13d74fa1eec8e5059c205a225af771f4110069aff18eff9398373e4c1e097cac",
+  "input_archive": {
+    "name": "P1_Step41_UI_Visibility_R1_Failure_Handoff_20261110.zip",
+    "sha256": "2dd3219aeb11177bda870ea804096e70219d92a461a9e28f9299ad1a1da1a5ac"
+  },
+  "input_files": [
+    {
+      "name": "README.md",
+      "sha256": "3dd6749f0dc243252a024f0625a139b9cbe505ba4e6f23c846aba7a876ba022c"
+    },
+    {
+      "name": "customize-list-r1-still-missing.png",
+      "sha256": "6f3c0e0f23a9b3ec341538e3754e5476bb82155ec19d187b4bea1d0c04e6b5ec"
+    },
+    {
+      "name": "entry_r1.cpp",
+      "sha256": "13d74fa1eec8e5059c205a225af771f4110069aff18eff9398373e4c1e097cac"
+    },
+    {
+      "name": "p1_fc.txt",
+      "sha256": "c991ea6263a506b16907aa1a13d1ff6147ee730ff9e06d2527ce82b1d0dbefff"
+    },
+    {
+      "name": "r1-startup-log.jsonl",
+      "sha256": "d4b344fbe26a35ca67630ee5c692be2dd14da82cb36dfcc5517f632294ded6a1"
+    }
+  ],
+  "r1_source_and_resource_match_published_candidate": true,
+  "latest_initialization_segment": {
+    "six_register_designate_statuses": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "init_before_return_zero": true,
+    "body_count_callback_events_present": false
+  },
+  "prior_segment_termination_markers_observed": true,
+  "os_unmapping_proven": false,
+  "before": [
+    "p1_readonly_ping",
+    "p1_readonly_model_info",
+    "p1_readonly_body_face_count"
+  ],
+  "after": [
+    "p1_readonly_body_face_count",
+    "p1_readonly_model_info",
+    "p1_readonly_ping"
+  ],
+  "resource_name_and_content_changed": false,
+  "counting_logic_changed": false,
+  "two_command_sdk_limit_established": false,
+  "runtime_or_ui_test_performed_by_cloud": false,
+  "private_logs_or_screenshot_redistributed": false
+}

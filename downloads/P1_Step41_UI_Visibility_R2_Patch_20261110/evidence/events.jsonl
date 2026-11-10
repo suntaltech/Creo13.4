@@ -1,0 +1,6 @@
+{"seq": 1, "utc": "2026-11-10T06:58:01.132915+00:00", "phase": "R1_EVIDENCE", "status": "REVIEWED", "detail": "Exact R1 source/resource matched; latest initialization six status zeros; screenshot still missing body command"}
+{"seq": 2, "utc": "2026-11-10T06:58:01.132915+00:00", "phase": "R1_HYPOTHESIS", "status": "DID_NOT_FIX", "detail": "Short resource basename alone insufficient; retain it unchanged"}
+{"seq": 3, "utc": "2026-11-10T06:58:01.132915+00:00", "phase": "R2_SCOPE", "status": "ONE_ORDER_SWAP", "detail": "Body first, Model Info second control, Ping third; functions/resources unchanged"}
+{"seq": 4, "utc": "2026-11-10T06:58:01.132915+00:00", "phase": "SDK_REQUIREMENT", "status": "NO_INVENTED_LIMIT", "detail": "No claim of two-command quota or undocumented refresh requirement"}
+{"seq": 5, "utc": "2026-11-10T06:58:01.132915+00:00", "phase": "NATIVE_ACTIONS", "status": "NOT_PERFORMED", "detail": "No build, GUI reload, resource write or model operation executed by cloud"}
+{"seq": 6, "utc": "2026-11-10T06:58:01.596128+00:00", "phase": "PATCH_CHECK", "status": "PASS_BYTE_SCOPE", "detail": "Inverse order swap restores every original byte; one-file diff applies exactly; native/UI pending"}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "scope": "EXACT_DIFF_AND_INVERSE_PERMUTATION_BYTE_CHECK",
+  "checks": {
+    "baseline_matches_input": true,
+    "only_registration_order_changed": true,
+    "exact_diff_application": true,
+    "same_source_size": true,
+    "short_filename_retained": true,
+    "no_resource_or_binary_in_payload": true
+  },
+  "all_observed_checks_passed": true,
+  "full_original_source_recovered_by_inverse_swap": true,
+  "sdk_compile_or_ui_test_performed": false,
+  "sdk_order_requirement_or_limit_proven": false
+}

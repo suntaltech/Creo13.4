@@ -1,0 +1,8 @@
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -592,0 +593,2 @@
++    register_readonly_body_face_count();
++    register_readonly_model_info();
+@@ -594,2 +595,0 @@
+-    register_readonly_model_info();
+-    register_readonly_body_face_count();
