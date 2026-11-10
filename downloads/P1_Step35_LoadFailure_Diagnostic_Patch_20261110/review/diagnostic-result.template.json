@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "TEMPLATE_NOT_EXECUTED",
+  "offline": {
+    "baseline_sha256_verified": null,
+    "actual_sdk_callback_contract_reviewed": null,
+    "original_sample_link_exports_reviewed": null,
+    "compile_exit_code": null,
+    "link_exit_code": null,
+    "diagnostic_dll_sha256": null,
+    "x64_verified": null,
+    "exports_verified": null,
+    "actual_dependencies": null
+  },
+  "future_runtime": {
+    "performed": false,
+    "diagnostic_dll_identity_verified": null,
+    "init_enter_observed": null,
+    "init_before_return_zero_observed": null,
+    "term_enter_observed": null,
+    "term_before_return_observed": null,
+    "trace_io_failures": null,
+    "debug_channel_captured": null,
+    "host_error": null
+  },
+  "rule": "No runtime inference from missing logs alone; before-return is not proof of host-received return; do not fill unperformed fields as pass"
+}

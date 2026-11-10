@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "error": "PRO_TK_GENERAL_ERROR",
+  "conclusion": "ROOT_CAUSE_NOT_UNIQUELY_ESTABLISHED",
+  "confirmed_from_supplied_evidence": {
+    "registration_accepted_reported": true,
+    "x64_and_dll_markers_present_in_headers_log": true,
+    "expected_exports_in_log": true,
+    "direct_dependents_in_log": [
+      "KERNEL32.dll"
+    ],
+    "dat_ascii_without_bom": true,
+    "source_has_no_deliberate_error_return": true,
+    "running_state_observed": false,
+    "stop_requested": false,
+    "ui_responsive_reported": true
+  },
+  "unknown": {
+    "initialize_actually_entered": null,
+    "host_received_success_return": null,
+    "precise_entry_abi_verified_against_original_docs": null,
+    "missing_sdk_bootstrap_or_metadata_requirement": null,
+    "license_cause": null,
+    "text_directory_host_validation_cause": null
+  },
+  "next_change": "CALLBACK_DIAGNOSTICS_ONLY_KEEP_ABI_RETURN_AND_DAT_SCHEMA",
+  "patch_is_confirmed_fix": false,
+  "trace_reads_host_buffer_contents": false,
+  "business_or_registration_logic_added": false,
+  "deployment_requested_by_deliverable": false
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "verification_scope": "EXACT_DIFF_APPLICATION_AND_STATIC_SOURCE_REVIEW_ONLY",
+  "checks": {
+    "patch_applies_to_exact_baseline_and_matches_full_source": true,
+    "initialize_signature_unchanged": true,
+    "terminate_signature_unchanged": true,
+    "sdk_success_code_static_assert_present": true,
+    "success_return_preserved": true,
+    "no_protoolkit_business_api_calls": true,
+    "no_dllmain_function_added": true,
+    "diagnostic_markers_present": true,
+    "source_has_no_private_windows_input_paths": true,
+    "no_binary_or_raw_screenshot_in_deliverable": true
+  },
+  "manual_review": [
+    "No host buffer contents dereferenced or written",
+    "Per-event file operations use append-only open, bounded path construction and no retry",
+    "Trace return or failure does not alter TOOLKIT return code",
+    "No DllMain file I/O or global dynamic Windows API initializer",
+    "No models, registration, deployment or config changes"
+  ],
+  "all_observed_checks_passed": true,
+  "windows_or_real_sdk_compile_performed": false,
+  "trace_runtime_or_io_fault_test_performed": false,
+  "creo_load_test_performed": false,
+  "root_cause_fixed_or_proven": false
+}

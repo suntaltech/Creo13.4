@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "input_archive": {
+    "name": "p1-step34-gpt-evidence-20261109.zip",
+    "sha256": "294ec97e26282a567081483d98f2150eb5832886eb983c0b2a26e072c242adc5"
+  },
+  "input_files": [
+    {
+      "name": "creo_step34_error.png",
+      "sha256": "f1befaa336832e1859086bcb7e4c42d4f7d4e689ad847fe56ab445b6d1a0eb6a",
+      "bytes": 280981
+    },
+    {
+      "name": "dependents.log",
+      "sha256": "b5fff3c1f44e534f4e5509cb29ca35e788b56519e0a1c158bc1392fa55fc9217",
+      "bytes": 493
+    },
+    {
+      "name": "entry.cpp",
+      "sha256": "b8ecc4df538cd246ef490ce0265d561c886d33d2bebea6f52d50b514bae5568e",
+      "bytes": 539
+    },
+    {
+      "name": "exports.log",
+      "sha256": "d5c48fc84dac4260981e52c88b309e1540d028a3e5c68d4b331079e1f2f44570",
+      "bytes": 795
+    },
+    {
+      "name": "headers.log",
+      "sha256": "2dadef98dbb9c75ee309cad645e9d2f2670b1c611857502a16d7aa50e7885776",
+      "bytes": 5724
+    },
+    {
+      "name": "linker.log",
+      "sha256": "48ab136c0c2b5004e52f6d4414dd41d8471af40f66076c9718ae2dc788518e81",
+      "bytes": 311
+    },
+    {
+      "name": "object-compiler.log",
+      "sha256": "0e0a0e43f34b08627f726afe0037cf02cb7bd75c6a72e2c6cc8e5317f2fa387b",
+      "bytes": 11
+    },
+    {
+      "name": "object-exit-code.txt",
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "bytes": 3
+    },
+    {
+      "name": "observations.result.json",
+      "sha256": "ba779fb3e2e939d347040d40d1e17da50815fd9c457f967ad11239b8d56cd8d3",
+      "bytes": 1931
+    },
+    {
+      "name": "p1_native_entry_step34.dat",
+      "sha256": "548ce6c09cea589c4c1e82a70f3bfd7378225b29f0416cf9aaca7f65a43dbdb0",
+      "bytes": 279
+    }
+  ],
+  "reported_dll_sha256": "0820a82c17467a7b25ad555960180cd7fd01278ae0831b8dff159fcc27ce31c5",
+  "dll_binary_received": false,
+  "reported_dll_hash_independently_recomputed": false,
+  "input_source_matches_step32_bytes": true,
+  "original_sdk_headers_or_full_sample_received": false,
+  "raw_input_redistributed": false
+}

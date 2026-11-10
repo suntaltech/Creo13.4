@@ -1,0 +1,7 @@
+{"seq": 1, "utc": "2026-11-10T01:14:48.853806+00:00", "phase": "INPUT_REVIEW", "status": "COMPLETED", "detail": "Archive checked; screenshot, DAT, source, PE logs and observation record reviewed locally"}
+{"seq": 2, "utc": "2026-11-10T01:14:48.853806+00:00", "phase": "ROOT_CAUSE", "status": "UNRESOLVED", "detail": "Failure after accepted registration; entry invocation not directly observed"}
+{"seq": 3, "utc": "2026-11-10T01:14:48.853806+00:00", "phase": "PATCH_SCOPE", "status": "DIAGNOSTIC_ONLY", "detail": "Entry signature/return unchanged; no host-buffer content access, registration or model API"}
+{"seq": 4, "utc": "2026-11-10T01:14:48.853806+00:00", "phase": "TRACE_CHANNELS", "status": "IMPLEMENTED_NOT_RUNTIME_TESTED", "detail": "Append-only callback JSONL plus independent debugger output; trace errors do not alter success return"}
+{"seq": 5, "utc": "2026-11-10T01:14:48.853806+00:00", "phase": "OFFLINE_REVIEW", "status": "PREPARED", "detail": "Exact patch application, actual SDK contract and original sample link/export comparison"}
+{"seq": 6, "utc": "2026-11-10T01:14:48.853806+00:00", "phase": "SITE_ACTIONS", "status": "NOT_PERFORMED", "detail": "No deployment, registration, Creo startup, model operations or save"}
+{"seq": 7, "utc": "2026-11-10T01:16:47.755962+00:00", "phase": "PATCH_VERIFICATION", "status": "PASS_OFFLINE_STATIC_SCOPE", "detail": "Patch applied to exact baseline and matched full source; native Windows/SDK build and runtime tests not performed"}
