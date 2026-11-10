@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "input_source_matches_published_patch": true,
+  "tool_tests": {
+    "framework": "Python unittest",
+    "count": 8,
+    "passed": 8,
+    "fixture_scope": "SYNTHETIC_PROJECT_METADATA_ONLY_NOT_SDK_STUBS",
+    "cases": [
+      "configuration separation and path redaction",
+      "candidate exports are not required exports",
+      "flag-prefix discrimination",
+      "DTD/external entity rejection",
+      "zip traversal rejected without extraction",
+      "bounded size/file count",
+      "make commands treated as data",
+      "existing output preserved"
+    ]
+  },
+  "real_official_sample_audited": false,
+  "real_sdk_compilation_or_link_performed": false,
+  "creo_or_log_channel_runtime_test_performed": false,
+  "root_cause_fixed": false
+}

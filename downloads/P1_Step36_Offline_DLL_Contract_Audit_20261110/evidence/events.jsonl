@@ -1,0 +1,6 @@
+{"seq": 1, "utc": "2026-11-10T01:41:33.493490+00:00", "phase": "INPUT_REVIEW", "status": "COMPLETED", "detail": "Source equals delivered Step35 bytes; supplied logs and screenshot reviewed"}
+{"seq": 2, "utc": "2026-11-10T01:41:33.493490+00:00", "phase": "ERROR_IDENTITY", "status": "GENERIC_START_FAILURE_ONLY", "detail": "No precise Step35 error code; historical GENERAL_ERROR not promoted to current observation"}
+{"seq": 3, "utc": "2026-11-10T01:41:33.493490+00:00", "phase": "CALLBACK_EVIDENCE", "status": "UNRESOLVED", "detail": "No JSONL found in reported roots; no captured debugger channel or actual process temp path"}
+{"seq": 4, "utc": "2026-11-10T01:41:33.493490+00:00", "phase": "NEXT_SCOPE", "status": "OFFLINE_CONTRACT_AUDIT", "detail": "Prioritize real sample linker/export/bootstrap text and original headers"}
+{"seq": 5, "utc": "2026-11-10T01:41:33.493490+00:00", "phase": "TOOL_VALIDATION", "status": "PASS_SYNTHETIC_TEXT_TESTS", "detail": "Eight metadata tests passed; no fake SDK compilation or native execution"}
+{"seq": 6, "utc": "2026-11-10T01:41:33.493490+00:00", "phase": "NATIVE_ACTIONS", "status": "NOT_PERFORMED", "detail": "No C++ changes, compilation, linking, registration, Creo startup, model changes or deployment"}

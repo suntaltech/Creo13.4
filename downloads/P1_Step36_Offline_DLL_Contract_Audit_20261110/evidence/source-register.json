@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "archive": {
+    "name": "p1-step35-gpt-evidence-20261110.zip",
+    "sha256": "dc3ecce54f607743c059603456c4f96ac48ecac0ca418194cd9b6584a5e08249"
+  },
+  "files": [
+    {
+      "name": "compile.log",
+      "bytes": 11,
+      "sha256": "0e0a0e43f34b08627f726afe0037cf02cb7bd75c6a72e2c6cc8e5317f2fa387b"
+    },
+    {
+      "name": "dependents.log",
+      "bytes": 481,
+      "sha256": "baabbd009da6f63333f8f405a4958c734e9c2826cca7fa18406588e66401162d"
+    },
+    {
+      "name": "entry_step35.cpp",
+      "bytes": 5169,
+      "sha256": "00f74550913b12b4bc6bff5827459a18329f7b732f75b64dd0db9877a736dea5"
+    },
+    {
+      "name": "exports.log",
+      "bytes": 781,
+      "sha256": "d8d83011d0a925839ec053939d4df032b97860f6d63d385a2971ceebb3fc2f7b"
+    },
+    {
+      "name": "headers.log",
+      "bytes": 5712,
+      "sha256": "e1038ca80cbd245a516657f24d743820f876e8bfa94904b9b9d6599725f8917a"
+    },
+    {
+      "name": "link.log",
+      "bytes": 287,
+      "sha256": "4dd5eb71431c6280df488c4e4810cd42000f258090d8450b7fdc7f88d2fadc4f"
+    },
+    {
+      "name": "observations.result.json",
+      "bytes": 606,
+      "sha256": "49eac2244a76a5803b129018d010dc792dbd7949ccf069539750624ed474b6b8"
+    },
+    {
+      "name": "p1_step35_diag.dat",
+      "bytes": 267,
+      "sha256": "d425b8488225dba08ff41eeeb240b889d92094c0e1711f499c4b0c4e9f7c16bd"
+    },
+    {
+      "name": "step35_start_failed.png",
+      "bytes": 7015,
+      "sha256": "b8ae3f24636ca20f84871ec88057841de7d68b9b168a6cedbbd0dfcb080e82a7"
+    }
+  ],
+  "reported_dll_sha256": "bfdd5855ce3f7ce7276ee38efdb01718d30fbca3bec580d6a84f13d1c23be8e5",
+  "dll_hash_independently_verified": false,
+  "original_official_sample_received": false,
+  "previous_patch_commit": "1cdae3fcd43578e34d5cea4fca1fdaf3114d4f19",
+  "raw_private_evidence_redistributed": false
+}

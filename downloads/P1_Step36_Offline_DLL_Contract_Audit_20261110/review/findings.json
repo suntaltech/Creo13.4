@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "step": 36,
+  "review_of": 35,
+  "status": "START_FAILED_ROOT_CAUSE_NOT_ESTABLISHED",
+  "source_matches_step35_delivered_bytes": true,
+  "diagnostic_source_sha256": "00f74550913b12b4bc6bff5827459a18329f7b732f75b64dd0db9877a736dea5",
+  "observed_or_reported": {
+    "ui_start_failed": true,
+    "precise_step35_protk_error_code": null,
+    "x64_marker_in_headers_log": true,
+    "exports_in_log": [
+      "user_initialize",
+      "user_terminate"
+    ],
+    "direct_dependents_in_log": [
+      "KERNEL32.dll"
+    ],
+    "jsonl_found_reported": false,
+    "search_root_count_reported": 4,
+    "debug_output_capture_supplied": false,
+    "actual_creo_GetTempPathW_result_supplied": false,
+    "raw_dll_or_complete_commands_supplied": false,
+    "explicit_compile_link_exit_files_supplied": false
+  },
+  "inference": {
+    "initialize_entry_established": false,
+    "initialize_not_called_proven": false,
+    "pre_entry_failure_is_priority_hypothesis_not_conclusion": true,
+    "logger_channel_failure_excluded": false,
+    "missing_sdk_bootstrap_proven": false,
+    "prior_general_error_reobserved_this_step": false
+  },
+  "next_action": "READ_ORIGINAL_SAMPLE_AND_DLL_HEADER_CONTRACT_OFFLINE_BEFORE_MORE_NATIVE_EDITS",
+  "cpp_or_dat_changed_this_step": false,
+  "formal_deployment_or_runtime_retry_requested": false
+}

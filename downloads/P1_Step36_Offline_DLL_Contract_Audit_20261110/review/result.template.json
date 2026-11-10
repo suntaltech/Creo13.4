@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "status": "TEMPLATE_NOT_EXECUTED_ON_REAL_SDK",
+  "actual_sample_sha256": null,
+  "applicable_release_x64_configuration_verified": null,
+  "original_dll_header_contract_reviewed": null,
+  "original_link_command_reviewed": null,
+  "required_export_or_bootstrap_difference": null,
+  "actual_symbol_and_original_source_reference": null,
+  "minimal_change_justified_by_original_text": null,
+  "remaining_imports_or_logging_identity_gap": null,
+  "rule": "No invented symbols; text candidates are not automatically required; no source/deployment change until difference is understood"
+}
