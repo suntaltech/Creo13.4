@@ -1,0 +1,15 @@
+{
+  "revision": "UI_R4_R1_DIAG",
+  "baseline_sha256_verified": null,
+  "real_sdk_build_pass": null,
+  "format_warnings_absent": null,
+  "dll_sha256": null,
+  "pid": null,
+  "load_token": null,
+  "identity_events": [],
+  "all_command_ids_are_hex_strings": null,
+  "three_ids_distinct_in_same_load": null,
+  "registration_results": null,
+  "ui_visible_names": null,
+  "UI_root_cause": null
+}

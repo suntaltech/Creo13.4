@@ -1,0 +1,20 @@
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -19,0 +20,2 @@
++#include <cstdint>
++#include <cinttypes>
+@@ -121,3 +123,3 @@
+-static_assert(std::is_integral<uiCmdCmdId>::value &&
+-    sizeof(uiCmdCmdId) <= sizeof(long long),
+-    "R4 numeric ID logging requires the real SDK integral uiCmdCmdId typedef");
++// Local Creo 13.4 ProUICmd.h: typedef void *uiCmdCmdId.
++static_assert(std::is_same<uiCmdCmdId, void*>::value,
++    "Verify the supplied Creo 13.4 opaque command ID typedef");
+@@ -146,2 +148,2 @@
+-        "{\"revision\":\"UI_R4_DIAG\",\"command\":\"%s\","
+-        "\"command_id\":%lld,\"sdk_action_name\":\"%s\","
++        "{\"revision\":\"UI_R4_R1_DIAG\",\"command\":\"%s\","
++        "\"command_id\":\"0x%" PRIxPTR "\",\"sdk_action_name\":\"%s\","
+@@ -150 +152 @@
+-        logical_command, static_cast<long long>(command_id), sdk_action_name,
++        logical_command, reinterpret_cast<std::uintptr_t>(command_id), sdk_action_name,

@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "patch_apply_pass": true,
+  "inverse_replacement_restores_all_R4_bytes": true,
+  "portable_exact_format_expression_compiled_with_warnings_as_errors": true,
+  "json_parse_and_pointer_identity_cases_pass": true,
+  "full_uintptr_width_format_pass": true,
+  "SDK_calls_stubbed": false,
+  "real_SDK_build_performed": false,
+  "real_UI_test_performed": false
+}

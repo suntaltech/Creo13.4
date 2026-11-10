@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "revision": "UI_R4_R1_DIAG",
+  "baseline": "published R4 source; uploaded compile evidence does not contain source",
+  "baseline_sha256": "af8b3f34ddea53151bff23c899c8ddf7ff197da81c34f57fc7b30eb3c84960e1",
+  "candidate_sha256": "7645a55221b1f806e5951290b84ee2eb0e2684a6baa1d9a24753e7b9230dba11",
+  "input_files": [
+    {
+      "name": "README.md",
+      "sha256": "0eaf743e3c56f6c3d0344bc9681f8957fed067449728821a78a391d7f40f99c5"
+    },
+    {
+      "name": "compile.log",
+      "sha256": "23779f99ed403f7d354298efdde64dbdf0f8fafda6243bf10f8ce27cfd8b006d"
+    }
+  ],
+  "sdk_typedef_supplied_by_local_assistant": "typedef void *uiCmdCmdId;",
+  "root_cause_of_R4_compile_failure": "R4 incorrectly required integral ID and static_cast to signed integer",
+  "UI_root_cause_established": false,
+  "reported_local_resource_hashes_match_prior_supplied_bytes": {
+    "p1_fc.txt": "c991ea6263a506b16907aa1a13d1ff6147ee730ff9e06d2527ce82b1d0dbefff",
+    "p1_readonly_model_info.txt": "360e9a10b5bae965a476a7cdc3c3fde0286680d1a4608d587d173e3747a09958",
+    "p1_readonly_ping.txt": "c1b5728fb79294697a1e0e9672bd8baeef7b1c082d9534ba2180020a12875e21"
+  },
+  "resource_resolution_proven": false,
+  "raw_compile_log_republished": false
+}
