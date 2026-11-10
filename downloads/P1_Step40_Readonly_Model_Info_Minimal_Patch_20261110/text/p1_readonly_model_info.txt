@@ -1,0 +1,12 @@
+P1_READONLY_MODEL_INFO_LABEL
+p1_readonly_model_info
+
+
+P1_READONLY_MODEL_INFO_HELP
+Log current part name, type, default body presence and feature count only.
+
+
+P1_READONLY_MODEL_INFO_DESC
+Read-only current-model information. No selection, geometry, modification or save.
+
+

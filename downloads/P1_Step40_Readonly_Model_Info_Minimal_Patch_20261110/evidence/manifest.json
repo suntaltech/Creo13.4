@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "step": 40,
+  "input_archive": {
+    "name": "P1_Step40_Readonly_Model_Info_GPT_Handoff_20261110.zip",
+    "sha256": "476d10cc55b6de769662a1ee1f224a2700b25e238afeeea0622597048d97f032"
+  },
+  "input_files": [
+    {
+      "name": "README.md",
+      "sha256": "97af38d47ad9a412bd1891cd54e720d65ffc65f51640a2ad279099a149cb972b"
+    },
+    {
+      "name": "baseline-src/entry.cpp",
+      "sha256": "d8b91bbc5e505795100c0b60bce4e659d0ea414f2ff6259aa4caba1dadf220d5"
+    },
+    {
+      "name": "build/step39_working_build.cmd",
+      "sha256": "f2d7c8cff69403018377a5e7c373b153b9112eeca5c35c7f471fc3c9840b4fc7"
+    },
+    {
+      "name": "evidence/step39_dll_sha256.txt",
+      "sha256": "be86da14829a2a05b69dde518b69454015ea429b79ce19337e2cf481162025fd"
+    },
+    {
+      "name": "evidence/step39_success.jsonl",
+      "sha256": "4d445918a5d45449cf10849b61b16c62908f9a8773085f9abd1c167f5fe386b7"
+    }
+  ],
+  "baseline_sha256": "d8b91bbc5e505795100c0b60bce4e659d0ea414f2ff6259aa4caba1dadf220d5",
+  "previous_ping_success_log_reviewed": true,
+  "previous_dll_hash_is_user_supplied_not_cloud_recomputed": true,
+  "command_added": "p1_readonly_model_info",
+  "baseline_ping_retained": true,
+  "model_calls": [
+    "ProMdlCurrentGet",
+    "ProMdlTypeGet",
+    "ProMdlMdlnameGet",
+    "ProSolidDefaultBodyGet",
+    "ProSolidBodyFeaturesGet",
+    "ProArraySizeGet",
+    "ProArrayFree"
+  ],
+  "api_basis": "User supplied actual Creo 13.4 header declarations in reply; no callback/visit API invented",
+  "part_enum": "PRO_MDL_PART",
+  "no_active_context_code": "PRO_TK_BAD_CONTEXT",
+  "no_default_body_code": "PRO_TK_GENERAL_ERROR",
+  "feature_count_scope": "Default body feature array length only; no feature-content traversal",
+  "logger_change": "Capacity computed from actual ProMdlName size; filename/tag/transport preserved",
+  "sdk_header_or_dll_included": false,
+  "working_build_script_with_private_paths_redistributed": false
+}

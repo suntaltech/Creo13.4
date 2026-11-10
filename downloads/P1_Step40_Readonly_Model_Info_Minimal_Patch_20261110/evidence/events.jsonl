@@ -1,0 +1,6 @@
+{"seq": 1, "utc": "2026-11-10T03:52:36.051338+00:00", "phase": "BASELINE", "status": "VERIFIED", "detail": "Submitted Step39 source matches delivered bytes; supplied JSONL confirms actual ping"}
+{"seq": 2, "utc": "2026-11-10T03:52:36.051338+00:00", "phase": "API_BASIS", "status": "USER_HEADER_DECLARATIONS", "detail": "Use modern model name API and default-body feature array; no guessed visit callback"}
+{"seq": 3, "utc": "2026-11-10T03:52:36.051338+00:00", "phase": "PATCH", "status": "IMPLEMENTED", "detail": "One additional command; type gate, UTF8 JSON name and explicit array cleanup"}
+{"seq": 4, "utc": "2026-11-10T03:52:36.051338+00:00", "phase": "PORTABLE_HELPER_TEST", "status": "PASS", "detail": "Actual extracted JSON helper tested with host C++; no SDK stubs or native model calls"}
+{"seq": 5, "utc": "2026-11-10T03:52:36.051338+00:00", "phase": "NATIVE_VALIDATION", "status": "NOT_PERFORMED", "detail": "Local assistant to build with fixed working command and run minimal GUI test"}
+{"seq": 6, "utc": "2026-11-10T03:55:39.544194+00:00", "phase": "PATCH_VERIFICATION", "status": "PASS_STATIC_AND_PORTABLE_HELPER_ONLY", "detail": "Diff reproduces full source/catalog; part cast guarded; returned arrays released before log; real SDK/native GUI checks pending"}

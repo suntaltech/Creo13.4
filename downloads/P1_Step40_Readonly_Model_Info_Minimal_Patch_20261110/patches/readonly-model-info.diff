@@ -1,0 +1,286 @@
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -1 +1 @@
+-// Step39: one manually invoked JSONL ping command; no model API calls.
++// Step40: preserve ping; add manually invoked, read-only current-part metadata.
+@@ -12,0 +13,3 @@
++#include <ProMdl.h>
++#include <ProSolidBody.h>
++#include <ProArray.h>
+@@ -19,0 +23,5 @@
++constexpr size_t model_name_units = sizeof(ProMdlName) / sizeof(wchar_t);
++constexpr size_t model_name_utf8_capacity = model_name_units * 3 + 1;
++constexpr size_t model_name_json_capacity = model_name_units * 6 + 3;
++constexpr size_t model_facts_capacity = model_name_json_capacity + 1536;
++constexpr size_t trace_line_capacity = model_facts_capacity + 512;
+@@ -48 +56 @@
+-    char line[768] = {};
++    char line[trace_line_capacity] = {};
+@@ -161,0 +170,250 @@
++// PORTABLE_JSON_HELPER_BEGIN
++// Input must be valid UTF-8; caller obtains it via strict Windows conversion.
++// Never publish a truncated string as valid JSON.
++bool quote_json_utf8(const char* input, char* output, size_t capacity) noexcept
++{
++    if (!input || !output || capacity < 3) {
++        return false;
++    }
++    size_t used = 0;
++    output[used++] = '"';
++    const char hex[] = "0123456789abcdef";
++    for (const unsigned char* p = reinterpret_cast<const unsigned char*>(input); *p; ++p) {
++        char escaped[6] = {};
++        size_t length = 1;
++        escaped[0] = static_cast<char>(*p);
++        if (*p == '"' || *p == '\\') {
++            escaped[0] = '\\';
++            escaped[1] = static_cast<char>(*p);
++            length = 2;
++        } else if (*p < 0x20) {
++            escaped[0] = '\\'; escaped[1] = 'u';
++            escaped[2] = '0'; escaped[3] = '0';
++            escaped[4] = hex[*p >> 4]; escaped[5] = hex[*p & 0x0f];
++            length = 6;
++        }
++        if (used + length + 2 > capacity) {
++            output[0] = '\0';
++            return false;
++        }
++        for (size_t i = 0; i < length; ++i) {
++            output[used++] = escaped[i];
++        }
++    }
++    output[used++] = '"';
++    output[used] = '\0';
++    return true;
++}
++// PORTABLE_JSON_HELPER_END
++
++struct QueryStatus {
++    bool called = false;
++    ProError code = PRO_TK_NO_ERROR;
++};
++
++struct ModelInfoResult {
++    const char* result = "query_failed";
++    const char* no_active_model = "null";
++    bool type_valid = false;
++    ProMdlType type = {};
++    bool name_valid = false;
++    char name_json[model_name_json_capacity] = {};
++    const char* name_encoding_error = nullptr;
++    DWORD name_win32_error = ERROR_SUCCESS;
++    const char* default_body_present = "null";
++    bool count_valid = false;
++    int feature_count = 0;
++    QueryStatus current, type_query, name_query, body, features, size, free_array;
++};
++
++const char* nullable_status(const QueryStatus& status, char (&buffer)[32]) noexcept
++{
++    if (!status.called) {
++        return "null";
++    }
++    const int count = std::snprintf(buffer, sizeof(buffer), "%d", static_cast<int>(status.code));
++    return count > 0 && static_cast<size_t>(count) < sizeof(buffer) ? buffer : "null";
++}
++
++const char* model_type_name(ProMdlType type) noexcept
++{
++    switch (type) {
++    case PRO_MDL_PART: return "PRO_MDL_PART";
++    case PRO_MDL_ASSEMBLY: return "PRO_MDL_ASSEMBLY";
++    case PRO_MDL_DRAWING: return "PRO_MDL_DRAWING";
++    default: return "OTHER";
++    }
++}
++
++void log_model_info_return(const ModelInfoResult& result) noexcept
++{
++    char current[32] = {}, type[32] = {}, name[32] = {}, body[32] = {};
++    char features[32] = {}, size[32] = {}, freed[32] = {};
++    char type_code[32] = {}, type_json[64] = {}, count_json[32] = {};
++    if (result.type_valid) {
++        std::snprintf(type_code, sizeof(type_code), "%d", static_cast<int>(result.type));
++        std::snprintf(type_json, sizeof(type_json), "\"%s\"", model_type_name(result.type));
++    }
++    if (result.count_valid) {
++        std::snprintf(count_json, sizeof(count_json), "%d", result.feature_count);
++    }
++    char facts[model_facts_capacity] = {};
++    const int written = std::snprintf(facts, sizeof(facts),
++        "{\"command\":\"p1_readonly_model_info\",\"result\":\"%s\","
++        "\"no_active_model\":%s,\"model_type\":%s,\"model_type_code\":%s,"
++        "\"model_name\":%s,\"default_body_present\":%s,\"feature_count\":%s,"
++        "\"current_model_pro_error\":%s,\"type_pro_error\":%s,\"name_pro_error\":%s,"
++        "\"default_body_pro_error\":%s,\"features_get_pro_error\":%s,"
++        "\"array_size_pro_error\":%s,\"array_free_pro_error\":%s,"
++        "\"name_encoding_error\":%s,\"name_win32_error\":%lu}",
++        result.result, result.no_active_model,
++        result.type_valid ? type_json : "null", result.type_valid ? type_code : "null",
++        result.name_valid ? result.name_json : "null", result.default_body_present,
++        result.count_valid ? count_json : "null",
++        nullable_status(result.current, current), nullable_status(result.type_query, type),
++        nullable_status(result.name_query, name), nullable_status(result.body, body),
++        nullable_status(result.features, features), nullable_status(result.size, size),
++        nullable_status(result.free_array, freed),
++        result.name_encoding_error ? result.name_encoding_error : "null",
++        static_cast<unsigned long>(result.name_win32_error));
++    trace_event("MODEL_INFO_RETURN", written > 0 && static_cast<size_t>(written) < sizeof(facts)
++        ? facts : "{\"command\":\"p1_readonly_model_info\",\"result\":\"format_failed\"}");
++}
++
++void read_part_name(ProMdl model, ModelInfoResult& result)
++{
++    ProMdlName name = {};
++    result.name_query.called = true;
++    result.name_query.code = ProMdlMdlnameGet(model, name);
++    if (result.name_query.code != PRO_TK_NO_ERROR) {
++        return;
++    }
++    size_t length = 0;
++    while (length < model_name_units && name[length] != L'\0') {
++        ++length;
++    }
++    if (length == model_name_units) {
++        result.name_encoding_error = "\"unterminated_model_name\"";
++        return;
++    }
++    char utf8[model_name_utf8_capacity] = {};
++    if (length > 0) {
++        const int count = WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS,
++            name, static_cast<int>(length), utf8, static_cast<int>(sizeof(utf8) - 1),
++            nullptr, nullptr);
++        if (count <= 0) {
++            result.name_win32_error = GetLastError();
++            result.name_encoding_error = "\"utf16_to_utf8_failed\"";
++            return;
++        }
++        utf8[count] = '\0';
++    }
++    result.name_valid = quote_json_utf8(utf8, result.name_json, sizeof(result.name_json));
++    if (!result.name_valid) {
++        result.name_encoding_error = "\"json_name_capacity\"";
++    }
++}
++
++int readonly_model_info_action(uiCmdCmdId command, uiCmdValue* value, void* push_data)
++{
++    PreserveLastError preserve;
++    (void)command; (void)value; (void)push_data;
++    trace_event("MODEL_INFO_ENTER", "{\"command\":\"p1_readonly_model_info\"}");
++    ModelInfoResult result;
++    ProMdl model = nullptr;
++    result.current.called = true;
++    result.current.code = ProMdlCurrentGet(&model);
++    if (result.current.code == PRO_TK_BAD_CONTEXT) {
++        result.result = "no_active_model";
++        result.no_active_model = "true";
++        log_model_info_return(result);
++        return 0;
++    }
++    if (result.current.code != PRO_TK_NO_ERROR || model == nullptr) {
++        result.result = "current_model_query_failed";
++        log_model_info_return(result);
++        return 0;
++    }
++    result.no_active_model = "false";
++    result.type_query.called = true;
++    result.type_query.code = ProMdlTypeGet(model, &result.type);
++    if (result.type_query.code != PRO_TK_NO_ERROR) {
++        result.result = "model_type_failed";
++        log_model_info_return(result);
++        return 0;
++    }
++    result.type_valid = true;
++    if (result.type != PRO_MDL_PART) {
++        result.result = "non_part_model";
++        log_model_info_return(result);
++        return 0;
++    }
++    read_part_name(model, result);
++    // Only PRO_MDL_PART is converted to ProSolid. Never inspect feature content.
++    ProSolid solid = reinterpret_cast<ProSolid>(model);
++    ProSolidBody body = {};
++    result.body.called = true;
++    result.body.code = ProSolidDefaultBodyGet(solid, &body);
++    if (result.body.code == PRO_TK_GENERAL_ERROR) {
++        result.result = result.name_valid ? "no_default_body" : "partial_failure";
++        result.default_body_present = "false";
++        log_model_info_return(result);
++        return 0;
++    }
++    if (result.body.code != PRO_TK_NO_ERROR) {
++        result.result = "default_body_query_failed";
++        log_model_info_return(result);
++        return 0;
++    }
++    result.default_body_present = "true";
++    ProFeature* features = nullptr;
++    result.features.called = true;
++    result.features.code = ProSolidBodyFeaturesGet(&body, &features);
++    ProArray owned_array = features;
++    if (result.features.code == PRO_TK_NO_ERROR && owned_array != nullptr) {
++        result.size.called = true;
++        result.size.code = ProArraySizeGet(owned_array, &result.feature_count);
++        result.count_valid = result.size.code == PRO_TK_NO_ERROR && result.feature_count >= 0;
++    }
++    // Release every non-null returned array, including a failure-path allocation.
++    if (owned_array != nullptr) {
++        result.free_array.called = true;
++        result.free_array.code = ProArrayFree(&owned_array);
++    }
++    const bool cleanup_ok = !result.free_array.called || result.free_array.code == PRO_TK_NO_ERROR;
++    result.result = result.name_valid && result.count_valid && cleanup_ok ? "ok" : "partial_failure";
++    log_model_info_return(result);
++    return 0;
++}
++
++void trace_model_info_command_result(const char* event, ProError status) noexcept
++{
++    char facts[160] = {};
++    const int count = std::snprintf(facts, sizeof(facts),
++        "{\"command\":\"p1_readonly_model_info\",\"pro_error\":%d}",
++        static_cast<int>(status));
++    trace_event(event, count > 0 && static_cast<size_t>(count) < sizeof(facts) ? facts : "null");
++}
++
++void register_readonly_model_info()
++{
++    static char name[] = "p1_readonly_model_info";
++    static char label[] = "P1_READONLY_MODEL_INFO_LABEL";
++    static char help[] = "P1_READONLY_MODEL_INFO_HELP";
++    static char description[] = "P1_READONLY_MODEL_INFO_DESC";
++    static wchar_t message_file[] = L"p1_readonly_model_info.txt";
++    uiCmdCmdId command_id = {};
++    uiCmdCmdActFn action = &readonly_model_info_action;
++    uiCmdAccessFn access = &readonly_ping_access;
++    trace_event("MODEL_INFO_REGISTER_BEGIN", "{\"command\":\"p1_readonly_model_info\"}");
++    const ProError add_status = ProCmdActionAdd(name, action, uiProeImmediate,
++        access, PRO_B_TRUE, PRO_B_TRUE, &command_id);
++    trace_model_info_command_result("MODEL_INFO_ACTION_ADD_RETURN", add_status);
++    if (add_status != PRO_TK_NO_ERROR) {
++        return;
++    }
++    const ProError designate_status = ProCmdDesignate(command_id, label, help,
++        description, message_file);
++    trace_model_info_command_result("MODEL_INFO_DESIGNATE_RETURN", designate_status);
++}
++
+@@ -178,0 +437 @@
++    register_readonly_model_info();
+--- /dev/null
++++ b/text/p1_readonly_model_info.txt
+@@ -0,0 +1,12 @@
++P1_READONLY_MODEL_INFO_LABEL
++p1_readonly_model_info
++
++
++P1_READONLY_MODEL_INFO_HELP
++Log current part name, type, default body presence and feature count only.
++
++
++P1_READONLY_MODEL_INFO_DESC
++Read-only current-model information. No selection, geometry, modification or save.
++
++

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "status": "NOT_EXECUTED",
+  "source_sha256": null,
+  "dll_sha256": null,
+  "compile_exit_code": null,
+  "link_exit_code": null,
+  "plus_exports_preserved": null,
+  "model_info_action_add_pro_error": null,
+  "model_info_designate_pro_error": null,
+  "no_model_case": {
+    "performed": false,
+    "no_active_model": null,
+    "current_model_pro_error": null
+  },
+  "part_case": {
+    "performed": false,
+    "result": null,
+    "model_type": null,
+    "model_name_redacted_if_shared": null,
+    "default_body_present": null,
+    "feature_count": null,
+    "features_get_pro_error": null,
+    "array_size_pro_error": null,
+    "array_free_pro_error": null
+  },
+  "rule": "No successful native compile or runtime result prefilled; no repeated toolchain-version collection"
+}

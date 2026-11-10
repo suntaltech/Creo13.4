@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "scope": "EXACT_PATCH_APPLICATION_STATIC_MODEL_ACCESS_AND_OWNERSHIP_REVIEW",
+  "checks": {
+    "single_patch_applies_and_matches_source_and_new_catalog": true,
+    "entry_signatures_unchanged": true,
+    "existing_ping_implementation_unchanged": true,
+    "only_approved_sdk_calls_present": true,
+    "no_deprecated_name_or_solid_visit_api": true,
+    "solid_cast_guarded_by_part_type_check": true,
+    "array_release_not_bypassed_by_early_return": true,
+    "no_feature_content_index_or_dereference": true,
+    "plus_link_contract_unchanged": true,
+    "catalog_four_line_record_format": true,
+    "no_model_queries_in_initialize": true
+  },
+  "portable_json_helper_test": {
+    "compiled_actual_helper_with": "g++ -std=c++11 -Wall -Wextra -Werror -pedantic",
+    "round_trip_cases": 6,
+    "boundary_and_null_assertions": 10,
+    "passed": true,
+    "real_sdk_types_or_functions_compiled": false,
+    "sdk_stub_used": false
+  },
+  "actual_windows_sdk_compile_or_link_performed": false,
+  "model_api_runtime_test_performed": false,
+  "gui_registration_or_activation_test_performed": false,
+  "all_observed_checks_passed": true,
+  "manual_sdk_handle_review": "Opaque ProMdl-to-ProSolid conversion only after successful PRO_MDL_PART type check; no function-pointer casts"
+}
