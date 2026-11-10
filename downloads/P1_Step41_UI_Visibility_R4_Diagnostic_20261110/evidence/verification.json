@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "patch_apply_pass": true,
+  "source_restore_byte_exact_pass": true,
+  "only_helper_include_and_three_log_calls_added": true,
+  "real_sdk_compile_performed": false,
+  "real_ui_test_performed": false,
+  "known_integer_ID_type_required_by_compile_guard": true,
+  "runtime_ID_uniqueness_not_yet_observed": true
+}

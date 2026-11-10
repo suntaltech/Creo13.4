@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "step": 41,
+  "revision": "UI_R4_DIAG",
+  "scope": "registration identity logging only; no UI fix claimed",
+  "baseline_sha256": "dda253a6fe55fe6eabce4430a02bb141a1fdef251cc0e59b7ebdac8eaa0afd4e",
+  "candidate_sha256": "af8b3f34ddea53151bff23c899c8ddf7ff197da81c34f57fc7b30eb3c84960e1",
+  "input_files": [
+    {
+      "name": "README.md",
+      "sha256": "cdd3daa319305d6c4c3d29a2f6c53ee6ab404c9676f53bb85db87f667bb78663"
+    },
+    {
+      "name": "customize-list-r3-still-missing.png",
+      "sha256": "90723c7931186aadd910cf79c45b2fddab9c653ac0ce89239f149f29235a9847"
+    },
+    {
+      "name": "entry_r3.cpp",
+      "sha256": "dda253a6fe55fe6eabce4430a02bb141a1fdef251cc0e59b7ebdac8eaa0afd4e"
+    },
+    {
+      "name": "r3-startup-log.jsonl",
+      "sha256": "b3d4988338e218578bc7ba567b3bd61168acc444167302de40c81c1e9728862a"
+    }
+  ],
+  "latest_pid": 23640,
+  "latest_load_token": 24364750,
+  "R3_sdk_statuses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "R3_source_matches_delivered": true,
+  "sdk_contract_documentation_available": false,
+  "exact_ui_root_cause_established": false,
+  "new_sdk_API_added": false,
+  "resources_changed": false,
+  "callbacks_changed": false,
+  "raw_evidence_republished": false
+}

@@ -1,0 +1,15 @@
+{
+  "revision": "UI_R4_DIAG",
+  "sdk_typedef_verified": null,
+  "build_pass": null,
+  "candidate_dll_sha256": null,
+  "pid": null,
+  "load_token": null,
+  "identity_events": [],
+  "three_ids_distinct": null,
+  "six_registration_returns_zero": null,
+  "ui_visible_names": null,
+  "actual_resources_verified": null,
+  "callback_tested": false,
+  "root_cause": null
+}

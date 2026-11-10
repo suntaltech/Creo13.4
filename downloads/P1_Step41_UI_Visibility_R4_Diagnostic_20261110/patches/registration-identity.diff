@@ -1,0 +1,53 @@
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -18,0 +19 @@
++#include <type_traits>
+@@ -118,0 +120,39 @@
++// R4: observe registration identity only; do not query or execute commands.
++static_assert(std::is_integral<uiCmdCmdId>::value &&
++    sizeof(uiCmdCmdId) <= sizeof(long long),
++    "R4 numeric ID logging requires the real SDK integral uiCmdCmdId typedef");
++
++void trace_registration_identity(const char* logical_command,
++    uiCmdCmdId command_id, const char* sdk_action_name,
++    const char* label_key, const char* help_key,
++    const char* description_key, const wchar_t* message_file) noexcept
++{
++    // Call sites supply only fixed ASCII literals; no paths or model data.
++    char ascii_file[64] = {};
++    size_t i = 0;
++    for (; message_file[i] != 0 && i + 1 < sizeof(ascii_file); ++i) {
++        if (message_file[i] < 0x20 || message_file[i] > 0x7e) {
++            trace_failure("registration_identity_filename", ERROR_INVALID_DATA);
++            return;
++        }
++        ascii_file[i] = static_cast<char>(message_file[i]);
++    }
++    if (message_file[i] != 0) {
++        trace_failure("registration_identity_filename_length", ERROR_INSUFFICIENT_BUFFER);
++        return;
++    }
++    char facts[768] = {};
++    const int count = std::snprintf(facts, sizeof(facts),
++        "{\"revision\":\"UI_R4_DIAG\",\"command\":\"%s\","
++        "\"command_id\":%lld,\"sdk_action_name\":\"%s\","
++        "\"label_key\":\"%s\",\"help_key\":\"%s\","
++        "\"description_key\":\"%s\",\"message_file\":\"%s\"}",
++        logical_command, static_cast<long long>(command_id), sdk_action_name,
++        label_key, help_key, description_key, ascii_file);
++    if (count <= 0 || static_cast<size_t>(count) >= sizeof(facts)) {
++        trace_failure("registration_identity_format", ERROR_INSUFFICIENT_BUFFER);
++        return;
++    }
++    trace_event("CMD_IDENTITY_BEFORE_DESIGNATE", facts);
++}
++
+@@ -166,0 +207,2 @@
++    trace_registration_identity("p1_readonly_ping", command_id, name,
++        label, help, description, message_file);
+@@ -415,0 +458,2 @@
++    trace_registration_identity("p1_readonly_model_info", command_id, name,
++        label, help, description, message_file);
+@@ -571,0 +616,2 @@
++    trace_registration_identity("p1_readonly_body_face_count", command_id, name,
++        label, help, description, message_file);
