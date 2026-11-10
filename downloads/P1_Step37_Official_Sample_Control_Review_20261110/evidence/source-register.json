@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "task": {
+    "file_name": "P1_离线DLL契约审核第三十七步_任务单_20261110.md",
+    "sha256": "773b77c73f219ce81b4d483e8ed141e11ace7f64f8372de275b09b8bcce53fbd",
+    "level": "USER_OFFLINE_SAMPLE_AND_HEADER_REVIEW_SUMMARY"
+  },
+  "step36_reference": {
+    "commit": "9888a0b7dfba01d4275917895113cbb413ae7954",
+    "zip_sha256": "46c5c81e414fc70175e7ec156ca9e2358de8b1d8fe187b8bb6a8259855ab0859"
+  },
+  "original_sample_zip_or_actual_audit_json_received": false,
+  "original_headers_or_TestInstall_source_received": false,
+  "APP_UNLOCK_runtime_evidence_received": false,
+  "private_or_sdk_inputs_redistributed": false
+}

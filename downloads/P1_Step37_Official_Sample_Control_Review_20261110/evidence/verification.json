@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "tests": {
+    "framework": "Python unittest",
+    "count": 9,
+    "passed": 9,
+    "scope": "SYNTHETIC_PROJECT_TEXT_METADATA_ONLY",
+    "new_case": "Makefile NMake command conditions, file references, macro names and privacy; commands never run"
+  },
+  "real_official_sample_contract_audited_by_cloud": false,
+  "native_build_or_runtime_test_performed": false,
+  "license_cause_established": false,
+  "root_cause_fixed": false
+}

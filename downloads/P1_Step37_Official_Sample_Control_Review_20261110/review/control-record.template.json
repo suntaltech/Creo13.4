@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "status": "TEMPLATE_NOT_EXECUTED",
+  "offline": {
+    "sample_source_identity": null,
+    "actual_nmake_command_locally_reviewed": null,
+    "actual_dll_target_verified": null,
+    "effective_configuration": null,
+    "build_exit_code": null,
+    "dll_sha256": null,
+    "resources_and_text_dir_complete": null,
+    "init_term_global_and_autocallback_no_model_effects_reviewed": null,
+    "binary_exports_dependencies_verified": null,
+    "stop_supported_by_sample": null
+  },
+  "future_runtime": {
+    "performed": false,
+    "session_scope_label": null,
+    "registration_result": null,
+    "start_result": null,
+    "exact_sdk_error_name_or_message": null,
+    "APP_UNLOCK_directly_observed": null,
+    "stop_requested": null,
+    "stop_result": null,
+    "ui_state_is_not_direct_callback_trace": true
+  },
+  "comparison": {
+    "difference_justified_by_original_text_or_link_map": null,
+    "next_single_change": null
+  },
+  "rule": "No deployment from this template; generic failure does not establish licensing; source not yet audited remains unknown"
+}

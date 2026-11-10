@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "step": 37,
+  "basis": "USER_OFFLINE_CONTRACT_REVIEW_SUMMARY_NOT_ORIGINAL_SAMPLE",
+  "reported": {
+    "step36_hash_match": true,
+    "configuration_type": "Makefile",
+    "platform_toolset_metadata": "v143",
+    "def_file_found": false,
+    "additional_required_export_candidates_found": false,
+    "sample_signature_matches": true,
+    "sample_dat_structure_matches": true,
+    "sample_api_names": [
+      "ProWcharSizeVerify",
+      "ProCmdActionAdd"
+    ],
+    "loader_doc_mentions_PRO_TK_APP_UNLOCK": true
+  },
+  "decisions": {
+    "use_unmodified_official_sample_as_control": true,
+    "sequence": [
+      "ISOLATED_ORIGINAL_BUILD",
+      "RESOURCE_AND_INIT_TERM_AUTOCALLBACK_REVIEW",
+      "STATIC_BINARY_REVIEW",
+      "LATER_SINGLE_CONTROLLED_INITIALIZATION_STOP_IF_SUPPORTED"
+    ],
+    "run_sample_immediately_without_source_resource_review": false,
+    "generic_sample_failure_proves_license_cause": false,
+    "APP_UNLOCK_actually_observed": false,
+    "license_is_prioritized_check_not_established_cause": true,
+    "sample_success_proves_only_sample_session_scope": true,
+    "blind_cpp_signature_dat_export_changes_recommended": false
+  },
+  "execution": {
+    "real_sample_built": false,
+    "sample_loaded": false,
+    "creo_started": false,
+    "config_changed": false,
+    "model_operated_or_saved": false,
+    "licensing_or_unlock_command_run": false,
+    "new_cpp_patch_created": false
+  }
+}
