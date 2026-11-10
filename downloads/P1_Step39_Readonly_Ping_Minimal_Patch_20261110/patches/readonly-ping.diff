@@ -1,0 +1,84 @@
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -1 +1 @@
+-// Step35 diagnostic-only patch. No model, registration, or business API calls.
++// Step39: one manually invoked JSONL ping command; no model API calls.
+@@ -10,0 +11,2 @@
++#include <ProUICmd.h>
++#include <ProMenuBar.h>
+@@ -106,0 +109,53 @@
++
++// The command callback never reads a model or dereferences command data.
++int readonly_ping_action(uiCmdCmdId command, uiCmdValue* value, void* push_data)
++{
++    PreserveLastError preserve;
++    (void)command;
++    (void)value;
++    (void)push_data;
++    trace_event("READONLY_PING",
++        "{\"command\":\"p1_readonly_ping\",\"result\":\"ok\",\"model_accessed\":false}");
++    return 0;
++}
++
++uiCmdAccessState readonly_ping_access(uiCmdAccessMode mode)
++{
++    (void)mode;
++    // Available with no model open; this callback performs no queries or logging.
++    return ACCESS_AVAILABLE;
++}
++
++void trace_command_result(const char* event, ProError status) noexcept
++{
++    char facts[160] = {};
++    const int count = std::snprintf(facts, sizeof(facts),
++        "{\"command\":\"p1_readonly_ping\",\"pro_error\":%d}",
++        static_cast<int>(status));
++    trace_event(event, count > 0 && static_cast<size_t>(count) < sizeof(facts)
++        ? facts : "null");
++}
++
++void register_readonly_ping()
++{
++    static char name[] = "p1_readonly_ping";
++    static char label[] = "P1_READONLY_PING_LABEL";
++    static char help[] = "P1_READONLY_PING_HELP";
++    static char description[] = "P1_READONLY_PING_DESCRIPTION";
++    static wchar_t message_file[] = L"p1_readonly_ping.txt";
++    uiCmdCmdId command_id = {};
++    // Real SDK typedefs check the callback signatures; no function-pointer casts.
++    uiCmdCmdActFn action = &readonly_ping_action;
++    uiCmdAccessFn access = &readonly_ping_access;
++    trace_event("CMD_REGISTER_BEGIN", "{\"command\":\"p1_readonly_ping\"}");
++    const ProError add_status = ProCmdActionAdd(name, action, uiProeImmediate,
++        access, PRO_B_TRUE, PRO_B_TRUE, &command_id);
++    trace_command_result("CMD_ACTION_ADD_RETURN", add_status);
++    if (add_status != PRO_TK_NO_ERROR) {
++        // Do not reuse or overwrite a possibly stale, same-name command.
++        return;
++    }
++    const ProError designate_status = ProCmdDesignate(command_id, label,
++        help, description, message_file);
++    trace_command_result("CMD_DESIGNATE_RETURN", designate_status);
++}
+@@ -122,0 +178 @@
++    register_readonly_ping();
+--- /dev/null
++++ b/text/p1_readonly_ping.txt
+@@ -0,0 +1,12 @@
++P1_READONLY_PING_LABEL
++p1_readonly_ping
++
++
++P1_READONLY_PING_HELP
++Write one diagnostic JSONL ping without accessing a model.
++
++
++P1_READONLY_PING_DESCRIPTION
++Manual read-only ping. No model access, selection, modification, or save.
++
++
+--- /dev/null
++++ b/build/required-link-options.rsp
+@@ -0,0 +1,2 @@
++/INCLUDE:user_initialize_plus
++/INCLUDE:user_terminate_plus

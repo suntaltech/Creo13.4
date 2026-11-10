@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "step": 39,
+  "status": "NOT_EXECUTED",
+  "source_sha256": null,
+  "dll_sha256": null,
+  "compile_exit_code": null,
+  "link_exit_code": null,
+  "required_plus_exports_verified": null,
+  "cmd_action_add_pro_error": null,
+  "cmd_designate_pro_error": null,
+  "gui_binding_ready": null,
+  "manual_click_count": null,
+  "readonly_ping_events_for_this_click": null,
+  "init_success_observed": null,
+  "terminate_observed": null,
+  "result": null,
+  "rule": "Separate compile, link, init, command registration/designation and actual ping. Keep unobserved null; do not repeat fixed environment inventory."
+}

@@ -1,0 +1,6 @@
+{"seq": 1, "utc": "2026-11-10T02:20:07.785171+00:00", "phase": "BOOTSTRAP_RESULT", "status": "ADOPTED_FROM_SITE_REPORT", "detail": "plus forced inclusion fixes prior startup; no signature/return/DAT/CRT edits"}
+{"seq": 2, "utc": "2026-11-10T02:20:07.785171+00:00", "phase": "SOP_SCOPE", "status": "ONE_PATCH", "detail": "Register p1_readonly_ping with GUI designation and one message catalog"}
+{"seq": 3, "utc": "2026-11-10T02:20:07.785171+00:00", "phase": "PATCH_IMPLEMENTATION", "status": "COMPLETED", "detail": "Command callback writes JSONL only; no model queries or mutation"}
+{"seq": 4, "utc": "2026-11-10T02:20:07.785171+00:00", "phase": "BUILD_REQUIREMENTS", "status": "FROZEN", "detail": "Reuse known SDK Include/Lib, MT libraries and both plus INCLUDE symbols"}
+{"seq": 5, "utc": "2026-11-10T02:20:07.785171+00:00", "phase": "NATIVE_VALIDATION", "status": "NOT_PERFORMED_IN_CLOUD", "detail": "Local assistant performs actual SDK build and one user-triggered test; no new collectors"}
+{"seq": 6, "utc": "2026-11-10T02:22:03.193989+00:00", "phase": "OFFLINE_PATCH_CHECK", "status": "PASS_STATIC_ONLY", "detail": "One diff applies exactly; catalog and immutable linker symbols checked; no native SDK build or GUI run"}

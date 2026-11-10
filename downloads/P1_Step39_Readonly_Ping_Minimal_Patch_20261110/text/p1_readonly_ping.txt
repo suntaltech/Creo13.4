@@ -1,0 +1,12 @@
+P1_READONLY_PING_LABEL
+p1_readonly_ping
+
+
+P1_READONLY_PING_HELP
+Write one diagnostic JSONL ping without accessing a model.
+
+
+P1_READONLY_PING_DESCRIPTION
+Manual read-only ping. No model access, selection, modification, or save.
+
+

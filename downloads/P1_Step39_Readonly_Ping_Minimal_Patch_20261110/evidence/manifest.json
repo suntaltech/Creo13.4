@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "patch_step": 39,
+  "scope": "ONE_COMMAND_READONLY_PING_NO_MODEL_ACCESS",
+  "inputs": [
+    {
+      "name": "P1_原生DLL启动契约突破第三十八步_任务单_20261110.md",
+      "sha256": "f1bfea691cde4936d691ad5c37e5c818434fca135e57f2bcb1aa1cbd0fa3e176"
+    },
+    {
+      "name": "P1_与GPT高效协作SOP_20261110.md",
+      "sha256": "73a6910b6dbc43059cdc995d307b9d2edf8c43e3a25d942430fd6aa8d41cb96b"
+    }
+  ],
+  "established_by_site_report": {
+    "bootstrap_root_cause": "PTC_PLUS_WRAPPER_LIBRARY_MEMBER_NOT_FORCED_INTO_DLL",
+    "bootstrap_fix": [
+      "/INCLUDE:user_initialize_plus",
+      "/INCLUDE:user_terminate_plus"
+    ],
+    "official_sample_started": true,
+    "diagnostic_dll_started_after_fix": true,
+    "initialize_entry_and_before_return_seen": true,
+    "argc_reported": 1,
+    "host_parameter_pointer_presence_reported": true,
+    "terminate_or_unload_result": null
+  },
+  "source_baseline_sha256": "00f74550913b12b4bc6bff5827459a18329f7b732f75b64dd0db9877a736dea5",
+  "changed_or_added_implementation_files": [
+    "src/entry.cpp",
+    "text/p1_readonly_ping.txt",
+    "build/required-link-options.rsp"
+  ],
+  "command_name": "p1_readonly_ping",
+  "sdk_ui_calls_added": [
+    "ProCmdActionAdd",
+    "ProCmdDesignate"
+  ],
+  "cpp_signature_and_success_return_changed": false,
+  "logger_channel_changed": false,
+  "model_api_added": false,
+  "native_build_or_runtime_performed_in_cloud": false,
+  "new_environment_collection_requested": false
+}
