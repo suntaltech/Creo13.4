@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "NOT_EXECUTED",
+  "source_sha256": null,
+  "dll_sha256": null,
+  "compile_exit_code": null,
+  "link_exit_code": null,
+  "plus_exports_verified": null,
+  "command_add_pro_error": null,
+  "command_designate_pro_error": null,
+  "no_model_case": {
+    "performed": false,
+    "no_active_model": null
+  },
+  "part_case": {
+    "performed": false,
+    "result": null,
+    "default_body_present": null,
+    "face_count": null,
+    "surface_visit_pro_error": null,
+    "visited_count_before_error": null
+  },
+  "rule": "A partial visit count is not a completed count; no surface IDs or geometry collected; no repeated environment inventory"
+}

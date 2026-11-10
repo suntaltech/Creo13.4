@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "scope": "PATCH_APPLICATION_AND_STATIC_DEFAULT_BODY_VISITOR_REVIEW",
+  "checks": {
+    "one_diff_matches_full_source_and_new_message": true,
+    "validated_baseline_namespace_unchanged": true,
+    "entry_signatures_preserved": true,
+    "only_new_sdk_function_is_body_scoped_visitor": true,
+    "visitor_only_increments_local_counter": true,
+    "visitor_real_typedef_no_callback_cast": true,
+    "part_type_guard_precedes_handle_cast": true,
+    "no_arrays_or_feature_queries_in_new_action": true,
+    "no_invented_or_deprecated_surface_getter": true,
+    "plus_response_file_unchanged": true,
+    "new_message_four_line_record_format": true
+  },
+  "all_observed_checks_passed": true,
+  "sdk_stub_used": false,
+  "real_sdk_compile_or_link_performed": false,
+  "body_surface_visitor_runtime_test_performed": false,
+  "gui_trigger_test_performed": false,
+  "manual_review": [
+    "Opaque surface discarded; no IDs, types, parameters, coordinates or retained handles",
+    "No current-model query during initialization or access callback",
+    "No per-face logging; local count pointer lives for synchronous visit",
+    "Only completed result is face_count; failure count is diagnostic partial value"
+  ]
+}

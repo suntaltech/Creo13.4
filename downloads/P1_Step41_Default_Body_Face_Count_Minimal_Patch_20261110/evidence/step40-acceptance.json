@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "source": "USER_STEP40_ACCEPTANCE_SUMMARY_NOT_ORIGINAL_RUNTIME_LOG",
+  "input_name": "P1_只读模型信息命令验收第四十步_任务单_20261110.md",
+  "input_sha256": "a1ff4c30d27631a88fdd95edcaeff91cf0cd67cbd755431b38daffdb7efd08b3",
+  "reported_dll_sha256": "369fe91f5c1f7a07f982aa726163b4a30e8a518bc26ce5e06935e9d0f28d4684",
+  "dll_hash_independently_recomputed": false,
+  "reported_no_model_case": {
+    "result": "no_active_model",
+    "current_model_pro_error": -8,
+    "later_queries_not_called": true
+  },
+  "reported_part_case": {
+    "result": "ok",
+    "model_type": "PRO_MDL_PART",
+    "model_type_code": 2,
+    "model_name_omitted_from_public_summary": true,
+    "default_body_present": true,
+    "feature_count": 1,
+    "query_and_array_cleanup_statuses": 0
+  },
+  "reported_no_model_write_save_or_conversion": true,
+  "next_scope": "DEFAULT_BODY_FACE_COUNT_ONLY_NO_IDS_OR_GEOMETRY"
+}

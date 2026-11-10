@@ -1,0 +1,181 @@
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -1 +1 @@
+-// Step40: preserve ping; add manually invoked, read-only current-part metadata.
++// Step41: preserve validated commands; add default-body face count only.
+@@ -13,0 +14 @@
++#include <ProSolid.h>
+@@ -419,0 +421,156 @@
++struct BodyFaceCountResult {
++    const char* result = "query_failed";
++    const char* no_active_model = "null";
++    bool type_valid = false;
++    ProMdlType type = {};
++    const char* default_body_present = "null";
++    bool count_valid = false;
++    int face_count = 0;
++    bool partial_count_valid = false;
++    int partial_count = 0;
++    QueryStatus current, type_query, body, visit;
++};
++
++void log_body_face_count_return(const BodyFaceCountResult& result) noexcept
++{
++    char current[32] = {}, type[32] = {}, body[32] = {}, visit[32] = {};
++    char type_code[32] = {}, type_json[64] = {}, count_json[32] = {}, partial_json[32] = {};
++    if (result.type_valid) {
++        std::snprintf(type_code, sizeof(type_code), "%d", static_cast<int>(result.type));
++        std::snprintf(type_json, sizeof(type_json), "\"%s\"", model_type_name(result.type));
++    }
++    if (result.count_valid) {
++        std::snprintf(count_json, sizeof(count_json), "%d", result.face_count);
++    }
++    if (result.partial_count_valid) {
++        std::snprintf(partial_json, sizeof(partial_json), "%d", result.partial_count);
++    }
++    char facts[1024] = {};
++    const int written = std::snprintf(facts, sizeof(facts),
++        "{\"command\":\"p1_readonly_body_face_count\",\"result\":\"%s\","
++        "\"no_active_model\":%s,\"model_type\":%s,\"model_type_code\":%s,"
++        "\"default_body_present\":%s,\"face_count\":%s,\"visited_count_before_error\":%s,"
++        "\"current_model_pro_error\":%s,\"type_pro_error\":%s,"
++        "\"default_body_pro_error\":%s,\"surface_visit_pro_error\":%s}",
++        result.result, result.no_active_model,
++        result.type_valid ? type_json : "null", result.type_valid ? type_code : "null",
++        result.default_body_present, result.count_valid ? count_json : "null",
++        result.partial_count_valid ? partial_json : "null",
++        nullable_status(result.current, current), nullable_status(result.type_query, type),
++        nullable_status(result.body, body), nullable_status(result.visit, visit));
++    trace_event("BODY_FACE_COUNT_RETURN", written > 0 && static_cast<size_t>(written) < sizeof(facts)
++        ? facts : "{\"command\":\"p1_readonly_body_face_count\",\"result\":\"format_failed\"}");
++}
++
++ProError count_default_body_surface(ProSurface surface, ProError status, ProAppData app_data)
++{
++    (void)surface;
++    (void)status;
++    // app_data is our local, initialized int; no surface is inspected or retained.
++    int* surface_count = static_cast<int*>(app_data);
++    ++(*surface_count);
++    return PRO_TK_NO_ERROR;
++}
++
++int readonly_body_face_count_action(uiCmdCmdId command, uiCmdValue* value, void* push_data)
++{
++    PreserveLastError preserve;
++    (void)command; (void)value; (void)push_data;
++    trace_event("BODY_FACE_COUNT_ENTER", "{\"command\":\"p1_readonly_body_face_count\"}");
++    BodyFaceCountResult result;
++    ProMdl model = nullptr;
++    result.current.called = true;
++    result.current.code = ProMdlCurrentGet(&model);
++    if (result.current.code == PRO_TK_BAD_CONTEXT) {
++        result.result = "no_active_model";
++        result.no_active_model = "true";
++        log_body_face_count_return(result);
++        return 0;
++    }
++    if (result.current.code != PRO_TK_NO_ERROR || model == nullptr) {
++        result.result = "current_model_query_failed";
++        log_body_face_count_return(result);
++        return 0;
++    }
++    result.no_active_model = "false";
++    result.type_query.called = true;
++    result.type_query.code = ProMdlTypeGet(model, &result.type);
++    if (result.type_query.code != PRO_TK_NO_ERROR) {
++        result.result = "model_type_failed";
++        log_body_face_count_return(result);
++        return 0;
++    }
++    result.type_valid = true;
++    if (result.type != PRO_MDL_PART) {
++        result.result = "non_part_model";
++        log_body_face_count_return(result);
++        return 0;
++    }
++    ProSolid solid = reinterpret_cast<ProSolid>(model);
++    ProSolidBody body = {};
++    result.body.called = true;
++    result.body.code = ProSolidDefaultBodyGet(solid, &body);
++    if (result.body.code == PRO_TK_GENERAL_ERROR) {
++        result.result = "no_default_body";
++        result.default_body_present = "false";
++        log_body_face_count_return(result);
++        return 0;
++    }
++    if (result.body.code != PRO_TK_NO_ERROR) {
++        result.result = "default_body_query_failed";
++        log_body_face_count_return(result);
++        return 0;
++    }
++    result.default_body_present = "true";
++    int surface_count = 0;
++    ProSurfaceVisitAction visitor = &count_default_body_surface;
++    result.visit.called = true;
++    result.visit.code = ProSolidBodySurfaceVisit(&body, visitor, &surface_count);
++    if (result.visit.code == PRO_TK_NO_ERROR) {
++        result.result = "ok";
++        result.count_valid = true;
++        result.face_count = surface_count;
++    } else if (result.visit.code == PRO_TK_E_NOT_FOUND && surface_count == 0) {
++        result.result = "no_faces";
++        result.count_valid = true;
++        result.face_count = 0;
++    } else {
++        result.result = "surface_visit_failed";
++        result.partial_count_valid = true;
++        result.partial_count = surface_count;
++    }
++    log_body_face_count_return(result);
++    return 0;
++}
++
++void trace_body_face_count_command_result(const char* event, ProError status) noexcept
++{
++    char facts[160] = {};
++    const int count = std::snprintf(facts, sizeof(facts),
++        "{\"command\":\"p1_readonly_body_face_count\",\"pro_error\":%d}",
++        static_cast<int>(status));
++    trace_event(event, count > 0 && static_cast<size_t>(count) < sizeof(facts) ? facts : "null");
++}
++
++void register_readonly_body_face_count()
++{
++    static char name[] = "p1_readonly_body_face_count";
++    static char label[] = "P1_BODY_FACE_COUNT_LABEL";
++    static char help[] = "P1_BODY_FACE_COUNT_HELP";
++    static char description[] = "P1_BODY_FACE_COUNT_DESC";
++    static wchar_t message_file[] = L"p1_readonly_body_face_count.txt";
++    uiCmdCmdId command_id = {};
++    uiCmdCmdActFn action = &readonly_body_face_count_action;
++    uiCmdAccessFn access = &readonly_ping_access;
++    trace_event("BODY_FACE_COUNT_REGISTER_BEGIN", "{\"command\":\"p1_readonly_body_face_count\"}");
++    const ProError add_status = ProCmdActionAdd(name, action, uiProeImmediate,
++        access, PRO_B_TRUE, PRO_B_TRUE, &command_id);
++    trace_body_face_count_command_result("BODY_FACE_COUNT_ACTION_ADD_RETURN", add_status);
++    if (add_status != PRO_TK_NO_ERROR) {
++        return;
++    }
++    const ProError designate_status = ProCmdDesignate(command_id, label, help,
++        description, message_file);
++    trace_body_face_count_command_result("BODY_FACE_COUNT_DESIGNATE_RETURN", designate_status);
++}
++
+@@ -437,0 +595 @@
++    register_readonly_body_face_count();
+--- /dev/null
++++ b/text/p1_readonly_body_face_count.txt
+@@ -0,0 +1,12 @@
++P1_BODY_FACE_COUNT_LABEL
++p1_readonly_body_face_count
++
++
++P1_BODY_FACE_COUNT_HELP
++Log the number of faces in the current part default body only.
++
++
++P1_BODY_FACE_COUNT_DESC
++Read-only array length. No face IDs, geometry queries, selection or model writes.
++
++
