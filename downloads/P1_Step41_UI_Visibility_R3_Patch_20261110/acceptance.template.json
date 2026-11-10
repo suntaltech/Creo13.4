@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "NOT_EXECUTED",
+  "source_sha256": null,
+  "dll_sha256": null,
+  "new_sdk_action_name_verified_from_build_identity": null,
+  "plus_exports_preserved": null,
+  "all_six_register_designate_statuses_zero": null,
+  "resources_order_and_ui_conditions_unchanged": null,
+  "actual_visible_body_item_name": null,
+  "old_and_new_identity_ambiguity": null,
+  "body_callback_triggered_once_if_unambiguous": null,
+  "body_callback_enter_return_seen": null,
+  "ui_visibility_result": null,
+  "count_runtime_result": null,
+  "rule": "SDK key p1_readonly_fc differs from unchanged display/logical label. Do not infer name length limit or cache implementation from a successful fresh-key test."
+}

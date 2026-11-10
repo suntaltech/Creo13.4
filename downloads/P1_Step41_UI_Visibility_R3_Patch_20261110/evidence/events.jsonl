@@ -1,0 +1,6 @@
+{"seq": 1, "utc": "2026-11-10T07:21:26.447646+00:00", "phase": "R2_REVIEW", "status": "COMPLETED", "detail": "Latest log confirms body first and Ping last, six SDK statuses zero, body still absent in screenshot"}
+{"seq": 2, "utc": "2026-11-10T07:21:26.447646+00:00", "phase": "R1_R2_HYPOTHESES", "status": "DID_NOT_FIX", "detail": "Do not keep changing filename or registration order"}
+{"seq": 3, "utc": "2026-11-10T07:21:26.447646+00:00", "phase": "R3_SCOPE", "status": "ONE_SDK_ACTION_KEY", "detail": "New short identity p1_readonly_fc; display label, logical log command and handlers unchanged"}
+{"seq": 4, "utc": "2026-11-10T07:21:26.447646+00:00", "phase": "INTERPRETATION", "status": "IDENTITY_TEST_NOT_LIMIT_PROOF", "detail": "A fresh short key tests identity association, not a documented numeric maximum"}
+{"seq": 5, "utc": "2026-11-10T07:21:26.447646+00:00", "phase": "NATIVE_ACTIONS", "status": "NOT_PERFORMED", "detail": "No SDK build, DLL load, GUI change, resource edit or model operation"}
+{"seq": 6, "utc": "2026-11-10T07:21:26.902783+00:00", "phase": "PATCH_CHECK", "status": "PASS_BYTE_SCOPE", "detail": "One literal inverse substitution restores every original byte; exact patch application passed; real UI pending"}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "step": 41,
+  "revision": "UI_R3",
+  "one_variable": "Third logical command SDK action_name only",
+  "baseline_source_sha256": "a452d16e9a62bcae08fbc49012de90eaba865ece40864d3c6200640764f7f8c4",
+  "input_archive": {
+    "name": "P1_Step41_UI_Visibility_R2_Failure_Handoff_20261110.zip",
+    "sha256": "8d2346aa64d6e742e6d4b60ca690384116391662cc6b5637035bfbef53fe1138"
+  },
+  "input_files": [
+    {
+      "name": "README.md",
+      "sha256": "d3e344ff38ae54ba1ab3e09420915726a825084e336f5713fa0d3dc906fd3e41"
+    },
+    {
+      "name": "customize-list-r2-still-missing.png",
+      "sha256": "661c1f00c801b4a4547768c229dc982b674fb58307097d5b68687c11dce838ff"
+    },
+    {
+      "name": "entry_r2.cpp",
+      "sha256": "a452d16e9a62bcae08fbc49012de90eaba865ece40864d3c6200640764f7f8c4"
+    },
+    {
+      "name": "r2-startup-log.jsonl",
+      "sha256": "2381a34d1ebd6be8bcc731ea49e01611d679d1c878b1fc373769bf127043e0b7"
+    }
+  ],
+  "R2_actual_order": [
+    "p1_readonly_body_face_count",
+    "p1_readonly_model_info",
+    "p1_readonly_ping"
+  ],
+  "R2_actual_sdk_statuses": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "R2_missing_follows_last_hypothesis_supported": false,
+  "identity_mapping": {
+    "old_sdk_action_name": "p1_readonly_body_face_count",
+    "new_sdk_action_name": "p1_readonly_fc",
+    "unchanged_message_label": "p1_readonly_body_face_count",
+    "unchanged_json_logical_command": "p1_readonly_body_face_count",
+    "unchanged_message_file": "p1_fc.txt"
+  },
+  "resource_or_registration_order_changed": false,
+  "surface_count_algorithm_changed": false,
+  "numeric_name_limit_or_cache_cause_established": false,
+  "cloud_native_build_or_ui_test_performed": false,
+  "raw_runtime_logs_or_screenshot_redistributed": false
+}

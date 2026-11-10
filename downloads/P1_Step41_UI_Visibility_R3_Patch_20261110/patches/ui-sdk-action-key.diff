@@ -1,0 +1,5 @@
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -557 +557 @@
+-    static char name[] = "p1_readonly_body_face_count";
++    static char name[] = "p1_readonly_fc";

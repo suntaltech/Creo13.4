@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "scope": "EXACT_DIFF_AND_INVERSE_SINGLE_LITERAL_BYTE_CHECK",
+  "checks": {
+    "baseline_matches_supplied_R2": true,
+    "only_one_sdk_action_literal_changed": true,
+    "exact_diff_application": true,
+    "R2_order_preserved": true,
+    "R1_short_resource_reference_preserved": true,
+    "no_resource_binary_or_active_dat_in_payload": true
+  },
+  "all_observed_checks_passed": true,
+  "all_handler_and_designation_code_byte_preserved_except_action_key": true,
+  "actual_sdk_build_or_ui_test_performed": false,
+  "name_limit_or_identity_root_cause_proven": false
+}
