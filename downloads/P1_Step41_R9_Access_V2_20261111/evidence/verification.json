@@ -1,0 +1,11 @@
+{
+  "R7_patch_apply_result_pass": true,
+  "extension_removal_restores_reviewed_lookup_candidate": true,
+  "hot_path_no_IO_loops_allocation_or_SDK_calls_static_check_pass": true,
+  "three_wrappers_call_original_common_logic": true,
+  "portable_lookup_formatter_new_schema_cases_pass": true,
+  "SDK_stubs_used": false,
+  "real_Windows_SDK_build_performed": false,
+  "access_concurrency_runtime_test_performed": false,
+  "real_UI_test_performed": false
+}

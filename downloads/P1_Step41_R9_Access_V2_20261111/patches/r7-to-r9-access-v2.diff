@@ -1,0 +1,186 @@
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -166,0 +167,53 @@
++// LOOKUP_FORMAT_HELPER_BEGIN
++// Fixed ASCII command literals only; pointer values remain opaque identities.
++bool format_lookup_facts(char* facts, size_t capacity,
++    const char* logical_command, const char* sdk_name,
++    const void* expected, const void* found, int status,
++    int designate_status, bool success) noexcept
++{
++    char found_json[2 * sizeof(std::uintptr_t) + 5] = {};
++    if (success) {
++        const int n = std::snprintf(found_json, sizeof(found_json),
++            "\"0x%" PRIxPTR "\"", reinterpret_cast<std::uintptr_t>(found));
++        if (n <= 0 || static_cast<size_t>(n) >= sizeof(found_json)) return false;
++    }
++    const int n = std::snprintf(facts, capacity,
++        "{\"revision\":\"UI_R9_ACCESS_V2\",\"phase\":\"after_designate_return\","
++        "\"command\":\"%s\",\"sdk_action_name\":\"%s\",\"find_pro_error\":%d,"
++        "\"designate_pro_error\":%d,\"action_add_id\":\"0x%" PRIxPTR "\","
++        "\"found_id\":%s,\"found_id_null\":%s,\"id_match\":%s,"
++        "\"UI_membership_read_back\":false}",
++        logical_command, sdk_name, status, designate_status,
++        reinterpret_cast<std::uintptr_t>(expected), success && found != nullptr ? found_json : "null",
++        success ? (found == nullptr ? "true" : "false") : "null",
++        success ? (found != nullptr && expected == found ? "true" : "false") : "null");
++    return n > 0 && static_cast<size_t>(n) < capacity;
++}
++// LOOKUP_FORMAT_HELPER_END
++
++void trace_command_lookup(const char* logical_command, char* sdk_name,
++    uiCmdCmdId action_add_id, ProError designate_status) noexcept
++{
++    PreserveLastError preserve;
++    char begin[192] = {};
++    const int n = std::snprintf(begin, sizeof(begin),
++        "{\"revision\":\"UI_R9_ACCESS_V2\",\"command\":\"%s\",\"sdk_action_name\":\"%s\"}",
++        logical_command, sdk_name);
++    if (n <= 0 || static_cast<size_t>(n) >= sizeof(begin)) {
++        trace_failure("command_lookup_begin_format", ERROR_INSUFFICIENT_BUFFER);
++        return;
++    }
++    trace_event("CMD_ID_FIND_PROBE_BEGIN", begin);
++    uiCmdCmdId found = {};
++    const ProError status = ProCmdCmdIdFind(sdk_name, &found);
++    const bool success = status == PRO_TK_NO_ERROR;
++    char facts[512] = {};
++    if (!format_lookup_facts(facts, sizeof(facts), logical_command, sdk_name,
++        action_add_id, success ? found : nullptr, static_cast<int>(status),
++        static_cast<int>(designate_status), success)) {
++        trace_failure("command_lookup_result_format", ERROR_INSUFFICIENT_BUFFER);
++        return;
++    }
++    trace_event("CMD_ID_FIND_PROBE_RETURN", facts);
++}
++
+@@ -184,0 +238,110 @@
++
++// ACCESS_OBSERVER_BEGIN
++constexpr size_t access_sample_limit = 64;
++struct AccessSample {
++    int mode;
++    int returned;
++    ULONGLONG tick;
++    volatile LONG ready; // 0: unpublished, 1: ready, 2: claimed by a flush.
++};
++struct AccessTrace {
++    const char* command;
++    const char* sdk_name;
++    alignas(8) volatile LONG64 calls;
++    alignas(8) volatile LONG64 modes[3]; // blind, messages allowed, other.
++    AccessSample samples[access_sample_limit];
++};
++AccessTrace ping_access_trace = {"p1_readonly_ping", "p1_readonly_ping", 0, {}, {}};
++AccessTrace model_access_trace = {"p1_readonly_model_info", "p1_readonly_model_info", 0, {}, {}};
++AccessTrace body_access_trace = {"p1_readonly_body_face_count", "p1_readonly_fc", 0, {}, {}};
++
++void record_access_observation(AccessTrace& state, uiCmdAccessMode mode,
++    uiCmdAccessState returned) noexcept
++{
++    PreserveLastError preserve;
++    // No file/debugger I/O, allocation, lock, retry loop, or model/SDK query.
++    const LONG64 ticket = InterlockedIncrement64(&state.calls);
++    const size_t mode_slot = mode == MODE_BLIND ? 0 :
++        (mode == MODE_ERROR_MSG_ALLOWED ? 1 : 2);
++    InterlockedIncrement64(&state.modes[mode_slot]);
++    if (ticket <= 0 || ticket > static_cast<LONG64>(access_sample_limit)) return;
++    AccessSample& sample = state.samples[static_cast<size_t>(ticket - 1)];
++    sample.mode = static_cast<int>(mode);
++    sample.returned = static_cast<int>(returned);
++    sample.tick = GetTickCount64();
++    // Publish after writing; the flush consumes only published entries.
++    InterlockedExchange(&sample.ready, 1);
++}
++
++uiCmdAccessState ping_access_observed(uiCmdAccessMode mode)
++{
++    const uiCmdAccessState returned = readonly_ping_access(mode);
++    record_access_observation(ping_access_trace, mode, returned);
++    return returned;
++}
++uiCmdAccessState model_access_observed(uiCmdAccessMode mode)
++{
++    const uiCmdAccessState returned = readonly_ping_access(mode);
++    record_access_observation(model_access_trace, mode, returned);
++    return returned;
++}
++uiCmdAccessState body_access_observed(uiCmdAccessMode mode)
++{
++    const uiCmdAccessState returned = readonly_ping_access(mode);
++    record_access_observation(body_access_trace, mode, returned);
++    return returned;
++}
++
++void flush_one_access_trace(AccessTrace& state, const char* phase) noexcept
++{
++    PreserveLastError preserve;
++    const LONG64 total = InterlockedCompareExchange64(&state.calls, 0, 0);
++    LONG64 mode_totals[3] = {};
++    for (size_t i = 0; i < 3; ++i)
++        mode_totals[i] = InterlockedCompareExchange64(&state.modes[i], 0, 0);
++    unsigned pending = 0;
++    unsigned emitted = 0;
++    for (size_t i = 0; i < access_sample_limit && static_cast<LONG64>(i) < total; ++i) {
++        AccessSample& sample = state.samples[i];
++        const LONG ready = InterlockedCompareExchange(&sample.ready, 2, 1);
++        if (ready == 0) { ++pending; continue; }
++        if (ready != 1) continue; // Already claimed; never emit it twice.
++        char facts[512] = {};
++        const int n = std::snprintf(facts, sizeof(facts),
++            "{\"revision\":\"UI_R9_ACCESS_V2\",\"command\":\"%s\","
++            "\"sdk_action_name\":\"%s\",\"flush_phase\":\"%s\","
++            "\"call_ordinal\":%u,\"access_call_tick\":%llu,"
++            "\"access_mode\":%d,\"access_returned\":%d,\"buffered\":true}",
++            state.command, state.sdk_name, phase, static_cast<unsigned>(i + 1),
++            static_cast<unsigned long long>(sample.tick), sample.mode, sample.returned);
++        if (n > 0 && static_cast<size_t>(n) < sizeof(facts)) {
++            trace_event("ACCESS_CALL_OBSERVED", facts);
++            ++emitted;
++        } else {
++            trace_failure("access_sample_format", ERROR_INSUFFICIENT_BUFFER);
++        }
++    }
++    char facts[512] = {};
++    const int n = std::snprintf(facts, sizeof(facts),
++        "{\"revision\":\"UI_R9_ACCESS_V2\",\"command\":\"%s\","
++        "\"flush_phase\":\"%s\",\"total_calls\":%lld,"
++        "\"mode_blind_calls\":%lld,\"mode_messages_allowed_calls\":%lld,"
++        "\"mode_other_calls\":%lld,\"sample_limit\":%u,"
++        "\"samples_emitted_in_flush\":%u,\"samples_unpublished_at_flush\":%u,"
++        "\"calls_without_individual_sample\":%lld,\"snapshot_is_atomic\":false}",
++        state.command, phase, static_cast<long long>(total),
++        static_cast<long long>(mode_totals[0]), static_cast<long long>(mode_totals[1]),
++        static_cast<long long>(mode_totals[2]), static_cast<unsigned>(access_sample_limit),
++        emitted, pending, static_cast<long long>(total > static_cast<LONG64>(access_sample_limit)
++            ? total - static_cast<LONG64>(access_sample_limit) : 0));
++    if (n > 0 && static_cast<size_t>(n) < sizeof(facts)) trace_event("ACCESS_TRACE_SUMMARY", facts);
++    else trace_failure("access_summary_format", ERROR_INSUFFICIENT_BUFFER);
++}
++
++void flush_access_observations(const char* phase) noexcept
++{
++    flush_one_access_trace(body_access_trace, phase);
++    flush_one_access_trace(model_access_trace, phase);
++    flush_one_access_trace(ping_access_trace, phase);
++}
++// ACCESS_OBSERVER_END
+@@ -206 +369 @@
+-    uiCmdAccessFn access = &readonly_ping_access;
++    uiCmdAccessFn access = &ping_access_observed;
+@@ -219,0 +383 @@
++    trace_command_lookup("p1_readonly_ping", name, command_id, designate_status);
+@@ -458 +622 @@
+-    uiCmdAccessFn access = &readonly_ping_access;
++    uiCmdAccessFn access = &model_access_observed;
+@@ -470,0 +635 @@
++    trace_command_lookup("p1_readonly_model_info", name, command_id, designate_status);
+@@ -616 +781 @@
+-    uiCmdAccessFn access = &readonly_ping_access;
++    uiCmdAccessFn access = &body_access_observed;
+@@ -628,0 +794 @@
++    trace_command_lookup("p1_readonly_body_face_count", name, command_id, designate_status);
+@@ -752,0 +919 @@
++    flush_access_observations("initialization_end");
+@@ -762,0 +930 @@
++    flush_access_observations("termination");

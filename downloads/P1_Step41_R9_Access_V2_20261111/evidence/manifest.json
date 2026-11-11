@@ -1,0 +1,22 @@
+{
+  "candidate": "R9_ACCESS_V2",
+  "date": "2026-11-11 Asia/Shanghai",
+  "task_document_sha256": "5b01fece9736ca0d4af120ddb4c9f3ff5d1200a3e0822af2a66d575ebb588451",
+  "required_R7_baseline_sha256": "8ecf88e80d366d7053a2c14475dff4393bd6b1fc1770f2f6c6d96fccb6e3faf9",
+  "candidate_source_sha256": "19329fb972f3dbb9f1bf8a44790b5bcb9f68ff9215384d9465d607e4eb8eb839",
+  "extends_lookup_only_R9_but_diff_is_against_R7": true,
+  "new_SDK_functions": [
+    "ProCmdCmdIdFind"
+  ],
+  "access_wrappers": 3,
+  "access_return_logic_unchanged": true,
+  "individual_samples_per_command_per_DLL_load": 64,
+  "individual_samples_total_limit": 192,
+  "flush_phases": [
+    "initialization_end",
+    "termination"
+  ],
+  "original_six_message_probes_retained_not_extended": true,
+  "file_or_debugger_IO_in_access": false,
+  "root_cause_established": false
+}

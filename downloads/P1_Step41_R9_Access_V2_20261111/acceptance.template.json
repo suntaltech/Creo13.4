@@ -1,0 +1,23 @@
+{
+  "candidate": "R9_ACCESS_V2",
+  "source_sha256": null,
+  "DLL_sha256": null,
+  "real_SDK_build_pass": null,
+  "resources_preserved": null,
+  "load_method": null,
+  "pid": null,
+  "load_token": null,
+  "ID_find_results": [],
+  "initialization_access_summaries": [],
+  "termination_access_summaries": [],
+  "access_samples": [],
+  "post_UI_access_flush_available": null,
+  "TERM_ENTER_and_BEFORE_RETURN_observed": null,
+  "sample_limit_hit_commands": [],
+  "pending_or_IO_failure_notes": [],
+  "UI_visible_names": null,
+  "body_callback_clicked": false,
+  "business_callback_enter_observed": false,
+  "SDK_UI_membership_read_back": false,
+  "root_cause_established": false
+}
