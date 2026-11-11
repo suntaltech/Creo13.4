@@ -1,0 +1,18 @@
+{
+  "candidate": "R9_COMMAND_LOOKUP",
+  "source_sha256": null,
+  "DLL_sha256": null,
+  "real_SDK_build_pass": null,
+  "resources_preserved": null,
+  "load_method": null,
+  "pid": null,
+  "load_token": null,
+  "lookup_results_in_order": [],
+  "six_original_registration_returns": [],
+  "original_six_message_probe_roles": [],
+  "UI_observed_names": null,
+  "INIT_BEFORE_RETURN_code": null,
+  "UI_membership_read_back": false,
+  "body_callback_clicked": false,
+  "root_cause_established": false
+}

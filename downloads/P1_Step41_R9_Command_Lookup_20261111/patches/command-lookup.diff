@@ -1,0 +1,62 @@
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -166,0 +167,53 @@
++// LOOKUP_FORMAT_HELPER_BEGIN
++// Fixed ASCII command literals only; pointer values remain opaque identities.
++bool format_lookup_facts(char* facts, size_t capacity,
++    const char* logical_command, const char* sdk_name,
++    const void* expected, const void* found, int status,
++    int designate_status, bool success) noexcept
++{
++    char found_json[2 * sizeof(std::uintptr_t) + 5] = {};
++    if (success) {
++        const int n = std::snprintf(found_json, sizeof(found_json),
++            "\"0x%" PRIxPTR "\"", reinterpret_cast<std::uintptr_t>(found));
++        if (n <= 0 || static_cast<size_t>(n) >= sizeof(found_json)) return false;
++    }
++    const int n = std::snprintf(facts, capacity,
++        "{\"revision\":\"UI_R9_COMMAND_LOOKUP\",\"phase\":\"after_designate_return\","
++        "\"command\":\"%s\",\"sdk_action_name\":\"%s\",\"pro_error\":%d,"
++        "\"designate_pro_error\":%d,\"action_add_id\":\"0x%" PRIxPTR "\","
++        "\"lookup_id\":%s,\"lookup_id_is_null\":%s,\"ids_equal\":%s,"
++        "\"UI_membership_read_back\":false}",
++        logical_command, sdk_name, status, designate_status,
++        reinterpret_cast<std::uintptr_t>(expected), success ? found_json : "null",
++        success ? (found == nullptr ? "true" : "false") : "null",
++        success ? (expected == found ? "true" : "false") : "null");
++    return n > 0 && static_cast<size_t>(n) < capacity;
++}
++// LOOKUP_FORMAT_HELPER_END
++
++void trace_command_lookup(const char* logical_command, char* sdk_name,
++    uiCmdCmdId action_add_id, ProError designate_status) noexcept
++{
++    PreserveLastError preserve;
++    char begin[192] = {};
++    const int n = std::snprintf(begin, sizeof(begin),
++        "{\"revision\":\"UI_R9_COMMAND_LOOKUP\",\"command\":\"%s\",\"sdk_action_name\":\"%s\"}",
++        logical_command, sdk_name);
++    if (n <= 0 || static_cast<size_t>(n) >= sizeof(begin)) {
++        trace_failure("command_lookup_begin_format", ERROR_INSUFFICIENT_BUFFER);
++        return;
++    }
++    trace_event("COMMAND_LOOKUP_BEGIN", begin);
++    uiCmdCmdId found = {};
++    const ProError status = ProCmdCmdIdFind(sdk_name, &found);
++    const bool success = status == PRO_TK_NO_ERROR;
++    char facts[512] = {};
++    if (!format_lookup_facts(facts, sizeof(facts), logical_command, sdk_name,
++        action_add_id, success ? found : nullptr, static_cast<int>(status),
++        static_cast<int>(designate_status), success)) {
++        trace_failure("command_lookup_result_format", ERROR_INSUFFICIENT_BUFFER);
++        return;
++    }
++    trace_event("COMMAND_LOOKUP_RETURN", facts);
++}
++
+@@ -219,0 +273 @@
++    trace_command_lookup("p1_readonly_ping", name, command_id, designate_status);
+@@ -470,0 +525 @@
++    trace_command_lookup("p1_readonly_model_info", name, command_id, designate_status);
+@@ -628,0 +684 @@
++    trace_command_lookup("p1_readonly_body_face_count", name, command_id, designate_status);

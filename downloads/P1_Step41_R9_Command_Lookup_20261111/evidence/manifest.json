@@ -1,0 +1,19 @@
+{
+  "candidate": "R9_COMMAND_LOOKUP",
+  "date": "2026-11-11 Asia/Shanghai",
+  "input_sha256": "cb78ee23c5528451730ae28f15750c9453c807cb3fea88daa8ed6b253380d877",
+  "input_internal_manifest_entries_verified": 5,
+  "baseline": "previously verified R7 source; current package has contract excerpts only",
+  "baseline_source_sha256": "8ecf88e80d366d7053a2c14475dff4393bd6b1fc1770f2f6c6d96fccb6e3faf9",
+  "candidate_source_sha256": "c9d60f829199a326048667fbabe8b904fffd2028c30f1b25c1ad785e30fabdf7",
+  "new_SDK_function": "ProCmdCmdIdFind",
+  "max_find_calls_per_initialization": 3,
+  "call_phase": "immediately after each Designate return, only if that command ActionAdd succeeded",
+  "command_registration_order_unchanged": true,
+  "original_six_message_probes_unchanged": true,
+  "resources_or_access_or_business_changed": false,
+  "UI_metadata_or_membership_readback": false,
+  "ID_equality_guaranteed_by_docs": false,
+  "root_cause_established": false,
+  "manifest_count_scope_correction": "previous review count 17 refers to original R7 handoff manifest; 7 refers to that derived review package SHA256SUMS, not a failed hash check"
+}

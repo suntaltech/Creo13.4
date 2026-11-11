@@ -1,0 +1,11 @@
+{
+  "external_and_internal_hash_pass": true,
+  "patch_apply_and_result_pass": true,
+  "inverse_exact_byte_restore_pass": true,
+  "portable_formatter_compile_warnings_as_errors_pass": true,
+  "same_different_null_and_failure_JSON_cases_pass": true,
+  "small_buffer_rejected": true,
+  "SDK_calls_stubbed": false,
+  "real_SDK_build_performed": false,
+  "real_UI_test_performed": false
+}
