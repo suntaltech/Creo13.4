@@ -1,0 +1,9 @@
+{
+  "external_archive_hash_pass": true,
+  "internal_manifest_pass": true,
+  "actual_log_segment_recomputed": true,
+  "local_resource_audit_consistency_pass": true,
+  "new_SDK_call_added": false,
+  "new_DLL_built": false,
+  "new_UI_test_run": false
+}

@@ -1,0 +1,20 @@
+{
+  "task": "one_real_SDK_message_buffer_API_contract_only",
+  "candidate_search_term": "ProMessageToBuffer",
+  "exists_in_same_version_SDK": null,
+  "header_filename": null,
+  "exact_declaration": null,
+  "required_typedefs_and_capacity_macros": null,
+  "parameter_and_return_comments": null,
+  "buffer_units_capacity_and_termination": null,
+  "allocation_and_release_ownership": null,
+  "no_placeholder_variadic_call_contract": null,
+  "message_file_and_key_rules": null,
+  "allowed_initialization_context": null,
+  "text_dir_dependency": null,
+  "cache_or_UI_side_effects_documented": null,
+  "resolved_path_or_language_exposed": null,
+  "documentation_source_version_and_section": null,
+  "missing_or_undocumented_items": [],
+  "no_new_build_or_GUI_test_required": true
+}
