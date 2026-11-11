@@ -1,0 +1,4 @@
+{"schema": 1, "event": "R7_CONTROL_RESULTS_VERIFIED", "visible_control_also_truncated": true}
+{"schema": 1, "event": "CALLBACK_FLAG_RECOMPUTED", "exact_ENTER_observed": false}
+{"schema": 1, "event": "REPEATED_NAME_TRIAL_REJECTED", "reason": "JSON logical label is not SDK command input; prior long SDK name already failed"}
+{"schema": 1, "event": "NEXT_OFFLINE_CONTRACT_INPUT_SCOPED", "plugin_changed": false}

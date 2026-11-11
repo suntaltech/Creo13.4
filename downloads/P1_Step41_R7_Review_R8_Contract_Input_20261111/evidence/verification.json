@@ -1,0 +1,8 @@
+{
+  "external_hash_pass": true,
+  "internal_manifest_pass": true,
+  "source_byte_match_pass": true,
+  "actual_runtime_results_recomputed": true,
+  "exact_callback_name_detection_positive_and_negative_pass": true,
+  "SDK_or_Creo_calls_executed": false
+}

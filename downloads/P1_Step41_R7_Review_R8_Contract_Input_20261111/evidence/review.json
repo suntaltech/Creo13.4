@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "date": "2026-11-11 Asia/Shanghai",
+  "input_archive_sha256": "47dd509e69f779ee66f857eb5317cf8d82b8143d73d74de1fa3c3806f8e5ee7b",
+  "internal_manifest_entries_verified": 17,
+  "source_matches_published_R7": true,
+  "source_sha256": "8ecf88e80d366d7053a2c14475dff4393bd6b1fc1770f2f6c6d96fccb6e3faf9",
+  "report_inconsistencies": [
+    {
+      "field": "runtime-review.json.body_callback_ENTER_observed",
+      "reported": true,
+      "recomputed_from_exact_events": false,
+      "acceptance_and_empty_callback_list_agree_with_recomputed": true
+    }
+  ],
+  "description_truncation_alone_proves_hiding": false,
+  "SDK_requires_logical_log_command_equal_action_name": false,
+  "prior_long_action_name_trial_already_failed": true,
+  "load_method_change_reported": "config.pro protkdat automatic load, compared with earlier manual load",
+  "load_method_change_may_affect_cross_run_comparison": true,
+  "within_R7_visible_and_missing_command_comparison_retained": true,
+  "plugin_modified": false,
+  "new_runtime_test_required_this_round": false,
+  "root_cause_established": false
+}

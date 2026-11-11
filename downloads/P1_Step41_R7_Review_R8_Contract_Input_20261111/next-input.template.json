@@ -1,0 +1,16 @@
+{
+  "task": "offline_command_registry_and_customization_contract_only",
+  "lookup_candidate_search_term": "ProCmdCmdIdFind",
+  "lookup_exists": null,
+  "lookup_header_and_exact_declaration": null,
+  "lookup_parameter_return_and_context_comments": null,
+  "lookup_ID_relation_to_ActionAdd_documented": null,
+  "uiCmdAccessFn_exact_typedef": null,
+  "uiCmdAccessMode_enum_and_comments": null,
+  "uiCmdAccessState_enum_and_comments": null,
+  "ACCESS_AVAILABLE_customization_visibility_semantics": null,
+  "access_callback_customization_invocation_contract": null,
+  "official_source_version_and_sections": [],
+  "undocumented_or_missing_items": [],
+  "no_new_build_GUI_configuration_or_model_operation_required": true
+}
