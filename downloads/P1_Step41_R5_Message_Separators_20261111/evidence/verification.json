@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "external_archive_checksum_pass": true,
+  "internal_manifest_all_entries_pass": true,
+  "input_source_byte_match_pass": true,
+  "only_six_empty_lines_changed_per_language": true,
+  "all_message_keys_and_values_preserved": true,
+  "inverse_restore_byte_exact": true,
+  "patch_apply_check_and_result_pass": true,
+  "two_language_payloads_identical": true,
+  "ASCII_no_BOM_no_NUL_LF_preserved": true,
+  "SDK_parser_executed": false,
+  "real_UI_test_executed": false,
+  "real_Dll_build_executed": false
+}

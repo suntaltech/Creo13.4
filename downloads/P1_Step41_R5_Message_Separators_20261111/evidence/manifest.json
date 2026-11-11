@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "revision": "R5_MESSAGE_SEPARATOR_CANDIDATE",
+  "date": "2026-11-11 Asia/Shanghai",
+  "input_archive_sha256": "c4171086428fbc60d90f60c14a6b03a8fa9e501666c0d714125b1d3f6c22e854",
+  "all_input_manifest_entries_verified": 15,
+  "uploaded_source_matches_R4R1": true,
+  "unchanged_source_sha256": "7645a55221b1f806e5951290b84ee2eb0e2684a6baa1d9a24753e7b9230dba11",
+  "one_logical_variable": "p1_fc message records use #/# lines following local official sample, instead of empty/empty lines",
+  "changed_files": [
+    {
+      "path": "text/chinese_cn/p1_fc.txt",
+      "baseline_sha256": "c991ea6263a506b16907aa1a13d1ff6147ee730ff9e06d2527ce82b1d0dbefff",
+      "candidate_sha256": "67ad64e62c6e9e57a04c487ae5e273aa09eac1bc493ca982d5f1775ea7bab4c5",
+      "old_bytes": 252,
+      "new_bytes": 258,
+      "only_changed_lines_1_based": [
+        3,
+        4,
+        7,
+        8,
+        11,
+        12
+      ]
+    },
+    {
+      "path": "text/usascii/p1_fc.txt",
+      "baseline_sha256": "c991ea6263a506b16907aa1a13d1ff6147ee730ff9e06d2527ce82b1d0dbefff",
+      "candidate_sha256": "67ad64e62c6e9e57a04c487ae5e273aa09eac1bc493ca982d5f1775ea7bab4c5",
+      "old_bytes": 252,
+      "new_bytes": 258,
+      "only_changed_lines_1_based": [
+        3,
+        4,
+        7,
+        8,
+        11,
+        12
+      ]
+    }
+  ],
+  "message_keys_and_values_unchanged": true,
+  "DLL_rebuild_required": false,
+  "new_SDK_API_added": false,
+  "root_cause_established": false,
+  "official_sample_evidence_origin": "user supplied sdk-contract-snippet.md section 7; cloud has not independently opened SDK original",
+  "raw_input_redistributed": false
+}

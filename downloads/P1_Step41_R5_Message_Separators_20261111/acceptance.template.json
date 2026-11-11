@@ -1,0 +1,17 @@
+{
+  "candidate": "R5_MESSAGE_SEPARATOR_CANDIDATE",
+  "baseline_Dll_sha256": null,
+  "candidate_Dll_sha256_identical": null,
+  "resource_hashes_verified": null,
+  "actual_same_name_resource_resolution_proven": false,
+  "candidate_dat_text_dir_relationship_preserved": null,
+  "pid": null,
+  "load_token": null,
+  "initialization_results": null,
+  "identity_events": [],
+  "observed_UI_names": null,
+  "BODY_FACE_COUNT_ENTER_observed": false,
+  "BODY_FACE_COUNT_RETURN_result": null,
+  "SDK_parser_cause_established": false,
+  "observation_notes": null
+}

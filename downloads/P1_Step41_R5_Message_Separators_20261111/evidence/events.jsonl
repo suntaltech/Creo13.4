@@ -1,0 +1,4 @@
+{"schema": 1, "event": "INPUT_ARCHIVE_AND_MANIFEST_VERIFIED", "entries": 15}
+{"schema": 1, "event": "SOURCE_BASELINE_BYTE_MATCH_VERIFIED", "revision": "R4R1"}
+{"schema": 1, "event": "RESOURCE_ONLY_CANDIDATE_CREATED", "one_variable": "six record filler lines per language changed to #"}
+{"schema": 1, "event": "PATCH_AND_INVERSE_BYTE_CHECK_PASS", "SDK_parser_executed": false, "UI_test_executed": false}
