@@ -1,0 +1,69 @@
+{
+  "pid": 16316,
+  "load_token": 17897531,
+  "probe_results": [
+    {
+      "revision": "UI_R6_MESSAGE_PROBE",
+      "phase": "after_all_designations",
+      "role": "body_label",
+      "key": "P1_BODY_FACE_COUNT_LABEL",
+      "pro_error": 0,
+      "buffer_observed": true,
+      "terminated": true,
+      "wide_units": 27,
+      "text_json_valid": true,
+      "sdk_reported_truncation": false,
+      "text": "p1_readonly_body_face_count",
+      "resolved_path_exposed": false
+    },
+    {
+      "revision": "UI_R6_MESSAGE_PROBE",
+      "phase": "after_all_designations",
+      "role": "body_help",
+      "key": "P1_BODY_FACE_COUNT_HELP",
+      "pro_error": 0,
+      "buffer_observed": true,
+      "terminated": true,
+      "wide_units": 62,
+      "text_json_valid": true,
+      "sdk_reported_truncation": false,
+      "text": "Log the number of faces in the current part default body only.",
+      "resolved_path_exposed": false
+    },
+    {
+      "revision": "UI_R6_MESSAGE_PROBE",
+      "phase": "after_all_designations",
+      "role": "body_description",
+      "key": "P1_BODY_FACE_COUNT_DESC",
+      "pro_error": -32,
+      "buffer_observed": true,
+      "terminated": true,
+      "wide_units": 80,
+      "text_json_valid": true,
+      "sdk_reported_truncation": true,
+      "text": "Read-only array length. No face IDs, geometry queries, selection or model writes",
+      "resolved_path_exposed": false
+    },
+    {
+      "revision": "UI_R6_MESSAGE_PROBE",
+      "phase": "after_all_designations",
+      "role": "control_model_info_label",
+      "key": "P1_READONLY_MODEL_INFO_LABEL",
+      "pro_error": 0,
+      "buffer_observed": true,
+      "terminated": true,
+      "wide_units": 22,
+      "text_json_valid": true,
+      "sdk_reported_truncation": false,
+      "text": "p1_readonly_model_info",
+      "resolved_path_exposed": false
+    }
+  ],
+  "labels_and_help_resolved_in_probe_context": true,
+  "body_description_truncated_by_ToBuffer": true,
+  "body_UI_still_missing": true,
+  "precise_resource_path_known": false,
+  "action_logical_identifier_mismatch_is_SDK_input": false,
+  "matched_action_and_logical_identifiers_already_failed_before_R3": true,
+  "description_length_sufficient_to_explain_UI_filtering": null
+}

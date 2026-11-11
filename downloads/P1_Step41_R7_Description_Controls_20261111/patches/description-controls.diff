@@ -1,0 +1,11 @@
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -679 +679 @@
+-    // All four fixed resource messages have no conversion placeholders.
++    // These fixed resource messages have no conversion placeholders.
+@@ -725,0 +726,5 @@
++    ProFileName ping_file = L"p1_readonly_ping.txt";
++    ProCharLine control_description_key = "P1_READONLY_MODEL_INFO_DESC";
++    ProCharLine ping_description_key = "P1_READONLY_PING_DESCRIPTION";
++    probe_one_message("control_model_info_description", control_file, control_description_key);
++    probe_one_message("control_ping_description", ping_file, ping_description_key);

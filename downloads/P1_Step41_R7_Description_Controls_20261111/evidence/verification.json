@@ -1,0 +1,12 @@
+{
+  "external_and_internal_hash_pass": true,
+  "input_source_byte_matches_R6": true,
+  "patch_check_and_result_pass": true,
+  "removing_five_added_lines_and_restoring_one_comment_restores_R6_bytes": true,
+  "original_four_calls_preserved_with_same_order": true,
+  "six_fixed_probe_roles_confirmed": true,
+  "new_key_values_no_placeholder_confirmed": true,
+  "real_SDK_compile_performed": false,
+  "real_UI_test_performed": false,
+  "unchanged_helper_tests_not_repeated": true
+}

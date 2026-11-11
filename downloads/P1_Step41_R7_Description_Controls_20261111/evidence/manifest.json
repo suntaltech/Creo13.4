@@ -1,0 +1,31 @@
+{
+  "revision": "R7_DESCRIPTION_CONTROLS",
+  "unchanged_log_revision": "UI_R6_MESSAGE_PROBE",
+  "date": "2026-11-11 Asia/Shanghai",
+  "input_archive_sha256": "e56b8ba08db2bfbef2b48881bab54e0f40b446fb1d8725c1c5886c63284df735",
+  "internal_manifest_entries_verified": 16,
+  "baseline_source_sha256": "e3a554a9562badc7430551b719159c8d3d63eb63d0a868341ed4e5f547b13f48",
+  "candidate_source_sha256": "8ecf88e80d366d7053a2c14475dff4393bd6b1fc1770f2f6c6d96fccb6e3faf9",
+  "added_calls": 2,
+  "total_probe_calls": 6,
+  "roles": [
+    "body_label",
+    "body_help",
+    "body_description",
+    "control_model_info_label",
+    "control_model_info_description",
+    "control_ping_description"
+  ],
+  "resources_unchanged_sha256": {
+    "text/chinese_cn/p1_fc.txt": "67ad64e62c6e9e57a04c487ae5e273aa09eac1bc493ca982d5f1775ea7bab4c5",
+    "text/chinese_cn/p1_readonly_model_info.txt": "360e9a10b5bae965a476a7cdc3c3fde0286680d1a4608d587d173e3747a09958",
+    "text/chinese_cn/p1_readonly_ping.txt": "c1b5728fb79294697a1e0e9672bd8baeef7b1c082d9534ba2180020a12875e21",
+    "text/usascii/p1_fc.txt": "67ad64e62c6e9e57a04c487ae5e273aa09eac1bc493ca982d5f1775ea7bab4c5",
+    "text/usascii/p1_readonly_model_info.txt": "360e9a10b5bae965a476a7cdc3c3fde0286680d1a4608d587d173e3747a09958",
+    "text/usascii/p1_readonly_ping.txt": "c1b5728fb79294697a1e0e9672bd8baeef7b1c082d9534ba2180020a12875e21"
+  },
+  "new_SDK_APIs": [],
+  "root_cause_established": false,
+  "new_helpers_or_business_changes": false,
+  "input_source_matches_delivered_R6": true
+}

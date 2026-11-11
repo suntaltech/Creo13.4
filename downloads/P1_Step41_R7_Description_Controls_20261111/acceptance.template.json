@@ -1,0 +1,19 @@
+{
+  "candidate": "R7_DESCRIPTION_CONTROLS",
+  "unchanged_probe_log_revision": "UI_R6_MESSAGE_PROBE",
+  "source_sha256": null,
+  "DLL_sha256": null,
+  "real_SDK_build_pass": null,
+  "all_six_resources_preserved": null,
+  "pid": null,
+  "load_token": null,
+  "six_roles_in_order": [],
+  "probe_results": [],
+  "six_registration_results": [],
+  "INIT_BEFORE_RETURN_code": null,
+  "UI_observed_names": null,
+  "model_description_truncated_while_command_visible": null,
+  "precise_resource_path_proven": false,
+  "body_callback_clicked": false,
+  "root_cause_established": false
+}
