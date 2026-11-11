@@ -1,0 +1,19 @@
+{
+  "candidate": "UI_R6_MESSAGE_PROBE",
+  "real_SDK_build_pass": null,
+  "source_sha256": null,
+  "DLL_sha256": null,
+  "R5_resources_preserved": null,
+  "PRO_USE_VAR_ARGS_enabled_before_headers": null,
+  "pid": null,
+  "load_token": null,
+  "six_registration_return_codes": [],
+  "probe_roles_in_order": [],
+  "probe_results": [],
+  "INIT_BEFORE_RETURN_code": null,
+  "UI_observed_names": null,
+  "resolved_path_exposed": false,
+  "body_callback_tested": false,
+  "cache_or_probe_interference_excluded": false,
+  "root_cause_established": false
+}

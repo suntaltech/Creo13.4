@@ -1,0 +1,15 @@
+{
+  "revision": "UI_R6_MESSAGE_PROBE",
+  "date": "2026-11-11 Asia/Shanghai",
+  "input_sha256": "c668c6acd6cb5cccba73e8d16e372673d5365aacbd49a034c882e2a55d359ed6",
+  "internal_manifest_entries_verified": 4,
+  "baseline_source_sha256": "7645a55221b1f806e5951290b84ee2eb0e2684a6baa1d9a24753e7b9230dba11",
+  "candidate_source_sha256": "e3a554a9562badc7430551b719159c8d3d63eb63d0a868341ed4e5f547b13f48",
+  "new_SDK_function": "ProMessageToBuffer",
+  "max_calls_per_initialization": 4,
+  "phase": "after all three original command registration/designation functions return",
+  "PRO_USE_VAR_ARGS_defined_before_headers": true,
+  "resources_modified": false,
+  "root_cause_established": false,
+  "resolved_path_or_language_exposed": false
+}

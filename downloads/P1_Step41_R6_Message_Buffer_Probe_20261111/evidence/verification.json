@@ -1,0 +1,9 @@
+{
+  "external_and_internal_checksums_pass": true,
+  "patch_apply_pass": true,
+  "inverse_restores_baseline_bytes": true,
+  "portable_UTF16_JSON_helper_compile_and_cases_pass": true,
+  "SDK_calls_stubbed": false,
+  "full_SDK_compile_performed": false,
+  "real_DLL_or_UI_test_performed": false
+}

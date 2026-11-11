@@ -1,0 +1,110 @@
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -0,0 +1,5 @@
++// Required by the local SDK's guarded variadic message prototypes.
++// Define before every SDK header; no build-script edit is required.
++#ifndef PRO_USE_VAR_ARGS
++#define PRO_USE_VAR_ARGS 1
++#endif
+@@ -10,0 +16 @@
++#include <ProMessage.h>
+@@ -624,0 +631,97 @@
++// MESSAGE_JSON_HELPER_BEGIN
++// Encode at most 80 UTF-16 code units as ASCII JSON; reject invalid pairs.
++// This helper has no SDK or Windows calls and never scans beyond units.
++bool quote_message_utf16(const wchar_t* input, size_t units,
++    char* output, size_t capacity) noexcept
++{
++    if (!output || capacity == 0) return false;
++    output[0] = '\0';
++    if (!input || units > 80 || capacity < units * 6 + 3) return false;
++    for (size_t i = 0; i < units; ++i) {
++        const unsigned long unit = static_cast<unsigned long>(input[i]);
++        if (unit > 0xffff) return false;
++        if (unit >= 0xd800 && unit <= 0xdbff) {
++            if (i + 1 >= units) return false;
++            const unsigned long low = static_cast<unsigned long>(input[++i]);
++            if (low < 0xdc00 || low > 0xdfff) return false;
++        } else if (unit >= 0xdc00 && unit <= 0xdfff) {
++            return false;
++        }
++    }
++    const char hex[] = "0123456789abcdef";
++    size_t used = 0;
++    output[used++] = '"';
++    for (size_t i = 0; i < units; ++i) {
++        const unsigned long unit = static_cast<unsigned long>(input[i]);
++        output[used++] = '\\'; output[used++] = 'u';
++        output[used++] = hex[(unit >> 12) & 0xf];
++        output[used++] = hex[(unit >> 8) & 0xf];
++        output[used++] = hex[(unit >> 4) & 0xf];
++        output[used++] = hex[unit & 0xf];
++    }
++    output[used++] = '"'; output[used] = '\0';
++    return true;
++}
++// MESSAGE_JSON_HELPER_END
++
++static_assert(PRO_LINE_SIZE == 81, "Verify supplied ProLine capacity contract");
++static_assert(sizeof(wchar_t) == 2, "The probe logs Windows UTF-16 code units");
++
++void probe_one_message(const char* role, ProFileName file_name,
++    ProCharLine message_key) noexcept
++{
++    PreserveLastError preserve;
++    char begin[192] = {};
++    std::snprintf(begin, sizeof(begin),
++        "{\"revision\":\"UI_R6_MESSAGE_PROBE\",\"role\":\"%s\",\"key\":\"%s\"}", role, message_key);
++    trace_event("MESSAGE_BUFFER_PROBE_BEGIN", begin);
++    ProLine translated = {};
++    // All four fixed resource messages have no conversion placeholders.
++    // The supplied official example uses no trailing variadic sentinel.
++    const ProError status = ProMessageToBuffer(translated, file_name, message_key);
++    const bool readable = status == PRO_TK_NO_ERROR || status == PRO_TK_MSG_TOO_LONG;
++    size_t units = 0;
++    bool terminated = false;
++    bool encoded = false;
++    char text_json[80 * 6 + 3] = {};
++    if (readable) {
++        while (units < PRO_LINE_SIZE && translated[units] != 0) ++units;
++        terminated = units < PRO_LINE_SIZE;
++        if (terminated) encoded = quote_message_utf16(translated, units,
++            text_json, sizeof(text_json));
++    }
++    char units_json[32] = {};
++    if (readable) std::snprintf(units_json, sizeof(units_json), "%u", static_cast<unsigned>(units));
++    // Fixed role/key literals are ASCII without JSON metacharacters.
++    char facts[1024] = {};
++    const int count = std::snprintf(facts, sizeof(facts),
++        "{\"revision\":\"UI_R6_MESSAGE_PROBE\",\"phase\":\"after_all_designations\","
++        "\"role\":\"%s\",\"key\":\"%s\",\"pro_error\":%d,"
++        "\"buffer_observed\":%s,\"terminated\":%s,\"wide_units\":%s,"
++        "\"text_json_valid\":%s,\"sdk_reported_truncation\":%s,\"text\":%s,"
++        "\"resolved_path_exposed\":false}",
++        role, message_key, static_cast<int>(status), readable ? "true" : "false",
++        readable ? (terminated ? "true" : "false") : "null",
++        readable ? units_json : "null", encoded ? "true" : "false",
++        status == PRO_TK_MSG_TOO_LONG ? "true" : "false", encoded ? text_json : "null");
++    if (count <= 0 || static_cast<size_t>(count) >= sizeof(facts)) {
++        trace_failure("message_probe_format", ERROR_INSUFFICIENT_BUFFER);
++        return;
++    }
++    trace_event("MESSAGE_BUFFER_PROBE_RETURN", facts);
++}
++
++void probe_designation_messages() noexcept
++{
++    ProFileName body_file = L"p1_fc.txt";
++    ProFileName control_file = L"p1_readonly_model_info.txt";
++    ProCharLine label_key = "P1_BODY_FACE_COUNT_LABEL";
++    ProCharLine help_key = "P1_BODY_FACE_COUNT_HELP";
++    ProCharLine description_key = "P1_BODY_FACE_COUNT_DESC";
++    ProCharLine control_key = "P1_READONLY_MODEL_INFO_LABEL";
++    probe_one_message("body_label", body_file, label_key);
++    probe_one_message("body_help", body_file, help_key);
++    probe_one_message("body_description", body_file, description_key);
++    probe_one_message("control_model_info_label", control_file, control_key);
++}
++
+@@ -643,0 +747 @@
++    probe_designation_messages();

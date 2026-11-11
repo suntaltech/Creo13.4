@@ -1,0 +1,3 @@
+{"schema": 1, "event": "API_CONTRACT_VERIFIED", "internal_manifest_entries": 4}
+{"schema": 1, "event": "FIXED_FOUR_CALL_PROBE_IMPLEMENTED", "phase": "after_all_original_registrations"}
+{"schema": 1, "event": "PORTABLE_TEXT_JSON_CHECKS_PASS", "real_SDK_build": false, "real_UI_test": false}
