@@ -1,0 +1,69 @@
+{
+  "scope": "manifest comparisons against previously uploaded R10 copies, not verification of current Windows paths",
+  "manifest_records": 27,
+  "matched_prior_uploaded_copies": [
+    {
+      "name": "p1_step41_r10_late_find_snapshot.dat",
+      "status": "matches_prior_uploaded_R10_copy",
+      "sha256": "09871049e292a822e8bedb6b46e4ffba81fd3f5122b936624ca9fc022f5cd605"
+    },
+    {
+      "name": "entry.cpp",
+      "status": "matches_prior_uploaded_R10_copy",
+      "sha256": "6b7214d99cbe8d920c749bbe7417dc14363904833f6c72a4cf2ca7d256c53c1a"
+    },
+    {
+      "name": "p1_fc.txt",
+      "status": "matches_prior_uploaded_R10_copy",
+      "sha256": "67ad64e62c6e9e57a04c487ae5e273aa09eac1bc493ca982d5f1775ea7bab4c5"
+    },
+    {
+      "name": "p1_readonly_model_info.txt",
+      "status": "matches_prior_uploaded_R10_copy",
+      "sha256": "360e9a10b5bae965a476a7cdc3c3fde0286680d1a4608d587d173e3747a09958"
+    },
+    {
+      "name": "p1_readonly_ping.txt",
+      "status": "matches_prior_uploaded_R10_copy",
+      "sha256": "c1b5728fb79294697a1e0e9672bd8baeef7b1c082d9534ba2180020a12875e21"
+    },
+    {
+      "name": "runtime.jsonl",
+      "status": "matches_prior_uploaded_R10_copy",
+      "sha256": "195841dede45a9800ba25dbe5d688fae43dd6309d5270f8b0a73db69b1869ba8"
+    },
+    {
+      "name": "aux-apps-running.png",
+      "status": "matches_prior_uploaded_R10_copy",
+      "sha256": "ad9371ac1d995bb51902ff8f5c233d2bb6ca5557b75e4b78510fb92fa37a56aa"
+    },
+    {
+      "name": "ui-toolkit-list-fresh.png",
+      "status": "matches_prior_uploaded_R10_copy",
+      "sha256": "2cc3e5cea30b0eb145b1c184dea071e20129268ea8bebd213ba9f9d38de8f55b"
+    },
+    {
+      "name": "ui-toolkit-list-after-late.png",
+      "status": "matches_prior_uploaded_R10_copy",
+      "sha256": "1c70ef2ae313cc8cf2b6680e65ac7f0c038ce6404db06199fea21ff6ad8e4aaf"
+    },
+    {
+      "name": "runtime-review.json",
+      "status": "matches_prior_uploaded_R10_copy",
+      "sha256": "535fe994118e35f3c13e85f7c8fd379a49071dec417ccf3f61117b40a1bf1637"
+    },
+    {
+      "name": "R10_RUNTIME_FINDINGS.md",
+      "status": "matches_prior_uploaded_R10_copy",
+      "sha256": "0d3bf96f4d477d8eee2d4fce3d32c1e2cd9682d965c21a4eca605366d3976b7f"
+    },
+    {
+      "name": "audit.json",
+      "status": "matches_prior_uploaded_R10_copy",
+      "sha256": "c08bb68bef9b4c129dee68c41bf3e2d9e225da0b2ebfadd8bb67b1c406aa54a5"
+    }
+  ],
+  "R11_raw_or_derived_evidence_supplied_in_current_turn": false,
+  "PTC_contacted": false,
+  "new_capture_or_deployment_performed": false
+}

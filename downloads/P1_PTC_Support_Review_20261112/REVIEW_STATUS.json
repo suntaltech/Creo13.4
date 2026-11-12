@@ -1,0 +1,11 @@
+{
+  "input_record_count": 27,
+  "source_text_count_26_incorrect": true,
+  "independently_matched_prior_R10_copies": 12,
+  "R11_payloads_received": false,
+  "cross_session_global_exclusion_supported": false,
+  "PTC_request_draft_prepared": true,
+  "actual_reproduction_archive_built": false,
+  "PTC_sent": false,
+  "runtime_or_plugin_changes": false
+}
