@@ -1,0 +1,132 @@
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -166,0 +167,30 @@
++// R10_INITIAL_BASELINES_BEGIN
++struct LateFindBaseline {
++    const char* command;
++    char sdk_action_name[32];
++    uiCmdCmdId action_add_id;
++    uiCmdCmdId find_id;
++    ProError find_status;
++    bool valid_pair;
++    volatile LONG ready; // 0 empty, 1 writing, 2 immutable/published.
++};
++LateFindBaseline late_find_baselines[3] = {
++    {"p1_readonly_body_face_count", "p1_readonly_fc", nullptr, nullptr, PRO_TK_NO_ERROR, false, 0},
++    {"p1_readonly_model_info", "p1_readonly_model_info", nullptr, nullptr, PRO_TK_NO_ERROR, false, 0},
++    {"p1_readonly_ping", "p1_readonly_ping", nullptr, nullptr, PRO_TK_NO_ERROR, false, 0}
++};
++volatile LONG late_find_state = 0; // 0 unclaimed, 1 started, 2 completed; never reset in this DLL load.
++
++void capture_initial_find(LateFindBaseline& baseline, uiCmdCmdId action_add_id,
++    uiCmdCmdId found, ProError status) noexcept
++{
++    // Publish the first initialization observation once; never compare freed pointees.
++    if (InterlockedCompareExchange(&baseline.ready, 1, 0) != 0) return;
++    baseline.find_status = status;
++    baseline.valid_pair = status == PRO_TK_NO_ERROR && found != nullptr && action_add_id != nullptr;
++    baseline.action_add_id = baseline.valid_pair ? action_add_id : nullptr;
++    baseline.find_id = baseline.valid_pair ? found : nullptr;
++    InterlockedExchange(&baseline.ready, 2);
++}
++// R10_INITIAL_BASELINES_END
++
+@@ -195 +225 @@
+-    uiCmdCmdId action_add_id, ProError designate_status) noexcept
++    uiCmdCmdId action_add_id, ProError designate_status, LateFindBaseline& initial) noexcept
+@@ -209,0 +240 @@
++    capture_initial_find(initial, action_add_id, success ? found : nullptr, status);
+@@ -217,0 +249,82 @@
++}
++
++// LATE_FIND_FORMAT_HELPER_BEGIN
++bool quote_late_pointer(const void* pointer, char* output, size_t capacity) noexcept
++{
++    const int n = pointer == nullptr
++        ? std::snprintf(output, capacity, "null")
++        : std::snprintf(output, capacity, "\"0x%" PRIxPTR "\"",
++            reinterpret_cast<std::uintptr_t>(pointer));
++    return n > 0 && static_cast<size_t>(n) < capacity;
++}
++
++bool format_late_find(char* facts, size_t capacity, const char* command,
++    const char* sdk_name, unsigned command_ordinal, unsigned long long tick,
++    bool initialized, bool valid_pair, int baseline_status,
++    const void* baseline_add, const void* baseline_find,
++    int late_status, bool late_success, const void* late_found) noexcept
++{
++    char add_json[2 * sizeof(std::uintptr_t) + 5] = {};
++    char initial_json[2 * sizeof(std::uintptr_t) + 5] = {};
++    char late_json[2 * sizeof(std::uintptr_t) + 5] = {};
++    if (!quote_late_pointer(initialized && valid_pair ? baseline_add : nullptr, add_json, sizeof(add_json)) ||
++        !quote_late_pointer(initialized && valid_pair ? baseline_find : nullptr, initial_json, sizeof(initial_json)) ||
++        !quote_late_pointer(late_success ? late_found : nullptr, late_json, sizeof(late_json))) return false;
++    char baseline_code[32] = {};
++    if (initialized) std::snprintf(baseline_code, sizeof(baseline_code), "%d", baseline_status);
++    const bool comparable = initialized && valid_pair && late_success;
++    const int n = std::snprintf(facts, capacity,
++        "{\"revision\":\"UI_R10_LATE_FIND\",\"phase\":\"on_demand_ping_action\","
++        "\"probe_ordinal\":1,\"command_ordinal\":%u,\"probe_tick\":%llu,"
++        "\"command\":\"%s\",\"sdk_action_name\":\"%s\",\"find_pro_error\":%d,"
++        "\"baseline_initialized\":%s,\"baseline_valid_pair\":%s,\"baseline_find_pro_error\":%s,"
++        "\"baseline_action_add_id\":%s,\"baseline_find_id\":%s,\"late_found_id\":%s,"
++        "\"late_found_id_null\":%s,\"id_matches_baseline_action_add\":%s,"
++        "\"id_matches_baseline_find\":%s,\"UI_membership_read_back\":false}",
++        command_ordinal, tick, command, sdk_name, late_status,
++        initialized ? "true" : "false", initialized && valid_pair ? "true" : "false",
++        initialized ? baseline_code : "null", add_json, initial_json, late_json,
++        late_success ? (late_found == nullptr ? "true" : "false") : "null",
++        comparable ? (late_found != nullptr && late_found == baseline_add ? "true" : "false") : "null",
++        comparable ? (late_found != nullptr && late_found == baseline_find ? "true" : "false") : "null");
++    return n > 0 && static_cast<size_t>(n) < capacity;
++}
++// LATE_FIND_FORMAT_HELPER_END
++
++void run_late_find_snapshot() noexcept
++{
++    PreserveLastError preserve;
++    const LONG previous = InterlockedCompareExchange(&late_find_state, 1, 0);
++    if (previous != 0) {
++        trace_event("LATE_ID_FIND_PROBE_ALREADY_DONE", previous == 2
++            ? "{\"revision\":\"UI_R10_LATE_FIND\",\"phase\":\"on_demand_ping_action\",\"probe_ordinal\":1,\"snapshot_complete\":true}"
++            : "{\"revision\":\"UI_R10_LATE_FIND\",\"phase\":\"on_demand_ping_action\",\"probe_ordinal\":1,\"snapshot_complete\":false}");
++        return;
++    }
++    for (size_t i = 0; i < 3; ++i) {
++        LateFindBaseline& initial = late_find_baselines[i];
++        const ULONGLONG tick = GetTickCount64();
++        char begin[384] = {};
++        const int n = std::snprintf(begin, sizeof(begin),
++            "{\"revision\":\"UI_R10_LATE_FIND\",\"phase\":\"on_demand_ping_action\","
++            "\"probe_ordinal\":1,\"command_ordinal\":%u,\"probe_tick\":%llu,"
++            "\"command\":\"%s\",\"sdk_action_name\":\"%s\"}",
++            static_cast<unsigned>(i + 1), static_cast<unsigned long long>(tick),
++            initial.command, initial.sdk_action_name);
++        if (n > 0 && static_cast<size_t>(n) < sizeof(begin)) trace_event("LATE_ID_FIND_PROBE_BEGIN", begin);
++        else trace_failure("late_find_begin_format", ERROR_INSUFFICIENT_BUFFER);
++        uiCmdCmdId found = nullptr;
++        const ProError status = ProCmdCmdIdFind(initial.sdk_action_name, &found);
++        const bool success = status == PRO_TK_NO_ERROR;
++        const bool initialized = InterlockedCompareExchange(&initial.ready, 2, 2) == 2;
++        const bool valid_pair = initialized && initial.valid_pair;
++        char facts[1536] = {};
++        if (format_late_find(facts, sizeof(facts), initial.command, initial.sdk_action_name,
++            static_cast<unsigned>(i + 1), static_cast<unsigned long long>(tick),
++            initialized, valid_pair, initialized ? static_cast<int>(initial.find_status) : 0,
++            valid_pair ? initial.action_add_id : nullptr, valid_pair ? initial.find_id : nullptr,
++            static_cast<int>(status), success, success ? found : nullptr)) {
++            trace_event("LATE_ID_FIND_PROBE_RETURN", facts);
++        } else trace_failure("late_find_return_format", ERROR_INSUFFICIENT_BUFFER);
++    }
++    InterlockedExchange(&late_find_state, 2);
+@@ -228,0 +342 @@
++    run_late_find_snapshot();
+@@ -383 +497 @@
+-    trace_command_lookup("p1_readonly_ping", name, command_id, designate_status);
++    trace_command_lookup("p1_readonly_ping", name, command_id, designate_status, late_find_baselines[2]);
+@@ -635 +749 @@
+-    trace_command_lookup("p1_readonly_model_info", name, command_id, designate_status);
++    trace_command_lookup("p1_readonly_model_info", name, command_id, designate_status, late_find_baselines[1]);
+@@ -794 +908 @@
+-    trace_command_lookup("p1_readonly_body_face_count", name, command_id, designate_status);
++    trace_command_lookup("p1_readonly_body_face_count", name, command_id, designate_status, late_find_baselines[0]);

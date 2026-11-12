@@ -1,0 +1,27 @@
+{
+  "candidate": "R10_LATE_FIND_SNAPSHOT",
+  "date": "2026-11-12 Asia/Shanghai",
+  "baseline_source_sha256": "19329fb972f3dbb9f1bf8a44790b5bcb9f68ff9215384d9465d607e4eb8eb839",
+  "candidate_source_sha256": "6b7214d99cbe8d920c749bbe7417dc14363904833f6c72a4cf2ca7d256c53c1a",
+  "inputs": [
+    {
+      "name": "P1_Step41_R10_晚期Find快照探针_任务单_20261112.md",
+      "sha256": "be635bad254206634aa3b13677e1f50fecfd41c7d4cd8721fd619fb771837802"
+    },
+    {
+      "name": "offline-contract-review.json",
+      "sha256": "e6fc29063ae829b2ac8022be8680395bb4a89587a716b1393e3045a2e71d6775"
+    }
+  ],
+  "new_SDK_API_names": [],
+  "late_Find_max_calls_per_DLL_load": 3,
+  "once_gate": "single InterlockedCompareExchange claim; no reset",
+  "initial_baselines": "immutable first initialization Find per command per DLL load",
+  "original_READONLY_PING_preserved": true,
+  "access_and_message_probes_unchanged": true,
+  "resources_or_configuration_modified": false,
+  "Find_in_terminate": false,
+  "explicit_action_Find_prohibition_in_supplied_local_contract": false,
+  "direct_official_action_callback_example_supplied": false,
+  "root_cause_established": false
+}

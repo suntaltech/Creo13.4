@@ -1,0 +1,21 @@
+{
+  "candidate": "R10_LATE_FIND_SNAPSHOT",
+  "source_sha256": null,
+  "DLL_sha256": null,
+  "real_SDK_build_pass": null,
+  "resources_and_config_preserved": null,
+  "load_method": null,
+  "pid": null,
+  "load_token": null,
+  "initial_Find_results": [],
+  "READONLY_PING_observed": null,
+  "late_Find_results": [],
+  "late_probe_ordinals": [],
+  "late_Find_call_count": null,
+  "ALREADY_DONE_events_if_any": [],
+  "all_three_late_returns_present": null,
+  "UI_observed_names": null,
+  "body_callback_clicked": false,
+  "UI_membership_read_back": false,
+  "root_cause_established": false
+}

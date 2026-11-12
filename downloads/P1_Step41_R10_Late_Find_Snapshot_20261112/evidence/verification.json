@@ -1,0 +1,11 @@
+{
+  "patch_apply_and_result_pass": true,
+  "inverse_byte_restore_to_R9_pass": true,
+  "portable_exact_formatter_compile_and_six_JSON_cases_pass": true,
+  "small_buffer_rejected": true,
+  "no_extra_Designate_call_static_check_pass": true,
+  "one_shot_claim_and_three_call_bound_static_check_pass": true,
+  "real_Windows_one_shot_runtime_test_performed": false,
+  "SDK_stubs_used": false,
+  "real_SDK_compile_or_UI_test_performed": false
+}
