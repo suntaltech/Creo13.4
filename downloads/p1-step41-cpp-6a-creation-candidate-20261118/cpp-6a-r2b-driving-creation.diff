@@ -1,0 +1,1009 @@
+diff --git a/src/entry.cpp b/src/entry.cpp
+index ae924195d36fb14f5b7dcb0ae92a64b1a4db1381..a9b9cbe36dc9469db886ce6ed6cc86154e39b317 100644
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -24,10 +24,16 @@
+ #include <cmath>
+ #include <cstring>
+ #include <locale.h>
++#include <ProElement.h>
++#include <ProElemId.h>
++#include <ProReference.h>
+ #include <ProSelection.h>
+ #include <ProModelitem.h>
+ #include <ProMdlUnits.h>
+ #include <ProFeature.h>
++#include <ProFeatType.h>
++#include <ProSmtDrvSurf.h>
++#include <ProItemerr.h>
+ #include <ProSurface.h>
+ #include <ProSurfacedata.h>
+ // CPP_6A_HEADERS_END
+@@ -1047,7 +1053,7 @@ int user_initialize(int argc, char *argv[], char *version, char *build,
+     probe_designation_messages();
+     flush_access_observations("initialization_end");
+     // CPP_6A_REGISTER_BEGIN: after the unchanged R10 initialization steps.
+-    register_smt6a_unit_probe();
++    register_smt6a_conversion();
+     // CPP_6A_REGISTER_END
+     trace_event("INIT_BEFORE_RETURN", "{\"return_code\":0}");
+     // Trace success/failure never changes this return value.
+diff --git a/src/smt_driving_command.inl b/src/smt_driving_command.inl
+index 622f962bf7560209e297ff1cd677e2fa672543d8..21590510196fbe4e58f0172fffe0c222d3fa1421 100644
+--- a/src/smt_driving_command.inl
++++ b/src/smt_driving_command.inl
+@@ -1,7 +1,7 @@
+-// Synchronous, read-only unit feedback probe for the R2-derived candidate.
++// Synchronous driving-surface conversion in the creation candidate.
+ alignas(8) volatile LONG64 smt6a_sequence = 0;
+ volatile LONG smt6a_busy = 0;
+-AccessTrace smt6a_access_trace = {"p1_smt_unit_probe", "p1_smt_unit_probe", 0, {}, {}};
++AccessTrace smt6a_access_trace = {"p1_smt_drv_conv", "p1_smt_drv_conv", 0, {}, {}};
+ 
+ struct Smt6aContext {
+     ULONGLONG id = static_cast<ULONGLONG>(InterlockedIncrement64(&smt6a_sequence));
+@@ -13,6 +13,13 @@ struct Smt6aContext {
+     char model_json[model_name_json_capacity] = "null";
+     char unit_from[256] = "null", unit_to[256] = "null";
+     char scale[64] = "null", offset[64] = "null";
++    bool tree_ready = false, create_called = false, create_valid = false;
++    bool regen_called = false, regen_valid = false, cleanup_failed = false;
++    ProError create_status = PRO_TK_NO_ERROR, regen_status = PRO_TK_NO_ERROR;
++    int feature_id = -1, feature_type = 0;
++    bool feature_type_valid = false;
++    char feature_json[256] = "null";
++    const char* sheetmetal = "null";
+     const char* result = "INTERNAL_ERROR";
+     const char* stage = "enter";
+ };
+@@ -29,12 +36,52 @@ bool smt6a_call(Smt6aContext& c, const char* api, ProError code) noexcept
+     char facts[384] = {};
+     const int n = std::snprintf(facts, sizeof(facts),
+         "{\"operation_id\":%llu,\"api\":\"%s\",\"called\":true,"
+-        "\"pro_error\":%d,\"element_id\":-1,\"create_called\":false}",
+-        static_cast<unsigned long long>(c.id), api, static_cast<int>(code));
++        "\"pro_error\":%d,\"element_id\":-1,\"create_called\":%s}",
++        static_cast<unsigned long long>(c.id), api, static_cast<int>(code),
++        c.create_called ? "true" : "false");
+     smt6a_checked_event("SMT_CONV_API_RETURN", facts, n, sizeof(facts));
+     return code == PRO_TK_NO_ERROR;
+ }
+ 
++void smt6a_api_gate(Smt6aContext& c, const char* event, const char* api,
++    int element_id, const ProError* returned, bool exception) noexcept
++{
++    PreserveLastError preserve;
++    char code[24] = "null";
++    if (returned) std::snprintf(code, sizeof(code), "%d", static_cast<int>(*returned));
++    char facts[384] = {};
++    const int n = std::snprintf(facts, sizeof(facts),
++        "{\"operation_id\":%llu,\"stage\":\"%s\",\"api\":\"%s\","
++        "\"element_id\":%d,\"pro_error\":%s,\"exception\":%s}",
++        static_cast<unsigned long long>(c.id), c.stage, api, element_id, code,
++        exception ? "true" : "false");
++    smt6a_checked_event(event, facts, n, sizeof(facts));
++}
++
++template<class Call>
++ProError smt6a_sdk(Smt6aContext& c, const char* api, Call call, int element_id = -1)
++{
++    smt6a_api_gate(c, "SMT_CONV_API_START", api, element_id, nullptr, false);
++    try {
++        const ProError status = call();
++        smt6a_api_gate(c, "SMT_CONV_API_DONE", api, element_id, &status, false);
++        return status;
++    } catch (...) {
++        smt6a_api_gate(c, "SMT_CONV_API_DONE", api, element_id, nullptr, true);
++        throw;
++    }
++}
++
++template<class Call>
++void smt6a_cleanup(Smt6aContext& c, const char* api, Call call) noexcept
++{
++    try {
++        if (smt6a_sdk(c, api, call) != PRO_TK_NO_ERROR) c.cleanup_failed = true;
++    } catch (...) {
++        c.cleanup_failed = true;
++    }
++}
++
+ template<size_t N>
+ bool smt6a_quote_wide(const wchar_t (&name)[N], char* json, size_t capacity) noexcept
+ {
+@@ -50,7 +97,7 @@ bool smt6a_quote_wide(const wchar_t (&name)[N], char* json, size_t capacity) noe
+ 
+ ProError smt6a_message(Smt6aContext& c, const char* name)
+ {
+-    ProFileName file = L"p1_smt_unit_probe.txt";
++    ProFileName file = L"p1_smt_conv.txt";
+     ProCharLine key = {};
+     if (std::strlen(name) >= sizeof(key)) { c.feedback_failed = true; return PRO_TK_BAD_INPUTS; }
+     std::memcpy(key, name, std::strlen(name) + 1);
+@@ -72,7 +119,12 @@ bool smt6a_number(double value, char (&buffer)[64]) noexcept
+ void smt6a_finish(Smt6aContext& c) noexcept
+ {
+     char mm[64] = "null", model[64] = "null", face[32] = "null", type[32] = "null";
+-    char area[64] = "null";
++    char area[64] = "null", create[24] = "null", regen[24] = "null";
++    char feature[24] = "null", feature_type[24] = "null";
++    if (c.create_valid) std::snprintf(create, sizeof(create), "%d", static_cast<int>(c.create_status));
++    if (c.regen_valid) std::snprintf(regen, sizeof(regen), "%d", static_cast<int>(c.regen_status));
++    if (c.feature_id >= 0) std::snprintf(feature, sizeof(feature), "%d", c.feature_id);
++    if (c.feature_type_valid) std::snprintf(feature_type, sizeof(feature_type), "%d", c.feature_type);
+     if (c.thickness_valid) {
+         if (!smt6a_number(c.thickness_mm, mm)) std::memcpy(mm, "null", 5);
+         if (!smt6a_number(c.thickness_model, model)) std::memcpy(model, "null", 5);
+@@ -82,14 +134,20 @@ void smt6a_finish(Smt6aContext& c) noexcept
+     if (c.face_valid && !smt6a_number(c.area, area)) std::memcpy(area, "null", 5);
+     char facts[model_facts_capacity] = {};
+     const int n = std::snprintf(facts, sizeof(facts),
+-        "{\"operation_id\":%llu,\"command\":\"p1_smt_unit_probe\",\"mode\":\"unit_probe\","
++        "{\"operation_id\":%llu,\"command\":\"p1_smt_drv_conv\",\"mode\":\"driving\","
+         "\"result\":\"%s\",\"stage\":\"%s\",\"model_name\":%s,\"face_id\":%s,"
+         "\"face_type\":%s,\"face_area_model_units_squared\":%s,\"thickness_mm\":%s,"
+         "\"thickness_model_units\":%s,\"unit_from\":%s,\"unit_to\":%s,\"scale\":%s,\"offset\":%s,"
+-        "\"create_called\":false,\"create_status\":null,\"regen_called\":false,\"regen_status\":null,"
+-        "\"model_may_be_modified\":false,\"save_called\":false,\"feedback_failed\":%s,\"elapsed_ms\":%llu}",
++        "\"tree_ready\":%s,\"create_called\":%s,\"create_status\":%s,"
++        "\"regen_called\":%s,\"regen_status\":%s,\"is_sheetmetal\":%s,"
++        "\"feature_id\":%s,\"feature_type\":%s,\"feature_name\":%s,"
++        "\"model_may_be_modified\":%s,\"save_called\":false,\"cleanup_failed\":%s,"
++        "\"feedback_failed\":%s,\"elapsed_ms\":%llu}",
+         static_cast<unsigned long long>(c.id), c.result, c.stage, c.model_json,
+         face, type, area, mm, model, c.unit_from, c.unit_to, c.scale, c.offset,
++        c.tree_ready ? "true" : "false", c.create_called ? "true" : "false", create,
++        c.regen_called ? "true" : "false", regen, c.sheetmetal, feature, feature_type, c.feature_json,
++        c.create_called ? "true" : "false", c.cleanup_failed ? "true" : "false",
+         c.feedback_failed ? "true" : "false",
+         static_cast<unsigned long long>(GetTickCount64() - c.started));
+     smt6a_checked_event("SMT_CONV_RETURN", facts, n, sizeof(facts));
+@@ -128,7 +186,7 @@ bool smt6a_face_check(Smt6aContext& c, ProMdl model, ProSolidBody& body,
+ {
+     ProModelitem item = {};
+     if (!smt6a_call(c, "ProSelectionModelitemGet", ProSelectionModelitemGet(selection, &item))) {
+-        smt6a_reject_command(c, "SELECTED_FACE_INVALID", "P1_SMT_UNIT_BAD_FACE"); return false;
++        smt6a_reject_command(c, "SELECTED_FACE_INVALID", "P1_SMT_CONV_BAD_FACE"); return false;
+     }
+     char item_facts[256] = {};
+     const int item_n = std::snprintf(item_facts, sizeof(item_facts),
+@@ -137,29 +195,29 @@ bool smt6a_face_check(Smt6aContext& c, ProMdl model, ProSolidBody& body,
+         item.owner == model ? "true" : "false");
+     smt6a_checked_event("SMT_CONV_SELECTED_ITEM", item_facts, item_n, sizeof(item_facts));
+     if (item.type != PRO_SURFACE || item.owner != model) {
+-        smt6a_reject_command(c, "SELECTED_FACE_INVALID", "P1_SMT_UNIT_BAD_FACE"); return false;
++        smt6a_reject_command(c, "SELECTED_FACE_INVALID", "P1_SMT_CONV_BAD_FACE"); return false;
+     }
+     c.face_id = item.id; c.face_id_valid = true;
+     Smt6aFaceMatch match(&c, item.id);
+     const ProError visit = ProSolidBodySurfaceVisit(&body, &smt6a_visit_member, &match);
+     if (!smt6a_call(c, "ProSolidBodySurfaceVisit(membership)", visit) ||
+         match.failure != PRO_TK_NO_ERROR || match.matches != 1) {
+-        smt6a_reject_command(c, "FACE_BODY_MISMATCH", "P1_SMT_UNIT_BODY_MISMATCH"); return false;
++        smt6a_reject_command(c, "FACE_BODY_MISMATCH", "P1_SMT_CONV_BODY_MISMATCH"); return false;
+     }
+     ProSurface surface = nullptr;
+     ProSrftype type = PRO_SRF_NONE;
+     double area = 0.0;
+     if (!smt6a_call(c, "ProSurfaceInit", ProSurfaceInit(model, item.id, &surface)) ||
+         !smt6a_call(c, "ProSurfaceTypeGet", ProSurfaceTypeGet(surface, &type))) {
+-        smt6a_reject_command(c, "SELECTED_FACE_INVALID", "P1_SMT_UNIT_BAD_FACE"); return false;
++        smt6a_reject_command(c, "SELECTED_FACE_INVALID", "P1_SMT_CONV_BAD_FACE"); return false;
+     }
+     c.face_type = static_cast<int>(type); c.face_type_valid = true;
+     if (type != PRO_SRF_PLANE) {
+-        smt6a_reject_command(c, "SELECTED_FACE_NOT_PLANE", "P1_SMT_UNIT_NOT_PLANE"); return false;
++        smt6a_reject_command(c, "SELECTED_FACE_NOT_PLANE", "P1_SMT_CONV_NOT_PLANE"); return false;
+     }
+     if (!smt6a_call(c, "ProSurfaceAreaEval", ProSurfaceAreaEval(surface, &area)) ||
+         !std::isfinite(area) || area <= 0.0) {
+-        smt6a_reject_command(c, "SURFACE_QUERY_FAILED", "P1_SMT_UNIT_BAD_FACE"); return false;
++        smt6a_reject_command(c, "SURFACE_QUERY_FAILED", "P1_SMT_CONV_BAD_FACE"); return false;
+     }
+     c.face_valid = true; c.face_id = item.id; c.face_type = static_cast<int>(type); c.area = area;
+     return true;
+@@ -204,85 +262,273 @@ struct Smt6aSelectedFace {
+     Smt6aContext& context;
+     ProSelection copy = nullptr;
+     explicit Smt6aSelectedFace(Smt6aContext& c) noexcept : context(c) {}
+-    ~Smt6aSelectedFace() noexcept {
+-        if (copy) smt6a_call(context, "ProSelectionFree(selected_copy)", ProSelectionFree(&copy));
++    Smt6aSelectedFace(const Smt6aSelectedFace&) = delete;
++    Smt6aSelectedFace& operator=(const Smt6aSelectedFace&) = delete;
++    ~Smt6aSelectedFace() noexcept { release(); }
++    void release() noexcept
++    {
++        if (!copy) return;
++        ProSelection owned = copy;
++        copy = nullptr;
++        smt6a_cleanup(context, "ProSelectionFree(selected_copy)", [&] {
++            return ProSelectionFree(&owned);
++        });
+     }
+ };
+ 
++#include "smt_driving_tree.inl"
++
++void smt6a_error_list(Smt6aContext& c, const ProErrorlist& errors) noexcept
++{
++    char facts[384] = {};
++    int n = std::snprintf(facts, sizeof(facts),
++        "{\"operation_id\":%llu,\"error_number\":%d,\"list_present\":%s}",
++        static_cast<unsigned long long>(c.id), errors.error_number, errors.error_list ? "true" : "false");
++    smt6a_checked_event("SMT_CONV_ERROR_LIST", facts, n, sizeof(facts));
++    if (!errors.error_list) return;
++    for (int i = 0; i < errors.error_number; ++i) {
++        const ProItemerror& item = errors.error_list[i];
++        n = std::snprintf(facts, sizeof(facts),
++            "{\"operation_id\":%llu,\"index\":%d,\"element_id\":%d,\"item_type\":%d,\"pro_error\":%d}",
++            static_cast<unsigned long long>(c.id), i, item.err_item_id,
++            static_cast<int>(item.err_item_type), static_cast<int>(item.error));
++        smt6a_checked_event("SMT_CONV_ELEMENT_ERROR", facts, n, sizeof(facts));
++    }
++}
++
++bool smt6a_create(Smt6aContext& c, ProMdl model, ProSolidBody& body,
++    ProSelection face, ProFeature& feature)
++{
++    Smt6aPreparedTree tree(c);
++    c.stage = "wrap";
++    if (!smt6a_wrap_selections(tree, model, body)) {
++        smt6a_reject_command(c, "WRAP_SOLID_FAILED", "P1_SMT_CONV_WRAP_FAILED");
++        return false;
++    }
++    c.stage = "tree";
++    if (!smt6a_prepare_tree(tree, face, c.thickness_model)) {
++        smt6a_reject_command(c, "TREE_CREATE_FAILED", "P1_SMT_CONV_TREE_FAILED");
++        return false;
++    }
++    c.tree_ready = true;
++    char facts[160] = {};
++    const int n = std::snprintf(facts, sizeof(facts),
++        "{\"operation_id\":%llu,\"root_ready\":true,\"child_count\":6,\"create_called\":false}",
++        static_cast<unsigned long long>(c.id));
++    smt6a_checked_event("SMT_CONV_TREE_READY", facts, n, sizeof(facts));
++
++    c.stage = "create";
++    ProErrorlist errors = {};
++    c.create_status = smt6a_sdk(c, "ProFeatureWithoptionsCreate", [&] {
++        c.create_called = true;
++        return ProFeatureWithoptionsCreate(tree.model, tree.root, tree.options,
++            PRO_REGEN_NO_FLAGS, &feature, &errors);
++    });
++    c.create_valid = true;
++    smt6a_error_list(c, errors);
++    if (c.create_status == PRO_TK_CANT_MODIFY) {
++        smt6a_reject_command(c, "MODEL_READ_ONLY", "P1_SMT_CONV_READ_ONLY");
++        return false;
++    }
++    if (c.create_status != PRO_TK_NO_ERROR) {
++        smt6a_reject_command(c, "CREATE_FEATURE_FAILED", "P1_SMT_CONV_CREATE_FAILED");
++        return false;
++    }
++    return true;
++}
++
++bool smt6a_readback(Smt6aContext& c, ProSolid solid, const ProSolidBody& original,
++    ProFeature& feature, ProName& name)
++{
++    c.stage = "feature_identity";
++    if (feature.owner != original.owner || feature.id < 0) {
++        smt6a_reject_command(c, "FEATURE_READBACK_FAILED", "P1_SMT_CONV_POST_FAILED");
++        return false;
++    }
++    c.feature_id = feature.id;
++    c.stage = "regenerate";
++    c.regen_status = smt6a_sdk(c, "ProSolidRegenerate", [&] {
++        c.regen_called = true;
++        return ProSolidRegenerate(solid, PRO_REGEN_NO_FLAGS);
++    });
++    c.regen_valid = true;
++    if (c.regen_status != PRO_TK_NO_ERROR) {
++        smt6a_reject_command(c, "REGEN_FAILED", "P1_SMT_CONV_POST_FAILED");
++        return false;
++    }
++    c.stage = "postcheck";
++    ProSolidBody body = {};
++    ProBoolean sheetmetal = PRO_B_FALSE;
++    if (smt6a_sdk(c, "ProSolidDefaultBodyGet(post)", [&] {
++            return ProSolidDefaultBodyGet(solid, &body);
++        }) != PRO_TK_NO_ERROR) {
++        smt6a_reject_command(c, "STATUS_READBACK_FAILED", "P1_SMT_CONV_POST_FAILED");
++        return false;
++    }
++    if (body.id != original.id || body.owner != original.owner) {
++        smt6a_reject_command(c, "TARGET_BODY_CHANGED", "P1_SMT_CONV_POST_FAILED");
++        return false;
++    }
++    if (smt6a_sdk(c, "ProSolidBodyIsSheetmetal(post)", [&] {
++            return ProSolidBodyIsSheetmetal(&body, &sheetmetal);
++        }) != PRO_TK_NO_ERROR) {
++        smt6a_reject_command(c, "STATUS_READBACK_FAILED", "P1_SMT_CONV_POST_FAILED");
++        return false;
++    }
++    c.sheetmetal = sheetmetal == PRO_B_TRUE ? "true" : "false";
++    if (sheetmetal != PRO_B_TRUE) {
++        smt6a_reject_command(c, "STATUS_NOT_SHEETMETAL", "P1_SMT_CONV_POST_FAILED");
++        return false;
++    }
++
++    if (feature.owner != original.owner || feature.id != c.feature_id) {
++        smt6a_reject_command(c, "FEATURE_READBACK_FAILED", "P1_SMT_CONV_POST_FAILED");
++        return false;
++    }
++    ProFeattype type = {};
++    if (smt6a_sdk(c, "ProFeatureTypeGet", [&] {
++            return ProFeatureTypeGet(&feature, &type);
++        }) != PRO_TK_NO_ERROR) {
++        smt6a_reject_command(c, "FEATURE_READBACK_FAILED", "P1_SMT_CONV_POST_FAILED");
++        return false;
++    }
++    c.feature_type = static_cast<int>(type);
++    c.feature_type_valid = true;
++    if (smt6a_sdk(c, "ProModelitemNameGet(feature)", [&] {
++            return ProModelitemNameGet(&feature, name);
++        }) != PRO_TK_NO_ERROR || !name[0] ||
++        !smt6a_quote_wide(name, c.feature_json, sizeof(c.feature_json))) {
++        std::memcpy(c.feature_json, "null", 5);
++        smt6a_reject_command(c, "FEATURE_READBACK_FAILED", "P1_SMT_CONV_POST_FAILED");
++        return false;
++    }
++    return true;
++}
++
++bool smt6a_text(Smt6aContext& c, char* value, bool preview_only = false)
++{
++    ProFileName file = L"p1_smt_conv.txt";
++    ProCharLine key = "P1_SMT_CONV_TEXT";
++    ProLine buffer = {};
++    const ProError preview = smt6a_sdk(c, "ProMessageToBuffer(conversion_text)", [&] {
++        return ProMessageToBuffer(buffer, file, key, value);
++    });
++    if (preview != PRO_TK_NO_ERROR) return false;
++    return preview_only || smt6a_sdk(c, "ProMessageDisplay(conversion_text)", [&] {
++        return ProMessageDisplay(file, key, value);
++    }) == PRO_TK_NO_ERROR;
++}
++
++template<size_t N>
++bool smt6a_show_name(Smt6aContext& c, const char* key, const wchar_t (&name)[N])
++{
++    if (smt6a_message(c, key) != PRO_TK_NO_ERROR) return false;
++    char utf8[N * 3 + 1] = {};
++    if (WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, name,
++            -1, utf8, static_cast<int>(sizeof(utf8)), nullptr, nullptr) <= 0) return false;
++    const size_t length = std::strlen(utf8);
++    for (size_t start = 0; start < length;) {
++        size_t end = start + 60 < length ? start + 60 : length;
++        while (end < length && (static_cast<unsigned char>(utf8[end]) & 0xc0) == 0x80) --end;
++        char line[61] = {};
++        std::memcpy(line, utf8 + start, end - start);
++        if (!smt6a_text(c, line)) return false;
++        start = end;
++    }
++    return true;
++}
++
++bool smt6a_show_success(Smt6aContext& c, const ProMdlName& model_name, const ProName& feature_name)
++{
++    char thickness[64] = {}, detail[80] = {};
++    if (!smt6a_number(c.thickness_mm, thickness)) return false;
++    const int n = std::snprintf(detail, sizeof(detail), "driving; thickness=%s mm", thickness);
++    if (n <= 0 || static_cast<size_t>(n) >= sizeof(detail)) return false;
++    if (smt6a_message(c, "P1_SMT_CONV_SUCCESS") != PRO_TK_NO_ERROR ||
++        !smt6a_show_name(c, "P1_SMT_CONV_MODEL_NAME", model_name) || !smt6a_text(c, detail)) return false;
++    const int k = std::snprintf(detail, sizeof(detail), "feature_id=%d; IsSheetmetal=true; Save not called",
++        c.feature_id);
++    return k > 0 && static_cast<size_t>(k) < sizeof(detail) && smt6a_text(c, detail) &&
++        smt6a_show_name(c, "P1_SMT_CONV_FEATURE_NAME", feature_name);
++}
++
+ void smt6a_run(Smt6aContext& c)
+ {
+     c.stage = "preflight";
+     ProMdl model = nullptr;
+     ProError status = ProMdlCurrentGet(&model);
+     if (!smt6a_call(c, "ProMdlCurrentGet", status) || !model) {
+-        smt6a_reject_command(c, "NO_MODEL", "P1_SMT_UNIT_NO_MODEL"); return;
++        smt6a_reject_command(c, "NO_MODEL", "P1_SMT_CONV_NO_MODEL"); return;
+     }
+     ProMdlType type = PRO_MDL_UNUSED;
+     if (!smt6a_call(c, "ProMdlTypeGet", ProMdlTypeGet(model, &type))) {
+-        smt6a_reject_command(c, "MODEL_QUERY_FAILED", "P1_SMT_UNIT_QUERY_FAILED"); return;
++        smt6a_reject_command(c, "MODEL_QUERY_FAILED", "P1_SMT_CONV_QUERY_FAILED"); return;
+     }
+     if (type != PRO_MDL_PART) {
+-        smt6a_reject_command(c, "NOT_PART", "P1_SMT_UNIT_NOT_PART"); return;
++        smt6a_reject_command(c, "NOT_PART", "P1_SMT_CONV_NOT_PART"); return;
+     }
+     ProMdlName model_name = {};
+     if (!smt6a_call(c, "ProMdlMdlnameGet", ProMdlMdlnameGet(model, model_name)) ||
+         !smt6a_quote_wide(model_name, c.model_json, sizeof(c.model_json))) {
+-        smt6a_reject_command(c, "MODEL_NAME_FAILED", "P1_SMT_UNIT_QUERY_FAILED"); return;
++        smt6a_reject_command(c, "MODEL_NAME_FAILED", "P1_SMT_CONV_QUERY_FAILED"); return;
+     }
+     const ProSolid solid = reinterpret_cast<ProSolid>(model);
+     ProSolidBody body = {};
+     status = ProSolidDefaultBodyGet(solid, &body);
+     if (!smt6a_call(c, "ProSolidDefaultBodyGet", status)) {
+         smt6a_reject_command(c, status == PRO_TK_GENERAL_ERROR ? "NO_BODY" : "WRAP_SOLID_FAILED",
+-            "P1_SMT_UNIT_NO_BODY"); return;
++            "P1_SMT_CONV_NO_BODY"); return;
+     }
+     ProBoolean smt = PRO_B_FALSE;
+     if (!smt6a_call(c, "ProSolidBodyIsSheetmetal", ProSolidBodyIsSheetmetal(&body, &smt))) {
+-        smt6a_reject_command(c, "BODY_QUERY_FAILED", "P1_SMT_UNIT_QUERY_FAILED"); return;
++        smt6a_reject_command(c, "BODY_QUERY_FAILED", "P1_SMT_CONV_QUERY_FAILED"); return;
+     }
+     if (smt == PRO_B_TRUE) {
+-        smt6a_reject_command(c, "ALREADY_SHEETMETAL", "P1_SMT_UNIT_ALREADY"); return;
++        smt6a_reject_command(c, "ALREADY_SHEETMETAL", "P1_SMT_CONV_ALREADY"); return;
+     }
+     c.stage = "select";
+-    if (smt6a_message(c, "P1_SMT_UNIT_SELECT") != PRO_TK_NO_ERROR) { c.result = "FEEDBACK_NOT_READY"; return; }
++    if (smt6a_message(c, "P1_SMT_CONV_SELECT") != PRO_TK_NO_ERROR) { c.result = "FEEDBACK_NOT_READY"; return; }
+     ProSelection* borrowed = nullptr;
+     int count = 0;
+     char filter[] = "surface";
+     status = ProSelect(filter, 1, nullptr, nullptr, nullptr, nullptr, &borrowed, &count);
+     smt6a_call(c, "ProSelect(surface,1)", status);
+     if (status == PRO_TK_USER_ABORT) {
+-        smt6a_reject_command(c, "CANCELLED", "P1_SMT_UNIT_CANCELLED"); return;
++        smt6a_reject_command(c, "CANCELLED", "P1_SMT_CONV_CANCELLED"); return;
+     }
+     if (status != PRO_TK_NO_ERROR) {
+-        smt6a_reject_command(c, "SELECTION_FAILED", "P1_SMT_UNIT_BAD_FACE"); return;
++        smt6a_reject_command(c, "SELECTION_FAILED", "P1_SMT_CONV_BAD_FACE"); return;
+     }
+     if (count == 0) {
+-        smt6a_reject_command(c, "NO_SELECTED_FACE", "P1_SMT_UNIT_NO_FACE"); return;
++        smt6a_reject_command(c, "NO_SELECTED_FACE", "P1_SMT_CONV_NO_FACE"); return;
+     }
+     if (count != 1 || !borrowed || !borrowed[0]) {
+-        smt6a_reject_command(c, "SELECTION_AMBIGUOUS", "P1_SMT_UNIT_ONE_FACE"); return;
++        smt6a_reject_command(c, "SELECTION_AMBIGUOUS", "P1_SMT_CONV_ONE_FACE"); return;
+     }
+     Smt6aSelectedFace selected(c);
+     // ProSelect output is treated as borrowed; only our independent copy is freed.
+     if (!smt6a_call(c, "ProSelectionCopy(selected)", ProSelectionCopy(borrowed[0], &selected.copy))) {
+-        smt6a_reject_command(c, "SELECTED_FACE_INVALID", "P1_SMT_UNIT_BAD_FACE"); return;
++        smt6a_reject_command(c, "SELECTED_FACE_INVALID", "P1_SMT_CONV_BAD_FACE"); return;
++    }
++    if (!selected.copy) {
++        smt6a_reject_command(c, "SELECTED_FACE_INVALID", "P1_SMT_CONV_BAD_FACE"); return;
+     }
+     if (!smt6a_face_check(c, model, body, selected.copy)) return;
+     c.stage = "input_mm";
+-    if (smt6a_message(c, "P1_SMT_UNIT_THICKNESS") != PRO_TK_NO_ERROR) { c.result = "FEEDBACK_NOT_READY"; return; }
++    if (smt6a_message(c, "P1_SMT_CONV_THICKNESS") != PRO_TK_NO_ERROR) { c.result = "FEEDBACK_NOT_READY"; return; }
+     double range[2] = {0.1, 20.0};
+     double thickness = 0.0;
+     status = ProMessageDoubleRead(range, &thickness);
+     smt6a_call(c, "ProMessageDoubleRead", status);
+     if (status == PRO_TK_MSG_USER_QUIT) {
+-        smt6a_reject_command(c, "CANCELLED", "P1_SMT_UNIT_CANCELLED"); return;
++        smt6a_reject_command(c, "CANCELLED", "P1_SMT_CONV_CANCELLED"); return;
+     }
+     if (status != PRO_TK_NO_ERROR || !std::isfinite(thickness) || thickness < range[0] || thickness > range[1]) {
+-        smt6a_reject_command(c, "INVALID_THICKNESS", "P1_SMT_UNIT_BAD_THICKNESS"); return;
++        smt6a_reject_command(c, "INVALID_THICKNESS", "P1_SMT_CONV_BAD_THICKNESS"); return;
+     }
+     char observed[64] = {};
+     if (!smt6a_number(thickness, observed)) {
+-        smt6a_reject_command(c, "INPUT_FORMAT_FAILED", "P1_SMT_UNIT_BAD_THICKNESS"); return;
++        smt6a_reject_command(c, "INPUT_FORMAT_FAILED", "P1_SMT_CONV_BAD_THICKNESS"); return;
+     }
+     char input_facts[256] = {};
+     const int input_n = std::snprintf(input_facts, sizeof(input_facts),
+@@ -298,23 +544,42 @@ void smt6a_run(Smt6aContext& c)
+         fresh_body.id != body.id || fresh_body.owner != body.owner ||
+         !smt6a_call(c, "ProSolidBodyIsSheetmetal(revalidate)", ProSolidBodyIsSheetmetal(&fresh_body, &fresh_smt)) ||
+         fresh_smt == PRO_B_TRUE) {
+-        smt6a_reject_command(c, "STALE_CONTEXT", "P1_SMT_UNIT_STALE"); return;
++        smt6a_reject_command(c, "STALE_CONTEXT", "P1_SMT_CONV_STALE"); return;
+     }
+     if (!smt6a_face_check(c, model, fresh_body, selected.copy)) return;
+     c.stage = "units";
+     ProUnitConversion conversion = {};
+     if (!smt6a_units(c, model, conversion)) {
+-        smt6a_reject_command(c, "UNIT_UNSUPPORTED", "P1_SMT_UNIT_UNIT_FAILED"); return;
++        smt6a_reject_command(c, "UNIT_UNSUPPORTED", "P1_SMT_CONV_UNIT_FAILED"); return;
+     }
+     const double converted = thickness * conversion.scale + conversion.offset;
+     if (!std::isfinite(converted) || converted <= 0.0) {
+-        smt6a_reject_command(c, "INVALID_THICKNESS", "P1_SMT_UNIT_BAD_THICKNESS"); return;
++        smt6a_reject_command(c, "INVALID_THICKNESS", "P1_SMT_CONV_BAD_THICKNESS"); return;
+     }
+     c.thickness_mm = thickness; c.thickness_model = converted; c.thickness_valid = true;
+-    c.stage = "unit_probe_stop";
+-    c.result = "UNIT_PROBE_STOPPED";
+-    smt6a_message(c, "P1_SMT_UNIT_STOPPED");
+-    return;
++    c.stage = "feedback_preflight";
++    char preview[] = "driving; thickness in mm";
++    if (!smt6a_text(c, preview, true)) {
++        c.feedback_failed = true;
++        c.result = "FEEDBACK_NOT_READY";
++        return;
++    }
++    ProFeature feature = {};
++    const bool created = smt6a_create(c, model, fresh_body, selected.copy, feature);
++    selected.release();
++    if (!created) return;
++    if (c.cleanup_failed) {
++        smt6a_reject_command(c, "CLEANUP_FAILED", "P1_SMT_CONV_POST_FAILED"); return;
++    }
++    ProName feature_name = {};
++    if (!smt6a_readback(c, solid, fresh_body, feature, feature_name)) return;
++    c.stage = "feedback";
++    if (!smt6a_show_success(c, model_name, feature_name)) {
++        c.feedback_failed = true;
++        c.result = "POST_FEEDBACK_FAILED";
++        return;
++    }
++    c.result = "SUCCESS_UNSAVED";
+ }
+ 
+ int smt6a_action(uiCmdCmdId command, uiCmdValue* value, void* push_data)
+@@ -324,22 +589,22 @@ int smt6a_action(uiCmdCmdId command, uiCmdValue* value, void* push_data)
+     Smt6aContext context;
+     if (InterlockedCompareExchange(&smt6a_busy, 1, 0) != 0) {
+         context.result = "COMMAND_BUSY";
+-        try { smt6a_message(context, "P1_SMT_UNIT_BUSY"); }
++        try { smt6a_message(context, "P1_SMT_CONV_BUSY"); }
+         catch (...) { context.feedback_failed = true; }
+         smt6a_finish(context); return 0;
+     }
+     struct BusyReset { ~BusyReset() { InterlockedExchange(&smt6a_busy, 0); } } reset;
+     char begin[128] = {};
+-    const int n = std::snprintf(begin, sizeof(begin), "{\"operation_id\":%llu,\"mode\":\"unit_probe\"}",
++    const int n = std::snprintf(begin, sizeof(begin), "{\"operation_id\":%llu,\"mode\":\"driving\"}",
+         static_cast<unsigned long long>(context.id));
+     smt6a_checked_event("SMT_CONV_ENTER", begin, n, sizeof(begin));
+     try { smt6a_run(context); }
+     catch (...) {
+         context.result = "UNEXPECTED_EXCEPTION";
+-        try { smt6a_message(context, "P1_SMT_UNIT_EXCEPTION"); }
++        try { smt6a_message(context, "P1_SMT_CONV_EXCEPTION"); }
+         catch (...) { context.feedback_failed = true; }
+     }
+-    flush_one_access_trace(smt6a_access_trace, "smt_unit_probe_return");
++    flush_one_access_trace(smt6a_access_trace, "smt_conversion_return");
+     smt6a_finish(context);
+     return 0;
+ }
+@@ -351,27 +616,27 @@ uiCmdAccessState smt6a_access(uiCmdAccessMode mode)
+     return ACCESS_AVAILABLE;
+ }
+ 
+-void register_smt6a_unit_probe() noexcept
++void register_smt6a_conversion() noexcept
+ {
+     PreserveLastError preserve;
+     Smt6aContext c;
+     try {
+-        static char name[] = "p1_smt_unit_probe";
+-        static char label[] = "P1_SMT_UNIT_LABEL";
+-        static char help[] = "P1_SMT_UNIT_HELP";
+-        static char description[] = "P1_SMT_UNIT_DESC";
+-        static wchar_t file[] = L"p1_smt_unit_probe.txt";
++        static char name[] = "p1_smt_drv_conv";
++        static char label[] = "P1_SMT_CONV_LABEL";
++        static char help[] = "P1_SMT_CONV_HELP";
++        static char description[] = "P1_SMT_CONV_DESC";
++        static wchar_t file[] = L"p1_smt_conv.txt";
+         uiCmdCmdId id = nullptr;
+         const ProError add = ProCmdActionAdd(name, &smt6a_action, uiProeImmediate,
+             &smt6a_access, PRO_B_TRUE, PRO_B_TRUE, &id);
+-        if (!smt6a_call(c, "ProCmdActionAdd(smt_unit_probe)", add)) return;
++        if (!smt6a_call(c, "ProCmdActionAdd(smt_conversion)", add)) return;
+         if (!id) {
+-            trace_event("SMT_CONV_REGISTER_NO_ID", "{\"command\":\"p1_smt_unit_probe\"}");
++            trace_event("SMT_CONV_REGISTER_NO_ID", "{\"command\":\"p1_smt_drv_conv\"}");
+             return;
+         }
+-        trace_registration_identity("p1_smt_unit_probe", id, name, label, help, description, file);
+-        smt6a_call(c, "ProCmdDesignate(smt_unit_probe)", ProCmdDesignate(id, label, help, description, file));
+-        flush_one_access_trace(smt6a_access_trace, "smt_unit_probe_initialization_end");
++        trace_registration_identity("p1_smt_drv_conv", id, name, label, help, description, file);
++        smt6a_call(c, "ProCmdDesignate(smt_conversion)", ProCmdDesignate(id, label, help, description, file));
++        flush_one_access_trace(smt6a_access_trace, "smt_conversion_initialization_end");
+     } catch (...) {
+         trace_event("SMT_CONV_REGISTER_EXCEPTION", "{\"existing_commands_preserved\":true}");
+     }
+diff --git a/src/smt_driving_tree.inl b/src/smt_driving_tree.inl
+new file mode 100644
+index 0000000000000000000000000000000000000000..e91fa06b2ac84f7db47590c548014896a3fe383f
+--- /dev/null
++++ b/src/smt_driving_tree.inl
+@@ -0,0 +1,138 @@
++// Included after Smt6aContext and the API tracing helpers.
++struct Smt6aPreparedTree {
++    Smt6aContext& context;
++    ProSelection model = nullptr;
++    ProSelection body = nullptr;
++    ProReference body_reference = nullptr;
++    ProReference face_reference = nullptr;
++    ProFeatureCreateOptions* options = nullptr;
++    ProElement root = nullptr;
++
++    explicit Smt6aPreparedTree(Smt6aContext& c) noexcept : context(c) {}
++    Smt6aPreparedTree(const Smt6aPreparedTree&) = delete;
++    Smt6aPreparedTree& operator=(const Smt6aPreparedTree&) = delete;
++    ~Smt6aPreparedTree() noexcept
++    {
++        // The root owns attached children. Release it while references are live.
++        if (root) smt6a_cleanup(context, "ProElementFree(root)", [&] { return ProElementFree(&root); });
++        if (options) smt6a_cleanup(context, "ProArrayFree(options)", [&] {
++            return ProArrayFree(reinterpret_cast<ProArray*>(&options));
++        });
++        if (face_reference) smt6a_cleanup(context, "ProReferenceFree(face)", [&] {
++            return ProReferenceFree(face_reference);
++        });
++        if (body_reference) smt6a_cleanup(context, "ProReferenceFree(body)", [&] {
++            return ProReferenceFree(body_reference);
++        });
++        if (body) smt6a_cleanup(context, "ProSelectionFree(body)", [&] { return ProSelectionFree(&body); });
++        if (model) smt6a_cleanup(context, "ProSelectionFree(model)", [&] { return ProSelectionFree(&model); });
++    }
++};
++
++struct Smt6aDetachedElement {
++    Smt6aContext& context;
++    ProElement value = nullptr;
++    explicit Smt6aDetachedElement(Smt6aContext& c) noexcept : context(c) {}
++    Smt6aDetachedElement(const Smt6aDetachedElement&) = delete;
++    Smt6aDetachedElement& operator=(const Smt6aDetachedElement&) = delete;
++    ~Smt6aDetachedElement() noexcept
++    {
++        if (value) smt6a_cleanup(context, "ProElementFree(detached)", [&] {
++            return ProElementFree(&value);
++        });
++    }
++};
++
++template<class SetValue>
++bool smt6a_add_child(Smt6aPreparedTree& tree, ProElemId id, SetValue set_value)
++{
++    Smt6aContext& c = tree.context;
++    Smt6aDetachedElement child(c);
++    const int element_id = static_cast<int>(id);
++    if (smt6a_sdk(c, "ProElementAlloc(child)", [&] {
++            return ProElementAlloc(id, &child.value);
++        }, element_id) != PRO_TK_NO_ERROR || !child.value || !set_value(child.value, element_id)) {
++        return false;
++    }
++    if (smt6a_sdk(c, "ProElemtreeElementAdd", [&] {
++            return ProElemtreeElementAdd(tree.root, nullptr, child.value);
++        }, element_id) != PRO_TK_NO_ERROR) {
++        return false;
++    }
++    child.value = nullptr; // Ownership transferred to the root on success.
++    return true;
++}
++
++bool smt6a_wrap_selections(Smt6aPreparedTree& tree, ProMdl model, ProSolidBody& body)
++{
++    Smt6aContext& c = tree.context;
++    if (body.owner != model) return false;
++    ProModelitem item = {};
++    if (smt6a_sdk(c, "ProMdlToModelitem", [&] {
++            return ProMdlToModelitem(model, &item);
++        }) != PRO_TK_NO_ERROR ||
++        smt6a_sdk(c, "ProSelectionAlloc(model)", [&] {
++            return ProSelectionAlloc(nullptr, &item, &tree.model);
++        }) != PRO_TK_NO_ERROR || !tree.model) {
++        return false;
++    }
++    static_assert(std::is_same<ProSolidBody, ProModelitem>::value,
++        "Verify the supplied Creo 13.4 ProObjects.h typedefs");
++    return smt6a_sdk(c, "ProSelectionAlloc(body)", [&] {
++        return ProSelectionAlloc(nullptr, &body, &tree.body);
++    }) == PRO_TK_NO_ERROR && tree.body;
++}
++
++bool smt6a_prepare_tree(Smt6aPreparedTree& tree, ProSelection selected_face, double thickness_model)
++{
++    Smt6aContext& c = tree.context;
++    if (smt6a_sdk(c, "ProSelectionToReference(body)", [&] {
++            return ProSelectionToReference(tree.body, &tree.body_reference);
++        }, PRO_E_SMT_CONV_BODY) != PRO_TK_NO_ERROR || !tree.body_reference ||
++        smt6a_sdk(c, "ProSelectionToReference(face)", [&] {
++            return ProSelectionToReference(selected_face, &tree.face_reference);
++        }, PRO_E_SMT_DRV_SURF) != PRO_TK_NO_ERROR || !tree.face_reference ||
++        smt6a_sdk(c, "ProArrayAlloc(options)", [&] {
++            return ProArrayAlloc(1, sizeof(ProFeatureCreateOptions), 1,
++                reinterpret_cast<ProArray*>(&tree.options));
++        }) != PRO_TK_NO_ERROR || !tree.options ||
++        smt6a_sdk(c, "ProElementAlloc(root)", [&] {
++            return ProElementAlloc(PRO_E_FEATURE_TREE, &tree.root);
++        }, PRO_E_FEATURE_TREE) != PRO_TK_NO_ERROR || !tree.root) {
++        return false;
++    }
++    tree.options[0] = PRO_FEAT_CR_NO_OPTS;
++
++    auto integer = [&](ProElemId id, int value) {
++        return smt6a_add_child(tree, id, [&](ProElement elem, int element_id) {
++            return smt6a_sdk(c, "ProElementIntegerSet", [&] {
++                return ProElementIntegerSet(elem, value);
++            }, element_id) == PRO_TK_NO_ERROR;
++        });
++    };
++    auto reference = [&](ProElemId id, ProReference value) {
++        return smt6a_add_child(tree, id, [&](ProElement elem, int element_id) {
++            return smt6a_sdk(c, "ProElementReferenceSet", [&] {
++                return ProElementReferenceSet(elem, value);
++            }, element_id) == PRO_TK_NO_ERROR;
++        });
++    };
++    return integer(PRO_E_FEATURE_TYPE, PRO_FEAT_DATUM_SURF) &&
++        smt6a_add_child(tree, PRO_E_STD_FEATURE_NAME, [&](ProElement elem, int id) {
++            wchar_t name[] = L"SMT_CONV_DRIVING";
++            return smt6a_sdk(c, "ProElementWstringSet", [&] {
++                return ProElementWstringSet(elem, name);
++            }, id) == PRO_TK_NO_ERROR;
++        }) &&
++        integer(PRO_E_DTM_SRF_TYPE, PRO_DTM_SRF_AS_WALL) &&
++        reference(PRO_E_SMT_CONV_BODY, tree.body_reference) &&
++        reference(PRO_E_SMT_DRV_SURF, tree.face_reference) &&
++        smt6a_add_child(tree, PRO_E_STD_SMT_THICKNESS, [&](ProElement elem, int id) {
++            return smt6a_sdk(c, "ProElementDecimalsSet", [&] {
++                return ProElementDecimalsSet(elem, 9);
++            }, id) == PRO_TK_NO_ERROR &&
++                smt6a_sdk(c, "ProElementDoubleSet", [&] {
++                    return ProElementDoubleSet(elem, thickness_model);
++                }, id) == PRO_TK_NO_ERROR;
++        });
++}
+diff --git a/text/chinese_cn/p1_smt_conv.txt b/text/chinese_cn/p1_smt_conv.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..20218445dd23cda36ab325aee096a34f3f320f44
+--- /dev/null
++++ b/text/chinese_cn/p1_smt_conv.txt
+@@ -0,0 +1,120 @@
++P1_SMT_CONV_LABEL
++p1_smt_drv_conv
++#
++#
++P1_SMT_CONV_HELP
++选择一个默认体平面，按驱动面方式转换。
++#
++#
++P1_SMT_CONV_DESC
++驱动面转换，板厚按毫米输入，修改模型但不保存。
++#
++#
++P1_SMT_CONV_TEXT
++%0s
++#
++#
++P1_SMT_CONV_NO_MODEL
++无激活模型，请打开普通零件后重试。
++#
++#
++P1_SMT_CONV_NOT_PART
++只支持普通零件，不支持装配或绘图。
++#
++#
++P1_SMT_CONV_NO_BODY
++未取得可用的默认实体体，未创建特征。
++#
++#
++P1_SMT_CONV_ALREADY
++默认体已是钣金，不重复转换。
++#
++#
++P1_SMT_CONV_SELECT
++请选择默认体上的一个平面曲面作为驱动面。
++#
++#
++P1_SMT_CONV_NO_FACE
++未选择驱动面，请选择一个平面后重试。
++#
++#
++P1_SMT_CONV_ONE_FACE
++请只选择一个驱动平面，未创建特征。
++#
++#
++P1_SMT_CONV_BAD_FACE
++选中项不是有效曲面，或面查询失败；未创建特征。
++#
++#
++P1_SMT_CONV_BODY_MISMATCH
++选中面未被确认属于默认体，未创建特征。
++#
++#
++P1_SMT_CONV_NOT_PLANE
++6A 暂只支持平面驱动面，未创建特征。
++#
++#
++P1_SMT_CONV_THICKNESS
++请输入板厚，单位毫米，范围 0.1 至 20.0；按 ESC 取消。
++#
++#
++P1_SMT_CONV_BAD_THICKNESS
++请输入有效板厚，单位毫米，范围 0.1 至 20.0。
++#
++#
++P1_SMT_CONV_CANCELLED
++已取消，未创建特征。
++#
++#
++P1_SMT_CONV_STALE
++模型或默认体已变化，未创建特征；请重新选择。
++#
++#
++P1_SMT_CONV_UNIT_FAILED
++无法确认毫米到当前模型单位的换算，未创建特征。
++#
++#
++P1_SMT_CONV_QUERY_FAILED
++模型或实体体查询失败，未创建特征。
++#
++#
++P1_SMT_CONV_TREE_FAILED
++元素树准备失败，未调用特征创建接口。
++#
++#
++P1_SMT_CONV_READ_ONLY
++Creo 拒绝修改；请检查模型状态和 JSONL，未保存。
++#
++#
++P1_SMT_CONV_CREATE_FAILED
++创建失败，模型可能已改变；请检查模型和 JSONL，未保存。
++#
++#
++P1_SMT_CONV_POST_FAILED
++创建后检查失败。请检查模型与 JSONL。未保存。
++#
++#
++P1_SMT_CONV_SUCCESS
++驱动面转换回读通过，已是钣金，未执行保存。
++#
++#
++P1_SMT_CONV_MODEL_NAME
++模型名称：
++#
++#
++P1_SMT_CONV_FEATURE_NAME
++特征名称：
++#
++#
++P1_SMT_CONV_BUSY
++转换命令正在执行，请等待本次命令返回。
++#
++#
++P1_SMT_CONV_EXCEPTION
++命令异常；重试前请检查模型和 JSONL，未执行保存。
++#
++#
++P1_SMT_CONV_WRAP_FAILED
++无法包装当前零件或默认实体体，创建未调用。
++#
++#
+diff --git a/text/usascii/p1_smt_conv.txt b/text/usascii/p1_smt_conv.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6b6a1985dcda6d199c598670506aa094bca65d9
+--- /dev/null
++++ b/text/usascii/p1_smt_conv.txt
+@@ -0,0 +1,120 @@
++P1_SMT_CONV_LABEL
++p1_smt_drv_conv
++#
++#
++P1_SMT_CONV_HELP
++Convert the default body using one selected planar driving face.
++#
++#
++P1_SMT_CONV_DESC
++Controlled driving conversion; input mm; modifies model; never saves.
++#
++#
++P1_SMT_CONV_TEXT
++%0s
++#
++#
++P1_SMT_CONV_NO_MODEL
++No active model. Open a part and retry.
++#
++#
++P1_SMT_CONV_NOT_PART
++Only an active part is supported; assemblies and drawings are rejected.
++#
++#
++P1_SMT_CONV_NO_BODY
++No usable default solid body. No feature was created.
++#
++#
++P1_SMT_CONV_ALREADY
++Default body is already sheetmetal; no repeated conversion.
++#
++#
++P1_SMT_CONV_SELECT
++Select one planar surface belonging to the default body.
++#
++#
++P1_SMT_CONV_NO_FACE
++No surface selected. Select one planar driving surface and retry.
++#
++#
++P1_SMT_CONV_ONE_FACE
++Select exactly one surface. No feature was created.
++#
++#
++P1_SMT_CONV_BAD_FACE
++Invalid surface or geometry query failed. No feature was created.
++#
++#
++P1_SMT_CONV_BODY_MISMATCH
++Surface is not confirmed in the default body. No feature was created.
++#
++#
++P1_SMT_CONV_NOT_PLANE
++6A supports planar driving surfaces only. No feature was created.
++#
++#
++P1_SMT_CONV_THICKNESS
++Enter thickness in mm, 0.1 to 20.0. Press ESC to cancel.
++#
++#
++P1_SMT_CONV_BAD_THICKNESS
++Enter a valid thickness in mm from 0.1 to 20.0.
++#
++#
++P1_SMT_CONV_CANCELLED
++Cancelled before creation. No feature was created.
++#
++#
++P1_SMT_CONV_STALE
++Model or default body changed. No feature was created; retry selection.
++#
++#
++P1_SMT_CONV_UNIT_FAILED
++Could not confirm mm to current model units. No feature was created.
++#
++#
++P1_SMT_CONV_QUERY_FAILED
++Model or body query failed. No feature was created.
++#
++#
++P1_SMT_CONV_TREE_FAILED
++Element tree preparation failed. No feature was created.
++#
++#
++P1_SMT_CONV_READ_ONLY
++Creo refused modification. Inspect model state and JSONL; no Save.
++#
++#
++P1_SMT_CONV_CREATE_FAILED
++Creation failed. Model may have changed. Inspect JSONL; no Save.
++#
++#
++P1_SMT_CONV_POST_FAILED
++Post-create check failed. Inspect the model and JSONL. No Save.
++#
++#
++P1_SMT_CONV_SUCCESS
++Driving conversion readback passed. Sheetmetal is true. No Save.
++#
++#
++P1_SMT_CONV_MODEL_NAME
++Model name:
++#
++#
++P1_SMT_CONV_FEATURE_NAME
++Feature name:
++#
++#
++P1_SMT_CONV_BUSY
++Conversion command is already active; wait for it to return.
++#
++#
++P1_SMT_CONV_EXCEPTION
++Command exception. Inspect model and JSONL before retry; no Save.
++#
++#
++P1_SMT_CONV_WRAP_FAILED
++Could not wrap the current part or default body. Create was not called.
++#
++#

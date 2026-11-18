@@ -1,0 +1,63 @@
+{
+  "candidate": "P1 Step41 CPP 6A R2-B driving creation source-only",
+  "input_sheet": {
+    "path": "P1_Step41_CPP_6A_创建段候选_ChatGPT离线输入单_20261118.md",
+    "bytes": 19733,
+    "sha256": "265a694c8fc37a4fdc7789cc12811d64f75b60d30ee1b11e1d36af9e9eb65b21"
+  },
+  "patch": {
+    "path": "cpp-6a-r2b-driving-creation.diff",
+    "bytes": 42570,
+    "sha256": "2f5fd2187561b02f1047f85ffffd5fff1d46403277a7e2f2714e8903325aed32"
+  },
+  "r2b_baseline": [
+    {
+      "path": "src/entry.cpp",
+      "bytes": 47013,
+      "sha256": "8d0783ec5b2048d25aa4c9f45f73676b5d55e1c5f565ca41cfcc0413b87f7d40"
+    },
+    {
+      "path": "src/smt_driving_command.inl",
+      "bytes": 17942,
+      "sha256": "f6db7a2b78c4f70cea85b15030c26d408268420757d4615153284f85d21b6f6e"
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_unit_probe.txt",
+      "bytes": 1707,
+      "sha256": "8cad94c1fc3f50b6791fe05ef56e0f61f240631e489c6de00b1ff2f2613ab833"
+    },
+    {
+      "path": "text/usascii/p1_smt_unit_probe.txt",
+      "bytes": 1761,
+      "sha256": "49a989770b876ab6a170e5d7997679614a811b84a392e8d8f073ea86e1c9b3c3"
+    }
+  ],
+  "changed_or_added_files": [
+    {
+      "path": "src/entry.cpp",
+      "bytes": 47162,
+      "sha256": "a588c3cde376c212f601fa202430632e1de92edb2e5b60f09ead54948ada8985"
+    },
+    {
+      "path": "src/smt_driving_command.inl",
+      "bytes": 29171,
+      "sha256": "69eb08be3ebad7121506cca10b2ea457cd1ad1782434c0b8bafff3b9300b3497"
+    },
+    {
+      "path": "src/smt_driving_tree.inl",
+      "bytes": 6225,
+      "sha256": "2e2d5ddd975489644e67a54db6d17417e11b16788d3300a8c4b39b787d90cb20"
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_conv.txt",
+      "bytes": 2369,
+      "sha256": "d9dc29a617d29e23723e0aad9a19f8ea0b18e9a65d6b74dde6e6953d1e9c2e66"
+    },
+    {
+      "path": "text/usascii/p1_smt_conv.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    }
+  ],
+  "validation": "SOURCE_ONLY_PENDING_WINDOWS_SDK_AND_CREO"
+}
