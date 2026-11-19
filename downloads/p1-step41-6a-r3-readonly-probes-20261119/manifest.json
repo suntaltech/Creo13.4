@@ -1,0 +1,85 @@
+{
+  "candidate": "P1 Step41 6A R3 read-only probes A/B/C",
+  "baseline_commit": "b99692e3f927ff297941e812e36ac5646bd323b7",
+  "baseline": [
+    {
+      "path": "src/entry.cpp",
+      "bytes": 47162,
+      "sha256": "a588c3cde376c212f601fa202430632e1de92edb2e5b60f09ead54948ada8985"
+    },
+    {
+      "path": "src/smt_driving_command.inl",
+      "bytes": 29171,
+      "sha256": "69eb08be3ebad7121506cca10b2ea457cd1ad1782434c0b8bafff3b9300b3497"
+    },
+    {
+      "path": "src/smt_driving_tree.inl",
+      "bytes": 6225,
+      "sha256": "2e2d5ddd975489644e67a54db6d17417e11b16788d3300a8c4b39b787d90cb20"
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_conv.txt",
+      "bytes": 2369,
+      "sha256": "d9dc29a617d29e23723e0aad9a19f8ea0b18e9a65d6b74dde6e6953d1e9c2e66"
+    },
+    {
+      "path": "text/usascii/p1_smt_conv.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    }
+  ],
+  "patch": {
+    "path": "p1-step41-6a-r3-readonly-probes.diff",
+    "bytes": 45603,
+    "sha256": "768e3aeb7a8cd7583811a07e446443fc15eaa188a7eca580c6f8c06f0f2839b1"
+  },
+  "readonly_source_files": [
+    {
+      "path": "src/entry.cpp",
+      "bytes": 46950,
+      "sha256": "b9c7c4b0ba9fe83a52577c0b07e31d0606804b34b0c5118118707a253a1ecac4"
+    },
+    {
+      "path": "src/r3_readonly_probes.inl",
+      "bytes": 28386,
+      "sha256": "f77916b4ba44491ba6bc9146398bb01c5d8603c2483e29c0a497d573296f3c74"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_a_bom.txt",
+      "bytes": 2372,
+      "sha256": "ac005fb059dc28b364d445a2a4ceddf02e5ac8796679dc4f855f4425e96ab94a"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_a_cp936.txt",
+      "bytes": 1869,
+      "sha256": "33391762cbd2d3338d00246179372dde5bf0c1d9a152d34993b01402a3edffe0"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_a_usascii.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_a_utf8.txt",
+      "bytes": 2369,
+      "sha256": "d9dc29a617d29e23723e0aad9a19f8ea0b18e9a65d6b74dde6e6953d1e9c2e66"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_readonly.txt",
+      "bytes": 777,
+      "sha256": "95cf26cde9683ffb33e848e696f5a4276c0d54e2c24225ce26eb569ffd9c99a2"
+    },
+    {
+      "path": "text/usascii/p1_r3_a_usascii.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    },
+    {
+      "path": "text/usascii/p1_r3_readonly.txt",
+      "bytes": 777,
+      "sha256": "95cf26cde9683ffb33e848e696f5a4276c0d54e2c24225ce26eb569ffd9c99a2"
+    }
+  ],
+  "control_usascii_sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f",
+  "validation": "STATIC_ONLY_PENDING_WINDOWS_SDK_AND_CONTROLLED_CREO"
+}

@@ -1,0 +1,1301 @@
+diff --git a/src/entry.cpp b/src/entry.cpp
+index a9b9cbe36dc9469db886ce6ed6cc86154e39b317..53a8a6f572ef6a64b74cc540a919c9998a3f0b99 100644
+--- a/src/entry.cpp
++++ b/src/entry.cpp
+@@ -24,16 +24,10 @@
+ #include <cmath>
+ #include <cstring>
+ #include <locale.h>
+-#include <ProElement.h>
+-#include <ProElemId.h>
+-#include <ProReference.h>
+ #include <ProSelection.h>
+ #include <ProModelitem.h>
+ #include <ProMdlUnits.h>
+ #include <ProFeature.h>
+-#include <ProFeatType.h>
+-#include <ProSmtDrvSurf.h>
+-#include <ProItemerr.h>
+ #include <ProSurface.h>
+ #include <ProSurfacedata.h>
+ // CPP_6A_HEADERS_END
+@@ -42,6 +36,9 @@
+ #include <type_traits>
+ #include <cstdint>
+ #include <cinttypes>
++#include <cwchar>
++#include <string>
++#include <vector>
+ 
+ static_assert(PRO_TK_NO_ERROR == 0, "Verify actual SDK success-code definition");
+ 
+@@ -1027,9 +1024,8 @@ void probe_designation_messages() noexcept
+     probe_one_message("control_ping_description", ping_file, ping_description_key);
+ }
+ 
+-// CPP_6A_IMPLEMENTATION_BEGIN
+-#include "smt_driving_command.inl"
+-// CPP_6A_IMPLEMENTATION_END
++// R3 read-only diagnostic translation unit.
++#include "r3_readonly_probes.inl"
+ 
+ } // namespace
+ 
+@@ -1052,9 +1048,7 @@ int user_initialize(int argc, char *argv[], char *version, char *build,
+     register_readonly_ping();
+     probe_designation_messages();
+     flush_access_observations("initialization_end");
+-    // CPP_6A_REGISTER_BEGIN: after the unchanged R10 initialization steps.
+-    register_smt6a_conversion();
+-    // CPP_6A_REGISTER_END
++    register_r3_readonly_probes();
+     trace_event("INIT_BEFORE_RETURN", "{\"return_code\":0}");
+     // Trace success/failure never changes this return value.
+     return PRO_TK_NO_ERROR;
+diff --git a/src/r3_readonly_probes.inl b/src/r3_readonly_probes.inl
+new file mode 100644
+index 0000000000000000000000000000000000000000..2f51d41dc276153288542fe244e23c7060a16b50
+--- /dev/null
++++ b/src/r3_readonly_probes.inl
+@@ -0,0 +1,611 @@
++struct R3Definition {
++    const char* name;
++    const char* begin;
++    const char* finish;
++    unsigned ordinal;
++};
++constexpr R3Definition r3_definitions[] = {
++    {"message", "PROBE_MSG_BEGIN", "PROBE_MSG_RETURN", 1},
++    {"units", "PROBE_UNITS_BEGIN", "PROBE_UNITS_RETURN", 2},
++    {"bodies", "PROBE_BODIES_BEGIN", "PROBE_BODIES_RETURN", 3},
++};
++alignas(8) volatile LONG64 r3_sequence = 0;
++volatile LONG r3_busy = 0;
++
++struct R3Run {
++    const R3Definition& definition;
++    ULONGLONG id = static_cast<ULONGLONG>(InterlockedIncrement64(&r3_sequence));
++    const char* result = "INCOMPLETE";
++    bool cleanup_failed = false;
++    std::string terminal{};
++};
++
++const char* r3_bool(bool value) noexcept { return value ? "true" : "false"; }
++
++void r3_trace(const R3Run& run, const char* event, const char* details) noexcept
++{
++    char facts[model_facts_capacity] = {};
++    const int count = std::snprintf(facts, sizeof(facts),
++        "{\"probe\":\"%s\",\"probe_ordinal\":%u,\"operation_id\":%llu%s}",
++        run.definition.name, run.definition.ordinal, static_cast<unsigned long long>(run.id), details);
++    if (count > 0 && static_cast<size_t>(count) < sizeof(facts)) trace_event(event, facts);
++    else trace_failure("r3_probe_facts", ERROR_INSUFFICIENT_BUFFER);
++}
++
++struct R3Status {
++    bool returned = false;
++    ProError code = PRO_TK_NO_ERROR;
++    bool ok() const noexcept { return returned && code == PRO_TK_NO_ERROR; }
++    std::string json() const { return returned ? std::to_string(static_cast<int>(code)) : "null"; }
++};
++
++void r3_api(const R3Run& run, const char* event, const char* name,
++    const char* role, const R3Status& status, bool threw = false) noexcept
++{
++    char value[24] = "null", facts[300] = {};
++    if (status.returned) std::snprintf(value, sizeof(value), "%d", static_cast<int>(status.code));
++    const int count = std::snprintf(facts, sizeof(facts),
++        ",\"api\":\"%s\",\"role\":\"%s\",\"pro_error\":%s,\"exception\":%s",
++        name, role, value, r3_bool(threw));
++    if (count > 0 && static_cast<size_t>(count) < sizeof(facts)) r3_trace(run, event, facts);
++    else trace_failure("r3_probe_api_facts", ERROR_INSUFFICIENT_BUFFER);
++}
++
++template<class Function>
++bool r3_call(const R3Run& run, const char* name, const char* role, R3Status& status, Function fn)
++{
++    r3_api(run, "R3_PROBE_API_START", name, role, R3Status{});
++    try {
++        status.code = fn();
++        status.returned = true;
++        r3_api(run, "R3_PROBE_API_DONE", name, role, status);
++    } catch (...) {
++        r3_api(run, "R3_PROBE_API_DONE", name, role, R3Status{}, true);
++        throw;
++    }
++    return status.ok();
++}
++
++template<size_t N>
++std::string r3_utf8_name(const wchar_t (&name)[N])
++{
++    size_t units = 0;
++    while (units < N && name[units]) ++units;
++    if (!units || units == N) return "null";
++    char utf8[N * 3 + 1] = {}, quoted[N * 6 + 3] = {};
++    if (WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, name, static_cast<int>(units),
++            utf8, static_cast<int>(sizeof(utf8) - 1), nullptr, nullptr) <= 0 ||
++        !quote_json_utf8(utf8, quoted, sizeof(quoted))) return "null";
++    return quoted;
++}
++
++std::string r3_number(double number)
++{
++    if (!std::isfinite(number)) return "null";
++    const _locale_t locale = _create_locale(LC_NUMERIC, "C");
++    if (!locale) return "null";
++    char buffer[64] = {};
++    const int written = _snprintf_l(buffer, sizeof(buffer), "%.17g", locale, number);
++    _free_locale(locale);
++    return written > 0 && static_cast<size_t>(written) < sizeof(buffer) ? buffer : "null";
++}
++
++struct R3Model {
++    ProMdl handle = nullptr;
++    ProMdlType type = PRO_MDL_UNUSED;
++    ProMdlName name = {};
++    R3Status current, type_status, name_status;
++    std::string name_json = "null";
++
++    bool read(R3Run& run)
++    {
++        if (!r3_call(run, "ProMdlCurrentGet", "model", current, [&] { return ProMdlCurrentGet(&handle); })
++            || !handle) { run.result = "MODEL_UNAVAILABLE"; return false; }
++        if (!r3_call(run, "ProMdlTypeGet", "model", type_status, [&] { return ProMdlTypeGet(handle, &type); })) {
++            run.result = "MODEL_TYPE_UNAVAILABLE"; return false;
++        }
++        if (type != PRO_MDL_PART) { run.result = "NOT_PART"; return false; }
++        if (!r3_call(run, "ProMdlMdlnameGet", "model", name_status, [&] { return ProMdlMdlnameGet(handle, name); })) {
++            run.result = "MODEL_NAME_UNAVAILABLE"; return false;
++        }
++        name_json = r3_utf8_name(name);
++        if (name_json == "null") { run.result = "MODEL_NAME_INVALID"; return false; }
++        return true;
++    }
++
++    std::string facts() const
++    {
++        return ",\"model_name\":" + name_json +
++            ",\"model_type\":" + (type_status.ok() ? std::to_string(static_cast<int>(type)) : "null") +
++            ",\"current_pro_error\":" + current.json() + ",\"type_pro_error\":" + type_status.json() +
++            ",\"name_pro_error\":" + name_status.json();
++    }
++};
++
++bool r3_message_file(ProFileName& file, const wchar_t* value) noexcept
++{
++    const size_t count = std::wcslen(value);
++    if (count >= sizeof(file) / sizeof(file[0])) return false;
++    std::wmemcpy(file, value, count + 1);
++    return true;
++}
++
++bool r3_message_key(ProCharLine& key, const char* value) noexcept
++{
++    const size_t count = std::strlen(value);
++    if (count >= sizeof(key)) return false;
++    std::memcpy(key, value, count + 1);
++    return true;
++}
++
++struct R3MessageVariant {
++    const wchar_t* file;
++    const char* name;
++    const char* encoding;
++};
++constexpr R3MessageVariant r3_variants[] = {
++    {L"p1_r3_a_utf8.txt", "current", "utf8_no_bom"},
++    {L"p1_r3_a_bom.txt", "bom", "utf8_bom"},
++    {L"p1_r3_a_cp936.txt", "cp936", "cp936_no_bom"},
++    {L"p1_r3_a_usascii.txt", "control", "usascii"},
++};
++// One sample per trigger leaves its status-bar text available for a screenshot.
++unsigned r3_message_sample = 0;
++bool r3_static_ok = false, r3_ascii_ok = false;
++
++void r3_probe_message(R3Run& run)
++{
++    const unsigned sample = r3_message_sample;
++    r3_message_sample = (sample + 1) % 10;
++    const bool control = sample == 0;
++    const unsigned step = control ? 0 : (sample - 1) % 3;
++    const auto& variant = r3_variants[control ? 3 : (sample - 1) / 3];
++    const char* role = step == 0 ? "static" : "dynamic";
++    const char* kind = step == 0 ? "none" : step == 1 ? "ascii" : "zh";
++    const char* message_key = step == 0 ? "P1_SMT_CONV_SELECT" : "P1_SMT_CONV_TEXT";
++    const wchar_t* expected = step == 0 ?
++        (control ? L"Select one planar surface belonging to the default body." :
++            L"\u8bf7\u9009\u62e9\u9ed8\u8ba4\u4f53\u4e0a\u7684\u4e00\u4e2a\u5e73\u9762\u66f2\u9762\u4f5c\u4e3a\u9a71\u52a8\u9762\u3002") :
++        step == 1 ? L"R3_ASCII" : L"\u4e2d\u6587";
++    const size_t expected_units = std::wcslen(expected);
++    char expected_json[483] = {};
++    if (!quote_message_utf16(expected, expected_units, expected_json, sizeof(expected_json))) {
++        run.result = "EXPECTED_TEXT_INVALID"; return;
++    }
++
++    if (step == 0) { r3_static_ok = false; r3_ascii_ok = false; }
++    const bool static_ok_before = r3_static_ok, ascii_ok_before = r3_ascii_ok;
++    ProFileName file = {};
++    ProCharLine key = {};
++    char value[64] = {};
++    ProLine translated = {};
++    R3Status buffer, display;
++    bool eligible = step == 0 || (static_ok_before && (step == 1 || ascii_ok_before));
++    if (eligible) {
++        if (!r3_message_file(file, variant.file) || !r3_message_key(key, message_key)) {
++            run.result = "RESOURCE_IDENTIFIER_INVALID"; return;
++        }
++        if (step != 0 && WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, expected, -1,
++                value, sizeof(value), nullptr, nullptr) <= 0) {
++            run.result = "PARAMETER_ENCODING_FAILED"; return;
++        }
++        r3_call(run, "ProMessageToBuffer", role, buffer, [&] {
++            return step == 0 ? ProMessageToBuffer(translated, file, key) :
++                ProMessageToBuffer(translated, file, key, value);
++        });
++        r3_call(run, "ProMessageDisplay", role, display, [&] {
++            return step == 0 ? ProMessageDisplay(file, key) : ProMessageDisplay(file, key, value);
++        });
++    }
++    const bool readable = buffer.ok() || (buffer.returned && buffer.code == PRO_TK_MSG_TOO_LONG);
++    size_t units = 0;
++    if (readable) while (units < PRO_LINE_SIZE && translated[units]) ++units;
++    const bool terminated = readable && units < PRO_LINE_SIZE;
++    char actual_json[483] = {};
++    const bool encoded = terminated && quote_message_utf16(translated, units, actual_json, sizeof(actual_json));
++    const bool match = buffer.ok() && terminated && units == expected_units &&
++        std::wmemcmp(translated, expected, expected_units) == 0;
++    if (step == 0 && !control) r3_static_ok = match;
++    if (step == 1) r3_ascii_ok = match;
++    run.result = !eligible ? "PREREQUISITE_UNVERIFIED" : !buffer.ok() ? "BUFFER_API_FAILED" :
++        !match ? "BUFFER_MISMATCH" : !display.ok() ? "DISPLAY_API_FAILED" : "BUFFER_MATCH";
++    const char* matched = readable ? r3_bool(match) : "null";
++    run.terminal =
++        ",\"sample\":" + std::to_string(sample + 1) + ",\"role\":\"" + role + "\"" +
++        ",\"key\":\"" + message_key + "\",\"variant\":\"" + variant.name + "\"" +
++        ",\"encoding_tag\":\"" + variant.encoding + "\",\"pro_error\":" + buffer.json() +
++        ",\"display_pro_error\":" + display.json() + ",\"wide_units\":" +
++            (readable ? std::to_string(units) : "null") + ",\"terminated\":" +
++            (readable ? r3_bool(terminated) : "null") +
++        ",\"text_json\":" + (encoded ? actual_json : "null") + ",\"expected_units_json\":" + expected_json +
++        ",\"unit_match\":" + matched + ",\"buffer_match\":" + matched + ",\"buffer_ok\":" + matched +
++        ",\"decode_layer\":\"" + (!eligible ? "untested" : !buffer.ok() ? "buffer_api_failed" :
++            match ? "buffer_matches" : step == 0 ? "resource_or_decode" : "parameter_or_substitution") + "\"" +
++        ",\"display_layer\":\"" + (display.ok() ? "requires_screenshot" :
++            display.returned ? "display_api_failed" : "not_attempted") +
++        "\",\"display_observed\":null,\"display_ok\":null" +
++        ",\"param_kind\":\"" + kind + "\",\"param_json\":" + (step ? expected_json : "null") +
++        ",\"param_roundtrip_ok\":" + (step ? matched : "null") +
++        ",\"control_file_sha256\":" + (control ?
++            "\"921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f\"" : "null") +
++        ",\"control_match\":" + (control ? matched : "null");
++}
++
++void r3_probe_units(R3Run& run)
++{
++    R3Model model;
++    ProUnitsystem system = {};
++    ProUnititem target = {}, mm = {};
++    ProName mm_name = L"mm";
++    ProUnitConversion conversion = {};
++    R3Status system_status, target_status, mm_status, conversion_status;
++    const bool context = model.read(run);
++    if (context) {
++        if (r3_call(run, "ProMdlPrincipalunitsystemGet", "units", system_status, [&] {
++                return ProMdlPrincipalunitsystemGet(model.handle, &system);
++            }) && r3_call(run, "ProUnitsystemUnitGet", "units", target_status, [&] {
++                return ProUnitsystemUnitGet(&system, PRO_UNITTYPE_LENGTH, &target);
++            }) && r3_call(run, "ProUnitInit", "mm", mm_status, [&] {
++                return ProUnitInit(model.handle, mm_name, &mm);
++            })) {
++            r3_call(run, "ProUnitConversionCalculate", "mm_to_current_model", conversion_status, [&] {
++                return ProUnitConversionCalculate(&mm, &target, &conversion);
++            });
++        }
++    }
++    const std::string from = mm_status.ok() ? r3_utf8_name(mm.name) : "null";
++    const std::string to = target_status.ok() ? r3_utf8_name(target.name) : "null";
++    const bool names_ok = from != "null" && to != "null";
++    const bool valid_conversion = conversion_status.ok();
++    const bool finite_scale = valid_conversion && std::isfinite(conversion.scale);
++    const bool zero_offset = valid_conversion && std::isfinite(conversion.offset) && conversion.offset == 0.0;
++    const double sample = 1.0 * conversion.scale + conversion.offset;
++    const bool sample_ok = finite_scale && conversion.scale > 0.0 && zero_offset &&
++        std::isfinite(sample) && sample > 0.0;
++    if (context) {
++        run.result = (target_status.ok() && to == "null") || (mm_status.ok() && from == "null") ?
++            "UNIT_NAME_INVALID" : !valid_conversion ? "UNIT_QUERY_FAILED" :
++            names_ok && sample_ok ? "UNITS_OBSERVED" : "UNIT_CONVERSION_INVALID";
++    }
++    run.terminal = model.facts() + ",\"system_pro_error\":" + system_status.json() +
++        ",\"unit_pro_error\":" + target_status.json() + ",\"mm_init_pro_error\":" + mm_status.json() +
++        ",\"convert_pro_error\":" + conversion_status.json() +
++        ",\"unit_from_name_json\":" + from + ",\"unit_to_name_json\":" + to +
++        ",\"direction\":\"mm_to_current_model\",\"scale\":" +
++            (valid_conversion ? r3_number(conversion.scale) : "null") +
++        ",\"offset\":" + (valid_conversion ? r3_number(conversion.offset) : "null") +
++        ",\"scale_finite\":" + (valid_conversion ? r3_bool(finite_scale) : "null") +
++        ",\"offset_zero\":" + (valid_conversion ? r3_bool(zero_offset) : "null") +
++        ",\"sample_mm\":1.0,\"sample_model_units\":" + (sample_ok ? r3_number(sample) : "null");
++}
++
++struct R3BodyArray {
++    R3Run& context;
++    R3Status& free_status;
++    ProSolidBody* data = nullptr;
++
++    R3BodyArray(R3Run& run, R3Status& status) noexcept : context(run), free_status(status) {}
++    R3BodyArray(const R3BodyArray&) = delete;
++    R3BodyArray& operator=(const R3BodyArray&) = delete;
++    ~R3BodyArray() noexcept
++    {
++        if (!data) return;
++        ProArray owned = data;
++        try {
++            if (!r3_call(context, "ProArrayFree", "body_array", free_status, [&] {
++                    return ProArrayFree(&owned);
++                })) context.cleanup_failed = true;
++        } catch (...) {
++            context.cleanup_failed = true;
++        }
++    }
++};
++
++struct R3BodyFaces {
++    R3Run& run;
++    int index;
++    int body_id;
++    ProMdl owner;
++    bool is_default;
++    bool callback_failed = false, callback_exception = false;
++    R3Status surface_id_error, visit;
++    std::vector<int> ids;
++
++    R3BodyFaces(R3Run& r, int i, const ProSolidBody& body, const ProSolidBody& default_body) :
++        run(r), index(i), body_id(body.id), owner(body.owner),
++        is_default(body.id == default_body.id && body.owner == default_body.owner) {}
++};
++
++ProError r3_visit_surface(ProSurface surface, ProError incoming, ProAppData data) noexcept
++{
++    auto& body = *static_cast<R3BodyFaces*>(data);
++    if (incoming != PRO_TK_NO_ERROR) {
++        body.callback_failed = true;
++        return incoming;
++    }
++    try {
++        int id = -1;
++        R3Status status;
++        if (!r3_call(body.run, "ProSurfaceIdGet", "surface_visit", status, [&] {
++                return ProSurfaceIdGet(surface, &id);
++            })) {
++            body.callback_failed = true;
++            body.surface_id_error = status;
++            return status.code;
++        }
++        body.ids.push_back(id);
++        return PRO_TK_NO_ERROR;
++    } catch (...) {
++        body.callback_failed = true;
++        body.callback_exception = true;
++        return PRO_TK_GENERAL_ERROR;
++    }
++}
++
++void r3_log_body(const R3BodyFaces& body, ProMdl model)
++{
++    char owner[32] = {};
++    std::snprintf(owner, sizeof(owner), "0x%" PRIxPTR, reinterpret_cast<uintptr_t>(body.owner));
++    const bool complete = body.visit.ok() && !body.callback_failed;
++    const std::string prefix = ",\"body_index\":" + std::to_string(body.index) +
++        ",\"body_id\":" + std::to_string(body.body_id);
++    const std::string summary = prefix + ",\"owner\":\"" + owner + "\",\"owner_matches_model\":" +
++        r3_bool(body.owner == model) + ",\"is_default\":" + r3_bool(body.is_default) +
++        ",\"surface_count\":" + (complete ? std::to_string(body.ids.size()) : "null") +
++        ",\"observed_surface_count\":" + std::to_string(body.ids.size()) +
++        ",\"visit_pro_error\":" + body.visit.json() +
++        ",\"surface_id_error\":" + body.surface_id_error.json() +
++        ",\"callback_exception\":" + r3_bool(body.callback_exception) +
++        ",\"surface_ids_complete\":" + r3_bool(complete);
++    r3_trace(body.run, "R3_PROBE_BODY_VISIT", summary.c_str());
++    // A large model may exceed the JSONL line capacity. Keep all IDs in bounded chunks.
++    const size_t per_line = 32;
++    for (size_t begin = 0; begin < body.ids.size();) {
++        size_t end = begin;
++        std::string ids = "[";
++        for (; end < body.ids.size() && end - begin < per_line; ++end) {
++            if (end != begin) ids += ',';
++            ids += std::to_string(body.ids[end]);
++        }
++        const std::string chunk = prefix + ",\"first_surface_index\":" + std::to_string(begin) +
++            ",\"surface_ids_json\":" + ids + "]";
++        r3_trace(body.run, "R3_PROBE_BODY_SURFACE_IDS", chunk.c_str());
++        begin = end;
++    }
++}
++
++bool r3_pick_face(R3Run& run, ProMdl model, bool expected_default, int& face_id)
++{
++    const char* role = expected_default ? "default_body" : "other_body";
++    ProFileName file = L"p1_r3_readonly.txt";
++    ProCharLine prompt = {};
++    r3_message_key(prompt, expected_default ? "P1_R3_BODIES_PICK_DEFAULT" : "P1_R3_BODIES_PICK_OTHER");
++    R3Status display, selection, item_status, surface_status, surface_type;
++    if (!r3_call(run, "ProMessageDisplay", role, display, [&] { return ProMessageDisplay(file, prompt); })) {
++        run.result = "PROMPT_FAILED"; return false;
++    }
++    char filter[] = "surface";
++    ProSelection* borrowed = nullptr;
++    int count = 0;
++    if (!r3_call(run, "ProSelect", role, selection, [&] {
++            return ProSelect(filter, 1, nullptr, nullptr, nullptr, nullptr, &borrowed, &count);
++        })) {
++        run.result = selection.code == PRO_TK_USER_ABORT ? "CANCELLED" : "SELECTION_FAILED";
++        return false;
++    }
++    ProModelitem selected = {};
++    // The SDK's selection array is borrowed. Read the item before issuing another SDK query.
++    if (count != 1 || !borrowed || !borrowed[0] ||
++        !r3_call(run, "ProSelectionModelitemGet", role, item_status, [&] {
++            return ProSelectionModelitemGet(borrowed[0], &selected);
++        }) || selected.type != PRO_SURFACE || selected.owner != model) {
++        run.result = "SELECTED_FACE_INVALID"; return false;
++    }
++    ProSurface surface = nullptr;
++    ProSrftype type = PRO_SRF_NONE;
++    if (!r3_call(run, "ProSurfaceInit", role, surface_status, [&] {
++            return ProSurfaceInit(model, selected.id, &surface);
++        }) || !surface || !r3_call(run, "ProSurfaceTypeGet", role, surface_type, [&] {
++            return ProSurfaceTypeGet(surface, &type);
++        })) {
++        run.result = "SURFACE_QUERY_FAILED"; return false;
++    }
++    if (type != PRO_SRF_PLANE) { run.result = "SELECTED_FACE_NOT_PLANE"; return false; }
++    face_id = selected.id;
++    const std::string facts = std::string(",\"role\":\"") + role +
++        "\",\"selected_face_id\":" + std::to_string(face_id) +
++        ",\"surface_type\":" + std::to_string(static_cast<int>(type));
++    r3_trace(run, "R3_PROBE_FACE_SELECTED", facts.c_str());
++    return true;
++}
++
++bool r3_compare_face(R3Run& run, const std::vector<R3BodyFaces>& bodies, int face_id, bool expected_default)
++{
++    size_t matches = 0;
++    int matched_body = -1;
++    bool on_default = false;
++    for (const auto& body : bodies) {
++        for (int id : body.ids) {
++            if (id != face_id) continue;
++            ++matches;
++            matched_body = body.index;
++            on_default = body.is_default;
++        }
++    }
++    const bool expected = matches == 1 && on_default == expected_default;
++    const std::string facts =
++        ",\"expected_default\":" + std::string(r3_bool(expected_default)) +
++        ",\"selected_face_id\":" + std::to_string(face_id) +
++        ",\"matched_body_index\":" + (matches == 1 ? std::to_string(matched_body) : "null") +
++        ",\"match_count\":" + std::to_string(matches) +
++        ",\"belongs_to_default\":" + (matches == 1 ? r3_bool(on_default) : "null") +
++        ",\"result\":\"" + (expected ? "FACE_MEMBERSHIP_CONFIRMED" : "FACE_BODY_MISMATCH") + "\"";
++    r3_trace(run, "R3_PROBE_BODY_MATCH", facts.c_str());
++    return expected;
++}
++
++void r3_probe_bodies(R3Run& run)
++{
++    R3Model model;
++    R3Status default_status, collect, size, release, current_again, default_again;
++    ProSolidBody default_body = {};
++    int body_count = -1, defaults_matched = 0, first = -1, second = -1;
++    bool visits_ok = true, picked_first = false, picked_second = false, paired = false;
++    std::vector<R3BodyFaces> bodies;
++    auto observe = [&] {
++        if (!model.read(run)) return;
++        const ProSolid solid = reinterpret_cast<ProSolid>(model.handle);
++        if (!r3_call(run, "ProSolidDefaultBodyGet", "default_body", default_status, [&] {
++                return ProSolidDefaultBodyGet(solid, &default_body);
++            }) || default_body.owner != model.handle) {
++            run.result = "DEFAULT_BODY_UNAVAILABLE"; return;
++        }
++        {
++            R3BodyArray array(run, release);
++            if (!r3_call(run, "ProSolidBodiesCollect", "body_array", collect, [&] {
++                    return ProSolidBodiesCollect(solid, &array.data);
++                }) || !array.data || !r3_call(run, "ProArraySizeGet", "body_array", size, [&] {
++                    return ProArraySizeGet(array.data, &body_count);
++                }) || body_count < 0) {
++                run.result = "BODY_ARRAY_UNAVAILABLE"; return;
++            }
++            for (int i = 0; i < body_count; ++i) {
++                bodies.emplace_back(run, i, array.data[i], default_body);
++                auto& body = bodies.back();
++                if (body.is_default) ++defaults_matched;
++                r3_call(run, "ProSolidBodySurfaceVisit", "body_visit", body.visit, [&] {
++                    return ProSolidBodySurfaceVisit(&array.data[i], &r3_visit_surface, &body);
++                });
++                visits_ok = visits_ok && body.visit.ok() && !body.callback_failed &&
++                    body.owner == model.handle;
++                r3_log_body(body, model.handle);
++            }
++        }
++        if (run.cleanup_failed) { run.result = "CLEANUP_FAILED"; return; }
++        if (body_count < 2) { run.result = "MULTIBODY_FIXTURE_REQUIRED"; return; }
++        if (!visits_ok || defaults_matched != 1) { run.result = "FACE_BODY_MISMATCH"; return; }
++        picked_first = r3_pick_face(run, model.handle, true, first);
++        if (!picked_first) return;
++        picked_second = r3_pick_face(run, model.handle, false, second);
++        if (!picked_second) return;
++
++        ProMdl current = nullptr;
++        ProSolidBody body = {};
++        if (!r3_call(run, "ProMdlCurrentGet", "revalidate", current_again, [&] {
++                return ProMdlCurrentGet(&current);
++            }) || current != model.handle ||
++            !r3_call(run, "ProSolidDefaultBodyGet", "revalidate", default_again, [&] {
++                return ProSolidDefaultBodyGet(solid, &body);
++            }) || body.owner != default_body.owner || body.id != default_body.id) {
++            run.result = "STALE_CONTEXT"; return;
++        }
++        const bool first_matches = r3_compare_face(run, bodies, first, true);
++        const bool second_matches = r3_compare_face(run, bodies, second, false);
++        paired = first_matches && second_matches;
++        run.result = paired ? "FACE_MEMBERSHIP_CONFIRMED" : "FACE_BODY_MISMATCH";
++    };
++    observe();
++    char default_owner[32] = {};
++    std::snprintf(default_owner, sizeof(default_owner), "\"0x%" PRIxPTR "\"",
++        reinterpret_cast<uintptr_t>(default_body.owner));
++    run.terminal = model.facts() + ",\"default_body_id\":" +
++        (default_status.ok() ? std::to_string(default_body.id) : "null") +
++        ",\"default_body_owner\":" + (default_status.ok() ? default_owner : "null") +
++        ",\"default_body_owner_matches_model\":" +
++        (default_status.ok() ? r3_bool(default_body.owner == model.handle) : "null") +
++        ",\"body_get_pro_error\":" + default_status.json() +
++        ",\"body_count\":" + (size.ok() && body_count >= 0 ? std::to_string(body_count) : "null") +
++        ",\"collect_pro_error\":" + collect.json() + ",\"size_pro_error\":" + size.json() +
++        ",\"array_free_pro_error\":" + release.json() + ",\"free_pro_error\":" + release.json() +
++        ",\"default_face_id\":" + (picked_first ? std::to_string(first) : "null") +
++        ",\"other_face_id\":" + (picked_second ? std::to_string(second) : "null") +
++        ",\"revalidated_current_pro_error\":" + current_again.json() +
++        ",\"revalidated_body_pro_error\":" + default_again.json() +
++        ",\"membership_pair_confirmed\":" + r3_bool(paired);
++}
++
++AccessTrace r3_accesses[] = {
++    {"p1_r3_probe_msg", "p1_r3_probe_msg", 0, {}, {}},
++    {"p1_r3_probe_units", "p1_r3_probe_units", 0, {}, {}},
++    {"p1_r3_probe_bodies", "p1_r3_probe_bodies", 0, {}, {}}
++};
++
++template<size_t Index>
++uiCmdAccessState r3_access(uiCmdAccessMode mode)
++{
++    record_access_observation(r3_accesses[Index], mode, ACCESS_AVAILABLE);
++    return ACCESS_AVAILABLE;
++}
++
++template<size_t Index, void (*Probe)(R3Run&)>
++int r3_action(uiCmdCmdId, uiCmdValue*, void*) noexcept
++{
++    PreserveLastError preserve;
++    R3Run run{r3_definitions[Index]};
++    r3_trace(run, run.definition.begin, "");
++    if (InterlockedCompareExchange(&r3_busy, 1, 0) != 0) {
++        run.result = "COMMAND_BUSY";
++    } else {
++        struct BusyReset { ~BusyReset() { InterlockedExchange(&r3_busy, 0); } } reset;
++        try {
++            Probe(run);
++        } catch (...) {
++            run.result = "UNEXPECTED_EXCEPTION";
++        }
++        flush_one_access_trace(r3_accesses[Index], "r3_probe_return");
++    }
++    char details[model_facts_capacity] = {};
++    const int n = std::snprintf(details, sizeof(details),
++        ",\"result\":\"%s\",\"model_may_be_modified\":false,\"save_called\":false,\"cleanup_failed\":%s%s",
++        run.result, r3_bool(run.cleanup_failed), run.terminal.c_str());
++    if (n > 0 && static_cast<size_t>(n) < sizeof(details)) {
++        r3_trace(run, run.definition.finish, details);
++    } else {
++        r3_trace(run, run.definition.finish,
++            ",\"result\":\"TRACE_FACTS_TOO_LONG\",\"model_may_be_modified\":false,\"save_called\":false");
++    }
++    return 0;
++}
++
++template<size_t Index, void (*Probe)(R3Run&)>
++void r3_register(char* name, char* label, char* help, char* description) noexcept
++{
++    PreserveLastError preserve;
++    R3Run run{r3_definitions[Index]};
++    try {
++        ProFileName file = L"p1_r3_readonly.txt";
++        uiCmdCmdId id = nullptr;
++        R3Status add, designate;
++        if (!r3_call(run, "ProCmdActionAdd", "registration", add, [&] {
++                return ProCmdActionAdd(name, &r3_action<Index, Probe>, uiProeImmediate,
++                    &r3_access<Index>, PRO_B_TRUE, PRO_B_TRUE, &id);
++            }) || !id) {
++            r3_trace(run, "R3_PROBE_REGISTRATION_FAILED", ",\"phase\":\"add_or_identity\"");
++            return;
++        }
++        trace_registration_identity(name, id, name, label, help, description, file);
++        if (!r3_call(run, "ProCmdDesignate", "registration", designate, [&] {
++                return ProCmdDesignate(id, label, help, description, file);
++            })) {
++            r3_trace(run, "R3_PROBE_REGISTRATION_FAILED", ",\"phase\":\"designate\"");
++        }
++    } catch (...) {
++        r3_trace(run, "R3_PROBE_REGISTRATION_FAILED", ",\"phase\":\"exception\"");
++    }
++}
++
++void register_r3_readonly_probes() noexcept
++{
++    static char message[] = "p1_r3_probe_msg";
++    static char message_label[] = "P1_R3_MSG_LABEL", message_help[] = "P1_R3_MSG_HELP";
++    static char message_desc[] = "P1_R3_MSG_DESC";
++    static char units[] = "p1_r3_probe_units";
++    static char units_label[] = "P1_R3_UNITS_LABEL", units_help[] = "P1_R3_UNITS_HELP";
++    static char units_desc[] = "P1_R3_UNITS_DESC";
++    static char bodies[] = "p1_r3_probe_bodies";
++    static char bodies_label[] = "P1_R3_BODIES_LABEL", bodies_help[] = "P1_R3_BODIES_HELP";
++    static char bodies_desc[] = "P1_R3_BODIES_DESC";
++    r3_register<0, r3_probe_message>(message, message_label, message_help, message_desc);
++    r3_register<1, r3_probe_units>(units, units_label, units_help, units_desc);
++    r3_register<2, r3_probe_bodies>(bodies, bodies_label, bodies_help, bodies_desc);
++}
+diff --git a/text/chinese_cn/p1_r3_a_bom.txt b/text/chinese_cn/p1_r3_a_bom.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..43ea63f1e7a9632f032a6b59e8cae03cc0022eb7
+--- /dev/null
++++ b/text/chinese_cn/p1_r3_a_bom.txt
+@@ -0,0 +1,120 @@
++﻿P1_SMT_CONV_LABEL
++p1_smt_drv_conv
++#
++#
++P1_SMT_CONV_HELP
++选择一个默认体平面，按驱动面方式转换。
++#
++#
++P1_SMT_CONV_DESC
++驱动面转换，板厚按毫米输入，修改模型但不保存。
++#
++#
++P1_SMT_CONV_TEXT
++%0s
++#
++#
++P1_SMT_CONV_NO_MODEL
++无激活模型，请打开普通零件后重试。
++#
++#
++P1_SMT_CONV_NOT_PART
++只支持普通零件，不支持装配或绘图。
++#
++#
++P1_SMT_CONV_NO_BODY
++未取得可用的默认实体体，未创建特征。
++#
++#
++P1_SMT_CONV_ALREADY
++默认体已是钣金，不重复转换。
++#
++#
++P1_SMT_CONV_SELECT
++请选择默认体上的一个平面曲面作为驱动面。
++#
++#
++P1_SMT_CONV_NO_FACE
++未选择驱动面，请选择一个平面后重试。
++#
++#
++P1_SMT_CONV_ONE_FACE
++请只选择一个驱动平面，未创建特征。
++#
++#
++P1_SMT_CONV_BAD_FACE
++选中项不是有效曲面，或面查询失败；未创建特征。
++#
++#
++P1_SMT_CONV_BODY_MISMATCH
++选中面未被确认属于默认体，未创建特征。
++#
++#
++P1_SMT_CONV_NOT_PLANE
++6A 暂只支持平面驱动面，未创建特征。
++#
++#
++P1_SMT_CONV_THICKNESS
++请输入板厚，单位毫米，范围 0.1 至 20.0；按 ESC 取消。
++#
++#
++P1_SMT_CONV_BAD_THICKNESS
++请输入有效板厚，单位毫米，范围 0.1 至 20.0。
++#
++#
++P1_SMT_CONV_CANCELLED
++已取消，未创建特征。
++#
++#
++P1_SMT_CONV_STALE
++模型或默认体已变化，未创建特征；请重新选择。
++#
++#
++P1_SMT_CONV_UNIT_FAILED
++无法确认毫米到当前模型单位的换算，未创建特征。
++#
++#
++P1_SMT_CONV_QUERY_FAILED
++模型或实体体查询失败，未创建特征。
++#
++#
++P1_SMT_CONV_TREE_FAILED
++元素树准备失败，未调用特征创建接口。
++#
++#
++P1_SMT_CONV_READ_ONLY
++Creo 拒绝修改；请检查模型状态和 JSONL，未保存。
++#
++#
++P1_SMT_CONV_CREATE_FAILED
++创建失败，模型可能已改变；请检查模型和 JSONL，未保存。
++#
++#
++P1_SMT_CONV_POST_FAILED
++创建后检查失败。请检查模型与 JSONL。未保存。
++#
++#
++P1_SMT_CONV_SUCCESS
++驱动面转换回读通过，已是钣金，未执行保存。
++#
++#
++P1_SMT_CONV_MODEL_NAME
++模型名称：
++#
++#
++P1_SMT_CONV_FEATURE_NAME
++特征名称：
++#
++#
++P1_SMT_CONV_BUSY
++转换命令正在执行，请等待本次命令返回。
++#
++#
++P1_SMT_CONV_EXCEPTION
++命令异常；重试前请检查模型和 JSONL，未执行保存。
++#
++#
++P1_SMT_CONV_WRAP_FAILED
++无法包装当前零件或默认实体体，创建未调用。
++#
++#
+diff --git a/text/chinese_cn/p1_r3_a_cp936.txt b/text/chinese_cn/p1_r3_a_cp936.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..e1a8f25d4d4f35516df9231f822f37aef09a0e0f
+GIT binary patch
+literal 1869
+zcma)7-*3`T6n^htL1KJ0n-9Ks<(i?TMOxH7^+A2~N7VTLkgM4;o2;;QAQ!e^ab*Zy
+z`LRNlxfeGQgIRPMXWVAIr&l)O%4T?iob#RUe&2TviAha~tC}E7w>6QULL&EMQhWCB
+zxpx2Q3+>+HM=!Wb^phB=nnq%RYo<G2TO|LZqF2}JyQ?L;k9EUzj+Ykfey&t2b>|65
+z<1@WcqzD|Vf(qKRTli|2g|gkP?NkR?_qOwu3icY->nzD&vmb(?qPr@0dE(g_a7otU
+za+JQn-7dZ)djNxVXJGEH%&%@V=E@(7zYE{|Uab=XD#@yr;FBun6MuHmAJ$_%8+`8?
+z?{>&O={Jg@z1ox<o#9-wnzrnfwYF_lK$n_T->vUr-8D_KG*|C!9E3FUViNJRnF-ly
+z)||a|=}R!Tmp8}As2~vuD(4Kq2G+T@ZdJe#u)_Ie_qzw~JQF%(C{^k@FCfYo09YAF
+zHFOm~#!4kih;=&ypA0(ygQeiy*G}<K*4s?`-uhma)SR~G%>rSplYP6N{nT8j%^F*n
+zoR35G*5WZG&a1*S4WsYbeb>y8YL3eOy}ijaxj_2BbCH)2ca4v9KKyka^b2BqLAN>`
+z6K+aKQK$`&T}U$4tyeCAG-Ext<jzJWu1rS!a^&j7l?hA?GeYAZsixNtLp%X#{>21s
+zF2W6g5_m~KqKKkgs|nLCc!{F&BI00O$o?>fnH{n)+J*^ryXU<Hze6Ubq?k&LjloQJ
+zJ2wYDfDBg2$~Z=_&{P<!Ldg4%qp%@Rw^ArMGsI$~*dm=o<NSqElL+z|Q0dIS@6`^v
+z#Y{fP6m7H)+BR$=Y-FjuvKc}E_ED21afTC~K6o5i-dg?%R|ym-e$IXZN?o(A7aEZp
+z3N3@@jJZ?-g;Gz*z(_^|AXe5YTdiiklGzyr{twWEtei*<kcDr+3V_r2lwo_o*roAU
+zc1lVRg7^k$hf70xOXbGgn`5k>-XYiYP0t(iz~J0!5+7&ru@4tlapBBezD`w0B@wFw
+z@yFCnrIZ;Cc-Tkfy^Z6}CQOF2WL3@M%(Cgi?>UR~LQF$<1(Z-@vcy4A>+>SU1WvtU
+moN6*E?m3UTljIY_06~_GqpkrdhW`(?Aj88B^0P?&W%LK~^V`}0
+
+literal 0
+HcmV?d00001
+
+diff --git a/text/chinese_cn/p1_r3_a_usascii.txt b/text/chinese_cn/p1_r3_a_usascii.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6b6a1985dcda6d199c598670506aa094bca65d9
+--- /dev/null
++++ b/text/chinese_cn/p1_r3_a_usascii.txt
+@@ -0,0 +1,120 @@
++P1_SMT_CONV_LABEL
++p1_smt_drv_conv
++#
++#
++P1_SMT_CONV_HELP
++Convert the default body using one selected planar driving face.
++#
++#
++P1_SMT_CONV_DESC
++Controlled driving conversion; input mm; modifies model; never saves.
++#
++#
++P1_SMT_CONV_TEXT
++%0s
++#
++#
++P1_SMT_CONV_NO_MODEL
++No active model. Open a part and retry.
++#
++#
++P1_SMT_CONV_NOT_PART
++Only an active part is supported; assemblies and drawings are rejected.
++#
++#
++P1_SMT_CONV_NO_BODY
++No usable default solid body. No feature was created.
++#
++#
++P1_SMT_CONV_ALREADY
++Default body is already sheetmetal; no repeated conversion.
++#
++#
++P1_SMT_CONV_SELECT
++Select one planar surface belonging to the default body.
++#
++#
++P1_SMT_CONV_NO_FACE
++No surface selected. Select one planar driving surface and retry.
++#
++#
++P1_SMT_CONV_ONE_FACE
++Select exactly one surface. No feature was created.
++#
++#
++P1_SMT_CONV_BAD_FACE
++Invalid surface or geometry query failed. No feature was created.
++#
++#
++P1_SMT_CONV_BODY_MISMATCH
++Surface is not confirmed in the default body. No feature was created.
++#
++#
++P1_SMT_CONV_NOT_PLANE
++6A supports planar driving surfaces only. No feature was created.
++#
++#
++P1_SMT_CONV_THICKNESS
++Enter thickness in mm, 0.1 to 20.0. Press ESC to cancel.
++#
++#
++P1_SMT_CONV_BAD_THICKNESS
++Enter a valid thickness in mm from 0.1 to 20.0.
++#
++#
++P1_SMT_CONV_CANCELLED
++Cancelled before creation. No feature was created.
++#
++#
++P1_SMT_CONV_STALE
++Model or default body changed. No feature was created; retry selection.
++#
++#
++P1_SMT_CONV_UNIT_FAILED
++Could not confirm mm to current model units. No feature was created.
++#
++#
++P1_SMT_CONV_QUERY_FAILED
++Model or body query failed. No feature was created.
++#
++#
++P1_SMT_CONV_TREE_FAILED
++Element tree preparation failed. No feature was created.
++#
++#
++P1_SMT_CONV_READ_ONLY
++Creo refused modification. Inspect model state and JSONL; no Save.
++#
++#
++P1_SMT_CONV_CREATE_FAILED
++Creation failed. Model may have changed. Inspect JSONL; no Save.
++#
++#
++P1_SMT_CONV_POST_FAILED
++Post-create check failed. Inspect the model and JSONL. No Save.
++#
++#
++P1_SMT_CONV_SUCCESS
++Driving conversion readback passed. Sheetmetal is true. No Save.
++#
++#
++P1_SMT_CONV_MODEL_NAME
++Model name:
++#
++#
++P1_SMT_CONV_FEATURE_NAME
++Feature name:
++#
++#
++P1_SMT_CONV_BUSY
++Conversion command is already active; wait for it to return.
++#
++#
++P1_SMT_CONV_EXCEPTION
++Command exception. Inspect model and JSONL before retry; no Save.
++#
++#
++P1_SMT_CONV_WRAP_FAILED
++Could not wrap the current part or default body. Create was not called.
++#
++#
+diff --git a/text/chinese_cn/p1_r3_a_utf8.txt b/text/chinese_cn/p1_r3_a_utf8.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..20218445dd23cda36ab325aee096a34f3f320f44
+--- /dev/null
++++ b/text/chinese_cn/p1_r3_a_utf8.txt
+@@ -0,0 +1,120 @@
++P1_SMT_CONV_LABEL
++p1_smt_drv_conv
++#
++#
++P1_SMT_CONV_HELP
++选择一个默认体平面，按驱动面方式转换。
++#
++#
++P1_SMT_CONV_DESC
++驱动面转换，板厚按毫米输入，修改模型但不保存。
++#
++#
++P1_SMT_CONV_TEXT
++%0s
++#
++#
++P1_SMT_CONV_NO_MODEL
++无激活模型，请打开普通零件后重试。
++#
++#
++P1_SMT_CONV_NOT_PART
++只支持普通零件，不支持装配或绘图。
++#
++#
++P1_SMT_CONV_NO_BODY
++未取得可用的默认实体体，未创建特征。
++#
++#
++P1_SMT_CONV_ALREADY
++默认体已是钣金，不重复转换。
++#
++#
++P1_SMT_CONV_SELECT
++请选择默认体上的一个平面曲面作为驱动面。
++#
++#
++P1_SMT_CONV_NO_FACE
++未选择驱动面，请选择一个平面后重试。
++#
++#
++P1_SMT_CONV_ONE_FACE
++请只选择一个驱动平面，未创建特征。
++#
++#
++P1_SMT_CONV_BAD_FACE
++选中项不是有效曲面，或面查询失败；未创建特征。
++#
++#
++P1_SMT_CONV_BODY_MISMATCH
++选中面未被确认属于默认体，未创建特征。
++#
++#
++P1_SMT_CONV_NOT_PLANE
++6A 暂只支持平面驱动面，未创建特征。
++#
++#
++P1_SMT_CONV_THICKNESS
++请输入板厚，单位毫米，范围 0.1 至 20.0；按 ESC 取消。
++#
++#
++P1_SMT_CONV_BAD_THICKNESS
++请输入有效板厚，单位毫米，范围 0.1 至 20.0。
++#
++#
++P1_SMT_CONV_CANCELLED
++已取消，未创建特征。
++#
++#
++P1_SMT_CONV_STALE
++模型或默认体已变化，未创建特征；请重新选择。
++#
++#
++P1_SMT_CONV_UNIT_FAILED
++无法确认毫米到当前模型单位的换算，未创建特征。
++#
++#
++P1_SMT_CONV_QUERY_FAILED
++模型或实体体查询失败，未创建特征。
++#
++#
++P1_SMT_CONV_TREE_FAILED
++元素树准备失败，未调用特征创建接口。
++#
++#
++P1_SMT_CONV_READ_ONLY
++Creo 拒绝修改；请检查模型状态和 JSONL，未保存。
++#
++#
++P1_SMT_CONV_CREATE_FAILED
++创建失败，模型可能已改变；请检查模型和 JSONL，未保存。
++#
++#
++P1_SMT_CONV_POST_FAILED
++创建后检查失败。请检查模型与 JSONL。未保存。
++#
++#
++P1_SMT_CONV_SUCCESS
++驱动面转换回读通过，已是钣金，未执行保存。
++#
++#
++P1_SMT_CONV_MODEL_NAME
++模型名称：
++#
++#
++P1_SMT_CONV_FEATURE_NAME
++特征名称：
++#
++#
++P1_SMT_CONV_BUSY
++转换命令正在执行，请等待本次命令返回。
++#
++#
++P1_SMT_CONV_EXCEPTION
++命令异常；重试前请检查模型和 JSONL，未执行保存。
++#
++#
++P1_SMT_CONV_WRAP_FAILED
++无法包装当前零件或默认实体体，创建未调用。
++#
++#
+diff --git a/text/chinese_cn/p1_r3_readonly.txt b/text/chinese_cn/p1_r3_readonly.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..1399470666da4fe7b507b77acfa00fc4ef48d229
+--- /dev/null
++++ b/text/chinese_cn/p1_r3_readonly.txt
+@@ -0,0 +1,44 @@
++P1_R3_MSG_LABEL
++R3 A - Message decode
++#
++#
++P1_R3_MSG_HELP
++Display the next isolated message sample and record its buffer.
++#
++#
++P1_R3_MSG_DESC
++Read-only message decode probe. One sample per trigger.
++#
++#
++P1_R3_UNITS_LABEL
++R3 B - Unit conversion
++#
++#
++P1_R3_UNITS_HELP
++Read the current part length unit and a 1 mm conversion sample.
++#
++#
++P1_R3_UNITS_DESC
++Read-only mm to current model length unit comparison.
++#
++#
++P1_R3_BODIES_LABEL
++R3 C - Body membership
++#
++#
++P1_R3_BODIES_HELP
++Enumerate bodies and compare one planar face from each of two bodies.
++#
++#
++P1_R3_BODIES_DESC
++Read-only multibody membership probe.
++#
++#
++P1_R3_BODIES_PICK_DEFAULT
++Select one planar surface on the default body. ESC cancels.
++#
++#
++P1_R3_BODIES_PICK_OTHER
++Select one planar surface on another body. ESC cancels.
++#
++#
+diff --git a/text/usascii/p1_r3_a_usascii.txt b/text/usascii/p1_r3_a_usascii.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6b6a1985dcda6d199c598670506aa094bca65d9
+--- /dev/null
++++ b/text/usascii/p1_r3_a_usascii.txt
+@@ -0,0 +1,120 @@
++P1_SMT_CONV_LABEL
++p1_smt_drv_conv
++#
++#
++P1_SMT_CONV_HELP
++Convert the default body using one selected planar driving face.
++#
++#
++P1_SMT_CONV_DESC
++Controlled driving conversion; input mm; modifies model; never saves.
++#
++#
++P1_SMT_CONV_TEXT
++%0s
++#
++#
++P1_SMT_CONV_NO_MODEL
++No active model. Open a part and retry.
++#
++#
++P1_SMT_CONV_NOT_PART
++Only an active part is supported; assemblies and drawings are rejected.
++#
++#
++P1_SMT_CONV_NO_BODY
++No usable default solid body. No feature was created.
++#
++#
++P1_SMT_CONV_ALREADY
++Default body is already sheetmetal; no repeated conversion.
++#
++#
++P1_SMT_CONV_SELECT
++Select one planar surface belonging to the default body.
++#
++#
++P1_SMT_CONV_NO_FACE
++No surface selected. Select one planar driving surface and retry.
++#
++#
++P1_SMT_CONV_ONE_FACE
++Select exactly one surface. No feature was created.
++#
++#
++P1_SMT_CONV_BAD_FACE
++Invalid surface or geometry query failed. No feature was created.
++#
++#
++P1_SMT_CONV_BODY_MISMATCH
++Surface is not confirmed in the default body. No feature was created.
++#
++#
++P1_SMT_CONV_NOT_PLANE
++6A supports planar driving surfaces only. No feature was created.
++#
++#
++P1_SMT_CONV_THICKNESS
++Enter thickness in mm, 0.1 to 20.0. Press ESC to cancel.
++#
++#
++P1_SMT_CONV_BAD_THICKNESS
++Enter a valid thickness in mm from 0.1 to 20.0.
++#
++#
++P1_SMT_CONV_CANCELLED
++Cancelled before creation. No feature was created.
++#
++#
++P1_SMT_CONV_STALE
++Model or default body changed. No feature was created; retry selection.
++#
++#
++P1_SMT_CONV_UNIT_FAILED
++Could not confirm mm to current model units. No feature was created.
++#
++#
++P1_SMT_CONV_QUERY_FAILED
++Model or body query failed. No feature was created.
++#
++#
++P1_SMT_CONV_TREE_FAILED
++Element tree preparation failed. No feature was created.
++#
++#
++P1_SMT_CONV_READ_ONLY
++Creo refused modification. Inspect model state and JSONL; no Save.
++#
++#
++P1_SMT_CONV_CREATE_FAILED
++Creation failed. Model may have changed. Inspect JSONL; no Save.
++#
++#
++P1_SMT_CONV_POST_FAILED
++Post-create check failed. Inspect the model and JSONL. No Save.
++#
++#
++P1_SMT_CONV_SUCCESS
++Driving conversion readback passed. Sheetmetal is true. No Save.
++#
++#
++P1_SMT_CONV_MODEL_NAME
++Model name:
++#
++#
++P1_SMT_CONV_FEATURE_NAME
++Feature name:
++#
++#
++P1_SMT_CONV_BUSY
++Conversion command is already active; wait for it to return.
++#
++#
++P1_SMT_CONV_EXCEPTION
++Command exception. Inspect model and JSONL before retry; no Save.
++#
++#
++P1_SMT_CONV_WRAP_FAILED
++Could not wrap the current part or default body. Create was not called.
++#
++#
+diff --git a/text/usascii/p1_r3_readonly.txt b/text/usascii/p1_r3_readonly.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..1399470666da4fe7b507b77acfa00fc4ef48d229
+--- /dev/null
++++ b/text/usascii/p1_r3_readonly.txt
+@@ -0,0 +1,44 @@
++P1_R3_MSG_LABEL
++R3 A - Message decode
++#
++#
++P1_R3_MSG_HELP
++Display the next isolated message sample and record its buffer.
++#
++#
++P1_R3_MSG_DESC
++Read-only message decode probe. One sample per trigger.
++#
++#
++P1_R3_UNITS_LABEL
++R3 B - Unit conversion
++#
++#
++P1_R3_UNITS_HELP
++Read the current part length unit and a 1 mm conversion sample.
++#
++#
++P1_R3_UNITS_DESC
++Read-only mm to current model length unit comparison.
++#
++#
++P1_R3_BODIES_LABEL
++R3 C - Body membership
++#
++#
++P1_R3_BODIES_HELP
++Enumerate bodies and compare one planar face from each of two bodies.
++#
++#
++P1_R3_BODIES_DESC
++Read-only multibody membership probe.
++#
++#
++P1_R3_BODIES_PICK_DEFAULT
++Select one planar surface on the default body. ESC cancels.
++#
++#
++P1_R3_BODIES_PICK_OTHER
++Select one planar surface on another body. ESC cancels.
++#
++#
