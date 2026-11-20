@@ -1,0 +1,138 @@
+diff --git a/src/smt_driving_command.inl b/src/smt_driving_command.inl
+index 21590510196fbe4e58f0172fffe0c222d3fa1421..d535d401a1c4beb185a5f532eb7580688648ac09 100644
+--- a/src/smt_driving_command.inl
++++ b/src/smt_driving_command.inl
+@@ -405,7 +405,85 @@ bool smt6a_readback(Smt6aContext& c, ProSolid solid, const ProSolidBody& origina
+     return true;
+ }
+ 
+-bool smt6a_text(Smt6aContext& c, char* value, bool preview_only = false)
++void smt6a_dump_message_buffer(const Smt6aContext& c, const char* role,
++    const char* key, const char* value, ProError status, const ProLine& buffer) noexcept
++{
++    PreserveLastError preserve;
++    const bool truncated = status == PRO_TK_MSG_TOO_LONG;
++    const bool readable = status == PRO_TK_NO_ERROR || truncated;
++    size_t units = 0;
++    if (readable) {
++        while (units < PRO_LINE_SIZE && buffer[units] != L'\0') ++units;
++    }
++    const bool terminated = readable && units < PRO_LINE_SIZE;
++    constexpr size_t json_capacity = (PRO_LINE_SIZE - 1) * 6 + 3;
++    char text_json[json_capacity] = {};
++    const bool text_ok = terminated && quote_message_utf16(buffer, units, text_json, sizeof(text_json));
++    bool placeholder = false;
++    if (terminated) {
++        for (size_t i = 0; i + 2 < units; ++i) {
++            if (buffer[i] == L'%' && buffer[i + 1] == L'0' && buffer[i + 2] == L's') {
++                placeholder = true;
++                break;
++            }
++        }
++    }
++
++    // Callers supply the already-validated UTF-8 name chunks or generated ASCII details.
++    char param_json[json_capacity] = {};
++    const char* param_kind = "null";
++    if (value) {
++        if (!quote_json_utf8(value, param_json, sizeof(param_json))) {
++            trace_failure("buffer_dump_format", ERROR_INSUFFICIENT_BUFFER);
++            return;
++        }
++        param_kind = "\"ascii\"";
++        for (auto p = reinterpret_cast<const unsigned char*>(value); *p; ++p) {
++            if (*p > 0x7f) { param_kind = "\"zh\""; break; }
++        }
++    }
++
++    char count[24] = "null";
++    if (readable) std::snprintf(count, sizeof(count), "%u", static_cast<unsigned>(units));
++    // Use the facts limit, leaving the existing trace envelope its capacity.
++    char facts[model_facts_capacity] = {};
++    const int n = std::snprintf(facts, sizeof(facts),
++        "{\"operation_id\":%llu,\"stage\":\"%s\",\"probe\":\"buffer_dump_v1\","
++        "\"role\":\"%s\",\"key\":\"%s\",\"param_kind\":%s,\"param_json\":%s,"
++        "\"pro_error\":%d,\"buffer_observed\":%s,\"wide_units\":%s,\"terminated\":%s,"
++        "\"sdk_reported_truncation\":%s,\"text_json_valid\":%s,\"text_json\":%s,"
++        "\"placeholder_remaining\":%s,\"buffer_match_expected\":null}",
++        static_cast<unsigned long long>(c.id), c.stage, role, key, param_kind,
++        value ? param_json : "null", static_cast<int>(status), readable ? "true" : "null",
++        count, readable ? (terminated ? "true" : "false") : "null",
++        truncated ? "true" : "false", readable ? (text_ok ? "true" : "false") : "null",
++        text_ok ? text_json : "null", terminated ? (placeholder ? "true" : "false") : "null");
++    if (n <= 0 || static_cast<size_t>(n) >= sizeof(facts)) {
++        trace_failure("buffer_dump_format", ERROR_INSUFFICIENT_BUFFER);
++        return;
++    }
++    trace_event("SMT_CONV_BUFFER_DUMP", facts);
++}
++
++void smt6a_dump_static_feedback(const Smt6aContext& c, const char* role, const char* name) noexcept
++{
++    PreserveLastError preserve;
++    ProFileName file = L"p1_smt_conv.txt";
++    ProCharLine key = {};
++    const size_t length = std::strlen(name);
++    if (length >= sizeof(key)) return;
++    std::memcpy(key, name, length + 1);
++    ProLine buffer = {};
++    try {
++        const ProError status = ProMessageToBuffer(buffer, file, key);
++        smt6a_dump_message_buffer(c, role, key, nullptr, status, buffer);
++    } catch (...) {
++        trace_failure("buffer_dump_static_exception", ERROR_GEN_FAILURE);
++    }
++}
++
++bool smt6a_text(Smt6aContext& c, char* value, bool preview_only = false,
++    const char* role = "detail")
+ {
+     ProFileName file = L"p1_smt_conv.txt";
+     ProCharLine key = "P1_SMT_CONV_TEXT";
+@@ -413,6 +491,7 @@ bool smt6a_text(Smt6aContext& c, char* value, bool preview_only = false)
+     const ProError preview = smt6a_sdk(c, "ProMessageToBuffer(conversion_text)", [&] {
+         return ProMessageToBuffer(buffer, file, key, value);
+     });
++    if (!preview_only) smt6a_dump_message_buffer(c, role, key, value, preview, buffer);
+     if (preview != PRO_TK_NO_ERROR) return false;
+     return preview_only || smt6a_sdk(c, "ProMessageDisplay(conversion_text)", [&] {
+         return ProMessageDisplay(file, key, value);
+@@ -420,9 +499,10 @@ bool smt6a_text(Smt6aContext& c, char* value, bool preview_only = false)
+ }
+ 
+ template<size_t N>
+-bool smt6a_show_name(Smt6aContext& c, const char* key, const wchar_t (&name)[N])
++bool smt6a_show_name(Smt6aContext& c, const char* key, const wchar_t (&name)[N], const char* role)
+ {
+     if (smt6a_message(c, key) != PRO_TK_NO_ERROR) return false;
++    smt6a_dump_static_feedback(c, role, key);
+     char utf8[N * 3 + 1] = {};
+     if (WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, name,
+             -1, utf8, static_cast<int>(sizeof(utf8)), nullptr, nullptr) <= 0) return false;
+@@ -432,7 +512,7 @@ bool smt6a_show_name(Smt6aContext& c, const char* key, const wchar_t (&name)[N])
+         while (end < length && (static_cast<unsigned char>(utf8[end]) & 0xc0) == 0x80) --end;
+         char line[61] = {};
+         std::memcpy(line, utf8 + start, end - start);
+-        if (!smt6a_text(c, line)) return false;
++        if (!smt6a_text(c, line, false, role)) return false;
+         start = end;
+     }
+     return true;
+@@ -444,12 +524,14 @@ bool smt6a_show_success(Smt6aContext& c, const ProMdlName& model_name, const Pro
+     if (!smt6a_number(c.thickness_mm, thickness)) return false;
+     const int n = std::snprintf(detail, sizeof(detail), "driving; thickness=%s mm", thickness);
+     if (n <= 0 || static_cast<size_t>(n) >= sizeof(detail)) return false;
+-    if (smt6a_message(c, "P1_SMT_CONV_SUCCESS") != PRO_TK_NO_ERROR ||
+-        !smt6a_show_name(c, "P1_SMT_CONV_MODEL_NAME", model_name) || !smt6a_text(c, detail)) return false;
++    if (smt6a_message(c, "P1_SMT_CONV_SUCCESS") != PRO_TK_NO_ERROR) return false;
++    smt6a_dump_static_feedback(c, "success_static", "P1_SMT_CONV_SUCCESS");
++    if (!smt6a_show_name(c, "P1_SMT_CONV_MODEL_NAME", model_name, "model_name") ||
++        !smt6a_text(c, detail)) return false;
+     const int k = std::snprintf(detail, sizeof(detail), "feature_id=%d; IsSheetmetal=true; Save not called",
+         c.feature_id);
+     return k > 0 && static_cast<size_t>(k) < sizeof(detail) && smt6a_text(c, detail) &&
+-        smt6a_show_name(c, "P1_SMT_CONV_FEATURE_NAME", feature_name);
++        smt6a_show_name(c, "P1_SMT_CONV_FEATURE_NAME", feature_name, "feature_name");
+ }
+ 
+ void smt6a_run(Smt6aContext& c)

@@ -1,0 +1,123 @@
+{
+  "candidate": "P1 Step41 6A R3A3 G1 probe B buffer dump",
+  "creation_baseline_commit": "b99692e3f927ff297941e812e36ac5646bd323b7",
+  "r3a3_resource_commit": "0d5b72991ec21dd96598caa21c99282ecffddf5e",
+  "inputs": [
+    {
+      "path": "P1_Step41_6A_R3A3_G1_探针B_缓冲文本dump离线输入单_20261120.md",
+      "bytes": 10671,
+      "sha256": "05c7f8c1df39063ff95269bbda19c557cd2e5e7a7dcf163a833809ea59ea1690"
+    },
+    {
+      "path": "sdk-contract-messagetobuffer.md",
+      "bytes": 6619,
+      "sha256": "f8de4d152dde6c4b10923194e3079b6a61ee53145a4ab440ac3110b889f1c539"
+    },
+    {
+      "path": "probe-b-buffer-dump-input.json",
+      "bytes": 13371,
+      "sha256": "df682e8ab2bc21a2f44510ca2c2491e6af2c164113c64503f7b67a8ad8757d77"
+    }
+  ],
+  "patch": {
+    "path": "p1-step41-6a-r3a3-g1-buffer-dump.diff",
+    "bytes": 6990,
+    "sha256": "bd783c712a1d072ddeac40f95df5e5fde66a0786ccb28d911460bb8bf8e10bee"
+  },
+  "baseline_binary_identities": {
+    "dll": {
+      "name": "p1_step41_cpp6a_driving_creation.dll",
+      "bytes": 2979328,
+      "sha256": "b143f90c0eff1d840eaf50e85f6b8efd871376981caa4acbd664d57c108068f5",
+      "note": "冻结基线 DLL；探针候选为隔离副本新 DLL，不重编、不覆盖正式目录基线 DLL。"
+    },
+    "dat": {
+      "name": "p1_step41_cpp6a_driving_creation.dat",
+      "bytes": 247,
+      "sha256": "90944a9c1ebafeebf3977cacba88927ec6fcafda12a9b58412e7dfeaa58fcdd5"
+    }
+  },
+  "new_windows_build": {
+    "dll": null,
+    "dat": null,
+    "export_inspection": null,
+    "dependency_inspection": null,
+    "note": "Pending isolated Windows build; no new command, entry point or library requested."
+  },
+  "baseline_files": [
+    {
+      "path": "src/entry.cpp",
+      "bytes": 47162,
+      "sha256": "a588c3cde376c212f601fa202430632e1de92edb2e5b60f09ead54948ada8985"
+    },
+    {
+      "path": "src/smt_driving_command.inl",
+      "bytes": 29171,
+      "sha256": "69eb08be3ebad7121506cca10b2ea457cd1ad1782434c0b8bafff3b9300b3497"
+    },
+    {
+      "path": "src/smt_driving_tree.inl",
+      "bytes": 6225,
+      "sha256": "2e2d5ddd975489644e67a54db6d17417e11b16788d3300a8c4b39b787d90cb20"
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_conv.txt",
+      "bytes": 2372,
+      "sha256": "ac005fb059dc28b364d445a2a4ceddf02e5ac8796679dc4f855f4425e96ab94a"
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_unit_probe.txt",
+      "bytes": 1710,
+      "sha256": "b6f6363ae5f85699a061c96ef66b0ebac65e866315dfeec2dfe8d3f047280abe"
+    },
+    {
+      "path": "text/usascii/p1_smt_conv.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    },
+    {
+      "path": "text/usascii/p1_smt_unit_probe.txt",
+      "bytes": 1761,
+      "sha256": "49a989770b876ab6a170e5d7997679614a811b84a392e8d8f073ea86e1c9b3c3"
+    }
+  ],
+  "candidate_files": [
+    {
+      "path": "src/entry.cpp",
+      "bytes": 47162,
+      "sha256": "a588c3cde376c212f601fa202430632e1de92edb2e5b60f09ead54948ada8985"
+    },
+    {
+      "path": "src/smt_driving_command.inl",
+      "bytes": 32972,
+      "sha256": "9611f5cdddff3113c7bcc6cbcc6f1a6c2bd0c8e819d583d666764ea583309fa1"
+    },
+    {
+      "path": "src/smt_driving_tree.inl",
+      "bytes": 6225,
+      "sha256": "2e2d5ddd975489644e67a54db6d17417e11b16788d3300a8c4b39b787d90cb20"
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_conv.txt",
+      "bytes": 2372,
+      "sha256": "ac005fb059dc28b364d445a2a4ceddf02e5ac8796679dc4f855f4425e96ab94a"
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_unit_probe.txt",
+      "bytes": 1710,
+      "sha256": "b6f6363ae5f85699a061c96ef66b0ebac65e866315dfeec2dfe8d3f047280abe"
+    },
+    {
+      "path": "text/usascii/p1_smt_conv.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    },
+    {
+      "path": "text/usascii/p1_smt_unit_probe.txt",
+      "bytes": 1761,
+      "sha256": "49a989770b876ab6a170e5d7997679614a811b84a392e8d8f073ea86e1c9b3c3"
+    }
+  ],
+  "optional_static_probe": true,
+  "validation": "STATIC_AND_MOCK_ONLY_PENDING_WINDOWS_SDK_AND_CONTROLLED_CREO"
+}
