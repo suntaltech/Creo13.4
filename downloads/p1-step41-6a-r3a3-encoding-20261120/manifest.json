@@ -1,0 +1,136 @@
+{
+  "candidate": "P1 Step41 6A R3A3 message resources encoding-only",
+  "baseline_commit": "b99692e3f927ff297941e812e36ac5646bd323b7",
+  "adopted_path": "A",
+  "patch": {
+    "path": "p1-step41-6a-r3a3-encoding.diff",
+    "bytes": 532,
+    "sha256": "b60625f90394b1cb083b9ab8e789a2e27d6aa214c92209ef236f5ba733216f4f"
+  },
+  "resource_records": [
+    {
+      "path": "text/chinese_cn/p1_smt_conv.txt",
+      "changed": true,
+      "body_equals_baseline": true,
+      "line_endings": "LF",
+      "lf_count": 120,
+      "crlf_count": 0,
+      "record_separator": "hash",
+      "key_count": 30,
+      "placeholder_keys": [
+        "P1_SMT_CONV_TEXT"
+      ],
+      "before": {
+        "bytes": 2369,
+        "sha256": "d9dc29a617d29e23723e0aad9a19f8ea0b18e9a65d6b74dde6e6953d1e9c2e66",
+        "encoding": "utf-8",
+        "bom": null
+      },
+      "after": {
+        "bytes": 2372,
+        "sha256": "ac005fb059dc28b364d445a2a4ceddf02e5ac8796679dc4f855f4425e96ab94a",
+        "encoding": "utf-8-sig",
+        "bom": "EF BB BF",
+        "strict_decode_ok": true,
+        "non_ascii_bytes": 1503
+      }
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_unit_probe.txt",
+      "changed": true,
+      "body_equals_baseline": true,
+      "line_endings": "LF",
+      "lf_count": 88,
+      "crlf_count": 0,
+      "record_separator": "blank",
+      "key_count": 22,
+      "placeholder_keys": [],
+      "before": {
+        "bytes": 1707,
+        "sha256": "8cad94c1fc3f50b6791fe05ef56e0f61f240631e489c6de00b1ff2f2613ab833",
+        "encoding": "utf-8",
+        "bom": null
+      },
+      "after": {
+        "bytes": 1710,
+        "sha256": "b6f6363ae5f85699a061c96ef66b0ebac65e866315dfeec2dfe8d3f047280abe",
+        "encoding": "utf-8-sig",
+        "bom": "EF BB BF",
+        "strict_decode_ok": true,
+        "non_ascii_bytes": 1125
+      }
+    },
+    {
+      "path": "text/usascii/p1_smt_conv.txt",
+      "changed": false,
+      "body_equals_baseline": true,
+      "line_endings": "LF",
+      "lf_count": 120,
+      "crlf_count": 0,
+      "record_separator": "hash",
+      "key_count": 30,
+      "placeholder_keys": [
+        "P1_SMT_CONV_TEXT"
+      ],
+      "before": {
+        "bytes": 2414,
+        "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f",
+        "encoding": "ascii",
+        "bom": null
+      },
+      "after": {
+        "bytes": 2414,
+        "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f",
+        "encoding": "ascii",
+        "bom": null,
+        "strict_decode_ok": true,
+        "non_ascii_bytes": 0
+      }
+    },
+    {
+      "path": "text/usascii/p1_smt_unit_probe.txt",
+      "changed": false,
+      "body_equals_baseline": true,
+      "line_endings": "LF",
+      "lf_count": 88,
+      "crlf_count": 0,
+      "record_separator": "blank",
+      "key_count": 22,
+      "placeholder_keys": [],
+      "before": {
+        "bytes": 1761,
+        "sha256": "49a989770b876ab6a170e5d7997679614a811b84a392e8d8f073ea86e1c9b3c3",
+        "encoding": "ascii",
+        "bom": null
+      },
+      "after": {
+        "bytes": 1761,
+        "sha256": "49a989770b876ab6a170e5d7997679614a811b84a392e8d8f073ea86e1c9b3c3",
+        "encoding": "ascii",
+        "bom": null,
+        "strict_decode_ok": true,
+        "non_ascii_bytes": 0
+      }
+    }
+  ],
+  "input_records": [
+    {
+      "path": "P1_Step41_6A_R3A3_消息资源编码整改离线输入单_20261120.md",
+      "bytes": 4077,
+      "sha256": "e5a9804b9b6a6f0ea21c04789ac7ddb5019db084e0a6254e3efd81115b44bd60"
+    },
+    {
+      "path": "P1_Step41_6A_R3A3_消息资源编码整改规范_20261120.md",
+      "bytes": 6415,
+      "sha256": "7e1636337d1fcb49d6f0b5610b939f35e4bb01528539ca599dde85773c7a2698"
+    },
+    {
+      "path": "encoding-input-r3a3.json",
+      "bytes": 7683,
+      "sha256": "940c41e9a097a7b161b2b0b9206416c22dae1b0973cb5c7a28c07d4a1586cf4d"
+    }
+  ],
+  "source_changed_files": 0,
+  "newline_discrepancy": "Inputs describe CRLF; baseline files exactly matching all four declared hashes contain LF only. Candidate preserves those payload bytes.",
+  "validation": "OFFLINE_BYTES_AND_PATCH_VERIFIED_PENDING_TARGET_SDK_AND_CREO"
+}
