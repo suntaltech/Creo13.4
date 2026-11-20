@@ -1,0 +1,151 @@
+{
+  "schema": "p1-cpp-6a-r3a2-deployment-manifest/1",
+  "date": "2026-11-20",
+  "status": "CONTROLLED_MATERIALS_READY_PENDING_REAL_MACHINE",
+  "reviewRef": "9fe028f314d505c098f066cde9ffe71e925a1572",
+  "r3Commit": "7789c1d1e7b156869a5d20a19f5e47f6246107a9",
+  "baselineCommit": "b99692e3f927ff297941e812e36ac5646bd323b7",
+  "controlledDir": "D:\\creo-tools\\controlled\\step41_cpp6a_r3a2_marker_probes",
+  "controlledFileCount": 19,
+  "controlledFiles": [
+    {
+      "path": "p1_step41_cpp6a_r3a2_marker_probes.dat",
+      "bytes": 256,
+      "sha256": "e1239665d2455a21140df13005be5222b8dff97d07701d6a1cc084d5ec2c9d0c"
+    },
+    {
+      "path": "p1_step41_cpp6a_r3a2_marker_probes.dll",
+      "bytes": 2989568,
+      "sha256": "7085830182abe395458d7f17078761da259ddabc00b3eed2958f702c3a4a4f81"
+    },
+    {
+      "path": "src\\entry.cpp",
+      "bytes": 46950,
+      "sha256": "b9c7c4b0ba9fe83a52577c0b07e31d0606804b34b0c5118118707a253a1ecac4"
+    },
+    {
+      "path": "src\\r3_readonly_probes.inl",
+      "bytes": 33465,
+      "sha256": "7b9fcd16669cf340abe3f688a14ad251a9e1ec7b8c4efbcfce4ccb3ffcde1643"
+    },
+    {
+      "path": "text\\chinese_cn\\p1_r3_a_bom.txt",
+      "bytes": 2372,
+      "sha256": "ac005fb059dc28b364d445a2a4ceddf02e5ac8796679dc4f855f4425e96ab94a"
+    },
+    {
+      "path": "text\\chinese_cn\\p1_r3_a_cp936.txt",
+      "bytes": 1869,
+      "sha256": "33391762cbd2d3338d00246179372dde5bf0c1d9a152d34993b01402a3edffe0"
+    },
+    {
+      "path": "text\\chinese_cn\\p1_r3_a_usascii.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    },
+    {
+      "path": "text\\chinese_cn\\p1_r3_a_utf8.txt",
+      "bytes": 2369,
+      "sha256": "d9dc29a617d29e23723e0aad9a19f8ea0b18e9a65d6b74dde6e6953d1e9c2e66"
+    },
+    {
+      "path": "text\\chinese_cn\\p1_r3_readonly.txt",
+      "bytes": 777,
+      "sha256": "95cf26cde9683ffb33e848e696f5a4276c0d54e2c24225ce26eb569ffd9c99a2"
+    },
+    {
+      "path": "text\\chinese_cn\\p1_r3a2_bom.txt",
+      "bytes": 163,
+      "sha256": "ed8d96891dfd421d39a5a30ebe5eb8014a89c6a942a9651a533bc4b30af3eaa3"
+    },
+    {
+      "path": "text\\chinese_cn\\p1_r3a2_ctl.txt",
+      "bytes": 121,
+      "sha256": "5eadace818905e43ae836450ca66749cfaa1d41dbfca77eaf011c170b3a7a1b8"
+    },
+    {
+      "path": "text\\chinese_cn\\p1_r3a2_gbk.txt",
+      "bytes": 140,
+      "sha256": "85be2f6933f3758fa9cb6b128a6372e2f2682e8ea6cae31598a0e67d901d82e6"
+    },
+    {
+      "path": "text\\chinese_cn\\p1_r3a2_u8.txt",
+      "bytes": 154,
+      "sha256": "a1d773d823e1d7086c790c1027740d7dff8dc057713a22e8160fa1e0d4884b25"
+    },
+    {
+      "path": "text\\usascii\\p1_r3_a_usascii.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    },
+    {
+      "path": "text\\usascii\\p1_r3_readonly.txt",
+      "bytes": 777,
+      "sha256": "95cf26cde9683ffb33e848e696f5a4276c0d54e2c24225ce26eb569ffd9c99a2"
+    },
+    {
+      "path": "text\\usascii\\p1_r3a2_bom.txt",
+      "bytes": 156,
+      "sha256": "c38c6c3ecc516bea2deaa277ec20cf92c7acc43635d973be328a8d57fe5ac003"
+    },
+    {
+      "path": "text\\usascii\\p1_r3a2_ctl.txt",
+      "bytes": 121,
+      "sha256": "a61f78b5a8468ed7cfc411de654f7b2b197d264d3bc4faccef9e02d7b2c1c7b7"
+    },
+    {
+      "path": "text\\usascii\\p1_r3a2_gbk.txt",
+      "bytes": 156,
+      "sha256": "ade3566edf1541bc5725c46b0a8280bd4d8250cce0dd8ab482c3565bde0ee0ba"
+    },
+    {
+      "path": "text\\usascii\\p1_r3a2_u8.txt",
+      "bytes": 150,
+      "sha256": "c4d99c14da8879b8fa1ab8a8152f2b847187fa14dd817c34f5bcefb589f34d6b"
+    }
+  ],
+  "runtimeDir": "D:\\creo-tools\\build\\p1-step41-cpp-6a-r3a2-marker-probe-runtime-20261120",
+  "runtimeFiles": [
+    {
+      "path": "dat-identity.json",
+      "bytes": 831,
+      "sha256": "418c13e3eb11b1ca480d1495bcc5286af5859523ccd88dee4b29a81fef08c552"
+    },
+    {
+      "path": "P1_Step41_6A_R3A2_标记探针真机观察引导单_20261120.md",
+      "bytes": 6179,
+      "sha256": "783804b1fea98406c61df70daf03fa64ac57926b447ce2d241455bb34f7455dc"
+    },
+    {
+      "path": "r3a2-observation-guide.json",
+      "bytes": 9058,
+      "sha256": "22dbe9d0a7650d015283afcdc73be7f0fef5728f75912e62e43868392c518513"
+    },
+    {
+      "path": "switch_config_to_r3a2.py",
+      "bytes": 4014,
+      "sha256": "23c26f798c70190e3e896d50c2cc3c51e7be60b51ac8304f9632a70b73f0c130"
+    }
+  ],
+  "switch": {
+    "script": "switch_config_to_r3a2.py",
+    "backup": "config.pro.before-r3a2.protkdat.bak",
+    "report": "config-switch-r3a2.json",
+    "dryRun": {
+      "ok": true,
+      "beforeBytes": 2775,
+      "beforeSha256": "ad5a6982058f72a30324fe17c1e817f9a4514b7dcb275b89b9665dd0d5f5e8af",
+      "step23Idx": [
+        36
+      ],
+      "r10Idx": [
+        37
+      ],
+      "r3a2Present": false,
+      "errors": []
+    },
+    "rollback": "python switch_config_to_r3a2.py --rollback",
+    "activeAfterSwitch": "step23 对照行保留；R10 行替换为 R3A2 DAT 行"
+  },
+  "pending": "真机观察未执行，待授权受控会话；DLL/DAT 现场路径字节 SHA 对账后再收 trace 与截图"
+}
