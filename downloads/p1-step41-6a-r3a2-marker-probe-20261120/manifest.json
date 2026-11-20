@@ -1,0 +1,195 @@
+{
+  "candidate": "P1 Step41 6A R3A second-round source marker probe",
+  "upstream_creation_commit": "b99692e3f927ff297941e812e36ac5646bd323b7",
+  "r3_probe_commit": "7789c1d1e7b156869a5d20a19f5e47f6246107a9",
+  "baseline_r3_files": [
+    {
+      "path": "src/entry.cpp",
+      "bytes": 46950,
+      "sha256": "b9c7c4b0ba9fe83a52577c0b07e31d0606804b34b0c5118118707a253a1ecac4"
+    },
+    {
+      "path": "src/r3_readonly_probes.inl",
+      "bytes": 28386,
+      "sha256": "f77916b4ba44491ba6bc9146398bb01c5d8603c2483e29c0a497d573296f3c74"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_a_bom.txt",
+      "bytes": 2372,
+      "sha256": "ac005fb059dc28b364d445a2a4ceddf02e5ac8796679dc4f855f4425e96ab94a"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_a_cp936.txt",
+      "bytes": 1869,
+      "sha256": "33391762cbd2d3338d00246179372dde5bf0c1d9a152d34993b01402a3edffe0"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_a_usascii.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_a_utf8.txt",
+      "bytes": 2369,
+      "sha256": "d9dc29a617d29e23723e0aad9a19f8ea0b18e9a65d6b74dde6e6953d1e9c2e66"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_readonly.txt",
+      "bytes": 777,
+      "sha256": "95cf26cde9683ffb33e848e696f5a4276c0d54e2c24225ce26eb569ffd9c99a2"
+    },
+    {
+      "path": "text/usascii/p1_r3_a_usascii.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    },
+    {
+      "path": "text/usascii/p1_r3_readonly.txt",
+      "bytes": 777,
+      "sha256": "95cf26cde9683ffb33e848e696f5a4276c0d54e2c24225ce26eb569ffd9c99a2"
+    }
+  ],
+  "patch": {
+    "path": "p1-step41-6a-r3a2-marker-probe.diff",
+    "bytes": 18317,
+    "sha256": "ffdc700e4a263cdb26620aed7d86a070e1c3821ac9d25e520e4673496a14c53b"
+  },
+  "source_files": [
+    {
+      "path": "src/entry.cpp",
+      "bytes": 46950,
+      "sha256": "b9c7c4b0ba9fe83a52577c0b07e31d0606804b34b0c5118118707a253a1ecac4"
+    },
+    {
+      "path": "src/r3_readonly_probes.inl",
+      "bytes": 33465,
+      "sha256": "7b9fcd16669cf340abe3f688a14ad251a9e1ec7b8c4efbcfce4ccb3ffcde1643"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_a_bom.txt",
+      "bytes": 2372,
+      "sha256": "ac005fb059dc28b364d445a2a4ceddf02e5ac8796679dc4f855f4425e96ab94a"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_a_cp936.txt",
+      "bytes": 1869,
+      "sha256": "33391762cbd2d3338d00246179372dde5bf0c1d9a152d34993b01402a3edffe0"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_a_usascii.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_a_utf8.txt",
+      "bytes": 2369,
+      "sha256": "d9dc29a617d29e23723e0aad9a19f8ea0b18e9a65d6b74dde6e6953d1e9c2e66"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3_readonly.txt",
+      "bytes": 777,
+      "sha256": "95cf26cde9683ffb33e848e696f5a4276c0d54e2c24225ce26eb569ffd9c99a2"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3a2_bom.txt",
+      "bytes": 163,
+      "sha256": "ed8d96891dfd421d39a5a30ebe5eb8014a89c6a942a9651a533bc4b30af3eaa3"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3a2_ctl.txt",
+      "bytes": 121,
+      "sha256": "5eadace818905e43ae836450ca66749cfaa1d41dbfca77eaf011c170b3a7a1b8"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3a2_gbk.txt",
+      "bytes": 140,
+      "sha256": "85be2f6933f3758fa9cb6b128a6372e2f2682e8ea6cae31598a0e67d901d82e6"
+    },
+    {
+      "path": "text/chinese_cn/p1_r3a2_u8.txt",
+      "bytes": 154,
+      "sha256": "a1d773d823e1d7086c790c1027740d7dff8dc057713a22e8160fa1e0d4884b25"
+    },
+    {
+      "path": "text/usascii/p1_r3_a_usascii.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    },
+    {
+      "path": "text/usascii/p1_r3_readonly.txt",
+      "bytes": 777,
+      "sha256": "95cf26cde9683ffb33e848e696f5a4276c0d54e2c24225ce26eb569ffd9c99a2"
+    },
+    {
+      "path": "text/usascii/p1_r3a2_bom.txt",
+      "bytes": 156,
+      "sha256": "c38c6c3ecc516bea2deaa277ec20cf92c7acc43635d973be328a8d57fe5ac003"
+    },
+    {
+      "path": "text/usascii/p1_r3a2_ctl.txt",
+      "bytes": 121,
+      "sha256": "a61f78b5a8468ed7cfc411de654f7b2b197d264d3bc4faccef9e02d7b2c1c7b7"
+    },
+    {
+      "path": "text/usascii/p1_r3a2_gbk.txt",
+      "bytes": 156,
+      "sha256": "ade3566edf1541bc5725c46b0a8280bd4d8250cce0dd8ab482c3565bde0ee0ba"
+    },
+    {
+      "path": "text/usascii/p1_r3a2_u8.txt",
+      "bytes": 150,
+      "sha256": "c4d99c14da8879b8fa1ab8a8152f2b847187fa14dd817c34f5bcefb589f34d6b"
+    }
+  ],
+  "marker_routes": [
+    {
+      "file": "text/chinese_cn/p1_r3a2_ctl.txt",
+      "marker_key": "P1_R3A2_CTL_MARK",
+      "marker_token": "A2_CTL_ZH",
+      "encoding": "ascii"
+    },
+    {
+      "file": "text/usascii/p1_r3a2_ctl.txt",
+      "marker_key": "P1_R3A2_CTL_MARK",
+      "marker_token": "A2_CTL_EN",
+      "encoding": "ascii"
+    },
+    {
+      "file": "text/chinese_cn/p1_r3a2_u8.txt",
+      "marker_key": "P1_R3A2_U8_MARK",
+      "marker_token": "A2_U8_ZH",
+      "encoding": "utf-8"
+    },
+    {
+      "file": "text/usascii/p1_r3a2_u8.txt",
+      "marker_key": "P1_R3A2_U8_MARK",
+      "marker_token": "A2_U8_EN",
+      "encoding": "ascii"
+    },
+    {
+      "file": "text/chinese_cn/p1_r3a2_bom.txt",
+      "marker_key": "P1_R3A2_BOM_MARK",
+      "marker_token": "A2_BOM_ZH",
+      "encoding": "utf-8-sig"
+    },
+    {
+      "file": "text/usascii/p1_r3a2_bom.txt",
+      "marker_key": "P1_R3A2_BOM_MARK",
+      "marker_token": "A2_BOM_EN",
+      "encoding": "ascii"
+    },
+    {
+      "file": "text/chinese_cn/p1_r3a2_gbk.txt",
+      "marker_key": "P1_R3A2_GBK_MARK",
+      "marker_token": "A2_GBK_ZH",
+      "encoding": "cp936"
+    },
+    {
+      "file": "text/usascii/p1_r3a2_gbk.txt",
+      "marker_key": "P1_R3A2_GBK_MARK",
+      "marker_token": "A2_GBK_EN",
+      "encoding": "ascii"
+    }
+  ],
+  "validation": "SOURCE_ONLY_PENDING_WINDOWS_SDK_AND_CONTROLLED_CREO"
+}

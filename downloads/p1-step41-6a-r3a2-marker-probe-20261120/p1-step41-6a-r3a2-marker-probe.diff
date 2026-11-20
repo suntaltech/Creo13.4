@@ -1,0 +1,406 @@
+diff --git a/src/r3_readonly_probes.inl b/src/r3_readonly_probes.inl
+index 2f51d41dc276153288542fe244e23c7060a16b50..0d3d28f1ac4ca1ec5f27dc181d59f3fa5b57c208 100644
+--- a/src/r3_readonly_probes.inl
++++ b/src/r3_readonly_probes.inl
+@@ -140,92 +140,204 @@ bool r3_message_key(ProCharLine& key, const char* value) noexcept
+ 
+ struct R3MessageVariant {
+     const wchar_t* file;
++    const char* filename;
+     const char* name;
+     const char* encoding;
++    const char* marker_key;
++    const char* static_key;
++    const char* dynamic_key;
++    const wchar_t* zh_token;
++    const wchar_t* ascii_token;
+ };
+ constexpr R3MessageVariant r3_variants[] = {
+-    {L"p1_r3_a_utf8.txt", "current", "utf8_no_bom"},
+-    {L"p1_r3_a_bom.txt", "bom", "utf8_bom"},
+-    {L"p1_r3_a_cp936.txt", "cp936", "cp936_no_bom"},
+-    {L"p1_r3_a_usascii.txt", "control", "usascii"},
++    {L"p1_r3a2_ctl.txt", "p1_r3a2_ctl.txt", "control", "usascii",
++        "P1_R3A2_CTL_MARK", "P1_R3A2_CTL_STATIC", nullptr, L"A2_CTL_ZH", L"A2_CTL_EN"},
++    {L"p1_r3a2_u8.txt", "p1_r3a2_u8.txt", "current", "utf8_no_bom",
++        "P1_R3A2_U8_MARK", "P1_R3A2_U8_STATIC", "P1_R3A2_U8_TEXT", L"A2_U8_ZH", L"A2_U8_EN"},
++    {L"p1_r3a2_bom.txt", "p1_r3a2_bom.txt", "bom", "utf8_bom",
++        "P1_R3A2_BOM_MARK", "P1_R3A2_BOM_STATIC", "P1_R3A2_BOM_TEXT", L"A2_BOM_ZH", L"A2_BOM_EN"},
++    {L"p1_r3a2_gbk.txt", "p1_r3a2_gbk.txt", "cp936", "cp936_no_bom",
++        "P1_R3A2_GBK_MARK", "P1_R3A2_GBK_STATIC", "P1_R3A2_GBK_TEXT", L"A2_GBK_ZH", L"A2_GBK_EN"},
+ };
+-// One sample per trigger leaves its status-bar text available for a screenshot.
++
++struct R3Marker {
++    const R3MessageVariant* variant = nullptr;
++    const wchar_t* token = nullptr;
++    const char* language_dir = nullptr;
++
++    bool found() const noexcept { return variant != nullptr; }
++    bool same_resource(const R3Marker& other) const noexcept
++    {
++        return found() && variant == other.variant && token == other.token;
++    }
++    std::string path_json() const
++    {
++        return found() ? std::string("\"text/") + language_dir + "/" + variant->filename + "\"" : "null";
++    }
++};
++
++std::string r3_message_utf16(const wchar_t* value)
++{
++    if (!value) return "null";
++    const size_t units = std::wcslen(value);
++    if (units >= PRO_LINE_SIZE) return "null";
++    if (units == 0) return "\"\"";
++    char utf8[PRO_LINE_SIZE * 3 + 1] = {}, quoted[483] = {};
++    if (WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, value, static_cast<int>(units),
++            utf8, sizeof(utf8) - 1, nullptr, nullptr) <= 0 ||
++        !quote_json_utf8(utf8, quoted, sizeof(quoted))) return "null";
++    return quoted;
++}
++
++struct R3MessageBuffer {
++    ProLine text = {};
++    R3Status status;
++
++    bool readable() const noexcept
++    {
++        return status.ok() || (status.returned && status.code == PRO_TK_MSG_TOO_LONG);
++    }
++    size_t units() const noexcept
++    {
++        size_t size = 0;
++        if (readable()) while (size < PRO_LINE_SIZE && text[size]) ++size;
++        return size;
++    }
++    bool terminated() const noexcept { return readable() && units() < PRO_LINE_SIZE; }
++    std::string json() const { return terminated() ? r3_message_utf16(text) : "null"; }
++};
++
++R3Marker r3_find_marker(const R3MessageBuffer& response, bool prefix) noexcept
++{
++    if (!response.status.ok() || !response.terminated()) return {};
++    for (const auto& variant : r3_variants) {
++        const wchar_t* tokens[] = {variant.zh_token, variant.ascii_token};
++        for (unsigned i = 0; i < 2; ++i) {
++            const size_t count = std::wcslen(tokens[i]);
++            if (response.units() < count || std::wmemcmp(response.text, tokens[i], count) != 0) continue;
++            if (response.text[count] == (prefix ? L'|' : L'\0')) {
++                return R3Marker{&variant, tokens[i], i == 0 ? "chinese_cn" : "usascii"};
++            }
++        }
++    }
++    return {};
++}
++
++bool r3_lookup_message(R3Run& run, ProFileName& file, const char* key_name,
++    const char* role, R3MessageBuffer& response, char* parameter = nullptr)
++{
++    ProCharLine key = {};
++    if (!r3_message_key(key, key_name)) return false;
++    r3_call(run, "ProMessageToBuffer", role, response.status, [&] {
++        return parameter ? ProMessageToBuffer(response.text, file, key, parameter) :
++            ProMessageToBuffer(response.text, file, key);
++    });
++    return true;
++}
++
++bool r3_display_message(R3Run& run, ProFileName& file, const char* key_name,
++    const char* role, R3Status& status, char* parameter)
++{
++    ProCharLine key = {};
++    if (!r3_message_key(key, key_name)) return false;
++    r3_call(run, "ProMessageDisplay", role, status, [&] {
++        return parameter ? ProMessageDisplay(file, key, parameter) : ProMessageDisplay(file, key);
++    });
++    return true;
++}
++
++// Show one sample per trigger. Re-read the source marker before every later sample.
+ unsigned r3_message_sample = 0;
+ bool r3_static_ok = false, r3_ascii_ok = false;
+ 
+ void r3_probe_message(R3Run& run)
+ {
+     const unsigned sample = r3_message_sample;
+-    r3_message_sample = (sample + 1) % 10;
+-    const bool control = sample == 0;
+-    const unsigned step = control ? 0 : (sample - 1) % 3;
+-    const auto& variant = r3_variants[control ? 3 : (sample - 1) / 3];
+-    const char* role = step == 0 ? "static" : "dynamic";
+-    const char* kind = step == 0 ? "none" : step == 1 ? "ascii" : "zh";
+-    const char* message_key = step == 0 ? "P1_SMT_CONV_SELECT" : "P1_SMT_CONV_TEXT";
+-    const wchar_t* expected = step == 0 ?
+-        (control ? L"Select one planar surface belonging to the default body." :
+-            L"\u8bf7\u9009\u62e9\u9ed8\u8ba4\u4f53\u4e0a\u7684\u4e00\u4e2a\u5e73\u9762\u66f2\u9762\u4f5c\u4e3a\u9a71\u52a8\u9762\u3002") :
+-        step == 1 ? L"R3_ASCII" : L"\u4e2d\u6587";
+-    const size_t expected_units = std::wcslen(expected);
+-    char expected_json[483] = {};
+-    if (!quote_message_utf16(expected, expected_units, expected_json, sizeof(expected_json))) {
+-        run.result = "EXPECTED_TEXT_INVALID"; return;
+-    }
+-
++    r3_message_sample = (sample + 1) % 14;
++    const bool control = sample < 2;
++    const unsigned step = control ? sample : (sample - 2) % 4;
++    const auto& variant = r3_variants[control ? 0 : 1 + (sample - 2) / 4];
++    const char* role = step == 0 ? "marker" : step == 1 ? "static" : "dynamic";
++    const char* kind = step < 2 ? "none" : step == 2 ? "ascii" : "zh";
++    const char* key = step == 0 ? variant.marker_key : step == 1 ? variant.static_key : variant.dynamic_key;
+     if (step == 0) { r3_static_ok = false; r3_ascii_ok = false; }
+-    const bool static_ok_before = r3_static_ok, ascii_ok_before = r3_ascii_ok;
++
+     ProFileName file = {};
+-    ProCharLine key = {};
+-    char value[64] = {};
+-    ProLine translated = {};
+-    R3Status buffer, display;
+-    bool eligible = step == 0 || (static_ok_before && (step == 1 || ascii_ok_before));
+-    if (eligible) {
+-        if (!r3_message_file(file, variant.file) || !r3_message_key(key, message_key)) {
+-            run.result = "RESOURCE_IDENTIFIER_INVALID"; return;
+-        }
+-        if (step != 0 && WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, expected, -1,
+-                value, sizeof(value), nullptr, nullptr) <= 0) {
+-            run.result = "PARAMETER_ENCODING_FAILED"; return;
++    R3MessageBuffer marker_buffer, response;
++    R3Status display;
++    if (!r3_message_file(file, variant.file) ||
++        !r3_lookup_message(run, file, variant.marker_key, "marker", marker_buffer)) {
++        run.result = "RESOURCE_IDENTIFIER_INVALID"; return;
++    }
++    const R3Marker marker = r3_find_marker(marker_buffer, false);
++    const bool has_target = marker.variant == &variant && (control || marker.token == variant.zh_token);
++    const bool eligible = step == 0 || (has_target &&
++        (step == 1 || (r3_static_ok && (step == 2 || r3_ascii_ok))));
++    const wchar_t* parameter = step < 2 ? nullptr : step == 2 ? L"R3_ASCII" : L"\u4e2d\u6587";
++    const wchar_t* static_text = control ? L"Select one planar surface belonging to the default body." :
++        L"\u8bf7\u9009\u62e9\u9ed8\u8ba4\u4f53\u4e0a\u7684\u4e00\u4e2a\u5e73\u9762\u66f2\u9762\u4f5c\u4e3a\u9a71\u52a8\u9762\u3002";
++    std::wstring expected;
++    if (has_target) {
++        expected = marker.token;
++        if (step != 0) {
++            expected += L'|';
++            expected += parameter ? parameter : static_text;
+         }
+-        r3_call(run, "ProMessageToBuffer", role, buffer, [&] {
+-            return step == 0 ? ProMessageToBuffer(translated, file, key) :
+-                ProMessageToBuffer(translated, file, key, value);
+-        });
+-        r3_call(run, "ProMessageDisplay", role, display, [&] {
+-            return step == 0 ? ProMessageDisplay(file, key) : ProMessageDisplay(file, key, value);
+-        });
+     }
+-    const bool readable = buffer.ok() || (buffer.returned && buffer.code == PRO_TK_MSG_TOO_LONG);
+-    size_t units = 0;
+-    if (readable) while (units < PRO_LINE_SIZE && translated[units]) ++units;
+-    const bool terminated = readable && units < PRO_LINE_SIZE;
+-    char actual_json[483] = {};
+-    const bool encoded = terminated && quote_message_utf16(translated, units, actual_json, sizeof(actual_json));
+-    const bool match = buffer.ok() && terminated && units == expected_units &&
+-        std::wmemcmp(translated, expected, expected_units) == 0;
+-    if (step == 0 && !control) r3_static_ok = match;
+-    if (step == 1) r3_ascii_ok = match;
+-    run.result = !eligible ? "PREREQUISITE_UNVERIFIED" : !buffer.ok() ? "BUFFER_API_FAILED" :
++
++    char value[64] = {};
++    if (eligible && parameter && WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, parameter, -1,
++            value, sizeof(value), nullptr, nullptr) <= 0) {
++        run.result = "PARAMETER_ENCODING_FAILED"; return;
++    }
++    char* argument = parameter ? value : nullptr;
++    if (eligible && step != 0 && !r3_lookup_message(run, file, key, role, response, argument)) {
++        run.result = "RESOURCE_IDENTIFIER_INVALID"; return;
++    }
++    const auto& measured = step == 0 ? marker_buffer : response;
++    // Keep marker failures visible as API results. A skipped text sample leaves the previous display alone.
++    if (eligible && measured.status.ok() && !r3_display_message(run, file, key, role, display, argument)) {
++        run.result = "RESOURCE_IDENTIFIER_INVALID"; return;
++    }
++    const R3Marker text_marker = step == 0 ? marker : r3_find_marker(response, true);
++    const bool same_source = marker.same_resource(text_marker);
++    const bool match = has_target && same_source && measured.status.ok() && measured.terminated() &&
++        measured.units() == expected.size() &&
++        std::wmemcmp(measured.text, expected.c_str(), expected.size()) == 0;
++    if (step == 1) r3_static_ok = match;
++    if (step == 2) r3_ascii_ok = match;
++    run.result = !eligible ? "PREREQUISITE_UNVERIFIED" : !measured.status.ok() ? "BUFFER_API_FAILED" :
+         !match ? "BUFFER_MISMATCH" : !display.ok() ? "DISPLAY_API_FAILED" : "BUFFER_MATCH";
+-    const char* matched = readable ? r3_bool(match) : "null";
++    const char* matched = measured.readable() ? r3_bool(match) : "null";
++    const char* decode_layer = !eligible || step == 0 ? "untested" : !same_source ? "source_unconfirmed" :
++        match ? "buffer_matches" : step == 1 ? "decode_mismatch_with_source" : "parameter_or_substitution";
++    const char* lookup = !marker_buffer.status.ok() ? "marker_api_failed" :
++        !marker.found() ? "marker_unrecognized" : has_target ? "target_marker_match" :
++        marker.variant == &variant ? "same_filename_usascii_marker" : "different_variant_marker";
+     run.terminal =
+-        ",\"sample\":" + std::to_string(sample + 1) + ",\"role\":\"" + role + "\"" +
+-        ",\"key\":\"" + message_key + "\",\"variant\":\"" + variant.name + "\"" +
+-        ",\"encoding_tag\":\"" + variant.encoding + "\",\"pro_error\":" + buffer.json() +
+-        ",\"display_pro_error\":" + display.json() + ",\"wide_units\":" +
+-            (readable ? std::to_string(units) : "null") + ",\"terminated\":" +
+-            (readable ? r3_bool(terminated) : "null") +
+-        ",\"text_json\":" + (encoded ? actual_json : "null") + ",\"expected_units_json\":" + expected_json +
++        ",\"sample\":" + std::to_string(sample + 1) + ",\"role\":\"" + role + "\""+
++        ",\"key\":\"" + key + "\",\"variant\":\"" + variant.name + "\"" +
++        ",\"encoding_tag\":\"" + variant.encoding + "\",\"requested_file\":\"" + variant.filename + "\"" +
++        ",\"marker_key\":\"" + variant.marker_key + "\",\"marker_pro_error\":" + marker_buffer.status.json() +
++        ",\"marker_buffer_json\":" + marker_buffer.json() +
++        ",\"marker_expected_zh\":" + r3_message_utf16(variant.zh_token) +
++        ",\"marker_expected_usascii\":" + r3_message_utf16(variant.ascii_token) +
++        ",\"marker_token_json\":" + r3_message_utf16(marker.token) +
++        ",\"marker_matched_resource\":" + marker.path_json() +
++        ",\"target_source_confirmed\":" + r3_bool(has_target) + ",\"lookup_layer\":\"" + lookup + "\"" +
++        ",\"text_matched_resource\":" + text_marker.path_json() +
++        ",\"text_source_matches_marker\":" + (measured.status.ok() ? r3_bool(same_source) : "null") +
++        ",\"pro_error\":" + measured.status.json() + ",\"display_pro_error\":" + display.json() +
++        ",\"wide_units\":" + (measured.readable() ? std::to_string(measured.units()) : "null") +
++        ",\"terminated\":" + (measured.readable() ? r3_bool(measured.terminated()) : "null") +
++        ",\"text_json\":" + measured.json() +
++        ",\"expected_units_json\":" + r3_message_utf16(has_target ? expected.c_str() : nullptr) +
+         ",\"unit_match\":" + matched + ",\"buffer_match\":" + matched + ",\"buffer_ok\":" + matched +
+-        ",\"decode_layer\":\"" + (!eligible ? "untested" : !buffer.ok() ? "buffer_api_failed" :
+-            match ? "buffer_matches" : step == 0 ? "resource_or_decode" : "parameter_or_substitution") + "\"" +
+-        ",\"display_layer\":\"" + (display.ok() ? "requires_screenshot" :
+-            display.returned ? "display_api_failed" : "not_attempted") +
+-        "\",\"display_observed\":null,\"display_ok\":null" +
+-        ",\"param_kind\":\"" + kind + "\",\"param_json\":" + (step ? expected_json : "null") +
+-        ",\"param_roundtrip_ok\":" + (step ? matched : "null") +
++        ",\"decode_layer\":\"" + decode_layer + "\",\"display_layer\":\"" +
++            (display.ok() ? "requires_screenshot" : display.returned ? "display_api_failed" : "not_attempted") +
++        "\",\"display_observed\":null,\"display_ok\":null,\"param_kind\":\"" + kind +
++        "\",\"param_json\":" + r3_message_utf16(parameter) +
++        ",\"param_roundtrip_ok\":" + (parameter ? matched : "null") +
+         ",\"control_file_sha256\":" + (control ?
+             "\"921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f\"" : "null") +
+         ",\"control_match\":" + (control ? matched : "null");
+diff --git a/text/chinese_cn/p1_r3a2_bom.txt b/text/chinese_cn/p1_r3a2_bom.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..860742f9c65defbea0aa2f143ba6fc05a14e2daa
+--- /dev/null
++++ b/text/chinese_cn/p1_r3a2_bom.txt
+@@ -0,0 +1,12 @@
++﻿P1_R3A2_BOM_MARK
++A2_BOM_ZH
++#
++#
++P1_R3A2_BOM_STATIC
++A2_BOM_ZH|请选择默认体上的一个平面曲面作为驱动面。
++#
++#
++P1_R3A2_BOM_TEXT
++A2_BOM_ZH|%0s
++#
++#
+diff --git a/text/chinese_cn/p1_r3a2_ctl.txt b/text/chinese_cn/p1_r3a2_ctl.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..7be6a2689af79dcc86882e2de913662b61be964e
+--- /dev/null
++++ b/text/chinese_cn/p1_r3a2_ctl.txt
+@@ -0,0 +1,8 @@
++P1_R3A2_CTL_MARK
++A2_CTL_ZH
++#
++#
++P1_R3A2_CTL_STATIC
++A2_CTL_ZH|Select one planar surface belonging to the default body.
++#
++#
+diff --git a/text/chinese_cn/p1_r3a2_gbk.txt b/text/chinese_cn/p1_r3a2_gbk.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..2ae719649b6ddae2301e1c755a94373220c392a6
+GIT binary patch
+literal 140
+zcmWGAj1Mw)G>Uh3@{ad)4D#lJvZFk>lz}h+Njf;hF~rjup`hmY>x&Dod_1z|#Q8H%
+xPoCd;<kIdP-;V7){OtIz!_TgNKey`m-)-v;KU=sM!=w<`h!7-mR1J#3N&qc8IaL4v
+
+literal 0
+HcmV?d00001
+
+diff --git a/text/chinese_cn/p1_r3a2_u8.txt b/text/chinese_cn/p1_r3a2_u8.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..54b6e9d67c5f26bed806edd29551fef29d5e042a
+--- /dev/null
++++ b/text/chinese_cn/p1_r3a2_u8.txt
+@@ -0,0 +1,12 @@
++P1_R3A2_U8_MARK
++A2_U8_ZH
++#
++#
++P1_R3A2_U8_STATIC
++A2_U8_ZH|请选择默认体上的一个平面曲面作为驱动面。
++#
++#
++P1_R3A2_U8_TEXT
++A2_U8_ZH|%0s
++#
++#
+diff --git a/text/usascii/p1_r3a2_bom.txt b/text/usascii/p1_r3a2_bom.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..26044bc6abb3c7f72d4be6018582e9ce22274c5b
+--- /dev/null
++++ b/text/usascii/p1_r3a2_bom.txt
+@@ -0,0 +1,12 @@
++P1_R3A2_BOM_MARK
++A2_BOM_EN
++#
++#
++P1_R3A2_BOM_STATIC
++A2_BOM_EN|Select one planar surface belonging to the default body.
++#
++#
++P1_R3A2_BOM_TEXT
++A2_BOM_EN|%0s
++#
++#
+diff --git a/text/usascii/p1_r3a2_ctl.txt b/text/usascii/p1_r3a2_ctl.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..9d3e2855fd59163329c36b1343ee010a068ecca5
+--- /dev/null
++++ b/text/usascii/p1_r3a2_ctl.txt
+@@ -0,0 +1,8 @@
++P1_R3A2_CTL_MARK
++A2_CTL_EN
++#
++#
++P1_R3A2_CTL_STATIC
++A2_CTL_EN|Select one planar surface belonging to the default body.
++#
++#
+diff --git a/text/usascii/p1_r3a2_gbk.txt b/text/usascii/p1_r3a2_gbk.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..95644796c7d5fc8663e562e1886635e46dab1e11
+--- /dev/null
++++ b/text/usascii/p1_r3a2_gbk.txt
+@@ -0,0 +1,12 @@
++P1_R3A2_GBK_MARK
++A2_GBK_EN
++#
++#
++P1_R3A2_GBK_STATIC
++A2_GBK_EN|Select one planar surface belonging to the default body.
++#
++#
++P1_R3A2_GBK_TEXT
++A2_GBK_EN|%0s
++#
++#
+diff --git a/text/usascii/p1_r3a2_u8.txt b/text/usascii/p1_r3a2_u8.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..2f626600502c5b6fb17157050f0e01b56ca21fa7
+--- /dev/null
++++ b/text/usascii/p1_r3a2_u8.txt
+@@ -0,0 +1,12 @@
++P1_R3A2_U8_MARK
++A2_U8_EN
++#
++#
++P1_R3A2_U8_STATIC
++A2_U8_EN|Select one planar surface belonging to the default body.
++#
++#
++P1_R3A2_U8_TEXT
++A2_U8_EN|%0s
++#
++#
