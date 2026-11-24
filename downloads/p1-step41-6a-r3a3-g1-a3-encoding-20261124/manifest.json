@@ -1,0 +1,327 @@
+{
+  "schema": "p1.step41.a3.encoding-candidate.v1",
+  "date": "2026-11-24",
+  "selection": "A",
+  "input_archive": {
+    "name": "p1-step41-6a-r3a3-g1-a3-encoding-gpt-handover-20261124.zip",
+    "bytes": 24980,
+    "sha256": "0fcc2602ea2938e7c5ec244b94c4e0b74887094b4d95f8f4fc8d7c9fdb7cccf8",
+    "crc": "PASS"
+  },
+  "baseline_handoff_commit": "67b7fa4a09c1171f69d6193e34aca20b4333ba5f",
+  "baseline_deployment_resource_identity": "PASS",
+  "patch": {
+    "path": "p1-step41-6a-r3a3-g1-a3-encoding.diff",
+    "bytes": 686,
+    "sha256": "6945eedce172837eda3d3a3aace683ffa681ff3809c35266c86d62df767e5771",
+    "apply_and_reverse_check": "PASS"
+  },
+  "files": [
+    {
+      "path": "text/chinese_cn/p1_smt_conv.txt",
+      "changed": true,
+      "baseline": {
+        "bytes": 2893,
+        "sha256": "233801973043d5f608eff124c1ce8d91ffc0a67a6f84d11a6f770dbecea7359f",
+        "bom": null,
+        "first_three_bytes": "50 31 5F",
+        "utf8_strict_decode": "PASS",
+        "non_ascii_bytes": 1833,
+        "line_ending": "LF",
+        "lf_count": 144,
+        "crlf_count": 0,
+        "key_count": 36,
+        "keys": [
+          "P1_SMT_CONV_LABEL",
+          "P1_SMT_CONV_HELP",
+          "P1_SMT_CONV_DESC",
+          "P1_SMT_CONV_TEXT",
+          "P1_SMT_CONV_NO_MODEL",
+          "P1_SMT_CONV_NOT_PART",
+          "P1_SMT_CONV_NO_BODY",
+          "P1_SMT_CONV_ALREADY",
+          "P1_SMT_CONV_SELECT",
+          "P1_SMT_CONV_NO_FACE",
+          "P1_SMT_CONV_ONE_FACE",
+          "P1_SMT_CONV_BAD_FACE",
+          "P1_SMT_CONV_BODY_MISMATCH",
+          "P1_SMT_CONV_NOT_PLANE",
+          "P1_SMT_CONV_THICKNESS",
+          "P1_SMT_CONV_BAD_THICKNESS",
+          "P1_SMT_CONV_CANCELLED",
+          "P1_SMT_CONV_STALE",
+          "P1_SMT_CONV_UNIT_FAILED",
+          "P1_SMT_CONV_QUERY_FAILED",
+          "P1_SMT_CONV_TREE_FAILED",
+          "P1_SMT_CONV_READ_ONLY",
+          "P1_SMT_CONV_CREATE_FAILED",
+          "P1_SMT_CONV_POST_FAILED",
+          "P1_SMT_CONV_SUCCESS",
+          "P1_SMT_CONV_MODEL_NAME",
+          "P1_SMT_CONV_FEATURE_NAME",
+          "P1_SMT_CONV_BUSY",
+          "P1_SMT_CONV_EXCEPTION",
+          "P1_SMT_CONV_WRAP_FAILED",
+          "P1_SMT_A3_LABEL",
+          "P1_SMT_A3_HELP",
+          "P1_SMT_A3_DESC",
+          "P1_SMT_A3_WRONG_TARGET",
+          "P1_SMT_A3_LOCK_FAILED",
+          "P1_SMT_A3_DISCARD_COPY"
+        ],
+        "placeholders": [
+          {
+            "key": "P1_SMT_CONV_TEXT",
+            "value": "%0s",
+            "count": 1
+          }
+        ]
+      },
+      "candidate": {
+        "bytes": 2896,
+        "sha256": "c8c576587cb2345dac71570389251e5a4c7906d1a9a59b238171f7a85f381ce4",
+        "bom": "EF BB BF",
+        "first_three_bytes": "EF BB BF",
+        "utf8_strict_decode": "PASS",
+        "non_ascii_bytes": 1836,
+        "line_ending": "LF",
+        "lf_count": 144,
+        "crlf_count": 0,
+        "key_count": 36,
+        "placeholders": [
+          {
+            "key": "P1_SMT_CONV_TEXT",
+            "value": "%0s",
+            "count": 1
+          }
+        ]
+      },
+      "same_body_bytes": true,
+      "same_records": true
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_unit_probe.txt",
+      "changed": true,
+      "baseline": {
+        "bytes": 1707,
+        "sha256": "8cad94c1fc3f50b6791fe05ef56e0f61f240631e489c6de00b1ff2f2613ab833",
+        "bom": null,
+        "first_three_bytes": "50 31 5F",
+        "utf8_strict_decode": "PASS",
+        "non_ascii_bytes": 1122,
+        "line_ending": "LF",
+        "lf_count": 88,
+        "crlf_count": 0,
+        "key_count": 22,
+        "keys": [
+          "P1_SMT_UNIT_LABEL",
+          "P1_SMT_UNIT_HELP",
+          "P1_SMT_UNIT_DESC",
+          "P1_SMT_UNIT_NO_MODEL",
+          "P1_SMT_UNIT_NOT_PART",
+          "P1_SMT_UNIT_NO_BODY",
+          "P1_SMT_UNIT_ALREADY",
+          "P1_SMT_UNIT_SELECT",
+          "P1_SMT_UNIT_NO_FACE",
+          "P1_SMT_UNIT_ONE_FACE",
+          "P1_SMT_UNIT_BAD_FACE",
+          "P1_SMT_UNIT_BODY_MISMATCH",
+          "P1_SMT_UNIT_NOT_PLANE",
+          "P1_SMT_UNIT_THICKNESS",
+          "P1_SMT_UNIT_BAD_THICKNESS",
+          "P1_SMT_UNIT_CANCELLED",
+          "P1_SMT_UNIT_STALE",
+          "P1_SMT_UNIT_UNIT_FAILED",
+          "P1_SMT_UNIT_QUERY_FAILED",
+          "P1_SMT_UNIT_BUSY",
+          "P1_SMT_UNIT_EXCEPTION",
+          "P1_SMT_UNIT_STOPPED"
+        ],
+        "placeholders": []
+      },
+      "candidate": {
+        "bytes": 1710,
+        "sha256": "b6f6363ae5f85699a061c96ef66b0ebac65e866315dfeec2dfe8d3f047280abe",
+        "bom": "EF BB BF",
+        "first_three_bytes": "EF BB BF",
+        "utf8_strict_decode": "PASS",
+        "non_ascii_bytes": 1125,
+        "line_ending": "LF",
+        "lf_count": 88,
+        "crlf_count": 0,
+        "key_count": 22,
+        "placeholders": []
+      },
+      "same_body_bytes": true,
+      "same_records": true
+    },
+    {
+      "path": "text/usascii/p1_smt_conv.txt",
+      "changed": false,
+      "baseline": {
+        "bytes": 2952,
+        "sha256": "3a41f8c56f3e2bb82183178c05312317d9f4bd42483d50b3131c2e6df8a9ab80",
+        "bom": null,
+        "first_three_bytes": "50 31 5F",
+        "utf8_strict_decode": "PASS",
+        "non_ascii_bytes": 0,
+        "line_ending": "LF",
+        "lf_count": 144,
+        "crlf_count": 0,
+        "key_count": 36,
+        "keys": [
+          "P1_SMT_CONV_LABEL",
+          "P1_SMT_CONV_HELP",
+          "P1_SMT_CONV_DESC",
+          "P1_SMT_CONV_TEXT",
+          "P1_SMT_CONV_NO_MODEL",
+          "P1_SMT_CONV_NOT_PART",
+          "P1_SMT_CONV_NO_BODY",
+          "P1_SMT_CONV_ALREADY",
+          "P1_SMT_CONV_SELECT",
+          "P1_SMT_CONV_NO_FACE",
+          "P1_SMT_CONV_ONE_FACE",
+          "P1_SMT_CONV_BAD_FACE",
+          "P1_SMT_CONV_BODY_MISMATCH",
+          "P1_SMT_CONV_NOT_PLANE",
+          "P1_SMT_CONV_THICKNESS",
+          "P1_SMT_CONV_BAD_THICKNESS",
+          "P1_SMT_CONV_CANCELLED",
+          "P1_SMT_CONV_STALE",
+          "P1_SMT_CONV_UNIT_FAILED",
+          "P1_SMT_CONV_QUERY_FAILED",
+          "P1_SMT_CONV_TREE_FAILED",
+          "P1_SMT_CONV_READ_ONLY",
+          "P1_SMT_CONV_CREATE_FAILED",
+          "P1_SMT_CONV_POST_FAILED",
+          "P1_SMT_CONV_SUCCESS",
+          "P1_SMT_CONV_MODEL_NAME",
+          "P1_SMT_CONV_FEATURE_NAME",
+          "P1_SMT_CONV_BUSY",
+          "P1_SMT_CONV_EXCEPTION",
+          "P1_SMT_CONV_WRAP_FAILED",
+          "P1_SMT_A3_LABEL",
+          "P1_SMT_A3_HELP",
+          "P1_SMT_A3_DESC",
+          "P1_SMT_A3_WRONG_TARGET",
+          "P1_SMT_A3_LOCK_FAILED",
+          "P1_SMT_A3_DISCARD_COPY"
+        ],
+        "placeholders": [
+          {
+            "key": "P1_SMT_CONV_TEXT",
+            "value": "%0s",
+            "count": 1
+          }
+        ]
+      },
+      "candidate": {
+        "bytes": 2952,
+        "sha256": "3a41f8c56f3e2bb82183178c05312317d9f4bd42483d50b3131c2e6df8a9ab80",
+        "bom": null,
+        "first_three_bytes": "50 31 5F",
+        "utf8_strict_decode": "PASS",
+        "non_ascii_bytes": 0,
+        "line_ending": "LF",
+        "lf_count": 144,
+        "crlf_count": 0,
+        "key_count": 36,
+        "placeholders": [
+          {
+            "key": "P1_SMT_CONV_TEXT",
+            "value": "%0s",
+            "count": 1
+          }
+        ]
+      },
+      "same_body_bytes": true,
+      "same_records": true
+    },
+    {
+      "path": "text/usascii/p1_smt_unit_probe.txt",
+      "changed": false,
+      "baseline": {
+        "bytes": 1761,
+        "sha256": "49a989770b876ab6a170e5d7997679614a811b84a392e8d8f073ea86e1c9b3c3",
+        "bom": null,
+        "first_three_bytes": "50 31 5F",
+        "utf8_strict_decode": "PASS",
+        "non_ascii_bytes": 0,
+        "line_ending": "LF",
+        "lf_count": 88,
+        "crlf_count": 0,
+        "key_count": 22,
+        "keys": [
+          "P1_SMT_UNIT_LABEL",
+          "P1_SMT_UNIT_HELP",
+          "P1_SMT_UNIT_DESC",
+          "P1_SMT_UNIT_NO_MODEL",
+          "P1_SMT_UNIT_NOT_PART",
+          "P1_SMT_UNIT_NO_BODY",
+          "P1_SMT_UNIT_ALREADY",
+          "P1_SMT_UNIT_SELECT",
+          "P1_SMT_UNIT_NO_FACE",
+          "P1_SMT_UNIT_ONE_FACE",
+          "P1_SMT_UNIT_BAD_FACE",
+          "P1_SMT_UNIT_BODY_MISMATCH",
+          "P1_SMT_UNIT_NOT_PLANE",
+          "P1_SMT_UNIT_THICKNESS",
+          "P1_SMT_UNIT_BAD_THICKNESS",
+          "P1_SMT_UNIT_CANCELLED",
+          "P1_SMT_UNIT_STALE",
+          "P1_SMT_UNIT_UNIT_FAILED",
+          "P1_SMT_UNIT_QUERY_FAILED",
+          "P1_SMT_UNIT_BUSY",
+          "P1_SMT_UNIT_EXCEPTION",
+          "P1_SMT_UNIT_STOPPED"
+        ],
+        "placeholders": []
+      },
+      "candidate": {
+        "bytes": 1761,
+        "sha256": "49a989770b876ab6a170e5d7997679614a811b84a392e8d8f073ea86e1c9b3c3",
+        "bom": null,
+        "first_three_bytes": "50 31 5F",
+        "utf8_strict_decode": "PASS",
+        "non_ascii_bytes": 0,
+        "line_ending": "LF",
+        "lf_count": 88,
+        "crlf_count": 0,
+        "key_count": 22,
+        "placeholders": []
+      },
+      "same_body_bytes": true,
+      "same_records": true
+    }
+  ],
+  "binary_identity_to_check_in_controlled_environment": {
+    "dll": {
+      "name": "p1_step41_cpp6a_g1_a3_model_lock.dll",
+      "bytes": 2981376,
+      "sha256": "67aa7b206c1569d0ae4e77e964dcfe87239d173915ff26948a179262f7211a37"
+    },
+    "dat": {
+      "name": "p1_step41_cpp6a_g1_a3_model_lock.dat",
+      "bytes": 255,
+      "sha256": "d5fcbf6e07222259ac58473210cc373e921f78d05278063ef685940c4066c3e6"
+    }
+  },
+  "verification": {
+    "byte_gate": "PASS",
+    "patch_scope": "two_chinese_cn_resource_files",
+    "cpp_source_changes": 0,
+    "dll_rebuild": "NOT_PERFORMED_RESOURCE_ONLY",
+    "prior_binary_evidence": "16 exports / 8 dependencies, per A3 isolated build receipt",
+    "candidate_runtime": "PENDING_CONTROLLED_RUN",
+    "prior_a3_terminal": "A3_LOCK_NOT_CONFIRMED/a3_lock",
+    "prior_a3_cleanup_failed": true,
+    "cleanup_gate": "PENDING_SEPARATE_GATE",
+    "dynamic_chinese_placeholder": "PENDING_WHERE_REACHABLE",
+    "utf8_bom_prior_field_evidence": "Creo 13.4.0.0 / zh-CN CP936 only",
+    "sdk_internal_encoding_detection": "NOT_INDEPENDENTLY_VERIFIED",
+    "other_encoding_configuration_options": "UNVERIFIED",
+    "cross_version_cross_code_page": "UNVERIFIED",
+    "ui_language": null,
+    "effective_message_language": null
+  }
+}

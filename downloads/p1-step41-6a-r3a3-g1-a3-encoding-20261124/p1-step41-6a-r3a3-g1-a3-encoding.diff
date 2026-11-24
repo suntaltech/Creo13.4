@@ -1,0 +1,20 @@
+diff --git a/text/chinese_cn/p1_smt_conv.txt b/text/chinese_cn/p1_smt_conv.txt
+index 7686d384ba04fd91437e3e93142bd99ec0ee5874..12bd1c8020aee9b1137fbe142dee3e58acc86a9d 100644
+--- a/text/chinese_cn/p1_smt_conv.txt
++++ b/text/chinese_cn/p1_smt_conv.txt
+@@ -1,4 +1,4 @@
+-P1_SMT_CONV_LABEL
++﻿P1_SMT_CONV_LABEL
+ p1_smt_drv_conv
+ #
+ #
+diff --git a/text/chinese_cn/p1_smt_unit_probe.txt b/text/chinese_cn/p1_smt_unit_probe.txt
+index f89d7a6f7603c68cd6570f573ab7ff91544c663a..78b5e4d4f361efcbd60712eb23a3e9394353da43 100644
+--- a/text/chinese_cn/p1_smt_unit_probe.txt
++++ b/text/chinese_cn/p1_smt_unit_probe.txt
+@@ -1,4 +1,4 @@
+-P1_SMT_UNIT_LABEL
++﻿P1_SMT_UNIT_LABEL
+ p1_smt_unit_probe
+ 
+ 
