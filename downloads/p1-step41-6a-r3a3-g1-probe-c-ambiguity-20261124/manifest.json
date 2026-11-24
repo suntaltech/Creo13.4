@@ -1,0 +1,121 @@
+{
+  "candidate": "P1 Step41 6A R3A3 G1 probe C selection ambiguity",
+  "probe_b_source_commit": "70469a236bfcb246f76672db3017b988db719014",
+  "creation_baseline_commit": "b99692e3f927ff297941e812e36ac5646bd323b7",
+  "resource_commit": "0d5b72991ec21dd96598caa21c99282ecffddf5e",
+  "inputs": [
+    {
+      "path": "P1_Step41_6A_R3A3_G1_歧义分支改码离线输入单_20261124.md",
+      "bytes": 6222,
+      "sha256": "81f630a30eb7121e5864a5fbef7d89bcecb174b3de89e1100c81ee4a441bf493"
+    },
+    {
+      "path": "ambiguity-change-input.json",
+      "bytes": 6860,
+      "sha256": "4ce16256acf5394c2629d504fd9baa392f82d4c253285bd789364d1e1e504a2c"
+    }
+  ],
+  "probe_b_source_zip": {
+    "path": "p1-step41-6a-r3a3-g1-buffer-dump-source.zip",
+    "bytes": 30631,
+    "sha256": "e01c5bf7f778702db7c09d819afdf5a05ceffdf421c7bf12832653ae6359f0df"
+  },
+  "patch": {
+    "path": "p1-step41-6a-r3a3-g1-probe-c-ambiguity.diff",
+    "bytes": 3916,
+    "sha256": "c860e6907dfa82d3c4de1c0c1601c93f3f201d76b201ae2456ff0041f1343a1d"
+  },
+  "probe_b_files": [
+    {
+      "path": "src/entry.cpp",
+      "bytes": 47162,
+      "sha256": "a588c3cde376c212f601fa202430632e1de92edb2e5b60f09ead54948ada8985"
+    },
+    {
+      "path": "src/smt_driving_command.inl",
+      "bytes": 32972,
+      "sha256": "9611f5cdddff3113c7bcc6cbcc6f1a6c2bd0c8e819d583d666764ea583309fa1"
+    },
+    {
+      "path": "src/smt_driving_tree.inl",
+      "bytes": 6225,
+      "sha256": "2e2d5ddd975489644e67a54db6d17417e11b16788d3300a8c4b39b787d90cb20"
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_conv.txt",
+      "bytes": 2372,
+      "sha256": "ac005fb059dc28b364d445a2a4ceddf02e5ac8796679dc4f855f4425e96ab94a"
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_unit_probe.txt",
+      "bytes": 1710,
+      "sha256": "b6f6363ae5f85699a061c96ef66b0ebac65e866315dfeec2dfe8d3f047280abe"
+    },
+    {
+      "path": "text/usascii/p1_smt_conv.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    },
+    {
+      "path": "text/usascii/p1_smt_unit_probe.txt",
+      "bytes": 1761,
+      "sha256": "49a989770b876ab6a170e5d7997679614a811b84a392e8d8f073ea86e1c9b3c3"
+    }
+  ],
+  "probe_c_files": [
+    {
+      "path": "src/entry.cpp",
+      "bytes": 47162,
+      "sha256": "a588c3cde376c212f601fa202430632e1de92edb2e5b60f09ead54948ada8985"
+    },
+    {
+      "path": "src/smt_driving_command.inl",
+      "bytes": 35459,
+      "sha256": "d2f851bdb7b8149d54372933a3ec4ff7d1ea507839655c1f0eff4dcd9410e9c7"
+    },
+    {
+      "path": "src/smt_driving_tree.inl",
+      "bytes": 6225,
+      "sha256": "2e2d5ddd975489644e67a54db6d17417e11b16788d3300a8c4b39b787d90cb20"
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_conv.txt",
+      "bytes": 2372,
+      "sha256": "ac005fb059dc28b364d445a2a4ceddf02e5ac8796679dc4f855f4425e96ab94a"
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_unit_probe.txt",
+      "bytes": 1710,
+      "sha256": "b6f6363ae5f85699a061c96ef66b0ebac65e866315dfeec2dfe8d3f047280abe"
+    },
+    {
+      "path": "text/usascii/p1_smt_conv.txt",
+      "bytes": 2414,
+      "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+    },
+    {
+      "path": "text/usascii/p1_smt_unit_probe.txt",
+      "bytes": 1761,
+      "sha256": "49a989770b876ab6a170e5d7997679614a811b84a392e8d8f073ea86e1c9b3c3"
+    }
+  ],
+  "build_identity_preregistration": {
+    "dll": {
+      "suggested_name": "p1_step41_cpp6a_g1_probe_c_ambiguity.dll",
+      "bytes": null,
+      "sha256": null
+    },
+    "dat": {
+      "suggested_name": "p1_step41_cpp6a_g1_probe_c_ambiguity.dat",
+      "registration_name": "p1_step41_g1_probe_c_ambiguity",
+      "bytes": null,
+      "sha256": null
+    },
+    "cl_exit": null,
+    "link_exit": null,
+    "dumpbin_exports": null,
+    "dumpbin_dependencies": null,
+    "dumpbin_imports": null
+  },
+  "validation": "STATIC_AND_MOCK_ONLY_PENDING_WINDOWS_SDK_AND_CONTROLLED_CREO"
+}

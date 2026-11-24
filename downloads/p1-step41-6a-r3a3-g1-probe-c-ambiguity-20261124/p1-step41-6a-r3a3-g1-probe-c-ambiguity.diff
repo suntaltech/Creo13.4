@@ -1,0 +1,80 @@
+diff --git a/src/smt_driving_command.inl b/src/smt_driving_command.inl
+index d535d401a1c4beb185a5f532eb7580688648ac09..8cebba9bf5d04a358c44763085a463f24a6d5dd4 100644
+--- a/src/smt_driving_command.inl
++++ b/src/smt_driving_command.inl
+@@ -534,6 +534,54 @@ bool smt6a_show_success(Smt6aContext& c, const ProMdlName& model_name, const Pro
+         smt6a_show_name(c, "P1_SMT_CONV_FEATURE_NAME", feature_name, "feature_name");
+ }
+ 
++void smt6a_trace_selection(const Smt6aContext& c, int limit, int count, ProError status) noexcept
++{
++    PreserveLastError preserve;
++    char returned_count[24] = "null";
++    if (status == PRO_TK_NO_ERROR)
++        std::snprintf(returned_count, sizeof(returned_count), "%d", count);
++    char facts[256] = {};
++    const int n = std::snprintf(facts, sizeof(facts),
++        "{\"operation_id\":%llu,\"stage\":\"select\",\"filter\":\"surface\","
++        "\"max_count\":%d,\"count\":%s,\"pro_error\":%d}",
++        static_cast<unsigned long long>(c.id), limit, returned_count, static_cast<int>(status));
++    smt6a_checked_event("SMT_CONV_SELECTION", facts, n, sizeof(facts));
++}
++
++void smt6a_trace_ambiguous_items(const Smt6aContext& c, ProMdl model,
++    const ProSelection* borrowed, int count, int limit) noexcept
++{
++    if (!borrowed || count < 2) return;
++    PreserveLastError preserve;
++    for (int i = 0; i < count && i < limit; ++i) {
++        ProModelitem item = {};
++        char status[24] = "null", id[24] = "null", type[24] = "null";
++        bool exception = false;
++        const char* owner_matches = "null";
++        if (borrowed[i]) {
++            try {
++                // Query while the selection is borrowed; never copy or retain it.
++                const ProError code = ProSelectionModelitemGet(borrowed[i], &item);
++                std::snprintf(status, sizeof(status), "%d", static_cast<int>(code));
++                if (code == PRO_TK_NO_ERROR) {
++                    std::snprintf(id, sizeof(id), "%d", item.id);
++                    std::snprintf(type, sizeof(type), "%d", static_cast<int>(item.type));
++                    owner_matches = item.owner == model ? "true" : "false";
++                }
++            } catch (...) {
++                exception = true;
++            }
++        }
++        char facts[320] = {};
++        const int n = std::snprintf(facts, sizeof(facts),
++            "{\"operation_id\":%llu,\"stage\":\"select\",\"selection_index\":%d,"
++            "\"pro_error\":%s,\"item_id\":%s,\"item_type\":%s,\"owner_matches_model\":%s,\"exception\":%s}",
++            static_cast<unsigned long long>(c.id), i, status, id, type, owner_matches,
++            exception ? "true" : "false");
++        smt6a_checked_event("SMT_CONV_AMBIGUOUS_ITEM", facts, n, sizeof(facts));
++    }
++}
++
+ void smt6a_run(Smt6aContext& c)
+ {
+     c.stage = "preflight";
+@@ -573,8 +621,10 @@ void smt6a_run(Smt6aContext& c)
+     ProSelection* borrowed = nullptr;
+     int count = 0;
+     char filter[] = "surface";
+-    status = ProSelect(filter, 1, nullptr, nullptr, nullptr, nullptr, &borrowed, &count);
+-    smt6a_call(c, "ProSelect(surface,1)", status);
++    constexpr int select_max_count = 2;
++    status = ProSelect(filter, select_max_count, nullptr, nullptr, nullptr, nullptr, &borrowed, &count);
++    smt6a_call(c, "ProSelect(surface,2)", status);
++    smt6a_trace_selection(c, select_max_count, count, status);
+     if (status == PRO_TK_USER_ABORT) {
+         smt6a_reject_command(c, "CANCELLED", "P1_SMT_CONV_CANCELLED"); return;
+     }
+@@ -585,6 +635,7 @@ void smt6a_run(Smt6aContext& c)
+         smt6a_reject_command(c, "NO_SELECTED_FACE", "P1_SMT_CONV_NO_FACE"); return;
+     }
+     if (count != 1 || !borrowed || !borrowed[0]) {
++        smt6a_trace_ambiguous_items(c, model, borrowed, count, select_max_count);
+         smt6a_reject_command(c, "SELECTION_AMBIGUOUS", "P1_SMT_CONV_ONE_FACE"); return;
+     }
+     Smt6aSelectedFace selected(c);
