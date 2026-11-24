@@ -1,0 +1,106 @@
+{
+  "schema": "p1.step41.a3.runtime-reconciliation.v1",
+  "date": "2026-11-24",
+  "handoff_source_commit": "67b7fa4a09c1171f69d6193e34aca20b4333ba5f",
+  "inputs": [
+    {
+      "file": "a3-model-lock-deployment-manifest.json",
+      "bytes": 10577,
+      "sha256": "06dab0d2d1a224cf2cfbf485899cf9ddfe7fdca498bfb827c37e7dcc8021e8a2"
+    },
+    {
+      "file": "a3-model-lock-runtime-receipt.json",
+      "bytes": 20408,
+      "sha256": "6c6146e20b46e7768ddb92a15ae94adb8d6f11a3ee799d8b53c70acff10dfff3"
+    },
+    {
+      "file": "P1_Step41_6A_R3A3_G1_A3模型锁探针受控观察回执_20261124.md",
+      "bytes": 10056,
+      "sha256": "1931f0065523f9a54709079ac13ade863e0cf7e1a1619daaab6ec563f929d483"
+    }
+  ],
+  "scope": "attachment_cross_check_and_source_resource_identity",
+  "operation": {
+    "id": 2,
+    "result": "A3_LOCK_NOT_CONFIRMED",
+    "stage": "a3_lock",
+    "tree_ready": true,
+    "create_called": false,
+    "create_status": null,
+    "regen_called": false,
+    "regen_status": null,
+    "save_called": false,
+    "model_may_be_modified": false,
+    "cleanup_failed": true,
+    "lock": {
+      "initial_lock_get_status": 0,
+      "initially_locked": false,
+      "modifiable_before_status": 0,
+      "can_modify_before": true,
+      "lock_set_status": -1,
+      "lock_get_status": 0,
+      "is_locked": false,
+      "modifiable_after_status": null,
+      "can_modify_after": null,
+      "restoration_required": true,
+      "unlock_set_status": -1,
+      "unlock_get_status": 0,
+      "is_locked_after_unlock": false
+    }
+  },
+  "case_status": {
+    "A1": "NOT_HIT",
+    "A2": "NOT_HIT",
+    "A3": "NOT_HIT",
+    "A4": "OBSERVED",
+    "A5": "OBSERVED"
+  },
+  "guard_assessment": {
+    "model_read_only_hit": false,
+    "m1_locked_create_observable": false,
+    "reason": "LOCK_STATE_NOT_ESTABLISHED_CREATE_NOT_CALLED",
+    "environment": "Creo 13.4.0.0 x64, local part, reported CP936 session"
+  },
+  "evidence": {
+    "deployment_identities_match_between_records": true,
+    "four_resource_identities_match_derived_source": true,
+    "isolated_build_gate_reported": "OFFLINE_BUILD_PASS_PENDING_RUNTIME",
+    "rollback_reported_verified": true,
+    "rollback_config_identity_consistent_between_records": true,
+    "model_copy_identity_consistent_between_records": true,
+    "original_evidence_independently_recomputed": false,
+    "unavailable_originals": [
+      "runtime_trace",
+      "screenshots",
+      "isolated_build_binary_and_dumpbin",
+      "windows_config_and_model_files"
+    ]
+  },
+  "reconciliation_notes": [
+    {
+      "fields": [
+        "deployment.cases[A5].expectedStage",
+        "runtime.cases[A5].expectedStage"
+      ],
+      "recorded": "create",
+      "normalized_expectation": "operation_stage_at_cleanup",
+      "observed": "a3_lock"
+    },
+    {
+      "field": "deployment.runtimeObservation.note",
+      "recorded": "rollback_pending",
+      "resolved_by": "runtime.closure.rollbackVerified",
+      "resolved": "rollback_reported_verified"
+    }
+  ],
+  "chinese_resource": {
+    "bytes": 2893,
+    "utf8_valid": true,
+    "utf8_bom": false,
+    "r3a3_bom_resource_body_is_exact_prefix": true,
+    "reported_ui_mojibake": true,
+    "root_cause_confirmed": false,
+    "ui_language": null,
+    "effective_message_language": null
+  }
+}
