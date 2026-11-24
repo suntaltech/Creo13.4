@@ -1,0 +1,499 @@
+diff --git a/src/smt_a3_lock_probe.inl b/src/smt_a3_lock_probe.inl
+new file mode 100644
+index 0000000000000000000000000000000000000000..47945beaa96d8b972f85f825e71593da061f8dad
+--- /dev/null
++++ b/src/smt_a3_lock_probe.inl
+@@ -0,0 +1,115 @@
++// Lock ownership is local to one Create attempt. An existing lock is never taken over.
++class Smt6aSessionLock {
++public:
++    Smt6aSessionLock(Smt6aContext& context, ProMdl model) noexcept
++        : context_(context), model_(model) {}
++    Smt6aSessionLock(const Smt6aSessionLock&) = delete;
++    Smt6aSessionLock& operator=(const Smt6aSessionLock&) = delete;
++
++    bool acquire()
++    {
++        auto& facts = context_.lock;
++        if (!observe(facts.initial_get, [&] {
++                return ProMdlLockGet(model_, &facts.initially_locked);
++            })) {
++            context_.result = "A3_INITIAL_LOCK_QUERY_FAILED";
++            return false;
++        }
++        if (facts.initially_locked != PRO_B_FALSE) {
++            context_.result = "A3_INITIAL_LOCK_NOT_CLEAR";
++            return false;
++        }
++
++        observe(facts.modifiable_before, [&] {
++            return ProMdlIsModifiable(model_, PRO_B_FALSE, &facts.can_modify_before);
++        });
++        // Verify restoration even if the Set call fails after changing the state.
++        facts.restoration_required = true;
++        const bool set_ok = observe(facts.set, [&] {
++            return ProMdlLockSet(model_, PRO_B_TRUE);
++        });
++        const bool get_ok = observe(facts.locked_get, [&] {
++            return ProMdlLockGet(model_, &facts.locked);
++        });
++        if (!set_ok || !get_ok || facts.locked != PRO_B_TRUE) {
++            context_.result = "A3_LOCK_NOT_CONFIRMED";
++            return false;
++        }
++
++        observe(facts.modifiable_after, [&] {
++            return ProMdlIsModifiable(model_, PRO_B_FALSE, &facts.can_modify_after);
++        });
++        return true;
++    }
++
++    ~Smt6aSessionLock() noexcept
++    {
++        auto& facts = context_.lock;
++        if (!facts.restoration_required) return;
++        restore_call(facts.unset, [&] { return ProMdlLockSet(model_, PRO_B_FALSE); });
++        restore_call(facts.final_get, [&] { return ProMdlLockGet(model_, &facts.finally_locked); });
++        if (facts.finally_locked != PRO_B_FALSE) context_.cleanup_failed = true;
++    }
++
++private:
++    template<class Call>
++    bool observe(Smt6aLockCall& evidence, Call call)
++    {
++        evidence.status = smt6a_sdk(context_, evidence.api, call);
++        evidence.returned = true;
++        return evidence.succeeded();
++    }
++
++    template<class Call>
++    void restore_call(Smt6aLockCall& evidence, Call call) noexcept
++    {
++        try {
++            if (!observe(evidence, call)) context_.cleanup_failed = true;
++        } catch (...) {
++            context_.cleanup_failed = true;
++        }
++    }
++
++    Smt6aContext& context_;
++    ProMdl model_;
++};
++
++const char* smt6a_lock_boolean(const Smt6aLockCall& query, ProBoolean value) noexcept
++{
++    if (query.succeeded()) {
++        if (value == PRO_B_TRUE) return "true";
++        if (value == PRO_B_FALSE) return "false";
++    }
++    return "null";
++}
++
++void smt6a_a3_lock_trace(const Smt6aContext& c) noexcept
++{
++    const auto& lock = c.lock;
++    const Smt6aLockCall* calls[] = {
++        &lock.initial_get, &lock.modifiable_before, &lock.set, &lock.locked_get,
++        &lock.modifiable_after, &lock.unset, &lock.final_get,
++    };
++    char statuses[7][24] = {};
++    for (size_t i = 0; i < sizeof(calls) / sizeof(calls[0]); ++i) {
++        if (calls[i]->returned)
++            std::snprintf(statuses[i], sizeof(statuses[i]), "%d", static_cast<int>(calls[i]->status));
++        else
++            std::memcpy(statuses[i], "null", 5);
++    }
++
++    char facts[768] = {};
++    const int n = std::snprintf(facts, sizeof(facts),
++        "{\"operation_id\":%llu,\"initial_lock_get_status\":%s,\"initially_locked\":%s,"
++        "\"modifiable_before_status\":%s,\"can_modify_before\":%s,\"lock_set_status\":%s,"
++        "\"lock_get_status\":%s,\"is_locked\":%s,\"modifiable_after_status\":%s,\"can_modify_after\":%s,"
++        "\"restoration_required\":%s,\"unlock_set_status\":%s,\"unlock_get_status\":%s,\"is_locked_after_unlock\":%s}",
++        static_cast<unsigned long long>(c.id),
++        statuses[0], smt6a_lock_boolean(lock.initial_get, lock.initially_locked),
++        statuses[1], smt6a_lock_boolean(lock.modifiable_before, lock.can_modify_before),
++        statuses[2], statuses[3], smt6a_lock_boolean(lock.locked_get, lock.locked),
++        statuses[4], smt6a_lock_boolean(lock.modifiable_after, lock.can_modify_after),
++        lock.restoration_required ? "true" : "false", statuses[5], statuses[6],
++        smt6a_lock_boolean(lock.final_get, lock.finally_locked));
++    smt6a_checked_event("SMT_CONV_A3_LOCK", facts, n, sizeof(facts));
++}
+diff --git a/src/smt_driving_command.inl b/src/smt_driving_command.inl
+index 21590510196fbe4e58f0172fffe0c222d3fa1421..0c56545dd4c1080b77156597dc5003baf7ac33a7 100644
+--- a/src/smt_driving_command.inl
++++ b/src/smt_driving_command.inl
+@@ -1,7 +1,30 @@
+-// Synchronous driving-surface conversion in the creation candidate.
++// Isolated A3 model-lock probe for a disposable session copy.
++constexpr char smt6a_command_name[] = "p1_smt_a3_lock_probe";
++constexpr wchar_t smt6a_probe_target[] = L"BOLT_A3_LOCK_PROBE";
++
++struct Smt6aLockCall {
++    const char* api;
++    bool returned = false;
++    ProError status = PRO_TK_NO_ERROR;
++
++    bool succeeded() const noexcept { return returned && status == PRO_TK_NO_ERROR; }
++};
++
++struct Smt6aLockFacts {
++    Smt6aLockCall initial_get{"ProMdlLockGet(before)"};
++    Smt6aLockCall modifiable_before{"ProMdlIsModifiable(before)"};
++    Smt6aLockCall set{"ProMdlLockSet(true)"};
++    Smt6aLockCall locked_get{"ProMdlLockGet(after_lock)"};
++    Smt6aLockCall modifiable_after{"ProMdlIsModifiable(after_lock)"};
++    Smt6aLockCall unset{"ProMdlLockSet(false)"};
++    Smt6aLockCall final_get{"ProMdlLockGet(after_unlock)"};
++    ProBoolean initially_locked = PRO_B_FALSE, locked = PRO_B_FALSE, finally_locked = PRO_B_FALSE;
++    ProBoolean can_modify_before = PRO_B_FALSE, can_modify_after = PRO_B_FALSE;
++    bool restoration_required = false;
++};
+ alignas(8) volatile LONG64 smt6a_sequence = 0;
+ volatile LONG smt6a_busy = 0;
+-AccessTrace smt6a_access_trace = {"p1_smt_drv_conv", "p1_smt_drv_conv", 0, {}, {}};
++AccessTrace smt6a_access_trace = {smt6a_command_name, smt6a_command_name, 0, {}, {}};
+ 
+ struct Smt6aContext {
+     ULONGLONG id = static_cast<ULONGLONG>(InterlockedIncrement64(&smt6a_sequence));
+@@ -11,6 +34,8 @@ struct Smt6aContext {
+     double thickness_mm = 0.0, thickness_model = 0.0, area = 0.0;
+     int face_id = -1, face_type = -1;
+     char model_json[model_name_json_capacity] = "null";
++    char model_type[24] = "null";
++    Smt6aLockFacts lock;
+     char unit_from[256] = "null", unit_to[256] = "null";
+     char scale[64] = "null", offset[64] = "null";
+     bool tree_ready = false, create_called = false, create_valid = false;
+@@ -82,6 +107,8 @@ void smt6a_cleanup(Smt6aContext& c, const char* api, Call call) noexcept
+     }
+ }
+ 
++#include "smt_a3_lock_probe.inl"
++
+ template<size_t N>
+ bool smt6a_quote_wide(const wchar_t (&name)[N], char* json, size_t capacity) noexcept
+ {
+@@ -134,8 +161,8 @@ void smt6a_finish(Smt6aContext& c) noexcept
+     if (c.face_valid && !smt6a_number(c.area, area)) std::memcpy(area, "null", 5);
+     char facts[model_facts_capacity] = {};
+     const int n = std::snprintf(facts, sizeof(facts),
+-        "{\"operation_id\":%llu,\"command\":\"p1_smt_drv_conv\",\"mode\":\"driving\","
+-        "\"result\":\"%s\",\"stage\":\"%s\",\"model_name\":%s,\"face_id\":%s,"
++        "{\"operation_id\":%llu,\"command\":\"%s\",\"mode\":\"a3_model_lock\","
++        "\"result\":\"%s\",\"stage\":\"%s\",\"model_name\":%s,\"model_type\":%s,\"face_id\":%s,"
+         "\"face_type\":%s,\"face_area_model_units_squared\":%s,\"thickness_mm\":%s,"
+         "\"thickness_model_units\":%s,\"unit_from\":%s,\"unit_to\":%s,\"scale\":%s,\"offset\":%s,"
+         "\"tree_ready\":%s,\"create_called\":%s,\"create_status\":%s,"
+@@ -143,20 +170,23 @@ void smt6a_finish(Smt6aContext& c) noexcept
+         "\"feature_id\":%s,\"feature_type\":%s,\"feature_name\":%s,"
+         "\"model_may_be_modified\":%s,\"save_called\":false,\"cleanup_failed\":%s,"
+         "\"feedback_failed\":%s,\"elapsed_ms\":%llu}",
+-        static_cast<unsigned long long>(c.id), c.result, c.stage, c.model_json,
++        static_cast<unsigned long long>(c.id), smt6a_command_name, c.result, c.stage, c.model_json, c.model_type,
+         face, type, area, mm, model, c.unit_from, c.unit_to, c.scale, c.offset,
+         c.tree_ready ? "true" : "false", c.create_called ? "true" : "false", create,
+         c.regen_called ? "true" : "false", regen, c.sheetmetal, feature, feature_type, c.feature_json,
+-        c.create_called ? "true" : "false", c.cleanup_failed ? "true" : "false",
++        (c.create_called && (!c.create_valid || c.create_status != PRO_TK_CANT_MODIFY)) ? "true" : "false",
++        c.cleanup_failed ? "true" : "false",
+         c.feedback_failed ? "true" : "false",
+         static_cast<unsigned long long>(GetTickCount64() - c.started));
++    smt6a_a3_lock_trace(c);
+     smt6a_checked_event("SMT_CONV_RETURN", facts, n, sizeof(facts));
+ }
+ 
+ void smt6a_reject_command(Smt6aContext& c, const char* result, const char* key)
+ {
+     c.result = result;
+-    smt6a_message(c, key);
++    try { smt6a_message(c, key); }
++    catch (...) { c.feedback_failed = true; }
+ }
+ 
+ struct Smt6aFaceMatch {
+@@ -317,6 +347,12 @@ bool smt6a_create(Smt6aContext& c, ProMdl model, ProSolidBody& body,
+         static_cast<unsigned long long>(c.id));
+     smt6a_checked_event("SMT_CONV_TREE_READY", facts, n, sizeof(facts));
+ 
++    Smt6aSessionLock lock(c, model);
++    c.stage = "a3_lock";
++    if (!lock.acquire()) {
++        smt6a_reject_command(c, c.result, "P1_SMT_A3_LOCK_FAILED");
++        return false;
++    }
+     c.stage = "create";
+     ProErrorlist errors = {};
+     c.create_status = smt6a_sdk(c, "ProFeatureWithoptionsCreate", [&] {
+@@ -337,75 +373,7 @@ bool smt6a_create(Smt6aContext& c, ProMdl model, ProSolidBody& body,
+     return true;
+ }
+ 
+-bool smt6a_readback(Smt6aContext& c, ProSolid solid, const ProSolidBody& original,
+-    ProFeature& feature, ProName& name)
+-{
+-    c.stage = "feature_identity";
+-    if (feature.owner != original.owner || feature.id < 0) {
+-        smt6a_reject_command(c, "FEATURE_READBACK_FAILED", "P1_SMT_CONV_POST_FAILED");
+-        return false;
+-    }
+-    c.feature_id = feature.id;
+-    c.stage = "regenerate";
+-    c.regen_status = smt6a_sdk(c, "ProSolidRegenerate", [&] {
+-        c.regen_called = true;
+-        return ProSolidRegenerate(solid, PRO_REGEN_NO_FLAGS);
+-    });
+-    c.regen_valid = true;
+-    if (c.regen_status != PRO_TK_NO_ERROR) {
+-        smt6a_reject_command(c, "REGEN_FAILED", "P1_SMT_CONV_POST_FAILED");
+-        return false;
+-    }
+-    c.stage = "postcheck";
+-    ProSolidBody body = {};
+-    ProBoolean sheetmetal = PRO_B_FALSE;
+-    if (smt6a_sdk(c, "ProSolidDefaultBodyGet(post)", [&] {
+-            return ProSolidDefaultBodyGet(solid, &body);
+-        }) != PRO_TK_NO_ERROR) {
+-        smt6a_reject_command(c, "STATUS_READBACK_FAILED", "P1_SMT_CONV_POST_FAILED");
+-        return false;
+-    }
+-    if (body.id != original.id || body.owner != original.owner) {
+-        smt6a_reject_command(c, "TARGET_BODY_CHANGED", "P1_SMT_CONV_POST_FAILED");
+-        return false;
+-    }
+-    if (smt6a_sdk(c, "ProSolidBodyIsSheetmetal(post)", [&] {
+-            return ProSolidBodyIsSheetmetal(&body, &sheetmetal);
+-        }) != PRO_TK_NO_ERROR) {
+-        smt6a_reject_command(c, "STATUS_READBACK_FAILED", "P1_SMT_CONV_POST_FAILED");
+-        return false;
+-    }
+-    c.sheetmetal = sheetmetal == PRO_B_TRUE ? "true" : "false";
+-    if (sheetmetal != PRO_B_TRUE) {
+-        smt6a_reject_command(c, "STATUS_NOT_SHEETMETAL", "P1_SMT_CONV_POST_FAILED");
+-        return false;
+-    }
+-
+-    if (feature.owner != original.owner || feature.id != c.feature_id) {
+-        smt6a_reject_command(c, "FEATURE_READBACK_FAILED", "P1_SMT_CONV_POST_FAILED");
+-        return false;
+-    }
+-    ProFeattype type = {};
+-    if (smt6a_sdk(c, "ProFeatureTypeGet", [&] {
+-            return ProFeatureTypeGet(&feature, &type);
+-        }) != PRO_TK_NO_ERROR) {
+-        smt6a_reject_command(c, "FEATURE_READBACK_FAILED", "P1_SMT_CONV_POST_FAILED");
+-        return false;
+-    }
+-    c.feature_type = static_cast<int>(type);
+-    c.feature_type_valid = true;
+-    if (smt6a_sdk(c, "ProModelitemNameGet(feature)", [&] {
+-            return ProModelitemNameGet(&feature, name);
+-        }) != PRO_TK_NO_ERROR || !name[0] ||
+-        !smt6a_quote_wide(name, c.feature_json, sizeof(c.feature_json))) {
+-        std::memcpy(c.feature_json, "null", 5);
+-        smt6a_reject_command(c, "FEATURE_READBACK_FAILED", "P1_SMT_CONV_POST_FAILED");
+-        return false;
+-    }
+-    return true;
+-}
+-
+-bool smt6a_text(Smt6aContext& c, char* value, bool preview_only = false)
++bool smt6a_preview_text(Smt6aContext& c, char* value)
+ {
+     ProFileName file = L"p1_smt_conv.txt";
+     ProCharLine key = "P1_SMT_CONV_TEXT";
+@@ -413,43 +381,7 @@ bool smt6a_text(Smt6aContext& c, char* value, bool preview_only = false)
+     const ProError preview = smt6a_sdk(c, "ProMessageToBuffer(conversion_text)", [&] {
+         return ProMessageToBuffer(buffer, file, key, value);
+     });
+-    if (preview != PRO_TK_NO_ERROR) return false;
+-    return preview_only || smt6a_sdk(c, "ProMessageDisplay(conversion_text)", [&] {
+-        return ProMessageDisplay(file, key, value);
+-    }) == PRO_TK_NO_ERROR;
+-}
+-
+-template<size_t N>
+-bool smt6a_show_name(Smt6aContext& c, const char* key, const wchar_t (&name)[N])
+-{
+-    if (smt6a_message(c, key) != PRO_TK_NO_ERROR) return false;
+-    char utf8[N * 3 + 1] = {};
+-    if (WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, name,
+-            -1, utf8, static_cast<int>(sizeof(utf8)), nullptr, nullptr) <= 0) return false;
+-    const size_t length = std::strlen(utf8);
+-    for (size_t start = 0; start < length;) {
+-        size_t end = start + 60 < length ? start + 60 : length;
+-        while (end < length && (static_cast<unsigned char>(utf8[end]) & 0xc0) == 0x80) --end;
+-        char line[61] = {};
+-        std::memcpy(line, utf8 + start, end - start);
+-        if (!smt6a_text(c, line)) return false;
+-        start = end;
+-    }
+-    return true;
+-}
+-
+-bool smt6a_show_success(Smt6aContext& c, const ProMdlName& model_name, const ProName& feature_name)
+-{
+-    char thickness[64] = {}, detail[80] = {};
+-    if (!smt6a_number(c.thickness_mm, thickness)) return false;
+-    const int n = std::snprintf(detail, sizeof(detail), "driving; thickness=%s mm", thickness);
+-    if (n <= 0 || static_cast<size_t>(n) >= sizeof(detail)) return false;
+-    if (smt6a_message(c, "P1_SMT_CONV_SUCCESS") != PRO_TK_NO_ERROR ||
+-        !smt6a_show_name(c, "P1_SMT_CONV_MODEL_NAME", model_name) || !smt6a_text(c, detail)) return false;
+-    const int k = std::snprintf(detail, sizeof(detail), "feature_id=%d; IsSheetmetal=true; Save not called",
+-        c.feature_id);
+-    return k > 0 && static_cast<size_t>(k) < sizeof(detail) && smt6a_text(c, detail) &&
+-        smt6a_show_name(c, "P1_SMT_CONV_FEATURE_NAME", feature_name);
++    return preview == PRO_TK_NO_ERROR;
+ }
+ 
+ void smt6a_run(Smt6aContext& c)
+@@ -464,6 +396,7 @@ void smt6a_run(Smt6aContext& c)
+     if (!smt6a_call(c, "ProMdlTypeGet", ProMdlTypeGet(model, &type))) {
+         smt6a_reject_command(c, "MODEL_QUERY_FAILED", "P1_SMT_CONV_QUERY_FAILED"); return;
+     }
++    std::snprintf(c.model_type, sizeof(c.model_type), "%d", static_cast<int>(type));
+     if (type != PRO_MDL_PART) {
+         smt6a_reject_command(c, "NOT_PART", "P1_SMT_CONV_NOT_PART"); return;
+     }
+@@ -472,6 +405,10 @@ void smt6a_run(Smt6aContext& c)
+         !smt6a_quote_wide(model_name, c.model_json, sizeof(c.model_json))) {
+         smt6a_reject_command(c, "MODEL_NAME_FAILED", "P1_SMT_CONV_QUERY_FAILED"); return;
+     }
++    if (CompareStringOrdinal(model_name, -1, smt6a_probe_target, -1, TRUE) != CSTR_EQUAL) {
++        smt6a_reject_command(c, "PROBE_TARGET_MISMATCH", "P1_SMT_A3_WRONG_TARGET");
++        return;
++    }
+     const ProSolid solid = reinterpret_cast<ProSolid>(model);
+     ProSolidBody body = {};
+     status = ProSolidDefaultBodyGet(solid, &body);
+@@ -559,7 +496,7 @@ void smt6a_run(Smt6aContext& c)
+     c.thickness_mm = thickness; c.thickness_model = converted; c.thickness_valid = true;
+     c.stage = "feedback_preflight";
+     char preview[] = "driving; thickness in mm";
+-    if (!smt6a_text(c, preview, true)) {
++    if (!smt6a_preview_text(c, preview)) {
+         c.feedback_failed = true;
+         c.result = "FEEDBACK_NOT_READY";
+         return;
+@@ -568,18 +505,9 @@ void smt6a_run(Smt6aContext& c)
+     const bool created = smt6a_create(c, model, fresh_body, selected.copy, feature);
+     selected.release();
+     if (!created) return;
+-    if (c.cleanup_failed) {
+-        smt6a_reject_command(c, "CLEANUP_FAILED", "P1_SMT_CONV_POST_FAILED"); return;
+-    }
+-    ProName feature_name = {};
+-    if (!smt6a_readback(c, solid, fresh_body, feature, feature_name)) return;
+-    c.stage = "feedback";
+-    if (!smt6a_show_success(c, model_name, feature_name)) {
+-        c.feedback_failed = true;
+-        c.result = "POST_FEEDBACK_FAILED";
+-        return;
+-    }
+-    c.result = "SUCCESS_UNSAVED";
++    // A successful Create is evidence even when cleanup or feedback later fails.
++    if (feature.owner == model && feature.id >= 0) c.feature_id = feature.id;
++    smt6a_reject_command(c, "A3_CREATE_SUCCEEDED_DISCARD_COPY", "P1_SMT_A3_DISCARD_COPY");
+ }
+ 
+ int smt6a_action(uiCmdCmdId command, uiCmdValue* value, void* push_data)
+@@ -595,7 +523,7 @@ int smt6a_action(uiCmdCmdId command, uiCmdValue* value, void* push_data)
+     }
+     struct BusyReset { ~BusyReset() { InterlockedExchange(&smt6a_busy, 0); } } reset;
+     char begin[128] = {};
+-    const int n = std::snprintf(begin, sizeof(begin), "{\"operation_id\":%llu,\"mode\":\"driving\"}",
++    const int n = std::snprintf(begin, sizeof(begin), "{\"operation_id\":%llu,\"mode\":\"a3_model_lock\"}",
+         static_cast<unsigned long long>(context.id));
+     smt6a_checked_event("SMT_CONV_ENTER", begin, n, sizeof(begin));
+     try { smt6a_run(context); }
+@@ -621,20 +549,20 @@ void register_smt6a_conversion() noexcept
+     PreserveLastError preserve;
+     Smt6aContext c;
+     try {
+-        static char name[] = "p1_smt_drv_conv";
+-        static char label[] = "P1_SMT_CONV_LABEL";
+-        static char help[] = "P1_SMT_CONV_HELP";
+-        static char description[] = "P1_SMT_CONV_DESC";
++        static char name[] = "p1_smt_a3_lock_probe";
++        static char label[] = "P1_SMT_A3_LABEL";
++        static char help[] = "P1_SMT_A3_HELP";
++        static char description[] = "P1_SMT_A3_DESC";
+         static wchar_t file[] = L"p1_smt_conv.txt";
+         uiCmdCmdId id = nullptr;
+         const ProError add = ProCmdActionAdd(name, &smt6a_action, uiProeImmediate,
+             &smt6a_access, PRO_B_TRUE, PRO_B_TRUE, &id);
+         if (!smt6a_call(c, "ProCmdActionAdd(smt_conversion)", add)) return;
+         if (!id) {
+-            trace_event("SMT_CONV_REGISTER_NO_ID", "{\"command\":\"p1_smt_drv_conv\"}");
++            trace_event("SMT_CONV_REGISTER_NO_ID", "{\"command\":\"p1_smt_a3_lock_probe\"}");
+             return;
+         }
+-        trace_registration_identity("p1_smt_drv_conv", id, name, label, help, description, file);
++        trace_registration_identity(smt6a_command_name, id, name, label, help, description, file);
+         smt6a_call(c, "ProCmdDesignate(smt_conversion)", ProCmdDesignate(id, label, help, description, file));
+         flush_one_access_trace(smt6a_access_trace, "smt_conversion_initialization_end");
+     } catch (...) {
+diff --git a/text/chinese_cn/p1_smt_conv.txt b/text/chinese_cn/p1_smt_conv.txt
+index 20218445dd23cda36ab325aee096a34f3f320f44..7686d384ba04fd91437e3e93142bd99ec0ee5874 100644
+--- a/text/chinese_cn/p1_smt_conv.txt
++++ b/text/chinese_cn/p1_smt_conv.txt
+@@ -118,3 +118,27 @@ P1_SMT_CONV_WRAP_FAILED
+ 无法包装当前零件或默认实体体，创建未调用。
+ #
+ #
++P1_SMT_A3_LABEL
++A3 模型锁探针
++#
++#
++P1_SMT_A3_HELP
++只在可丢弃的 BOLT_A3_LOCK_PROBE 零件副本上运行一次。
++#
++#
++P1_SMT_A3_DESC
++锁定会话副本并尝试创建一次特征。结束后丢弃副本，不保存。
++#
++#
++P1_SMT_A3_WRONG_TARGET
++请先打开可丢弃的 BOLT_A3_LOCK_PROBE 零件副本。
++#
++#
++P1_SMT_A3_LOCK_FAILED
++无法确认初始锁状态或加锁结果，请查阅 A3 锁状态日志。
++#
++#
++P1_SMT_A3_DISCARD_COPY
++锁定的副本上创建了特征。请关闭并丢弃副本，不保存。
++#
++#
+diff --git a/text/usascii/p1_smt_conv.txt b/text/usascii/p1_smt_conv.txt
+index e6b6a1985dcda6d199c598670506aa094bca65d9..0bffb122bddaed1b64f0b43c554ed86ce06c83b7 100644
+--- a/text/usascii/p1_smt_conv.txt
++++ b/text/usascii/p1_smt_conv.txt
+@@ -118,3 +118,27 @@ P1_SMT_CONV_WRAP_FAILED
+ Could not wrap the current part or default body. Create was not called.
+ #
+ #
++P1_SMT_A3_LABEL
++A3 model-lock probe
++#
++#
++P1_SMT_A3_HELP
++Run once on the disposable BOLT_A3_LOCK_PROBE part.
++#
++#
++P1_SMT_A3_DESC
++Lock the session copy and attempt feature creation once. Discard the copy without saving.
++#
++#
++P1_SMT_A3_WRONG_TARGET
++Open the disposable BOLT_A3_LOCK_PROBE part before running this probe.
++#
++#
++P1_SMT_A3_LOCK_FAILED
++Could not confirm the original or locked model state. See the A3 lock trace.
++#
++#
++P1_SMT_A3_DISCARD_COPY
++Feature creation succeeded on the locked copy. Close and discard the copy without saving.
++#
++#

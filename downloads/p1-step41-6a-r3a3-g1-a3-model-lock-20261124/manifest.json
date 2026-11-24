@@ -1,0 +1,83 @@
+{
+  "candidate": "P1 Step41 6A R3A3 G1 A3 model lock probe",
+  "date": "2026-11-24",
+  "scope": "source_patch_only",
+  "baseline": {
+    "handoff_commit": "b99692e3f927ff297941e812e36ac5646bd323b7",
+    "files": [
+      {
+        "path": "src/entry.cpp",
+        "bytes": 47162,
+        "sha256": "a588c3cde376c212f601fa202430632e1de92edb2e5b60f09ead54948ada8985"
+      },
+      {
+        "path": "src/smt_driving_command.inl",
+        "bytes": 29171,
+        "sha256": "69eb08be3ebad7121506cca10b2ea457cd1ad1782434c0b8bafff3b9300b3497"
+      },
+      {
+        "path": "src/smt_driving_tree.inl",
+        "bytes": 6225,
+        "sha256": "2e2d5ddd975489644e67a54db6d17417e11b16788d3300a8c4b39b787d90cb20"
+      },
+      {
+        "path": "text/chinese_cn/p1_smt_conv.txt",
+        "bytes": 2369,
+        "sha256": "d9dc29a617d29e23723e0aad9a19f8ea0b18e9a65d6b74dde6e6953d1e9c2e66"
+      },
+      {
+        "path": "text/usascii/p1_smt_conv.txt",
+        "bytes": 2414,
+        "sha256": "921ebd62f52ebf07759021f4e68b42ca6f0916c9f2e6e273af12468bc800aa4f"
+      },
+      {
+        "path": "text/chinese_cn/p1_smt_unit_probe.txt",
+        "bytes": 1707,
+        "sha256": "8cad94c1fc3f50b6791fe05ef56e0f61f240631e489c6de00b1ff2f2613ab833"
+      },
+      {
+        "path": "text/usascii/p1_smt_unit_probe.txt",
+        "bytes": 1761,
+        "sha256": "49a989770b876ab6a170e5d7997679614a811b84a392e8d8f073ea86e1c9b3c3"
+      }
+    ]
+  },
+  "command": "p1_smt_a3_lock_probe",
+  "only_target_model_name": "BOLT_A3_LOCK_PROBE",
+  "patch": {
+    "path": "p1-step41-6a-r3a3-g1-a3-model-lock.diff",
+    "bytes": 21828,
+    "sha256": "1f0f5d6ec160892f746254e6ff5233fafc0a325c704904207295ebc54cf82fae"
+  },
+  "patched_files": [
+    {
+      "path": "src/smt_a3_lock_probe.inl",
+      "bytes": 4525,
+      "sha256": "8eedd92369194a26ef8b4870f9015323055e7daa24d00950221db05cea959e83"
+    },
+    {
+      "path": "src/smt_driving_command.inl",
+      "bytes": 26181,
+      "sha256": "61170afae5409c63cb72d267b4c9051ad8863e05593a4a8e9ab7425d08d9db34"
+    },
+    {
+      "path": "text/chinese_cn/p1_smt_conv.txt",
+      "bytes": 2893,
+      "sha256": "233801973043d5f608eff124c1ce8d91ffc0a67a6f84d11a6f770dbecea7359f"
+    },
+    {
+      "path": "text/usascii/p1_smt_conv.txt",
+      "bytes": 2952,
+      "sha256": "3a41f8c56f3e2bb82183178c05312317d9f4bd42483d50b3131c2e6df8a9ab80"
+    }
+  ],
+  "verification": {
+    "patch_apply_and_reverse_checks": "PASS",
+    "derived_file_comparison": "PASS",
+    "linux_cpp14_mock_scenarios_passed": 10,
+    "windows_sdk_compile": "PENDING",
+    "windows_sdk_link": "PENDING",
+    "dumpbin": "PENDING",
+    "creo_runtime": "PENDING"
+  }
+}
